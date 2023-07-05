@@ -27,7 +27,7 @@
     }
   },
 
-"extends": [  
+"extends": [
     "plugin:import/errors",
   ],
 ```

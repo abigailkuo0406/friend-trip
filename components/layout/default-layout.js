@@ -1,14 +1,14 @@
 import Navbar from './navbar'
 import Footer from './footer'
-import SideArea from './side-area'
 
 export default function DefaultLayout({ children }) {
   return (
     <>
-      <Navbar />
-      <SideArea/>
-      <main>{children}</main>
-      <Footer />
+      <div className="col-lg-8 mx-auto p-4 py-md-5">
+        <Navbar />
+        <main className="container">{children}</main>
+        <Footer />
+      </div>
     </>
   )
 }
