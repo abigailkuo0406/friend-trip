@@ -1,8 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
 import { BiSearchAlt } from 'react-icons/bi'
-
-// 空心圖
 import logo from '@/assets/logo/FriendTrip-Logo.png'
 
 export default function Navbar() {
