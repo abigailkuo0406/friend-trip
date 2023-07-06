@@ -1,12 +1,14 @@
+import styles from '../custom-itinerary/history.module.css'
 export default function Public() {
     return (
       <>
-   <div className="card" style={{width:300}}>
-    <img src="http://localhost:3001/yauogfnozeddzzg.jpg" className="card-img-top" alt="..."></img>
+  <div className={styles.container}>
+   <div className="card mx-2 mb-3" style={{width:300}}>
+    <img src="http://localhost:3000/img/yauogfnozeddzzg.jpg" className="card-img-top" alt="..."></img>
     <div className="card-body">
     <div className="d-flex mb-4">
                 <img
-                  src={`http://localhost:3001/people01.jpeg`}
+                  src={`http://localhost:3000/img/people01.jpeg`}
                   className="rounded-circle"
                   alt="..."
                   style={{ width: 60 }}
@@ -23,7 +25,9 @@ export default function Public() {
       </div>
     </div>
   </div>
+</div>
       </>
+
     )
   }
   
