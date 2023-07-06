@@ -1,10 +1,14 @@
 import styles from './create-task.module.css'
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 export default function CreateTask() {
   return (
     <>
-      <div className={styles.container}>
         <div className="container">
+        <div className="d-flex">
+        <a href="http://localhost:3000/custom-itinerary"><AiOutlineArrowLeft/></a>
+        <h3>新增行程</h3>
+        </div>
           <div className="d-flex flex-column mb-3">
             <label className={styles.label}>
               旅程封面圖片
@@ -76,7 +80,7 @@ export default function CreateTask() {
                   人數
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   id="exampleFormControlInput1"
                 ></input>
@@ -92,7 +96,6 @@ export default function CreateTask() {
                   placeholder="請輸入"
                 ></textarea>
               </div>
-
               <div className="d-flex justify-content-center  ">
                 <button type="submit" className="btn btn-light mx-4">
                   取消
@@ -104,7 +107,6 @@ export default function CreateTask() {
             </div>
           </div>
         </div>
-      </div>
     </>
   )
 }
