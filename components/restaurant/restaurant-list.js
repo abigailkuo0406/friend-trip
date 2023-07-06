@@ -1,4 +1,6 @@
 import React from 'react'
+// import styles from './restaurant.css'
+
 
 export default function RestaurantList() {
   return (
