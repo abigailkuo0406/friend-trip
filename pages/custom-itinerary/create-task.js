@@ -1,11 +1,12 @@
 import React from 'react'
+import CreateTaskIndex from'@/components/custom-itinerary/create-task'
 
-import { FaBeer } from 'react-icons/fa'
 
 export default function CreateTask() {
   return (
     <>
-        <h3><FaBeer/></h3>
+         <h4>新增行程</h4>
+         <CreateTaskIndex/>
     </>
   )
 }

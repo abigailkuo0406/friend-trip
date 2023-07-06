@@ -1,0 +1,14 @@
+.container {
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid rosybrown;
+}
+
+.text {
+  margin-right: 10px;
+  color: #674c87;
+}
+
+.cardText {
+  color: #674c87;
+}
