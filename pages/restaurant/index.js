@@ -1,4 +1,6 @@
 import React from 'react'
+import AdminLayout from '@/components/layout/admin-layout'
+
 import RestaurantList from '@/components/restaurant/restaurant-list'
 
 export default function Rest() {
@@ -8,4 +10,7 @@ export default function Rest() {
       <RestaurantList></RestaurantList>
     </>
   )
+}
+Rest.getLayout = function (page) {
+  return <AdminLayout>{page}</AdminLayout>
 }
