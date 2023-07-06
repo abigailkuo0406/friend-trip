@@ -1,8 +1,17 @@
-import '@/styles/globals.scss'
+import { useEffect } from 'react'
+import '@/css/style.css'
+import DefaultLayout from '@/components/layout/default-layout'
 
 export default function MyApp({ Component, pageProps }) {
-  // Use the layout defined at the page level, if available
-  const getLayout = Component.getLayout || ((page) => page)
+  useEffect(() => {
+    // 要document物件出現後才能導入 bootstrap的js函式庫
+    import('bootstrap/dist/js/bootstrap')
+  }, [])
+
+  // 使用預設排版檔案
+  // 對應`components/layout/default-layout/index.js`
+  const getLayout =
+    Component.getLayout || ((page) => <DefaultLayout>{page}</DefaultLayout>)
 
   return getLayout(<Component {...pageProps} />)
 }
