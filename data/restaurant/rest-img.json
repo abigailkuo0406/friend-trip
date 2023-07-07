@@ -1,0 +1,22 @@
+[
+  {
+    "RestImgID": 1,
+    "RestID": 1,
+    "RestImg": "@/assets/restaurant/rest-img-1-a.jpg"
+  },
+  {
+    "RestImgID": 2,
+    "RestID": 1,
+    "RestImg": "@/assets/restaurant/rest-img-1-b.jpg"
+  },
+  {
+    "RestImgID": 3,
+    "RestID": 1,
+    "RestImg": "@/assets/restaurant/rest-img-1-c.jpg"
+  },
+  {
+    "RestImgID": 4,
+    "RestID": 1,
+    "RestImg": "@/assets/restaurant/rest-img-1-d.jpg"
+  }
+]
