@@ -14,10 +14,9 @@ export default function Index() {
         .map((v, i) => {
           return <HistotyCard key={i}/>  
         })}
-        
+   
         <BtnToolbar />
-  
-     
+
     
     </>
   )

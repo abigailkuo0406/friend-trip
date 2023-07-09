@@ -1,25 +1,32 @@
 import styles from './create-task.module.css'
 import { FaArrowLeftLong } from 'react-icons/fa6'
+import Image from 'next/image'
+import Jiufen from '@/assets/fake-data/fake-jiufen.png'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+
+
 
 export default function CreateTask() {
+  const router=useRouter()
   return (
     <>
       <div className="container">
         <div className="d-flex justify-content-center">
-          <a href="http://localhost:3000/custom-itinerary">
-            <FaArrowLeftLong/>
-          </a>
+          <Link href="/custom-itinerary">
+            <h4><FaArrowLeftLong/></h4>
+          </Link>
           <h3 className="mx-auto">新增行程</h3>
         </div>
         {/* 行程封面照片 */}
         <div className="d-flex flex-column mb-3">
           <label className={styles.label}>旅程封面圖片</label>
-          <img
-            src={`http://localhost:3000/img/yauogfnozeddzzg.jpg`}
+          <Image
+            src={Jiufen}
             className={styles.label}
             alt="..."
-            style={{ width: 450 }}
-          ></img>
+            style={{ width: '45%', height: 'auto' }}
+          ></Image>
         </div>
         {/* 表格 */}
         <div className={styles.formbody}>
@@ -91,9 +98,12 @@ export default function CreateTask() {
               <button type="submit" className="btn btn-light mx-4">
                 取消
               </button>
-              <button type="submit" className="btn btn-primary">
-                建立
-              </button>
+              
+              <Link href="/custom-itinerary/arrange-schedule">
+              <button type="submit"  data-bs-toggle="modal" className="btn btn-primary">
+              建立</button>
+              </Link>
+              
             </div>
           </div>
         </div>

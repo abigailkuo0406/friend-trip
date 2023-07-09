@@ -4,7 +4,7 @@ export default function BtnToolbar() {
   return (
     <>
       <div className="container">
-        <div className="btn-group" role="group">
+        <div className="btn-group " role="group">
           <button type="button" class="btn btn-primary">
             1
           </button>
