@@ -1,22 +1,43 @@
-import React from 'react'
+import { useState } from 'react'
 import CustomItineraryIndex from '@/components/custom-itinerary'
 import HistotyCard from '@/components/custom-itinerary/histoty-card'
 import BtnToolbar from '@/components/custom-itinerary/btn-toolbar'
 import AdminLayout from '@/components/layout/admin-layout'
+import data from '@/data/custom-itinerary/itinerary.json'
+
 
 
 export default function Index() {
+
+
   return (
     <>
     <CustomItineraryIndex/>
-     {Array(5)
-        .fill(1)
-        .map((v, i) => {
-          return <HistotyCard key={i}/>  
-        })}
-   
-        <BtnToolbar />
 
+  {data.map((v,i)=>{
+        return (
+          <div key={i}>
+          <HistotyCard 
+          name={v.name}
+          public={v.public} 
+          description={v.description}
+          create_at={v.create_at}
+          />
+          </div>
+
+
+        )
+        
+        
+        
+      
+
+  })}
+
+   
+
+
+  <BtnToolbar />
     
     </>
   )

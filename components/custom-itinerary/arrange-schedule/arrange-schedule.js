@@ -12,7 +12,7 @@ import styles from './arrange-schedule.module.css'
 
 import Jiufen1 from '@/assets/fake-data/fake-jiufen.png'
 import Link from 'next/link'
-import { Button } from 'bootstrap'
+
 
 export default function ArrangeScheduleSide() {
   return (

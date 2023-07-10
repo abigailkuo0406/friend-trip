@@ -9,11 +9,11 @@ export default function AdminLayout({ children }) {
       <div>
         <Navbar />
         <main className="container">
-          <div class="row g-5 main-background">
-            <div id="Sidebar" class="col-md-3">
+          <div className="row g-5 main-background">
+            <div id="Sidebar" className="col-md-3">
               <Sidebar />
             </div>
-            <div class="col-md-9">{children}</div>
+            <div className="col-md-9">{children}</div>
           </div>
         </main>
         <Footer />

@@ -1,24 +1,25 @@
-import React from 'react'
+import { useState } from 'react'
 import ArrangeScheduleSide from '@/components/custom-itinerary/arrange-schedule/arrange-schedule'
 import AdminLayout from '@/components/layout/admin-layout'
 import InitCard from '@/components/custom-itinerary/arrange-schedule/init-card'
 import { BsPlusLg } from 'react-icons/bs'
 
 
-
 export default function ArrangeSchedule() {
+
 
   
   return (
    <>
 
-    <ArrangeScheduleSide 
-    />
-    
-    
-    
-  
 
+ 
+    <ArrangeScheduleSide/>
+
+
+
+
+  
     </>
   )
 }
