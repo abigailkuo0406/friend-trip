@@ -10,18 +10,22 @@ import restaurant from '@/data/restaurant/rest-detail.json'
 export default function Rest() {
   return (
     <>
-      <h1>精選餐廳</h1>
-      {restaurant.map((v, i) => {
-        return (
-          <div key={v.RestID}>
-            <RestaurantList
-              img={v.RestImg}
-              title={v.RestName}
-              details={v.RestIntro}
-            />
-          </div>
-        )
-      })}
+      <div className="container">
+        <h1>精選餐廳</h1>
+        
+        {restaurant.map((v, i) => {
+          return (
+            <div key={v.RestID}>
+              <RestaurantList
+                img={v.RestImg}
+                title={v.RestName}
+                details={v.RestIntro}
+                rid={v.RestID}
+              />
+            </div>
+          )
+        })}
+      </div>
     </>
   )
 }

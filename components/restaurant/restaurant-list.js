@@ -1,9 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+
 import A from '@/assets/rest-img/rest-img-1-c.jpg'
 
 export default function RestaurantList(props) {
-  console.log(props.img)
+  // console.log(props.img)
+  const router = useRouter()
+
 
   return (
     <>
@@ -22,7 +26,13 @@ export default function RestaurantList(props) {
               <h5 className="card-title">{props.title}</h5>
               <p className="card-text">{props.details}</p>
               <p className="card-text">
-                <button>訂位</button>
+                {/* 導入動態路由網址 */}
+                <button
+                  type="button"
+                  onClick={() => router.push('restaurant/' + props.rid)}
+                >
+                  訂位
+                </button>
               </p>
             </div>
           </div>
