@@ -2,7 +2,7 @@
 export default function SortBoard() {
   return (
     <>
-    <div className="container "> 
+    <div className="container  d-flex justify-content-end"> 
      <div className="input-group" style={{ width: '250px' }}>
             <label className="input-group-text" htmlFor="inputGroupSelect01">
               排序方式

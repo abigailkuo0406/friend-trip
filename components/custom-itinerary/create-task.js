@@ -109,7 +109,7 @@ export default function CreateTask() {
               <button type="submit" className="btn btn-light mx-4">
                 取消
               </button>
-              <button  className="btn btn-primary">
+              <button className="btn btn-primary">
               建立</button>
             </div>
           </div>

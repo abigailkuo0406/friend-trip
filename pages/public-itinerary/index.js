@@ -2,6 +2,9 @@ import React from 'react'
 import PublicScheduleIndex from '@/components/public-itinerary'
 import SortBoard from '@/components/public-itinerary/sort-board'
 import AdminLayout from '@/components/layout/admin-layout'
+import data from '@/data/custom-itinerary/itinerary.json'
+import BtnToolbar from '@/components/custom-itinerary/btn-toolbar'
+
 
 export default function PublicSchedule() {
   return (
@@ -11,11 +14,17 @@ export default function PublicSchedule() {
       </div>
       <SortBoard />
       <div className="d-flex flex-wrap">
-        {Array(15)
-          .fill(1)
-          .map((v, i) => {
-            return <PublicScheduleIndex key={i} />
-          })}
+      {data.map((v,i)=>{
+        return(
+        <div key={i}>
+       <PublicScheduleIndex
+        name={v.name}
+        date={v.date}
+       />
+        </div>
+        )
+      })}
+      <BtnToolbar/>
       </div>
     </>
   )
