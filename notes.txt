@@ -1,4 +1,4 @@
-YUN 2023/07/04:
+YUN:
 1. pages 和 components 裡都有 test 資料夾，測試用的檔案都可以丟裡面測試，如果裡面太亂就會砍檔案不要把重要的東西留在這
 2. 所有組員在開始開發時要各自安裝自己的 bootstrap (npm i bootstrap)、sass (npm i -D sass)
 3. 安裝 Icon 套件 react-icon (npm i react-icons)，使用範例在 components 和 pages 的 test 資料夾裡有
@@ -17,3 +17,7 @@ import AdminLayout from '@/components/layout/admin-layout'
 }
 
 3.上方程式碼.getLayout的.前面放自己頁面的預設輸出元件名稱
+8. 安裝 font awesome (npm i --save @fortawesome/fontawesome-svg-core)
+9. 如果要在 HTML 的 <head> 裡加東西，到 pages -> _document.js 內的 <Head> 進行修改
+
+
