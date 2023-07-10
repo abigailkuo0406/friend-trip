@@ -6,33 +6,33 @@ import A from '@/assets/rest-img/rest-img-1-a.jpg'
 export default function RestItem() {
   return (
     <>
-      {/* <div class="modal-dialog modal-fullscreen-sm-down"> */}
+      {/* <div classname="modal-dialog modal-fullscreen-sm-down"> */}
       <div
-        class="modal fade"
+        classname="modal fade"
         id="exampleModalToggle"
         aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel"
         tabindex="-1"
       >
-        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+        <div classname="modal-dialog modal-dialog-centered modal-fullscreen ">
+          <div classname="modal-content ">
+            <div classname="modal-header">
+              <h1 classname="modal-title fs-5" id="exampleModalToggleLabel">
                 Modal 1
               </h1>
               {/* 關閉按鈕 */}
               <button
                 type="button"
-                class="btn-close"
+                classname="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
             {/* modal body */}
-            <div className="d-flex">
-              <div class="modal-body">
+            <div classname="d-flex mx-6" >
+              <div classname="modal-body">
                 {/*左方標題列 */}
-                <div>
+                <div classnameName="d-flex">
                   <h2>餐廳名稱</h2>
                   <div>星星</div>
                 </div>
@@ -54,27 +54,38 @@ export default function RestItem() {
                   <p>1.用餐時間為90分鐘，從訂位時間起始計算。</p>
                 </div>
 
-                <form>
-                  <label>訂位日期</label>
-                  <input type="date" />
-                  <label>訂位時間</label>
-                  <input type="time" />
-                  <label>訂位人數</label>
-                  <input type="number" />
-                  <label>邀請好友</label>
-                  <img />
-                  <img />
+                <form classnamenameName="bg-info">
+                  <div>
+                    <label>訂位日期</label>
+                    <input type="date" />
+                  </div>
+
+                  <div>
+                    <label>訂位時間</label>
+                    <input type="time" />
+                  </div>
+
+                  <div>
+                    <label>訂位人數</label>
+                    <input type="number" />
+                  </div>
+
+                  <div>
+                    <label>邀請好友</label>
+                    <img />
+                    <img />
+                  </div>
                 </form>
               </div>
               {/* 照片區 */}
               <div>
-                <div id="carouselExampleIndicators" class="carousel slide">
-                  <div class="carousel-indicators">
+                <div id="carouselExampleIndicators" classname="carousel slide">
+                  <div classname="carousel-indicators">
                     <button
                       type="button"
                       data-bs-target="#carouselExampleIndicators"
                       data-bs-slide-to="0"
-                      class="active"
+                      classname="active"
                       aria-current="true"
                       aria-label="Slide 1"
                     ></button>
@@ -91,88 +102,100 @@ export default function RestItem() {
                       aria-label="Slide 3"
                     ></button>
                   </div>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <Image src={A} class="d-block w-100" alt="..." width={200} height={200} />
+                  <div classname="carousel-inner">
+                    <div classname="carousel-item active">
+                      <Image
+                        src={A}
+                        classname="d-block w-100 "
+                        alt="..."
+                        width={200}
+                        height={200}
+                      />
                     </div>
-                    <div class="carousel-item">
-                      <img src="..." class="d-block w-100" alt="..." />
+                    <div classname="carousel-item">
+                      <img src="..." classname="d-block w-100" alt="..." />
                     </div>
-                    <div class="carousel-item">
-                      <img src="..." class="d-block w-100" alt="..." />
+                    <div classname="carousel-item">
+                      <img src="..." classname="d-block w-100" alt="..." />
                     </div>
                   </div>
                   <button
-                    class="carousel-control-prev"
+                    classname="carousel-control-prev"
                     type="button"
                     data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev"
                   >
                     <span
-                      class="carousel-control-prev-icon"
+                      classname="carousel-control-prev-icon"
                       aria-hidden="true"
                     ></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span classname="visually-hidden">Previous</span>
                   </button>
                   <button
-                    class="carousel-control-next"
+                    classname="carousel-control-next"
                     type="button"
                     data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="next"
                   >
                     <span
-                      class="carousel-control-next-icon"
+                      classname="carousel-control-next-icon"
                       aria-hidden="true"
                     ></span>
-                    <span class="visually-hidden">Next</span>
+                    <span classname="visually-hidden">Next</span>
                   </button>
                 </div>
               </div>
             </div>
             {/* 評論 */}
-            <div>
-              <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="..." class="d-block w-100" alt="..." />
+            <div classnameName='container'>
+              <div id="carouselExample" classname="carousel slide">
+                <div classname="carousel-inner">
+                  <div classname="carousel-item active">
+                    <Image
+                      src={A}
+                      classname="d-block w-100"
+                      alt="..."
+                      width={200}
+                      height={200}
+                    />
                   </div>
-                  <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="..." />
+                  <div classname="carousel-item">
+                    <img src="..." classname="d-block w-100" alt="..." />
                   </div>
-                  <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="..." />
+                  <div classname="carousel-item">
+                    <img src="..." classname="d-block w-100" alt="..." />
                   </div>
                 </div>
                 <button
-                  class="carousel-control-prev"
+                  classname="carousel-control-prev"
                   type="button"
                   data-bs-target="#carouselExample"
                   data-bs-slide="prev"
                 >
                   <span
-                    class="carousel-control-prev-icon"
+                    classname="carousel-control-prev-icon"
                     aria-hidden="true"
                   ></span>
-                  <span class="visually-hidden">Previous</span>
+                  <span classname="visually-hidden">Previous</span>
                 </button>
                 <button
-                  class="carousel-control-next"
+                  classname="carousel-control-next"
                   type="button"
                   data-bs-target="#carouselExample"
                   data-bs-slide="next"
                 >
                   <span
-                    class="carousel-control-next-icon"
+                    classname="carousel-control-next-icon"
                     aria-hidden="true"
                   ></span>
-                  <span class="visually-hidden">Next</span>
+                  <span classname="visually-hidden">Next</span>
                 </button>
               </div>
             </div>
             {/* footer */}
-            <div class="modal-footer">
+            <div classname="modal-footer">
               <button
-                class="btn btn-primary"
+                classname="btn btn-primary"
                 data-bs-target="#exampleModalToggle2"
                 data-bs-toggle="modal"
               >
@@ -184,31 +207,31 @@ export default function RestItem() {
         </div>
       </div>
       <div
-        class="modal fade"
+        classname="modal fade"
         id="exampleModalToggle2"
         aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel2"
         tabindex="-1"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">
+        <div classname="modal-dialog modal-dialog-centered">
+          <div classname="modal-content">
+            <div classname="modal-header">
+              <h1 classname="modal-title fs-5" id="exampleModalToggleLabel2">
                 Modal 2
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                classname="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div classname="modal-body">
               Hide this modal and show the first with the button below.
             </div>
-            <div class="modal-footer">
+            <div classname="modal-footer">
               <button
-                class="btn btn-primary"
+                classname="btn btn-primary"
                 data-bs-target="#exampleModalToggle"
                 data-bs-toggle="modal"
               >
@@ -219,7 +242,7 @@ export default function RestItem() {
         </div>
       </div>
       <button
-        class="btn btn-primary"
+        classname="btn btn-primary"
         data-bs-target="#exampleModalToggle"
         data-bs-toggle="modal"
       >
