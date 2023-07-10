@@ -4,14 +4,24 @@ import Image from 'next/image'
 import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useState } from 'react'
 
 
 
 export default function CreateTask() {
+    function handleSubmit(e){
+      e.preventDefault()
+    const form=e.target
+    const formData=new FormData(form)
+  fetch('./custom-itinerary/create-task',{method:form.method,body:formData})
+  const formJson = Object.fromEntries(formData.entries());
+  console.log(formJson);
+    }
+
   const router=useRouter()
   return (
     <>
-      <div className="container">
+      <form method="post" onSubmit={handleSubmit}>
         <div className="d-flex justify-content-center">
           <Link href="/custom-itinerary">
             <h4><FaArrowLeftLong/></h4>
@@ -36,7 +46,7 @@ export default function CreateTask() {
               <input
                 type="text"
                 className="form-control"
-                id="exampleFormControlInput1"
+                name="initName"
                 placeholder="請輸入"
               ></input>
             </div>
@@ -45,28 +55,28 @@ export default function CreateTask() {
               <input
                 type="date"
                 className="form-control"
-                id="exampleFormControlInput1"
+                name="date"
                 placeholder="請輸入"
-              ></input>
+              />
             </div>
             <div className="mb-3">
               <label>說明</label>
               <textarea
                 className="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
+                rows={4}
+                cols={40}
                 placeholder="請輸入"
-              ></textarea>
+                name="initDescription"
+              />
             </div>
             <div className="mb-3">
               <label className="form-label ">是否需要公開</label>
               <input
                 type="radio"
-                className="form-check-input "
+                className="form-check-input"
                 name="public"
-                id="public"
                 value="公開"
-              ></input>
+              />
               <label className="form-check-label">公開</label>
               <input
                 className="form-check-input"
@@ -74,7 +84,7 @@ export default function CreateTask() {
                 name="public"
                 id="public"
                 value="不公開"
-              ></input>
+              />
               <label className="form-check-label">不公開</label>
             </div>
             <div className="mb-3">
@@ -82,32 +92,29 @@ export default function CreateTask() {
               <input
                 type="number"
                 className="form-control"
-                id="exampleFormControlInput1"
-              ></input>
+                name="initPpl"
+              />
             </div>
             <div className="mb-3">
               <label className="form-label">備註</label>
               <textarea
                 className="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
+                rows={4}
+                cols={40}
+                name="initNote"
                 placeholder="請輸入"
-              ></textarea>
+              />
             </div>
             <div className="d-flex justify-content-center  ">
               <button type="submit" className="btn btn-light mx-4">
                 取消
               </button>
-              
-              <Link href="/custom-itinerary/arrange-schedule">
-              <button type="submit"  data-bs-toggle="modal" className="btn btn-primary">
+              <button  className="btn btn-primary">
               建立</button>
-              </Link>
-              
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </>
   )
 }
