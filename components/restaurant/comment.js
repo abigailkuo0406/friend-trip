@@ -13,9 +13,9 @@ export default function RestaurantList(props) {
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <div>星星</div>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            <h5 class="card-title">{props.memberId }</h5>
+                            <div>{props.star}</div>
+                            <p class="card-text">{ props.comment}</p>
                         </div>
                     </div>
                 </div>

@@ -12,12 +12,12 @@ export default function Rest() {
     <>
       <div className="container">
         <h1>精選餐廳</h1>
-        
         {restaurant.map((v, i) => {
           return (
             <div key={v.RestID}>
               <RestaurantList
                 img={v.RestImg}
+                // 變數img存取出的結果："/assets/rest-img/rest-img-1-a.jpg"
                 title={v.RestName}
                 details={v.RestIntro}
                 rid={v.RestID}

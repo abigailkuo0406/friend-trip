@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 
 
-export default function RestItem(props) {
+export default function Invite(props) {
     return (
 
         <>

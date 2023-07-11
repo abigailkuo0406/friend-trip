@@ -15,6 +15,8 @@ import Comment from '@/components/restaurant/comment'
 import friends from '@/data/restaurant/friend-list.json'
 // 引入餐廳假資料
 import restaurant from '@/data/restaurant/rest-detail.json'
+// 引入評論假資料
+import comment from '@/data/restaurant/comment.json'
 
 
 export default function RestItem() {
@@ -33,6 +35,7 @@ export default function RestItem() {
   const restIntro = restaurant[rid].RestIntro
   const restclassName = restaurant[rid].RestclassName
   const restMeal = restaurant[rid].RestMeal
+
 
   return (
     <>
@@ -65,7 +68,7 @@ export default function RestItem() {
               <div className="modal-body">
 
                 {/*左方標題列 */}
-                <div classNameName="d-flex">
+                <div className="d-flex">
                   <h2>{restName}</h2>
                   <div>星星</div>
                 </div>
@@ -108,7 +111,16 @@ export default function RestItem() {
                     <img />
                     <img />
                   </div>
+
                 </form>
+                <button
+                  className="btn btn-primary"
+                  data-bs-target="#exampleModalToggle2"
+                  data-bs-toggle="modal"
+                >
+                  邀請好友
+                </button>
+                <button>訂位</button>
               </div>
 
               {/* 照片區 */}
@@ -183,20 +195,21 @@ export default function RestItem() {
             </div>
 
             {/* 評論 */}
-            <div classNameName='container'>
+            <div className='container'>
               <div id="carouselExample" className="carousel slide">
                 <div className="carousel-inner">
                   <div className="carousel-item active">
-                    <Comment />
-                  </div>
-                  <div className="carousel-item">
-                    <Comment />
+                    <Comment memberId={comment[0].member_id} comment={comment[0].ComtText} star={comment[0].RestStarP} />
 
                   </div>
-                  <div className="carousel-item">
-                    <Comment />
-
-                  </div>
+                  {comment.map((c, i) => {
+                    console.log(c)
+                    return (
+                      <div className="carousel-item" key={i}>
+                        <Comment memberId={c.member_id} comment={c.ComtText} star={c.RestStarP} />
+                      </div>
+                    )
+                  })}
                 </div>
                 <button
                   className="carousel-control-prev"
@@ -224,8 +237,9 @@ export default function RestItem() {
                 </button>
               </div>
             </div>
+
             {/* footer */}
-            <div className="modal-footer">
+            {/* <div className="modal-footer">
               <button
                 className="btn btn-primary"
                 data-bs-target="#exampleModalToggle2"
@@ -234,10 +248,12 @@ export default function RestItem() {
                 邀請好友
               </button>
               <button>訂位</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
+
+      {/* 第二層Modal */}
       <div
         className="modal fade"
         id="exampleModalToggle2"
@@ -251,12 +267,13 @@ export default function RestItem() {
               <h1 className="modal-title fs-5" id="exampleModalToggleLabel2">
                 Modal 2
               </h1>
-              <button
+              {/* 關閉按鈕 */}
+              {/* <button
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              ></button>
+              ></button> */}
             </div>
             <div className="modal-body">
               <h1>邀請列表</h1>
@@ -265,7 +282,7 @@ export default function RestItem() {
               </ul>
 
               <h1>朋友列表</h1>
-              <ul id="friendsList" classNameName="list">
+              <ul id="friendsList" className="list">
 
                 {friends.map((v, i) => {
                   return (
@@ -285,7 +302,7 @@ export default function RestItem() {
                 data-bs-target="#exampleModalToggle"
                 data-bs-toggle="modal"
               >
-                Back to first
+                回上一頁
               </button>
             </div>
           </div>
@@ -296,7 +313,7 @@ export default function RestItem() {
         data-bs-target="#exampleModalToggle"
         data-bs-toggle="modal"
       >
-        Open first modal
+        訂位
       </button>
     </>
   )
