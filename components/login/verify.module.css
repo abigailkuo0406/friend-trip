@@ -1,5 +1,5 @@
 .main{
-    background-color: rgb(167, 99, 193);
+    background-color: rgb(251, 164, 216);
     height: 500px;
     width: 800px;
     padding: 50px;
@@ -23,21 +23,23 @@
     justify-content: center;
 }
 .inputgroup{
-    background-color: rgb(221, 143, 240);
+    color: white;
+    background-color: #fea9c7;
     height: 150px;
     width: 400px;
     border: 1px solid red;
     border-radius: 20px;
     padding: 10px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .title{
     text-align: center;
 }
-.buttongroup{
+.minutes{
+    color: rgb(244, 188, 215);
     display: flex;
-    justify-content: end;
+    justify-content: center;
 }

@@ -1,28 +1,30 @@
 import { divide } from 'lodash';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import style from './forgetpassword.module.css'
+import styles from './forgetpassword.module.css'
 import InputGroup from 'react-bootstrap/InputGroup'
-
+import Form from 'react-bootstrap/Form';
 function BasicExample() {
   return (
-    <div className={`${style.main} d-flex align-content-center justify-content-center`}>
-    <Card style={{ width: '18rem' }}>
-      <Card.Body>
-        <Card.Title>尋找你的帳號</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
+    <div className={`${styles.main} d-flex align-content-center justify-content-center`}>
+    <Card className={styles.style}>
+      <Card.Body className={styles.body}>
+      <div className={styles.cardabove}>
+        <Card.Title className={styles.title}>尋找你的帳號</Card.Title>
+        <div className={styles.inputgroup}>
         <InputGroup className="mb-3">
-        <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+        <InputGroup.Text id="basic-addon1">請輸入電子郵件或手機號碼以搜尋帳號</InputGroup.Text>
         <Form.Control
           placeholder="Username"
           aria-label="Username"
           aria-describedby="basic-addon1"
         />
       </InputGroup>
-        <Button variant="primary d-flex flex-direction">Go somewhere</Button>
+      </div>
+        </div>
+        <div className={styles.buttongroup}>
+        <Button variant="primary d-flex flex-direction">確定</Button>
+        <Button variant="primary d-flex flex-direction">取消</Button></div>
       </Card.Body>
     </Card>
     </div>
