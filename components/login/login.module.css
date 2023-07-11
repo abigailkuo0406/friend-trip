@@ -1,0 +1,22 @@
+.white{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    height: 800px;
+    width: 1000px;
+}
+.leftplace {
+    display: flex;
+    align-items: center;
+}
+.rightplace {
+    border: 2px solid yellow;
+}
+.photo{
+    height: auto;
+    width: 400px;
+}
+.input{
+    background-color: rgb(159, 101, 212);
+    color: white;
+}
