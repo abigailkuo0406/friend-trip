@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-import A from '@/assets/rest-img/rest-img-1-c.jpg'
+// import A from '@/assets/rest-img/rest-img-1-c.jpg'
 
 export default function RestaurantList(props) {
   // console.log(props.img)
@@ -11,21 +11,22 @@ export default function RestaurantList(props) {
 
   return (
     <>
-      <div className="card mb-3" style={{ 'max-width': 540 + 'px' }}>
-        <div className="row g-0">
-          <div className="col-md-4">
+      <div className="card mb-3" >
+        <div className="row g-0 my-3">
+          <div className="col-md-3">
             <Image
               src={props.img}
               className="img-fluid rounded-start"
-              alt="..."
               width={200}
               height={200}
             />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-9">
             <div className="card-body">
-              <h5 className="card-title">{props.title}</h5>
-              <p className="card-text text-truncate" >{props.details}</p>
+              <h2 className="card-title">{props.title}</h2>
+              {/* <i class="fa-regular fa-star"></i> */}
+              <p className="card-text text-truncate my-4
+              " >{props.details}</p>
               <p className="card-text">
 
                 {/* 導入動態路由網址 */}

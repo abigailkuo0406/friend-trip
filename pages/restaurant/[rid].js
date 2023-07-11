@@ -2,9 +2,6 @@ import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-
-import A from '@/assets/rest-img/rest-img-1-a.jpg'
-
 // 引入邀請元件
 import Invite from '@/components/invite/invite'
 
@@ -23,23 +20,34 @@ export default function RestItem() {
   // 取用useRouter方法
   const router = useRouter()
 
+  
+
   // 取得當頁動態編號
-  const rid = parseInt(router.query.rid) - 1
+  // const rid = parseInt(router.query?.rid ??) - 1
+
+  let rid = 0
+  if (router.query.rid != null) {
+    rid = router.query?.rid  ;
+
+  }
   console.log(rid)
 
   // 取得餐廳資料細項
-  const restName = restaurant[rid].RestName
-  const restPhone = restaurant[rid].RestPhone
-  const restAdress = restaurant[rid].RestAdress
-  const restTime = restaurant[rid].RestTime
-  const restIntro = restaurant[rid].RestIntro
-  const restclassName = restaurant[rid].RestclassName
-  const restMeal = restaurant[rid].RestMeal
+  console.log(restaurant)
+
+  const restName = restaurant[rid]?.RestName ?? ''
+
+  const restPhone = restaurant[rid]?.RestPhone ?? ''
+  const restAdress = restaurant[rid]?.RestAdress ?? ''
+  const restTime = restaurant[rid]?.RestTime ?? ''
+  const restIntro = restaurant[rid]?.RestIntro ?? ''
+  const restclassName = restaurant[rid]?.RestclassName ?? ''
+  const restMeal = restaurant[rid]?.RestMeal ?? ''
+
 
 
   return (
     <>
-      {/* <div className="modal-dialog modal-fullscreen-sm-down"> */}
       <div
         className="modal fade"
         id="exampleModalToggle"
@@ -152,7 +160,7 @@ export default function RestItem() {
                   <div className="carousel-inner">
                     <div className="carousel-item active">
                       <Image
-                        src={A}
+                        // src=
                         className="d-block w-100"
                         alt="..."
                         width={1000}
