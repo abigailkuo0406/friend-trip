@@ -7,38 +7,24 @@ import { BsStarHalf } from 'react-icons/bs'
 export default function InitCard() {
   return (
     <>
-    <div className="container ">
-          <div className="card ">
-            <div className="">
-              <div className="">
-                <Image
+              {/* itinerary*/}
+              <div className="d-flex">
+                    <div>
+                    <span className={styles.circle_text}>1</span>
+                    <div className={styles.line}></div>
+                    </div>
+                    <Image
                   src={Jiufen }
-                  className="img-fluid rounded-start"
                   alt="..."
-                  style={{ width: '50%' }}
-                ></Image>
-              </div>
-              <div className="container ">
-                <div className="card-body">
-                <h5 className={styles.text}>
-                    九份老街
-                </h5>
-                {Array(4)
-                .fill(1)
-                .map((v, i) => {
-                  return <BsStarFill />
-                })}
-                 <BsStarHalf />
+                  width={200}
+                  hight={200}
+                />
+                <h6>寧夏觀光夜市</h6>
                 </div>
-              </div>
-            </div>
-            <div>
-            <p>預計停留時間: 30 分鐘</p>
-            </div>
-          </div>
-        </div>
-    
-    
+                <div className="d-flex mt-1 mx-5">
+                <h6 className="mt-1">預計停留：</h6>
+                <p>30分鐘</p>
+                </div>
     </>
   )
 }

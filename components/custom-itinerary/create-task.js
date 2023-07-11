@@ -6,25 +6,28 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useState } from 'react'
 
-
-
 export default function CreateTask() {
-    function handleSubmit(e){
-      e.preventDefault()
-    const form=e.target
-    const formData=new FormData(form)
-  fetch('./custom-itinerary/create-task',{method:form.method,body:formData})
-  const formJson = Object.fromEntries(formData.entries());
-  console.log(formJson);
-    }
+  function handleSubmit(e) {
+    e.preventDefault()
+    const form = e.target
+    const formData = new FormData(form)
+    fetch('./custom-itinerary/create-task', {
+      method: form.method,
+      body: formData,
+    })
+    const formJson = Object.fromEntries(formData.entries())
+    console.log(formJson)
+  }
 
-  const router=useRouter()
+  const router = useRouter()
   return (
     <>
       <form method="post" onSubmit={handleSubmit}>
         <div className="d-flex justify-content-center">
           <Link href="/custom-itinerary">
-            <h4><FaArrowLeftLong/></h4>
+            <h4>
+              <FaArrowLeftLong />
+            </h4>
           </Link>
           <h3 className="mx-auto">新增行程</h3>
         </div>
@@ -89,11 +92,7 @@ export default function CreateTask() {
             </div>
             <div className="mb-3">
               <label className="form-label">人數</label>
-              <input
-                type="number"
-                className="form-control"
-                name="initPpl"
-              />
+              <input type="number" className="form-control" name="initPpl" />
             </div>
             <div className="mb-3">
               <label className="form-label">備註</label>
@@ -109,8 +108,7 @@ export default function CreateTask() {
               <button type="submit" className="btn btn-light mx-4">
                 取消
               </button>
-              <button className="btn btn-primary">
-              建立</button>
+              <button className="btn btn-primary">建立</button>
             </div>
           </div>
         </div>

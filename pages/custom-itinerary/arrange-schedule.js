@@ -1,25 +1,16 @@
 import { useState } from 'react'
-import ArrangeScheduleSide from '@/components/custom-itinerary/arrange-schedule/arrange-schedule'
+import ScheduleSide from '@/components/custom-itinerary/arrange-schedule/arrange-schedule'
 import AdminLayout from '@/components/layout/admin-layout'
-import InitCard from '@/components/custom-itinerary/arrange-schedule/init-card'
-import { BsPlusLg } from 'react-icons/bs'
-
+import SearchView from '@/components/custom-itinerary/arrange-schedule/search-view'
+import Map from '@/components/custom-itinerary/arrange-schedule/map'
 
 export default function ArrangeSchedule() {
 
-
-  
   return (
-   <>
-
-
- 
-    <ArrangeScheduleSide/>
-
-
-
-
-  
+    <>
+      <ScheduleSide/>
+      <Map/>
+   
     </>
   )
 }
@@ -29,4 +20,3 @@ export default function ArrangeSchedule() {
 ArrangeSchedule.getLayout = function (page) {
   return <AdminLayout>{page}</AdminLayout>
 }
-

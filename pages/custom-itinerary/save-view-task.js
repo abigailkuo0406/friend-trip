@@ -1,6 +1,6 @@
 import React from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
-import SaveViewInit from '@/components/custom-itinerary/arrange-schedule/save-view-task/save-view-task'
+import SaveViewInit from '@/components/custom-itinerary/save-view-task/save-view-task'
 
 export default function SaveViewTask() {
   return (
