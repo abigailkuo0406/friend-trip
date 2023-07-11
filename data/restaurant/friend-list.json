@@ -1,0 +1,22 @@
+[
+    {
+        "FriendID": 1,
+        "FriendName": "Alex",
+        "FriendImg": "@/assets/restaurant/rest-img-1-a.jpg"
+    },
+    {
+        "FriendID": 2,
+        "FriendName": "John",
+        "FriendImg": "@/assets/restaurant/rest-img-1-b.jpg"
+    },
+    {
+        "FriendID": 3,
+        "FriendName": "Cindy",
+        "FriendImg": "@/assets/restaurant/rest-img-1-c.jpg"
+    },
+    {
+        "FriendID": 4,
+        "FriendName": "Amy",
+        "FriendImg": "@/assets/restaurant/rest-img-1-d.jpg"
+    }
+]

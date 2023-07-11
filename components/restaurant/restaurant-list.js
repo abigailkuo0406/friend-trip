@@ -26,6 +26,7 @@ export default function RestaurantList(props) {
               <h5 className="card-title">{props.title}</h5>
               <p className="card-text">{props.details}</p>
               <p className="card-text">
+                
                 {/* 導入動態路由網址 */}
                 <button
                   type="button"
