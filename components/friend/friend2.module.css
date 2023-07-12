@@ -1,0 +1,40 @@
+.main{
+    width: 700px;
+    height: 600px;
+    background-color: rgb(240, 186, 224);
+    border-radius: 30px;
+    padding: 20px;
+    display: flex;
+}
+.side{
+    width: 200px;
+    height: 550px;
+    background-color: white;
+}
+.profileside{
+    width: 400px;
+    height: 550px;
+    margin-left: 50px;
+}
+.profile {
+    width: 400px;
+    height: 300px; 
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 10px
+}
+.labelbar{
+    display: flex;
+    font-size: 10px;
+}
+.p {
+    font-size: 10px;
+}
+.friendsheet{
+    width: 400px;
+    height: 220px; 
+    background-color: rgb(255, 255, 255);
+    margin-top: 30px;
+    border-radius: 15px;
+    padding: 10px;
+}
