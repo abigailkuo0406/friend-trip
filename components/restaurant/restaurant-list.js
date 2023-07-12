@@ -11,7 +11,7 @@ export default function RestaurantList(props) {
 
   return (
     <>
-      <div className="card mb-3" >
+      <div className="card mb-3 radius20px" >
         <div className="row g-0 my-3">
           <div className="col-md-3">
             <Image
