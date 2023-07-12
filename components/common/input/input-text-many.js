@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-export default function InputText({
+export default function InputTextMany({
   id = '',
   name = '',
   label,
   addClassforLabel,
   addClassforInput,
   placeholder = '',
-  width,
   value,
   getValue,
   getName,
@@ -49,7 +48,7 @@ export default function InputText({
           id={id}
           type="text"
           name={name}
-          className={`${width} ${addClassforInputState} input-text`}
+          className={`${addClassforInputState} input-text`}
           placeholder={placeholder}
           value={inputValue}
           onChange={handleChange}
