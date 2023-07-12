@@ -42,9 +42,7 @@ export default function HistotyCard(props) {
                 <div className="d-flex justify-content-between ">
                   <div className="d-flex ">
                     <h5 className={styles.text}>{props.name}</h5>
-                    <span className="badge rounded-pill bg-primary">
-                      {props.public}
-                    </span>
+                    <span className="badge bg-secondary">{props.public}</span>
                   </div>
                   <div>
                   {/* 刪除 */}

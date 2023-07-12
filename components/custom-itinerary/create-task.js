@@ -5,21 +5,43 @@ import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useState } from 'react'
-
+import InputText from '../common/input/input-text'
+import AreaText from '../common/input/textarea'
+import InputRadioGroup from '../common/input/input-radio-group'
+import InputNumber from '../common/input/input-number'
+import BtnNormal from '../common/button/btn-normal'
+import { TbPhotoPlus } from "react-icons/tb";
 export default function CreateTask() {
-  function handleSubmit(e) {
-    e.preventDefault()
-    const form = e.target
-    const formData = new FormData(form)
-    fetch('./custom-itinerary/create-task', {
-      method: form.method,
-      body: formData,
-    })
-    const formJson = Object.fromEntries(formData.entries())
-    console.log(formJson)
+  // 追蹤是否觸發了已經提交操作
+  const [submitted, setSubmitted] = useState(false)
+  // 追蹤點選動作
+  const [clickSubmitted, setClickSubmitted] = useState(false)
+
+  const [inputValue3, setInputValue3] = useState('')
+  const [inputName3, setInputName3] = useState('')
+  // textarea
+  const [inputValue5, setInputValue5] = useState('')
+  const [inputName5, setInputName5] = useState('')
+  //是否公開？ input-radio
+  const [inputValue4, setInputValue4] = useState('')
+  const [inputName4, setInputName4] = useState('')
+  const [inputLabel4, setInputLabel4] = useState('')
+  // input-number
+  const [inputValue7, setInputValue7] = useState('')
+  const [inputName7, setInputName7] = useState('')
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
+    setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
+    if (error8 == true) {
+      var moveTo = document.getElementById(errorTracker8)
+      moveTo.scrollIntoView() // 滑向錯誤的地方
+      moveTo.focus()
+      return
+    }
   }
 
-  const router = useRouter()
   return (
     <>
       <form method="post" onSubmit={handleSubmit}>
@@ -40,19 +62,31 @@ export default function CreateTask() {
             alt="..."
             style={{ width: '45%', height: 'auto' }}
           ></Image>
+
+<label className={styles.uploader}>
+<TbPhotoPlus className={styles.uploaderIcon}/>
+  <Image src="" className={styles.uploaderImg}/>
+  <input className={styles.uploaderinput} type="file" accept="Image/*" name="file"/>
+</label>
+
+
         </div>
         {/* 表格 */}
         <div className={styles.formbody}>
           <div className="container ">
-            <div className="mb-3">
-              <label>行程名稱</label>
-              <input
-                type="text"
-                className="form-control"
-                name="initName"
-                placeholder="請輸入"
-              ></input>
-            </div>
+            <InputText
+              id="ID1"
+              name="name3"
+              label="行程名稱"
+              value="" // 預設文字
+              placeholder="請輸入"
+              width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+              addClassforLabel="classTest1" // 如果要在 label 添加 class
+              addClassforInput="classTest2" // 如果要在 input 添加 class
+              getValue={setInputValue3} // 獲取填寫的數值
+              getName={setInputName3} // 獲取 name
+              required={true} // true：必填，false：非必填
+            ></InputText>
             <div className="mb-3">
               <label> 出發日期</label>
               <input
@@ -62,53 +96,79 @@ export default function CreateTask() {
                 placeholder="請輸入"
               />
             </div>
-            <div className="mb-3">
-              <label>說明</label>
-              <textarea
-                className="form-control"
-                rows={4}
-                cols={40}
-                placeholder="請輸入"
-                name="initDescription"
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label ">是否需要公開</label>
-              <input
-                type="radio"
-                className="form-check-input"
-                name="public"
-                value="公開"
-              />
-              <label className="form-check-label">公開</label>
-              <input
-                className="form-check-input"
-                type="radio"
-                name="public"
-                id="public"
-                value="不公開"
-              />
-              <label className="form-check-label">不公開</label>
-            </div>
-            <div className="mb-3">
-              <label className="form-label">人數</label>
-              <input type="number" className="form-control" name="initPpl" />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">備註</label>
-              <textarea
-                className="form-control"
-                rows={4}
-                cols={40}
-                name="initNote"
-                placeholder="請輸入"
-              />
-            </div>
-            <div className="d-flex justify-content-center  ">
-              <button type="submit" className="btn btn-light mx-4">
-                取消
-              </button>
-              <button className="btn btn-primary">建立</button>
+
+            <AreaText
+              id="Area"
+              label="說明"
+              name="BIGTEXT"
+              value=""
+              placeholder="輸入文字啊"
+              width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+              addClassforLabel="test123" // 如果要在 label 添加 class
+              addClassforTextarea="test321" // 如果要在 textarea 添加 class
+              getValue={setInputValue5}
+              getName={setInputName5}
+              required={true} // true：必填，false：非必填
+            ></AreaText>
+            <InputRadioGroup
+              label="是否要公開？"
+              name="Public"
+              // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
+              idGroup={['PublicID', 'nonPublicID']} // 個別 radio 的 ID
+              valueGroup={['publicValue', 'nonPublicValue']} // 個別 radio 的 name
+              labelGroup={['公開', '不公開']} // 個別標籤
+              getValue={setInputValue4}
+              getName={setInputName4}
+              getLabel={setInputLabel4}
+              addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
+              addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
+              addClassforInput="classTest3" // 如果要在 input 添加 class
+            ></InputRadioGroup>
+            <InputNumber
+              id="PeopleNum"
+              label="請選擇人數"
+              name="PeopleNum"
+              placeholder="請選擇人數"
+              value={0} // 預設數字
+              max={99} // 最大可選數字
+              min={0} // 最小可選數字
+              step={1} // 右邊箭頭按一次的數字區間
+              hideArrows={false} // true：隱藏右側上下箭頭按鈕，false：顯示
+              getValue={setInputValue7}
+              getName={setInputName7}
+              width="input-width-5rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+              addClassforLabel="try1" // 如果要在 label 添加 class
+              addClassforInput="try2 test123" // 如果要在 input 添加 class
+            ></InputNumber>
+            <AreaText
+              id="Area"
+              label="備註"
+              name="BIGTEXT"
+              value=""
+              placeholder="輸入文字啊"
+              width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+              addClassforLabel="test123" // 如果要在 label 添加 class
+              addClassforTextarea="test321" // 如果要在 textarea 添加 class
+              getValue={setInputValue5}
+              getName={setInputName5}
+              required={true} // true：必填，false：非必填
+            ></AreaText>
+            {/* btn */}
+            <div className="d-flex justify-content-center mx-2">
+              <BtnNormal
+                type="submit"
+                value="submit"
+                btnText="取消"
+                addClassforButton="btn-white" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                disabled={false} // fase：可點，true：不可點
+              ></BtnNormal>
+              <BtnNormal
+                type="submit"
+                value="submit"
+                btnText="建立"
+                addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                disabled={false} // fase：可點，true：不可點
+              ></BtnNormal>
             </div>
           </div>
         </div>
