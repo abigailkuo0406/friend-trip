@@ -19,7 +19,7 @@ export default function SaveViewInit() {
               quality={75}//圖片質量
               style={{borderRadius: '5px'}}
           />
-          <h3 className="position-absolute bottom-0 start-0 text-white mx-3">九份 & 平溪天燈一日遊</h3>
+          <h3 className="position-absolute bottom-0 start-0 text-white mx-3">九份& 平溪天燈一日遊</h3>
         </div>
         
         <div className="d-flex justify-content-between mt-3 mx-2 ">
