@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
+import InitCard from './init-card'
+import SearchView from './search-view'
 import Host from '@/assets/fake-data/fake-persona.png'
-import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import { FaRegEdit } from 'react-icons/fa'
 import { BsPersonPlus } from 'react-icons/bs'
 import { LiaSave } from 'react-icons/lia'
@@ -9,10 +12,6 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarFill } from 'react-icons/bs'
 import { BsStarHalf } from 'react-icons/bs'
 import { BsPlusLg } from 'react-icons/bs'
-import styles from './arrange-schedule.module.css'
-import SearchView from './search-view'
-import Link from 'next/link'
-import InitCard from './init-card'
 
 export default function ScheduleSide() {
   return (
@@ -59,37 +58,24 @@ export default function ScheduleSide() {
                       <p className="usr_name my-auto mx-2">Amber</p>
                     </div>
                   </div>
-                  <div className="trip-list-day-container">
+                  <div className="trip-list-day-container ">
                     <div className="trip-list-day-header">
                       <div className="d-flex mt-2">
                         <h6 className="mt-1">出發時間：</h6>
                         <p>8:00</p>
                       </div>
                     </div>
-                    {/* itinerary*/}
-                    {/* <div className="d-flex">
-                    <div>
-                    <span className={styles.circle_text}>1</span>
-                    <div className={styles.line}></div>
-                    </div>
-                    <Image
-                  src={Jiufen }
-                  alt="..."
-                  width={200}
-                  hight={200}
-                />
-                <h6>寧夏觀光夜市</h6>
-                </div>
-                <div className="d-flex mt-1 mx-5">
-                <h6 className="mt-1">預計停留：</h6>
-                <p>30分鐘</p>
-                </div> */}
-
+                    {/* 行程card */}
+                    <div className="overflow-y-auto" style={{height:520}}>
                     {Array(3)
                       .fill(1)
                       .map((v, i) => {
                         return <InitCard key={i} />
                       })}
+                      <div className="bg-info">
+                    <button className="mx-4">＋新增行程</button>
+                    </div>
+                    </div>  
                   </div>
                 </div>
               </div>

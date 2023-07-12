@@ -8,8 +8,10 @@ export default function ArrangeSchedule() {
 
   return (
     <>
+      {/* <SearchView/> */}
       <ScheduleSide/>
       <Map/>
+
    
     </>
   )

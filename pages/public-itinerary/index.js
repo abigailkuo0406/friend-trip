@@ -24,7 +24,7 @@ export default function PublicSchedule() {
         </div>
         )
       })}
-      <BtnToolbar/>
+      {/* <BtnToolbar/> */}
       </div>
     </>
   )
