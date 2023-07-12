@@ -11967,6 +11967,10 @@ p, a, span, div, button, li, ol, .dropdown-item {
   font-size: 1rem;
 }
 
+a, ul, ol {
+  text-decoration: none;
+}
+
 .nav-font {
   font-size: 1.25rem;
 }
@@ -12021,6 +12025,34 @@ p, a, span, div, button, li, ol, .dropdown-item {
   color: var(--main-dark);
 }
 
+.input-width-100pa {
+  width: 100%;
+}
+
+.input-width-70pa {
+  width: 70%;
+}
+
+.input-width-50pa {
+  width: 50%;
+}
+
+.input-width-30pa {
+  width: 30%;
+}
+
+.input-width-10rem {
+  width: 10rem;
+}
+
+.input-width-5rem {
+  width: 5rem;
+}
+
+.input-width-3rem {
+  width: 3rem;
+}
+
 .select-section, .input-text-section, .input-radio-section, .input-checkbox-section {
   margin-top: 1.8rem;
   margin-bottom: 1.8rem;
@@ -12041,7 +12073,7 @@ label {
   display: block;
   font-weight: 500;
   color: var(--main-dark);
-  width: 5rem;
+  width: 10rem;
   padding: 0rem 0rem 0.2rem 0rem;
 }
 
@@ -12050,7 +12082,6 @@ label {
   padding: 0.2rem 2.5rem 0.2rem 0.5rem;
   border: 1.8px solid #D8d8d8;
   border-radius: 8px;
-  width: 10rem;
 }
 .input-text::placeholder {
   color: var(--assist-gray);
@@ -12074,20 +12105,19 @@ label {
   height: fit-content;
 }
 
-.one-inline {
-  width: 100%;
-  display: block;
+.input-text-double-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.one-inline .input-text {
-  width: 80%;
-}
-
-.two-inline {
+.input-text-double-section .input-text-section {
   width: 50%;
-  display: inline-block;
 }
-.two-inline .input-text {
-  width: 60%;
+.input-text-double-section .input-text-section:first-child {
+  margin-right: 3%;
+}
+.input-text-double-section .input-text-section:last-child {
+  margin-left: 3%;
 }
 
 .radio-seciton label {
@@ -12102,7 +12132,6 @@ label {
   padding: 0.2rem 0.5rem 0.2rem 0.5rem;
   border: 1.8px solid #D8d8d8;
   border-radius: 8px;
-  width: 80%;
   height: 10rem;
 }
 .area-text::placeholder {
@@ -12118,7 +12147,6 @@ label {
 
 .custom-select {
   position: relative;
-  width: fit-content;
 }
 .custom-select .input-select {
   cursor: pointer;
@@ -12157,9 +12185,18 @@ label {
   border-color: var(--warning);
 }
 
+.input-many {
+  display: flex;
+  flex-direction: row;
+}
+
+.middleText {
+  padding: 0 0.5rem;
+  color: var(--main-dark);
+}
+
 .custom-number {
   position: relative;
-  width: fit-content;
 }
 .custom-number::after {
   font-weight: 700;
@@ -12214,7 +12251,19 @@ label {
   padding-right: 0.5rem;
 }
 
-.input-checkbox-section label {
+.hide-arrows {
+  -moz-appearance: textfield;
+}
+.hide-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.hide-arrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-checkbox-section > label {
   display: inline-block;
   width: 10rem;
 }

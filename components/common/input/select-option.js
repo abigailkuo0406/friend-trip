@@ -10,6 +10,7 @@ export default function SelectOption({
   label = '',
   getValue, //取得的 value
   getName,
+  width,
   addClassforLabel,
   addClassforSelect,
   addClassforOption,
@@ -31,13 +32,13 @@ export default function SelectOption({
       <label for={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>
-      <div className="custom-select">
+      <div className={`${width} custom-select`}>
         <select
           id={id}
           name={name}
           aria-label="Default select example"
           onChange={handleChange}
-          className={`${addClassforSelect} input-text input-select`}
+          className={`${addClassforSelect} w-100 input-text input-select`}
         >
           {valueGroup.map((element, index) => (
             <MyOption

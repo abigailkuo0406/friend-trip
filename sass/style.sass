@@ -42,6 +42,8 @@ h6, label
   font-size: 1rem
 p,a,span,div,button,li,ol,.dropdown-item
   font-size: 1rem
+a, ul, ol
+  text-decoration: none
 
 // navbar 文字
 .nav-font
@@ -82,7 +84,22 @@ p,a,span,div,button,li,ol,.dropdown-item
   &:hover
     background-color: var(--assist-white)
     color: var(--main-dark)
-    
+
+// input 寬度樣式 // 可依需求新增但請遵守命名規則要以 input-width 前綴
+.input-width-100pa
+  width: 100%
+.input-width-70pa
+  width: 70%
+.input-width-50pa
+  width: 50%
+.input-width-30pa
+  width: 30%
+.input-width-10rem
+  width: 10rem
+.input-width-5rem
+  width: 5rem
+.input-width-3rem
+  width: 3rem 
 // input 樣式
 .select-section,.input-text-section, .input-radio-section, .input-checkbox-section
   margin-top: 1.8rem
@@ -97,14 +114,13 @@ label
   display: block
   font-weight: 500
   color: var(--main-dark)
-  width: 5rem
+  width: 10rem
   padding: 0rem 0rem 0.2rem 0rem
 .input-text
   color: var(--main-dark)
   padding: 0.2rem 2.5rem 0.2rem 0.5rem
   border: 1.8px solid #D8d8d8
   border-radius: 8px
-  width: 10rem
   &::placeholder
       color: var(--assist-gray)
   &:focus
@@ -120,16 +136,19 @@ label
 .input-text-section
   .input-text
     height: fit-content
-.one-inline
-  width: 100%
-  display: block
-  .input-text
-    width: 80%
-.two-inline
-  width: 50%
-  display: inline-block
-  .input-text
-    width: 60%
+
+.input-text-double-section
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    .input-text-section
+      width: 50%
+      >div
+      &:first-child
+        margin-right:3%
+      &:last-child
+        margin-left:3%
+          
 .radio-seciton
   label
     padding-left: 0.5rem
@@ -140,7 +159,6 @@ label
   padding: 0.2rem 0.5rem 0.2rem 0.5rem
   border: 1.8px solid #D8d8d8
   border-radius: 8px
-  width: 80%
   height: 10rem
   &::placeholder
       color: var(--assist-gray)
@@ -151,7 +169,7 @@ label
       outline: none 
 .custom-select
   position: relative
-  width: fit-content // 此 div 與子元素 select 同寬
+  // width: fit-content // 此 div 與子元素 select 同寬
   .input-select
     cursor: pointer
   &::after
@@ -182,12 +200,15 @@ label
   min-height: 24px
 .input-error-border
   border-color: var(--warning)
-  
-
+.input-many
+  display: flex
+  flex-direction: row
+.middleText
+  padding: 0 0.5rem
+  color: var(--main-dark)
 .custom-number
   position: relative
-  width: fit-content // 此 div 與子元素 select 同寬
-  .input-select
+  // width: fit-content // 此 div 與子元素 select 同寬
     
   &::after
     font-weight: 700
@@ -237,8 +258,16 @@ label
     background-color: var(--main)
 .input-number
   padding-right: 0.5rem
+.hide-arrows // 去除 input number 的按鈕
+  -moz-appearance: textfield // Firefox
+  &::-webkit-outer-spin-button
+    -webkit-appearance: none
+    margin: 0
+  &::-webkit-inner-spin-button
+    -webkit-appearance: none
+    margin: 0
 .input-checkbox-section
-  label
+  >label
     display: inline-block
     width: 10rem
   .input-text
