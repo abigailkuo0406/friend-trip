@@ -17,19 +17,19 @@ export default function SearchView() {
       <div className="itineraryContainer ">
         <div className="mapCanvas">
           {/* sidebar */}
-          <div className="itinerary-fade-in  position-absolute">
+          <div className="itinerary-fade-in  position-absolute" >
             <div className="trip-list">
-              <div className="trip-list-header-top bg-light">
+              <div className="trip-list-header-top bg-light " style={{height:700,width:320}}>
                 {/* 切換 */}
-                <ul className="nav nav-underline ">
-                  <li className="nav-item">
+                <ul className="nav nav-underline">
+                  <li className="nav-item mt-3 mx-1">
                     <Link href="/custom-itinerary/">
-                      <h4>
+                      <h5>
                         <FaArrowLeftLong />
-                      </h4>
+                      </h5>
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item e">
                     <Link href="#">
                       <h4>
                         <BiSearchAlt />
@@ -49,12 +49,13 @@ export default function SearchView() {
                 <nav className="navbar bg-body-tertiary">
                   <div className="container-fluid">
                     <form className="mt-3">
+                    
                       <input
                         className="form-control me-2 mb-3"
                         type="search"
                         placeholder="請輸入城市"
                       />
-                      <div className="d-flex">
+                    <div className="d-flex">
                         <input
                           className="form-control me-2 mb-3"
                           type="search"
@@ -63,13 +64,14 @@ export default function SearchView() {
                         <button
                           className="btn btn-outline-success"
                           type="submit"
-                        >
-                          搜尋
+                        >搜尋
                         </button>
+
+                        
                       </div>
                       <div>
-                        <ol className={styles.ul}>
-                          <li className={styles.liStyle}>
+                        <ol className={styles.ol}>
+                          <li className={styles.li}>
                           <div type="button"
                             className="btn btn-link d-flex"
                             data-bs-toggle="modal"
@@ -84,7 +86,7 @@ export default function SearchView() {
                             <h6 className="my-auto">寧夏觀光夜市</h6>
                             </div>
                           </li>
-                          <li className={styles.liStyle}>
+                          <li className={styles.li}>
                           <div type="button"
                             className="btn btn-link d-flex"
                             data-bs-toggle="modal"

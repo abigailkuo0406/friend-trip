@@ -1,19 +1,22 @@
 import { useState } from 'react'
-import styles from './arrange-schedule.module.css'
+// import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import InitCard from './init-card'
 import SearchView from './search-view'
 import Host from '@/assets/fake-data/fake-persona.png'
 import { FaRegEdit } from 'react-icons/fa'
-import { BsPersonPlus } from 'react-icons/bs'
 import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
-import { BsStarFill } from 'react-icons/bs'
-import { BsStarHalf } from 'react-icons/bs'
-import { BsPlusLg } from 'react-icons/bs'
+import { BsStarHalf,BsStarFill,BsPlusLg,BsPersonPlus } from 'react-icons/bs'
+import styles from './arrange-schedule.module.scss'
 
-export default function ScheduleSide() {
+
+
+export default function ScheduleSide({ onAddScenery }) {
+  const handleAddSceneryClick = () => {
+    onAddScenery()
+  }
   return (
     <>
       <div className="itineraryContainer ">
@@ -21,8 +24,7 @@ export default function ScheduleSide() {
           {/* sidebar */}
           <div className="itinerary-fade-in">
             <div className="trip-list ">
-              <div className="">
-                <div className="trip-list-header-top bg-light  position-absolute">
+                <div className="trip-list-header-top bg-light  position-absolute"  style={{height:700,width:320}}>
                   <div className="d-flex">
                     <Link href="#">
                       <h4>
@@ -67,18 +69,18 @@ export default function ScheduleSide() {
                     </div>
                     {/* 行程card */}
                     <div className="overflow-y-auto" style={{height:520}}>
-                    {Array(3)
+                    {Array(5)
                       .fill(1)
                       .map((v, i) => {
                         return <InitCard key={i} />
                       })}
                       <div className="bg-info">
-                    <button className="mx-4">＋新增行程</button>
+                    <button className="mx-4" onClick={handleAddSceneryClick}>＋新增行程</button>
                     </div>
                     </div>  
                   </div>
                 </div>
-              </div>
+             
             </div>
           </div>
         </div>

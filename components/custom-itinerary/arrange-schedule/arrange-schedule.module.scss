@@ -1,8 +1,8 @@
-.ul{
+.ol{
     list-style: none;
     padding: 0;
     margin: 0;
-.liStyle {
+.li {
     counter-increment:step; 
     &:before{
         line-height: 24px;
@@ -10,11 +10,10 @@
         color: #fff;
         background: #fabcbf;;
         content: counter(step); 
-        display: inline-block;
+        display:inline-block;
         border-radius: 100%;
         width: 25px;
         height: 25px;
-
     }
 } 
 }

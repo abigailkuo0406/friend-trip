@@ -5,14 +5,23 @@ import SearchView from '@/components/custom-itinerary/arrange-schedule/search-vi
 import Map from '@/components/custom-itinerary/arrange-schedule/map'
 
 export default function ArrangeSchedule() {
+  //搜尋頁面元件
+  const [showSearchView, setShowSearchView] = useState(false)
+  const handleAddScenery = () => {
+    setShowSearchView(true)
+  }
 
   return (
     <>
-      {/* <SearchView/> */}
-      <ScheduleSide/>
-      <Map/>
+     {showSearchView ? (
+        <SearchView />
+      ) : (
+        <>
+          <ScheduleSide onAddScenery={handleAddScenery} />
+        </>
+      )}
 
-   
+       <Map />
     </>
   )
 }
