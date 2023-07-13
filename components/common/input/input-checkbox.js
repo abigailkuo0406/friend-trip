@@ -46,7 +46,7 @@ export default function InputCheckbox({
         checked={inputValue1}
         className={`${addClassforInput}`}
       ></input>
-      <label for={id} className={`${addClassforEachLabel}`}>
+      <label htmlFor={id} className={`${addClassforEachLabel}`}>
         {label}
       </label>
     </div>

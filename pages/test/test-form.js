@@ -120,13 +120,13 @@ export default function AdminIndex() {
           ></InputTextDouble>
           <InputText
             id="ID3"
-            name="name3"
-            label="問題3"
-            value="" // 預設文字
+            name="nalijljlme3"
+            label="問題3yyyyy"
+            value="hhhh" // 預設文字
             placeholder="測試3"
             width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
             addClassforLabel="classTest1" // 如果要在 label 添加 class
-            addClassforInput="classTest2" // 如果要在 input 添加 class
+            addClassforInput="classTest2 colorred" // 如果要在 input 添加 class
             getValue={setInputValue3} // 獲取填寫的數值
             getName={setInputName3} // 獲取 name
             required={true} // true：必填，false：非必填
@@ -241,10 +241,21 @@ export default function AdminIndex() {
             type="submit"
             value="submit"
             btnText="送出"
-            addIMGLeft // 增加左側圖示 // 使用 react-icon，記得要 import 進入
+            addIMGLeft={<BsArrowLeftShort></BsArrowLeftShort>} // 增加左側圖示 // 使用 react-icon，記得要 import 進入
             addIMGRight={<BsArrowRightShort></BsArrowRightShort>} // 增加右側圖示 // 使用 react-icon，記得要 import 進入
             addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
             disabled={false} // fase：可點，true：不可點
+          ></BtnNormal>
+          <BtnNormal
+            type="button"
+            value="button"
+            btnText="連連看"
+            addIMGLeft={<BsArrowLeftShort></BsArrowLeftShort>} // 增加左側圖示 // 使用 react-icon，記得要 import 進入
+            addIMGRight={<BsArrowRightShort></BsArrowRightShort>} // 增加右側圖示 // 使用 react-icon，記得要 import 進入
+            addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+            disabled={false} // fase：可點，true：不可點
+            href="https://getbootstrap.com/docs/5.2/forms/range/"
+            target=""
           ></BtnNormal>
         </form>
       </article>

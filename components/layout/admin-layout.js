@@ -1,7 +1,7 @@
 // components/layout/admin-layout.js
 import Navbar from './navbar'
 import Footer from './footer'
-import Sidebar from './sidebar'
+import Sidebar from '@/components/common/sidebar/sidebar'
 
 export default function AdminLayout({ children }) {
   return (
