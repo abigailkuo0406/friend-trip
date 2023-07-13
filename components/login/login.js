@@ -22,11 +22,11 @@ export default function Login() {
           <div className={styles.input}>
             <div className={styles.up}>
               <h4>電子信箱/帳號</h4>
-              <input id="input1" type="text"></input>
+              <input id="input1" type="text" size="30"></input>
             </div>
             <div className={styles.down}>
               <h4>密碼</h4>
-              <input id="input1" type="text"></input>
+              <input type="text" id="fname" name="fname" size="30"></input>
             </div>
           </div>
           <div>
