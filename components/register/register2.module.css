@@ -1,0 +1,18 @@
+.cardbody{
+    width: 700px;
+    height: 1000px;
+    background-color: #fefefe;
+    border-radius: 30px;
+    padding: 10px 10px 10px 30px;
+    color: rgb(43, 3, 3);
+}
+.input{
+    border: 1px solid rgb(216, 205, 205);
+}
+.inputstyle{
+    display: flex; 
+    margin-top: 40px;
+}
+.inputlabel{
+    width: 150px;
+}

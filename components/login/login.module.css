@@ -1,22 +1,32 @@
 .white{
     background-color: white;
     display: flex;
-    flex-direction: row;
     height: 800px;
-    width: 1000px;
+    width: 700px;
+    border-radius: 20px;
 }
 .leftplace {
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 .rightplace {
+    width: 400px;
     border: 2px solid yellow;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .photo{
     height: auto;
     width: 400px;
 }
 .input{
-    background-color: rgb(159, 101, 212);
+    width: 200px;
+    height: 150px;
+    background-color: var(--main-dark);
     color: white;
+    padding: 10px;
+    border-radius: 10px;
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { BiSearchAlt } from 'react-icons/bi'
 import logo from '@/assets/logo/FriendTrip-Logo.png'
+import BtnLogout from '@/components/common/button/btn-logout'
 
 export default function Navbar() {
   return (
@@ -20,7 +21,7 @@ export default function Navbar() {
           <div id="Search-Bar" className="input-group w-50">
             <input
               type="text"
-              className="form-control"
+              className="form-control input-text"
               placeholder="探索新發現！"
               aria-label="探索新發現！"
               aria-describedby="button-addon2"
@@ -33,9 +34,7 @@ export default function Navbar() {
               <BiSearchAlt />
             </button>
           </div>
-          <button id="Log-Out-Btn" type="button" className="btn btn-light">
-            登出
-          </button>
+          <BtnLogout></BtnLogout>
         </div>
       </header>
     </>
