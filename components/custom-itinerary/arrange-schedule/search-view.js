@@ -135,6 +135,8 @@ export default function SearchView() {
                     <Image
                       src={Jiufen}
                       style={{ width: '100%', height: 'auto' }}
+                      alt="Jiufen"
+                      priority={true}
                     />
                     <p>
                       <IoLocationOutline className="mx-2" />

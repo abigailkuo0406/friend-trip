@@ -85,10 +85,10 @@ export default function AdminIndex() {
 
   return (
     <>
-      <label for="customRange1" class="form-label">
+      <label htmlFor="customRange1" className="form-label">
         Example range
       </label>
-      <input type="range" class="form-range" id="customRange1"></input>
+      <input type="range" className="form-range" id="customRange1"></input>
       <article className="blog-post">
         <form onSubmit={handleSubmit}>
           <h2 className="display-5 link-body-emphasis mb-1">

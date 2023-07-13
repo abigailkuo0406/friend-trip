@@ -1,16 +1,18 @@
+import { useState ,useEffect} from 'react'
 import styles from './create-task.module.css'
-import { FaArrowLeftLong } from 'react-icons/fa6'
 import Image from 'next/image'
-import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { useState } from 'react'
+import { FaArrowLeftLong } from 'react-icons/fa6'
+import { TbPhotoPlus } from 'react-icons/tb'
+import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import InputText from '../common/input/input-text'
 import AreaText from '../common/input/textarea'
 import InputRadioGroup from '../common/input/input-radio-group'
 import InputNumber from '../common/input/input-number'
 import BtnNormal from '../common/button/btn-normal'
-import { TbPhotoPlus } from "react-icons/tb";
+import ImageItemPpreview from './image-item-preview'
+
 export default function CreateTask() {
   // 追蹤是否觸發了已經提交操作
   const [submitted, setSubmitted] = useState(false)
@@ -42,6 +44,8 @@ export default function CreateTask() {
     }
   }
 
+ 
+
   return (
     <>
       <form method="post" onSubmit={handleSubmit}>
@@ -54,23 +58,8 @@ export default function CreateTask() {
           <h3 className="mx-auto">新增行程</h3>
         </div>
         {/* 行程封面照片 */}
-        <div className="d-flex flex-column mb-3">
-          <label className={styles.label}>旅程封面圖片</label>
-          <Image
-            src={Jiufen}
-            className={styles.label}
-            alt="..."
-            style={{ width: '45%', height: 'auto' }}
-          ></Image>
-
-<label className={styles.uploader}>
-<TbPhotoPlus className={styles.uploaderIcon}/>
-  <Image src="" className={styles.uploaderImg}/>
-  <input className={styles.uploaderinput} type="file" accept="Image/*" name="file"/>
-</label>
-
-
-        </div>
+      <ImageItemPpreview/>
+        
         {/* 表格 */}
         <div className={styles.formbody}>
           <div className="container ">

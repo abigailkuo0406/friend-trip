@@ -13,20 +13,25 @@ export default function SaveViewInit() {
     <>
       <div className="container">
         <div className="position-relative">
-          <Image src={Jiufen} 
-              width={940}
-              height={400}
-              quality={75}//圖片質量
-              style={{borderRadius: '5px'}}
+          <Image
+            src={Jiufen}
+            alt="Picture of the Jiufen"
+            width={940}
+            height={400}
+            quality={75} //圖片質量
+            style={{ borderRadius: '5px' }}
+            priority={true} //圖片預先載入
           />
-          <h3 className="position-absolute bottom-0 start-0 text-white mx-3">九份& 平溪天燈一日遊</h3>
+          <h3 className="position-absolute bottom-0 start-0 text-white mx-3">
+            九份& 平溪天燈一日遊
+          </h3>
         </div>
-        
+
         <div className="d-flex justify-content-between mt-3 mx-2 ">
           <div className="d-flex align-items-cente ">
             <Image
               src={User}
-              alt="user"
+              alt="Picture of the User"
               width={50}
               height={50}
               priority={true} //圖片預先載入
@@ -53,7 +58,12 @@ export default function SaveViewInit() {
               <div className={styles.line}></div>
             </div>
             <p className="mx-2">8:00</p>
-            <Image src={Jiufen} style={{ width: '20%', height: 'auto' }} />
+            <Image
+              src={Jiufen}
+              style={{ width: '20%', height: 'auto' }}
+              priority={true}
+              alt="Picture of the Jiufen"
+            />
             {/* modal-btn */}
             <button
               type="button"
@@ -68,7 +78,7 @@ export default function SaveViewInit() {
           <div
             className="modal fade"
             id="exampleModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
@@ -85,7 +95,14 @@ export default function SaveViewInit() {
                     aria-label="Close"
                   ></button>
                 </div>
-                <Image src={Jiufen} style={{ width: '100%', height: 'auto' }} />
+                <Image
+                  src={Jiufen}
+                  width={200}
+                  height={200}
+                  alt="Picture of the Jiufen"
+                  // style={{ width: '100%', height: 'auto' }}
+                  priority={true} //圖片預先載入
+                />
                 <div className="modal-body">
                   <p>
                     <IoLocationOutline className="mx-2" />

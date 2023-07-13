@@ -7,9 +7,7 @@ export default function Map() {
               width={1100}
               height={700}
               style={{ border: 0 }}
-              allowfullscreen="true"
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              loading="lazy"          
             ></iframe>
           </div>
     </>

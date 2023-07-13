@@ -20,9 +20,9 @@ export default function Public(props) {
    <div className="card mx-2 mb-3" style={{width:300}}>
     {/* 行程封面照 */}
     <Image 
-    src={Jiufen } 
+    src={Jiufen} 
     className="card-img-top" 
-    alt="..."
+    alt="Jiufen"
     width={300}
     />
     <div className="card-body">
@@ -31,7 +31,7 @@ export default function Public(props) {
                 <Image 
                   src={Host}
                   className="rounded-circle my-auto"
-                  alt="..."
+                  alt="Host"
                   width={32}
                   height={32}
                   priority={true} //圖片預先載入

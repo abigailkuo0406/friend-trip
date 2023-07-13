@@ -52,7 +52,7 @@ export default function ScheduleSide({ onAddScenery }) {
                     <div className="d-flex mt-3">
                       <Image
                         src={Host}
-                        alt="user"
+                        alt="Host"
                         width={32}
                         height={32}
                         priority={true} //圖片預先載入

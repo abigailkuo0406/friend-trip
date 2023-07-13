@@ -11,9 +11,11 @@ export default function Sidebar() {
           <div id="User-Img" className="d-flex align-items-center pe-3">
             <Image
               src={persona}
+              alt="Picture of the persona"
               style={{
                 width: `100%`,
                 height: `auto`,
+                
               }}
             ></Image>
           </div>
