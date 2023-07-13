@@ -1,5 +1,4 @@
 import React from 'react'
-
 import styles from './friend.module.css'
 export default function Friend() {
   return (
@@ -42,7 +41,7 @@ export default function Friend() {
               <label htmlFor="emailadd">地區</label>
               <p className={styles.p}>台北市</p>
             </div>
-            <div>
+            <div className={styles.buttonbar}>
               <button type="button">修改</button>
               <button type="button">下一頁</button>
             </div>

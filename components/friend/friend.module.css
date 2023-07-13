@@ -1,24 +1,14 @@
 .main{
     width: 700px;
-    height: 600px;
-    background-color: rgb(240, 186, 224);
-    border-radius: 30px;
-    padding: 20px;
     display: flex;
-}
-.side{
-    width: 200px;
-    height: 550px;
-    background-color: white;
 }
 .profileside{
     width: 400px;
     height: 550px;
-    margin-left: 50px;
 }
 .profile {
-    width: 400px;
-    height: 300px; 
+    width: 700px;
+    height: 400px; 
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
     padding: 10px
@@ -30,11 +20,15 @@
 .p {
     font-size: 10px;
 }
+.buttonbar {
+    display: flex;
+    justify-content: flex-end;
+}
 .friendsheet{
-    width: 400px;
-    height: 220px; 
+    width: 700px;
+    height: 200px; 
     background-color: rgb(255, 255, 255);
-    margin-top: 30px;
+    margin-top: 10px;
     border-radius: 15px;
     padding: 10px;
 }
