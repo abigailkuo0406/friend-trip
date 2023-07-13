@@ -182,7 +182,7 @@ export default function AdminIndex() {
             max={99} // 最大可選數字
             min={2} // 最小可選數字
             step={1} // 右邊箭頭按一次的數字區間
-            hideArrows={true} // true：隱藏右側上下箭頭按鈕，false：顯示
+            hideArrows={false} // true：隱藏右側上下箭頭按鈕，false：顯示
             getValue={setInputValue7}
             getName={setInputName7}
             width="input-width-5rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增

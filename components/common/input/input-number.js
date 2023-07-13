@@ -57,7 +57,9 @@ export default function InputNumber({
 
   return (
     <div className="select-section">
-      <label className={`${addClassforLabel} section-label`}>{label}</label>
+      <label htmlFor={id} className={`${addClassforLabel} section-label`}>
+        {label}
+      </label>
       <div className={`${width} ${hideArrows ? '' : 'custom-number'}`}>
         <input
           id={id}
