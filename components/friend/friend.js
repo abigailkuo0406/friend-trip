@@ -12,34 +12,34 @@ export default function Friend() {
               <h2>個人資料</h2>
             </div>
             <div className={styles.labelbar}>
-              <label htmlfor="emailadd">照片</label>
+              <label htmlFor="emailadd">照片</label>
             </div>
             <div className={styles.labelbar}>
-              <label htmlfor="emailadd">電子信箱</label>
+              <label htmlFor="emailadd">電子信箱</label>
               <p className={styles.p}>hjhjhjhj@gmail.jlkjl</p>
             </div>
             <div className={styles.labelbar}>
-              <label htmlfor="emailadd">密碼</label>
+              <label htmlFor="emailadd">密碼</label>
               <p className={styles.p}>jk;jjhhjhjjjhk</p>
             </div>
             <div className={styles.labelbar}>
-              <label htmlfor="emailadd">會員名稱</label>
+              <label htmlFor="emailadd">會員名稱</label>
               <p className={styles.p}>王大明</p>
             </div>
             <div className={styles.labelbar}>
-              <label htmlfor="emailadd">會員生日</label>
+              <label htmlFor="emailadd">會員生日</label>
               <p className={styles.p}>2000/02/02</p>
             </div>
             <div className={styles.labelbar}>
-              <label htmlfor="emailadd">身分證字號</label>
+              <label htmlFor="emailadd">身分證字號</label>
               <p className={styles.p}>asfjhjhfdf</p>
             </div>
             <div className={styles.labelbar}>
-              <label htmlfor="emailadd">性別</label>
+              <label htmlFor="emailadd">性別</label>
               <p className={styles.p}>女</p>
             </div>
             <div className={styles.labelbar}>
-              <label htmlfor="emailadd">地區</label>
+              <label htmlFor="emailadd">地區</label>
               <p className={styles.p}>台北市</p>
             </div>
             <div>
