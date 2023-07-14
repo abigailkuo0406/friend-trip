@@ -12,7 +12,7 @@
     "RestClass": "牛排",
     "RestMeal": "美式",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-a.jpg"
+    "RestImg": "/restimg/1a.jpg"
   },
   {
     "RestID": 2,
@@ -27,7 +27,7 @@
     "RestClass": "特色美食",
     "RestMeal": "日式",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-b.jpg"
+    "RestImg": "/restimg/2a.jpg"
 
   },
   {
@@ -43,7 +43,7 @@
     "RestClass": "下午茶",
     "RestMeal": "",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-c.jpg"
+    "RestImg": "/restimg/3a.jpg"
   },
   {
     "RestID": 4,
@@ -58,7 +58,7 @@
     "RestClass": "海鮮",
     "RestMeal": "台式",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-d.jpg"
+    "RestImg": "/restimg/4a.jpg"
   },
   {
     "RestID": 5,
@@ -73,7 +73,7 @@
     "RestClass": "特色美食",
     "RestMeal": "日式",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-a.jpg"
+    "RestImg": ""
   },
   {
     "RestID": 6,
@@ -88,7 +88,7 @@
     "RestClass": "特色美食",
     "RestMeal": "中式",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-a.jpg"
+    "RestImg": ""
 
   },
   {
@@ -104,7 +104,7 @@
     "RestClass": "特色美食",
     "RestMeal": "義式",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-a.jpg"
+    "RestImg": ""
 
   },
   {
@@ -120,7 +120,7 @@
     "RestClass": "特色美食",
     "RestMeal": "義式",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-a.jpg"
+    "RestImg": ""
 
   },
   {
@@ -136,7 +136,7 @@
     "RestClass": "下午茶",
     "RestMeal": "",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-a.jpg"
+    "RestImg": ""
 
   },
   {
@@ -152,7 +152,7 @@
     "RestClass": "下午茶",
     "RestMeal": "",
     "RestPrice": "",
-    "RestImg": "@/assets/rest-img/rest-img-1-a.jpg"
+    "RestImg": ""
 
   }
 ]

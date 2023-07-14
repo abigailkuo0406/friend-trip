@@ -42,7 +42,7 @@ export default function Sidebar() {
         </div>
       </div>
       <div className="card">
-        <div className="card-body">
+        <div className="card-body nav-body">
           <nav class="navbar">
             <div class="container-fluid">
               <div class="" id="navbarNav">

@@ -1,4 +1,4 @@
-YUN 2023/07/04:
+YUN:
 1. pages 和 components 裡都有 test 資料夾，測試用的檔案都可以丟裡面測試，如果裡面太亂就會砍檔案不要把重要的東西留在這
 2. 所有組員在開始開發時要各自安裝自己的 bootstrap (npm i bootstrap)、sass (npm i -D sass)
 3. 安裝 Icon 套件 react-icon (npm i react-icons)，使用範例在 components 和 pages 的 test 資料夾裡有
@@ -6,5 +6,23 @@ YUN 2023/07/04:
 5. Icon 網址: https://react-icons.github.io/react-icons/，點選左邊分類，記得要設定 import，個頁面上方有教學 import { 選擇的icon名稱 } from "react-icons/不同類別有不同名稱，各分頁會寫";
 6. 將圖片存在 assets 資料夾內，記得在裡面要用資料夾分類，要先 import Image from 'next/image'，import 變數名稱 from '@/assets/分類資料夾/檔名.副檔名'，再使用 <Image src={變數名稱}></Image> 即可
 7. 公用 CSS 在 sass 資料夾內使用 style.sass 修改，也有設 mixin 資料夾可設定 mixin，記得要開 Watch Sass，最後會轉譯成 css 資料夾的 style.css
+
+
+
+8. 安裝 font awesome (npm i --save @fortawesome/fontawesome-svg-core)
+9. 如果要在 HTML 的 <head> 裡加東西，到 pages -> _document.js 內的 <Head> 進行修改
+
+
+公版套用步驟(Kuo 2023/07/03)
+1. 在自己的頁面元件第1行引入下方程式碼：
+import AdminLayout from '@/components/layout/admin-layout'
+
+2.在自己的頁面元件最末行引入下方程式碼：
+.getLayout = function (page) {
+  return <AdminLayout>{page}</AdminLayout>
+}
+
+3.上方程式碼.getLayout的.前面放自己頁面的預設輸出元件名稱
+
 
 

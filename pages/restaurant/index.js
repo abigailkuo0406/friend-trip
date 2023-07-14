@@ -12,7 +12,6 @@ export default function Rest() {
     <>
       <div className="container">
         <h1>精選餐廳</h1>
-        
         {restaurant.map((v, i) => {
           return (
             <div key={v.RestID}>

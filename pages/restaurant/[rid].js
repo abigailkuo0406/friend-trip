@@ -1,60 +1,104 @@
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
-import A from '@/assets/rest-img/rest-img-1-a.jpg'
+// 引入邀請元件
+import Invite from '@/components/invite/invite'
+
+// 引入評論元件
+import Comment from '@/components/restaurant/comment'
+
+// 引入朋友假資料
+import friends from '@/data/restaurant/friend-list.json'
+// 引入餐廳假資料
+import restaurant from '@/data/restaurant/rest-detail.json'
+// 引入評論假資料
+import comment from '@/data/restaurant/comment.json'
+
 
 export default function RestItem() {
+  // 取用useRouter方法
+  const router = useRouter()
+
+  
+
+  // 取得當頁動態編號
+  // const rid = parseInt(router.query?.rid ??) - 1
+
+  let rid = 0
+  if (router.query.rid != null) {
+    rid = router.query?.rid  ;
+
+  }
+  console.log(rid)
+
+  // 取得餐廳資料細項
+  console.log(restaurant)
+
+  const restName = restaurant[rid]?.RestName ?? ''
+
+  const restPhone = restaurant[rid]?.RestPhone ?? ''
+  const restAdress = restaurant[rid]?.RestAdress ?? ''
+  const restTime = restaurant[rid]?.RestTime ?? ''
+  const restIntro = restaurant[rid]?.RestIntro ?? ''
+  const restclassName = restaurant[rid]?.RestclassName ?? ''
+  const restMeal = restaurant[rid]?.RestMeal ?? ''
+
+
+
   return (
     <>
-      {/* <div class="modal-dialog modal-fullscreen-sm-down"> */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModalToggle"
         aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel"
         tabindex="-1"
       >
-        <div class="modal-dialog modal-dialog-centered modal-fullscreen ">
-          <div class="modal-content ">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+        <div className="modal-dialog modal-dialog-centered modal-fullscreen ">
+          <div className="modal-content ">
+            <div className="modal-header">
+              {/* <h1 className="modal-title fs-5" id="exampleModalToggleLabel">
                 Modal 1
-              </h1>
+              </h1> */}
+
               {/* 關閉按鈕 */}
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
+
             {/* modal body */}
-            <div class="d-flex mx-6" >
-              <div class="modal-body">
+            <div className="d-flex mx-6" >
+              <div className="modal-body">
+
                 {/*左方標題列 */}
                 <div className="d-flex">
-                  <h2>餐廳名稱</h2>
+                  <h2>{restName}</h2>
                   <div>星星</div>
                 </div>
+
+
                 {/* 左方小資訊列 */}
                 <div>
-                  <p>地址</p>
-                  <p>電話</p>
+                  <p>{restAdress}</p>
+                  <p>{restPhone}</p>
                 </div>
 
                 {/* 左方大資訊區 */}
                 <div>
                   <label>營業時間</label>
-                  <p>周一至周五</p>
+                  <p>{restTime}</p>
                   <label>料理特色</label>
-                  <p>中式料理</p>
+                  <p>{restMeal}{restclassName}</p>
                   <label>訂位須知</label>
-                  <p>1.用餐時間為90分鐘，從訂位時間起始計算。</p>
-                  <p>1.用餐時間為90分鐘，從訂位時間起始計算。</p>
-                  <p>1.用餐時間為90分鐘，從訂位時間起始計算。</p>
+                  <p>{restIntro}</p>
                 </div>
 
-                <form classnameName="bg-info">
+                <form>
                   <div>
                     <label>訂位日期</label>
                     <input type="date" />
@@ -75,17 +119,27 @@ export default function RestItem() {
                     <img />
                     <img />
                   </div>
+
                 </form>
+                <button
+                  className="btn btn-primary"
+                  data-bs-target="#exampleModalToggle2"
+                  data-bs-toggle="modal"
+                >
+                  邀請好友
+                </button>
+                <button>訂位</button>
               </div>
+
               {/* 照片區 */}
               <div>
-                <div id="carouselExampleIndicators" class="carousel slide">
-                  <div class="carousel-indicators">
+                <div id="carouselExampleIndicators" className="carousel slide">
+                  <div className="carousel-indicators">
                     <button
                       type="button"
                       data-bs-target="#carouselExampleIndicators"
                       data-bs-slide-to="0"
-                      class="active"
+                      className="active"
                       aria-current="true"
                       aria-label="Slide 1"
                     ></button>
@@ -102,151 +156,172 @@ export default function RestItem() {
                       aria-label="Slide 3"
                     ></button>
                   </div>
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
+
+                  <div className="carousel-inner">
+                    <div className="carousel-item active">
                       <Image
-                        src={A}
-                        class="d-block w-100 "
+                        // src=
+                        className="d-block w-100"
                         alt="..."
-                        width={200}
+                        width={1000}
                         height={200}
                       />
                     </div>
-                    <div class="carousel-item">
-                      <img src="..." class="d-block w-100" alt="..." />
+                    <div className="carousel-item">
+                      <img src="..." className="d-block w-100" alt="..." />
                     </div>
-                    <div class="carousel-item">
-                      <img src="..." class="d-block w-100" alt="..." />
+                    <div className="carousel-item">
+                      <img src="..." className="d-block w-100" alt="..." />
                     </div>
                   </div>
                   <button
-                    class="carousel-control-prev"
+                    className="carousel-control-prev"
                     type="button"
                     data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="prev"
                   >
                     <span
-                      class="carousel-control-prev-icon"
+                      className="carousel-control-prev-icon"
                       aria-hidden="true"
                     ></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span className="visually-hidden">Previous</span>
                   </button>
                   <button
-                    class="carousel-control-next"
+                    className="carousel-control-next"
                     type="button"
                     data-bs-target="#carouselExampleIndicators"
                     data-bs-slide="next"
                   >
                     <span
-                      class="carousel-control-next-icon"
+                      className="carousel-control-next-icon"
                       aria-hidden="true"
                     ></span>
-                    <span class="visually-hidden">Next</span>
+                    <span className="visually-hidden">Next</span>
                   </button>
                 </div>
               </div>
             </div>
+
             {/* 評論 */}
             <div className='container'>
-              <div id="carouselExample" class="carousel slide">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <Image
-                      src={A}
-                      class="d-block w-100"
-                      alt="..."
-                      width={200}
-                      height={200}
-                    />
+              <div id="carouselExample" className="carousel slide">
+                <div className="carousel-inner">
+                  <div className="carousel-item active">
+                    <Comment memberId={comment[0].member_id} comment={comment[0].ComtText} star={comment[0].RestStarP} />
+
                   </div>
-                  <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="..." />
-                  </div>
-                  <div class="carousel-item">
-                    <img src="..." class="d-block w-100" alt="..." />
-                  </div>
+                  {comment.map((c, i) => {
+                    console.log(c)
+                    return (
+                      <div className="carousel-item" key={i}>
+                        <Comment memberId={c.member_id} comment={c.ComtText} star={c.RestStarP} />
+                      </div>
+                    )
+                  })}
                 </div>
                 <button
-                  class="carousel-control-prev"
+                  className="carousel-control-prev"
                   type="button"
                   data-bs-target="#carouselExample"
                   data-bs-slide="prev"
                 >
                   <span
-                    class="carousel-control-prev-icon"
+                    className="carousel-control-prev-icon"
                     aria-hidden="true"
                   ></span>
-                  <span class="visually-hidden">Previous</span>
+                  <span className="visually-hidden">Previous</span>
                 </button>
                 <button
-                  class="carousel-control-next"
+                  className="carousel-control-next"
                   type="button"
                   data-bs-target="#carouselExample"
                   data-bs-slide="next"
                 >
                   <span
-                    class="carousel-control-next-icon"
+                    className="carousel-control-next-icon"
                     aria-hidden="true"
                   ></span>
-                  <span class="visually-hidden">Next</span>
+                  <span className="visually-hidden">Next</span>
                 </button>
               </div>
             </div>
+
             {/* footer */}
-            <div class="modal-footer">
+            {/* <div className="modal-footer">
               <button
-                class="btn btn-primary"
+                className="btn btn-primary"
                 data-bs-target="#exampleModalToggle2"
                 data-bs-toggle="modal"
               >
                 邀請好友
               </button>
               <button>訂位</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
+
+      {/* 第二層Modal */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModalToggle2"
         aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel2"
         tabindex="-1"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalToggleLabel2">
                 Modal 2
               </h1>
-              <button
+              {/* 關閉按鈕 */}
+              {/* <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              ></button>
+              ></button> */}
             </div>
-            <div class="modal-body">
-              Hide this modal and show the first with the button below.
+            <div className="modal-body">
+              <h1>邀請列表</h1>
+              <ul id="inviteList">
+
+              </ul>
+
+              <h1>朋友列表</h1>
+              <ul id="friendsList" className="list">
+
+                {friends.map((v, i) => {
+                  return (
+                    <div key={i}>
+
+                      <Invite name={v.FriendName} />
+
+                    </div>
+                  )
+                })}
+              </ul>
+
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
-                class="btn btn-primary"
+                className="btn btn-primary"
                 data-bs-target="#exampleModalToggle"
                 data-bs-toggle="modal"
               >
-                Back to first
+                回上一頁
               </button>
             </div>
           </div>
         </div>
-      </div>
+      </div >
       <button
-        class="btn btn-primary"
+        className="btn btn-primary"
         data-bs-target="#exampleModalToggle"
         data-bs-toggle="modal"
       >
-        Open first modal
+        訂位
       </button>
     </>
   )

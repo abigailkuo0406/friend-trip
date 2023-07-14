@@ -2,21 +2,21 @@
   {
     "RestImgID": 1,
     "RestID": 1,
-    "RestImg": "@/assets/restaurant/rest-img-1-a.jpg"
+    "RestImg": "/restimg/1a.jpg"
   },
   {
     "RestImgID": 2,
     "RestID": 1,
-    "RestImg": "@/assets/restaurant/rest-img-1-b.jpg"
+    "RestImg": "/restimg/1b.jpg"
   },
   {
     "RestImgID": 3,
-    "RestID": 1,
-    "RestImg": "@/assets/restaurant/rest-img-1-c.jpg"
+    "RestID": 2,
+    "RestImg": "/restimg/2a.jpg"
   },
   {
     "RestImgID": 4,
-    "RestID": 1,
-    "RestImg": "@/assets/restaurant/rest-img-1-d.jpg"
+    "RestID": 2,
+    "RestImg": "/restimg/2b.jpg"
   }
 ]
