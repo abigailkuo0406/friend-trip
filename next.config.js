@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['via.placeholder.com', 'localhost'],
+    domains: ['via.placeholder.com', 'localhost', 'help.twitter.com'],
   },
   // avoid cors with proxy
   // async rewrites() {
