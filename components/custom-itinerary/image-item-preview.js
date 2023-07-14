@@ -4,17 +4,19 @@ import styles from './create-task.module.css'
 import { TbPhotoPlus } from 'react-icons/tb'
 
 export default function ImageItemPpreview({setFiles,fid}) {
+   
     //選擇的檔案
     const [selectedFile,setSelectedFile]=useState(null)
     //是否有檔案被挑選
     const [isFilePicked,setIsFilePicked]=useState(false)
     //預覽圖片
-    const[preview,setPreview]=useState('')
+    useState('');
+    const [preview, setPreview] = useState('');
     
     //當選擇檔案更動時建立預覽圖
     useEffect(()=>{
         if (!selectedFile){
-            setPreview('')
+          setPreview('')
             return
         }
     })
@@ -24,13 +26,18 @@ export default function ImageItemPpreview({setFiles,fid}) {
         if (file){
             setIsFilePicked(true)
             setSelectedFile(file)
-    
             setFiles(file,fid)
+
+            const reader=new FileReader()
+            reader.onload=()=>{
+              setPreviewUrl(reader.result)
+            }
+            reader.readAsDataURL(file)
         }else{
             setIsFilePicked(false)
             setSelectedFile(null)
-    
             setFiles(null,fid)
+            setPreviewUrl('')
         }
     }
 
@@ -54,7 +61,10 @@ export default function ImageItemPpreview({setFiles,fid}) {
               onChange={changeHandler}
             />
             <div>
-            <img src={preview} className={styles.uploaderImg} alt="XXXX" />
+            
+              <img src={preview} className={styles.uploaderImg} alt="XXXX" />
+           
+           
             </div>
            
           </label>

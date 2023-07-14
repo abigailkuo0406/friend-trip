@@ -44,6 +44,12 @@ export default function CreateTask() {
     }
   }
 
+  const [files, setFiles] = useState([])
+  const handleSetFiles=(file,fid)=>{
+
+    console.log(file,fid)
+    setFiles([...files,{file,fid}])
+  }
  
 
   return (
@@ -58,7 +64,7 @@ export default function CreateTask() {
           <h3 className="mx-auto">新增行程</h3>
         </div>
         {/* 行程封面照片 */}
-      <ImageItemPpreview/>
+      <ImageItemPpreview setFiles={handleSetFiles} fid="example-fid"/>
         
         {/* 表格 */}
         <div className={styles.formbody}>

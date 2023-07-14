@@ -24,30 +24,30 @@ export default function ScheduleSide({ onAddScenery }) {
           {/* sidebar */}
           <div className="itinerary-fade-in">
             <div className="trip-list ">
-                <div className="trip-list-header-top bg-light  position-absolute"  style={{height:700,width:320}}>
-                  <div className="d-flex">
+                <div className="trip-list-header-top bg-light  position-absolute "  style={{height:700,width:320}}>
+                  <div className="d-flex justify-content-end ">
                     <Link href="#">
-                      <h4>
+                      <h4 className="mx-2">
                         <FaRegEdit />
                       </h4>
                     </Link>
                     <Link href="#">
-                      <h4>
+                      <h4 className="mx-2">
                         <BsPersonPlus />
                       </h4>
                     </Link>
                     <Link href="#">
-                      <h4>
+                      <h4 className="mx-2">
                         <LiaSave />
                       </h4>
                     </Link>
                     <Link href="#">
-                      <h4>
+                      <h4 className="mx-2">
                         <FiMoreHorizontal />
                       </h4>
                     </Link>
                   </div>
-                  <div className="trip-list-header-info">
+                  <div className="trip-list-header-info mx-2">
                     <h4>九份 & 平溪天燈一日遊</h4>
                     <div className="d-flex mt-3">
                       <Image
@@ -60,11 +60,11 @@ export default function ScheduleSide({ onAddScenery }) {
                       <p className="usr_name my-auto mx-2">Amber</p>
                     </div>
                   </div>
-                  <div className="trip-list-day-container ">
+                  <div className="trip-list-day-container mx-2">
                     <div className="trip-list-day-header">
                       <div className="d-flex mt-2">
                         <h6 className="mt-1">出發時間：</h6>
-                        <p>8:00</p>
+                        <input type="time"></input>
                       </div>
                     </div>
                     {/* 行程card */}
@@ -74,13 +74,12 @@ export default function ScheduleSide({ onAddScenery }) {
                       .map((v, i) => {
                         return <InitCard key={i} />
                       })}
-                      <div className="bg-info">
-                    <button className="mx-4" onClick={handleAddSceneryClick}>＋新增行程</button>
+                      <div className="mx-5">
+                    <button className="mx-4 btn btn-outline-success" onClick={handleAddSceneryClick}><BsPlusLg/>新增行程</button>
                     </div>
                     </div>  
                   </div>
                 </div>
-             
             </div>
           </div>
         </div>
