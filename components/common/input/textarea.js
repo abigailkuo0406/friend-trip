@@ -5,6 +5,7 @@ export default function AreaText({
   name = '',
   label,
   value,
+  width,
   addClassforLabel,
   addClassforTextarea,
   placeholder = '',
@@ -36,13 +37,13 @@ export default function AreaText({
   }
   return (
     <div className="input-text-section">
-      <label for={id} className={`${addClassforLabel} section-label`}>
+      <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>
       <textarea
         id={id}
         name={name}
-        className={`${addClassforInputState} area-text`}
+        className={`${width} ${addClassforInputState} area-text`}
         placeholder={placeholder}
         value={inputValue}
         onChange={handleChange}

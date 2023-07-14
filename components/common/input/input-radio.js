@@ -42,7 +42,7 @@ export default function InputRadio({
         checked={checked == value ? true : undefined} // 只在初始渲染時設置 checked 屬性，後續渲染時移除 checked 屬性
         className={`${addClassforInput}`}
       ></input>
-      <label for={id} className={`${addClassforEachLabel}`}>
+      <label htmlFor={id} className={`${addClassforEachLabel}`}>
         {label}
       </label>
     </div>

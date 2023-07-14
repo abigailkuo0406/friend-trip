@@ -1,13 +1,11 @@
 // components/layout/admin-layout.js
-import Navbar from './navbar'
 import Footer from './footer'
-import Sidebar from '@/components/common/sidebar/sidebar'
+import Sidebar from './sidebar'
 
-export default function AdminLayout({ children }) {
+export default function TestLayout({ children }) {
   return (
     <>
       <div>
-        <Navbar />
         <main className="container">
           <div class="row g-5 main-background">
             <div id="Sidebar" class="col-md-3">
