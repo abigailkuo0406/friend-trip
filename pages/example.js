@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { method } from 'lodash'
 
 export default function Products() {
   const router = useRouter()
@@ -14,28 +15,23 @@ export default function Products() {
     page: 1,
     rows: [],
   })
-  const [test, settest] = useState({
-    name: "hellooooooooooooo",
-    age: 998989898989898989898,
-  })
+
   console.log('router.query:', router.query)
   const [keyword, setKeyword] = useState('')
-
+//
   useEffect(() => {
     setKeyword(router.query.keyword || '')
     const usp = new URLSearchParams(router.query)
-    console.log('USP:', usp + ' typ:', typeof usp)
-    fetch(`${process.env.API_SERVER}/test?${usp.toString()}`, {
-      method: "POST",
-      body:JSON.stringify(test),
 
+    // API串接
+    fetch("http://localhost:3002/products", {
+      method: 'GET',
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
-        setData(data);
-      });
-  }, [router.query])
+        setData(data)
+      })
+  }, [])
 
   return (
     <>
