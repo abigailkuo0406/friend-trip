@@ -1,21 +1,22 @@
-import React from 'react'
+import  { useState } from 'react'
 // import styles from './arrange-schedule.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import Jiufen from '@/assets/fake-data/fake-jiufen.png'
-import { BiSearchAlt } from 'react-icons/bi'
-import { BiMap } from 'react-icons/bi'
+import { BiSearchAlt , BiMap } from 'react-icons/bi'
 import { FaArrowLeftLong } from 'react-icons/fa6'
-import { IoLocationOutline } from 'react-icons/io5'
-import { IoTimeOutline } from 'react-icons/io5'
+import { IoLocationOutline,IoTimeOutline  } from 'react-icons/io5'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
+import SearchInput from './search-input'
+
 
 export default function SearchView() {
+
   return (
     <>
       <div className="itineraryContainer ">
-        <div className="mapCanvas">
+        <div className="mapCanvas position-absolute z-3">
           {/* sidebar */}
           <div className="itinerary-fade-in  position-absolute" >
             <div className="trip-list">
@@ -31,10 +32,10 @@ export default function SearchView() {
                   </li>
                   <li className="nav-item e">
                     <Link href="#">
-                      <h4>
+                      <h5>
                         <BiSearchAlt />
                         <p>搜尋</p>
-                      </h4>
+                      </h5>
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -48,27 +49,7 @@ export default function SearchView() {
                 </ul>
                 <nav className="navbar bg-body-tertiary">
                   <div className="container-fluid">
-                    <form className="mt-3">
-                    
-                      <input
-                        className="form-control me-2 mb-3"
-                        type="search"
-                        placeholder="請輸入城市"
-                      />
-                    <div className="d-flex">
-                        <input
-                          className="form-control me-2 mb-3"
-                          type="search"
-                          placeholder="請輸入景點關鍵字"
-                        />
-                        <button
-                          className="btn btn-outline-success"
-                          type="submit"
-                        >搜尋
-                        </button>
-
-                        
-                      </div>
+                     <SearchInput />
                       <div>
                         <ol className={styles.ol}>
                           <li className={styles.li}>
@@ -103,7 +84,7 @@ export default function SearchView() {
                           </li>
                         </ol>
                       </div>
-                    </form>
+                
                   </div>
                 </nav>
               </div>
