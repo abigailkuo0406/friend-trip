@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import TestLayout from '@/components/layout/test-layout'
+import AdminLayout from '@/components/layout/admin-layout'
 import InputText from '@/components/common/input/input-text'
 import InputTextDouble from '@/components/common/input/input-text-double'
 import InputRadioGroup from '@/components/common/input/input-radio-group'
@@ -266,5 +266,5 @@ export default function AdminIndex() {
 // 這裡代表要套用AdminLayout，取代原本的DefaultLayout
 // 要寫在元件的函式之外
 AdminIndex.getLayout = function (page) {
-  return <TestLayout>{page}</TestLayout>
+  return <AdminLayout>{page}</AdminLayout>
 }
