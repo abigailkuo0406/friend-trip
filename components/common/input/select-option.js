@@ -29,7 +29,7 @@ export default function SelectOption({
 
   return (
     <div className="select-section">
-      <label for={id} className={`${addClassforLabel} section-label`}>
+      <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>
       <div className={`${width} custom-select`}>
