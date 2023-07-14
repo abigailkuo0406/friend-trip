@@ -1,3 +1,4 @@
+import Feed from '@/components/Feed'
 import Sidebar from '@/components/Sidebar'
 import DefaultLayout from '@/components/layout/default-layout'
 
@@ -9,6 +10,7 @@ export default function Home() {
     {/* Sidebar */}
     <Sidebar/>
     {/* Feed */}
+    <Feed/>
     {/* Widgets */}
     {/* Modal */}
     </main>
