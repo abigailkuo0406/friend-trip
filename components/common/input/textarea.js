@@ -37,7 +37,7 @@ export default function AreaText({
   }
   return (
     <div className="input-text-section">
-      <label for={id} className={`${addClassforLabel} section-label`}>
+      <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>
       <textarea

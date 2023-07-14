@@ -42,7 +42,7 @@ export default function InputText({
   return (
     <div className={`input-text-section`}>
       <div>
-        <label for={id} className={`${addClassforLabel} section-label`}>
+        <label htmlFor={id} className={`${addClassforLabel} section-label`}>
           {label}
         </label>
         <input
