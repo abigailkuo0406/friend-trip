@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import React from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
-import Feed from '@/components/niuComponents/Feed'
-import Sidebar from '@/components/niuComponents/Sidebar'
+import Feed from '@/components/forumComponents/Feed'
+import Sidebar from '@/components/forumComponents/Sidebar'
 import DefaultLayout from '@/components/layout/default-layout'
 
 export default function Home() {
