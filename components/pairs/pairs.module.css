@@ -14,9 +14,9 @@
 .imgabove {
   width: 100px;
   height: 150px;
-  background-color: rgb(199, 54, 54);
+  background-color: rgba(199, 54, 54, 0.332);
   border-radius: 20px;
-  opacity: 10%;
+  opacity: 20%;
 }
 .button {
   width: 30px;
