@@ -58,11 +58,12 @@ export default function ImageItemPpreview({setFiles,fid}) {
               className={styles.uploaderinput}
               type="file"
               name="file"
+          
               onChange={changeHandler}
             />
             <div>
             
-              <img src={preview} className={styles.uploaderImg} alt="XXXX" />
+              <img src={preview} className={styles.uploaderImg} alt="..." />
            
            
             </div>

@@ -1,4 +1,4 @@
-import { useState ,useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import styles from './create-task.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -42,19 +42,50 @@ export default function CreateTask() {
       moveTo.focus()
       return
     }
+
+    console.log('輸入的資料3：', inputValue3 + ' ，name 為：', inputName3)
+
   }
 
-  const [files, setFiles] = useState([])
-  const handleSetFiles=(file,fid)=>{
+  // const [files, setFiles] = useState([])
+  // const handleSetFiles = (file, fid) => {
+  //   console.log(file, fid)
+  //   setFiles([...files, { file, fid }])
+  // }
 
-    console.log(file,fid)
-    setFiles([...files,{file,fid}])
-  }
- 
+  // const router = useRouter()
+  // console.log(router)
+  // const [data, setData] = useState({
+  //   redirect: '',
+  //   totalRows: 0,
+  //   perPage: 4,
+  //   totalPages: 0,
+  //   page: 1,
+  //   rows: [],
+  // })
+
+  // useEffect(() => {
+  //   const usp = new URLSearchParams(router.query)
+
+    // API串接
+  //   fetch('http://localhost:3002/itinerary ', {
+  //     method: 'POST',
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify()
+  //   })
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       console.log(data)
+  //       setData(data)
+  //     })
+  // }, [])
 
   return (
     <>
-      <form method="post" onSubmit={handleSubmit}>
+     <article className="blog-post">
+      <form onSubmit={handleSubmit}>
         <div className="d-flex justify-content-center">
           <Link href="/custom-itinerary">
             <h4>
@@ -64,8 +95,8 @@ export default function CreateTask() {
           <h3 className="mx-auto">新增行程</h3>
         </div>
         {/* 行程封面照片 */}
-      <ImageItemPpreview setFiles={handleSetFiles} fid="example-fid"/>
-        
+        {/* <ImageItemPpreview setFiles={handleSetFiles} alt="..." fid="example-fid" /> */}
+
         {/* 表格 */}
         <div className={styles.formbody}>
           <div className="container ">
@@ -82,7 +113,7 @@ export default function CreateTask() {
               getName={setInputName3} // 獲取 name
               required={true} // true：必填，false：非必填
             ></InputText>
-            <div className="mb-3">
+             <div className="mb-3">
               <label> 出發日期</label>
               <input
                 type="date"
@@ -157,17 +188,18 @@ export default function CreateTask() {
                 addClassforButton="btn-white" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                 disabled={false} // fase：可點，true：不可點
               ></BtnNormal>
-              <BtnNormal
+               {/*<BtnNormal
                 type="submit"
                 value="submit"
                 btnText="建立"
                 addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                 disabled={false} // fase：可點，true：不可點
-              ></BtnNormal>
+              ></BtnNormal> */}
             </div>
           </div>
         </div>
       </form>
+      </article>
     </>
   )
 }
