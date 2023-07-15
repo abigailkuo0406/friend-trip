@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import SearchView from './search-view'
+// import SearchView from './search-view'
 import SearchInput from './search-input'
 import {
   GoogleMap,
@@ -13,17 +13,19 @@ import {
 const libraries = ['places']
 
 export default function Map() {
+  //使用者當前位置
+  const [currentPosition, setCurrentPosition] = useState(null)
+  //查詢地點marker
+  const [searchLngLat, setSearchLngLat] = useState(null)
+  const autocompleteRef = useRef(null)
+
   //初始地圖位置
   const [center, setCenter] = useState({
     lat: 0,
     lng: 0,
   })
-  //使用者當前位置
-  const [currentPosition, setCurrentPosition] = useState(null)
-
-  const autocompleteRef = useRef(null)
-
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState('')
+  const [directions, setDirections] = useState(null)
 
   // 初始載入執行getCurrentPosition
   useEffect(() => {
@@ -51,6 +53,21 @@ export default function Map() {
   })
   if (!isLoaded) return <div>Loading....</div>
 
+  //搜尋欄取得地點資訊
+  const handlePlaceChanged = () => {
+    setDirections()
+    const place = autocompleteRef.current.getPlace()
+    const viewPosition = {
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng(),
+    }
+
+    setSearchLngLat(viewPosition)
+    setCenter(viewPosition)
+
+    console.log('地點資訊:', place)
+  }
+
   return (
     <>
       <div className="map">
@@ -66,15 +83,24 @@ export default function Map() {
           {/* search component */}
           <Autocomplete
             onLoad={(autocomplete) => {
-              autocompleteRef.center = autocomplete
+              autocompleteRef.current = autocomplete
             }}
-          
-            
-            //選擇要的欄位
-            options={{ fields: ['name'] }}
+            onPlaceChanged={handlePlaceChanged}
+            //景點資訊要的欄位
+            options={{
+              fields: [
+                'name',
+                'current_opening_hours',
+                'formatted_address',
+                'geometry',
+                'formatted_phone_number',
+                'place_id',
+                'rating',
+              ],
+            }}
           >
-          <SearchView/>
- 
+            {/* 搜尋欄和btn */}
+            <SearchInput onPlaceChanged={handlePlaceChanged} />
           </Autocomplete>
 
           {/* map component  */}
@@ -87,7 +113,14 @@ export default function Map() {
               height: '700px',
               margin: 'auto',
             }}
-          ></GoogleMap>
+          >
+
+            {/* 查詢地點marker */}
+        {searchLngLat && <Marker position={searchLngLat} />}
+
+
+
+          </GoogleMap>
         </div>
       </div>
     </>

@@ -13,8 +13,9 @@ export default function ArrangeSchedule() {
 
   return (
     <>
-    <ScheduleSide onAddScenery={handleAddScenery} />
-        <Map showSearchView={showSearchView} />
+      <Map /> 
+    {/* <ScheduleSide onAddScenery={handleAddScenery} /> */}
+        {/* <Map showSearchView={showSearchView} /> */}
      {/* <ScheduleSide/> */}
      {/* {showSearchView ? (
         <SearchView />
