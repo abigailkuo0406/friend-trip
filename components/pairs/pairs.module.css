@@ -1,27 +1,43 @@
-.card {
-  width: 1000px;
-  height: 200px;
-  border: 1px solid green;
+.main {
+  width: 1325px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
-.main {
+.card {
   border-radius: 20px;
   background-color: var(--main-light);
   padding: 10px;
+  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.3)
+}
+.imgborder{
+  margin-top: 50px;
+    width: 60%;
+    height: 200px;
 }
 .imgabove {
-  width: 100px;
+  width: 1000px;
   height: 150px;
-  background-color: rgba(199, 54, 54, 0.332);
+  background-color: rgba(238, 228, 228, 0.332);
   border-radius: 20px;
-  opacity: 20%;
+  opacity: 40%;
+}
+.img{
+  margin-left: 100px;
+  border: 1px solid red;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .button {
-  width: 30px;
-  height: 30px;
+  font-size: 30px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
   border-radius: 10px;
-  color: var(--main-dark);
+  color: var(--main-light);
   font-weight: bold;
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.4);
 }
