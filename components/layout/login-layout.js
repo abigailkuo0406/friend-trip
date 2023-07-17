@@ -7,7 +7,7 @@ export default function LoginLayout({ children }) {
     <>
       <div>
         <main className="container">
-          <div class="row g-5 main-background">
+          <div class="row g-5 main-background d-flex justify-content-center">
             <div class="col-md-9">{children}</div>
           </div>
         </main>

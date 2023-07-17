@@ -9,12 +9,12 @@
   border-radius: 20px;
   background-color: var(--main-light);
   padding: 10px;
-  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.3)
+  box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.3);
 }
-.imgborder{
+.imgborder {
   margin-top: 50px;
-    width: 60%;
-    height: 200px;
+  width: 60%;
+  height: 200px;
 }
 .imgabove {
   width: 1000px;
@@ -23,7 +23,7 @@
   border-radius: 20px;
   opacity: 40%;
 }
-.img{
+.img {
   margin-left: 100px;
   border: 1px solid red;
   border-radius: 10px;

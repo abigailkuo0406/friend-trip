@@ -7,7 +7,8 @@ import BtnNormal from '@/components/common/button/btn-normal'
 import InputText from '@/components//common/input/input-text'
 export default function Login() {
   // input-text
-  const [inputText, setInputText] = useState('')
+  const [inputValue, setinputValue] = useState('')
+  const [inputName, setinputName] = useState('')
   // textarea
   const [textareaText, setTextareaText] = useState('')
   return (
@@ -23,7 +24,11 @@ export default function Login() {
           <div className={styles.input}>
             <div className={styles.up}>
               <h4>電子信箱/帳號</h4>
-              <input id="input1" type="text" size="30"></input>
+              <InputText
+                getValue={setinputValue}
+                getName={setinputName}
+                width="input-width-100pa"
+              ></InputText>
             </div>
             <div className={styles.down}>
               <h4>密碼</h4>

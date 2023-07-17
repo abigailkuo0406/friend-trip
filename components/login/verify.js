@@ -1,4 +1,3 @@
-import Card from 'react-bootstrap/Card'
 import styles from './verify.module.css'
 function VerifyLetter() {
   return (
