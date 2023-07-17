@@ -1,6 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+
+import Button from '@/components/common/button/btn-normal'
 
 // 引入邀請元件
 import Invite from '@/components/invite/invite'
@@ -15,20 +18,16 @@ import restaurant from '@/data/restaurant/rest-detail.json'
 // 引入評論假資料
 import comment from '@/data/restaurant/comment.json'
 
-
 export default function RestItem() {
   // 取用useRouter方法
   const router = useRouter()
-
-  
 
   // 取得當頁動態編號
   // const rid = parseInt(router.query?.rid ??) - 1
 
   let rid = 0
   if (router.query.rid != null) {
-    rid = router.query?.rid  ;
-
+    rid = router.query?.rid
   }
   console.log(rid)
 
@@ -44,7 +43,11 @@ export default function RestItem() {
   const restclassName = restaurant[rid]?.RestclassName ?? ''
   const restMeal = restaurant[rid]?.RestMeal ?? ''
 
-
+  const [valueFromInvites, setValueFromInvite] = useState('')
+  // 回乎函數，接收邀請元件的傳值
+  const handleValueChange = (value) => {
+    setValueFromInvite(value)
+  }
 
   return (
     <>
@@ -72,15 +75,13 @@ export default function RestItem() {
             </div>
 
             {/* modal body */}
-            <div className="d-flex mx-6" >
+            <div className="d-flex mx-6">
               <div className="modal-body">
-
                 {/*左方標題列 */}
                 <div className="d-flex">
                   <h2>{restName}</h2>
                   <div>星星</div>
                 </div>
-
 
                 {/* 左方小資訊列 */}
                 <div>
@@ -93,7 +94,10 @@ export default function RestItem() {
                   <label>營業時間</label>
                   <p>{restTime}</p>
                   <label>料理特色</label>
-                  <p>{restMeal}{restclassName}</p>
+                  <p>
+                    {restMeal}
+                    {restclassName}
+                  </p>
                   <label>訂位須知</label>
                   <p>{restIntro}</p>
                 </div>
@@ -119,8 +123,9 @@ export default function RestItem() {
                     <img />
                     <img />
                   </div>
-
                 </form>
+                <Button btnText="邀請好友" data-bs-target="#exampleModalToggle2"
+                  data-bs-toggle="modal" />
                 <button
                   className="btn btn-primary"
                   data-bs-target="#exampleModalToggle2"
@@ -203,18 +208,25 @@ export default function RestItem() {
             </div>
 
             {/* 評論 */}
-            <div className='container'>
+            <div className="container">
               <div id="carouselExample" className="carousel slide">
                 <div className="carousel-inner">
                   <div className="carousel-item active">
-                    <Comment memberId={comment[0].member_id} comment={comment[0].ComtText} star={comment[0].RestStarP} />
-
+                    <Comment
+                      memberId={comment[0].member_id}
+                      comment={comment[0].ComtText}
+                      star={comment[0].RestStarP}
+                    />
                   </div>
                   {comment.map((c, i) => {
                     console.log(c)
                     return (
                       <div className="carousel-item" key={i}>
-                        <Comment memberId={c.member_id} comment={c.ComtText} star={c.RestStarP} />
+                        <Comment
+                          memberId={c.member_id}
+                          comment={c.ComtText}
+                          star={c.RestStarP}
+                        />
                       </div>
                     )
                   })}
@@ -285,24 +297,19 @@ export default function RestItem() {
             </div>
             <div className="modal-body">
               <h1>邀請列表</h1>
-              <ul id="inviteList">
-
-              </ul>
+              <ul id="inviteList"></ul>
+              <li>{valueFromInvites}</li>
 
               <h1>朋友列表</h1>
               <ul id="friendsList" className="list">
-
                 {friends.map((v, i) => {
                   return (
                     <div key={i}>
-
-                      <Invite name={v.FriendName} />
-
+                      <Invite name={v.FriendName} onValueChange={handleValueChange} />
                     </div>
                   )
                 })}
               </ul>
-
             </div>
             <div className="modal-footer">
               <button
@@ -315,7 +322,7 @@ export default function RestItem() {
             </div>
           </div>
         </div>
-      </div >
+      </div>
       <button
         className="btn btn-primary"
         data-bs-target="#exampleModalToggle"
