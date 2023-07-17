@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 import Button from '@/components/common/button/btn-normal'
+import NumberInput from '@/components/common/input/input-number'
+import RadioInput from '@/components/common/input/input-radio'
 
 // 引入邀請元件
 import Invite from '@/components/invite/invite'
@@ -48,6 +50,11 @@ export default function RestItem() {
   const handleValueChange = (value) => {
     setValueFromInvite(value)
   }
+
+  const [inputValue3, setInputValue3] = useState('')
+  const [inputName3, setInputName3] = useState('')
+  const [inputValue7, setInputValue7] = useState('')
+  const [inputName7, setInputName7] = useState('')
 
   return (
     <>
@@ -103,19 +110,73 @@ export default function RestItem() {
                 </div>
 
                 <form>
-                  <div>
+                  <div className="mb-3">
                     <label>訂位日期</label>
                     <input type="date" />
                   </div>
 
-                  <div>
+                  <div className="mb-3">
                     <label>訂位時間</label>
-                    <input type="time" />
+                    <div className='d-flex'>
+                      <RadioInput
+                        id="option1"
+                        name="options"
+                        label="11:00"
+                        value="11:00" // 預設文字:
+                        placeholder="測試3"
+                        width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+                        addClassforEachLabel="btn btn-secondary me-3" // 如果要在 label 添加 class
+                        addClassforInput="btn-check" // 如果要在 input 添加 class
+                        getValue={setInputValue3} // 獲取填寫的數值
+                        getName={setInputName3} // 獲取 name
+                        required={true} // true：必填，false：非必填
+                      />
+                      <RadioInput
+                        id="option1"
+                        name="options"
+                        label="12:00"
+                        value="12:00" // 預設文字:
+                        placeholder="測試3"
+                        width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+                        addClassforEachLabel="btn btn-secondary me-3" // 如果要在 label 添加 class
+                        addClassforInput="btn-check" // 如果要在 input 添加 class
+                        getValue={setInputValue3} // 獲取填寫的數值
+                        getName={setInputName3} // 獲取 name
+                        required={true} // true：必填，false：非必填
+                      />
+                      <RadioInput
+                        id="option1"
+                        name="options"
+                        label="13:00"
+                        value="13:00" // 預設文字:
+                        placeholder="測試3"
+                        width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+                        addClassforEachLabel="btn btn-secondary me-3" // 如果要在 label 添加 class
+                        addClassforInput="btn-check" // 如果要在 input 添加 class
+                        getValue={setInputValue3} // 獲取填寫的數值
+                        getName={setInputName3} // 獲取 name
+                        required={true} // true：必填，false：非必填
+                      />
+                    </div>
                   </div>
 
                   <div>
-                    <label>訂位人數</label>
-                    <input type="number" />
+                    <NumberInput
+                      id="PeopleNum"
+                      label="訂位人數"
+                      name="PeopleNum"
+                      placeholder="請選擇人數"
+                      value={0} // 預設數字
+                      max={4} // 最大可選數字
+                      min={1} // 最小可選數字
+                      step={1} // 右邊箭頭按一次的數字區間
+                      hideArrows={false} // true：隱藏右側上下箭頭按鈕，false：顯示
+                      getValue={setInputValue7}
+                      getName={setInputName7}
+                      width="input-width-5rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+                      addClassforLabel="try1" // 如果要在 label 添加 class
+                      addClassforInput="try2 test123" // 如果要在 input 添加 class
+                    />
                   </div>
 
                   <div>
@@ -124,15 +185,11 @@ export default function RestItem() {
                     <img />
                   </div>
                 </form>
-                <Button btnText="邀請好友" data-bs-target="#exampleModalToggle2"
-                  data-bs-toggle="modal" />
-                <button
-                  className="btn btn-primary"
-                  data-bs-target="#exampleModalToggle2"
-                  data-bs-toggle="modal"
-                >
-                  邀請好友
-                </button>
+                <Button
+                  btnText="邀請好友"
+                  bsModle1="#exampleModalToggle2"
+                  bsModle2="modal"
+                />
                 <button>訂位</button>
               </div>
 
@@ -305,7 +362,10 @@ export default function RestItem() {
                 {friends.map((v, i) => {
                   return (
                     <div key={i}>
-                      <Invite name={v.FriendName} onValueChange={handleValueChange} />
+                      <Invite
+                        name={v.FriendName}
+                        onValueChange={handleValueChange}
+                      />
                     </div>
                   )
                 })}

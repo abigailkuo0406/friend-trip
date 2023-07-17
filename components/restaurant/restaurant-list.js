@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import styles from './restaurant.module.css'
 
 // import A from '@/assets/rest-img/rest-img-1-c.jpg'
 
@@ -14,12 +15,15 @@ export default function RestaurantList(props) {
       <div className="card mb-3 radius20px" >
         <div className="row g-0 my-3">
           <div className="col-md-3">
-            <Image
+            <div className={styles.imgClass}>
+               <Image
               src={props.img}
-              className="img-fluid rounded-start"
+              className={`rounded-start ${styles.img1}` }
               width={200}
               height={200}
             />
+            </div>
+           
             </div>
           </div>
           <div className="col-md-9">

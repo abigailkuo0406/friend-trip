@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useSInputNumbertate } from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
 import InputText from '@/components/common/input/input-text'
 import InputTextDouble from '@/components/common/input/input-text-double'

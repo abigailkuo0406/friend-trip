@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import RestaurantList from '@/components/restaurant/restaurant-list'
 
 // 引入假資料
-// import restaurant from '@/data/restaurant/rest-detail.json'
+import restaurant from '@/data/restaurant/rest-detail.json'
 
 export default function Rest() {
   const router = useRouter()
@@ -20,12 +20,12 @@ export default function Rest() {
     page: 1,
     rows: [],
   })
-  console.log(restaurants)
+  // console.log(restaurants)
   useEffect(() => {
     const usp = new URLSearchParams(router.query)
 
     // API串接
-    fetch("http://localhost:3002/restaurants", {
+    fetch("http://localhost:3002/restaurant", {
       method: 'GET',
     })
       .then((r) => r.json())
