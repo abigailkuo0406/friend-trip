@@ -34,7 +34,8 @@ export default function HistotyCard(props) {
                 src={Jiufen}
                 className="img-fluid rounded-start"
                 alt="Jiufen"
-                style={{ width: 540 }}
+                width={400}
+               height={500}
               ></Image>
             </div>
             <div className="col-md-8">

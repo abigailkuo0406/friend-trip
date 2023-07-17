@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState ,useRef} from 'react'
 import ScheduleSide from '@/components/custom-itinerary/arrange-schedule/arrange-schedule'
 import AdminLayout from '@/components/layout/admin-layout'
 import SearchView from '@/components/custom-itinerary/arrange-schedule/search-view'
@@ -12,11 +12,6 @@ import {
 } from '@react-google-maps/api'
 
 export default function ArrangeSchedule() {
-  //搜尋頁面元件
-  const [center, setCenter] = useState({
-    lat: 0,
-    lng: 0,
-  })
 
   const [showSchedule, setShowSchedule] = useState(true)
   const [showSearchView,setShowSearchView]=useState(false)
@@ -33,10 +28,36 @@ export default function ArrangeSchedule() {
     setInputValue(e.target.value)
   }
 
+ //初始地圖位置
+  const [center, setCenter] = useState({
+    lat: 0,
+    lng: 0,
+  })
+  const [currentPosition, setCurrentPosition] = useState(null)
+    //查詢地點marker
+    const [searchLngLat, setSearchLngLat] = useState(null)
+    const autocompleteRef = useRef(null)
+    const [directions, setDirections] = useState(null)
+
+    //搜尋欄取得地點資訊
+  const handlePlaceChanged = () => {
+    setDirections()
+    const place = autocompleteRef.current.getPlace()
+    const viewPosition = {
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng(),
+    }
+
+    setSearchLngLat(viewPosition)
+    setCenter(viewPosition)
+
+    console.log('地點資訊:', place)
+  }
 
 
   return (
     <>
+   
       {console.log(showSchedule)}
       {showSchedule ? (
         
@@ -45,7 +66,25 @@ export default function ArrangeSchedule() {
       ) : (
         
 
-          <Autocomplete>
+          <Autocomplete 
+          onLoad={(autocomplete) => {
+              autocompleteRef.current = autocomplete
+            }}
+            onPlaceChanged={handlePlaceChanged}
+            //景點資訊要的欄位
+            options={{
+              fields: [
+                'name',
+                'current_opening_hours',
+                'formatted_address',
+                'geometry',
+                'formatted_phone_number',
+                'place_id',
+                'rating',
+              ],
+            }}
+          
+          >
           <SearchView onClick={handleGoBack}/>
           </Autocomplete>
       
