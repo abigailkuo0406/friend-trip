@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+.main {
+    width: 400px;
+    height: 200px;
+    background-color: white;
+}
+.btns{
+    display: flex;
+}
+.font{
+    color: var( --main-dark);
+}

@@ -1,3 +1,9 @@
+.main {
+    width: 1300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .cardbody{
     width: 700px;
     height: 700xpx;

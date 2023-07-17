@@ -4,6 +4,7 @@ import Image from 'next/image'
 import styles from './login.module.css'
 import logo from '@/assets/logo/FriendTrip-Logo.png'
 import BtnNormal from '@/components/common/button/btn-normal'
+import InputText from '@/components//common/input/input-text'
 export default function Login() {
   // input-text
   const [inputText, setInputText] = useState('')

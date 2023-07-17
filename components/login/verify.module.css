@@ -1,45 +1,30 @@
+.container{
+    width: 900px;
+    display: flex;
+    justify-content: center;
+}
 .main{
-    background-color: rgb(251, 164, 216);
-    height: 500px;
-    width: 800px;
-    padding: 50px;
-    border-radius: 30px;
-} 
-.style{
-    width: 500px;
-    background: rgb(253, 253, 253);
-    border-radius: 20px;  
-}
-
-.body{
+    width: 740px;
+    height: 448px;
+    background-color: white;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-.cardabove{
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
-.inputgroup{
+.letter{
+    width: 497px;
+    height: 134px;
+    background-color: var(--bg-dark);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.font1{
     color: white;
-    background-color: #fea9c7;
-    height: 150px;
-    width: 400px;
-    border: 1px solid red;
-    border-radius: 20px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-
-.title{
-    text-align: center;
-}
-.minutes{
-    color: rgb(244, 188, 215);
-    display: flex;
-    justify-content: center;
+.font2{
+    color: var(--bg-dark);
 }
