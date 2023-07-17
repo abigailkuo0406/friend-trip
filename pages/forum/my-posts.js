@@ -1,16 +1,14 @@
 import AdminLayout from '@/components/layout/admin-layout'
-import Posts from '../../components/forum-comps/Posts'
 import NavBar from '../../components/forum-comps/NavBar'
 
-export default function ForumHome() {
+export default function MyPosts() {
   return (
     <>
       <NavBar />
-      <Posts />
     </>
   )
 }
 
-ForumHome.getLayout = function (page) {
+MyPosts.getLayout = function (page) {
   return <AdminLayout>{page}</AdminLayout>
 }

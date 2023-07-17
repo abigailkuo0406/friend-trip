@@ -1,16 +1,11 @@
 import AdminLayout from '@/components/layout/admin-layout'
-import Link from 'next/link'
+import NavBar from '../../components/forum-comps/NavBar'
 
 export default function AddPost() {
   return (
-    <div>
-      <div>
-        <Link href="/forum">所有文章</Link>
-        <Link href="forum/add-post">新增文章</Link>
-        <Link href="forum/forum-my-posts">我發的文</Link>
-      </div>
-      新增文章
-    </div>
+    <>
+      <NavBar />
+    </>
   )
 }
 

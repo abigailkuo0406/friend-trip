@@ -4,9 +4,9 @@ export default function Posts() {
   const posts = [
     {
       id: '1',
-      username: 'codewithsahand',
+      username: 'Amber',
       userImg:
-        'https://static.skillshare.com/uploads/users/350301760/user-image-large.jpg?753816048',
+        'http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffake-persona.fa9c7bea.png&w=2048&q=75',
       img: 'https://images.unsplash.com/photo-1643818507403-a3ed10760d16?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
       caption: 'Nice picture',
     },
