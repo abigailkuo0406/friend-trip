@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './pairs.module.css'
 import Face from '@/public/img/avatar/face/face52.png'
 import Image from 'next/image'
+import { TbZodiacLeo } from 'react-icons/tb'
+
 export default function Pairs() {
   return (
     <>
@@ -10,16 +12,17 @@ export default function Pairs() {
           <div className="d-flex justify-content-end">
             <i className="fa-solid fa-sliders fa-rotate-270"></i>
           </div>
-          <div className={`d-flex ${styles.imgborder}`}>
+          <div className={` ${styles.imgborder}`}>
             <div className={styles.imgabove}></div>
-            <Image
-              src={Face}
-              className={`card-img-top ${styles.img}`}
-              alt="face1.png"
-            />
+            <div className={styles.imgContainer}>
+              <Image src={Face} className={`${styles.img}`} alt="face1.png" />
+            </div>
           </div>
           <div className={`card-body ${styles.cardprofile}`}>
-            <h5 className="card-title text-center">Alex 28歲</h5>
+            <h5 className="card-title text-center">
+              Alex 28歲
+              <TbZodiacLeo />
+            </h5>
             <p className="card-text text-center">
               不菸不酒 工程師 高爾夫 衝浪 <br />
               想找一起打高爾夫的朋友~
