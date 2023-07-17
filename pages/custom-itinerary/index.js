@@ -41,23 +41,6 @@ export default function Index() {
        
         )
   })}
-{/* 分頁 */}
-  {/* <div className="container">
-  <nav aria-label="Page navigation example">
-  <ul className="pagination">
-                {Array(10)
-                  .fill(1)
-                  .map((v, i) => (
-                    <li className="page-item" key={i}>
-                      <Link className="page-link" href={'?page=' + (i+1)}>
-                        {i+1}
-                      </Link>
-                    </li>
-                  ))}
-              </ul>
-    
-</nav>
-    </div> */}
 
     <PageBtn/>
 

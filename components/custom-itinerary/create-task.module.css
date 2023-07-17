@@ -1,5 +1,5 @@
 .label {
-  position: relative;
+  margin-left: 2rem;
 }
 .formbody {
   position: relative;
@@ -36,4 +36,12 @@
   max-width: 100%;
   position: absolute;
   top: 50%;
+}
+.link{
+  color: #674C87;
+  font-size:1.5rem;
+}
+.h3{
+  color: #674C87;
+  margin: auto;
 }

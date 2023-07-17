@@ -1,5 +1,5 @@
 import { useState } from 'react'
-// import styles from './arrange-schedule.module.css'
+import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import InitCard from './init-card'
@@ -9,7 +9,8 @@ import { FaRegEdit } from 'react-icons/fa'
 import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
-import styles from './arrange-schedule.module.scss'
+import BtnNormal from '@/components/common/button/btn-normal'
+// import styles from './arrange-schedule.module.scss'
 
 export default function ScheduleSide({ onClick }) {
   const [showSearchView, setShowSearchView] = useState(true)
@@ -29,25 +30,17 @@ export default function ScheduleSide({ onClick }) {
                 style={{ height: 700, width: 380 }}
               >
                 <div className="d-flex justify-content-end ">
-                  <Link href="#">
-                    <h4 className="mx-2">
-                      <FaRegEdit />
-                    </h4>
+                  <Link href="#" className={styles.link}>
+                    <FaRegEdit />
                   </Link>
-                  <Link href="#">
-                    <h4 className="mx-2">
-                      <BsPersonPlus />
-                    </h4>
+                  <Link href="#" className={styles.link}>
+                    <BsPersonPlus />
                   </Link>
-                  <Link href="#">
-                    <h4 className="mx-2">
-                      <LiaSave />
-                    </h4>
+                  <Link href="#" className={styles.link}>
+                    <LiaSave />
                   </Link>
-                  <Link href="#">
-                    <h4 className="mx-2">
-                      <FiMoreHorizontal />
-                    </h4>
+                  <Link href="#" className={styles.link}>
+                    <FiMoreHorizontal />
                   </Link>
                 </div>
                 <div className="trip-list-header-info mx-2">
@@ -78,9 +71,7 @@ export default function ScheduleSide({ onClick }) {
                         return <InitCard key={i} />
                       })}
                     <div className="mx-5">
-                      <button
-                        className="mx-4 btn btn-outline-success" onClick={onClick}
-                      >
+                      <button className={`btn ${styles.addbtn}`} onClick={onClick}>
                         <BsPlusLg />
                         新增行程
                       </button>

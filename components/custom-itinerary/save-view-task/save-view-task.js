@@ -3,8 +3,7 @@ import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import User from '@/assets/fake-data/fake-persona.png'
 import { FaRegEdit } from 'react-icons/fa'
 import styles from './save-view-task.module.css'
-import { IoLocationOutline } from 'react-icons/io5'
-import { IoTimeOutline } from 'react-icons/io5'
+import { IoLocationOutline,IoTimeOutline } from 'react-icons/io5'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import Link from 'next/link'
 
@@ -100,7 +99,6 @@ export default function SaveViewInit() {
                   width={200}
                   height={200}
                   alt="Picture of the Jiufen"
-                  // style={{ width: '100%', height: 'auto' }}
                   priority={true} //圖片預先載入
                 />
                 <div className="modal-body">
