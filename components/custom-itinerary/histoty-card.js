@@ -7,6 +7,7 @@ import person from '@/assets/fake-data/fake-persona.png'
 
 
 
+
 export default function HistotyCard(props) {
 
   // 格式化日期
@@ -43,13 +44,13 @@ export default function HistotyCard(props) {
                 <div className="d-flex justify-content-between ">
                   <div className="d-flex ">
                     <h5 className={styles.text}>{props.name}</h5>
-                    <span className="badge bg-secondary">{props.public}</span>
+                    <p className={`badge ${styles.public}`} >{props.public}</p>
                   </div>
                   <div>
                   {/* 刪除 */}
                     <div className="dropdown">
                       <button
-                        className="btn btn-secondary "
+                        className="btn "
                         type="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
@@ -59,7 +60,7 @@ export default function HistotyCard(props) {
                       <ul className="dropdown-menu">
                         <li>
                         <button
-                            className="dropdown-item"
+                            className="dropdown-item "
                             onClick={handleDelete}
                           >
                             刪除

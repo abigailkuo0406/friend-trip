@@ -1,3 +1,4 @@
+
 .container {
   margin: 20px auto;
   padding:0;
@@ -11,4 +12,10 @@
 .cardText {
   color: #674c87;
   margin-top: 50px;
+}
+
+.public{
+ background-color: #FABCBF;
+ font-size: 0.9rem;
+ border-radius: 20px;
 }
