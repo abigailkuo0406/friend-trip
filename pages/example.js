@@ -18,13 +18,13 @@ export default function Products() {
 
   console.log('router.query:', router.query)
   const [keyword, setKeyword] = useState('')
-//
+  //
   useEffect(() => {
     setKeyword(router.query.keyword || '')
     const usp = new URLSearchParams(router.query)
 
     // API串接
-    fetch("http://localhost:3002/products", {
+    fetch('http://localhost:3002/products', {
       method: 'GET',
     })
       .then((r) => r.json())
