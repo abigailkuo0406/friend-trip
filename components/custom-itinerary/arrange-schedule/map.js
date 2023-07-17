@@ -18,6 +18,7 @@ export default function Map() {
   //查詢地點marker
   // const [searchLngLat, setSearchLngLat] = useState(null)
   // const autocompleteRef = useRef(null)
+  // const [directions, setDirections] = useState(null)
 
   //初始地圖位置
   const [center, setCenter] = useState({
@@ -25,7 +26,6 @@ export default function Map() {
     lng: 0,
   })
   const [inputValue, setInputValue] = useState('')
-  // const [directions, setDirections] = useState(null)
 
   // 初始載入執行getCurrentPosition
   useEffect(() => {
@@ -53,20 +53,6 @@ export default function Map() {
   })
   if (!isLoaded) return <div>Loading....</div>
 
-  //搜尋欄取得地點資訊
-  // const handlePlaceChanged = () => {
-  //   setDirections()
-  //   const place = autocompleteRef.current.getPlace()
-  //   const viewPosition = {
-  //     lat: place.geometry.location.lat(),
-  //     lng: place.geometry.location.lng(),
-  //   }
-
-  //   setSearchLngLat(viewPosition)
-  //   setCenter(viewPosition)
-
-  //   console.log('地點資訊:', place)
-  // }
 
   return (
     <>
@@ -80,27 +66,7 @@ export default function Map() {
             gap: '20px',
           }}
         >
-          {/* search component */}
-          {/* <Autocomplete
-            onLoad={(autocomplete) => {
-              autocompleteRef.current = autocomplete
-            }}
-            onPlaceChanged={handlePlaceChanged}
-            //景點資訊要的欄位
-            options={{
-              fields: [
-                'name',
-                'current_opening_hours',
-                'formatted_address',
-                'geometry',
-                'formatted_phone_number',
-                'place_id',
-                'rating',
-              ],
-            }}
-          > */}
-         
-          {/* </Autocomplete> */}
+      
 
           {/* map component  */}
           <GoogleMap
