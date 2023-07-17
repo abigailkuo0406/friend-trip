@@ -15,7 +15,7 @@ export default function SidebarMemberInfo() {
                 width: `100%`,
                 height: `auto`,
               }}
-              alt="persona"  //增加alt，缺少會報錯
+              alt="persona"
             ></Image>
           </div>
           <div id="User-Info">

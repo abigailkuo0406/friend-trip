@@ -17,6 +17,7 @@ export default function Sidebar() {
               height: `auto`,
                 
               }}
+              alt="persona"
             ></Image>
           </div>
           <div id="User-Info">
@@ -44,7 +45,7 @@ export default function Sidebar() {
         </div>
       </div>
       <div className="card">
-        <div className="card-body">
+        <div className="card-body nav-body">
           <nav className="navbar">
             <div className="container-fluid">
               <div className="" id="navbarNav">
