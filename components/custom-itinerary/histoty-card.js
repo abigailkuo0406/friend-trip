@@ -28,15 +28,16 @@ export default function HistotyCard(props) {
   return (
     <>
       <div className="container">
-        <div className="card mb-3">
+        <div className="card mb-3 rounded-4">
           <div className="row g-0">
-            <div className="col-md-4">
+            <div className="col-md-4" >
               <Image
                 src={Jiufen}
-                className="img-fluid rounded-start"
+                className={`img-fluid rounded-5 ${styles.img}`}
                 alt="Jiufen"
                 width={400}
-               height={500}
+                height={400}
+                priority={true}
               ></Image>
             </div>
             <div className="col-md-8">

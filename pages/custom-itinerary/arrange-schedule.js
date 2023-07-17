@@ -71,10 +71,12 @@ export default function ArrangeSchedule() {
     setCenter(viewPosition)
 
     console.log('地點資訊:', place)
+    
   }
 
   return (
     <>
+
       {console.log(showSchedule)}
       {showSchedule ? (
         <ScheduleSide onClick={handleAddScenery} />

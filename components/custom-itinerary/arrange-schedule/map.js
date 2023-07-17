@@ -56,6 +56,7 @@ export default function Map() {
 
   return (
     <>
+      {/* {console.log('searchLngLat:',searchLngLat)} */}
       <div className="map">
         <div
           style={{
