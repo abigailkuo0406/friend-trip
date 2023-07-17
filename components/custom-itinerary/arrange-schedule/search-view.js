@@ -1,26 +1,27 @@
-import  { useState } from 'react'
+import { useState } from 'react'
 // import styles from './arrange-schedule.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import Jiufen from '@/assets/fake-data/fake-jiufen.png'
-import { BiSearchAlt , BiMap } from 'react-icons/bi'
+import { BiSearchAlt, BiMap } from 'react-icons/bi'
 import { FaArrowLeftLong } from 'react-icons/fa6'
-import { IoLocationOutline,IoTimeOutline  } from 'react-icons/io5'
+import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
-import SearchInput from './search-input'
-
+import ScheduleSide from './arrange-schedule'
 
 export default function SearchView() {
-
   return (
     <>
       <div className="itineraryContainer ">
         <div className="mapCanvas position-absolute z-3">
           {/* sidebar */}
-          <div className="itinerary-fade-in  position-absolute" >
+          <div className="itinerary-fade-in  position-absolute">
             <div className="trip-list">
-              <div className="trip-list-header-top bg-light " style={{height:700,width:320}}>
+              <div
+                className="trip-list-header-top bg-light "
+                style={{ height: 700, width: 320 }}
+              >
                 {/* 切換 */}
                 <ul className="nav nav-underline">
                   <li className="nav-item mt-3 mx-1">
@@ -49,14 +50,23 @@ export default function SearchView() {
                 </ul>
                 <nav className="navbar bg-body-tertiary">
                   <div className="container-fluid">
-                     <SearchInput />
-                      <div>
-                        <ol className={styles.ol}>
-                          <li className={styles.li}>
-                          <div type="button"
+                    <input
+                      className="form-control me-2 mb-3"
+                      type="text"
+                      placeholder="請輸入城市"
+                    />
+                    <button className="btn btn-outline-success" type="submit">
+                      搜尋
+                    </button>
+                    <div>
+                      <ol className={styles.ol}>
+                        <li className={styles.li}>
+                          <div
+                            type="button"
                             className="btn btn-link d-flex"
                             data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
+                            data-bs-target="#staticBackdrop"
+                          >
                             <Image
                               src={Jiufen}
                               alt="寧夏觀光夜市"
@@ -65,13 +75,15 @@ export default function SearchView() {
                               className="mx-2"
                             />
                             <h6 className="my-auto">寧夏觀光夜市</h6>
-                            </div>
-                          </li>
-                          <li className={styles.li}>
-                          <div type="button"
+                          </div>
+                        </li>
+                        <li className={styles.li}>
+                          <div
+                            type="button"
                             className="btn btn-link d-flex"
                             data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
+                            data-bs-target="#staticBackdrop"
+                          >
                             <Image
                               src={Jiufen}
                               alt="寧夏觀光夜市"
@@ -80,11 +92,10 @@ export default function SearchView() {
                               className="mx-2"
                             />
                             <h6 className="my-auto">寧夏觀光夜市</h6>
-                            </div>
-                          </li>
-                        </ol>
-                      </div>
-                
+                          </div>
+                        </li>
+                      </ol>
+                    </div>
                   </div>
                 </nav>
               </div>

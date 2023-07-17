@@ -11,12 +11,11 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
 
-export default function ScheduleSide({ onAddScenery }) {
-  const [showSearchView, setShowSearchView] = useState(false)
+export default function ScheduleSide({ onClick }) {
+  const [showSearchView, setShowSearchView] = useState(true)
 
   const handleAddSceneryClick = () => {
     setShowSearchView(true)
-    onAddScenery()
   }
   return (
     <>
@@ -80,8 +79,7 @@ export default function ScheduleSide({ onAddScenery }) {
                       })}
                     <div className="mx-5">
                       <button
-                        className="mx-4 btn btn-outline-success"
-                        onClick={handleAddSceneryClick}
+                        className="mx-4 btn btn-outline-success" onClick={onClick}
                       >
                         <BsPlusLg />
                         新增行程

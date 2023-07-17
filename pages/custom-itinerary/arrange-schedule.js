@@ -3,28 +3,52 @@ import ScheduleSide from '@/components/custom-itinerary/arrange-schedule/arrange
 import AdminLayout from '@/components/layout/admin-layout'
 import SearchView from '@/components/custom-itinerary/arrange-schedule/search-view'
 import Map from '@/components/custom-itinerary/arrange-schedule/map'
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  Autocomplete,
+  DirectionsRenderer,
+} from '@react-google-maps/api'
 
 export default function ArrangeSchedule() {
   //搜尋頁面元件
-  const [showSearchView, setShowSearchView] = useState(false)
+  const [center, setCenter] = useState({
+    lat: 0,
+    lng: 0,
+  })
+
+  const [showSchedule, setShowSchedule] = useState(true)
   const handleAddScenery = () => {
-    setShowSearchView(true)
-  }
+    setShowSchedule(true)
+  };
 
   return (
     <>
-      <Map /> 
-    {/* <ScheduleSide onAddScenery={handleAddScenery} /> */}
-        {/* <Map showSearchView={showSearchView} /> */}
-     {/* <ScheduleSide/> */}
-     {/* {showSearchView ? (
-        <SearchView />
+      {console.log(showSchedule)}
+      {showSchedule ? (
+        <div
+          onClick={() => {
+            setShowSchedule((perviwsshowSearchView)=>{
+              return ! showSchedule
+            })
+          }}
+        ><ScheduleSide />
+        </div>
       ) : (
-        <>
-          <ScheduleSide onAddScenery={handleAddScenery} />
-        </>
+        <div
+          onClick={() => {
+            setShowSchedule((perviwsshowSearchView)=>{
+              return ! showSchedule
+            })
+          }}
+        ><SearchView />
+        </div>
       )}
-       <Map /> */}
+
+      <Map />
+
+     
     </>
   )
 }

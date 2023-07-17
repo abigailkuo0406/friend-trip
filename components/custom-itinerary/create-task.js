@@ -31,6 +31,9 @@ export default function CreateTask() {
   // input-number
   const [inputValue7, setInputValue7] = useState('')
   const [inputName7, setInputName7] = useState('')
+  //除錯用
+  const [error8, setError8] = useState(false)
+  const [errorTracker8, setErrorTracker8] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -47,40 +50,47 @@ export default function CreateTask() {
 
   }
 
-  // const [files, setFiles] = useState([])
-  // const handleSetFiles = (file, fid) => {
-  //   console.log(file, fid)
-  //   setFiles([...files, { file, fid }])
-  // }
+  const [files, setFiles] = useState([])
+  const handleSetFiles = (file, fid) => {
+    console.log(file, fid)
+    setFiles([...files, { file, fid }])
+  }
 
-  // const router = useRouter()
+  const router = useRouter()
   // console.log(router)
-  // const [data, setData] = useState({
-  //   redirect: '',
-  //   totalRows: 0,
-  //   perPage: 4,
-  //   totalPages: 0,
-  //   page: 1,
-  //   rows: [],
-  // })
+  const [data, setData] = useState({
+    redirect: '',
+    totalRows: 0,
+    perPage: 4,
+    totalPages: 0,
+    page: 1,
+    rows: [],
+  })
 
-  // useEffect(() => {
-  //   const usp = new URLSearchParams(router.query)
+  const formData = {
+    img: '图片链接或数据', // 填充图片数据或链接
+    name: '行程名称',
+    date: '行程日期',
+    description: '行程描述',
+  };
+  const jsonData = JSON.stringify(formData);
+  useEffect(() => {
+    const usp = new URLSearchParams(router.query)
 
     // API串接
-  //   fetch('http://localhost:3002/itinerary ', {
-  //     method: 'POST',
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify()
-  //   })
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       console.log(data)
-  //       setData(data)
-  //     })
-  // }, [])
+    fetch('http://localhost:3002/itinerary ', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: jsonData,
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+        setData(data)
+      })
+  }, [])
 
   return (
     <>

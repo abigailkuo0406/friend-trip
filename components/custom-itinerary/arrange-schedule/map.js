@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 // import SearchView from './search-view'
-import SearchInput from './search-input'
+import SearchView from './search-view'
 import {
   GoogleMap,
   useLoadScript,
@@ -81,7 +81,7 @@ export default function Map() {
           }}
         >
           {/* search component */}
-          <Autocomplete
+          {/* <Autocomplete
             onLoad={(autocomplete) => {
               autocompleteRef.current = autocomplete
             }}
@@ -98,10 +98,11 @@ export default function Map() {
                 'rating',
               ],
             }}
-          >
+          > */}
             {/* 搜尋欄和btn */}
-            <SearchInput onPlaceChanged={handlePlaceChanged} />
-          </Autocomplete>
+            {/* <SearchInput onPlaceChanged={handlePlaceChanged} /> */}
+         
+          {/* </Autocomplete> */}
 
           {/* map component  */}
           <GoogleMap
