@@ -13,8 +13,8 @@ export default function Sidebar() {
               src={persona}
               alt="Picture of the persona"
               style={{
-                width: `100%`,
-                height: `auto`,
+              width: `100%`,
+              height: `auto`,
                 
               }}
             ></Image>

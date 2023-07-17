@@ -99,8 +99,6 @@ export default function Map() {
               ],
             }}
           > */}
-            {/* 搜尋欄和btn */}
-            {/* <SearchInput onPlaceChanged={handlePlaceChanged} /> */}
          
           {/* </Autocomplete> */}
 

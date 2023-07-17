@@ -10,7 +10,7 @@ import { BsFillTelephoneFill } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
 import ScheduleSide from './arrange-schedule'
 
-export default function SearchView() {
+export default function SearchView({ inputValue, onInputChange }) {
   return (
     <>
       <div className="itineraryContainer ">
@@ -48,16 +48,21 @@ export default function SearchView() {
                     </Link>
                   </li>
                 </ul>
+
                 <nav className="navbar bg-body-tertiary">
                   <div className="container-fluid">
-                    <input
-                      className="form-control me-2 mb-3"
-                      type="text"
-                      placeholder="請輸入城市"
-                    />
-                    <button className="btn btn-outline-success" type="submit">
-                      搜尋
-                    </button>
+         
+                      <input
+                        className="form-control me-2 mb-3"
+                        type="text"
+                        placeholder="請輸入城市"
+                        value={inputValue}
+                        onChange={onInputChange}
+                      />
+                      <button className="btn btn-outline-success" type="submit">
+                        搜尋
+                      </button>
+            
                     <div>
                       <ol className={styles.ol}>
                         <li className={styles.li}>

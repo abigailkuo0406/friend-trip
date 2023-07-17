@@ -19,36 +19,38 @@ export default function ArrangeSchedule() {
   })
 
   const [showSchedule, setShowSchedule] = useState(true)
+  const [showSearchView,setShowSearchView]=useState(false)
+  const [inputValue,setInputValue]=useState('')
   const handleAddScenery = () => {
+    setShowSchedule(false)
+    setShowSearchView(true)
+  }
+  const handleGoBack=()=>{
+    setShowSearchView(false)
     setShowSchedule(true)
-  };
+  }
+  const handleInputChange=(e)=>{
+    setInputValue(e.target.value)
+  }
+
+
 
   return (
     <>
       {console.log(showSchedule)}
       {showSchedule ? (
-        <div
-          onClick={() => {
-            setShowSchedule((perviwsshowSearchView)=>{
-              return ! showSchedule
-            })
-          }}
-        ><ScheduleSide />
-        </div>
+        
+          <ScheduleSide onClick={handleAddScenery}/>
+
       ) : (
-        <div
-          onClick={() => {
-            setShowSchedule((perviwsshowSearchView)=>{
-              return ! showSchedule
-            })
-          }}
-        ><SearchView />
-        </div>
+        
+
+          <Autocomplete>
+          <SearchView onClick={handleGoBack}/>
+          </Autocomplete>
+      
       )}
-
       <Map />
-
-     
     </>
   )
 }
