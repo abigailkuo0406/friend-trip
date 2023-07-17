@@ -15,6 +15,7 @@ export default function SidebarMemberInfo() {
                 width: `100%`,
                 height: `auto`,
               }}
+              alt="persona"
             ></Image>
           </div>
           <div id="User-Info">
