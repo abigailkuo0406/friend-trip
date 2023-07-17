@@ -19,27 +19,41 @@ export default function Login() {
         </div>
         <div className={styles.rightplace}>
           <div className={styles.title}>
-            <h1>註冊/登入</h1>
+            <h1 className={styles.title}>註冊/登入</h1>
           </div>
           <div className={styles.input}>
             <div className={styles.up}>
-              <h4>電子信箱/帳號</h4>
-              <InputText
-                getValue={setinputValue}
-                getName={setinputName}
-                width="input-width-100pa"
-              ></InputText>
+              <h5>電子信箱/帳號</h5>
+              <div className={styles.inputbox}>
+                <InputText
+                  getValue={setinputValue}
+                  getName={setinputName}
+                  width="input-width-100pa"
+                ></InputText>
+              </div>
             </div>
             <div className={styles.down}>
-              <h4>密碼</h4>
-              <input type="text" id="fname" name="fname" size="30"></input>
+              <h5>密碼</h5>
+              <div className={styles.inputbox}>
+                <InputText
+                  getValue={setinputValue}
+                  getName={setinputName}
+                  width="input-width-100pa"
+                ></InputText>
+              </div>
             </div>
           </div>
-          <div>
-            <BtnNormal btnText="註冊/登入" addClassforButton="btn-dark" />
+          <div className={styles.btnbar}>
+            <BtnNormal
+              btnText="註冊/登入"
+              addClassforButton="btn-dark"
+              className={styles.btn}
+            />
           </div>
           <div>
-            <p className="small-font">未收到驗證信/忘記密碼</p>
+            <p className={`small-font ${styles.beside}`}>
+              未收到驗證信/忘記密碼
+            </p>
           </div>
         </div>
       </div>

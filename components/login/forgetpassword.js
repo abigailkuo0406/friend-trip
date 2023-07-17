@@ -1,10 +1,10 @@
-import { divide } from 'lodash'
-import Button from 'react-bootstrap/Button'
+import { useState } from 'react'
 import Card from 'react-bootstrap/Card'
 import styles from './forgetpassword.module.css'
-import InputGroup from 'react-bootstrap/InputGroup'
-import Form from 'react-bootstrap/Form'
+import InputText from '@/components/common/input/input-text'
+import BtnNormal from '@/components/common/button/btn-normal'
 function ForgetPassword() {
+  const [inputValue, setinputValue] = useState('')
   return (
     <div
       className={`${styles.main} d-flex align-content-center justify-content-center`}
@@ -12,22 +12,23 @@ function ForgetPassword() {
       <Card className={styles.style}>
         <Card.Body className={styles.body}>
           <div className={styles.cardabove}>
-            <Card.Title className={styles.title}>尋找你的帳號</Card.Title>
+            <Card.Title>
+              <h2 className={styles.title}>尋找你的帳號</h2>
+            </Card.Title>
             <div className={`${styles.inputgroup}`}>
-              <InputGroup className="mb-3">
-                <InputGroup.Text className="small-font" id="basic-addon1">
-                  請輸入電子郵件或手機號碼以搜尋帳號
-                </InputGroup.Text>
-                <Form.Control
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                />
-              </InputGroup>
+              <InputText
+                getValue={() => 'whatever'}
+                getName={() => 'whatever'}
+                width="input-width-100pa"
+                placeholder="請輸入電子郵件或手機號碼以搜尋帳號"
+              ></InputText>
             </div>
           </div>
-          <div className={styles.buttongroup}>
-            <Button variant="primary d-flex flex-direction">確定</Button>
-            <Button variant="primary d-flex flex-direction">取消</Button>
+          <div
+            className={`d-flex justify-content-end gap-3 ${styles.buttongroup}`}
+          >
+            <BtnNormal btnText="取消" />
+            <BtnNormal btnText="搜尋" addClassforButton="btn-light" />
           </div>
         </Card.Body>
       </Card>
