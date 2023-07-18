@@ -3,8 +3,7 @@ import PublicScheduleIndex from '@/components/public-itinerary'
 import SortBoard from '@/components/public-itinerary/sort-board'
 import AdminLayout from '@/components/layout/admin-layout'
 import data from '@/data/custom-itinerary/itinerary.json'
-import BtnToolbar from '@/components/custom-itinerary/page-btn'
-
+import PageBtn from '@/components/custom-itinerary/page-btn'
 
 export default function PublicSchedule() {
   return (
@@ -24,8 +23,8 @@ export default function PublicSchedule() {
         </div>
         )
       })}
-      {/* <BtnToolbar/> */}
       </div>
+      <PageBtn/>
     </>
   )
 }

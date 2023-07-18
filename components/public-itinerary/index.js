@@ -1,7 +1,9 @@
-import styles from '../custom-itinerary/history.module.css'
+// import styles from '../custom-itinerary/history.module.css'
 import Image from 'next/image'
 import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import Host from '@/assets/fake-data/fake-persona.png'
+import styles from './public-init.module.css'
+import Link from 'next/link'
 
 
 export default function Public(props) {
@@ -16,14 +18,16 @@ export default function Public(props) {
   const formattedCreateAt = formatDateString(props.date) // 格式化后的創建日期
     return (
       <>
-  <div className={styles.container}>
-   <div className="card mx-2 mb-3" style={{width:300}}>
+
+  <div>
+   <div className={`card mx-2 mb-3 ${styles.card}`} style={{width:300}}>
     {/* 行程封面照 */}
     <Image 
     src={Jiufen} 
-    className="card-img-top" 
+    className="card-img-top rounded-top-4" 
     alt="Jiufen"
     width={300}
+    priority={true}
     />
     <div className="card-body">
     <div className="d-flex mb-4">
@@ -38,12 +42,12 @@ export default function Public(props) {
                 />
                 <p className="d-flex align-items-center mt-3 mx-2">Amber</p>
               </div>
-      <h5 className="card-title text-truncate">{props.name}</h5>   
+      <h5 className={`card-title text-truncate ${styles.cardTitle}`}>{props.name}</h5>   
       <div className="d-flex justify-content-between pt-2 ">
       <div className="pt-2">
-      <p className="card-text ">{formattedCreateAt}</p>
+      <p className={`card-text ${styles.cardText}` } >{formattedCreateAt}</p>
       </div>
-      <a href="#" className="btn btn-primary ">參加</a>
+      <Link href="#" className={`btn ${styles.btn}`}>參加</Link>
       </div>
     </div>
   </div>
