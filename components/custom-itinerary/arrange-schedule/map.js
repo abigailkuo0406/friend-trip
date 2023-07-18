@@ -1,31 +1,19 @@
-import { useState, useEffect, useRef } from 'react'
-// import SearchView from './search-view'
-import SearchView from './search-view'
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  Autocomplete,
-  DirectionsRenderer,
-} from '@react-google-maps/api'
+import { useState, useEffect } from 'react'
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
 
 // 在元件外部定義 libraries 陣列作為常數變數
 const libraries = ['places']
 
-export default function Map() {
+export default function Map({ searchLngLat }) {
+  
   //使用者當前位置
   const [currentPosition, setCurrentPosition] = useState(null)
-  //查詢地點marker
-  // const [searchLngLat, setSearchLngLat] = useState(null)
-  // const autocompleteRef = useRef(null)
-  // const [directions, setDirections] = useState(null)
 
   //初始地圖位置
   const [center, setCenter] = useState({
     lat: 0,
     lng: 0,
   })
-  const [inputValue, setInputValue] = useState('')
 
   // 初始載入執行getCurrentPosition
   useEffect(() => {
@@ -45,6 +33,13 @@ export default function Map() {
     }
   }, [])
 
+  // 更新地圖中心點，當 searchLngLat 變化時
+  useEffect(() => {
+    if (searchLngLat) {
+      setCenter(searchLngLat)
+    }
+  }, [searchLngLat])
+
   // 載入google map
   // isLoaded 為 true，代表成功載入API，將isLoaded存進Props 傳到需求google map API 的元件。
   const { isLoaded } = useLoadScript({
@@ -53,10 +48,9 @@ export default function Map() {
   })
   if (!isLoaded) return <div>Loading....</div>
 
-
   return (
     <>
-      {/* {console.log('searchLngLat:',searchLngLat)} */}
+      {console.log('searchLngLat(map.js):', searchLngLat)}
       <div className="map">
         <div
           style={{
@@ -67,25 +61,19 @@ export default function Map() {
             gap: '20px',
           }}
         >
-      
-
           {/* map component  */}
           <GoogleMap
             zoom={16} // 設定縮放級別
             center={center} // 設定地圖中心點
             mapContainerClassName="map"
             mapContainerStyle={{
-              width: '90vw',
+              width: '85vw',
               height: '700px',
               margin: 'auto',
             }}
           >
-
             {/* 查詢地點marker */}
-        {/* {searchLngLat && <Marker position={searchLngLat} />} */}
-
-
-
+            {searchLngLat && <Marker position={searchLngLat} />}
           </GoogleMap>
         </div>
       </div>

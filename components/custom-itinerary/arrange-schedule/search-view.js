@@ -1,5 +1,4 @@
-import { useState } from 'react'
-// import styles from './arrange-schedule.module.css'
+import styles from './arrange-schedule.module.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 import Jiufen from '@/assets/fake-data/fake-jiufen.png'
@@ -7,8 +6,8 @@ import { BiSearchAlt, BiMap } from 'react-icons/bi'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
 import { BsFillTelephoneFill } from 'react-icons/bs'
-import styles from './arrange-schedule.module.scss'
-import ScheduleSide from './arrange-schedule'
+
+
 
 export default function SearchView({ inputValue, onInputChange }) {
   return (
@@ -111,7 +110,7 @@ export default function SearchView({ inputValue, onInputChange }) {
               id="staticBackdrop"
               data-bs-backdrop="static"
               data-bs-keyboard="false"
-              tabindex="-1"
+              tabIndex="-1"
               aria-labelledby="staticBackdropLabel"
               aria-hidden="true"
             >
