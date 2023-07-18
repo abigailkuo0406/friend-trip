@@ -50,7 +50,7 @@ export default function Map({ searchLngLat }) {
 
   return (
     <>
-      {console.log('searchLngLat(map.js):', searchLngLat)}
+      {/* {console.log('searchLngLat(map.js):', searchLngLat)} */}
       <div className="map">
         <div
           style={{

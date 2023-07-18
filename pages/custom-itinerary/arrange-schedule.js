@@ -18,6 +18,9 @@ export default function ArrangeSchedule() {
   const [searchLngLat, setSearchLngLat] = useState(null) //查詢地點marker
   const [directions, setDirections] = useState(null)
 
+  // 存儲選擇的景點資訊
+  const [selectedView, setSelectedView] = useState(null)
+
 
   const handleAddScenery = () => {
     setShowSchedule(false)
@@ -48,22 +51,31 @@ export default function ArrangeSchedule() {
     setSearchLngLat(viewPosition)
     setCenter(viewPosition)
 
-    console.log('地點資訊:', place)
+    // console.log('地點資訊:', place)
 
     const selectedView={
       place_id:place.place_id,
       name:place.name,
-      formatted_address:place.formatted_address,
-
+      formatted_address:place.formatted_address, 
+      weekday_text: (place.current_opening_hours && place.current_opening_hours.weekday_text),
+      phone_number: place.formatted_phone_number && place.formatted_phone_number,
+      rating:place.rating && place.rating,
+      lng: ((place.geometry.viewport.Ha.lo+place.geometry.viewport.Ha.hi)/2).toFixed(4),
+      lat: ((place.geometry.viewport.Va.lo+place.geometry.viewport.Va.hi)/2).toFixed(4),
+  
     }
     console.log('selectedView=>',selectedView)
+
+
+     // 將選擇的景點資訊存儲在狀態中
+      setSelectedView(selectedView)
   }
 
  
 
   return (
     <>
-      {console.log('searchLngLat:',searchLngLat)}
+      {/* {console.log('searchLngLat:',searchLngLat)} */}
       {console.log(showSchedule)}
       {showSchedule ? (
         <ScheduleSide onClick={handleAddScenery} />
@@ -93,6 +105,7 @@ export default function ArrangeSchedule() {
           searchLngLat={searchLngLat}
           setSearchLngLat={setSearchLngLat}
           autocompleteRef={autocompleteRef}
+          selectedView={selectedView}
           />
         </Autocomplete>
       )}

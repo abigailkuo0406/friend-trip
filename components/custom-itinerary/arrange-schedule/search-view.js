@@ -1,4 +1,4 @@
-import styles from './arrange-schedule.module.scss'
+import styles from './arrange-schedule.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import Jiufen from '@/assets/fake-data/fake-jiufen.png'
@@ -7,9 +7,11 @@ import { FaArrowLeftLong } from 'react-icons/fa6'
 import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 
-
-
-export default function SearchView({ inputValue, onInputChange }) {
+export default function SearchView({
+  inputValue,
+  onInputChange,
+  selectedView,
+}) {
   return (
     <>
       <div className="itineraryContainer ">
@@ -50,116 +52,66 @@ export default function SearchView({ inputValue, onInputChange }) {
 
                 <nav className="navbar bg-body-tertiary">
                   <div className="container-fluid">
-         
-                      <input
-                        className="form-control me-2 mb-3"
-                        type="text"
-                        placeholder="請輸入城市"
-                        value={inputValue}
-                        onChange={onInputChange}
-                      />
-                      <button className="btn btn-outline-success" type="submit">
-                        搜尋
-                      </button>
-            
+                    <input
+                      className="form-control me-2 mb-3"
+                      type="text"
+                      placeholder="請輸入城市"
+                      value={inputValue}
+                      onChange={onInputChange}
+                    />
+
                     <div>
-                      <ol className={styles.ol}>
-                        <li className={styles.li}>
-                          <div
-                            type="button"
-                            className="btn btn-link d-flex"
-                            data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop"
-                          >
-                            <Image
+                      <div className="">
+                        {selectedView && selectedView.name && (
+                          <ul className={`mx-2 ${styles.text}`}>
+                            <h5>{selectedView.name}</h5>
+                            {/* <Image
                               src={Jiufen}
                               alt="寧夏觀光夜市"
                               width={120}
                               hight={120}
                               className="mx-2"
-                            />
-                            <h6 className="my-auto">寧夏觀光夜市</h6>
-                          </div>
-                        </li>
-                        <li className={styles.li}>
-                          <div
-                            type="button"
-                            className="btn btn-link d-flex"
-                            data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop"
-                          >
-                            <Image
-                              src={Jiufen}
-                              alt="寧夏觀光夜市"
-                              width={120}
-                              hight={120}
-                              className="mx-2"
-                            />
-                            <h6 className="my-auto">寧夏觀光夜市</h6>
-                          </div>
-                        </li>
-                      </ol>
+                            /> */}
+                            <li className={styles.textRed}>
+                              {selectedView.rating}
+                            </li>
+                            <li>
+                              <IoLocationOutline />
+                              {selectedView.formatted_address}
+                            </li>
+                            <li>
+                              <div>
+                                <IoTimeOutline className="align-self-start " />
+                                <div className="mx-5">
+                                  {selectedView.weekday_text.map(
+                                    (time, index) => {
+                                      return <span key={index}>{time}</span>
+                                    }
+                                  )}
+                                </div>
+                              </div>
+                            </li>
+                            <li className="mt-3">
+                              <BsFillTelephoneFill className="mx-1" />
+                              {selectedView.phone_number}
+                            </li>
+                            <div className="d-flex mx-2">
+                              <button
+                                type="button"
+                                className="btn btn-secondary mx-2"
+                              >
+                                儲存景點
+                              </button>
+                              <button type="button" className="btn btn-primary">
+                                加入收藏
+                              </button>
+                            </div>
+                          </ul>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </nav>
-              </div>
-            </div>
-            {/* <!-- Modal --> */}
-            <div
-              className="modal fade"
-              id="staticBackdrop"
-              data-bs-backdrop="static"
-              data-bs-keyboard="false"
-              tabIndex="-1"
-              aria-labelledby="staticBackdropLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog modal-dialog-scrollable">
-                <div className="modal-content">
-                  <div className="modal-header ">
-                    <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                      寧夏夜市
-                    </h1>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body">
-                    <Image
-                      src={Jiufen}
-                      style={{ width: '100%', height: 'auto' }}
-                      alt="Jiufen"
-                      priority={true}
-                    />
-                    <p>
-                      <IoLocationOutline className="mx-2" />
-                      103台北市大同區寧夏路寧夏夜市
-                    </p>
-                    <p>
-                      <IoTimeOutline className="mx-2" />
-                      星期六、17:00–01:00
-                    </p>
-                    <p>
-                      <BsFillTelephoneFill className="mx-2" />
-                      0987-456-794
-                    </p>
-                  </div>
-                  <div className="modal-footer ">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      儲存景點
-                    </button>
-                    <button type="button" className="btn btn-primary">
-                      加入收藏
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
