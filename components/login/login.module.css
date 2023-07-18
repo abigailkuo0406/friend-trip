@@ -65,7 +65,9 @@
     margin-top: 70px;
 }
 .btn {
-    width: 1000px;
+    width: 324px;
+    display: flex;
+    justify-content: center;
 }
 .beside {
     color: var(--main-light);

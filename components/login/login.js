@@ -46,8 +46,7 @@ export default function Login() {
           <div className={styles.btnbar}>
             <BtnNormal
               btnText="註冊/登入"
-              addClassforButton="btn-dark"
-              className={styles.btn}
+              addClassforButton={`${styles.btn} btn-dark`}
             />
           </div>
           <div>
