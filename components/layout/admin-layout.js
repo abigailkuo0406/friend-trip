@@ -10,9 +10,9 @@ export default function AdminLayout({ children }) {
         <Navbar />
         <main className="container">
           <div className="row g-5 main-background">
-            {/* <div id="Sidebar" className="col-md-3">
+            <div id="Sidebar" className="col-md-3">
               <Sidebar />
-            </div> */}
+            </div>
             <div className="col-md-9">{children}</div>
           </div>
         </main>

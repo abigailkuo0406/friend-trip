@@ -8,15 +8,15 @@ export default function PageBtn(props) {
     <>
     <div>
     <ul className={`pagination ${styles.pageBtn}`}>
-    <li className="page-item"><Link class={`page-link ${styles.pageLink}`} href={'?page='} aria-label="Previous">
+    <li className="page-item"><Link className={`page-link ${styles.pageLink}`} href={'?page='} aria-label="Previous">
        <span aria-hidden="true">&laquo;</span>
       </Link></li>
-    <li className="page-item"><a className={`page-link ${styles.pageLink}`} href="#">1</a></li>
-    <li className="page-item"><a className={`page-link ${styles.pageLink}`} href="#">2</a></li>
-    <li className="page-item"><a className={`page-link ${styles.pageLink}`} href="#">3</a></li>
-    <li className="page-item"><a class={`page-link ${styles.pageLink}`} href="#" aria-label="Next">
+    <li className="page-item"><Link className={`page-link ${styles.pageLink}`} href="#">1</Link></li>
+    <li className="page-item"><Link className={`page-link ${styles.pageLink}`} href="#">2</Link></li>
+    <li className="page-item"><Link className={`page-link ${styles.pageLink}`} href="#">3</Link></li>
+    <li className="page-item"><Link className={`page-link ${styles.pageLink}`} href="#" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
-      </a></li>
+      </Link></li>
   </ul>
 </div>
     </>

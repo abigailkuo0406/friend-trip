@@ -72,21 +72,24 @@ export default function HistotyCard(props) {
                   </div>
                 </div>
                 <p className="card-text text-truncate">{props.description}</p>
-                <div className="d-flex">
+                <div className="d-flex ">
+                <div>
                   好友：
                   <Image
                     src={person}
-                    className="rounded-circle"
+                    className="rounded-circle mx-1"
                     alt="person"
                     style={{ width: '5%', height: 'auto' }}
+                    priority={true}
                   />
                   <Image
                     src={person}
                     className="rounded-circle"
                     alt="person"
                     style={{ width: '5%', height: 'auto' }}
+                    priority={true}
                   />
-                </div>
+                </div></div>
                 <div className={styles.cardText}>
                   <small>{formattedCreateAt}</small>
                 </div>

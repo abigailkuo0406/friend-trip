@@ -41,10 +41,8 @@ export default function SaveViewInit() {
             </div>
           </div>
           <div className="my-auto">
-            <Link href="/custom-itinerary">
-              <h4>
-                <FaRegEdit />
-              </h4>
+            <Link href="/custom-itinerary" className={styles.pageLink}>
+            <FaRegEdit />
             </Link>
           </div>
         </div>
@@ -66,7 +64,7 @@ export default function SaveViewInit() {
             {/* modal-btn */}
             <button
               type="button"
-              className="btn btn-link px-4"
+              className={`btn btn-link px-4 ${styles.modalLink}`}
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
@@ -84,7 +82,7 @@ export default function SaveViewInit() {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h1 className="modal-title fs-5" id="exampleModalLabel">
+                  <h1 className={`modal-title fs-5 ${styles.text}`} id="exampleModalLabel">
                     寧夏夜市
                   </h1>
                   <button
@@ -96,22 +94,22 @@ export default function SaveViewInit() {
                 </div>
                 <Image
                   src={Jiufen}
-                  width={200}
-                  height={200}
+                  width={500}
+                  height={300}
                   alt="Picture of the Jiufen"
                   priority={true} //圖片預先載入
                 />
                 <div className="modal-body">
-                  <p>
-                    <IoLocationOutline className="mx-2" />
+                  <p className={styles.text}>
+                    <IoLocationOutline className={`mx-2 ${styles.iconColor}`} />
                     103台北市大同區寧夏路寧夏夜市
                   </p>
-                  <p>
-                    <IoTimeOutline className="mx-2" />
+                  <p className={styles.text}>
+                    <IoTimeOutline className={`mx-2 ${styles.iconColor}`} />
                     星期六、17:00–01:00
                   </p>
-                  <p>
-                    <BsFillTelephoneFill className="mx-2" />
+                  <p className={styles.text}>
+                    <BsFillTelephoneFill className={`mx-2 ${styles.iconColor}`} />
                     0987-456-794
                   </p>
                 </div>
