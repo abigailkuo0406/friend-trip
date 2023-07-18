@@ -6,6 +6,8 @@ import { useState } from 'react'
 import Button from '@/components/common/button/btn-normal'
 import NumberInput from '@/components/common/input/input-number'
 import RadioInput from '@/components/common/input/input-radio'
+import RadioGropuInput from '@/components/common/input/input-radio-group'
+import DateInput from '@/components/common/input/input-date'
 
 // 引入邀請元件
 import Invite from '@/components/invite/invite'
@@ -31,10 +33,10 @@ export default function RestItem() {
   if (router.query.rid != null) {
     rid = router.query?.rid
   }
-  console.log(rid)
+  // console.log(rid)
 
   // 取得餐廳資料細項
-  console.log(restaurant)
+  // console.log(restaurant)
 
   const restName = restaurant[rid]?.RestName ?? ''
 
@@ -51,10 +53,40 @@ export default function RestItem() {
     setValueFromInvite(value)
   }
 
-  const [inputValue3, setInputValue3] = useState('')
-  const [inputName3, setInputName3] = useState('')
-  const [inputValue7, setInputValue7] = useState('')
-  const [inputName7, setInputName7] = useState('')
+  //預設訂位日期
+  const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
+  const [reserveTimeInputName, setReserveTimeInputName] = useState('')
+  const [reserveTimeInputLabel, setReserveTimeInputLabel] = useState('')
+
+  // 預設訂位時間
+  const [reserveDateInputVale, setReserveDateInputValue] = useState('')
+  const [reserveDateInputName, setReserveDateInputName] = useState('')
+  const [reserveDateInputLabel, setReserveDateInputLabel] = useState('')
+
+  // 預設訂位人數
+  const [reservePeopleNumValue, setReservePeopleNumValue] = useState('')
+  const [reservePeopleNumName, setReservePeopleNumName] = useState('')
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(
+      '訂位日期',
+      reserveDateInputVale,
+      '，name為:',
+      reserveDateInputName
+    )
+    console.log(
+      '訂位時間:',
+      reserveTimeInputLabel + ' ，value 為：',
+      reserveTimeInputValue + ' ，name 為：',
+      reserveTimeInputName
+    )
+    console.log(
+      '訂位人數：',
+      reservePeopleNumValue + ' ，name 為：',
+      reservePeopleNumName
+    )
+  }
 
   return (
     <>
@@ -109,16 +141,40 @@ export default function RestItem() {
                   <p>{restIntro}</p>
                 </div>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-3">
-                    <label>訂位日期</label>
-                    <input type="date" />
+                    <DateInput
+                      id="reserveDate"
+                      name="reserveDate"
+                      label="訂位日期"
+                      getValue={setReserveDateInputValue}
+                      getName={setReserveDateInputName}
+                      getLabel={setReserveDateInputLabel}
+                      // minDate='2023-12-16'
+                    />
+                    {/* <label>訂位日期</label>
+                    <input type="date" value="2023-07-18"/> */}
                   </div>
 
                   <div className="mb-3">
                     <label>訂位時間</label>
-                    <div className='d-flex'>
-                      <RadioInput
+                    <RadioGropuInput
+                      label="訂位時間"
+                      name="reserveTime"
+                      // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
+                      idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
+                      valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
+                      labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
+                      checked="11:30" // 預設勾選，需填入 value，只能擇一
+                      getValue={setReserveTimeInputValue}
+                      getName={setReserveTimeInputName}
+                      getLabel={setReserveTimeInputLabel}
+                      addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
+                      addClassforEachLabel="btn btn-secondary me-3" // 如果要在個別選項 label 添加 class
+                      addClassforInput="btn-check" // 如果要在 input 添加 class
+                    />
+                    <div className="d-flex">
+                      {/* <RadioInput
                         id="option1"
                         name="options"
                         label="11:00"
@@ -156,7 +212,7 @@ export default function RestItem() {
                         getValue={setInputValue3} // 獲取填寫的數值
                         getName={setInputName3} // 獲取 name
                         required={true} // true：必填，false：非必填
-                      />
+                      /> */}
                     </div>
                   </div>
 
@@ -171,8 +227,8 @@ export default function RestItem() {
                       min={1} // 最小可選數字
                       step={1} // 右邊箭頭按一次的數字區間
                       hideArrows={false} // true：隱藏右側上下箭頭按鈕，false：顯示
-                      getValue={setInputValue7}
-                      getName={setInputName7}
+                      getValue={setReservePeopleNumValue}
+                      getName={setReservePeopleNumName}
                       width="input-width-5rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
                       addClassforLabel="try1" // 如果要在 label 添加 class
                       addClassforInput="try2 test123" // 如果要在 input 添加 class
@@ -184,13 +240,19 @@ export default function RestItem() {
                     <img />
                     <img />
                   </div>
+                  <Button
+                    btnText="邀請好友"
+                    bsModle1="#exampleModalToggle2"
+                    bsModle2="modal"
+                  />
+                  <Button
+                    type="submit"
+                    value="submit"
+                    btnText="直接訂位"
+                    addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                    disabled={false} // fase：可點，true：不可點
+                  ></Button>
                 </form>
-                <Button
-                  btnText="邀請好友"
-                  bsModle1="#exampleModalToggle2"
-                  bsModle2="modal"
-                />
-                <button>訂位</button>
               </div>
 
               {/* 照片區 */}
@@ -276,7 +338,9 @@ export default function RestItem() {
                     />
                   </div>
                   {comment.map((c, i) => {
-                    console.log(c)
+                    {
+                      /* console.log(c) */
+                    }
                     return (
                       <div className="carousel-item" key={i}>
                         <Comment
@@ -383,6 +447,7 @@ export default function RestItem() {
           </div>
         </div>
       </div>
+      
       <button
         className="btn btn-primary"
         data-bs-target="#exampleModalToggle"

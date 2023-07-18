@@ -7,7 +7,7 @@ export default function Invite(props) {
   const [invites, setInvites] = useState({
     Name: '',
   })
-  console.log(invites)
+  // console.log(invites)
   return (
     <>
       <li>
