@@ -1,12 +1,9 @@
-.label {
-  margin-left: 2rem;
-}
 .formbody {
   position: relative;
 }
 
-.uploaderinput {
-  display: none;
+.label {
+  margin-left: 2rem;
 }
 
 .uploader {
@@ -24,6 +21,11 @@
   position: relative;
   width: 300px;
 }
+
+.uploaderinput {
+  display: none;
+}
+
 .uploaderIcon{
     color: #674C87;
     font-size: 5em;

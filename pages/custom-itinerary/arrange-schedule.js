@@ -49,7 +49,17 @@ export default function ArrangeSchedule() {
     setCenter(viewPosition)
 
     console.log('地點資訊:', place)
+
+    const selectedView={
+      place_id:place.place_id,
+      name:place.name,
+      formatted_address:place.formatted_address,
+
+    }
+    console.log('selectedView=>',selectedView)
   }
+
+ 
 
   return (
     <>
