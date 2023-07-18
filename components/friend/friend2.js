@@ -1,6 +1,7 @@
 import React from 'react'
 
 import styles from './friend2.module.css'
+import BtnNormal from '@/components/common/button/btn-normal'
 export default function Friend() {
   return (
     <>
@@ -51,9 +52,17 @@ export default function Friend() {
               <label htmlFor="emailadd">手機號碼</label>
               <p className={styles.p}>台北市</p>
             </div>
-            <div className={styles.buttonbar}>
-              <button type="button">上一頁</button>
-              <button type="button">修改</button>
+            <div className="d-flex justify-content-end gap-3">
+              <BtnNormal
+                btnText="修改"
+                addClassforButton={`btn-dark ${styles.btnsize}`}
+              />
+              <BtnNormal
+                type="button"
+                value="button"
+                btnText="上一頁"
+                addClassforButton={`btn-dark ${styles.btnsize}`}
+              />
             </div>
           </div>
           <div className={styles.friendsheet}>

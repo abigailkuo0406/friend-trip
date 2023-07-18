@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './friend.module.css'
+import BtnNormal from '@/components/common/button/btn-normal'
 export default function Friend() {
   return (
     <>
@@ -41,9 +42,9 @@ export default function Friend() {
               <label htmlFor="emailadd">地區</label>
               <p className={styles.p}>台北市</p>
             </div>
-            <div className={styles.buttonbar}>
-              <button type="button">修改</button>
-              <button type="button">下一頁</button>
+            <div className={`gap-3 ${styles.buttonbar}`}>
+              <BtnNormal btnText="修改" />
+              <BtnNormal btnText="下一頁" />
             </div>
           </div>
           <div className={styles.friendsheet}>

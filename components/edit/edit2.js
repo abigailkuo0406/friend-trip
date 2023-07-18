@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import styles from './register2.module.css'
+import styles from './edit2.module.css'
 import InputText from '@/components/common/input/input-text-flex'
 import InputTextDouble from '@/components/common/input/input-text-double'
 import SelectOption from '@/components/common/input/select-option-flex'
@@ -8,7 +8,7 @@ import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
 import TextArea from '@/components/common/input/textarea-flex'
 import BtnNormal from '@/components/common/button/btn-normal'
 
-export default function RegisterCard() {
+export default function Edit() {
   const [inputValue1, setInputValue1] = useState('')
   const [inputValue2, setInputValue2] = useState('')
   const [InputName1, setInputName1] = useState('')

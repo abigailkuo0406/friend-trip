@@ -3,6 +3,7 @@ import styles from './pairs.module.css'
 import Face from '@/public/img/avatar/face/face52.png'
 import Image from 'next/image'
 import { TbZodiacLeo } from 'react-icons/tb'
+import Logo from '@/public/FriendTrip-Logo.png'
 
 export default function Pairs() {
   return (
@@ -13,7 +14,13 @@ export default function Pairs() {
             <i className="fa-solid fa-sliders fa-rotate-270"></i>
           </div>
           <div className={` ${styles.imgborder}`}>
-            <div className={styles.imgabove}></div>
+            <div className={styles.imgabove}>
+              <Image
+                src={Logo}
+                className={`${styles.imglogo}`}
+                alt="logo.png"
+              />
+            </div>
             <div className={styles.imgContainer}>
               <Image src={Face} className={`${styles.img}`} alt="face1.png" />
             </div>

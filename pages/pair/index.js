@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginLayout from '@/components/layout/login-layout'
+import SlideLayout from '@/components/layout/slide-layout'
 import Pairs from '@/components/pairs/pairs'
 export default function PairsIndex() {
   return (
@@ -11,5 +11,5 @@ export default function PairsIndex() {
 // 這裡代表要套用AdminLayout，取代原本的DefaultLayout
 // 要寫在元件的函式之外
 PairsIndex.getLayout = function (page) {
-  return <LoginLayout>{page}</LoginLayout>
+  return <SlideLayout>{page}</SlideLayout>
 }
