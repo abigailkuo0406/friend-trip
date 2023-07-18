@@ -3,8 +3,11 @@ import Image from 'next/image'
 import { BiSearchAlt } from 'react-icons/bi'
 import logo from '@/assets/logo/FriendTrip-Logo.png'
 import BtnLogout from '@/components/common/button/btn-logout'
+import AuthContext from '@/context/AuthContext'
+import { useState, useContext } from 'react'
 
 export default function Navbar() {
+  const { auth, setAuth, logout } = useContext(AuthContext)
   return (
     <>
       <header className="position-sticky top-0 p-3">
