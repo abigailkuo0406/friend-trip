@@ -2,12 +2,11 @@ import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styles from './restaurant.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import Button from '@/components/common/button/btn-normal'
 import NumberInput from '@/components/common/input/input-number'
-import RadioInput from '@/components/common/input/input-radio'
-import RadioGropuInput from '@/components/common/input/input-radio-group'
+import RadioGroupInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date'
 
 // 引入邀請元件
@@ -26,7 +25,17 @@ import comment from '@/data/restaurant/comment.json'
 // import A from '@/assets/rest-img/rest-img-1-c.jpg'
 
 export default function RestaurantList(props) {
-  // console.log(props.img)
+  // useEffect(() => {
+  //   const restName = props.title
+
+  //   const restPhone = props.phone
+  //   const restAddress = props.address
+  //   const restTime = props.time
+  //   const restIntro = props.details
+  //   const restClass = props.class
+  //   const restMeal = props.meal
+  //   console.log("渲染："+restName)
+  // })
   const router = useRouter()
   // 取得當頁動態編號
   let rid = 0
@@ -34,14 +43,15 @@ export default function RestaurantList(props) {
     rid = router.query?.rid
   }
   // 取得餐廳資料細項
-  const restName = restaurant[rid]?.RestName ?? ''
+  const restName = props.title
 
-  const restPhone = restaurant[rid]?.RestPhone ?? ''
-  const restAdress = restaurant[rid]?.RestAdress ?? ''
-  const restTime = restaurant[rid]?.RestTime ?? ''
-  const restIntro = restaurant[rid]?.RestIntro ?? ''
-  const restclassName = restaurant[rid]?.RestclassName ?? ''
-  const restMeal = restaurant[rid]?.RestMeal ?? ''
+  const restPhone = props.phone
+  const restAddress = props.address
+  const restTime = props.time
+  const restIntro = props.details
+  const restClass = props.class
+  const restMeal = props.meal
+  const restImg = props.img
 
   const [valueFromInvites, setValueFromInvite] = useState('')
   // 回乎函數，接收邀請元件的傳值
@@ -49,12 +59,12 @@ export default function RestaurantList(props) {
     setValueFromInvite(value)
   }
 
-  //預設訂位日期
+  //預設訂位時間
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
   const [reserveTimeInputName, setReserveTimeInputName] = useState('')
   const [reserveTimeInputLabel, setReserveTimeInputLabel] = useState('')
 
-  // 預設訂位時間
+  // 預設訂位日期
   const [reserveDateInputVale, setReserveDateInputValue] = useState('')
   const [reserveDateInputName, setReserveDateInputName] = useState('')
   const [reserveDateInputLabel, setReserveDateInputLabel] = useState('')
@@ -90,8 +100,9 @@ export default function RestaurantList(props) {
           <div className="col-md-3">
             <div className={styles.imgClass}>
               <Image
-                // src={`http://localhost:3002/img/${props.img}`}
-                src={props.img}
+                src={`http://localhost:3002/restImg/${restImg}`}
+                
+                // src={props.img}
                 className={`rounded-start ${styles.img1}`}
                 width={200}
                 height={200}
@@ -101,14 +112,9 @@ export default function RestaurantList(props) {
 
           <div className="col-md-9">
             <div className="card-body">
-              <h2 className="card-title">{props.title}</h2>
+              <h2 className="card-title">{restName}</h2>
               {/* <i class="fa-regular fa-star"></i> */}
-              <p
-                className="card-text text-truncate my-4
-              "
-              >
-                {props.details}
-              </p>
+              <p className="card-text text-truncate my-4">{restIntro}</p>
 
               <div
                 className="modal fade"
@@ -139,12 +145,13 @@ export default function RestaurantList(props) {
                         {/*左方標題列 */}
                         <div className="d-flex">
                           <h2>{restName}</h2>
+                          {console.log('aa:' + restName)}
                           <div>星星</div>
                         </div>
 
                         {/* 左方小資訊列 */}
                         <div>
-                          <p>{restAdress}</p>
+                          <p>{restAddress}</p>
                           <p>{restPhone}</p>
                         </div>
 
@@ -155,7 +162,7 @@ export default function RestaurantList(props) {
                           <label>料理特色</label>
                           <p>
                             {restMeal}
-                            {restclassName}
+                            {restClass}
                           </p>
                           <label>訂位須知</label>
                           <p>{restIntro}</p>
@@ -178,7 +185,7 @@ export default function RestaurantList(props) {
 
                           <div className="mb-3">
                             <label>訂位時間</label>
-                            <RadioGropuInput
+                            <RadioGroupInput
                               label="訂位時間"
                               name="reserveTime"
                               // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
@@ -193,47 +200,6 @@ export default function RestaurantList(props) {
                               addClassforEachLabel="btn btn-secondary me-3" // 如果要在個別選項 label 添加 class
                               addClassforInput="btn-check" // 如果要在 input 添加 class
                             />
-                            <div className="d-flex">
-                              {/* <RadioInput
-                        id="option1"
-                        name="options"
-                        label="11:00"
-                        value="11:00" // 預設文字:
-                        placeholder="測試3"
-                        width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                        addClassforEachLabel="btn btn-secondary me-3" // 如果要在 label 添加 class
-                        addClassforInput="btn-check" // 如果要在 input 添加 class
-                        getValue={setInputValue3} // 獲取填寫的數值
-                        getName={setInputName3} // 獲取 name
-                        required={true} // true：必填，false：非必填
-                      />
-                      <RadioInput
-                        id="option1"
-                        name="options"
-                        label="12:00"
-                        value="12:00" // 預設文字:
-                        placeholder="測試3"
-                        width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                        addClassforEachLabel="btn btn-secondary me-3" // 如果要在 label 添加 class
-                        addClassforInput="btn-check" // 如果要在 input 添加 class
-                        getValue={setInputValue3} // 獲取填寫的數值
-                        getName={setInputName3} // 獲取 name
-                        required={true} // true：必填，false：非必填
-                      />
-                      <RadioInput
-                        id="option1"
-                        name="options"
-                        label="13:00"
-                        value="13:00" // 預設文字:
-                        placeholder="測試3"
-                        width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                        addClassforEachLabel="btn btn-secondary me-3" // 如果要在 label 添加 class
-                        addClassforInput="btn-check" // 如果要在 input 添加 class
-                        getValue={setInputValue3} // 獲取填寫的數值
-                        getName={setInputName3} // 獲取 name
-                        required={true} // true：必填，false：非必填
-                      /> */}
-                            </div>
                           </div>
 
                           <div>

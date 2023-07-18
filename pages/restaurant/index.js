@@ -39,6 +39,7 @@ export default function Rest() {
       <div className="container">
         <h1>精選餐廳</h1>
         {restaurants.rows.map((v, i) => {
+          {/* console.log(v) */}
           return (
             <div key={v.RestID}>
               <RestaurantList
@@ -46,6 +47,13 @@ export default function Rest() {
                 title={v.RestName}
                 details={v.RestIntro}
                 rid={v.RestID}
+                address={v.RestAdress}
+                phone={v.RestPhone}
+                time={v.RestTime}
+                meal={v.RestMeal}
+                class={v.RestClass}
+
+
               />
             </div>
           )
