@@ -12075,6 +12075,7 @@ label {
   font-weight: 500;
   color: var(--main-dark);
   width: 10rem;
+  min-width: 10rem;
   padding: 0rem 0rem 0.2rem 0rem;
 }
 
@@ -12267,6 +12268,7 @@ label {
 .input-checkbox-section > label {
   display: inline-block;
   width: 10rem;
+  min-width: 10rem;
 }
 .input-checkbox-section .input-text {
   width: 1rem;

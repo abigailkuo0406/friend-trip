@@ -1,0 +1,119 @@
+.ProductPageHeader
+    margin-bottom: 2rem
+    .ProductPageTitle
+        display: flex
+        flex-direction: row
+        @media(max-width:1199px)
+            flex-direction: column
+
+        img
+            width: 75%
+            height: auto
+            @media(max-width:1199px)
+                width: 100%
+                margin-bottom: 1rem
+        div
+            width: 25%
+            color: var(--main-dark)
+            display: flex
+            flex-direction: row-reverse
+            align-items: center
+            @media(max-width:1199px)
+                width: 100%
+            h1
+                margin: 0
+    .PageCart
+            display: flex
+            flex-direction: row-reverse
+            align-items: center
+            position: relative
+            div
+                position: relative
+                padding: 1.2rem
+                cursor: pointer
+                svg
+                    width: 1.5rem
+                    height: 1.5rem
+                    color: var(--main-dark)
+                    position: relative
+                    z-index: 1
+                    transition: scale 300ms
+                &:hover
+                    transform: scale(1.2)
+                &::after
+                    content:'153'
+                    font-size: 0.8rem
+                    position: absolute
+                    top: 0.2rem
+                    right: 0.2rem
+                    z-index: 2
+                    color: var(--main)
+                    background-color: var(--assist-white)
+                    border-radius: 50%
+                    height: 1.7rem
+                    width: 1.7rem
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    padding-bottom: 0.1rem
+            
+.productCard 
+  border: none
+  overflow: hidden
+  position: relative
+  z-index: 1
+
+.productFavorit
+    cursor: pointer
+
+    position: absolute
+    z-index: 1
+    top: 0.5rem
+    right: 0.5rem
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 50%
+    background-color: var(--bg-main)
+    padding: 0.7rem 0.7rem 0.6rem 0.7rem
+    svg
+        color: var(--main-dark)
+        height: 1.2rem
+        width: 1.2rem
+        transition: scale 300ms
+        &:hover
+            transform: scale(1.2)
+        
+
+.productCardImg 
+  height: 13rem
+  object-fit: cover
+
+.productCardBody
+  padding: 1.4rem 1.8rem
+
+.productName
+  cursor: default
+  color: var(--main-dark)
+  font-weight: 500
+
+.productBrief
+  cursor: default
+  color: var(--assist-gray)
+
+.productcardBottom
+  width: 100%
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.productPrice 
+  cursor: default
+  color: var(--main-dark)
+  margin: 0
+
+.productAddCart 
+  cursor: pointer
+  svg
+    color: var(--main-dark)
+

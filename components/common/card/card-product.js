@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
-import noImage from '@/public/img/no-image.jpg'
-import styles from '@/components/common/card/card-product.module.css'
+import noImage from '@/public/img/fake-data/no-image.jpg'
+import { BsCart, BsCartPlus, BsHeartFill, BsHeart } from 'react-icons/bs'
 
 export default function CardProduct({
   productFavorit = false,
@@ -9,24 +9,42 @@ export default function CardProduct({
   productName = '商品名稱',
   productCategory = ['分類1', '分類2'],
   productBrief = '商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述',
-  productPrice = '商品價格',
+  productPrice = '$1234',
 }) {
-  const [errorMessage, setErrorMessage] = useState('\u00A0') // 錯誤訊息用 // \u00A0 為會佔空間的空白，如果設空字串排版會爛掉
+  const [favorit, setFavorit] = useState(productFavorit)
+  const changeFavorit = (event) => {
+    setFavorit(!favorit)
+  }
 
   return (
-    <div className="col-lg-4 col-md-6 col-12">
-      <div className={`${styles.productCard} card`}>
-        <Image
-          src={noImage}
-          className={`card-img-top w-100 ${styles.productCardImg}`}
-          alt="..."
-        ></Image>
-        <div className={`card-body ${styles.productCardBody}`}>
-          <p className={`${styles.productName}`}>{productName}</p>
-          <p className={`${styles.productBrief} small-font`}>{productBrief}</p>
-          <div className={`${styles.cardBottom}`}></div>
+    <>
+      <div className="col-lg-4 col-md-6 col-12">
+        <div className="productCard card">
+          <div
+            className="productFavorit"
+            onClick={() => {
+              changeFavorit()
+            }}
+          >
+            {favorit ? <BsHeartFill></BsHeartFill> : <BsHeart></BsHeart>}
+          </div>
+          <Image
+            src={noImage}
+            className="card-img-top w-100 productCardImg"
+            alt="..."
+          ></Image>
+          <div className="card-body styles.productCardBody">
+            <p className="productName nav-font">{productName}</p>
+            <p className="productBrief">{productBrief}</p>
+            <div className="productcardBottom">
+              <p className="productPrice nav-font">{productPrice}</p>
+              <div className="productAddCart">
+                <BsCartPlus className="nav-font"></BsCartPlus>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

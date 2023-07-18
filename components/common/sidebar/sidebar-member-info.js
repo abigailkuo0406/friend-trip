@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import persona from '@/assets/fake-data/fake-persona.png'
+import persona from '@/public/img/fake-data/fake-persona.png'
 import { BsPeople } from 'react-icons/bs'
 import { BsChatText } from 'react-icons/bs'
 import { BsCalendarCheck } from 'react-icons/bs'
