@@ -36,12 +36,12 @@ export default function RestaurantList(props) {
   //   const restMeal = props.meal
   //   console.log("渲染："+restName)
   // })
-  const router = useRouter()
+  // const router = useRouter()
   // 取得當頁動態編號
-  let rid = 0
-  if (router.query.rid != null) {
-    rid = router.query?.rid
-  }
+  // let rid = 0
+  // if (router.query.rid != null) {
+  //   rid = router.query?.rid
+  // }
   // 取得餐廳資料細項
   const restName = props.title
 
@@ -101,8 +101,6 @@ export default function RestaurantList(props) {
             <div className={styles.imgClass}>
               <Image
                 src={`http://localhost:3002/restImg/${restImg}`}
-                
-                // src={props.img}
                 className={`rounded-start ${styles.img1}`}
                 width={200}
                 height={200}
@@ -113,8 +111,14 @@ export default function RestaurantList(props) {
           <div className="col-md-9">
             <div className="card-body">
               <h2 className="card-title">{restName}</h2>
-              {/* <i class="fa-regular fa-star"></i> */}
               <p className="card-text text-truncate my-4">{restIntro}</p>
+              <button
+                className="btn btn-primary"
+                data-bs-target="#exampleModalToggle"
+                data-bs-toggle="modal"
+              >
+                訂位
+              </button>
 
               <div
                 className="modal fade"
@@ -126,10 +130,6 @@ export default function RestaurantList(props) {
                 <div className="modal-dialog modal-dialog-centered modal-fullscreen ">
                   <div className="modal-content ">
                     <div className="modal-header">
-                      {/* <h1 className="modal-title fs-5" id="exampleModalToggleLabel">
-                Modal 1
-              </h1> */}
-
                       {/* 關閉按鈕 */}
                       <button
                         type="button"
@@ -145,7 +145,7 @@ export default function RestaurantList(props) {
                         {/*左方標題列 */}
                         <div className="d-flex">
                           <h2>{restName}</h2>
-                          {console.log('aa:' + restName)}
+                          {/* {console.log('aa:' + restName)} */}
                           <div>星星</div>
                         </div>
 
@@ -240,153 +240,7 @@ export default function RestaurantList(props) {
                           ></Button>
                         </form>
                       </div>
-
-                      {/* 照片區 */}
-                      <div>
-                        <div
-                          id="carouselExampleIndicators"
-                          className="carousel slide"
-                        >
-                          <div className="carousel-indicators">
-                            <button
-                              type="button"
-                              data-bs-target="#carouselExampleIndicators"
-                              data-bs-slide-to="0"
-                              className="active"
-                              aria-current="true"
-                              aria-label="Slide 1"
-                            ></button>
-                            <button
-                              type="button"
-                              data-bs-target="#carouselExampleIndicators"
-                              data-bs-slide-to="1"
-                              aria-label="Slide 2"
-                            ></button>
-                            <button
-                              type="button"
-                              data-bs-target="#carouselExampleIndicators"
-                              data-bs-slide-to="2"
-                              aria-label="Slide 3"
-                            ></button>
-                          </div>
-
-                          <div className="carousel-inner">
-                            <div className="carousel-item active">
-                              <Image
-                                // src=
-                                className="d-block w-100"
-                                alt="..."
-                                width={1000}
-                                height={200}
-                              />
-                            </div>
-                            <div className="carousel-item">
-                              <img
-                                src="..."
-                                className="d-block w-100"
-                                alt="..."
-                              />
-                            </div>
-                            <div className="carousel-item">
-                              <img
-                                src="..."
-                                className="d-block w-100"
-                                alt="..."
-                              />
-                            </div>
-                          </div>
-                          <button
-                            className="carousel-control-prev"
-                            type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="prev"
-                          >
-                            <span
-                              className="carousel-control-prev-icon"
-                              aria-hidden="true"
-                            ></span>
-                            <span className="visually-hidden">Previous</span>
-                          </button>
-                          <button
-                            className="carousel-control-next"
-                            type="button"
-                            data-bs-target="#carouselExampleIndicators"
-                            data-bs-slide="next"
-                          >
-                            <span
-                              className="carousel-control-next-icon"
-                              aria-hidden="true"
-                            ></span>
-                            <span className="visually-hidden">Next</span>
-                          </button>
-                        </div>
-                      </div>
                     </div>
-
-                    {/* 評論 */}
-                    <div className="container">
-                      <div id="carouselExample" className="carousel slide">
-                        <div className="carousel-inner">
-                          <div className="carousel-item active">
-                            <Comment
-                              memberId={comment[0].member_id}
-                              comment={comment[0].ComtText}
-                              star={comment[0].RestStarP}
-                            />
-                          </div>
-                          {comment.map((c, i) => {
-                            {
-                              /* console.log(c) */
-                            }
-                            return (
-                              <div className="carousel-item" key={i}>
-                                <Comment
-                                  memberId={c.member_id}
-                                  comment={c.ComtText}
-                                  star={c.RestStarP}
-                                />
-                              </div>
-                            )
-                          })}
-                        </div>
-                        <button
-                          className="carousel-control-prev"
-                          type="button"
-                          data-bs-target="#carouselExample"
-                          data-bs-slide="prev"
-                        >
-                          <span
-                            className="carousel-control-prev-icon"
-                            aria-hidden="true"
-                          ></span>
-                          <span className="visually-hidden">Previous</span>
-                        </button>
-                        <button
-                          className="carousel-control-next"
-                          type="button"
-                          data-bs-target="#carouselExample"
-                          data-bs-slide="next"
-                        >
-                          <span
-                            className="carousel-control-next-icon"
-                            aria-hidden="true"
-                          ></span>
-                          <span className="visually-hidden">Next</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* footer */}
-                    {/* <div className="modal-footer">
-              <button
-                className="btn btn-primary"
-                data-bs-target="#exampleModalToggle2"
-                data-bs-toggle="modal"
-              >
-                邀請好友
-              </button>
-              <button>訂位</button>
-            </div> */}
                   </div>
                 </div>
               </div>
@@ -448,13 +302,6 @@ export default function RestaurantList(props) {
                 </div>
               </div>
 
-              <button
-                className="btn btn-primary"
-                data-bs-target="#exampleModalToggle"
-                data-bs-toggle="modal"
-              >
-                訂位
-              </button>
               {/* <p className="card-text"> */}
               {/* 導入動態路由網址 */}
               {/* <button
