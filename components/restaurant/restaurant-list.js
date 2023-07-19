@@ -145,7 +145,7 @@ export default function RestaurantList(props) {
                         {/*左方標題列 */}
                         <div className="d-flex">
                           <h2>{restName}</h2>
-                          {/* {console.log('aa:' + restName)} */}
+                          {console.log('aa:' + restName)}
                           <div>星星</div>
                         </div>
 

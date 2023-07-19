@@ -2,21 +2,21 @@
     {
         "FriendID": 1,
         "FriendName": "Alex",
-        "FriendImg": "@/assets/restaurant/rest-img-1-a.jpg"
+        "FriendImg": "/face/face1.png"
     },
     {
         "FriendID": 2,
         "FriendName": "John",
-        "FriendImg": "@/assets/restaurant/rest-img-1-b.jpg"
+        "FriendImg": "/face/face2.png"
     },
     {
         "FriendID": 3,
         "FriendName": "Cindy",
-        "FriendImg": "@/assets/restaurant/rest-img-1-c.jpg"
+        "FriendImg": "/face/face3.png"
     },
     {
         "FriendID": 4,
         "FriendName": "Amy",
-        "FriendImg": "@/assets/restaurant/rest-img-1-d.jpg"
+        "FriendImg": "/face/face4.png"
     }
 ]

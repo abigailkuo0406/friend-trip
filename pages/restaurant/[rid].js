@@ -47,8 +47,6 @@ export default function RestItem() {
   const restclassName = restaurant[rid]?.RestclassName ?? ''
   const restMeal = restaurant[rid]?.RestMeal ?? ''
 
-  
-
   //預設訂位日期
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
   const [reserveTimeInputName, setReserveTimeInputName] = useState('')
@@ -65,23 +63,44 @@ export default function RestItem() {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(
-      '訂位日期',
-      reserveDateInputVale,
-      '，name為:',
-      reserveDateInputName
-    )
-    console.log(
-      '訂位時間:',
-      reserveTimeInputLabel + ' ，value 為：',
-      reserveTimeInputValue + ' ，name 為：',
-      reserveTimeInputName
-    )
-    console.log(
-      '訂位人數：',
-      reservePeopleNumValue + ' ，name 為：',
-      reservePeopleNumName
-    )
+    // console.log(
+    //   '訂位日期',
+    //   reserveDateInputVale,
+    //   '，name為:',
+    //   reserveDateInputName
+    // )
+    // console.log(
+    //   '訂位時間:',
+    //   reserveTimeInputLabel + ' ，value 為：',
+    //   reserveTimeInputValue + ' ，name 為：',
+    //   reserveTimeInputName
+    // )
+    // console.log(
+    //   '訂位人數：',
+    //   reservePeopleNumValue + ' ，name 為：',
+    //   reservePeopleNumName
+    // )
+    const fd = new FormData(document.restaurant_addform)
+    // ******** 轉換成 Object
+    const dataObj = {}
+    for (let [k, v] of fd.entries()) {
+      console.log({ k, v })
+      dataObj[k] = v
+    }
+    console.log(dataObj)
+
+    // ******** 轉換成 urlencoded
+    // const usp = new URLSearchParams(fd)
+    // console.log(usp.toString())
+
+    fetch('http://localhost:3002/restaurant', {
+      method: 'POST',
+      body: fd,
+    })
+      .then((r) => r.json())
+      .then((obj) => {
+        console.log(obj)
+      })
   }
 
   return (
@@ -137,11 +156,11 @@ export default function RestItem() {
                   <p>{restIntro}</p>
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                <form name="restaurant_addform" onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <DateInput
                       id="reserveDate"
-                      name="reserveDate"
+                      name="reserve_date"
                       label="訂位日期"
                       getValue={setReserveDateInputValue}
                       getName={setReserveDateInputName}
@@ -156,7 +175,7 @@ export default function RestItem() {
                     <label>訂位時間</label>
                     <RadioGropuInput
                       label="訂位時間"
-                      name="reserveTime"
+                      name="reserve_time"
                       // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
                       idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
                       valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
@@ -216,7 +235,7 @@ export default function RestItem() {
                     <NumberInput
                       id="PeopleNum"
                       label="訂位人數"
-                      name="PeopleNum"
+                      name="reserve_people"
                       placeholder="請選擇人數"
                       value={0} // 預設數字
                       max={4} // 最大可選數字
@@ -421,9 +440,7 @@ export default function RestItem() {
                 {friends.map((v, i) => {
                   return (
                     <div key={i}>
-                      <Invite
-                        name={v.FriendName}
-                      />
+                      <Invite name={v.FriendName} img={v.FriendImg} />
                     </div>
                   )
                 })}
@@ -441,7 +458,7 @@ export default function RestItem() {
           </div>
         </div>
       </div>
-      
+
       <button
         className="btn btn-primary"
         data-bs-target="#exampleModalToggle"
