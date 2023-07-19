@@ -82,16 +82,6 @@ export default function RestItem() {
     // )
     const fd = new FormData(document.restaurant_addform)
     // ******** 轉換成 Object
-    const dataObj = {}
-    for (let [k, v] of fd.entries()) {
-      console.log({ k, v })
-      dataObj[k] = v
-    }
-    console.log(dataObj)
-
-    // ******** 轉換成 urlencoded
-    // const usp = new URLSearchParams(fd)
-    // console.log(usp.toString())
 
     fetch('http://localhost:3002/restaurant', {
       method: 'POST',
@@ -157,6 +147,10 @@ export default function RestItem() {
                 </div>
 
                 <form name="restaurant_addform" onSubmit={handleSubmit}>
+                  <input name='member_id' value="1" hidden />
+
+                  <input name="rest_id" value={rid} hidden />
+
                   <div className="mb-3">
                     <DateInput
                       id="reserveDate"

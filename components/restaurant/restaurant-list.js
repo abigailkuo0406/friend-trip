@@ -17,42 +17,18 @@ import Comment from '@/components/restaurant/comment'
 
 // 引入朋友假資料
 import friends from '@/data/restaurant/friend-list.json'
-// 引入餐廳假資料
-import restaurant from '@/data/restaurant/rest-detail.json'
-// 引入評論假資料
-import comment from '@/data/restaurant/comment.json'
 
-// import A from '@/assets/rest-img/rest-img-1-c.jpg'
-
-export default function RestaurantList(props) {
-  // useEffect(() => {
-  //   const restName = props.title
-
-  //   const restPhone = props.phone
-  //   const restAddress = props.address
-  //   const restTime = props.time
-  //   const restIntro = props.details
-  //   const restClass = props.class
-  //   const restMeal = props.meal
-  //   console.log("渲染："+restName)
-  // })
-  // const router = useRouter()
-  // 取得當頁動態編號
-  // let rid = 0
-  // if (router.query.rid != null) {
-  //   rid = router.query?.rid
-  // }
-  // 取得餐廳資料細項
-  const restName = props.title
-
-  const restPhone = props.phone
-  const restAddress = props.address
-  const restTime = props.time
-  const restIntro = props.details
-  const restClass = props.class
-  const restMeal = props.meal
-  const restImg = props.img
-
+export default function RestaurantList({
+  restName,
+  restPhone,
+  restAddress,
+  restTime,
+  restIntro,
+  restClass,
+  restMeal,
+  restImg,
+  restRid,
+}) {
   const [valueFromInvites, setValueFromInvite] = useState('')
   // 回乎函數，接收邀請元件的傳值
   const handleValueChange = (value) => {
@@ -75,23 +51,17 @@ export default function RestaurantList(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(
-      '訂位日期',
-      reserveDateInputVale,
-      '，name為:',
-      reserveDateInputName
-    )
-    console.log(
-      '訂位時間:',
-      reserveTimeInputLabel + ' ，value 為：',
-      reserveTimeInputValue + ' ，name 為：',
-      reserveTimeInputName
-    )
-    console.log(
-      '訂位人數：',
-      reservePeopleNumValue + ' ，name 為：',
-      reservePeopleNumName
-    )
+
+    const formData = new FormData(document.getElementById('restaurant_addform'))
+
+    fetch('http://localhost:3002/restaurant', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((r) => r.json)
+      .then((data) => {
+        console.log(data)
+      })
   }
   return (
     <>
@@ -114,7 +84,7 @@ export default function RestaurantList(props) {
               <p className="card-text text-truncate my-4">{restIntro}</p>
               <button
                 className="btn btn-primary"
-                data-bs-target="#exampleModalToggle"
+                data-bs-target={`#exampleModalToggle${restRid}`}
                 data-bs-toggle="modal"
               >
                 訂位
@@ -122,7 +92,7 @@ export default function RestaurantList(props) {
 
               <div
                 className="modal fade"
-                id="exampleModalToggle"
+                id={`exampleModalToggle${restRid}`}
                 aria-hidden="true"
                 aria-labelledby="exampleModalToggleLabel"
                 tabindex="-1"
@@ -145,7 +115,6 @@ export default function RestaurantList(props) {
                         {/*左方標題列 */}
                         <div className="d-flex">
                           <h2>{restName}</h2>
-                          {console.log('aa:' + restName)}
                           <div>星星</div>
                         </div>
 
@@ -168,26 +137,26 @@ export default function RestaurantList(props) {
                           <p>{restIntro}</p>
                         </div>
 
-                        <form onSubmit={handleSubmit}>
+                        <form id="restaurant_addform" onSubmit={handleSubmit}>
+                          <input name="member_id" value="1" />
+                          <input name="rest_id" value={restRid} />
+
                           <div className="mb-3">
                             <DateInput
                               id="reserveDate"
-                              name="reserveDate"
+                              name="reserve_date"
                               label="訂位日期"
                               getValue={setReserveDateInputValue}
                               getName={setReserveDateInputName}
                               getLabel={setReserveDateInputLabel}
                               // minDate='2023-12-16'
                             />
-                            {/* <label>訂位日期</label>
-                    <input type="date" value="2023-07-18"/> */}
                           </div>
 
                           <div className="mb-3">
-                            <label>訂位時間</label>
                             <RadioGroupInput
                               label="訂位時間"
-                              name="reserveTime"
+                              name="reserve_time"
                               // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
                               idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
                               valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
@@ -206,7 +175,7 @@ export default function RestaurantList(props) {
                             <NumberInput
                               id="PeopleNum"
                               label="訂位人數"
-                              name="PeopleNum"
+                              name="reserve_people"
                               placeholder="請選擇人數"
                               value={0} // 預設數字
                               max={4} // 最大可選數字
@@ -228,7 +197,7 @@ export default function RestaurantList(props) {
                           </div>
                           <Button
                             btnText="邀請好友"
-                            bsModle1="#exampleModalToggle2"
+                            bsModle1="#exampleModalToggleSecond"
                             bsModle2="modal"
                           />
                           <Button
@@ -248,7 +217,7 @@ export default function RestaurantList(props) {
               {/* 第二層Modal */}
               <div
                 className="modal fade"
-                id="exampleModalToggle2"
+                id="exampleModalToggleSecond"
                 aria-hidden="true"
                 aria-labelledby="exampleModalToggleLabel2"
                 tabindex="-1"
@@ -292,7 +261,7 @@ export default function RestaurantList(props) {
                     <div className="modal-footer">
                       <button
                         className="btn btn-primary"
-                        data-bs-target="#exampleModalToggle"
+                        data-bs-target={`#exampleModalToggle${restRid}`}
                         data-bs-toggle="modal"
                       >
                         回上一頁
@@ -306,8 +275,8 @@ export default function RestaurantList(props) {
               {/* 導入動態路由網址 */}
               {/* <button
                   type="button"
-                  id={props.rid}
-                  onClick={() => router.push('restaurant/' + props.rid)}
+                  id={props.restrid}
+                  onClick={() => router.push('restaurant/' + props.restrid)}
                 >
                   訂位 */}
               {/* </button> */}

@@ -43,15 +43,15 @@ export default function Rest() {
           return (
             <div key={v.RestID}>
               <RestaurantList
-                img={v.RestImg}
-                title={v.RestName}
-                details={v.RestIntro}
-                rid={v.RestID}
-                address={v.RestAdress}
-                phone={v.RestPhone}
-                time={v.RestTime}
-                meal={v.RestMeal}
-                class={v.RestClass}
+                restImg={v.RestImg}
+                restName={v.RestName}
+                restIntro={v.RestIntro}
+                restRid={v.RestID}
+                restAddress={v.RestAdress}
+                restPhone={v.RestPhone}
+                restTime={v.RestTime}
+                restMeal={v.RestMeal}
+                restClass={v.RestClass}
 
 
               />
