@@ -21,10 +21,14 @@ export default function ArrangeSchedule() {
   // 存儲選擇的景點資訊
   const [selectedView, setSelectedView] = useState(null)
 
+  const[selectedLocations,setSelectedLocations]=useState([])
 
-  const handleAddScenery = () => {
+  const handleAddScenery = (selectedView) => {
+    setSelectedView(selectedView)
     setShowSchedule(false)
     setShowSearchView(true)
+
+    setSelectedLocations((prevLocations)=>[...prevLocations,selectedView])
   }
   const handleGoBack = () => {
     setShowSearchView(false)
@@ -78,7 +82,7 @@ export default function ArrangeSchedule() {
       {/* {console.log('searchLngLat:',searchLngLat)} */}
       {console.log(showSchedule)}
       {showSchedule ? (
-        <ScheduleSide onClick={handleAddScenery} />
+        <ScheduleSide onClick={handleAddScenery} selectedLocations={selectedLocations}/>
       ) : (
         <Autocomplete
           onLoad={(autocomplete) => {

@@ -13,11 +13,19 @@ import BtnNormal from '@/components/common/button/btn-normal'
 // import styles from './arrange-schedule.module.scss'
 
 export default function ScheduleSide({ onClick }) {
+  
   const [showSearchView, setShowSearchView] = useState(true)
 
+  const [selectedView,setSelectedView]=useState(null)
+
   const handleAddSceneryClick = () => {
-    setShowSearchView(true)
+    setShowSearchView(true);
   }
+
+  const handleAddToItinerary =(spotInfo)=>{
+    selectedView(spotInfo)
+  }
+
   return (
     <>
       <div className="itineraryContainer ">
@@ -65,13 +73,12 @@ export default function ScheduleSide({ onClick }) {
                   </div>
                   {/* 行程card */}
                   <div className="overflow-y-auto" style={{ height: 520 }}>
-                    {Array(5)
-                      .fill(1)
-                      .map((v, i) => {
-                        return <InitCard key={i} />
-                      })}
+                  {console.log('selectedView card=>',selectedView)}
+                  
+                  <InitCard selectedView={selectedView}/>
+                    
                     <div className="mx-5">
-                      <button className={`btn ${styles.addbtn}`} onClick={onClick}>
+                      <button className={`btn ${styles.addbtn}`} onClick={onClick} >
                         <BsPlusLg />
                         新增行程
                       </button>

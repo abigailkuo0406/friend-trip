@@ -6,12 +6,18 @@ import { BiSearchAlt, BiMap } from 'react-icons/bi'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
 import { BsFillTelephoneFill } from 'react-icons/bs'
+import Button from '@/components/common/button/btn-normal'
 
 export default function SearchView({
   inputValue,
   onInputChange,
   selectedView,
-}) {
+}) 
+//將加入行程景點存取在狀態中
+{
+  const addToItinerary=(selectedView)=>{
+    console.log('selected View',selectedView)
+  }
   return (
     <>
       <div className="itineraryContainer ">
@@ -83,11 +89,12 @@ export default function SearchView({
                               <div>
                                 <IoTimeOutline className="align-self-start " />
                                 <div className="mx-5">
-                                  {selectedView.weekday_text.map(
-                                    (time, index) => {
-                                      return <span key={index}>{time}</span>
-                                    }
-                                  )}
+                                  {selectedView.weekday_text &&
+                                    selectedView.weekday_text.map(
+                                      (time, index) => {
+                                        return <span key={index}>{time}</span>
+                                      }
+                                    )}
                                 </div>
                               </div>
                             </li>
@@ -98,10 +105,15 @@ export default function SearchView({
                             <div className="d-flex mx-2">
                               <button
                                 type="button"
-                                className="btn btn-secondary mx-2"
+                                className="btn btn-dark"
+                                onClick={()=>{
+                                  addToItinerary(selectedView)
+                                }}
                               >
-                                儲存景點
+                                加入行程
                               </button>
+                           
+
                               <button type="button" className="btn btn-primary">
                                 加入收藏
                               </button>
