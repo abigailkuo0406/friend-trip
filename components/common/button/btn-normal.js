@@ -8,6 +8,7 @@ export default function BtnNormal({
   addIMGRight = '',
   addClassforButton = 'btn-dark',
   disabled = false,
+  onClick,
   href = '',
   target = '',
 }) {
@@ -21,6 +22,7 @@ export default function BtnNormal({
         value={value}
         className={`btn ${addClassforButton}`}
         disabled={disabled}
+        onClick={onClick}
       >
         {addIMGLeft}
         <span>{btnText}</span>

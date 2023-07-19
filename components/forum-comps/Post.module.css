@@ -22,3 +22,9 @@
   cursor: pointer;
   color: gray;
 }
+.commentInput {
+  border: none;
+}
+.commentInput:focus {
+  outline: none;
+}
