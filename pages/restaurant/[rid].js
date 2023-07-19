@@ -47,11 +47,7 @@ export default function RestItem() {
   const restclassName = restaurant[rid]?.RestclassName ?? ''
   const restMeal = restaurant[rid]?.RestMeal ?? ''
 
-  const [valueFromInvites, setValueFromInvite] = useState('')
-  // 回乎函數，接收邀請元件的傳值
-  const handleValueChange = (value) => {
-    setValueFromInvite(value)
-  }
+  
 
   //預設訂位日期
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
@@ -419,7 +415,6 @@ export default function RestItem() {
             <div className="modal-body">
               <h1>邀請列表</h1>
               <ul id="inviteList"></ul>
-              <li>{valueFromInvites}</li>
 
               <h1>朋友列表</h1>
               <ul id="friendsList" className="list">
@@ -428,7 +423,6 @@ export default function RestItem() {
                     <div key={i}>
                       <Invite
                         name={v.FriendName}
-                        onValueChange={handleValueChange}
                       />
                     </div>
                   )
