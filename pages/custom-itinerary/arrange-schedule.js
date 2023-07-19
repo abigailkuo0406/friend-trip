@@ -10,8 +10,9 @@ import SearchView from '@/components/custom-itinerary/arrange-schedule/search-vi
 
 export default function ArrangeSchedule() {
 
-  const [showSchedule, setShowSchedule] = useState(true)
+  const [showSchedule, setShowSchedule] = useState(true) //
   const [showSearchView, setShowSearchView] = useState(false)
+  const [addToSchedule,setAddToSchedule]=useState(false)
   const [inputValue, setInputValue] = useState('')
 
   const autocompleteRef = useRef(null)
@@ -23,20 +24,36 @@ export default function ArrangeSchedule() {
 
   const[selectedLocations,setSelectedLocations]=useState([])
 
-  const handleAddScenery = (selectedView) => {
-    setSelectedView(selectedView)
-    setShowSchedule(false)
-    setShowSearchView(true)
 
-    setSelectedLocations((prevLocations)=>[...prevLocations,selectedView])
+  const handleAddScenery = () => {
+    setShowSchedule(false)
+    // setShowSearchView(true)
+    // console.log('handleAddScenery showSchedule:',showSchedule)
+    // console.log('InhandleAddScenery ShowSearchView:',showSearchView)
   }
-  const handleGoBack = () => {
-    setShowSearchView(false)
+
+  const handleAddToSchedule = () => {
+    // console.log('handleGoBack go go go ')
+    // console.log('before change AddToSchedule',addToSchedule)
+    // console.log('before change ShowSearchView',showSearchView)
+    // setShowSearchView(false)
+    // setAddToSchedule(true)
     setShowSchedule(true)
+    console.log('handleAddToSchedule selectedView=>',selectedView)
+    setSelectedView(selectedView)
+
   }
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value)
   }
+
+  // const handleAddSceneryClick = () => {
+  //   setShowSchedule(false)
+  //   setShowSearchView(true)
+  //   setSelectedView(null)
+  // };
+
 
   //初始地圖位置
   const [center, setCenter] = useState({
@@ -78,11 +95,12 @@ export default function ArrangeSchedule() {
  
 
   return (
+
     <>
       {/* {console.log('searchLngLat:',searchLngLat)} */}
-      {console.log(showSchedule)}
+
       {showSchedule ? (
-        <ScheduleSide onClick={handleAddScenery} selectedLocations={selectedLocations}/>
+        <ScheduleSide changeToSearch={handleAddScenery}  selectedView={selectedView}/>
       ) : (
         <Autocomplete
           onLoad={(autocomplete) => {
@@ -101,18 +119,21 @@ export default function ArrangeSchedule() {
               'rating',
             ],
           }}
-        >
+        > 
           <SearchView 
-          onClick={handleGoBack} 
+          changeToAddSchedule={handleAddToSchedule} 
           inputValue={inputValue}
           onInputChange={handleInputChange}
           searchLngLat={searchLngLat}
           setSearchLngLat={setSearchLngLat}
           autocompleteRef={autocompleteRef}
-          selectedView={selectedView}
-          />
+          selectedView={selectedView}/>
+          
         </Autocomplete>
       )}
+      {console.log('Initial showSchedule:',showSchedule)}
+      {console.log('Initial ShowSearchView:',showSearchView)}
+
       <Map searchLngLat={searchLngLat}/>
     </>
   )

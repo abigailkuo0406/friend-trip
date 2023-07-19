@@ -1,3 +1,4 @@
+import { useState,useEffect } from 'react'
 import styles from './arrange-schedule.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -6,18 +7,15 @@ import { BiSearchAlt, BiMap } from 'react-icons/bi'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
 import { BsFillTelephoneFill } from 'react-icons/bs'
-import Button from '@/components/common/button/btn-normal'
 
 export default function SearchView({
   inputValue,
   onInputChange,
   selectedView,
-}) 
-//將加入行程景點存取在狀態中
-{
-  const addToItinerary=(selectedView)=>{
-    console.log('selected View',selectedView)
-  }
+  changeToAddSchedule
+}) {
+
+
   return (
     <>
       <div className="itineraryContainer ">
@@ -106,14 +104,10 @@ export default function SearchView({
                               <button
                                 type="button"
                                 className="btn btn-dark"
-                                onClick={()=>{
-                                  addToItinerary(selectedView)
-                                }}
+                                onClick={changeToAddSchedule}
                               >
                                 加入行程
                               </button>
-                           
-
                               <button type="button" className="btn btn-primary">
                                 加入收藏
                               </button>

@@ -9,25 +9,24 @@ import { FaRegEdit } from 'react-icons/fa'
 import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
-import BtnNormal from '@/components/common/button/btn-normal'
-// import styles from './arrange-schedule.module.scss'
 
-export default function ScheduleSide({ onClick }) {
+
+
+export default function ScheduleSide({ changeToSearch,selectedView }) {
   
-  const [showSearchView, setShowSearchView] = useState(true)
+  // const [showSearchView, setShowSearchView] = useState(null)
 
-  const [selectedView,setSelectedView]=useState(null)
+  //const [selectedView,setSelectedView]=useState(null)
+  console.log('ScheduleSide   selectedView=>',selectedView)
+  // const handleAddSceneryClick = () => {
+  //   console.log('son 1 setShowSearchView:',showSearchView)
+  //   setShowSearchView(true);
+  // }
 
-  const handleAddSceneryClick = () => {
-    setShowSearchView(true);
-  }
-
-  const handleAddToItinerary =(spotInfo)=>{
-    selectedView(spotInfo)
-  }
 
   return (
     <>
+    
       <div className="itineraryContainer ">
         <div className="mapCanvas position-absolute z-3 ">
           {/* sidebar */}
@@ -73,12 +72,11 @@ export default function ScheduleSide({ onClick }) {
                   </div>
                   {/* 行程card */}
                   <div className="overflow-y-auto" style={{ height: 520 }}>
-                  {console.log('selectedView card=>',selectedView)}
                   
                   <InitCard selectedView={selectedView}/>
                     
                     <div className="mx-5">
-                      <button className={`btn ${styles.addbtn}`} onClick={onClick} >
+                      <button className={`btn ${styles.addbtn}`} onClick={changeToSearch} >
                         <BsPlusLg />
                         新增行程
                       </button>
