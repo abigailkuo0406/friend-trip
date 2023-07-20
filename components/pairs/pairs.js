@@ -4,6 +4,8 @@ import Face from '@/public/img/avatar/face/face52.png'
 import Image from 'next/image'
 import { TbZodiacLeo } from 'react-icons/tb'
 import Logo from '@/public/FriendTrip-Logo.png'
+import PairBtns from '@/components/pairs/pairs-button'
+import PairBtns2 from '@/components/pairs/pairs-button2'
 
 export default function Pairs() {
   return (
@@ -36,14 +38,8 @@ export default function Pairs() {
             </p>
           </div>{' '}
         </div>
-        <div className="d-flex justify-content-center gap-5 mt-3">
-          <button type="button" href="#" className={styles.button}>
-            <i className="fa-solid fa-xmark"></i>
-          </button>
-          <button type="button" href="#" className={styles.button}>
-            <i className="fa-solid fa-heart"></i>
-          </button>
-        </div>
+        <PairBtns />
+        <PairBtns2 />
       </div>
     </>
   )

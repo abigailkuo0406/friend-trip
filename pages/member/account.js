@@ -5,7 +5,9 @@ import AdminLayout from '@/components/layout/admin-layout'
 export default function Friendhome2() {
   return (
     <>
-      <Friend />
+      <div className="d-flex justify-content-center">
+        <Friend />
+      </div>
     </>
   )
 }

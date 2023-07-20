@@ -3,9 +3,11 @@
     justify-content: center;
 }
 .main {
-    width: 400px;
-    height: 200px;
+    width: 546px;
+    height: 325px;
     background-color: white;
+    padding: 20px;
+    border-radius: 20px;
 }
 .btns{
     display: flex;

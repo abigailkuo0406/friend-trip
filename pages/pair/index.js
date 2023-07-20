@@ -4,7 +4,9 @@ import Pairs from '@/components/pairs/pairs'
 export default function PairsIndex() {
   return (
     <>
-      <Pairs />
+      <div className="d-flex justify-contents-center">
+        <Pairs />
+      </div>
     </>
   )
 }

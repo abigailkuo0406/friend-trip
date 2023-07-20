@@ -30,7 +30,7 @@ export default function Edit() {
             <div className={styles.bread2}></div>
           </div>
           <div>
-            <h2 className={styles.title}>*深入資料</h2>
+            <h2 className={styles.title}>個人資料修改</h2>
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
@@ -171,30 +171,12 @@ export default function Edit() {
             />
           </div>
           <div className={styles.inputstyle}>
-            <InputTextDouble
-              /* 第一個 input */
-              id1="ID1"
-              name1="name1"
-              label1="問題1"
-              value1="預設1" // 預設文字
-              width1="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-              addClassforLabel1="" // 如果要在 label 添加 class
-              addClassforInput1="" // 如果要在 input 添加 class
-              getValue1={setInputValue1} // 獲取填寫的數值
-              getName1={setInputName1} // 獲取 name
-              required1={true} // true：必填，false：非必填
-              /* 第二個 input */
-              id2="ID2"
-              name2="name2"
-              label2="問題2"
-              value2="預設2" // 預設文字
-              width2="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-              addClassforLabel2="classTest1" // 如果要在 label 添加 class
-              addClassforInput2="classTest2" // 如果要在 input 添加 class
-              getValue2={setInputValue2} // 獲取填寫的數值
-              getName2={setInputName2} // 獲取 name
-              required2={true} // true：必填，false：非必填
-            ></InputTextDouble>
+            <InputText
+              label="手機"
+              getValue={() => 'whatever'}
+              getName={() => 'whatever'}
+              width="input-width-100pa"
+            ></InputText>
           </div>
           <div className="d-flex justify-content-end gap-3">
             <BtnNormal

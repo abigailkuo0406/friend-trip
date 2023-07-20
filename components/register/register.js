@@ -59,7 +59,7 @@ export default function RegisterCard() {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>會員生日</h5>
-            <input type="date"></input>
+            <input type="date" className="rounded"></input>
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>

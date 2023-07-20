@@ -4,7 +4,9 @@ import Edit from '@/components/edit/edit2'
 export default function EditHome() {
   return (
     <>
-      <Edit />
+      <div className="d-flex justify-content-center">
+        <Edit />
+      </div>
     </>
   )
 }

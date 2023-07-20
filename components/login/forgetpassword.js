@@ -25,7 +25,7 @@ function ForgetPassword() {
             </div>
           </div>
           <div
-            className={`d-flex justify-content-end gap-3 ${styles.buttongroup}`}
+            className={`d-flex justify-content-end gap-3 mt-4 ${styles.buttongroup}`}
           >
             <BtnNormal btnText="取消" />
             <BtnNormal btnText="搜尋" addClassforButton="btn-light" />

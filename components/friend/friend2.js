@@ -10,7 +10,7 @@ export default function Friend() {
         <div className={styles.profileside}>
           <div className={styles.profile}>
             <div>
-              <h2>個人資料</h2>
+              <h2 className={styles.titlename}>個人資料</h2>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">身高</label>
@@ -67,7 +67,7 @@ export default function Friend() {
           </div>
           <div className={styles.friendsheet}>
             <div>
-              <h2>好友列表</h2>
+              <h2 className={styles.titlename}>好友列表</h2>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="n">我的好友</label>

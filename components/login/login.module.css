@@ -72,3 +72,6 @@
 .beside {
     color: var(--main-light);
 }
+.mainbackground {
+    background-color: var(--main-light);
+}

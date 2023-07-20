@@ -32,3 +32,7 @@
     border-radius: 15px;
     padding: 10px;
 }
+.titlename{
+    color: var(--main-dark);
+    font-weight: bold;
+}
