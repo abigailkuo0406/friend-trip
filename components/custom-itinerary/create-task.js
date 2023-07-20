@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
-import styles from './create-task.module.css'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import styles from './create-task.module.css'
+import Image from 'next/image'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { TbPhotoPlus } from 'react-icons/tb'
-import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import InputText from '../common/input/input-text'
 import AreaText from '../common/input/textarea'
 import InputRadio from '../common/input/input-radio-group'
@@ -39,7 +38,6 @@ export default function CreateTask() {
   const [inputNoteValue, setInputNoteValue] = useState('')
   const [inputNote, setInputNote] = useState('')
 
-
   //除錯用
   const [error8, setError8] = useState(false)
   const [errorTracker8, setErrorTracker8] = useState('')
@@ -55,63 +53,45 @@ export default function CreateTask() {
       return
     }
 
-    console.log('行程名稱：', inputSubjectValue)
-    console.log('出發日期：',inputDateValue)
-    console.log('說明：',inputDescriptionValue)
-    console.log('是否公開？',publicLabel+ ' ，value 為：',
-    publicValue + ' ，name 為：',
-    publicName)
-    console.log('人數：',peopleNumValue)
-    console.log('備註：',inputNoteValue)
+    // console.log('行程名稱：', inputSubjectValue)
+    // console.log('出發日期：',inputDateValue)
+    // console.log('說明：',inputDescriptionValue)
+    // console.log('是否公開？',publicLabel+ ' ，value 為：',
+    // publicValue + ' ，name 為：',
+    // publicName)
+    // console.log('人數：',peopleNumValue)
+    // console.log('備註：',inputNoteValue)
+
+    const formData = new FormData(document.getElementById('createInit'))
+
+    // API串接
+    fetch('http://localhost:3002/custom-itinerary', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+      })
   }
 
+  //照片
   const [files, setFiles] = useState([])
   const [fid, setFid] = useState(null)
   const handleSetFiles = (file, fid) => {
     console.log(file, fid)
     setFiles([...files, { file, fid }])
+
+
+  
   }
 
-  // const router = useRouter()
-  // // console.log(router)
-  // const [data, setData] = useState({
-  //   redirect: '',
-  //   totalRows: 0,
-  //   perPage: 4,
-  //   totalPages: 0,
-  //   page: 1,
-  //   rows: [],
-  // })
-
-  // const formData = {
-  //   img: '图片链接或数据', // 填充图片数据或链接
-  //   name: '行程名称',
-  //   date: '行程日期',
-  //   description: '行程描述',
-  // };
-  // const jsonData = JSON.stringify(formData);
-  // useEffect(() => {
-  //   const usp = new URLSearchParams(router.query)
-
-  // API串接
-  //   fetch('http://localhost:3002/itinerary ', {
-  //     method: 'POST',
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify
-  //   })
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       console.log(data)
-  //       setData(data)
-  //     })
-  // }, [])
+ 
 
   return (
     <>
       <article className="blog-post">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id="createInit" name="add">
           <div className="d-flex justify-content-center">
             <Link className={styles.link} href="/custom-itinerary">
               <FaArrowLeftLong />
@@ -126,7 +106,7 @@ export default function CreateTask() {
             <div className="container ">
               <InputText
                 id="inputSubject"
-                name=""
+                name="name"
                 label="行程名稱"
                 value="" // 預設文字
                 placeholder="請輸入"
@@ -136,31 +116,31 @@ export default function CreateTask() {
                 required={true} // true：必填，false：非必填
               ></InputText>
 
-                <InputDate
-                  id="inputDate"
-                  name="inputDate"
-                  label="出發日期"
-                  width="input-width-10rem"
-                  value={inputDateValue}
-                  getvalue={setInputDateVlaue}
-                  getname={setInputDate}
-                ></InputDate>
-    
-               <AreaText
+              <InputDate
+                id="inputDate"
+                name="date"
+                label="出發日期"
+                width="input-width-10rem"
+                value={inputDateValue}
+                // getvalue={setInputDateVlaue}
+                // getname={setInputDate}
+              ></InputDate>
+
+              <AreaText
                 id="description"
                 label="說明"
-                name=""
+                name="description"
                 value=""
                 placeholder="輸入文字啊"
-                width="input-width-100pa" 
+                width="input-width-100pa"
                 getValue={setInputDescriptionValue}
                 getName={setInputDescription}
                 required={true} // true：必填，false：非必填
               ></AreaText>
 
-               <InputRadio
+              <InputRadio
                 label="是否要公開？"
-                name="Public"
+                name="public"
                 // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
                 idGroup={['PublicID', 'nonPublicID']} // 個別 radio 的 ID
                 valueGroup={['publicValue', 'nonPublicValue']} // 個別 radio 的 name
@@ -171,11 +151,10 @@ export default function CreateTask() {
                 getLabel={setPublicLabel}
               ></InputRadio>
 
-
               <InputNumber
                 id="PeopleNum"
                 label="請選擇人數"
-                name="PeopleNum"
+                name="ppl"
                 placeholder="請選擇人數"
                 value={0} // 預設數字
                 max={99} // 最大可選數字
@@ -189,13 +168,10 @@ export default function CreateTask() {
                 addClassforInput="try2 test123" // 如果要在 input 添加 class
               ></InputNumber>
 
-
-
-
-          <AreaText
+              <AreaText
                 id="Area"
                 label="備註"
-                name="BIGTEXT"
+                name="note"
                 value=""
                 placeholder="輸入文字啊"
                 width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
@@ -204,25 +180,25 @@ export default function CreateTask() {
                 getValue={setInputNoteValue}
                 getName={setInputNote}
                 required={true} // true：必填，false：非必填
-              ></AreaText> 
-              {/* btn */}
-              <div className="d-flex justify-content-center mx-2">
-                <BtnNormal
-                  type="submit"
-                  value="submit"
-                  btnText="取消"
-                  addClassforButton="btn-white" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
-                  disabled={false} // fase：可點，true：不可點
-                ></BtnNormal>
-                <BtnNormal
-                  type="submit"
-                  value="submit"
-                  btnText="建立"
-                  addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
-                  disabled={false} // fase：可點，true：不可點
-                ></BtnNormal>
-              </div>
-            </div>
+              ></AreaText>
+          {/* btn */}
+          <div className="d-flex justify-content-center mx-2">
+            <BtnNormal
+              type="submit"
+              value="submit"
+              btnText="取消"
+              addClassforButton="btn-white" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+              disabled={false} // fase：可點，true：不可點
+            ></BtnNormal>
+            <BtnNormal
+              type="submit"
+              value="submit"
+              btnText="建立"
+              addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+              disabled={false} // fase：可點，true：不可點
+            ></BtnNormal>
+          </div>
+          </div>
           </div>
         </form>
       </article>
