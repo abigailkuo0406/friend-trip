@@ -1,3 +1,42 @@
+.card-pagination
+  .card-body
+    display: flex
+    justify-content: center
+    align-items: center
+    .pagination
+      width: 100%
+      margin: 0
+      display: flex
+      justify-content: space-between
+      .active 
+        > .page-link
+          background-color: var(--main-dark)
+          color: var(--assist-white)
+      .page-item
+        height: 1.8rem
+        width: 1.8rem
+        display: flex
+        align-items: center
+        justify-content: center
+      .page-link
+        color: var(--main)
+        margin: 0
+        padding: 0.4rem 0 0 0
+        height: 100%
+        width: 100%
+        text-align: center
+        line-height: 100%
+        border: none
+        border-radius: 50%
+        &:hover
+        &:focus
+          box-shadow: none
+    .active
+      .page-link
+    .pagination-icon
+      padding-top: 0.34rem
+
+  
 .ProductPageHeader
     margin-bottom: 2rem
     .ProductPageTitle
@@ -62,6 +101,7 @@
   overflow: hidden
   position: relative
   z-index: 1
+  height: 22.5rem
 
 .productFavorit
     cursor: pointer
@@ -84,28 +124,51 @@
         &:hover
             transform: scale(1.2)
         
-
-.productCardImg 
-  height: 13rem
-  object-fit: cover
+.productCardImgSection
+  width: 100%
+  height: 45%
+  .productCartImgLink
+    width: 100%
+    height: 100%
+    display: inline-block
+  .productCardImg
+    width: 100%
+    height: 100%
+    object-fit: cover
 
 .productCardBody
-  padding: 1.4rem 1.8rem
+  height: 55%
+  padding: 1rem 1.8rem 1.4rem 1.8rem
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  p
+    margin: 0
 
 .productName
-  cursor: default
   color: var(--main-dark)
   font-weight: 500
+  height: 2.2rem
+  line-height: 2.2rem
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
 
 .productBrief
   cursor: default
   color: var(--assist-gray)
+  min-height: 4.5rem
+  display: -webkit-box
+  overflow: hidden
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 3
 
 .productcardBottom
   width: 100%
   display: flex
   justify-content: space-between
   align-items: center
+  height: 2.2rem
 
 .productPrice 
   cursor: default

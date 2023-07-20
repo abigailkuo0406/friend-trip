@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+
 import noImage from '@/public/img/fake-data/no-image.jpg'
 import { BsCart, BsCartPlus, BsHeartFill, BsHeart } from 'react-icons/bs'
+
+import fakeIimg1 from '@/public/img/fake-data/fake-img-1.jpg'
+import fakeIimg2 from '@/public/img/fake-data/fake-img-2.jpg'
+import fakeIimg3 from '@/public/img/fake-data/fake-img-3.jpg'
 
 export default function CardProduct({
   productFavorit = false,
@@ -10,12 +17,14 @@ export default function CardProduct({
   productCategory = ['分類1', '分類2'],
   productBrief = '商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述',
   productPrice = '$1234',
+  productPost = '',
 }) {
   const [favorit, setFavorit] = useState(productFavorit)
   const changeFavorit = (event) => {
     setFavorit(!favorit)
   }
-
+  const router = useRouter()
+  const pathname = location.pathname
   return (
     <>
       <div className="col-lg-4 col-md-6 col-12">
@@ -28,13 +37,26 @@ export default function CardProduct({
           >
             {favorit ? <BsHeartFill></BsHeartFill> : <BsHeart></BsHeart>}
           </div>
-          <Image
-            src={noImage}
-            className="card-img-top w-100 productCardImg"
-            alt="..."
-          ></Image>
-          <div className="card-body styles.productCardBody">
-            <p className="productName nav-font">{productName}</p>
+          <div className="productCardImgSection">
+            <Link
+              className="productCartImgLink"
+              href={pathname + '/' + productPost}
+            >
+              <Image
+                src={fakeIimg1}
+                className="card-img-top productCardImg"
+                alt="..."
+              ></Image>
+            </Link>
+          </div>
+
+          <div className="card-body productCardBody">
+            <Link
+              className="productCartImgLink productName nav-font"
+              href={pathname + '/' + productPost}
+            >
+              {productName}
+            </Link>
             <p className="productBrief">{productBrief}</p>
             <div className="productcardBottom">
               <p className="productPrice nav-font">{productPrice}</p>

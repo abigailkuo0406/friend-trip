@@ -12324,6 +12324,9 @@ main > .row > div {
   margin: 5rem 0;
 }
 
+#Sidebar > div {
+  border-radius: 0;
+}
 #Sidebar > div:first-child {
   border-radius: 20px 20px 0 0;
 }
