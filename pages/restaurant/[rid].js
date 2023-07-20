@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { createContext } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -8,6 +8,8 @@ import NumberInput from '@/components/common/input/input-number'
 import RadioInput from '@/components/common/input/input-radio'
 import RadioGropuInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date'
+
+import p1 from '@/public/restimg/1a.jpg'
 
 // 引入邀請元件
 import Invite from '@/components/invite/invite'
@@ -92,6 +94,15 @@ export default function RestItem() {
         console.log(obj)
       })
   }
+  const InviteContext = createContext()
+  console.log(InviteContext)
+
+  const [invites, setInvites] = useState('AA')
+  console.log('1:' + invites)
+
+  // const handleClick = () => {
+  //   setInvites(v.FriendName)
+  // }
 
   return (
     <>
@@ -119,8 +130,8 @@ export default function RestItem() {
             </div>
 
             {/* modal body */}
-            <div className="d-flex mx-6">
-              <div className="modal-body">
+            <div className="d-flex mx-2 row">
+              <div className="modal-body col-5">
                 {/*左方標題列 */}
                 <div className="d-flex">
                   <h2>{restName}</h2>
@@ -147,7 +158,7 @@ export default function RestItem() {
                 </div>
 
                 <form name="restaurant_addform" onSubmit={handleSubmit}>
-                  <input name='member_id' value="1" hidden />
+                  <input name="member_id" value="1" hidden />
 
                   <input name="rest_id" value={rid} hidden />
 
@@ -156,8 +167,8 @@ export default function RestItem() {
                       id="reserveDate"
                       name="reserve_date"
                       label="訂位日期"
-                      getValue={setReserveDateInputValue}
-                      getName={setReserveDateInputName}
+                      getvalue={setReserveDateInputValue}
+                      getname={setReserveDateInputName}
                       getLabel={setReserveDateInputLabel}
                       // minDate='2023-12-16'
                     />
@@ -265,7 +276,7 @@ export default function RestItem() {
               </div>
 
               {/* 照片區 */}
-              <div>
+              <div className="col-5">
                 <div id="carouselExampleIndicators" className="carousel slide">
                   <div className="carousel-indicators">
                     <button
@@ -293,18 +304,30 @@ export default function RestItem() {
                   <div className="carousel-inner">
                     <div className="carousel-item active">
                       <Image
-                        // src=
+                        src={p1}
                         className="d-block w-100"
                         alt="..."
                         width={1000}
-                        height={200}
+                        height={1000}
                       />
                     </div>
                     <div className="carousel-item">
-                      <img src="..." className="d-block w-100" alt="..." />
+                      <Image
+                        src={p1}
+                        className="d-block w-100"
+                        alt="..."
+                        width={1000}
+                        height={1000}
+                      />
                     </div>
                     <div className="carousel-item">
-                      <img src="..." className="d-block w-100" alt="..." />
+                      <Image
+                        src={p1}
+                        className="d-block w-100"
+                        alt="..."
+                        width={1000}
+                        height={1000}
+                      />
                     </div>
                   </div>
                   <button
@@ -428,14 +451,22 @@ export default function RestItem() {
             <div className="modal-body">
               <h1>邀請列表</h1>
               <ul id="inviteList"></ul>
+              <li>{invites}</li>
 
               <h1>朋友列表</h1>
               <ul id="friendsList" className="list">
                 {friends.map((v, i) => {
                   return (
-                    <div key={i}>
-                      <Invite name={v.FriendName} img={v.FriendImg} />
-                    </div>
+                    <InviteContext.Provider value={{ invites, setInvites }}>
+                      {console.log('123')}
+                      <div key={i}>
+                        <Invite
+                          name={v.FriendName}
+                          img={v.FriendImg}
+                          // testfunc={handleClick}
+                        />
+                      </div>
+                    </InviteContext.Provider>
                   )
                 })}
               </ul>

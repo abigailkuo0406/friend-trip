@@ -8,6 +8,7 @@ import Button from '@/components/common/button/btn-normal'
 import NumberInput from '@/components/common/input/input-number'
 import RadioGroupInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date'
+import RestPhoto from '@/components/restaurant/restaurant-photo'
 
 // 引入邀請元件
 import Invite from '@/components/invite/invite'
@@ -51,8 +52,11 @@ export default function RestaurantList({
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    console.log('時間:' + reserveTimeInputValue)
+    console.log('日期:' + reserveDateInputVale)
+    console.log('人數:' + reservePeopleNumValue)
 
-    const formData = new FormData(document.getElementById('restaurant_addform'))
+    const formData = new FormData(document.getElementById('reserve'))
 
     fetch('http://localhost:3002/restaurant', {
       method: 'POST',
@@ -110,8 +114,8 @@ export default function RestaurantList({
                     </div>
 
                     {/* modal body */}
-                    <div className="d-flex mx-6">
-                      <div className="modal-body">
+                    <div className="d-flex mx-2 row">
+                      <div className="modal-body col-5">
                         {/*左方標題列 */}
                         <div className="d-flex">
                           <h2>{restName}</h2>
@@ -137,17 +141,17 @@ export default function RestaurantList({
                           <p>{restIntro}</p>
                         </div>
 
-                        <form id="restaurant_addform" onSubmit={handleSubmit}>
-                          <input name="member_id" value="1" />
-                          <input name="rest_id" value={restRid} />
+                        <form id="reserve" onSubmit={handleSubmit}>
+                          <input name="member_id" value="1" hidden />
+                          <input name="rest_id" value={restRid} hidden />
 
                           <div className="mb-3">
                             <DateInput
                               id="reserveDate"
                               name="reserve_date"
                               label="訂位日期"
-                              getValue={setReserveDateInputValue}
-                              getName={setReserveDateInputName}
+                              getvalue={setReserveDateInputValue}
+                              getname={setReserveDateInputName}
                               getLabel={setReserveDateInputLabel}
                               // minDate='2023-12-16'
                             />
@@ -208,6 +212,9 @@ export default function RestaurantList({
                             disabled={false} // fase：可點，true：不可點
                           ></Button>
                         </form>
+                      </div>
+                      <div className="col-5">
+                        <RestPhoto file={restImg} rid={restRid} />
                       </div>
                     </div>
                   </div>

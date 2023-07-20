@@ -8,8 +8,8 @@ export default function InputRadio({
   minDate = '',
   maxDate = '',
   label = '',
-  getValue,
-  getName,
+  getvalue,
+  getname,
   addClassforInput = '',
   addClassforLabel = '',
 }) {
@@ -34,14 +34,14 @@ export default function InputRadio({
 
   const [inputValue1, setInputValue1] = useState(value)
   useEffect(() => {
-    getValue(value)
-    getName(name)
+    getvalue(value)
+    getname(name)
   }, []) // 在第一次渲染時，如有預設 value 將 value 和 name 先傳回去，避免預設值會讀不到
 
   const handleChange = (e) => {
     setInputValue1(e.target.value)
-    getValue(e.target.value)
-    getName(e.target.name)
+    getvalue(e.target.value)
+    getname(e.target.name)
   }
   return (
     <div className="">
@@ -53,8 +53,8 @@ export default function InputRadio({
         name={name}
         id={id}
         value={inputValue1}
-        getValue={getValue}
-        getName={getName}
+        getvalue={getvalue}
+        getname={getname}
         min={minDate ? minDate : nowDay}
         max={maxDate ? maxDate : maxDay}
         className={addClassforInput}
