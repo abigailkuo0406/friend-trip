@@ -1,14 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import logo from '@/assets/logo/FriendTrip-Logo.png'
 import InputSearchBar from '@/components/common/input/input-search-bar'
 import BtnLogout from '@/components/common/button/btn-logout'
-import AuthContext from '@/context/AuthContext'
-import { useState, useContext } from 'react'
 
 export default function Navbar() {
-  const { auth, setAuth, logout } = useContext(AuthContext)
   return (
     <>
       <header className="position-sticky top-0 p-3">
@@ -23,18 +19,7 @@ export default function Navbar() {
           </a>
 
           <InputSearchBar></InputSearchBar>
-          {auth.member_id ? (
-            <BtnLogout
-              onclick={() => {
-                logout()
-              }}
-              text="登出"
-            ></BtnLogout>
-          ) : (
-            <Link href="./login">
-              <BtnLogout text="登入"></BtnLogout>
-            </Link>
-          )}
+          <BtnLogout></BtnLogout>
         </div>
       </header>
     </>

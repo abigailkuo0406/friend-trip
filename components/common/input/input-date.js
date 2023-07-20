@@ -8,13 +8,11 @@ export default function InputDate({
   minDate = '',
   maxDate = '',
   label = '',
-  width='',
-  getValue,
-  getName,
+  getvalue,
+  getname,
   addClassforInput = '',
   addClassforLabel = '',
 }) {
-
   // 定義預設日期
   const today = new Date()
   const nowYear = today.getFullYear()

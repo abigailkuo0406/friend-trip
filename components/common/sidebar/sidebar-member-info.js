@@ -3,23 +3,12 @@ import persona from '@/assets/fake-data/fake-persona.png'
 import { BsPeople } from 'react-icons/bs'
 import { BsChatText } from 'react-icons/bs'
 import { BsCalendarCheck } from 'react-icons/bs'
-import { useState, useContext } from 'react'
-
-import AuthContext from '@/context/AuthContext'
-
 export default function SidebarMemberInfo() {
-  const { auth, setAuth } = useContext(AuthContext)
-  var newid = '' // 將 email 轉換成顯示的 id
-  if (auth.email) {
-    var index = auth.email.indexOf('@')
-    newid = '@' + auth.email.substring(0, index)
-  }
-
   return (
     <>
       <div className="card">
         <div className="card-body d-flex">
-          <div id="User-Img" className="d-flex align-items-center">
+          <div id="User-Img" className="d-flex align-items-center pe-3">
             <Image
               src={persona}
               style={{
@@ -31,10 +20,10 @@ export default function SidebarMemberInfo() {
           </div>
           <div id="User-Info">
             <div id="User-Name">
-              <h3>{auth.member_name ? auth.member_name : '未登入'}</h3>
+              <h3>Amber</h3>
             </div>
             <div id="User-Account" className="small-font">
-              <p>{newid ? newid : '@not_logined_in'}</p>
+              <p>＠bigboss7788123</p>
             </div>
             <div id="User-Status">
               <p id="User-Friends-Status">

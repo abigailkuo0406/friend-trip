@@ -11932,7 +11932,6 @@ body {
   --assist-white: #FFFFFF;
   --assist-lightgrey: #D8D8D8;
   --warning: #874c6d;
-  --bs-border-radius: 20px;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, a, span, ul, div {
@@ -12338,40 +12337,18 @@ main > .row > div {
 #Sidebar .card .card-body {
   padding: 1rem 1.5rem;
 }
-@media (max-width: 1199px) {
-  #Sidebar .card .card-body {
-    flex-direction: column;
-  }
-}
 #Sidebar .card .card-body.nav-body {
   padding: 1rem 0;
 }
 #Sidebar #User-Img {
   width: 40%;
-  padding-right: 1rem;
-}
-@media (max-width: 1199px) {
-  #Sidebar #User-Img {
-    padding-right: 0;
-    padding-bottom: 1rem;
-  }
-}
-@media (max-width: 991px) {
-  #Sidebar #User-Img {
-    width: 60%;
-  }
 }
 #Sidebar #User-Img img {
   width: 100%;
   hieght: auto;
 }
 #Sidebar #User-Info {
-  width: 65%;
-}
-@media (max-width: 1199px) {
-  #Sidebar #User-Info {
-    width: 100%;
-  }
+  width: 60%;
 }
 #Sidebar #User-Info > div {
   width: 100%;
@@ -12389,11 +12366,6 @@ main > .row > div {
   color: var(--main);
   margin-top: 1rem;
   display: flex;
-}
-@media (max-width: 991px) {
-  #Sidebar #User-Info #User-Status {
-    flex-direction: column;
-  }
 }
 #Sidebar #User-Info #User-Status > p {
   display: flex;

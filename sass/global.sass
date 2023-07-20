@@ -13,7 +13,6 @@ html
 body
   background-color: var(--bg-main)
 
-
 :root
   --main: #D0A5CA
   --main-dark: #674C87
@@ -25,8 +24,6 @@ body
   --assist-white: #FFFFFF
   --assist-lightgrey: #D8D8D8
   --warning: #874c6d
-
-  --bs-border-radius: 20px
 
 h1,h2,h3,h4,h5,h6,p,a,span,ul,div
   font-family: 'Noto Sans TC','Noto Sans', sans-serif
@@ -341,42 +338,28 @@ main
     border: none
     .card-body
       padding: 1rem 1.5rem
-      @media(max-width:1199px)
-        flex-direction: column
     .card-body.nav-body
       padding: 1rem 0
 
   #User-Img
     width: 40%
-    padding-right: 1rem
-    @media(max-width:1199px)
-      padding-right: 0
-      padding-bottom: 1rem 
-    @media(max-width:991px)
-      width: 60%
     img
       width: 100%
       hieght: auto
   #User-Info
-    width: 65%
-    @media(max-width:1199px)
-      width: 100%
+    width: 60%
     >div
       width: 100%
       p
         margin: 0
     #User-Name
       color: var(--main)
-
     #User-Account
       color: var(--assist-gray)
     #User-Status
       color: var(--main)
       margin-top: 1rem
       display: flex
-      @media(max-width:991px)
-        flex-direction: column
-
       >p
         display: flex
         align-items: center
