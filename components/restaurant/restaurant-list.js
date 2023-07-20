@@ -78,6 +78,8 @@ export default function RestaurantList({
                 className={`rounded-start ${styles.img1}`}
                 width={200}
                 height={200}
+              priority={true}
+
               />
             </div>
           </div>
@@ -150,6 +152,7 @@ export default function RestaurantList({
                               id="reserveDate"
                               name="reserve_date"
                               label="訂位日期"
+                              width="input-width-10rem"
                               getvalue={setReserveDateInputValue}
                               getname={setReserveDateInputName}
                               getLabel={setReserveDateInputLabel}

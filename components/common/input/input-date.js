@@ -8,6 +8,7 @@ export default function InputDate({
   minDate = '',
   maxDate = '',
   label = '',
+  width,
   getvalue,
   getname,
   addClassforInput = '',

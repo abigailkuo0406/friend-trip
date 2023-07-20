@@ -2,8 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Image from 'next/image'
+import styles from './restaurant.module.css'
 
-export default function RestaurantPhoto({ file ,rid}) {
+export default function RestaurantPhoto({ file, rid }) {
   const [restPhotos, setRestPhotos] = useState({
     redirect: '',
     totalRows: 0,
@@ -26,10 +27,9 @@ export default function RestaurantPhoto({ file ,rid}) {
     <>
       <h1>餐廳照片路徑{file}</h1>
 
-      
       {/* 照片區 */}
 
-          <div id={`carouselExampleIndicators${rid}`} className="carousel slide">
+      <div id={`carouselExampleIndicators${rid}`} className="carousel slide">
         <div className="carousel-indicators">
           <button
             type="button"
@@ -66,13 +66,14 @@ export default function RestaurantPhoto({ file ,rid}) {
         </div>
 
         <div className="carousel-inner">
-          <div className="carousel-item active">
+          <div className={`carousel-item active ${styles.imgClass2}`}>
             <Image
               src={`http://localhost:3002/restImg/${file}`}
-              className="d-block w-100"
+              className={`rounded-start ${styles.img1}`}
               alt="..."
               width={500}
               height={500}
+              priority={true}
             />
           </div>
           {restPhotos.rows.map((v, i) => {
@@ -80,9 +81,13 @@ export default function RestaurantPhoto({ file ,rid}) {
               /* console.log(v) */
             }
             return (
-              <div key={v.RestID} className="carousel-item ">
+              <div
+                key={v.RestID}
+                className={`carousel-item ${styles.imgClass2}`}
+              >
                 <Image
                   src={`http://localhost:3002/restImg/${v.RestImg}`}
+                  className={`rounded-start ${styles.img1}`}
                   width={500}
                   height={500}
                 />
