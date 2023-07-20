@@ -40,6 +40,7 @@ export default function InputDate({
     getName(name)
   }, []) // 在第一次渲染時，如有預設 value 將 value 和 name 先傳回去，避免預設值會讀不到
 
+  
   const handleChange = (e) => {
     setInputValue1(e.target.value)
     getValue(e.target.value)
