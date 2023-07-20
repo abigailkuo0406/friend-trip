@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import { Router, useRouter } from 'next/router'
 import Link from 'next/link'
 import styles from './create-task.module.css'
 import Image from 'next/image'
@@ -14,6 +14,7 @@ import ImageItemPpreview from './image-item-preview'
 import InputDate from '../common/input/input-date'
 
 export default function CreateTask() {
+  const router = useRouter()
   // 追蹤是否觸發了已經提交操作
   const [submitted, setSubmitted] = useState(false)
   // 追蹤點選動作
@@ -38,6 +39,10 @@ export default function CreateTask() {
   const [inputNoteValue, setInputNoteValue] = useState('')
   const [inputNote, setInputNote] = useState('')
 
+  //上傳照片
+  const [file, setFiles] = useState(null)
+
+
   //除錯用
   const [error8, setError8] = useState(false)
   const [errorTracker8, setErrorTracker8] = useState('')
@@ -52,6 +57,10 @@ export default function CreateTask() {
       moveTo.focus()
       return
     }
+    //點選建立後3秒後跳轉
+    setTimeout(() => {
+      router.push('/custom-itinerary/arrange-schedule')
+    }, 3000)
 
     // console.log('行程名稱：', inputSubjectValue)
     // console.log('出發日期：',inputDateValue)
@@ -75,26 +84,12 @@ export default function CreateTask() {
       })
   }
 
+  //  點選取消後回到首頁
+  const handleCancel = () => {
+    router.push('/ ')
+  }
 
-
-
-  //照片
-  // const [img, setImg] = useState(null)
-
-  // const onChange = (e) => {
-  //   const file = e.target.files[0]
-  //   const fileReader = new FileReader()
-  //   fileReader.addEventListener("load", fileLoad);
-  //   fileReader.readAsDataURL(file);
-  // };
-
-  // const fileLoad = (e) => {
-  //   setImg(e.target.result);
-  // };
-const [file,setFiles]=useState(null)
-
- 
-
+  
   return (
     <>
       <article className="blog-post">
@@ -105,11 +100,10 @@ const [file,setFiles]=useState(null)
             </Link>
             <h3 className={styles.h3}>新增行程</h3>
           </div>
-          <ImageItemPpreview/>
-         
-
-          {/* <ImageItemPpreview setFiles={setFiles} fid={fid}/> */}
-
+          <div>
+            <label className={` ${styles.label}`}>旅程封面圖片</label>
+            <ImageItemPpreview />
+          </div>
           {/* 表格 */}
           <div className={styles.formbody}>
             <div className="container ">
@@ -190,24 +184,28 @@ const [file,setFiles]=useState(null)
                 getName={setInputNote}
                 required={true} // true：必填，false：非必填
               ></AreaText>
-          {/* btn */}
-          <div className="d-flex justify-content-center mx-2">
-            <BtnNormal
-              type="submit"
-              value="submit"
-              btnText="取消"
-              addClassforButton="btn-white" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
-              disabled={false} // fase：可點，true：不可點
-            ></BtnNormal>
-            <BtnNormal
-              type="submit"
-              value="submit"
-              btnText="建立"
-              addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
-              disabled={false} // fase：可點，true：不可點
-            ></BtnNormal>
-          </div>
-          </div>
+              {/* btn */}
+              <div className="d-flex justify-content-center">
+                <div className="mx-5">
+                  <button
+                    type="button"
+                    className="btn btn-white"
+                    onClick={handleCancel}
+                  >
+                    取消
+                  </button>
+                </div>
+                <div className="mx-5">
+                  <BtnNormal
+                    type="submit"
+                    value="submit"
+                    btnText="建立"
+                    addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                    disabled={false} // fase：可點，true：不可點
+                  ></BtnNormal>
+                </div>
+              </div>
+            </div>
           </div>
         </form>
       </article>

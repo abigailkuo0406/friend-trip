@@ -3,7 +3,10 @@
 }
 
 .label {
-  margin-left: 2rem;
+  margin-left: 17rem;
+  margin-top: 1rem;
+  padding-bottom: 1.2rem;
+
 }
 
 .uploader {
@@ -13,13 +16,14 @@
   cursor: pointer;
   display: -webkit-flex;
   display: flex;
-  height: 180px;
+  height: 260px;
   -webkit-justify-content: center;
   justify-content: center;
   outline: 3px dashed #B497D4;
   outline-offset: 5px;
   position: relative;
-  width: 300px;
+  max-width: 400px;
+  width:100%
 }
 
 .uploaderinput {
@@ -32,8 +36,9 @@
   
 }
 .uploaderImg{
- width: 300px;
- height: 180px;
+max-width:400px;
+ width: 500px;
+ height: 260px;
 }
 .link{
   color: #674C87;
