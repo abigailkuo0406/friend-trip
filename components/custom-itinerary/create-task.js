@@ -75,16 +75,23 @@ export default function CreateTask() {
       })
   }
 
+
+
+
   //照片
-  const [files, setFiles] = useState([])
-  const [fid, setFid] = useState(null)
-  const handleSetFiles = (file, fid) => {
-    console.log(file, fid)
-    setFiles([...files, { file, fid }])
+  // const [img, setImg] = useState(null)
 
+  // const onChange = (e) => {
+  //   const file = e.target.files[0]
+  //   const fileReader = new FileReader()
+  //   fileReader.addEventListener("load", fileLoad);
+  //   fileReader.readAsDataURL(file);
+  // };
 
-  
-  }
+  // const fileLoad = (e) => {
+  //   setImg(e.target.result);
+  // };
+const [file,setFiles]=useState(null)
 
  
 
@@ -98,8 +105,10 @@ export default function CreateTask() {
             </Link>
             <h3 className={styles.h3}>新增行程</h3>
           </div>
+          <ImageItemPpreview/>
+         
 
-          <ImageItemPpreview setFiles={handleSetFiles} alt="..." fid={fid} />
+          {/* <ImageItemPpreview setFiles={setFiles} fid={fid}/> */}
 
           {/* 表格 */}
           <div className={styles.formbody}>
