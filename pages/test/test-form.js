@@ -251,6 +251,7 @@ export default function AdminIndex() {
             id='birthday'
             name='birthday'
             label='請選擇生日'
+            width='input-width-10rem'
             value={inputValue11}
             getValue={setInputValue11}
             getName={setInputName11}

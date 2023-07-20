@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 
-export default function InputRadio({
+export default function InputDate({
   id = '',
   name = '',
   value = '',
   minDate = '',
   maxDate = '',
   label = '',
+  width,
   getValue,
   getName,
   addClassforInput = '',
   addClassforLabel = '',
 }) {
+ 
   // 定義預設日期
   const today = new Date()
   const nowYear = today.getFullYear()
@@ -44,8 +46,8 @@ export default function InputRadio({
     getName(e.target.name)
   }
   return (
-    <div className="">
-      <label htmlFor={id} className={addClassforLabel}>
+    <div className={`input-date-input`}>
+      <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>
       <input
@@ -57,9 +59,12 @@ export default function InputRadio({
         getName={getName}
         min={minDate ? minDate : nowDay}
         max={maxDate ? maxDate : maxDay}
-        className={addClassforInput}
+        className={`${width} input-text`}
         onChange={handleChange}
       />
+      
     </div>
+    
+    
   )
 }
