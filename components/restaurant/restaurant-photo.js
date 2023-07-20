@@ -26,6 +26,7 @@ export default function RestaurantPhoto({ file ,rid}) {
     <>
       <h1>餐廳照片路徑{file}</h1>
 
+      
       {/* 照片區 */}
 
           <div id={`carouselExampleIndicators${rid}`} className="carousel slide">
