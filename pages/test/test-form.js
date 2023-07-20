@@ -253,8 +253,8 @@ export default function AdminIndex() {
             label='請選擇生日'
             width='input-width-10rem'
             value={inputValue11}
-            getValue={setInputValue11}
-            getName={setInputName11}
+            getvalue={setInputValue11}
+            getname={setInputName11}
             addClassforInput="classTest3"
           ></InputDate>
           <BtnNormal

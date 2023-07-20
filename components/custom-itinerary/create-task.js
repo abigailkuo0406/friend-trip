@@ -8,10 +8,11 @@ import { TbPhotoPlus } from 'react-icons/tb'
 import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import InputText from '../common/input/input-text'
 import AreaText from '../common/input/textarea'
-import InputRadioGroup from '../common/input/input-radio-group'
+import InputRadio from '../common/input/input-radio-group'
 import InputNumber from '../common/input/input-number'
 import BtnNormal from '../common/button/btn-normal'
 import ImageItemPpreview from './image-item-preview'
+import InputDate from '../common/input/input-date'
 
 export default function CreateTask() {
   // 追蹤是否觸發了已經提交操作
@@ -19,18 +20,26 @@ export default function CreateTask() {
   // 追蹤點選動作
   const [clickSubmitted, setClickSubmitted] = useState(false)
 
-  const [inputValue3, setInputValue3] = useState('')
-  const [inputName3, setInputName3] = useState('')
-  // textarea
-  const [inputValue5, setInputValue5] = useState('')
-  const [inputName5, setInputName5] = useState('')
-  //是否公開？ input-radio
-  const [inputValue4, setInputValue4] = useState('')
-  const [inputName4, setInputName4] = useState('')
-  const [inputLabel4, setInputLabel4] = useState('')
-  // input-number
-  const [inputValue7, setInputValue7] = useState('')
-  const [inputName7, setInputName7] = useState('')
+  const [inputSubjectValue, setinputSubjectValue] = useState('')
+  const [inputSubject, setInputSubject] = useState('')
+
+  const [inputDateValue, setInputDateVlaue] = useState('')
+  const [inputDate, setInputDate] = useState('')
+
+  const [inputDescriptionValue, setInputDescriptionValue] = useState('')
+  const [inputDescription, setInputDescription] = useState('')
+
+  const [publicValue, setPublicValue] = useState('')
+  const [publicName, setPublicName] = useState('')
+  const [publicLabel, setPublicLabel] = useState('')
+
+  const [peopleNumValue, setPeopleNumValue] = useState('')
+  const [peopleNum, setPeopleNum] = useState('')
+
+  const [inputNoteValue, setInputNoteValue] = useState('')
+  const [inputNote, setInputNote] = useState('')
+
+
   //除錯用
   const [error8, setError8] = useState(false)
   const [errorTracker8, setErrorTracker8] = useState('')
@@ -46,16 +55,22 @@ export default function CreateTask() {
       return
     }
 
-    console.log('輸入的資料3：', inputValue3 + ' ，name 為：', inputName3)
+    console.log('行程名稱：', inputSubjectValue)
+    console.log('出發日期：',inputDateValue)
+    console.log('說明：',inputDescriptionValue)
+    console.log('是否公開？',publicLabel+ ' ，value 為：',
+    publicValue + ' ，name 為：',
+    publicName)
+    console.log('人數：',peopleNumValue)
+    console.log('備註：',inputNoteValue)
   }
 
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([])
   const [fid, setFid] = useState(null)
- const handleSetFiles = (file, fid) => {
-    console.log(file, fid);
-    setFiles([...files, { file, fid }]);
-  };
-
+  const handleSetFiles = (file, fid) => {
+    console.log(file, fid)
+    setFiles([...files, { file, fid }])
+  }
 
   // const router = useRouter()
   // // console.log(router)
@@ -104,65 +119,59 @@ export default function CreateTask() {
             <h3 className={styles.h3}>新增行程</h3>
           </div>
 
-          <ImageItemPpreview
-            setFiles={handleSetFiles} 
-            alt="..."
-            fid={fid} 
-          />
+          <ImageItemPpreview setFiles={handleSetFiles} alt="..." fid={fid} />
 
           {/* 表格 */}
           <div className={styles.formbody}>
             <div className="container ">
               <InputText
-                id="ID1"
-                name="name3"
+                id="inputSubject"
+                name=""
                 label="行程名稱"
                 value="" // 預設文字
                 placeholder="請輸入"
-                width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                addClassforLabel="classTest1" // 如果要在 label 添加 class
-                addClassforInput="classTest2" // 如果要在 input 添加 class
-                getValue={setInputValue3} // 獲取填寫的數值
-                getName={setInputName3} // 獲取 name
+                width="input-width-100pa"
+                getValue={setinputSubjectValue} // 獲取填寫的數值
+                getName={setInputSubject} // 獲取 name
                 required={true} // true：必填，false：非必填
               ></InputText>
-              <div className="mb-3">
-                <label> 出發日期</label>
-                <input
-                  type="date"
-                  className="form-control"
-                  name="date"
-                  placeholder="請輸入"
-                />
-              </div>
 
-              <AreaText
-                id="Area"
+                <InputDate
+                  id="inputDate"
+                  name="inputDate"
+                  label="出發日期"
+                  width="input-width-10rem"
+                  value={inputDateValue}
+                  getvalue={setInputDateVlaue}
+                  getname={setInputDate}
+                ></InputDate>
+    
+               <AreaText
+                id="description"
                 label="說明"
-                name="BIGTEXT"
+                name=""
                 value=""
                 placeholder="輸入文字啊"
-                width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                addClassforLabel="test123" // 如果要在 label 添加 class
-                addClassforTextarea="test321" // 如果要在 textarea 添加 class
-                getValue={setInputValue5}
-                getName={setInputName5}
+                width="input-width-100pa" 
+                getValue={setInputDescriptionValue}
+                getName={setInputDescription}
                 required={true} // true：必填，false：非必填
               ></AreaText>
-              <InputRadioGroup
+
+               <InputRadio
                 label="是否要公開？"
                 name="Public"
                 // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
                 idGroup={['PublicID', 'nonPublicID']} // 個別 radio 的 ID
                 valueGroup={['publicValue', 'nonPublicValue']} // 個別 radio 的 name
                 labelGroup={['公開', '不公開']} // 個別標籤
-                getValue={setInputValue4}
-                getName={setInputName4}
-                getLabel={setInputLabel4}
-                addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
-                addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
-                addClassforInput="classTest3" // 如果要在 input 添加 class
-              ></InputRadioGroup>
+                defaultChecked="publicValue"
+                getValue={setPublicValue}
+                getName={setPublicName}
+                getLabel={setPublicLabel}
+              ></InputRadio>
+
+
               <InputNumber
                 id="PeopleNum"
                 label="請選擇人數"
@@ -173,13 +182,17 @@ export default function CreateTask() {
                 min={0} // 最小可選數字
                 step={1} // 右邊箭頭按一次的數字區間
                 hideArrows={false} // true：隱藏右側上下箭頭按鈕，false：顯示
-                getValue={setInputValue7}
-                getName={setInputName7}
+                getValue={setPeopleNumValue}
+                getName={setPeopleNum}
                 width="input-width-5rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
                 addClassforLabel="try1" // 如果要在 label 添加 class
                 addClassforInput="try2 test123" // 如果要在 input 添加 class
               ></InputNumber>
-              <AreaText
+
+
+
+
+          <AreaText
                 id="Area"
                 label="備註"
                 name="BIGTEXT"
@@ -188,10 +201,10 @@ export default function CreateTask() {
                 width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
                 addClassforLabel="test123" // 如果要在 label 添加 class
                 addClassforTextarea="test321" // 如果要在 textarea 添加 class
-                getValue={setInputValue5}
-                getName={setInputName5}
+                getValue={setInputNoteValue}
+                getName={setInputNote}
                 required={true} // true：必填，false：非必填
-              ></AreaText>
+              ></AreaText> 
               {/* btn */}
               <div className="d-flex justify-content-center mx-2">
                 <BtnNormal
@@ -201,13 +214,13 @@ export default function CreateTask() {
                   addClassforButton="btn-white" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                   disabled={false} // fase：可點，true：不可點
                 ></BtnNormal>
-                {/*<BtnNormal
-                type="submit"
-                value="submit"
-                btnText="建立"
-                addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
-                disabled={false} // fase：可點，true：不可點
-              ></BtnNormal> */}
+                <BtnNormal
+                  type="submit"
+                  value="submit"
+                  btnText="建立"
+                  addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                  disabled={false} // fase：可點，true：不可點
+                ></BtnNormal>
               </div>
             </div>
           </div>

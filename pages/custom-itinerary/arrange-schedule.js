@@ -10,7 +10,7 @@ import SearchView from '@/components/custom-itinerary/arrange-schedule/search-vi
 
 export default function ArrangeSchedule() {
 
-  const [showSchedule, setShowSchedule] = useState(true) //
+  const [showSchedule, setShowSchedule] = useState(true) 
   const [showSearchView, setShowSearchView] = useState(false)
   const [addToSchedule,setAddToSchedule]=useState(false)
   const [inputValue, setInputValue] = useState('')
