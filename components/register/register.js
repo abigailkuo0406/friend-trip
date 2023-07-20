@@ -24,6 +24,7 @@ export default function RegisterCard() {
             <div className={styles.inputbar}>
               <InputText
                 label="電子信箱/帳號"
+                name="email"
                 getValue={() => 'whatever'}
                 getName={() => 'whatever'}
                 width="input-width-100pa"
@@ -34,6 +35,7 @@ export default function RegisterCard() {
             <div className={styles.inputbar}>
               <InputText
                 label="密碼"
+                name="password"
                 getValue={() => 'whatever'}
                 getName={() => 'whatever'}
                 width="input-width-100pa"
@@ -51,6 +53,7 @@ export default function RegisterCard() {
             <div className={styles.inputbar}>
               <InputText
                 label="會員名稱"
+                name="member_name"
                 getValue={() => 'whatever'}
                 getName={() => 'whatever'}
                 width="input-width-100pa"
@@ -65,6 +68,7 @@ export default function RegisterCard() {
             <div className={styles.inputbar}>
               <InputText
                 label="身分證字號"
+                name="id_number"
                 getValue={() => 'whatever'}
                 getName={() => 'whatever'}
                 width="input-width-100pa"
@@ -74,7 +78,7 @@ export default function RegisterCard() {
           <div className={styles.inputstyle}>
             <InputRadioGroup
               label="性別"
-              name="animal"
+              name="gender"
               // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
               idGroup={['DogID', 'CatID']} // 個別 radio 的 ID
               valueGroup={['dogValue', 'catValue']} // 個別 radio 的 name
@@ -92,6 +96,7 @@ export default function RegisterCard() {
             <div className={styles.inputbar}>
               <InputText
                 label="地區"
+                name="location"
                 getValue={() => 'whatever'}
                 getName={() => 'whatever'}
                 width="input-width-100pa"
