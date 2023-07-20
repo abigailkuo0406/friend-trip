@@ -60,8 +60,12 @@ export default function RegisterCard() {
               <InputText
                 label="身高"
                 name="height"
-                getValue={setHeight}
-                getName={setHeightName}
+                value={height}
+                getValue={(value) => {
+                  if (value >= 200) return setHeight(200)
+                  // setHeight(value)
+                }}
+                // getName={setHeightName}
                 width="input-width-100pa"
               ></InputText>
             </div>
