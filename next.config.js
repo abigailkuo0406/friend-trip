@@ -17,5 +17,17 @@ const nextConfig = {
     API_SERVER: 'http://localhost:3002',
   },
 }
+// const nextConfig = {
+//   reactStrictMode: true,
 
+//   images: {
+//     loader: 'akamai',
+
+//     path: '',
+//   },
+
+//   basePath: '/next-pages',
+
+//   assetPrefix: '/next-pages',
+// }
 module.exports = nextConfig

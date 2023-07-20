@@ -31,7 +31,7 @@ export default function Navbar() {
               text="登出"
             ></BtnLogout>
           ) : (
-            <Link href="./login">
+            <Link href="./login/login-in-web">
               <BtnLogout text="登入"></BtnLogout>
             </Link>
           )}
