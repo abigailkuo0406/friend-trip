@@ -1,18 +1,20 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 
-export default function InputRadio({
+export default function InputDate({
   id = '',
   name = '',
   value = '',
   minDate = '',
   maxDate = '',
   label = '',
-  getvalue,
-  getname,
+  width='',
+  getValue,
+  getName,
   addClassforInput = '',
   addClassforLabel = '',
 }) {
+
   // 定義預設日期
   const today = new Date()
   const nowYear = today.getFullYear()
@@ -33,19 +35,20 @@ export default function InputRadio({
       : `${nowYear}-0${nextMonth}-${nowDate}`
 
   const [inputValue1, setInputValue1] = useState(value)
-  useEffect(() => {
-    getvalue(value)
-    getname(name)
-  }, []) // 在第一次渲染時，如有預設 value 將 value 和 name 先傳回去，避免預設值會讀不到
+  // useEffect(() => {
+  //   getValue(value)
+  //   getName(name)
+  // }, []) // 在第一次渲染時，如有預設 value 將 value 和 name 先傳回去，避免預設值會讀不到
 
+  
   const handleChange = (e) => {
     setInputValue1(e.target.value)
-    getvalue(e.target.value)
-    getname(e.target.name)
+    // getValue(e.target.value)
+    // getName(e.target.name)
   }
   return (
-    <div className="">
-      <label htmlFor={id} className={addClassforLabel}>
+    <div className={`input-text-section`}>
+      <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>
       <input
@@ -53,11 +56,11 @@ export default function InputRadio({
         name={name}
         id={id}
         value={inputValue1}
-        getvalue={getvalue}
-        getname={getname}
+        // getValue={getValue}
+        // getName={getName}
         min={minDate ? minDate : nowDay}
         max={maxDate ? maxDate : maxDay}
-        className={addClassforInput}
+        className={`${width} input-text`}
         onChange={handleChange}
       />
     </div>
