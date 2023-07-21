@@ -11964,7 +11964,7 @@ h6, .h6, label {
   font-size: 1rem;
 }
 
-p, a, span, div, button, li, ol, .dropdown-item {
+p, a, span, div, button, li, ol, .dropdown-item, th {
   font-size: 1rem;
 }
 

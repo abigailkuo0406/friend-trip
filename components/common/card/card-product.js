@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -14,17 +14,19 @@ export default function CardProduct({
   productFavorit = false,
   productImage = 'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg',
   productName = '商品名稱',
-  productCategory = ['分類1', '分類2'],
+  productCategory = '',
   productBrief = '商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述',
   productPrice = '$1234',
   productPost = '',
 }) {
   const [favorit, setFavorit] = useState(productFavorit)
+
   const changeFavorit = (event) => {
     setFavorit(!favorit)
   }
   const router = useRouter()
   const pathname = location.pathname
+  const cateArray = productCategory.split(' ')
   return (
     <>
       <div className="col-lg-4 col-md-6 col-12">
@@ -45,7 +47,7 @@ export default function CardProduct({
               <Image
                 src={fakeIimg1}
                 className="card-img-top productCardImg"
-                alt="..."
+                alt={`${productName}'s product img`}
               ></Image>
             </Link>
           </div>
@@ -57,6 +59,14 @@ export default function CardProduct({
             >
               {productName}
             </Link>
+            <div className="productCategory">
+              {cateArray.map((e, i) => (
+                <Fragment key={i}>
+                  <p>{e}</p>
+                </Fragment>
+              ))}
+            </div>
+
             <p className="productBrief">{productBrief}</p>
             <div className="productcardBottom">
               <p className="productPrice nav-font">{productPrice}</p>
