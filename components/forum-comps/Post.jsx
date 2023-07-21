@@ -1,51 +1,16 @@
 import Image from 'next/image'
 import styles from './Post.module.css'
-import { BsEmojiKiss, BsEmojiSmileFill } from 'react-icons/bs'
+import { BsEmojiKiss } from 'react-icons/bs'
 import Msg from './Msg'
+import Link from 'next/link'
+// import ForumBackdrop from './BackdropForum'
 export default function Post({ img, userImg, caption, username, id }) {
   return (
     <>
       <div className="bg-light mt-4 p-5 rounded-5">
-        <div className="">
-          {/* 垃圾桶(刪除)、寫字（編輯） SVG 圖標 開始*/}
-          {true && (
-            <div className="d-flex column-gap-3">
-              {/* 垃圾桶(刪除) SVG  */}
-              <svg
-                className={styles.trash}
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-trash"
-                viewBox="0 0 16 16"
-              >
-                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-              </svg>
-              {/* 寫字（編輯） SVG  */}
-              <svg
-                className={styles.pencilSquare}
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-pencil-square"
-                viewBox="0 0 16 16"
-              >
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                <path
-                  fill-rule="evenodd"
-                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-                />
-              </svg>
-            </div>
-          )}
-          {/* 垃圾桶(刪除)、寫字（編輯） SVG 圖標 結束*/}
-        </div>
         {/* 文章作者頭圖 + 作者名字*/}
         <div className="d-flex justify-content-between">
-          <div className="d-flex">
+          <div className="d-flex align-items-center column-gap-3">
             {/* 作者頭圖 */}
             <Image
               width={50}
@@ -55,9 +20,195 @@ export default function Post({ img, userImg, caption, username, id }) {
               alt={username}
             />
             {/* 作者名字 */}
-            <p>{username}</p>
+            <p className="">{username}</p>
+            {/* 登入後顯示的刪除+編輯圖標 */}
+            <div className="">
+              {/* 垃圾桶(刪除)、寫字（編輯） SVG 圖標 開始*/}
+              {true && (
+                <div className="d-flex ">
+                  {/* 垃圾桶圖標啟動刪除貼文 Modal 👇 */}
+                  <button
+                    type="button"
+                    className="btn btn-outline-success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                  >
+                    <div className="modal-dialog modal-dialog-centered">
+                      <svg
+                        // className={styles.trash}
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        // className="bi bi-trash "
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                      </svg>
+                    </div>
+                  </button>
+                  {/* 垃圾桶圖標啟動刪除貼文 Modal ☝️ */}
+
+                  {/* 刪除貼文 Modal 主體開始 👇*/}
+
+                  <div
+                    className="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div className="modal-dialog modal-dialog-centered">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h1
+                            className="modal-title fs-5"
+                            id="exampleModalLabel"
+                          >
+                            確定刪除這篇貼文嗎？
+                          </h1>
+                          <button
+                            type="button"
+                            className="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div className="modal-body">...</div>
+                        <div className="modal-footer">
+                          <button
+                            type="button"
+                            className="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            不要刪除
+                          </button>
+                          <button type="button" className="btn btn-primary">
+                            確定刪除
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* 刪除貼文 Modal 主體結束 ☝️*/}
+                  {/* 寫字（編輯） SVG 的 button 開始*/}
+                  {/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal2"
+                    data-bs-whatever="@mdo"
+                  >
+                    <svg
+                      // className={styles.pencilSquare}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      // className="bi bi-pencil-square"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                      <path
+                        fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                      />
+                    </svg>
+                  </button>
+
+                  <div
+                    className="modal fade"
+                    id="exampleModal2"
+                    tabindex="-1"
+                    aria-labelledby="exampleModal2Label"
+                    aria-hidden="true"
+                  >
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h1
+                            className="modal-title fs-5"
+                            id="exampleModal2Label"
+                          >
+                            修改這篇文章
+                          </h1>
+                          <button
+                            type="button"
+                            className="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div className="modal-body">
+                          <form>
+                            <div className="mb-3">
+                              <label
+                                htmlFor="recipient-name"
+                                className="col-form-label"
+                              >
+                                類別修改:
+                              </label>
+                              <input
+                                type="text"
+                                className="form-control"
+                                id="recipient-name"
+                              />
+                            </div>
+                            <div className="mb-3">
+                              <label
+                                htmlFor="message-text"
+                                className="col-form-label"
+                              >
+                                內容修改:
+                              </label>
+                              <textarea
+                                className="form-control"
+                                id="message-text"
+                              ></textarea>
+                            </div>
+                          </form>
+                        </div>
+                        <div className="modal-footer">
+                          <button
+                            type="button"
+                            className="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                          >
+                            放棄修改
+                          </button>
+                          <button type="button" className="btn btn-primary">
+                            確定修改
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */}
+                  {/* <button className="btn btn-outline-success">
+                    <svg
+                      className={styles.pencilSquare}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-pencil-square"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                      <path
+                        fill-rule="evenodd"
+                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                      />
+                    </svg>
+                  </button> */}
+                </div>
+              )}
+              {/* 垃圾桶(刪除)、寫字（編輯） SVG 圖標 結束*/}
+            </div>
           </div>
-          <p>發文日期:xxxx/xx/xx</p>
+          <p className="fs-6 text fw-lighter">發文日期:xxxx/xx/xx</p>
         </div>
 
         {/* 文章圖片 */}
@@ -87,24 +238,24 @@ export default function Post({ img, userImg, caption, username, id }) {
           <div className="d-flex column-gap-4">
             {/* 愛心 SVG (點擊加到我的收藏)  */}
             <svg
-              className={styles.heart}
+              // className={styles.heart}
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-heart"
+              className="bi bi-heart"
               viewBox="0 0 16 16"
             >
               <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
             </svg>
             {/* 聊天 SVG （點擊進行留言） */}
             <svg
-              className={styles.chat}
+              // className={styles.chat}
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-chat-dots"
+              className="bi bi-chat-dots"
               viewBox="0 0 16 16"
             >
               <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
@@ -120,16 +271,20 @@ export default function Post({ img, userImg, caption, username, id }) {
         {/* 留言的元件 */}
         <Msg />
         {/* 留言區 */}
-        <form className="d-flex column-gap-3">
+        <form className="d-flex column-gap-3 align-items-center">
           {/* react-icon Emoji */}
-          <BsEmojiKiss />
+          <BsEmojiKiss className="fa-2x" />
           {/* 評論輸入框 */}
           <input
             className={` rounded-4 col-9 form-control-lg ${styles.commentInput}`}
             type="text"
             placeholder="說說你的看法..."
           />
-          <button>發表評論</button>
+          <button type="button" className="btn text-primary-emphasis">
+            <Link href="/forum" role="button">
+              發表評論
+            </Link>
+          </button>
         </form>
       </div>
     </>

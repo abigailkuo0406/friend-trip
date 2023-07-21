@@ -17,7 +17,7 @@ function Msg() {
           <h3 className={styles.username}>Eddie</h3>
           <p>I love Maria!!!!!</p>
         </div>
-        <p>2023/07/18 17:00</p>
+        <p className="fs-6 text fw-lighter">評論時間：2023/07/18 17:00</p>
       </div>
     </>
   )

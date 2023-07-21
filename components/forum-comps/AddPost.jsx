@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import uploadImg from '@/public/face/face15.png'
 import styles from './AddPost.module.css'
-import BtnNormal from '../common/button/btn-normal'
+// import BtnNormal from '../common/button/btn-normal'
 import Link from 'next/link'
 
 function AddPost() {
@@ -17,12 +17,22 @@ function AddPost() {
           ></textarea>
         </div>
         <div className="">
-          <div className={`p-2 ${styles.fontStyle1}`}>* 上傳照片</div>
-          <input type="file" name="" id="" />
+          {/* <div className={`p-2 ${styles.fontStyle1}`}>* 上傳照片</div> */}
+          <label className={`custom-file-upload p-2 ${styles.fontStyle1}`}>
+            <i className="fa fa-cloud-upload"></i> 上傳文章圖片
+            <input type="file" />
+          </label>
         </div>
         <Image src={uploadImg} alt="postImg" />
-        <Link href={'/forum'}>
-          <BtnNormal />
+        {/* <Link href={'/forum'}>
+          <BtnNormal btnText="確定發表文章" />
+        </Link> */}
+        <Link href="/forum">
+          <input
+            className="btn btn-primary mt-4 mx-auto"
+            type="submit"
+            value="確認新增文章"
+          />
         </Link>
       </div>
     </>
