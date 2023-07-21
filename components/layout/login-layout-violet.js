@@ -1,9 +1,12 @@
 // components/layout/admin-layout.js
 import Footer from './footer'
 import styles from '@/components/login/login.module.css'
+import { AuthContextProvider } from '@/context/AuthContext'
+
 export default function LoginLayout({ children }) {
   return (
     <>
+      <AuthContextProvider>
       <div>
         <main className="container">
           <div
@@ -14,6 +17,7 @@ export default function LoginLayout({ children }) {
         </main>
         <Footer />
       </div>
-    </>
+      </AuthContextProvider>
+      </>
   )
 }
