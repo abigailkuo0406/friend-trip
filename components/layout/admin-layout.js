@@ -3,7 +3,7 @@ import Footer from './footer'
 import Sidebar from '@/components/common/sidebar/sidebar'
 import Navbar from '@/components/common/navbar/navbar'
 
-export default function AdminLayout({ children }) {
+export default function AdminLayout({ children, page }) {
   return (
     <>
       <div>

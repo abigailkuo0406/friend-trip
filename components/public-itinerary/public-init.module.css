@@ -1,0 +1,33 @@
+.card{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.cardTitle{
+    color: #674c87;
+}
+
+.cardText{
+    color: #717171
+}
+.btn{
+    color:white; 
+    background-color: #674c87;
+}
+
+.btn:hover{
+    color:  white; 
+    background-color: #674c87;
+}
+.btn:active{
+    color:  white; 
+    background-color: #674c87;
+}
+.textcolor{
+    color: #674c87;
+}
+.Input{
+   margin-right: 20px;
+   margin-bottom: 15px;
+}

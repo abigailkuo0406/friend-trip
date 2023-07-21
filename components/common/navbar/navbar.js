@@ -3,6 +3,8 @@ import Image from 'next/image'
 import logo from '@/assets/logo/FriendTrip-Logo.png'
 import InputSearchBar from '@/components/common/input/input-search-bar'
 import BtnLogout from '@/components/common/button/btn-logout'
+import AuthContext from '@/context/AuthContext'
+import { useContext } from 'react'
 
 export default function Navbar() {
   return (
@@ -19,7 +21,18 @@ export default function Navbar() {
           </a>
 
           <InputSearchBar></InputSearchBar>
-          <BtnLogout></BtnLogout>
+          {auth.member_id ? (
+            <BtnLogout
+              onclick={() => {
+                logout()
+              }}
+              text="登出"
+            ></BtnLogout>
+          ) : (
+            <Link href="./login/login-in-web">
+              <BtnLogout text="登入"></BtnLogout>
+            </Link>
+          )}
         </div>
       </header>
     </>
