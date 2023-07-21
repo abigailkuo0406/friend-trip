@@ -1,0 +1,39 @@
+.title{
+  text-align: center;
+}
+.select{
+  float: right;
+}
+.productlist {
+    width: 900px;
+    margin: 0 auto;
+  }
+  .productlist li {
+    float: left;
+    width: 238px;
+    border: 1px solid black;
+    height: 300px;
+    padding-bottom: 10px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style-type: none;
+    border-radius: 10%;
+  }
+  .clearfix {
+    clear: both;
+  }
+  .productlist img {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 10% 10% 0 0;
+  }
+  .bnt {
+    float: right;
+    border-radius: 10px;
+    background: #674c87;
+    color: white;
+  }
+ 
