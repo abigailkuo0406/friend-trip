@@ -123,3 +123,32 @@
   color: #674C87;
   list-style: none;
 }
+.input{
+  color: #674C87;
+  padding: 0.2rem 2.5rem 0.2rem 0.5rem;
+  /* border: 1.8px solid #D8d8d8; */
+  border-radius: 8px;
+
+  
+}
+.input:focus{
+  color: #674C87;
+  box-shadow: none;
+}
+.input:focus-visible{
+  outline: none
+
+}
+.searchArrow{
+  color: #674C87;
+  font-size: 1.15rem;
+}
+.search{
+  color: #674C87;
+  font-size: 1rem;
+  
+}
+.collect{
+  color: #674C87;
+  font-size: 1rem;
+}

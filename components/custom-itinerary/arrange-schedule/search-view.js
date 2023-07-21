@@ -8,6 +8,7 @@ import { FaArrowLeftLong } from 'react-icons/fa6'
 import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 
+
 export default function SearchView({
   inputValue,
   onInputChange,
@@ -31,25 +32,19 @@ export default function SearchView({
                 <ul className="nav nav-underline">
                   <li className="nav-item mt-3 mx-1">
                     <Link href="/custom-itinerary/">
-                      <h5>
-                        <FaArrowLeftLong />
-                      </h5>
+                        <FaArrowLeftLong  className={styles.searchArrow}/>
                     </Link>
                   </li>
                   <li className="nav-item e">
                     <Link href="#">
-                      <h5>
-                        <BiSearchAlt />
-                        <p>搜尋</p>
-                      </h5>
+                        <BiSearchAlt className={styles.search}/>
+                        <p className={styles.search}>搜尋</p>
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link href="#">
-                      <h4>
-                        <BiMap className="mx-5" />
-                        <p>我的景點收藏</p>
-                      </h4>
+                        <BiMap className={`mx-5 ${styles.collect}`} />
+                        <p className={`px-1 ${styles.collect}`}>我的景點收藏</p>
                     </Link>
                   </li>
                 </ul>
@@ -57,15 +52,17 @@ export default function SearchView({
                 <nav className="navbar bg-body-tertiary">
                   <div className="container-fluid">
                     <input
-                      className="form-control me-2 mb-3"
+                      className={`form-control  ${styles.input} input-text` }
                       type="text"
                       placeholder="請輸入城市"
                       value={inputValue}
                       onChange={onInputChange}
                     />
+                      
+    
 
                     <div>
-                      <div className="">
+                      <div>
                         {selectedView && selectedView.name && (
                           <ul className={`mx-2 ${styles.text}`}>
                             <h5>{selectedView.name}</h5>

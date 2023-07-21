@@ -94,7 +94,7 @@ export default function CreateTask() {
     <>
       <article className="blog-post">
         <form onSubmit={handleSubmit} id="createInit" name="add">
-          <div className="d-flex justify-content-center">
+          <div className={`${styles.coverTitle}`}>
             <Link className={styles.link} href="/custom-itinerary">
               <FaArrowLeftLong />
             </Link>

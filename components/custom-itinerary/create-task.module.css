@@ -2,12 +2,22 @@
   position: relative;
 }
 
+.coverTitle{
+display: flex;
+justify-content: center;
+}
+
 .label {
   margin-left: 17rem;
   margin-top: 1rem;
   padding-bottom: 1.2rem;
 
 }
+
+
+
+
+
 
 .uploader {
   align-items: center;
@@ -47,4 +57,50 @@ max-width:400px;
 .h3{
   color: #674C87;
   margin: auto;
+}
+
+
+/* -------------sm------------- */
+@media (min-width: 576px) { 
+  .label {
+  margin-left: 3rem;
+}
+.link{
+  padding-left: 1rem;
+}
+}
+
+/* --------------md---------------- */
+@media (min-width: 768px) {
+  .label {
+    margin-left: 3rem;
+  }
+  .link{
+    padding-left: 1rem;
+  }
+}
+
+/* --------------lg------------------- */
+@media (min-width: 992px){
+  .label {
+    margin-left: 8.5rem;
+  }
+  .link{
+    padding-left: 1rem;
+  }
+}
+
+/* --------------xl------------------- */
+@media (min-width: 1200px) {
+  .label {
+    margin-left: 12.8rem;
+  }
+}
+
+/* --------------xxl------------------- */
+@media (min-width: 1400px) {  
+  .label {
+  margin-left: 17rem;
+} 
+
 }
