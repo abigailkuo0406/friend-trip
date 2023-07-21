@@ -30,11 +30,17 @@ export default function RestaurantList({
   restImg,
   restRid,
 }) {
-  const [valueFromInvites, setValueFromInvite] = useState('')
+  const inviteList = []
+  const [invites, setInvites] = useState('')
   // 回乎函數，接收邀請元件的傳值
-  const handleValueChange = (value) => {
-    setValueFromInvite(value)
+  const handleValueChange = (e) => {
+    console.log('222:', e)
+    setInvites(e)
   }
+  useEffect(() => {
+    inviteList.push(invites)
+    console.log(inviteList)
+  }, [invites])
 
   //預設訂位時間
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
@@ -52,9 +58,9 @@ export default function RestaurantList({
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('時間:' + reserveTimeInputValue)
-    console.log('日期:' + reserveDateInputVale)
-    console.log('人數:' + reservePeopleNumValue)
+    // console.log('時間:' + reserveTimeInputValue)
+    // console.log('日期:' + reserveDateInputVale)
+    // console.log('人數:' + reservePeopleNumValue)
 
     const formData = new FormData(document.getElementById('reserve'))
 
@@ -78,8 +84,7 @@ export default function RestaurantList({
                 className={`rounded-start ${styles.img1}`}
                 width={200}
                 height={200}
-              priority={true}
-
+                priority={true}
               />
             </div>
           </div>
@@ -216,6 +221,7 @@ export default function RestaurantList({
                           ></Button>
                         </form>
                       </div>
+                      {/* 照片區 */}
                       <div className="col-5">
                         <RestPhoto file={restImg} rid={restRid} />
                       </div>
@@ -251,8 +257,16 @@ export default function RestaurantList({
                     </div>
                     <div className="modal-body">
                       <h1>邀請列表</h1>
-                      <ul id="inviteList"></ul>
-                      <li>{valueFromInvites}</li>
+                      <ul id="inviteList">
+                        {inviteList.map((v, i) => {
+                          console.log("33333:",v)
+                          return (
+                            <div key={i}>
+                              <li>{v}</li>
+                            </div>
+                          )
+                        })}
+                      </ul>
 
                       <h1>朋友列表</h1>
                       <ul id="friendsList" className="list">
@@ -260,7 +274,7 @@ export default function RestaurantList({
                           return (
                             <div key={i}>
                               <Invite
-                                name={v.FriendName}
+                                friendName={v.FriendName}
                                 onValueChange={handleValueChange}
                               />
                             </div>
