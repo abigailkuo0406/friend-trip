@@ -21,7 +21,6 @@ export const AuthContextProvider = function ({ children }) {
     localStorage.removeItem('auth') // 使用於不存在的 key 不會報錯
     setAuth(noLoginState)
   }
-
   useEffect(() => {
     // 一開始渲染時將會員的資料存入 localStorage 裡面
     const str = localStorage.getItem('auth')
