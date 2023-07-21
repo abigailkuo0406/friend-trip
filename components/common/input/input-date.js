@@ -36,15 +36,15 @@ export default function InputDate({
 
   const [inputValue1, setInputValue1] = useState(value)
   // useEffect(() => {
-  //   getvalue(value)
-  //   getname(name)
+  //   getValue(value)
+  //   getName(name)
   // }, []) // 在第一次渲染時，如有預設 value 將 value 和 name 先傳回去，避免預設值會讀不到
 
   
   const handleChange = (e) => {
     setInputValue1(e.target.value)
-    // getvalue(e.target.value)
-    // getname(e.target.name)
+    // getValue(e.target.value)
+    // getName(e.target.name)
   }
   return (
     <div className={`input-text-section`}>
@@ -56,8 +56,8 @@ export default function InputDate({
         name={name}
         id={id}
         value={inputValue1}
-        // getvalue={getvalue}
-        // getname={getname}
+        // getValue={getValue}
+        // getName={getName}
         min={minDate ? minDate : nowDay}
         max={maxDate ? maxDate : maxDay}
         className={`${width} input-text`}

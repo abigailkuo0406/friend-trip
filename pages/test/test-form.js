@@ -8,7 +8,6 @@ import SelectOption from '@/components/common/input/select-option'
 import InputNumber from '@/components/common/input/input-number'
 import InputNumberMany from '@/components/common/input/input-number-many'
 import InputCheckboxGroup from '@/components/common/input/input-checkbox-group'
-import InputDate from '@/components/common/input/input-date'
 import BtnNormal from '@/components/common/button/btn-normal'
 
 import { BsArrowRightShort, BsArrowLeftShort } from 'react-icons/bs'
@@ -50,10 +49,6 @@ export default function AdminIndex() {
   const [inputValue10, setInputValue10] = useState([])
   const [inputName10, setInputName10] = useState('')
 
-  // input-date
-  const [inputValue11, setInputValue11] = useState('')
-  const [inputName11, setInputName11] = useState('')
-
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -86,11 +81,6 @@ export default function AdminIndex() {
     )
     console.log('勾選8：value 為：', inputValue9 + ' ，name 為：', inputName9)
     console.log('勾選9：value 為：', inputValue10 + ' ，name 為：', inputName10)
-    console.log(
-      '選擇的時間11','value為：',
-      inputValue11 + ' ，name 為：',
-      inputName11
-    )
   }
 
   return (

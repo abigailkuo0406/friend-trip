@@ -1,0 +1,30 @@
+.container {
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+}
+.main {
+  width: 740px;
+  height: 448px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.letter {
+  width: 497px;
+  height: 134px;
+  background-color: var(--bg-dark);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.font1 {
+  color: white;
+}
+.font2 {
+  color: var(--bg-dark);
+}

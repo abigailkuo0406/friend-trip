@@ -120,10 +120,9 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
-  height: 22.5rem;
+  height: 26.5rem;
 }
-
-.productFavorit {
+.productCard .productFavorit {
   cursor: pointer;
   position: absolute;
   z-index: 1;
@@ -136,13 +135,13 @@
   background-color: var(--bg-main);
   padding: 0.7rem 0.7rem 0.6rem 0.7rem;
 }
-.productFavorit svg {
+.productCard .productFavorit svg {
   color: var(--main-dark);
   height: 1.2rem;
   width: 1.2rem;
   transition: scale 300ms;
 }
-.productFavorit svg:hover {
+.productCard .productFavorit svg:hover {
   transform: scale(1.2);
 }
 
@@ -158,7 +157,8 @@
 .productCardImgSection .productCardImg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .productCardBody {
@@ -171,8 +171,7 @@
 .productCardBody p {
   margin: 0;
 }
-
-.productName {
+.productCardBody .productName {
   color: var(--main-dark);
   font-weight: 500;
   height: 2.2rem;
@@ -181,8 +180,18 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-.productBrief {
+.productCardBody .productCategory {
+  display: flex;
+  width: 100%;
+}
+.productCardBody .productCategory p {
+  color: var(--main-dark);
+  background-color: var(--bg-light);
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 5%;
+}
+.productCardBody .productBrief {
   cursor: default;
   color: var(--assist-gray);
   min-height: 4.5rem;
@@ -191,24 +200,217 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
-
-.productcardBottom {
+.productCardBody .productcardBottom {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 2.2rem;
 }
-
-.productPrice {
+.productCardBody .productPrice {
   cursor: default;
   color: var(--main-dark);
   margin: 0;
 }
-
-.productAddCart {
+.productCardBody .productAddCart {
   cursor: pointer;
 }
-.productAddCart svg {
+.productCardBody .productAddCart svg {
   color: var(--main-dark);
+}
+
+.PidPageHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.PidPageHeader .PageBack {
+  display: flex;
+  align-items: center;
+}
+.PidPageHeader .PageBack svg {
+  width: 2rem;
+  height: 2rem;
+  color: var(--main-dark);
+}
+.PidPageHeader .PageCart {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  position: relative;
+}
+.PidPageHeader .PageCart div {
+  position: relative;
+  padding: 1.2rem;
+  cursor: pointer;
+}
+.PidPageHeader .PageCart div svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--main-dark);
+  position: relative;
+  z-index: 1;
+  transition: scale 300ms;
+}
+.PidPageHeader .PageCart div:hover {
+  transform: scale(1.2);
+}
+.PidPageHeader .PageCart div::after {
+  content: "153";
+  font-size: 0.8rem;
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  z-index: 2;
+  color: var(--main);
+  background-color: var(--assist-white);
+  border-radius: 50%;
+  height: 1.7rem;
+  width: 1.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0.1rem;
+}
+
+.productPageMain {
+  padding: 2rem 0rem;
+  background-color: var(--assist-white);
+  border-radius: 20px;
+  display: flex;
+}
+.productPageMain .productPageMainIMG {
+  width: 50%;
+  padding: 0rem 1.5rem;
+}
+.productPageMain .productPageMainIMG img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+.productPageMain .productPageMainINFO {
+  width: 50%;
+  padding: 0rem 1.5rem;
+}
+.productPageMain .productPageMainINFO .productCategory {
+  display: flex;
+  width: 100%;
+}
+.productPageMain .productPageMainINFO .productCategory p {
+  color: var(--main-dark);
+  background-color: var(--bg-light);
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 5%;
+}
+.productPageMain .productPageMainINFO .productNameFavorit {
+  width: 100%;
+  display: flex;
+}
+.productPageMain .productPageMainINFO .productNameFavorit .productName {
+  color: var(--main-dark);
+  margin-right: 3rem;
+  margin-bottom: 0rem;
+}
+.productPageMain .productPageMainINFO .productNameFavorit .productFavorit {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bg-main);
+  padding: 0.7rem 0.7rem 0.6rem 0.7rem;
+}
+.productPageMain .productPageMainINFO .productNameFavorit .productFavorit svg {
+  color: var(--main-dark);
+  height: 1.2rem;
+  width: 1.2rem;
+  transition: scale 300ms;
+}
+.productPageMain .productPageMainINFO .productNameFavorit .productFavorit svg:hover {
+  transform: scale(1.2);
+}
+.productPageMain .productPageMainINFO .productDescription {
+  width: 100%;
+  margin: 2rem 0;
+}
+.productPageMain .productPageMainINFO .productPrice {
+  width: 100%;
+  color: var(--main-dark);
+}
+.productPageMain .productPageMainINFO .productRateIconNum {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}
+.productPageMain .productPageMainINFO .productRateIconNum .productRateIcon {
+  display: flex;
+  color: var(--main);
+}
+.productPageMain .productPageMainINFO .productRateIconNum .productRateIcon svg {
+  transform: scale(1.5);
+  margin-right: 0.5rem;
+}
+.productPageMain .productPageMainINFO .productRateIconNum .productRateNum {
+  color: var(--main);
+}
+.productPageMain .productPageMainINFO .productBuyForm {
+  display: flex;
+  align-items: flex-start;
+}
+.productPageMain .productPageMainINFO .productBuyForm .select-section {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.productPageMain .productPageMainINFO .productBuyForm .select-section > div {
+  margin-right: 3rem;
+}
+.productPageMain .productPageMainINFO .productBuyForm .select-section label {
+  display: none;
+}
+
+.onePageHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.onePageHeader .PageBack svg {
+  color: var(--main-dark);
+  width: 2rem;
+  height: 2rem;
+}
+.onePageHeader .PageTitle {
+  color: var(--main-dark);
+}
+
+.order_section {
+  padding: 2rem 0;
+  border-radius: 20px;
+  background-color: var(--assist-white);
+  display: flex;
+  justify-content: space-between;
+}
+.order_section .order_left {
+  padding: 0 1.5rem;
+  height: 500px;
+  width: 65%;
+}
+.order_section .order_right {
+  padding: 0 1.5rem;
+  height: 500px;
+  width: 35%;
+}
+
+.product_table {
+  width: 100%;
+  min-width: 100%;
+}
+.product_table thead {
+  border-top: 1px solid var(--assist-gray);
+  border-bottom: 1px solid var(--assist-gray);
+}
+.product_table thead th {
+  font-weight: normal;
+  border-top: 1px solid var(--assist-gray);
+  line-height: 2.5rem;
 }/*# sourceMappingURL=shopping.css.map */

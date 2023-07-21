@@ -12088,7 +12088,7 @@ h6, .h6, label {
   font-size: 1rem;
 }
 
-p, a, span, div, button, li, ol, .dropdown-item {
+p, a, span, div, button, li, ol, .dropdown-item, th {
   font-size: 1rem;
 }
 
@@ -12209,6 +12209,9 @@ label {
   border: 1.8px solid #D8d8d8;
   border-radius: 8px;
 }
+.input-text::-moz-placeholder {
+  color: var(--assist-gray);
+}
 .input-text::placeholder {
   color: var(--assist-gray);
 }
@@ -12228,6 +12231,7 @@ label {
 }
 
 .input-text-section .input-text {
+  height: -moz-fit-content;
   height: fit-content;
 }
 
@@ -12259,6 +12263,9 @@ label {
   border: 1.8px solid #D8d8d8;
   border-radius: 8px;
   height: 10rem;
+}
+.area-text::-moz-placeholder {
+  color: var(--assist-gray);
 }
 .area-text::placeholder {
   color: var(--assist-gray);

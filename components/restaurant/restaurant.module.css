@@ -1,0 +1,16 @@
+.imgClass {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+.img1{
+  width: 100%;
+  /* height: auto; */
+  object-fit: cover;
+
+}
+.imgClass2 {
+  width: 1000px;
+  height: 1000px;
+  overflow: hidden;
+}

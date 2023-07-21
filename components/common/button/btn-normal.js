@@ -8,9 +8,13 @@ export default function BtnNormal({
   addIMGRight = '',
   addClassforButton = 'btn-dark',
   disabled = false,
+  onClick,
   href = '',
   target = '',
+  bsModle1 = '',
+  bsModle2=''
 }) {
+  //
   return (
     <a
       href={href ? href : undefined}
@@ -21,6 +25,9 @@ export default function BtnNormal({
         value={value}
         className={`btn ${addClassforButton}`}
         disabled={disabled}
+        onClick={onClick}
+        data-bs-target={bsModle1}
+        data-bs-toggle={bsModle2}
       >
         {addIMGLeft}
         <span>{btnText}</span>

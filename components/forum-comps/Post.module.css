@@ -1,0 +1,30 @@
+.heart:hover {
+  transform: scale(3);
+  transition-duration: 1s;
+  cursor: pointer;
+  color: red;
+}
+.chat:hover {
+  transform: scale(3);
+  transition-duration: 1s;
+  cursor: pointer;
+  color: red;
+}
+.pencilSquare:hover {
+  transform: scale(2);
+  transition-duration: 1s;
+  cursor: pointer;
+  color: gray;
+}
+.trash:hover {
+  transform: scale(2);
+  transition-duration: 1s;
+  cursor: pointer;
+  color: gray;
+}
+.commentInput {
+  border: none;
+}
+.commentInput:focus {
+  outline: none;
+}

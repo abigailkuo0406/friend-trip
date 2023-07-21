@@ -15,6 +15,7 @@ export default function Products() {
     page: 1,
     rows: [],
   })
+  console.log(data)
 
   console.log('router.query:', router.query)
   const [keyword, setKeyword] = useState('')
