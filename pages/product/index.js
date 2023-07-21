@@ -54,6 +54,7 @@ export default function ProductIndex() {
             <Fragment key={i.product_id}>
               <CardProduct
                 productName={i.product_name}
+                productCategory={i.product_category}
                 productBrief={i.product_brief}
                 productPrice={i.product_price}
                 productPost={i.product_post}
