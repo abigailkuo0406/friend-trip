@@ -256,16 +256,17 @@ export default function RestaurantList({
               ></button> */}
                     </div>
                     <div className="modal-body">
-                      <h1>邀請列表</h1>
+                      {/* <h1>邀請列表</h1> */}
                       <ul id="inviteList">
-                        {inviteList.map((v, i) => {
-                          console.log("33333:",v)
+                        {/* {inviteList.map((v, i) => {
+                          console.log('33333:', v)
                           return (
                             <div key={i}>
                               <li>{v}</li>
                             </div>
                           )
-                        })}
+                        })} */}
+                        <li>{invites}</li>
                       </ul>
 
                       <h1>朋友列表</h1>
@@ -275,6 +276,7 @@ export default function RestaurantList({
                             <div key={i}>
                               <Invite
                                 friendName={v.FriendName}
+                                img={v.FriendImg}
                                 onValueChange={handleValueChange}
                               />
                             </div>

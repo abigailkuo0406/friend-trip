@@ -61,6 +61,7 @@ export default function RegisterCard() {
                 label="身高"
                 name="height"
                 value={height}
+                onChange
                 getValue={(value) => {
                   if (value >= 200) return setHeight(200)
                   // setHeight(value)
