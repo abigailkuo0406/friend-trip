@@ -1,0 +1,154 @@
+.container {
+  display: flex;
+  position: relative;
+}
+
+.sideBar {
+  background-color: white;
+  box-shadow: 0px 0px 7px #333333;
+  /* z-index: 1; */
+}
+.top {
+  background-color: cornsilk;
+  width: 100%;
+  height: 125px;
+}
+.linkIcon {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px silver solid;
+}
+.initTitle {
+  border-bottom: 1px silver solid;
+}
+
+/* timeline */
+.list {
+    overflow-y: scroll;
+    height: calc(65vh - 200px);
+    background-color: aqua;
+}
+.list::-webkit-scrollbar{
+    width: 15px;
+    background-color: black;
+}
+   
+.list::-webkit-scrollbar-track{
+    background-color: darkgray;
+}
+
+.containerRight {
+  background: #eaf6ff;
+}
+.li{
+  padding-bottom: 1.5rem;
+  border-left: 1px solid #abaaed;
+  position: relative;
+  padding-left: 20px;
+  list-style: none;
+}
+.li:before {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: white;
+    border: 1px solid #4e5ed3;
+    border-radius: 50%;
+    position: absolute;
+    left: -8px;
+    top: 0px;
+  }
+
+.time {
+  color: #2a2839;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+.initText {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.timeline {
+  background-color: mistyrose;
+}
+.ul {
+  padding: 1em 0 0 2em;
+  margin: 0;
+  list-style: none;
+}
+
+.map {
+  background-color: lightcoral;
+  max-width: 100%;
+  height: auto;
+
+}
+
+.circle_text {
+  background-color: #fabcbf;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin-right: 5px;
+  text-align: center;
+  width: 1.6em;
+}
+.line {
+  border-left: 2px solid #D8D8D8;
+  height: 45%;
+  margin-left: 12px;
+  position: absolute;
+}
+
+.link{
+  color: #674C87;
+  font-size:1.5rem;
+  margin-right: 1rem;
+  padding-bottom: 10px;
+}
+.addbtn{
+  color: #674C87;
+  
+}
+
+
+/* SearchView */
+.text {
+  color: #674C87;
+  list-style: none;
+}
+.input{
+  color: #674C87;
+  padding: 0.2rem 2.5rem 0.2rem 0.5rem;
+  /* border: 1.8px solid #D8d8d8; */
+  border-radius: 8px;
+
+  
+}
+.input:focus{
+  color: #674C87;
+  box-shadow: none;
+}
+.input:focus-visible{
+  outline: none
+
+}
+.searchArrow{
+  color: #674C87;
+  font-size: 1.15rem;
+}
+.search{
+  color: #674C87;
+  font-size: 1rem;
+  
+}
+.collect{
+  color: #674C87;
+  font-size: 1rem;
+}

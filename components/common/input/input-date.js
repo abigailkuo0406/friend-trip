@@ -14,6 +14,7 @@ export default function InputDate({
   addClassforInput = '',
   addClassforLabel = '',
 }) {
+ 
   // 定義預設日期
   const today = new Date()
   const nowYear = today.getFullYear()
@@ -62,6 +63,9 @@ export default function InputDate({
         className={`${width} input-text`}
         onChange={handleChange}
       />
+      
     </div>
+    
+    
   )
 }

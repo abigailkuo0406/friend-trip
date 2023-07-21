@@ -1,0 +1,106 @@
+.formbody {
+  position: relative;
+}
+
+.coverTitle{
+display: flex;
+justify-content: center;
+}
+
+.label {
+  margin-left: 17rem;
+  margin-top: 1rem;
+  padding-bottom: 1.2rem;
+
+}
+
+
+
+
+
+
+.uploader {
+  align-items: center;
+  background-color: #efefef;
+  background-color: rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  display: -webkit-flex;
+  display: flex;
+  height: 260px;
+  -webkit-justify-content: center;
+  justify-content: center;
+  outline: 3px dashed #B497D4;
+  outline-offset: 5px;
+  position: relative;
+  max-width: 400px;
+  width:100%
+}
+
+.uploaderinput {
+  display: none;
+}
+
+.uploaderIcon{
+    color: #674C87;
+    font-size: 5em;
+  
+}
+.uploaderImg{
+max-width:400px;
+ width: 500px;
+ height: 260px;
+}
+.link{
+  color: #674C87;
+  font-size:1.5rem;
+}
+.h3{
+  color: #674C87;
+  margin: auto;
+}
+
+
+/* -------------sm------------- */
+@media (min-width: 576px) { 
+  .label {
+  margin-left: 3rem;
+}
+.link{
+  padding-left: 1rem;
+}
+}
+
+/* --------------md---------------- */
+@media (min-width: 768px) {
+  .label {
+    margin-left: 3rem;
+  }
+  .link{
+    padding-left: 1rem;
+  }
+}
+
+/* --------------lg------------------- */
+@media (min-width: 992px){
+  .label {
+    margin-left: 8.5rem;
+  }
+  .link{
+    padding-left: 1rem;
+  }
+}
+
+/* --------------xl------------------- */
+@media (min-width: 1200px) {
+  .label {
+    margin-left: 12.8rem;
+  }
+}
+
+/* --------------xxl------------------- */
+@media (min-width: 1400px) {  
+  .label {
+  margin-left: 17rem;
+} 
+
+}

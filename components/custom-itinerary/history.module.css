@@ -1,0 +1,39 @@
+
+.container {
+  margin: 20px auto;
+  padding:0;
+}
+
+.text {
+  margin-right: 10px;
+  color: #674c87;
+}
+
+.cardText {
+  color: #717171;
+  margin-top: 50px;
+}
+
+
+.img{
+  /* border: 5px deeppink solid; */
+  /* padding: 0.5rem; */
+  padding: 1rem;
+}
+.public{
+ background-color: #FABCBF;
+ font-size: 0.9rem;
+ border-radius: 20px;
+}
+.pageBtn{
+  justify-content:end;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+}
+.pageLink{
+  color: #674c87;
+} 
+
+.textcolor{
+  color: #674c87;
+}

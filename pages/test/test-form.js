@@ -85,10 +85,10 @@ export default function AdminIndex() {
 
   return (
     <>
-      <label for="customRange1" class="form-label">
+      <label htmlFor="customRange1" className="form-label">
         Example range
       </label>
-      <input type="range" class="form-range" id="customRange1"></input>
+      <input type="range" className="form-range" id="customRange1"></input>
       <article className="blog-post">
         <form onSubmit={handleSubmit}>
           <h2 className="display-5 link-body-emphasis mb-1">
@@ -237,6 +237,16 @@ export default function AdminIndex() {
             addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
             addClassforInput="classTest3" // 如果要在 input 添加 class
           ></InputCheckboxGroup>
+          <InputDate
+            id='birthday'
+            name='birthday'
+            label='請選擇生日'
+            width='input-width-10rem'
+            value={inputValue11}
+            getvalue={setInputValue11}
+            getname={setInputName11}
+            addClassforInput="classTest3"
+          ></InputDate>
           <BtnNormal
             type="submit"
             value="submit"
