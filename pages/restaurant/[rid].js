@@ -464,6 +464,7 @@ export default function RestItem() {
                           name={v.FriendName}
                           img={v.FriendImg}
                           // testfunc={handleClick}
+                          
                         />
                       </div>
                     </InviteContext.Provider>
