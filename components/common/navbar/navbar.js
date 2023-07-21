@@ -3,6 +3,8 @@ import Image from 'next/image'
 import logo from '@/assets/logo/FriendTrip-Logo.png'
 import InputSearchBar from '@/components/common/input/input-search-bar'
 import BtnLogout from '@/components/common/button/btn-logout'
+import AuthContext from '@/context/AuthContext'
+import { useContext } from 'react'
 
 export default function Navbar() {
   return (
