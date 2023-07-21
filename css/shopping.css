@@ -1,0 +1,214 @@
+.card-pagination .card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-pagination .card-body .pagination {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.card-pagination .card-body .pagination .active > .page-link {
+  background-color: var(--main-dark);
+  color: var(--assist-white);
+}
+.card-pagination .card-body .pagination .page-item {
+  height: 1.8rem;
+  width: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-pagination .card-body .pagination .page-link {
+  color: var(--main);
+  margin: 0;
+  padding: 0.4rem 0 0 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 100%;
+  border: none;
+  border-radius: 50%;
+}
+.card-pagination .card-body .pagination .page-link:focus {
+  box-shadow: none;
+}
+.card-pagination .card-body .pagination-icon {
+  padding-top: 0.34rem;
+}
+
+.ProductPageHeader {
+  margin-bottom: 2rem;
+}
+.ProductPageHeader .ProductPageTitle {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 1199px) {
+  .ProductPageHeader .ProductPageTitle {
+    flex-direction: column;
+  }
+}
+.ProductPageHeader .ProductPageTitle img {
+  width: 75%;
+  height: auto;
+}
+@media (max-width: 1199px) {
+  .ProductPageHeader .ProductPageTitle img {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+.ProductPageHeader .ProductPageTitle div {
+  width: 25%;
+  color: var(--main-dark);
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+@media (max-width: 1199px) {
+  .ProductPageHeader .ProductPageTitle div {
+    width: 100%;
+  }
+}
+.ProductPageHeader .ProductPageTitle div h1 {
+  margin: 0;
+}
+.ProductPageHeader .PageCart {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  position: relative;
+}
+.ProductPageHeader .PageCart div {
+  position: relative;
+  padding: 1.2rem;
+  cursor: pointer;
+}
+.ProductPageHeader .PageCart div svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--main-dark);
+  position: relative;
+  z-index: 1;
+  transition: scale 300ms;
+}
+.ProductPageHeader .PageCart div:hover {
+  transform: scale(1.2);
+}
+.ProductPageHeader .PageCart div::after {
+  content: "153";
+  font-size: 0.8rem;
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  z-index: 2;
+  color: var(--main);
+  background-color: var(--assist-white);
+  border-radius: 50%;
+  height: 1.7rem;
+  width: 1.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0.1rem;
+}
+
+.productCard {
+  border: none;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  height: 22.5rem;
+}
+
+.productFavorit {
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bg-main);
+  padding: 0.7rem 0.7rem 0.6rem 0.7rem;
+}
+.productFavorit svg {
+  color: var(--main-dark);
+  height: 1.2rem;
+  width: 1.2rem;
+  transition: scale 300ms;
+}
+.productFavorit svg:hover {
+  transform: scale(1.2);
+}
+
+.productCardImgSection {
+  width: 100%;
+  height: 45%;
+}
+.productCardImgSection .productCartImgLink {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+.productCardImgSection .productCardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.productCardBody {
+  height: 55%;
+  padding: 1rem 1.8rem 1.4rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.productCardBody p {
+  margin: 0;
+}
+
+.productName {
+  color: var(--main-dark);
+  font-weight: 500;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.productBrief {
+  cursor: default;
+  color: var(--assist-gray);
+  min-height: 4.5rem;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.productcardBottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.2rem;
+}
+
+.productPrice {
+  cursor: default;
+  color: var(--main-dark);
+  margin: 0;
+}
+
+.productAddCart {
+  cursor: pointer;
+}
+.productAddCart svg {
+  color: var(--main-dark);
+}/*# sourceMappingURL=shopping.css.map */

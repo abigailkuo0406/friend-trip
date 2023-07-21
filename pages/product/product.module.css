@@ -1,0 +1,34 @@
+.productCard {
+  border: none;
+  overflow: hidden;
+}
+.productCardImg {
+  height: 13rem;
+  object-fit: cover;
+}
+.productCardBody {
+  padding: 1.4rem 1.8rem;
+}
+.productName {
+  cursor: default;
+  color: var(--main-dark);
+  font-weight: 500;
+}
+.productBrief {
+  cursor: default;
+  color: var(--assist-gray);
+}
+.cardBottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.productPrice {
+  cursor: default;
+  color: var(--main-dark);
+  margin: 0;
+}
+.cartLogo {
+  cursor: pointer;
+}

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import '@/css/global.css'
+import '@/css/shopping.css'
 import DefaultLayout from '@/components/layout/default-layout'
 
 export default function MyApp({ Component, pageProps }) {

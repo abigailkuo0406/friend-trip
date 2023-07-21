@@ -19,7 +19,18 @@ export default function Navbar() {
           </a>
 
           <InputSearchBar></InputSearchBar>
-          <BtnLogout></BtnLogout>
+          {auth.member_id ? (
+            <BtnLogout
+              onclick={() => {
+                logout()
+              }}
+              text="登出"
+            ></BtnLogout>
+          ) : (
+            <Link href="./login/login-in-web">
+              <BtnLogout text="登入"></BtnLogout>
+            </Link>
+          )}
         </div>
       </header>
     </>

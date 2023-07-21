@@ -22,6 +22,7 @@ import AdminLayout from '@/components/layout/admin-layout'
   return <AdminLayout>{page}</AdminLayout>
 }
 
+
 3.上方程式碼.getLayout的.前面放自己頁面的預設輸出元件名稱
 
 
