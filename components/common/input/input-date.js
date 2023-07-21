@@ -40,13 +40,14 @@ export default function InputDate({
   //   getname(name)
   // }, []) // 在第一次渲染時，如有預設 value 將 value 和 name 先傳回去，避免預設值會讀不到
 
+  
   const handleChange = (e) => {
     setInputValue1(e.target.value)
     // getvalue(e.target.value)
     // getname(e.target.name)
   }
   return (
-    <div className={`input-date-input`}>
+    <div className={`input-text-section`}>
       <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>
