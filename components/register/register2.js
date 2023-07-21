@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './register2.module.css'
 import InputText from '@/components/common/input/input-text-flex'
 import InputTextDouble from '@/components/common/input/input-text-double'
@@ -7,8 +7,18 @@ import SelectOption from '@/components/common/input/select-option-flex'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
 import TextArea from '@/components/common/input/textarea-flex'
 import BtnNormal from '@/components/common/button/btn-normal'
+import { Logger } from 'sass'
 
 export default function RegisterCard() {
+  const [valueError, setvalueError] = useState(0)
+  const [error1, setError1] = useState('')
+  useEffect(() => {
+    if (valueError > 99) {
+      setError1('styles.error')
+    } else {
+      setError1('styles.right')
+    }
+  }, [valueError])
   const [member, setMember] = useState({
     height: '',
     weight: '',
@@ -62,9 +72,15 @@ export default function RegisterCard() {
                 name="height"
                 value={height}
                 getValue={(value) => {
-                  if (value >= 200) return setHeight(200)
-                  // setHeight(value)
+                  setvalueError(value)
+
+                  if (eval(value) > 100) {
+                    console.log('錯誤')
+                  } else {
+                    console.log('正確')
+                  }
                 }}
+                addClassforInput={error1}
                 // getName={setHeightName}
                 width="input-width-100pa"
               ></InputText>
@@ -75,7 +91,7 @@ export default function RegisterCard() {
               <InputText
                 label="體重"
                 name="weight"
-                getValue={setWeight}
+                getValue={(weight) => {}}
                 getName={setWeightName}
                 width="input-width-100pa"
               ></InputText>
