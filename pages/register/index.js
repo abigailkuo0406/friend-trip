@@ -4,7 +4,9 @@ import RegisterLetter from '@/components/register/register'
 export default function Register() {
   return (
     <>
-      <RegisterLetter />
+      <div className="d-flex justify-content-center">
+        <RegisterLetter />
+      </div>
     </>
   )
 }

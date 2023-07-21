@@ -4,7 +4,9 @@ import VerifyLetter from '@/components/login/verify'
 export default function Verify() {
   return (
     <>
-      <VerifyLetter />
+      <div className="d-flex justify-content-center">
+        <VerifyLetter />
+      </div>
     </>
   )
 }
