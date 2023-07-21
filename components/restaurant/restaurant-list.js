@@ -66,7 +66,7 @@ export default function RestaurantList({
     // console.log('日期:' + reserveDateInputVale)
     // console.log('人數:' + reservePeopleNumValue)
 
-    const formData = new FormData(document.getElementById('reserve'))
+    const formData = new FormData(document.getElementById(`reserve${restRid}`))
 
     fetch('http://localhost:3002/restaurant', {
       method: 'POST',
@@ -152,9 +152,9 @@ export default function RestaurantList({
                           <p>{restIntro}</p>
                         </div>
 
-                        <form id="reserve" onSubmit={handleSubmit}>
-                          <input name="member_id" value="1" hidden />
-                          <input name="rest_id" value={restRid} hidden />
+                        <form id={`reserve${restRid}`} onSubmit={handleSubmit}>
+                          <input name="member_id" value="1" />
+                          <input name="rest_id" value={restRid} />
 
                           <div className="mb-3">
                             <DateInput
@@ -272,7 +272,12 @@ export default function RestaurantList({
                         })} */}
                         <li>
                           {invitesImg ? (
-                            <Image src={invitesImg} className={`rounded`} width={50} height={50} />
+                            <Image
+                              src={invitesImg}
+                              className={`rounded`}
+                              width={50}
+                              height={50}
+                            />
                           ) : (
                             <Image
                               src={invitesImg}
