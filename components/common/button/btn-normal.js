@@ -11,6 +11,7 @@ export default function BtnNormal({
   href = '',
   target = '',
 }) {
+  //
   return (
     <a
       href={href ? href : undefined}

@@ -402,6 +402,7 @@
 
 .product_table {
   width: 100%;
+  min-width: 100%;
 }
 .product_table thead {
   border-top: 1px solid var(--assist-gray);
