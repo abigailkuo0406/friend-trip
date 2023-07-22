@@ -2,20 +2,20 @@ import Link from 'next/link'
 import styles from '@/components/forum-comps/NavBar.module.css'
 export default function NavBar() {
   return (
-    <nav className={`d-flex flex-row justify-content-between ${styles.link}`}>
+    <nav className={`d-flex flex-row justify-content-between`}>
       <div>
         <Link href="/forum" className={styles.navlink}>
-          <h1 className={`fs-4 `}>所有文章</h1>
+          <h3>所有文章</h3>
         </Link>
       </div>
       <div>
         <Link href="/forum/add-post" className={styles.navlink}>
-          <h1 >新增文章</h1>
+          <h3 >新增文章</h3>
         </Link>
       </div>
       <div>
         <Link href="/forum/my-posts" className={styles.navlink}>
-          <h1 className={`fs-4 ${styles.navlink}`}>我發的文</h1>
+          <h3 >我發的文</h3>
         </Link>
       </div>
     </nav>
