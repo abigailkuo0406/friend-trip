@@ -5,12 +5,12 @@ export default function NavBar() {
     <nav className={`d-flex flex-row justify-content-between ${styles.link}`}>
       <div>
         <Link href="/forum" className={styles.navlink}>
-          <h1 className={`fs-4 ${styles.navlink}`}>所有文章</h1>
+          <h1 className={`fs-4 `}>所有文章</h1>
         </Link>
       </div>
       <div>
         <Link href="/forum/add-post" className={styles.navlink}>
-          <h1 className={`fs-4 ${styles.navlink}`}>新增文章</h1>
+          <h1 >新增文章</h1>
         </Link>
       </div>
       <div>
