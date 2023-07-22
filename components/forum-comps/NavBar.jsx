@@ -9,12 +9,12 @@ export default function NavBar() {
         </Link>
       </div>
       <div>
-        <Link href="/forum/add-post" className={styles.navlink2}>
+        <Link href="/forum/add-post" className={styles.navlink}>
           <h1 className={`fs-4 ${styles.navlink}`}>新增文章</h1>
         </Link>
       </div>
       <div>
-        <Link href="/forum/my-posts" className={styles.navlink3}>
+        <Link href="/forum/my-posts" className={styles.navlink}>
           <h1 className={`fs-4 ${styles.navlink}`}>我發的文</h1>
         </Link>
       </div>
