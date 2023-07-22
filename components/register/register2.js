@@ -10,15 +10,6 @@ import BtnNormal from '@/components/common/button/btn-normal'
 import { Logger } from 'sass'
 
 export default function RegisterCard() {
-  const [valueError, setvalueError] = useState(0)
-  const [error1, setError1] = useState('')
-  useEffect(() => {
-    if (valueError > 99) {
-      setError1('styles.error')
-    } else {
-      setError1('styles.right')
-    }
-  }, [valueError])
   const [member, setMember] = useState({
     height: '',
     weight: '',
@@ -72,15 +63,9 @@ export default function RegisterCard() {
                 name="height"
                 value={height}
                 getValue={(value) => {
-                  setvalueError(value)
-
-                  if (eval(value) > 100) {
-                    console.log('錯誤')
-                  } else {
-                    console.log('正確')
-                  }
+                  parseInt(value) > 100 ? setHeight(value) : setHeight('')
                 }}
-                addClassforInput={error1}
+                addClassforInput={height ? styles.error : styles.right}
                 // getName={setHeightName}
                 width="input-width-100pa"
               ></InputText>
