@@ -62,6 +62,7 @@ export default function RegisterCard() {
                 label="身高"
                 name="height"
                 value={height}
+                onChange
                 getValue={(value) => {
                   parseInt(value) > 100 ? setHeight(value) : setHeight('')
                 }}

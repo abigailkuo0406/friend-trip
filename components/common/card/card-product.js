@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import noImage from '@/public/img/fake-data/no-image.jpg'
 import { BsCart, BsCartPlus, BsHeartFill, BsHeart } from 'react-icons/bs'
 
 import fakeIimg1 from '@/public/img/fake-data/fake-img-1.jpg'

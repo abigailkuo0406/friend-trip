@@ -1,12 +1,12 @@
-.ul {
+.ol {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.ul .liStyle {
+.ol .li {
   counter-increment: step;
 }
-.ul .liStyle:before {
+.ol .li:before {
   line-height: 24px;
   text-align: center;
   color: #fff;

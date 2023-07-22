@@ -24,10 +24,10 @@ export default function Cart() {
           <table className="product_table">
             <thead>
               <tr>
-                <th>商品名</th>
-                <th>價格</th>
-                <th>數量</th>
-                <th>小記</th>
+                <th class="product_th_name">商品名</th>
+                <th class="product_th_price">價格</th>
+                <th class="product_th_num">數量</th>
+                <th class="product_th_total">小記</th>
               </tr>
             </thead>
             <tbody>

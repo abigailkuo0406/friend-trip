@@ -25,8 +25,6 @@ export default function RestaurantPhoto({ file, rid }) {
   }, [])
   return (
     <>
-      <h1>餐廳照片路徑{file}</h1>
-
       {/* 照片區 */}
 
       <div id={`carouselExampleIndicators${rid}`} className="carousel slide">
@@ -69,7 +67,7 @@ export default function RestaurantPhoto({ file, rid }) {
           <div className={`carousel-item active ${styles.imgClass2}`}>
             <Image
               src={`http://localhost:3002/restImg/${file}`}
-              className={`rounded-start ${styles.img1}`}
+              className={`${styles.img1}`}
               alt="..."
               width={500}
               height={500}
@@ -87,7 +85,7 @@ export default function RestaurantPhoto({ file, rid }) {
               >
                 <Image
                   src={`http://localhost:3002/restImg/${v.RestImg}`}
-                  className={`rounded-start ${styles.img1}`}
+                  className={`${styles.img1}`}
                   width={500}
                   height={500}
                 />
