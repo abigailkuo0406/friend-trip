@@ -71,6 +71,7 @@ export default function RegisterCard() {
                 label="身高"
                 name="height"
                 value={height}
+                onChange
                 getValue={(value) => {
                   setvalueError(value)
 

@@ -32,15 +32,19 @@ export default function RestaurantList({
 }) {
   const inviteList = []
   const [invites, setInvites] = useState('')
+  const [invitesImg, setInvitesImg] = useState('')
   // 回乎函數，接收邀請元件的傳值
-  const handleValueChange = (e) => {
-    console.log('222:', e)
-    setInvites(e)
+  const handleValueChange = (ivName, ivImg) => {
+    console.log('222:', ivName)
+    console.log('3333:', ivImg)
+
+    setInvites(ivName)
+    setInvitesImg(ivImg)
   }
-  useEffect(() => {
-    inviteList.push(invites)
-    console.log(inviteList)
-  }, [invites])
+  // useEffect(() => {
+  //   // inviteList.push(invites)
+  //   // console.log(inviteList)
+  // }, [invites])
 
   //預設訂位時間
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
@@ -81,7 +85,7 @@ export default function RestaurantList({
             <div className={styles.imgClass}>
               <Image
                 src={`http://localhost:3002/restImg/${restImg}`}
-                className={`rounded-start ${styles.img1}`}
+                className={`rounded ms-2 ${styles.img1}`}
                 width={200}
                 height={200}
                 priority={true}
@@ -256,16 +260,30 @@ export default function RestaurantList({
               ></button> */}
                     </div>
                     <div className="modal-body">
-                      <h1>邀請列表</h1>
+                      {/* <h1>邀請列表</h1> */}
                       <ul id="inviteList">
-                        {inviteList.map((v, i) => {
-                          console.log("33333:",v)
+                        {/* {inviteList.map((v, i) => {
+                          console.log('33333:', v)
                           return (
                             <div key={i}>
                               <li>{v}</li>
                             </div>
                           )
-                        })}
+                        })} */}
+                        <li>
+                          {invitesImg ? (
+                            <Image src={invitesImg} className={`rounded`} width={50} height={50} />
+                          ) : (
+                            <Image
+                              src={invitesImg}
+                              width={50}
+                              height={50}
+                              hidden
+                            />
+                          )}
+
+                          {invites}
+                        </li>
                       </ul>
 
                       <h1>朋友列表</h1>
@@ -275,6 +293,7 @@ export default function RestaurantList({
                             <div key={i}>
                               <Invite
                                 friendName={v.FriendName}
+                                img={v.FriendImg}
                                 onValueChange={handleValueChange}
                               />
                             </div>

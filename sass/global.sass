@@ -2,15 +2,17 @@
 @import _mixin
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 
+
 /* General Start ====================*/
 
 html
   margin: 0
   padding: 0
-  font-size: 16px
+  font-size:16px
 
 body
   background-color: var(--bg-main)
+
 
 :root
   --main: #D0A5CA
@@ -23,6 +25,8 @@ body
   --assist-white: #FFFFFF
   --assist-lightgrey: #D8D8D8
   --warning: #874c6d
+
+  --bs-border-radius: 20px
 
 h1,h2,h3,h4,h5,h6,p,a,span,ul,div
   font-family: 'Noto Sans TC','Noto Sans', sans-serif
@@ -98,9 +102,9 @@ a, ul, ol
 .input-width-5rem
   width: 5rem
 .input-width-3rem
-  width: 3rem
+  width: 3rem 
 // input 樣式
-.select-section,.input-text-section, .input-radio-section, .input-checkbox-section,
+.select-section,.input-text-section, .input-radio-section, .input-checkbox-section
   margin-top: 1.8rem
   margin-bottom: 1.8rem
   .section-label
@@ -122,12 +126,12 @@ label
   border: 1.8px solid #D8d8d8
   border-radius: 8px
   &::placeholder
-    color: var(--assist-gray)
+      color: var(--assist-gray)
   &:focus
-    color: var(--main-dark)
-    box-shadow: none
+      color: var(--main-dark)
+      box-shadow: none
   &:focus-visible
-    outline: none
+      outline: none
 .form-control
   border-radius: 20px 0 0 20px
   border: none
@@ -138,17 +142,17 @@ label
     height: fit-content
 
 .input-text-double-section
-  display: flex
-  flex-direction: row
-  justify-content: space-between
-  .input-text-section
-    width: 50%
-    >div
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    .input-text-section
+      width: 50%
+      >div
       &:first-child
-        margin-right: 3%
+        margin-right:3%
       &:last-child
-        margin-left: 3%
-
+        margin-left:3%
+          
 .radio-seciton
   label
     padding-left: 0.5rem
@@ -161,12 +165,12 @@ label
   border-radius: 8px
   height: 10rem
   &::placeholder
-    color: var(--assist-gray)
+      color: var(--assist-gray)
   &:focus
-    color: var(--main-dark)
-    box-shadow: none
+      color: var(--main-dark)
+      box-shadow: none
   &:focus-visible
-    outline: none
+      outline: none 
 .custom-select
   position: relative
   // width: fit-content // 此 div 與子元素 select 同寬
@@ -180,7 +184,7 @@ label
     position: absolute
     top: 1.8px // 1.8px 為 外框寬度
     right: 1.8px // 1.8px 為 外框寬度
-    display: block
+    display:block
     background-color: var(--main-dark)
     height: calc(100% - 3.6px)
     width: 2rem
@@ -209,7 +213,7 @@ label
 .custom-number
   position: relative
   // width: fit-content // 此 div 與子元素 select 同寬
-
+    
   &::after
     font-weight: 700
     font-family: "Font Awesome 5 Free"
@@ -218,7 +222,7 @@ label
     position: absolute
     top: 1.8px // 1.8px 為 外框寬度
     right: 1.8px // 1.8px 為 外框寬度
-    display: block
+    display:block
     background-color: var(--main-dark)
     height: calc(50% - 1.8px)
     width: 2rem
@@ -242,7 +246,7 @@ label
     position: absolute
     bottom: 1.8px // 1.8px 為 外框寬度
     right: 1.8px // 1.8px 為 外框寬度
-    display: block
+    display:block
     background-color: var(--main-dark)
     height: calc(50% - 1.8px)
     width: 2rem
@@ -273,6 +277,13 @@ label
     min-width: 10rem
   .input-text
     width: 1rem
+
+
+  
+
+
+
+
 
 /* General End ====================*/
 
@@ -305,7 +316,7 @@ header
         height: 1.4rem
         width: auto
         color: var(--assist-white)
-
+   
   /* navbar.js End ====================*/
 
 main
@@ -316,6 +327,7 @@ main
   >.row
     >div
       margin: 5rem 0
+
 
   /* sidebar.js Start ====================*/
 #Sidebar
@@ -332,28 +344,42 @@ main
     border: none
     .card-body
       padding: 1rem 1.5rem
+      @media(max-width:1199px)
+        flex-direction: column
     .card-body.nav-body
       padding: 1rem 0
 
   #User-Img
     width: 40%
+    padding-right: 1rem
+    @media(max-width:1199px)
+      padding-right: 0
+      padding-bottom: 1rem 
+    @media(max-width:991px)
+      width: 60%
     img
       width: 100%
       hieght: auto
   #User-Info
-    width: 60%
+    width: 65%
+    @media(max-width:1199px)
+      width: 100%
     >div
       width: 100%
       p
         margin: 0
     #User-Name
       color: var(--main)
+
     #User-Account
       color: var(--assist-gray)
     #User-Status
       color: var(--main)
       margin-top: 1rem
       display: flex
+      @media(max-width:991px)
+        flex-direction: column
+
       >p
         display: flex
         align-items: center
@@ -387,8 +413,13 @@ main
     #navbarNav
       width: 100%
 
+
       /* sidebar.js End ====================*/
+
+
 
 /* RWD 1200 Start ====================*/
 
+
+  
 /* RWD 1200 End ====================*/
