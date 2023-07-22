@@ -29,7 +29,8 @@ export default function ImageItemPpreview(file, setFiles) {
 
   const changeHandler = (e) => {
     const file = e.target.files[0]
-
+ console.log('file:',file)
+ console.log('e:',e)
     if (file) {
       setIsFilePicked(true)
       setSelectedFile(file)
@@ -48,7 +49,7 @@ export default function ImageItemPpreview(file, setFiles) {
             <input
               className={styles.uploaderinput}
               type="file"
-              name="file"
+              name="img"
               onChange={changeHandler}
             />
             <div>

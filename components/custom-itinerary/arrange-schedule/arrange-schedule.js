@@ -67,7 +67,9 @@ export default function ScheduleSide({ changeToSearch,selectedView }) {
                   <div className="trip-list-day-header">
                     <div className="d-flex mt-2">
                       <h6 className="mt-1">出發時間：</h6>
-                      <input type="time"></input>
+                      <div >
+                      <input type="time" className={`${styles.time}`}></input>
+                      </div>
                     </div>
                   </div>
                   {/* 行程card */}

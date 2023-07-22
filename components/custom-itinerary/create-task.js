@@ -42,7 +42,6 @@ export default function CreateTask() {
   //上傳照片
   const [file, setFiles] = useState(null)
 
-
   //除錯用
   const [error8, setError8] = useState(false)
   const [errorTracker8, setErrorTracker8] = useState('')
@@ -58,9 +57,9 @@ export default function CreateTask() {
       return
     }
     //點選建立後3秒後跳轉
-    setTimeout(() => {
-      router.push('/custom-itinerary/arrange-schedule')
-    }, 3000)
+    // setTimeout(() => {
+    //   router.push('/custom-itinerary/arrange-schedule')
+    // }, 3000)
 
     // console.log('行程名稱：', inputSubjectValue)
     // console.log('出發日期：',inputDateValue)
@@ -72,7 +71,8 @@ export default function CreateTask() {
     // console.log('備註：',inputNoteValue)
 
     const formData = new FormData(document.getElementById('createInit'))
-
+    console.log('document::::',document.getElementById('createInit'))
+    console.log(formData)
     // API串接
     fetch('http://localhost:3002/custom-itinerary', {
       method: 'POST',
@@ -82,6 +82,33 @@ export default function CreateTask() {
       .then((data) => {
         console.log(data)
       })
+
+
+      // fetch('http://localhost:3002/try-preview', {
+      //   method: 'POST',
+      //   body: formData,
+      // })
+      //   .then((r) => r.json())
+      //   .then((data) => {
+      //     console.log(data)
+      //   })
+
+
+    // const fd = new formData()
+    // console.log('fd===>', fd)
+    // //上傳照片  `
+    // fetch('http://localhost:3002/try-previw'),
+    //   {
+    //     method: 'POST',
+    //     body: fd,
+    //   }
+    //     .then((response) => response.json())
+    //     .then((result) => {
+    //       console.log('Success:', result)
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error:', error)
+    //     })
   }
 
   //  點選取消後回到首頁
@@ -89,23 +116,28 @@ export default function CreateTask() {
     router.push('/ ')
   }
 
-  
   return (
     <>
       <article className="blog-post">
         <form onSubmit={handleSubmit} id="createInit" name="add">
           <div className={`${styles.coverTitle}`}>
-            <Link className={styles.link} href="/custom-itinerary">
+            <Link className={styles.link} href="/member/itinerary">
               <FaArrowLeftLong />
             </Link>
             <h3 className={styles.h3}>新增行程</h3>
           </div>
-          <div>
+          {/* <div>
             <label className={` ${styles.label}`}>旅程封面圖片</label>
-            <ImageItemPpreview />
-          </div>
+            <ImageItemPpreview name="img" />
+          </div> */}
           {/* 表格 */}
           <div className={styles.formbody}>
+          <div>
+            <label className={` ${styles.label}`}>旅程封面圖片</label>
+            <ImageItemPpreview name="img" />
+          </div>
+
+
             <div className="container ">
               <InputText
                 id="inputSubject"
