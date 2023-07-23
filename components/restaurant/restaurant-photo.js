@@ -19,10 +19,11 @@ export default function RestaurantPhoto({ file, rid }) {
       method: 'GET',
     })
       .then((r) => r.json())
-      .then((restPhotos) => {
-        setRestPhotos(restPhotos)
+      .then((restphotos) => {
+        setRestPhotos(restphotos)
       })
   }, [])
+
   return (
     <>
       {/* 照片區 */}
@@ -75,9 +76,11 @@ export default function RestaurantPhoto({ file, rid }) {
             />
           </div>
           {restPhotos.rows.map((v, i) => {
-            {
-              /* console.log(v) */
-            }
+
+            console.log('後端傳出來的restPhotos:', restPhotos)
+            console.log('後端傳出來的restPhotos.rows', restPhotos.rows)
+
+
             return (
               <div
                 key={v.RestID}

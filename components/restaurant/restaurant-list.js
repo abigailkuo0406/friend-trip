@@ -30,6 +30,8 @@ export default function RestaurantList({
   restImg,
   restRid,
 }) {
+
+  /*邀請功能*/
   const [inviteList, setInviteList] = useState([])
   // console.log('外層邀請清單:', inviteList)
 
@@ -60,6 +62,11 @@ export default function RestaurantList({
   const [reserveTimeInputName, setReserveTimeInputName] = useState('')
   const [reserveTimeInputLabel, setReserveTimeInputLabel] = useState('')
 
+  useEffect(() => {
+    console.log('訂位時間:', reserveTimeInputValue)
+
+  }, [reserveTimeInputValue])
+
   // 預設訂位日期
   // const [reserveDateInputVale, setReserveDateInputValue] = useState('')
   // const [reserveDateInputName, setReserveDateInputName] = useState('')
@@ -69,6 +76,22 @@ export default function RestaurantList({
   const [reservePeopleNumValue, setReservePeopleNumValue] = useState('')
   const [reservePeopleNumName, setReservePeopleNumName] = useState('')
 
+  const restItem = () => {
+    fetch('http://localhost:3002/restphoto', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify({ "rid": restRid, })
+
+    })
+  }
+
+
+
+
+  /* 提交表單*/
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -78,11 +101,9 @@ export default function RestaurantList({
       method: 'POST',
       body: formData,
     })
-      .then((r) => r.json)
-      .then((data) => {
-        console.log(data)
-      })
+
   }
+
   return (
     <>
       <div className="card mb-3 radius20px">
@@ -103,13 +124,22 @@ export default function RestaurantList({
             <div className="card-body">
               <h2 className="card-title">{restName}</h2>
               <p className="card-text text-truncate my-4">{restIntro}</p>
-              <button
+              <Button
+                btnText='訂位'
+                onClick={restItem}
+                bsModle1={`#exampleModalToggle${restRid}`}
+                bsModle2='modal'
+
+              />
+              {/* <button
                 className="btn btn-primary"
                 data-bs-target={`#exampleModalToggle${restRid}`}
                 data-bs-toggle="modal"
+                onClick={restItem()}
+
               >
                 訂位
-              </button>
+              </button> */}
 
               <div
                 className="modal fade"
@@ -172,6 +202,13 @@ export default function RestaurantList({
                           </div>
 
                           <div className="mb-3">
+                            {/* <label for="test1"/>11:30
+                            <input
+                              type='radio'
+                              value='11:30'
+                              name='reserve_time'
+                              id='test1'
+                            /> */}
                             <RadioGroupInput
                               label="訂位時間"
                               name="reserve_time"
@@ -179,6 +216,7 @@ export default function RestaurantList({
                               idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
                               valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
                               labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
+                              checked="11:30" // 預設勾選，需填入 value，只能擇一
                               getValue={setReserveTimeInputValue}
                               getName={setReserveTimeInputName}
                               getLabel={setReserveTimeInputLabel}
