@@ -263,7 +263,7 @@ export default function RestaurantList({
                           </div>
                           <Button
                             btnText="邀請好友"
-                            bsModle1="#exampleModalToggleSecond"
+                            bsModle1={`#exampleModalToggleSecond${restRid}`}
                             bsModle2="modal"
                           />
                           <Button
@@ -287,7 +287,7 @@ export default function RestaurantList({
               {/* 第二層Modal */}
               <div
                 className="modal fade"
-                id="exampleModalToggleSecond"
+                id={`exampleModalToggleSecond${restRid}`}
                 aria-hidden="true"
                 aria-labelledby="exampleModalToggleLabel2"
                 tabindex="-1"
