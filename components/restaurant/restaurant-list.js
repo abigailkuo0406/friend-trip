@@ -30,21 +30,47 @@ export default function RestaurantList({
   restImg,
   restRid,
 }) {
-  const inviteList = []
-  const [invites, setInvites] = useState('')
-  const [invitesImg, setInvitesImg] = useState('')
-  // 回乎函數，接收邀請元件的傳值
-  const handleValueChange = (ivName, ivImg) => {
-    console.log('222:', ivName)
-    console.log('3333:', ivImg)
+  const [inviteList, setInviteList] = useState([])
+  console.log('外層邀請清單:', inviteList)
 
-    setInvites(ivName)
-    setInvitesImg(ivImg)
+  // setInviteList(inviteList.filter(el => el))
+
+  // const [invites, setInvites] = useState()
+  // const [invitesImg, setInvitesImg] = useState('')
+  // 回乎函數，接收邀請元件的傳值
+
+  // const handleValueChange = (ivName, ivImg) => {
+  //   const isInvite = inviteList.indexOf(ivName)
+  //   if (isInvite < 0) {
+  //     setInviteList([{ ivName, ivImg }, ...inviteList])
+  //   } else {
+  //     inviteList.filter((v)=>{
+  //       return v !== { ivName, ivImg }
+  //     })
+
+  //   }
+
+  // }
+  const handleValueChange = (ivName, ivImg, ivBtn, ivId) => {
+    // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
+    if (ivBtn) {
+      setInviteList([{ 'inviteName': ivName, 'inviteImg': ivImg, 'inviteId': ivId }, ...inviteList])
+    }
+    // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
+    else {
+      const arr = inviteList.filter((v) => {
+        // console.log('filter裡的ivname和ivimg', ivName, ivImg)
+        // console.log('filter的v:', v)
+        return v.inviteName !== ivName
+
+      })
+      // console.log('arr:', arr)
+      setInviteList(arr)
+
+    }
   }
-  // useEffect(() => {
-  //   // inviteList.push(invites)
-  //   // console.log(inviteList)
-  // }, [invites])
+
+
 
   //預設訂位時間
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
@@ -153,8 +179,8 @@ export default function RestaurantList({
                         </div>
 
                         <form id={`reserve${restRid}`} onSubmit={handleSubmit}>
-                          <input name="member_id" value="1" />
-                          <input name="rest_id" value={restRid} />
+                          <input name="member_id" value="1" hidden />
+                          <input name="rest_id" value={restRid} hidden />
 
                           <div className="mb-3">
                             <DateInput
@@ -165,7 +191,7 @@ export default function RestaurantList({
                               getvalue={setReserveDateInputValue}
                               getname={setReserveDateInputName}
                               getLabel={setReserveDateInputLabel}
-                              // minDate='2023-12-16'
+                            // minDate='2023-12-16'
                             />
                           </div>
 
@@ -208,8 +234,32 @@ export default function RestaurantList({
 
                           <div>
                             <label>邀請好友</label>
-                            <img />
-                            <img />
+                            <ul id="inviteList">
+                              {inviteList.map((v, i) => {
+                                return (
+                                  // 陣列中有姓名才顯示li
+                                  <div key={i}>
+                                    {v.inviteName
+                                      ?
+                                      <li>
+                                        <input name="iv_member_id" value={v.inviteId} hidden />
+
+                                        <Image
+                                          src={v.inviteImg}
+                                          className={`rounded`}
+                                          width={50}
+                                          height={50}
+                                        />
+                                        {v.inviteName}
+                                      </li>
+                                      :
+                                      <li hidden></li>}
+
+                                  </div>
+                                )
+                              })}
+
+                            </ul>
                           </div>
                           <Button
                             btnText="邀請好友"
@@ -262,33 +312,28 @@ export default function RestaurantList({
                     <div className="modal-body">
                       {/* <h1>邀請列表</h1> */}
                       <ul id="inviteList">
-                        {/* {inviteList.map((v, i) => {
-                          console.log('33333:', v)
+                        {inviteList.map((v, i) => {
                           return (
+                            // 陣列中有姓名才顯示li
                             <div key={i}>
-                              <li>{v}</li>
+                              {v.inviteName
+                                ?
+                                <li>
+                                  <Image
+                                    src={v.inviteImg}
+                                    className={`rounded`}
+                                    width={50}
+                                    height={50}
+                                  />
+                                  {v.inviteName}
+                                </li>
+                                :
+                                <li hidden></li>}
+
                             </div>
                           )
-                        })} */}
-                        <li>
-                          {invitesImg ? (
-                            <Image
-                              src={invitesImg}
-                              className={`rounded`}
-                              width={50}
-                              height={50}
-                            />
-                          ) : (
-                            <Image
-                              src={invitesImg}
-                              width={50}
-                              height={50}
-                              hidden
-                            />
-                          )}
+                        })}
 
-                          {invites}
-                        </li>
                       </ul>
 
                       <h1>朋友列表</h1>
@@ -299,6 +344,7 @@ export default function RestaurantList({
                               <Invite
                                 friendName={v.FriendName}
                                 img={v.FriendImg}
+                                friendId={v.FriendID}
                                 onValueChange={handleValueChange}
                               />
                             </div>

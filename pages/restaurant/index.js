@@ -7,9 +7,6 @@ import { useRouter } from 'next/router'
 // 引入元件
 import RestaurantList from '@/components/restaurant/restaurant-list'
 
-// 引入假資料
-import restaurant from '@/data/restaurant/rest-detail.json'
-
 export default function Rest() {
   const router = useRouter()
   const [restaurants, setRestaurants] = useState({
@@ -20,7 +17,6 @@ export default function Rest() {
     page: 1,
     rows: [],
   })
-  // console.log(restaurants)
   useEffect(() => {
     const usp = new URLSearchParams(router.query)
 
