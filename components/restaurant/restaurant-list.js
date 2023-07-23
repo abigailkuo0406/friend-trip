@@ -31,40 +31,23 @@ export default function RestaurantList({
   restRid,
 }) {
   const [inviteList, setInviteList] = useState([])
-  console.log('外層邀請清單:', inviteList)
+  // console.log('外層邀請清單:', inviteList)
 
-  // setInviteList(inviteList.filter(el => el))
-
-  // const [invites, setInvites] = useState()
-  // const [invitesImg, setInvitesImg] = useState('')
-  // 回乎函數，接收邀請元件的傳值
-
-  // const handleValueChange = (ivName, ivImg) => {
-  //   const isInvite = inviteList.indexOf(ivName)
-  //   if (isInvite < 0) {
-  //     setInviteList([{ ivName, ivImg }, ...inviteList])
-  //   } else {
-  //     inviteList.filter((v)=>{
-  //       return v !== { ivName, ivImg }
-  //     })
-
-  //   }
-
-  // }
   const handleValueChange = (ivName, ivImg, ivBtn, ivId) => {
-    // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
+
     if (ivBtn) {
+      // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
+
       setInviteList([{ 'inviteName': ivName, 'inviteImg': ivImg, 'inviteId': ivId }, ...inviteList])
     }
-    // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
     else {
+      // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
+
       const arr = inviteList.filter((v) => {
-        // console.log('filter裡的ivname和ivimg', ivName, ivImg)
-        // console.log('filter的v:', v)
+
         return v.inviteName !== ivName
 
       })
-      // console.log('arr:', arr)
       setInviteList(arr)
 
     }
@@ -78,9 +61,9 @@ export default function RestaurantList({
   const [reserveTimeInputLabel, setReserveTimeInputLabel] = useState('')
 
   // 預設訂位日期
-  const [reserveDateInputVale, setReserveDateInputValue] = useState('')
-  const [reserveDateInputName, setReserveDateInputName] = useState('')
-  const [reserveDateInputLabel, setReserveDateInputLabel] = useState('')
+  // const [reserveDateInputVale, setReserveDateInputValue] = useState('')
+  // const [reserveDateInputName, setReserveDateInputName] = useState('')
+  // const [reserveDateInputLabel, setReserveDateInputLabel] = useState('')
 
   // 預設訂位人數
   const [reservePeopleNumValue, setReservePeopleNumValue] = useState('')
@@ -88,9 +71,6 @@ export default function RestaurantList({
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // console.log('時間:' + reserveTimeInputValue)
-    // console.log('日期:' + reserveDateInputVale)
-    // console.log('人數:' + reservePeopleNumValue)
 
     const formData = new FormData(document.getElementById(`reserve${restRid}`))
 
@@ -188,10 +168,6 @@ export default function RestaurantList({
                               name="reserve_date"
                               label="訂位日期"
                               width="input-width-10rem"
-                              getvalue={setReserveDateInputValue}
-                              getname={setReserveDateInputName}
-                              getLabel={setReserveDateInputLabel}
-                            // minDate='2023-12-16'
                             />
                           </div>
 
@@ -203,7 +179,6 @@ export default function RestaurantList({
                               idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
                               valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
                               labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
-                              checked="11:30" // 預設勾選，需填入 value，只能擇一
                               getValue={setReserveTimeInputValue}
                               getName={setReserveTimeInputName}
                               getLabel={setReserveTimeInputLabel}

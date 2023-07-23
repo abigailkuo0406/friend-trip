@@ -9,8 +9,8 @@ export default function InputDate({
   maxDate = '',
   label = '',
   width,
-  getvalue,
-  getname,
+  // getvalue,
+  // getname,
   addClassforInput = '',
   addClassforLabel = '',
 }) {
