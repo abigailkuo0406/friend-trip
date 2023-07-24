@@ -77,8 +77,8 @@ export default function RestaurantPhoto({ file, rid }) {
           </div>
           {restPhotos.rows.map((v, i) => {
 
-            console.log('後端傳出來的restPhotos:', restPhotos)
-            console.log('後端傳出來的restPhotos.rows', restPhotos.rows)
+            {/* console.log('後端傳出來的restPhotos:', restPhotos)
+            console.log('後端傳出來的restPhotos.rows', restPhotos.rows) */}
 
 
             return (

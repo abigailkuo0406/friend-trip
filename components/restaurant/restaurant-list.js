@@ -29,6 +29,7 @@ export default function RestaurantList({
   restMeal,
   restImg,
   restRid,
+  restArea
 }) {
 
   /*邀請功能*/
@@ -122,7 +123,12 @@ export default function RestaurantList({
 
           <div className="col-md-9">
             <div className="card-body">
-              <h2 className="card-title">{restName}</h2>
+              <div className='d-flex'>
+                <h2 className="card-title">{restName}</h2>
+                <p className='ms-3'>{restArea}</p>
+              </div>
+
+
               <p className="card-text text-truncate my-4">{restIntro}</p>
               <Button
                 btnText='訂位'
@@ -216,7 +222,7 @@ export default function RestaurantList({
                               idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
                               valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
                               labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
-                              checked="11:30" // 預設勾選，需填入 value，只能擇一
+                              // checked="11:30" // 預設勾選，需填入 value，只能擇一
                               getValue={setReserveTimeInputValue}
                               getName={setReserveTimeInputName}
                               getLabel={setReserveTimeInputLabel}
