@@ -14,14 +14,14 @@ import SearchView from '@/components/custom-itinerary/arrange-schedule/search-vi
 export default function ArrangeSchedule() {
   const [showSchedule, setShowSchedule] = useState(true)
   const [showSearchView, setShowSearchView] = useState(false)
-  const [addToSchedule, setAddToSchedule] = useState(false)
+  // const [addToSchedule, setAddToSchedule] = useState(false)
   const [inputValue, setInputValue] = useState('')
 
   const autocompleteRef = useRef(null)
   const [searchLngLat, setSearchLngLat] = useState(null) //查詢地點marker
   const [directions, setDirections] = useState(null)
 
-  const [selectedLocations, setSelectedLocations] = useState([])
+  // const [selectedLocations, setSelectedLocations] = useState([])
 
   // 存儲選擇的景點資訊
   const [selectedView, setSelectedView] = useState(null)
@@ -29,24 +29,24 @@ export default function ArrangeSchedule() {
   //定義存取多個景點陣列狀態
   const [addInitLocal, setAddInitLocal] = useState([])
 
-  const [selectedViews, setSelectedViews] = useState([])
+  // const [selectedViews, setSelectedViews] = useState([])
 
-
+  // 新增行程按鈕切換
   const handleAddScenery = () => {
     setShowSchedule(false)
   }
-
+ //點加入行程btn將畫面切到行程安排畫面
   const handleAddToSchedule = () => {
     setShowSchedule(true)
     console.log('handleAddToSchedule selectedView=>', selectedView)
     setSelectedView(selectedView)
 
-    const setNewLocals = () => {
-      //塞資料進去
-      localStorage.setItem('selectedView', JSON.stringify('selectedView'))
-      localStorage.setItem('font', 'xxxxxx')
-      console.log('selectedViewlocal=====',selectedView)
-    }
+    // const setNewLocals = () => {
+    //   //塞資料進去
+    //   localStorage.setItem('selectedView', JSON.stringify('selectedView'))
+    //   localStorage.setItem('font', 'xxxxxx')
+    //   console.log('selectedViewlocal=====',selectedView)
+    // }
 
   }
 
@@ -73,6 +73,7 @@ export default function ArrangeSchedule() {
 
     // console.log('地點資訊:', place)
 
+    //景點詳細資料
     const selectedView = {
       place_id: place.place_id,
       name: place.name,
@@ -91,11 +92,12 @@ export default function ArrangeSchedule() {
         2
       ).toFixed(4),
     }
-    console.log('selectedView父層=====>', selectedView)
+    // console.log('selectedView父層=====>', selectedView)
 
     // 將選擇的景點資訊存儲在狀態中
     setSelectedView(selectedView)
 
+    //將加入行程的景點存為新的陣列
     setAddInitLocal((prevAddInitResults) => [
       ...prevAddInitResults,
       selectedView,
@@ -117,17 +119,13 @@ export default function ArrangeSchedule() {
   }, [])
 
 
-  //  刪除
+  //  刪除景點
   const handleDeleteView=(index)=>{
     const updatedViews=[...addInitLocal]
     updatedViews.splice(index,1)
     setAddInitLocal(updatedViews)
   }
 
-
-
-
-  
 
   return (
     <>
