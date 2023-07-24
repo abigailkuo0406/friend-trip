@@ -23,14 +23,12 @@ export default function SearchView({
         <div className="mapCanvas position-absolute z-3">
           {/* sidebar */}
           <div className="itinerary-fade-in  position-absolute">
-            <div className="trip-list">
               <div
-                className="trip-list-header-top bg-light "
-                style={{ height: 700, width: 320 }}
+                className={`${styles.tripList}`}
               >
                 {/* 切換 */}
                 <ul className="nav nav-underline">
-                  <li className="nav-item mt-3 mx-1">
+                  <li className="nav-item mt-3 mx-3">
                     <Link href="/custom-itinerary/">
                         <FaArrowLeftLong  className={styles.searchArrow}/>
                     </Link>
@@ -49,10 +47,10 @@ export default function SearchView({
                   </li>
                 </ul>
 
-                <nav className="navbar bg-body-tertiary">
+                <nav className="navbar">
                   <div className="container-fluid">
                     <input
-                      className={`form-control  ${styles.input} input-text` }
+                      className={`form-control  ${styles.input} ` }
                       type="text"
                       placeholder="請輸入城市"
                       value={inputValue}
@@ -119,7 +117,7 @@ export default function SearchView({
             </div>
           </div>
         </div>
-      </div>
+   
     </>
   )
 }

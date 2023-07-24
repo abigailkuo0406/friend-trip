@@ -24,23 +24,23 @@
 
 /* timeline */
 .list {
-    overflow-y: scroll;
-    height: calc(65vh - 200px);
-    background-color: aqua;
+  overflow-y: scroll;
+  height: calc(65vh - 200px);
+  background-color: aqua;
 }
-.list::-webkit-scrollbar{
-    width: 15px;
-    background-color: black;
+.list::-webkit-scrollbar {
+  width: 15px;
+  background-color: black;
 }
-   
-.list::-webkit-scrollbar-track{
-    background-color: darkgray;
+
+.list::-webkit-scrollbar-track {
+  background-color: darkgray;
 }
 
 .containerRight {
   background: #eaf6ff;
 }
-.li{
+.li {
   padding-bottom: 1.5rem;
   border-left: 1px solid #abaaed;
   position: relative;
@@ -48,16 +48,16 @@
   list-style: none;
 }
 .li:before {
-    content: '';
-    width: 15px;
-    height: 15px;
-    background: white;
-    border: 1px solid #4e5ed3;
-    border-radius: 50%;
-    position: absolute;
-    left: -8px;
-    top: 0px;
-  }
+  content: '';
+  width: 15px;
+  height: 15px;
+  background: white;
+  border: 1px solid #4e5ed3;
+  border-radius: 50%;
+  position: absolute;
+  left: -8px;
+  top: 0px;
+}
 
 .time {
   color: #2a2839;
@@ -73,117 +73,88 @@
 .timeline {
   background-color: mistyrose;
 }
-.ul {
-  padding: 1em 0 0 2em;
-  margin: 0;
-  list-style: none;
-}
-
-.map {
-  background-color: lightcoral;
-  max-width: 100%;
-  height: auto;
-
-}
-
-.circle_text {
-  background-color: #fabcbf;
-  border-radius: 0.8em;
-  -moz-border-radius: 0.8em;
-  -webkit-border-radius: 0.8em;
-  color: #ffffff;
-  display: inline-block;
-  font-weight: bold;
-  line-height: 1.6em;
-  margin-right: 5px;
-  text-align: center;
-  width: 1.6em;
-}
-.line {
-  border-left: 2px solid #D8D8D8;
-  height: 45%;
-  margin-left: 12px;
-  position: absolute;
-}
-
-.link{
-  color: #674C87;
-  font-size:1.5rem;
-  margin-right: 1rem;
-  padding-bottom: 10px;
-}
-.addbtn{
-  color: #674C87;
-  
-}
-
 
 /* SearchView */
 .text {
-  color: #674C87;
+  color: #674c87;
   list-style: none;
 }
-.input{
-  color: #674C87;
+.input {
+  color: #674c87;
   padding: 0.2rem 2.5rem 0.2rem 0.5rem;
   /* border: 1.8px solid #D8d8d8; */
   border-radius: 8px;
-
-  
+  border: 1px solid #674c87;
 }
-.input:focus{
-  color: #674C87;
+.input:focus {
+  color: #674c87;
   box-shadow: none;
 }
-.input:focus-visible{
-  outline: none
-
+.input:focus-visible {
+  outline: none;
 }
-.searchArrow{
-  color: #674C87;
+.searchArrow {
+  color: #674c87;
   font-size: 1.15rem;
 }
-.search{
-  color: #674C87;
+.search {
+  color: #674c87;
   font-size: 1rem;
-  
 }
-.collect{
-  color: #674C87;
+.collect {
+  color: #674c87;
   font-size: 1rem;
 }
 
 /* ScheduleSide */
-.time{
-  margin: 0.5rem 0;
-
-  font-size: 2rem;
+.tripList {
+  height: 700px;
+  width: 380px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+.line {
+  border-left: 2px solid #d8d8d8;
+  /* margin-left: 1px; */
+  position: absolute;
 }
 
-.time::-webkit-datetime-edit-ampm-field{
-  color: #674C87;
+.link {
+  color: #674c87;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  margin-right: 1.2rem;
+  padding-bottom: 1.5rem;
 }
-.time::-webkit-datetime-edit-hour-field{
-  color: #674C87;
+.addbtn {
+  color: #b497d4;
+  margin: auto;
 }
-.time::-webkit-datetime-edit-minute-field{
-  color: #674C87;
+.addbtn:hover {
+  color: #674c87;
+  font-weight: bold;
 }
-.time::-webkit-datetime-edit-text{
-  color: #674C87;
+.h4 {
+  color: #674c87;
 }
-
-.time{
-  color: #674C87;
+.time {
+  font-size: 0.8rem;
+  color: #674c87;
   border-radius: 8px;
-  border: 1.8px solid #D8d8d8;
-  padding: 0.2rem 2.5rem 0.2rem 0.5rem
+  border: 1px solid #d8d8d8;
+  padding: 0.2rem 0.2rem 0.2rem 0.5rem;
 }
-.time:focus{
-  color: #674C87;
+
+.time::-webkit-datetime-edit-ampm-field {
+  color: #674c87;
 }
-/* 
-.time::-webkit-datetime-edit-text{
-  color: brown;
-} */
+.time::-webkit-datetime-edit-hour-field {
+  color: #674c87;
+}
+.time::-webkit-datetime-edit-minute-field {
+  color: #674c87;
+}
+.time::-webkit-datetime-edit-text {
+  color: #674c87;
+}
 

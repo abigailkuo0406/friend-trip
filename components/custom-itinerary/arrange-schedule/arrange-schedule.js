@@ -12,29 +12,18 @@ import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
 
 
 
-export default function ScheduleSide({ changeToSearch,selectedView }) {
-  
-  // const [showSearchView, setShowSearchView] = useState(null)
-
-  //const [selectedView,setSelectedView]=useState(null)
+export default function ScheduleSide({ changeToSearch,selectedView, }) {
   console.log('ScheduleSide   selectedView=>',selectedView)
-  // const handleAddSceneryClick = () => {
-  //   console.log('son 1 setShowSearchView:',showSearchView)
-  //   setShowSearchView(true);
-  // }
-
 
   return (
     <>
     
       <div className="itineraryContainer ">
-        <div className="mapCanvas position-absolute z-3 ">
+        <div className="mapCanvas position-absolute z-3">
           {/* sidebar */}
           <div className="itinerary-fade-in">
-            <div className="trip-list ">
               <div
-                className="trip-list-header-top bg-light "
-                style={{ height: 700, width: 380 }}
+                className={`trip-list ${styles.tripList} `}
               >
                 <div className="d-flex justify-content-end ">
                   <Link href="#" className={styles.link}>
@@ -50,8 +39,8 @@ export default function ScheduleSide({ changeToSearch,selectedView }) {
                     <FiMoreHorizontal />
                   </Link>
                 </div>
-                <div className="trip-list-header-info mx-2">
-                  <h4>九份 & 平溪天燈一日遊</h4>
+                <div className="trip-list-header-info mx-4">
+                  <h4 className={styles.h4}>九份 & 平溪天燈一日遊</h4>
                   <div className="d-flex mt-3">
                     <Image
                       src={Host}
@@ -64,9 +53,9 @@ export default function ScheduleSide({ changeToSearch,selectedView }) {
                   </div>
                 </div>
                 <div className="trip-list-day-container mx-2">
-                  <div className="trip-list-day-header">
+                  <div className="trip-list-day-header mx-3">
                     <div className="d-flex mt-2">
-                      <h6 className="mt-1">出發時間：</h6>
+                      <h6 className="mt-1 mx-1">出發時間：</h6>
                       <div >
                       <input type="time" className={`${styles.time}`}></input>
                       </div>
@@ -74,10 +63,8 @@ export default function ScheduleSide({ changeToSearch,selectedView }) {
                   </div>
                   {/* 行程card */}
                   <div className="overflow-y-auto" style={{ height: 520 }}>
-                  
-                  <InitCard selectedView={selectedView}/>
-                    
-                    <div className="mx-5">
+                  <InitCard selectedViews={selectedView}/>
+                    <div className={styles.add}>
                       <button className={`btn ${styles.addbtn}`} onClick={changeToSearch} >
                         <BsPlusLg />
                         新增行程
@@ -89,7 +76,6 @@ export default function ScheduleSide({ changeToSearch,selectedView }) {
             </div>
           </div>
         </div>
-      </div>
     </>
   )
 }
