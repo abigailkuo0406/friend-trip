@@ -34,17 +34,9 @@ export default function ArrangeSchedule() {
 
   const handleAddScenery = () => {
     setShowSchedule(false)
-    // setShowSearchView(true)
-    // console.log('handleAddScenery showSchedule:',showSchedule)
-    // console.log('InhandleAddScenery ShowSearchView:',showSearchView)
   }
 
   const handleAddToSchedule = () => {
-    // console.log('handleGoBack go go go ')
-    // console.log('before change AddToSchedule',addToSchedule)
-    // console.log('before change ShowSearchView',showSearchView)
-    // setShowSearchView(false)
-    // setAddToSchedule(true)
     setShowSchedule(true)
     console.log('handleAddToSchedule selectedView=>', selectedView)
     setSelectedView(selectedView)
@@ -61,12 +53,6 @@ export default function ArrangeSchedule() {
   const handleInputChange = (e) => {
     setInputValue(e.target.value)
   }
-
-  // const handleAddSceneryClick = () => {
-  //   setShowSchedule(false)
-  //   setShowSearchView(true)
-  //   setSelectedView(null)
-  // };
 
   //初始地圖位置
   const [center, setCenter] = useState({
@@ -130,7 +116,16 @@ export default function ArrangeSchedule() {
     console.log('localStorage.key======', localStorage.key(0))
   }, [])
 
- 
+
+  //  刪除
+  const handleDeleteView=(index)=>{
+    const updatedViews=[...addInitLocal]
+    updatedViews.splice(index,1)
+    setAddInitLocal(updatedViews)
+  }
+
+
+
 
   
 
@@ -142,6 +137,7 @@ export default function ArrangeSchedule() {
         <ScheduleSide
           changeToSearch={handleAddScenery}
           selectedView={addInitLocal}
+          onDeleteView={handleDeleteView} 
         />
       ) : (
         <Autocomplete
