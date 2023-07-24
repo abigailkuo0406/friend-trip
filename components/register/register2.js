@@ -14,7 +14,7 @@ export default function RegisterCard() {
   const [error1, setError1] = useState('')
   useEffect(() => {
     if (valueError > 99) {
-      setError1('styles.error')
+      setError1('{styles.error}')
     } else {
       setError1('styles.right')
     }
@@ -151,8 +151,8 @@ export default function RegisterCard() {
               getValue={setSmoke}
               getName={setSmokeName}
               getLabel={setSmokeLabel}
-              addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
-              addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
+              addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
+              addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
               addClassforInput="classTest3" // 如果要在 input 添加 class
             ></InputRadioGroup>
           </div>
@@ -168,8 +168,8 @@ export default function RegisterCard() {
               getValue={setAlchohol}
               getName={setAlchoholName}
               getLabel={setAlchoholLabel}
-              addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
-              addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
+              addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
+              addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
               addClassforInput="classTest3" // 如果要在 input 添加 class
             ></InputRadioGroup>
           </div>

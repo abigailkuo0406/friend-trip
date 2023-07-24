@@ -87,8 +87,8 @@ export default function RegisterCard() {
               getValue={setInputValue4}
               getName={setInputName4}
               getLabel={setInputLabel4}
-              addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
-              addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
+              addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
+              addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
               addClassforInput="classTest3" // 如果要在 input 添加 class
             ></InputRadioGroup>
           </div>
