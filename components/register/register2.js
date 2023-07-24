@@ -71,16 +71,11 @@ export default function RegisterCard() {
                 label="身高"
                 name="height"
                 value={height}
+                onChange
                 getValue={(value) => {
-                  setvalueError(value)
-
-                  if (eval(value) > 100) {
-                    console.log('錯誤')
-                  } else {
-                    console.log('正確')
-                  }
+                  parseInt(value) > 100 ? setHeight(value) : setHeight('')
                 }}
-                addClassforInput={error1}
+                addClassforInput={height ? styles.error : styles.right}
                 // getName={setHeightName}
                 width="input-width-100pa"
               ></InputText>

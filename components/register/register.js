@@ -8,6 +8,10 @@ export default function RegisterCard() {
   const [inputValue4, setInputValue4] = useState('')
   const [InputName4, setInputName4] = useState('')
   const [InputLabel4, setInputLabel4] = useState('')
+
+  const [test1, setTest1] = useState('')
+
+  // const test = document.getElementById('1')
   return (
     <>
       <div className={styles.main}>
@@ -25,10 +29,13 @@ export default function RegisterCard() {
               <InputText
                 label="電子信箱/帳號"
                 name="email"
-                getValue={() => 'whatever'}
+                id="1"
+                // value=''
+                getValue={setTest1}
                 getName={() => 'whatever'}
                 width="input-width-100pa"
               ></InputText>
+              <p>{!test1 ? '請填入姓名' : test1}</p>
             </div>
           </div>
           <div className={styles.inputstyle}>
