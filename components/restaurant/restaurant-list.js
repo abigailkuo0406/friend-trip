@@ -18,7 +18,7 @@ import Invite from '@/components/invite/invite'
 import Comment from '@/components/restaurant/comment'
 
 // 引入朋友假資料
-import friends from '@/data/restaurant/friend-list.json'
+import friendss from '@/data/restaurant/friend-list.json'
 
 export default function RestaurantList({
   restName,
@@ -44,19 +44,15 @@ export default function RestaurantList({
 
     if (ivBtn) {
       // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
-
       setInviteList([{ 'inviteName': ivName, 'inviteImg': ivImg, 'inviteId': ivId }, ...inviteList])
     }
     else {
       // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
 
       const arr = inviteList.filter((v) => {
-
         return v.inviteName !== ivName
-
       })
       setInviteList(arr)
-
     }
   }
 
@@ -98,13 +94,16 @@ export default function RestaurantList({
 
 
 
-  /* 提交表單*/
+  /* 提交訂位表單*/
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log('訂位123:', reserveTimeInputValue)
     console.log('訂位456:', reservePeopleNumValue)
 
     const formData = new FormData(document.getElementById(`reserve${restRid}`))
+
+    console.log(formData.get('reserve_time'));
+    console.log(formData.get('reserve_people'));
 
     fetch('http://localhost:3002/restaurant', {
       method: 'POST',
@@ -116,6 +115,20 @@ export default function RestaurantList({
     })
 
   }
+
+  const [friends, setFriends] = useState()
+
+  useEffect(() => {
+    fetch(`http://localhost:3002/friends`, {
+      method: 'GET',
+    })
+      .then((f) => f.json())
+      .then((friendsData) => {
+        setFriends(friendsData)
+        console.log(friends.rows)
+
+      })
+  }, [])
 
   return (
     <>
@@ -205,7 +218,10 @@ export default function RestaurantList({
                           <label>訂位須知</label>
                           <p>{restIntro}</p>
                         </div>
-
+                        <button onClick={() => {
+                          console.log('訂位123:', reserveTimeInputValue)
+                          console.log('訂位456:', reservePeopleNumValue)
+                        }}>log</button>
                         <form id={`reserve${restRid}`} onSubmit={handleSubmit}>
                           <input name="member_id" value={auth.member_id} hidden />
                           <input name="rest_id" value={restRid} hidden />
@@ -393,13 +409,13 @@ export default function RestaurantList({
 
                       <h1>朋友列表</h1>
                       <ul id="friendsList" className="list">
-                        {friends.map((v, i) => {
+                        {friends.rows.map((v, i) => {
                           return (
                             <div key={i}>
                               <Invite
-                                friendName={v.FriendName}
-                                img={v.FriendImg}
-                                friendId={v.FriendID}
+                                friendName={v._member_name}
+                                img={v.images}
+                                friendId={v.FriendId}
                                 onValueChange={handleValueChange}
                               />
                             </div>

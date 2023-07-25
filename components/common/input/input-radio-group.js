@@ -38,6 +38,13 @@ export default function InputRadioGroup({
 
   const [inputValue1, setInputValue1] = useState(checked)
 
+  // useEffect(() => {
+  //   if (checked) {
+  //     setInputValue1(checked)
+  //    }
+  //  },[checked])
+
+
   return (
     <div className="input-radio-section">
       <label className={`${addClassforTitleLabel} section-label`}>
