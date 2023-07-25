@@ -4,6 +4,7 @@ import { useEffect, useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import SelectOption from '@/components/common/input/select-option'
+import Btn from '@/components/common/button/btn-normal'
 
 
 
@@ -32,9 +33,14 @@ export default function Rest() {
     rows: [],
   })
 
+  const [searchCity, setSearchCity] = useState("")
+  const [searchMeal, setSearchMeal] = useState("")
 
   // 依據querystring(?page=取得對應頁面與資料
   useEffect(() => {
+    setSearchCity(router.query.city)
+    setSearchMeal(router.query.meal)
+
     const usp = new URLSearchParams(router.query)
 
     // API串接
@@ -63,14 +69,12 @@ export default function Rest() {
   }, [])
 
   //設定地區options
-  let areaGroup = []
+  let areaGroup = ['請選擇地區']
   if (area.totalRows > 0) {
     for (let i = 0; i < area.rows.length; i++) {
       const areaItem = area.rows[i].area_name
       areaGroup.push(areaItem)
     }
-  } else {
-    areaGroup = ['']
   }
 
 
@@ -88,16 +92,16 @@ export default function Rest() {
 
   }, [])
 
-  //設定地區options
-  let mealGroup = []
+  //設定料理類型options
+  let mealGroup = ['請選擇料理']
   if (meal.totalRows > 0) {
     for (let i = 0; i < meal.rows.length; i++) {
       const mealItem = meal.rows[i].rest_meal
       mealGroup.push(mealItem)
     }
-  } else {
-    mealGroup = ['']
   }
+
+
 
   // select-option
   const [inputValueArea, setInputValueArea] = useState('')
@@ -106,62 +110,100 @@ export default function Rest() {
   const [inputValueMeal, setInputValueMeal] = useState('')
   const [inputNameMeal, setInputNameMeal] = useState('')
 
+  // 搜尋功能
+  const searchRestaurant = (e) => {
+    e.preventDefault();
+    console.log(inputValueArea)
+    console.log(inputValueMeal)
+
+    if (inputNameArea == '基隆市' && inputNameMeal == '請選擇料理') {
+      alert('請選擇搜尋條件')
+    } else if (inputValueArea && inputValueMeal) {
+      router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
+    } else if (inputValueArea && !inputValueMeal) {
+      router.push(`?city=${inputValueArea}`)
+    } else if (!inputValueArea && inputValueMeal) { 
+      router.push(`?meal=${inputValueMeal}`)
+
+    }
+
+
+    // if (inputValueArea && !inputValueMeal) {
+    //   router.push(`?city=${inputValueArea}`)
+    // } else if (!inputValueArea && inputValueMeal) {
+    //   router.push(`?meal=${inputValueMeal}`)
+
+    // } else if (inputValueArea && inputValueMeal) {
+    //   router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
+    // } else {
+    //   alert('請選擇搜尋條件')
+    // }
+
+  }
 
   return (
     <>
       <div className="container">
         <h1>精選餐廳</h1>
+        <form className='d-flex' onSubmit={searchRestaurant}>
+          <SelectOption
+            id="area"
+            label="地區"
+            name="area"
+            // selectedDefault='台北市' //預設選項，可不填，填寫 value
+            valueGroup={areaGroup}
+            optionGroup={areaGroup}
+            getValue={setInputValueArea}
+            getName={setInputNameArea}
+            width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+            addClassforLabel="try1" // 如果要在 label 添加 class
+            addClassforSelect="try2" // 如果要在 Select 添加 class
+            addClassforOption="try3" // 如果要在 Option 添加 class
+          ></SelectOption>
 
-        <SelectOption
-          id="area"
-          label="地區"
-          name="area"
-          selectedDefault="pasta" //預設選項，可不填，填寫 value
-          valueGroup={areaGroup}
-          optionGroup={areaGroup}
-          getValue={setInputValueArea}
-          getName={setInputNameArea}
-          width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-          addClassforLabel="try1" // 如果要在 label 添加 class
-          addClassforSelect="try2" // 如果要在 Select 添加 class
-          addClassforOption="try3" // 如果要在 Option 添加 class
-        ></SelectOption>
+          <SelectOption
+            id="restaurantMeal"
+            label="料理類型"
+            name="restaurantMeal"
+            // selectedDefault="日式" //預設選項，可不填，填寫 value
+            valueGroup={mealGroup}
+            optionGroup={mealGroup}
+            getValue={setInputValueMeal}
+            getName={setInputNameMeal}
+            width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+            addClassforLabel="try1" // 如果要在 label 添加 class
+            addClassforSelect="try2" // 如果要在 Select 添加 class
+            addClassforOption="try3" // 如果要在 Option 添加 class
+          ></SelectOption>
+          <Btn
+            type="submit"
+            btnText='搜尋'
+          ></Btn>
+        </form>
+        {restaurants.totalRows > 0 ?
+          restaurants.rows.map((v, i) => {
+            return (
+              <div key={v.RestID}>
+                <RestaurantList
+                  restImg={v.RestImg}
+                  restName={v.RestName}
+                  restIntro={v.RestIntro}
+                  restRid={v.RestID}
+                  restAddress={v.RestAdress}
+                  restPhone={v.RestPhone}
+                  restTime={v.RestTime}
+                  restMeal={v.RestMeal}
+                  restClass={v.RestClass}
+                  restArea={v.RestArea}
 
-        <SelectOption
-          id="restaurantMeal"
-          label="料理類型"
-          name="restaurantMeal"
-          selectedDefault="pasta" //預設選項，可不填，填寫 value
-          valueGroup={mealGroup}
-          optionGroup={mealGroup}
-          getValue={setInputValueMeal}
-          getName={setInputNameMeal}
-          width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-          addClassforLabel="try1" // 如果要在 label 添加 class
-          addClassforSelect="try2" // 如果要在 Select 添加 class
-          addClassforOption="try3" // 如果要在 Option 添加 class
-        ></SelectOption>
+                />
+              </div>
+            )
+          })
+          :
+          <p>無符合條件之餐廳</p>
+        }
 
-
-        {restaurants.rows.map((v, i) => {
-          return (
-            <div key={v.RestID}>
-              <RestaurantList
-                restImg={v.RestImg}
-                restName={v.RestName}
-                restIntro={v.RestIntro}
-                restRid={v.RestID}
-                restAddress={v.RestAdress}
-                restPhone={v.RestPhone}
-                restTime={v.RestTime}
-                restMeal={v.RestMeal}
-                restClass={v.RestClass}
-                restArea={v.RestArea}
-
-              />
-            </div>
-          )
-        })}
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item">

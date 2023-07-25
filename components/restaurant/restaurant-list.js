@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import styles from './restaurant.module.css'
@@ -9,6 +9,7 @@ import NumberInput from '@/components/common/input/input-number'
 import RadioGroupInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date'
 import RestPhoto from '@/components/restaurant/restaurant-photo'
+import AuthContext from '@/context/AuthContext'
 
 // 引入邀請元件
 import Invite from '@/components/invite/invite'
@@ -31,6 +32,9 @@ export default function RestaurantList({
   restRid,
   restArea
 }) {
+
+  //取得登入之會員資料
+  const { auth } = useContext(AuthContext)
 
   /*邀請功能*/
   const [inviteList, setInviteList] = useState([])
@@ -65,11 +69,13 @@ export default function RestaurantList({
 
   useEffect(() => {
     console.log('訂位時間:', reserveTimeInputValue)
+    console.log('訂位人數:', reservePeopleNumValue)
+
 
   }, [reserveTimeInputValue])
 
   // 預設訂位日期
-  // const [reserveDateInputVale, setReserveDateInputValue] = useState('')
+  const [reserveDateInputVale, setReserveDateInputValue] = useState('')
   // const [reserveDateInputName, setReserveDateInputName] = useState('')
   // const [reserveDateInputLabel, setReserveDateInputLabel] = useState('')
 
@@ -95,11 +101,17 @@ export default function RestaurantList({
   /* 提交表單*/
   const handleSubmit = (event) => {
     event.preventDefault()
+    console.log('訂位123:', reserveTimeInputValue)
+    console.log('訂位456:', reservePeopleNumValue)
 
     const formData = new FormData(document.getElementById(`reserve${restRid}`))
 
     fetch('http://localhost:3002/restaurant', {
       method: 'POST',
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // },
+      // body: JSON.stringify({ "member_id": 1, "rest_id": restRid, "reserve_date": "2023-08-04", "reserve_time": reserveTimeInputValue, "reserve_people": reservePeopleNumValue })
       body: formData,
     })
 
@@ -195,7 +207,7 @@ export default function RestaurantList({
                         </div>
 
                         <form id={`reserve${restRid}`} onSubmit={handleSubmit}>
-                          <input name="member_id" value="1" hidden />
+                          <input name="member_id" value={auth.member_id} hidden />
                           <input name="rest_id" value={restRid} hidden />
 
                           <div className="mb-3">
@@ -220,9 +232,9 @@ export default function RestaurantList({
                               name="reserve_time"
                               // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
                               idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
-                              valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
+                              valueGroup={['11:30:30', '12:30:25', '13:30:15']} // 個別 radio 的 name
                               labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
-                              // checked="11:30" // 預設勾選，需填入 value，只能擇一
+                              checked={reserveTimeInputValue} // 預設勾選，需填入 value，只能擇一
                               getValue={setReserveTimeInputValue}
                               getName={setReserveTimeInputName}
                               getLabel={setReserveTimeInputLabel}
@@ -230,6 +242,30 @@ export default function RestaurantList({
                               addClassforEachLabel="btn btn-secondary me-3" // 如果要在個別選項 label 添加 class
                               addClassforInput="btn-check" // 如果要在 input 添加 class
                             />
+                            {/* <div class="form-check">
+                              <input class="form-check-input" type="radio" name="reserve_time" id="flexRadioDefault1" value='11:30' />
+                              <label class="form-check-label" for="flexRadioDefault1">
+                                11:30
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="radio" name="reserve_time" id="flexRadioDefault2" value='12:30' />
+                              <label class="form-check-label" for="flexRadioDefault2">
+                                12:30
+                              </label>
+                            </div> */}
+                            {/* 
+                            <input type="radio" class="form-check-input" name="reserve_time" id="option1" value='11:30' />
+                            <label class="form-check-label" for="option1">11:30</label>
+
+                            <input type="radio" class="btn-check" name="reserve_time" id="option2" value='12:30' />
+                            <label class="btn btn-secondary" for="option2">12:30</label>
+
+                            <input type="radio" class="btn-check" name="reserve_time" id="option3" value='13:30' />
+                            <label class="btn btn-secondary" for="option3">13:30</label>
+
+                            <input type="radio" class="btn-check" name="reserve_time" id="option4" value='14:30' />
+                            <label class="btn btn-secondary" for="option4">14:30</label> */}
                           </div>
 
                           <div>
