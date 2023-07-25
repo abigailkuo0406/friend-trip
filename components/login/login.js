@@ -19,7 +19,7 @@ export default function Login() {
   const { auth, setAuth } = useContext(AuthContext)
   const doLogin = (e) => {
     e.preventDefault()
-    fetch(process.env.API_SERVER + '/login', {
+    fetch(process.env.API_SERVER + '/login/admin', {
       method: 'POST',
       body: JSON.stringify({
         email: inputValue1,
