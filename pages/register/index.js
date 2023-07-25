@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LoginLayout from '@/components/layout/login-layout'
-import RegisterLetter from '@/components/register/register'
+import RegisterLetter1 from '@/components/register/register'
+import RegisterLetter2 from '@/components/register/register2'
 export default function Register() {
+  const [page, setPage] = useState(1)
+  const page1 = <RegisterLetter1 setPage={setPage} />
+  const page2 = <RegisterLetter2 setPage={setPage} />
+  console.log(page)
   return (
     <>
       <div className="d-flex justify-content-center">
-        <RegisterLetter />
+        {page === 1 ? page1 : page2}
       </div>
     </>
   )

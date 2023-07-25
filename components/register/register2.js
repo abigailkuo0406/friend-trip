@@ -9,7 +9,7 @@ import TextArea from '@/components/common/input/textarea-flex'
 import BtnNormal from '@/components/common/button/btn-normal'
 import { Logger } from 'sass'
 
-export default function RegisterCard() {
+export default function RegisterLetter2({ setPage }) {
   const [member, setMember] = useState({
     height: '',
     weight: '',
@@ -250,6 +250,9 @@ export default function RegisterCard() {
                 value="button"
                 btnText="上一頁"
                 addClassforButton="btn-dark"
+                onClick={() => {
+                  setPage(1)
+                }}
               />
               <BtnNormal
                 type="submit"

@@ -4,7 +4,7 @@ import InputText from '@/components/common/input/input-text-flex'
 import styles from './register.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
-export default function RegisterCard() {
+export default function RegisterLetter1({ setPage }) {
   const [inputValue4, setInputValue4] = useState('')
   const [InputName4, setInputName4] = useState('')
   const [InputLabel4, setInputLabel4] = useState('')
@@ -88,7 +88,7 @@ export default function RegisterCard() {
             </div>
             <div className={styles.inputstyle}>
               <h5 className={styles.inputlabel}>會員生日</h5>
-              <input type="date" className="rounded"></input>
+              <input type="date" className="rounded-3"></input>
             </div>
             <div className={styles.inputstyle}>
               <div className={styles.inputbar}>
@@ -106,8 +106,8 @@ export default function RegisterCard() {
                 label="性別"
                 name="gender"
                 // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
-                idGroup={['DogID', 'CatID']} // 個別 radio 的 ID
-                valueGroup={['dogValue', 'catValue']} // 個別 radio 的 name
+                idGroup={['male', 'female']} // 個別 radio 的 ID
+                valueGroup={['男', '女']} // 個別 radio 的 name
                 labelGroup={['男', '女']} // 個別標籤
                 checked="birdValue" // 預設勾選，需填入 value，只能擇一
                 getValue={setInputValue4}
@@ -135,6 +135,9 @@ export default function RegisterCard() {
                 value="button"
                 btnText="下一頁"
                 addClassforButton="btn-dark"
+                onClick={() => {
+                  setPage(2)
+                }}
               />
             </div>
           </form>
