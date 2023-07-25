@@ -9,8 +9,23 @@ export default function RegisterCard() {
   const [InputName4, setInputName4] = useState('')
   const [InputLabel4, setInputLabel4] = useState('')
 
-  const [test1, setTest1] = useState('')
+  const [email, setEmail] = useState('')
+  const [error8, setError8] = useState(false)
+  const [errorTracker8, setErrorTracker8] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const [clickSubmitted, setClickSubmitted] = useState(false)
+  const handleSubmit = (event) => {
+    event.preventDefault()
 
+    setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
+    setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
+    if (error8 == true) {
+      var moveTo = document.getElementById(errorTracker8)
+      moveTo.scrollIntoView() // 滑向錯誤的地方
+      moveTo.focus()
+      return
+    }
+  }
   // const test = document.getElementById('1')
   return (
     <>
@@ -21,103 +36,108 @@ export default function RegisterCard() {
             <div className={styles.bread1}></div>
             <div className={styles.bread2}></div>
           </div>
-          <div>
-            <h2 className={styles.title}>快速註冊</h2>
-          </div>
-          <div className={styles.inputstyle}>
-            <div className={styles.inputbar}>
-              <InputText
-                label="電子信箱/帳號"
-                name="email"
-                id="1"
-                // value=''
-                getValue={setTest1}
-                getName={() => 'whatever'}
-                width="input-width-100pa"
-              ></InputText>
-              <p>{!test1 ? '請填入姓名' : test1}</p>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <h2 className={styles.title}>快速註冊</h2>
             </div>
-          </div>
-          <div className={styles.inputstyle}>
-            <div className={styles.inputbar}>
-              <InputText
-                label="密碼"
-                name="password"
-                getValue={() => 'whatever'}
-                getName={() => 'whatever'}
-                width="input-width-100pa"
-              ></InputText>
+            <div className={styles.inputstyle}>
+              <div className={styles.inputbar}>
+                <InputText
+                  label="電子信箱/帳號"
+                  name="email"
+                  value={email}
+                  id="email"
+                  // value=''
+                  getValue={(value) => {
+                    value != '' ? setEmail(value) : setEmail('')
+                  }}
+                  addClassforInput={email == '' ? styles.error : styles.right}
+                  getName={() => {}}
+                  width="input-width-100pa"
+                ></InputText>
+              </div>
             </div>
-          </div>
-          <div className={styles.inputstyle}>
-            <h5 className={styles.inputlabel}>照片</h5>
-            <BtnNormal
-              btnText="上傳"
-              addClassforButton={`btn-dark small-font ${styles.btnsize}`}
-            />
-          </div>
-          <div className={styles.inputstyle}>
-            <div className={styles.inputbar}>
-              <InputText
-                label="會員名稱"
-                name="member_name"
-                getValue={() => 'whatever'}
-                getName={() => 'whatever'}
-                width="input-width-100pa"
-              ></InputText>
+            <div className={styles.inputstyle}>
+              <div className={styles.inputbar}>
+                <InputText
+                  label="密碼"
+                  name="password"
+                  getValue={() => 'whatever'}
+                  getName={() => 'whatever'}
+                  width="input-width-100pa"
+                ></InputText>
+              </div>
             </div>
-          </div>
-          <div className={styles.inputstyle}>
-            <h5 className={styles.inputlabel}>會員生日</h5>
-            <input type="date" className="rounded"></input>
-          </div>
-          <div className={styles.inputstyle}>
-            <div className={styles.inputbar}>
-              <InputText
-                label="身分證字號"
-                name="id_number"
-                getValue={() => 'whatever'}
-                getName={() => 'whatever'}
-                width="input-width-100pa"
-              ></InputText>
+            <div className={styles.inputstyle}>
+              <h5 className={styles.inputlabel}>照片</h5>
+              <BtnNormal
+                btnText="上傳"
+                addClassforButton={`btn-dark small-font ${styles.btnsize}`}
+              />
             </div>
-          </div>
-          <div className={styles.inputstyle}>
-            <InputRadioGroup
-              label="性別"
-              name="gender"
-              // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
-              idGroup={['DogID', 'CatID']} // 個別 radio 的 ID
-              valueGroup={['dogValue', 'catValue']} // 個別 radio 的 name
-              labelGroup={['男', '女']} // 個別標籤
-              checked="birdValue" // 預設勾選，需填入 value，只能擇一
-              getValue={setInputValue4}
-              getName={setInputName4}
-              getLabel={setInputLabel4}
-              addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
-              addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
-              addClassforInput="classTest3" // 如果要在 input 添加 class
-            ></InputRadioGroup>
-          </div>
-          <div className={styles.inputstyle}>
-            <div className={styles.inputbar}>
-              <InputText
-                label="地區"
-                name="location"
-                getValue={() => 'whatever'}
-                getName={() => 'whatever'}
-                width="input-width-100pa"
-              ></InputText>
+            <div className={styles.inputstyle}>
+              <div className={styles.inputbar}>
+                <InputText
+                  label="會員名稱"
+                  name="member_name"
+                  getValue={() => 'whatever'}
+                  getName={() => 'whatever'}
+                  width="input-width-100pa"
+                ></InputText>
+              </div>
             </div>
-          </div>
-          <div className="d-flex justify-content-end">
-            <BtnNormal
-              type="button"
-              value="button"
-              btnText="下一頁"
-              addClassforButton="btn-dark"
-            />
-          </div>
+            <div className={styles.inputstyle}>
+              <h5 className={styles.inputlabel}>會員生日</h5>
+              <input type="date" className="rounded"></input>
+            </div>
+            <div className={styles.inputstyle}>
+              <div className={styles.inputbar}>
+                <InputText
+                  label="身分證字號"
+                  name="id_number"
+                  getValue={() => 'whatever'}
+                  getName={() => 'whatever'}
+                  width="input-width-100pa"
+                ></InputText>
+              </div>
+            </div>
+            <div className={styles.inputstyle}>
+              <InputRadioGroup
+                label="性別"
+                name="gender"
+                // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
+                idGroup={['DogID', 'CatID']} // 個別 radio 的 ID
+                valueGroup={['dogValue', 'catValue']} // 個別 radio 的 name
+                labelGroup={['男', '女']} // 個別標籤
+                checked="birdValue" // 預設勾選，需填入 value，只能擇一
+                getValue={setInputValue4}
+                getName={setInputName4}
+                getLabel={setInputLabel4}
+                addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
+                addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
+                addClassforInput="classTest3" // 如果要在 input 添加 class
+              ></InputRadioGroup>
+            </div>
+            <div className={styles.inputstyle}>
+              <div className={styles.inputbar}>
+                <InputText
+                  label="地區"
+                  name="location"
+                  getValue={() => 'whatever'}
+                  getName={() => 'whatever'}
+                  width="input-width-100pa"
+                ></InputText>
+              </div>
+            </div>
+            <div className="d-flex justify-content-end">
+              <BtnNormal
+                type="button"
+                value="button"
+                btnText="下一頁"
+                addClassforButton="btn-dark"
+              />
+            </div>
+          </form>
         </div>
       </div>
     </>
