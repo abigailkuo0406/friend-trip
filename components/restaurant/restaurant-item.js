@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import styles from './restaurant.module.css'
 import Button from '@/components/common/button/btn-normal'
-import Modal from '@/components/restaurant/modal'
+import Modal from '@/components/restaurant/restaurant-intro'
 
 
 

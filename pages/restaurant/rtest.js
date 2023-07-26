@@ -9,7 +9,7 @@ import Btn from '@/components/common/button/btn-normal'
 
 
 // 引入元件
-import RestaurantList from '@/components/restaurant/restaurant-list'
+import RestaurantList from '@/components/restaurant/test-list'
 
 export default function Rest() {
   const router = useRouter()

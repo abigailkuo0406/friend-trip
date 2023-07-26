@@ -5,10 +5,10 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import SelectOption from '@/components/common/input/select-option'
 import Btn from '@/components/common/button/btn-normal'
-import Modal from '@/components/restaurant/modal'
+import Modal from '@/components/restaurant/restaurant-intro'
 
 // 引入元件
-import RestaurantList from '@/components/restaurant/list-item'
+import RestaurantList from '@/components/restaurant/restaurant-item'
 
 
 export default function Rest() {
