@@ -156,7 +156,7 @@ export default function Rest() {
     // const [modal, setModal] = useState(false)
 
     const showModal = (modalState, rid, rName, rAddress, rPhone, rTime, rMeal, rClass, rIntro, rImg) => {
-        console.log('接到的modalstate和rid', modalState, rid)
+        // console.log('接到的modalstate和rid', modalState, rid)
         // setModal(modalState)
         setRid(rid)
         setRName(rName)

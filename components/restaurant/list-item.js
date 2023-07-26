@@ -52,7 +52,7 @@ export default function ListItem({
     }
 
     useEffect(() => {
-        console.log('傳上去的rid', rid)
+        // console.log('傳上去的rid', rid)
         modalChange(modal, rid, rName, rAddress, rPhone, rTime, rMeal, rClass, rIntro,rImg)
 
     }, [modal])

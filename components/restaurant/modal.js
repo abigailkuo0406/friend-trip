@@ -1,11 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react'
-import Modal2 from '@/components/restaurant/invite-modal'
+import Modal2 from '@/components/invite/invite-modal'
 import Button from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext'
 import NumberInput from '@/components/common/input/input-number'
 import RadioGroupInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date'
 import RestPhoto from '@/components/restaurant/restaurant-photo'
+import Image from 'next/image'
+
 
 export default function Modal({
     restId,
@@ -18,7 +20,7 @@ export default function Modal({
     restIntro,
     restImg
 }) {
-    console.log('Modal層', restId)
+    // console.log('Modal層', restId)
 
     //取得登入之會員資料
     const { auth } = useContext(AuthContext)
@@ -29,12 +31,12 @@ export default function Modal({
     const [reserveTimeInputName, setReserveTimeInputName] = useState('')
     const [reserveTimeInputLabel, setReserveTimeInputLabel] = useState('')
 
-    useEffect(() => {
-        console.log('訂位時間:', reserveTimeInputValue)
-        console.log('訂位人數:', reservePeopleNumValue)
+    // useEffect(() => {
+    //     console.log('訂位時間:', reserveTimeInputValue)
+    //     console.log('訂位人數:', reservePeopleNumValue)
 
 
-    }, [reserveTimeInputValue])
+    // }, [reserveTimeInputValue])
 
     // 預設訂位日期
     const [reserveDateInputVale, setReserveDateInputValue] = useState('')
@@ -58,6 +60,12 @@ export default function Modal({
             method: 'POST',
             body: formData,
         })
+
+    }
+
+    const [inviteList, setInviteList] = useState([])
+    const inviteListChange = (ivList) => {
+        setInviteList(ivList)
 
     }
 
@@ -118,7 +126,6 @@ export default function Modal({
                                             idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
                                             valueGroup={['11:30:30', '12:30:25', '13:30:15']} // 個別 radio 的 name
                                             labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
-                                            checked={reserveTimeInputValue} // 預設勾選，需填入 value，只能擇一
                                             getValue={setReserveTimeInputValue}
                                             getName={setReserveTimeInputName}
                                             getLabel={setReserveTimeInputLabel}
@@ -146,6 +153,33 @@ export default function Modal({
                                             addClassforInput="try2 test123" // 如果要在 input 添加 class
                                         />
                                     </div>
+                                    <label>邀請好友</label>
+                                    <ul id="inviteList">
+                                        {inviteList.map((v, i) => {
+                                            return (
+                                                // 陣列中有姓名才顯示li
+                                                <div key={i}>
+                                                    {v.inviteName
+                                                        ?
+                                                        <li>
+                                                            <input name="iv_member_id" value={v.inviteId} hidden />
+
+                                                            <Image
+                                                                src={v.inviteImg}
+                                                                className={`rounded`}
+                                                                width={50}
+                                                                height={50}
+                                                            />
+                                                            {v.inviteName}
+                                                        </li>
+                                                        :
+                                                        <li hidden></li>}
+
+                                                </div>
+                                            )
+                                        })}
+
+                                    </ul>
 
                                     <Button
                                         btnText="邀請好友"
@@ -170,7 +204,8 @@ export default function Modal({
 
                 </div>
             </div>
-            <Modal2 />
+            <Modal2
+                onValueChange={inviteListChange} />
 
 
         </>
