@@ -10,7 +10,8 @@ import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
 
-export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView}) {
+export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView,
+}) {
   // console.log('ScheduleSide   selectedView=>', selectedView)
 
 

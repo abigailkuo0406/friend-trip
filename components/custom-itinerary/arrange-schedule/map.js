@@ -62,6 +62,7 @@ export default function Map({ searchLngLat }) {
     <>
       {/* {console.log('searchLngLat(map.js):', searchLngLat)} */}
       <div>
+      <div id="map1"></div>
         <div
           style={{
             display: 'flex',

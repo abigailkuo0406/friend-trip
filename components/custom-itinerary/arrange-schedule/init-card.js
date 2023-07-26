@@ -5,7 +5,7 @@ import { BsStarHalf, BsStarFill } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
 import { AiOutlineDelete } from 'react-icons/ai'
 
-export default function InitCard({ selectedViews,onDeleteViews}) {
+export default function InitCard({ selectedViews,onDeleteViews,photoUrls,}) {
 
   // console.log('selectedViews===============', selectedViews)
 
@@ -23,13 +23,13 @@ export default function InitCard({ selectedViews,onDeleteViews}) {
       <ol className={`${styles.ol}`}>
         {selectedViews.map((view, index) => {
           return (
-
               <li key={index} className={styles.li}>
                 {view && view.name && (
                   <div
                     type="button"
                     className={`btn d-flex ${styles.viweColor}`}
                   >
+                  
                     {/* <Image
               src={selectedView.Image}
               alt={selectedView.name}
