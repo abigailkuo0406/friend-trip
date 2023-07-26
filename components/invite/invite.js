@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
-import { InviteContext } from '@/pages/restaurant/[rid]'
+import Btn from '@/components/common/button/btn-normal'
 
 export default function Invite({
   friendName,
@@ -14,8 +14,6 @@ export default function Invite({
   const [inviteId, setInviteId] = useState('')
 
   const [inviteBtn, setInviteBtn] = useState(false)
-  // const [inviteList, setInviteList] = useState([])
-  // console.log('子層的inviteList:', inviteList)
 
 
   const handleClick = (e) => {
@@ -53,9 +51,11 @@ export default function Invite({
           <Image src={img} className={`rounded`} width={50} height={50} />
           <p className="mx-5">{friendName}</p>
 
-          <button onClick={handleClick}>
-            {!inviteBtn ? <AiOutlinePlusCircle /> : '移除'}
-          </button>
+          <Btn
+            btnText={!inviteBtn ? <AiOutlinePlusCircle /> : '移除'}
+            onClick={handleClick}
+          />
+
         </div>
       </div>
     </>
