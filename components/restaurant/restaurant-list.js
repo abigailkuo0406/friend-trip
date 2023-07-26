@@ -118,17 +118,17 @@ export default function RestaurantList({
 
   const [friends, setFriends] = useState()
 
-  useEffect(() => {
-    fetch(`http://localhost:3002/friends`, {
-      method: 'GET',
-    })
-      .then((f) => f.json())
-      .then((friendsData) => {
-        setFriends(friendsData)
-        console.log(friends.rows)
+  // useEffect(() => {
+  //   fetch(`http://localhost:3002/friends`, {
+  //     method: 'GET',
+  //   })
+  //     .then((f) => f.json())
+  //     .then((friendsData) => {
+  //       setFriends(friendsData)
+  //       console.log(friends.rows)
 
-      })
-  }, [])
+  //     })
+  // }, [])
 
   return (
     <>
