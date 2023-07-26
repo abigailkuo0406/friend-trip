@@ -84,8 +84,8 @@ export default function CreateTask() {
 
     // console.log('formData::', formData.get('coverPhoto'))
     formData.set('coverPhoto', formData.get('coverPhoto').name)
-    // console.log('new coverPhoto.name:', formData.get('coverPhoto'))
-    // console.log('formData=>', formData)
+    console.log('new coverPhoto.name:', formData.get('coverPhoto'))
+    console.log('formData=>', formData)
 
     // API串接(表單)
     fetch('http://localhost:3002/custom-itinerary', {

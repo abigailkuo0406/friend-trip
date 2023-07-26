@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
+import { GoogleMap, useLoadScript, Marker} from '@react-google-maps/api'
 
 
 // 在元件外部定義 libraries 陣列作為常數變數
@@ -48,6 +48,15 @@ export default function Map({ searchLngLat }) {
     libraries,
   })
   if (!isLoaded) return <div>Loading....</div>
+
+   // 路徑規劃
+  //  const directionsService=new google.maps.DirectionsRenderer()
+   
+  //  directionsService.route({
+  //   origin:new google.maps.LatLng(currentPosition.lat,currentPosition.lng),
+    
+  //  })
+
 
   return (
     <>
