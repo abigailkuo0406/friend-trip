@@ -10,11 +10,16 @@ import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
 
-export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView,
+export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView,onSaveClick
 }) {
-  // console.log('ScheduleSide   selectedView=>', selectedView)
 
-
+  const handleSaveClick = () => {
+    // 處理點擊事件的邏輯
+    console.log("Handle Save Click is called!");
+    onSaveClick()
+    console.log('onSaveClick',onSaveClick());
+  }
+// console.log('dataFromLocalStorage ScheduleSide ======',dataFromLocalStorage)
 
   return (
     <>
@@ -30,12 +35,21 @@ export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView
                 <Link href="#" className={styles.link}>
                   <BsPersonPlus />
                 </Link>
+
+                <button
+                      className={`btn ${styles.link}`}
+                      onClick={handleSaveClick}
+                    >  <LiaSave /></button>
+
+{/* 
+
                 <Link
                   href="/custom-itinerary/save-view-task"
                   className={styles.link}
+                  role="button"
                 >
-                  <LiaSave />
-                </Link>
+                
+                </Link> */}
                 <Link href="#" className={styles.link}>
                   <FiMoreHorizontal />
                 </Link>

@@ -31,28 +31,28 @@ export default function ArrangeSchedule() {
 
   //定義存取多個景點陣列狀態
   const [addInitLocal, setAddInitLocal] = useState([])
-
+  //定義照片的狀態
   const [photoUrl, setPhotoUrl] = useState('')
-
-  // const [selectedViews, setSelectedViews] = useState([])
+  //定義行程照片狀態
+  // const [photoInfo,setPhotoInfo]=useState(null)
 
   // 新增行程按鈕切換
   const handleAddScenery = () => {
     setShowSchedule(false)
   }
-  //點加入行程btn將畫面切到行程安排畫面
+
   const handleAddToSchedule = () => {
     setShowSchedule(true)
     console.log('handleAddToSchedule selectedView=>', selectedView)
     setSelectedView(selectedView)
-    setPhotoUrl(photoUrl)
-    console.log('handleAddToSchedule photoUrl', setPhotoUrl)
+    // setPhotoUrl(photoUrl)
+    // console.log('handleAddToSchedule photoUrl', setPhotoUrl)
 
     // const setNewLocals = () => {
     //   //塞資料進去
     //   localStorage.setItem('selectedView', JSON.stringify('selectedView'))
     //   localStorage.setItem('font', 'xxxxxx')
-    //   console.log('selectedViewlocal=====',selectedView)
+    console.log('selectedViewlocal=====', selectedView)
     // }
   }
 
@@ -100,7 +100,7 @@ export default function ArrangeSchedule() {
     }
     console.log('selectedView父層=====>', selectedView)
 
-    // console.log('place_id=>',selectedView.place_id)
+    console.log('place_id=>', selectedView.place_id)
     // const PlacesService =await google.maps.importLibrary('places')
     // const placesService = new window.google.maps.places.PlacesService(Map);
 
@@ -166,11 +166,41 @@ export default function ArrangeSchedule() {
   console.log('addInitLocal======', addInitLocal)
 
   // 在組件掛載時，從 localStorage 中檢索 addInitLocal 陣列
+  // useEffect(() => {
+  //   const storedLocations = JSON.parse(localStorage.getItem('addInitLocal'))
+  //   console.log('storedLocations--------', storedLocations)
+  // }, [])
+
+  //設定要存進給db資料(save)
+  const [dataFromLocalStorage, setDataFromLocalStorage] = useState([])
+
   useEffect(() => {
-    const storedLocations = JSON.parse(localStorage.getItem('addInitLocal'))
-    console.log('storedLocations--------', storedLocations)
-    console.log('localStorage.key======', localStorage.key(0))
-  }, [])
+    const data = JSON.parse(localStorage.getItem('addInitLocal'))
+    setDataFromLocalStorage(data || [])
+  }, [addInitLocal])
+  console.log('Data from localStorage:', dataFromLocalStorage)
+  
+const saveData=()=>{
+  console.log('dataFromLocalStorage:', JSON.stringify(dataFromLocalStorage))
+
+// API串接(行程寫進db)
+fetch('http://localhost:3002/save-view', {
+  method: 'POST',
+  headers:{
+    'Content-Type':'application/json',
+  },
+  body: JSON.stringify(dataFromLocalStorage)
+})
+  .then((r) => r.json().postData[0])
+  .then((data) => {
+    console.log('資料已成功送到資料庫:', data.postData[0]);
+  })
+  .catch((error)=>{
+    console.log('發生錯誤，行程未送成功到資料庫',error)
+  })
+
+}
+ 
 
   //  刪除景點
   const handleDeleteView = (index) => {
@@ -186,16 +216,13 @@ export default function ArrangeSchedule() {
         {/* {console.log('searchLngLat:',searchLngLat)} */}
         <Script src="https://maps.googleapis.com/maps/api/js?key=process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=places" />
       </Head>
-
-      {/* <div id="placeDetails"><img src={photoUrl}></img></div> */}
-      <div></div>
-      {/* <div><img src={photoUrl} alt="...."></img></div> */}
       {showSchedule ? (
         <ScheduleSide
           changeToSearch={handleAddScenery}
           selectedView={addInitLocal}
           onDeleteView={handleDeleteView}
-      
+          onSaveClick={saveData}
+          
         />
       ) : (
         <Autocomplete

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import CustomItineraryIndex from '@/components/custom-itinerary'
 import HistotyCard from '@/components/custom-itinerary/histoty-card'
 import AdminLayout from '@/components/layout/admin-layout'
-import data from '@/data/custom-itinerary/itinerary.json'
+// import data from '@/data/custom-itinerary/itinerary.json'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 // import PageBtn from '@/components/custom-itinerary/page-btn'
@@ -19,7 +19,8 @@ export default function ItineraryIndex() {
     page: 1,
     rows: [],
   })
-
+  const[isPublicClicked,setIsPublicClicked]=useState(false)
+  const [filteredTripsData, setFilteredTripsData]=useState([])
   //讀取資料庫
   useEffect(() => {
     const usp = new URLSearchParams(router.query)
@@ -29,9 +30,8 @@ export default function ItineraryIndex() {
     })
       .then((r) => r.json())
       .then((data) => {
-        // console.log('data======', data)
         setData(data)
-        // console.log(' setData(data)=====', setData(data))
+        setFilteredTripsData(data.rows)
       })
   }, [router.query])
 
@@ -43,22 +43,33 @@ export default function ItineraryIndex() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('刪除成功:', data);
-        // router.push(`/member/itinerary/${itin_id}`)
-        window.location.reload();
+        console.log('刪除成功:', data)
+        window.location.reload()
       })
       .catch((error) => {
-        console.error('刪除時發生錯誤:', error);
-      },[router.query]);
-  };
+        console.error('刪除時發生錯誤:', error)
+      },[router.query])
+  }
 
-
-
+const handlePublicTripsClick=()=>{
+  setIsPublicClicked(true)
+  const publicTrips=data.rows.filter((trip)=>trip.public=='公開')
+  setFilteredTripsData(publicTrips)
   
+}
+
+const handleAllTripsClick=()=>{
+  setFilteredTripsData(data.rows)
+  setIsPublicClicked(false)
+}
 
   return (
     <>
-      <CustomItineraryIndex />
+
+      <CustomItineraryIndex 
+        publicClick={handlePublicTripsClick}
+        allClick={handleAllTripsClick}
+      />
       {data.rows.map((v, i) => {
         return (
           <div key={i}>
@@ -69,7 +80,7 @@ export default function ItineraryIndex() {
               description={v.description}
               date={v.date}
               itin_id={v.itin_id}
-              onDelete={() => handleDelete(v.itin_id)} 
+              onDelete={() => handleDelete(v.itin_id)}
             />
           </div>
         )

@@ -5,9 +5,9 @@ import { BsStarHalf, BsStarFill } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
 import { AiOutlineDelete } from 'react-icons/ai'
 
-export default function InitCard({ selectedViews,onDeleteViews,photoUrls,}) {
+export default function InitCard({ selectedViews,onDeleteViews,photoUrl}) {
 
-  // console.log('selectedViews===============', selectedViews)
+  console.log('selectedViews===============', selectedViews)
 
   const handleDeleteView = (index,viewName) => {
     const isConfirmed=window.confirm(`確定要刪除 "${viewName}"嗎？`)
@@ -29,7 +29,7 @@ export default function InitCard({ selectedViews,onDeleteViews,photoUrls,}) {
                     type="button"
                     className={`btn d-flex ${styles.viweColor}`}
                   >
-                  
+                    <div id="placeDetails"><img src={photoUrl}></img></div>  
                     {/* <Image
               src={selectedView.Image}
               alt={selectedView.name}
