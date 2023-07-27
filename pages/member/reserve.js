@@ -11,18 +11,6 @@ export default function Reserve() {
     //取得登入之會員資料
     const { auth } = useContext(AuthContext)
 
-
-    fetch('http://localhost:3002/reserve', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-
-        body: JSON.stringify({ "memberId": auth.member_id, })
-
-    })
-
-
     const router = useRouter()
 
     const [reserve, setReserve] = useState({
@@ -38,7 +26,10 @@ export default function Reserve() {
         const usp = new URLSearchParams(router.query)
         //取得訂位資料
         fetch(`http://localhost:3002/reserve?${usp.toString()}`, {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + auth.token
+            }
         })
             .then((r) => r.json())
             .then((reserveDetails) => {
@@ -46,6 +37,8 @@ export default function Reserve() {
 
             })
     }, [router.query])
+
+    console.log('aaa:', auth.token.member_id)
 
 
 

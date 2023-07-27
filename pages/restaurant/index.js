@@ -6,6 +6,7 @@ import Link from 'next/link'
 import SelectOption from '@/components/common/input/select-option'
 import Btn from '@/components/common/button/btn-normal'
 import Modal from '@/components/restaurant/restaurant-intro'
+import AuthContext from '@/context/AuthContext'
 
 // 引入元件
 import RestaurantList from '@/components/restaurant/restaurant-item'
@@ -13,6 +14,7 @@ import RestaurantList from '@/components/restaurant/restaurant-item'
 
 export default function Rest() {
     const router = useRouter()
+    const { auth} = useContext(AuthContext)
 
     const [restaurants, setRestaurants] = useState({
         redirect: '',
@@ -46,6 +48,9 @@ export default function Rest() {
         // API串接
         fetch(`http://localhost:3002/restaurant?${usp.toString()}`, {
             method: 'GET',
+            headers: {
+                Authorization: 'Bearer '+ auth.token
+            }
         })
             .then((r) => r.json())
             .then((restaurantsData) => {
