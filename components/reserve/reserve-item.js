@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Image from 'next/image'
 import styles from '../restaurant/restaurant.module.css'
 import Button from '@/components/common/button/btn-normal'
@@ -30,26 +30,27 @@ export default function ReserveItem({
 
 
     }, [])
+    console.log('AA', invites)
 
-    let reserveIdList = []
-    let ivMemberList = []
-    const [iv, setIv] = useState({})
-    let ivDetails = {}
+    const [inviteList, setInviteList] = useState({})
 
-    // if (invites) {
-    //     invites.map((v, i) => {
-    //         // console.log('AA:', v)
-    //         // console.log('BB:', v.iv_member_id)
-    //         // console.log('CC', v.reserveId)
-    //         // reserveIdList = [...reserveIdList, v.reserveId]
-    //         // ivMemberList = [...ivMemberList, v.iv_member_id]
-    //         ivDetails = { ...ivDetails, "reserveId": v.reserveId, "iv_member_id": v.iv_member_id }
-    //         setIv({ ...iv, ivDetails })
-    //         console.log(ivDetails)
-    //         // ivDetails = { ...ivDetails, "AA": 1, "BB": 2 }
-    //     })
-    //     console.log('1:', iv)
-    // }
+    useEffect(() => {
+        if (invites) {
+            const arr = invites.filter((v) => {
+                return v.reserveId == reserveId
+
+            })
+            setInviteList(arr[0])
+
+        }
+
+    }, [invites])
+
+    useEffect(() => {
+        console.log('BB', inviteList)
+
+    }, [inviteList])
+
 
     return (
         <>
@@ -100,11 +101,17 @@ export default function ReserveItem({
                                 </p>
                             </div>
 
-
-
-                            <p className="card-text text-truncate my-4">與會好友</p>
-                            <p>{reserveId}</p>
-                            {/* <p>{inviteFriends.iv_member_id}</p> */}
+                            {inviteList.iv_member_id ?
+                                <div>
+                                    <p className="card-text text-truncate my-4">與會好友</p>
+                                    <Image src={`http://localhost:3002/face/${inviteList.images}`}
+                                        className={`rounded`}
+                                        width={50}
+                                        height={50} />
+                                </div>
+                                : ''}
+                            {/* <p>訂單編號{reserveId}</p>
+                            <p>好友{inviteList.iv_member_id}</p> */}
                             <Button
                                 btnText='訂位'
                                 // onClick={modalOpen}

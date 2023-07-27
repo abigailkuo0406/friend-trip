@@ -1,10 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
 import ReserveItem from '@/components/reserve/reserve-item'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import AuthContext from '@/context/AuthContext'
+
 
 export default function Reserve() {
+
+    //取得登入之會員資料
+    const { auth } = useContext(AuthContext)
+
+
+    fetch('http://localhost:3002/reserve', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({ "memberId": auth.member_id, })
+
+    })
+
 
     const router = useRouter()
 
