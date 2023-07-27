@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import InputText from '@/components/common/input/input-text-flex'
 import styles from './register.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
-export default function RegisterLetter1({ setPage }) {
-  const [inputValue4, setInputValue4] = useState('')
+import { useRouter } from 'next/router'
+
+export default function RegisterLetter1({ setPage, setAaa, aaa }) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [id, setId] = useState('')
+  const [gender, setGender] = useState('')
+  const [location, setLocation] = useState('')
   const [InputName4, setInputName4] = useState('')
   const [InputLabel4, setInputLabel4] = useState('')
-
-  const [email, setEmail] = useState('')
   const [error8, setError8] = useState(false)
   const [errorTracker8, setErrorTracker8] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [clickSubmitted, setClickSubmitted] = useState(false)
+
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -26,7 +32,54 @@ export default function RegisterLetter1({ setPage }) {
       return
     }
   }
-  // const test = document.getElementById('1')
+  const add = (e) => {
+    e.preventDefault()
+    fetch(process.env.API_SERVER + '/register/add', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        images: images,
+        member_name: member_name,
+        member_birth: member_birth,
+        id_number: id_number,
+        gender: gender,
+        location: location,
+        height: height,
+        weight: weight,
+        zodiac: zodiac,
+        bloodtype: bloodtype,
+        smoke: smoke,
+        alchohol: alchohol,
+        education_level: education_level,
+        job: job,
+        profile: profile,
+        mobile: mobile,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+        if (data.success) {
+          const obj = { ...data.data }
+          localStorage.setItem('auth', JSON.stringify(obj))
+          setAuth(obj)
+          // alert('登入成功')
+          router.push('/')
+        } else {
+          alert(data.error || '帳密錯誤')
+        }
+      })
+  }
+  useEffect(() => {
+    setAaa((prev) => {
+      return { ...prev, email }
+    })
+  }, [email])
+
   return (
     <>
       <div className={styles.main}>
@@ -36,7 +89,7 @@ export default function RegisterLetter1({ setPage }) {
             <div className={styles.bread1}></div>
             <div className={styles.bread2}></div>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={add}>
             <div>
               <h2 className={styles.title}>快速註冊</h2>
             </div>
@@ -45,7 +98,8 @@ export default function RegisterLetter1({ setPage }) {
                 <InputText
                   label="電子信箱/帳號"
                   name="email"
-                  value={email}
+                  //change
+                  value={aaa.email}
                   id="email"
                   // value=''
                   getValue={(value) => {
@@ -62,7 +116,9 @@ export default function RegisterLetter1({ setPage }) {
                 <InputText
                   label="密碼"
                   name="password"
-                  getValue={() => 'whatever'}
+                  getValue={(value) =>
+                    value != '' ? setPassword(value) : setPassword('')
+                  }
                   getName={() => 'whatever'}
                   width="input-width-100pa"
                 ></InputText>
@@ -80,7 +136,9 @@ export default function RegisterLetter1({ setPage }) {
                 <InputText
                   label="會員名稱"
                   name="member_name"
-                  getValue={() => 'whatever'}
+                  getValue={(value) =>
+                    value != '' ? setName(value) : setName('')
+                  }
                   getName={() => 'whatever'}
                   width="input-width-100pa"
                 ></InputText>
@@ -95,7 +153,7 @@ export default function RegisterLetter1({ setPage }) {
                 <InputText
                   label="身分證字號"
                   name="id_number"
-                  getValue={() => 'whatever'}
+                  getValue={(value) => (value != '' ? setId(value) : setId(''))}
                   getName={() => 'whatever'}
                   width="input-width-100pa"
                 ></InputText>
@@ -110,7 +168,9 @@ export default function RegisterLetter1({ setPage }) {
                 valueGroup={['男', '女']} // 個別 radio 的 name
                 labelGroup={['男', '女']} // 個別標籤
                 checked="birdValue" // 預設勾選，需填入 value，只能擇一
-                getValue={setInputValue4}
+                getValue={(value) =>
+                  value != '' ? setGender(value) : setGender('')
+                }
                 getName={setInputName4}
                 getLabel={setInputLabel4}
                 addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
@@ -123,7 +183,9 @@ export default function RegisterLetter1({ setPage }) {
                 <InputText
                   label="地區"
                   name="location"
-                  getValue={() => 'whatever'}
+                  getValue={(value) =>
+                    value != '' ? setLocation(value) : setLocation('')
+                  }
                   getName={() => 'whatever'}
                   width="input-width-100pa"
                 ></InputText>

@@ -7,9 +7,10 @@ import SelectOption from '@/components/common/input/select-option-flex'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
 import TextArea from '@/components/common/input/textarea-flex'
 import BtnNormal from '@/components/common/button/btn-normal'
+import { useRouter } from 'next/router'
 import { Logger } from 'sass'
 
-export default function RegisterLetter2({ setPage }) {
+export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
   const [member, setMember] = useState({
     height: '',
     weight: '',
@@ -60,6 +61,54 @@ export default function RegisterLetter2({ setPage }) {
       return
     }
   }
+  const add = (e) => {
+    e.preventDefault()
+    fetch(process.env.API_SERVER + '/register/add', {
+      method: 'POST',
+      body: JSON.stringify({
+        member_id: inputValue1,
+        email: inputValue2,
+        password: inputValue3,
+        images: inputValue4,
+        member_name: inputValue5,
+        member_birth: inputValue6,
+        id_number: inputValue7,
+        gender: inputValue8,
+        location: inputValue9,
+        height: inputValue10,
+        weight: inputValue11,
+        zodiac: inputValue12,
+        bloodtype: inputValue13,
+        smoke: inputValue14,
+        alchohol: inputValue15,
+        education_level: inputValue16,
+        job: inputValue17,
+        profile: inputValue18,
+        mobile: inputValue19,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+        if (data.success) {
+          const obj = { ...data.data }
+          localStorage.setItem('auth', JSON.stringify(obj))
+          setAuth(obj)
+          // alert('登入成功')
+          router.push('/')
+        } else {
+          alert(data.error || '帳密錯誤')
+        }
+      })
+  }
+  useEffect(() => {
+    setAaa((prev) => {
+      return { ...prev, height }
+    })
+  }, [height])
   return (
     <>
       <div className={styles.main}>
@@ -69,199 +118,200 @@ export default function RegisterLetter2({ setPage }) {
             <div className={styles.bread1}></div>
             <div className={styles.bread2}></div>
           </div>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <h2 className={styles.title}>*深入資料</h2>
+
+          <div>
+            <h2 className={styles.title}>*深入資料</h2>
+          </div>
+          <div className={styles.inputstyle}>
+            <div className={styles.inputbar}>
+              <InputText
+                label="身高"
+                name="height"
+                value={aaa.height}
+                // getValue={(value) => {
+                //   parseInt(value) != '' ? setHeight(value) : setHeight('')
+                // }}
+                getValue={(value) => {
+                  parseInt(value) != '' ? setHeight(value) : setHeight('')
+                }}
+                addClassforInput={height == '' ? styles.error : styles.right}
+                // getName={setHeightName}
+                width="input-width-100pa"
+              ></InputText>
             </div>
-            <div className={styles.inputstyle}>
-              <div className={styles.inputbar}>
-                <InputText
-                  label="身高"
-                  name="height"
-                  value={height}
-                  onChange
-                  getValue={(value) => {
-                    parseInt(value) != '' ? setHeight(value) : setHeight('')
-                  }}
-                  addClassforInput={height == '' ? styles.error : styles.right}
-                  // getName={setHeightName}
-                  width="input-width-100pa"
-                ></InputText>
-              </div>
+          </div>
+          <div className={styles.inputstyle}>
+            <div className={styles.inputbar}>
+              <InputText
+                label="體重"
+                name="weight"
+                getName={setWeightName}
+                getValue={(value) => {
+                  parseInt(value) != '' ? setHeight(value) : setHeight('')
+                }}
+                addClassforInput={height == '' ? styles.error : styles.right}
+                width="input-width-100pa"
+              ></InputText>
             </div>
-            <div className={styles.inputstyle}>
-              <div className={styles.inputbar}>
-                <InputText
-                  label="體重"
-                  name="weight"
-                  getName={setWeightName}
-                  getValue={(value) => {
-                    parseInt(value) != '' ? setHeight(value) : setHeight('')
-                  }}
-                  addClassforInput={height == '' ? styles.error : styles.right}
-                  width="input-width-100pa"
-                ></InputText>
-              </div>
-            </div>
+          </div>
+          <SelectOption
+            id="zodiac"
+            label="請選擇你的星座"
+            name="zodiac"
+            selectedDefault="value" //預設選項，可不填，填寫 value
+            valueGroup={[
+              '牡羊座',
+              '金牛座',
+              '雙子座',
+              '巨蟹座',
+              '獅子座',
+              '處女座',
+              '天秤座',
+              '天蠍座',
+              '射手座',
+              '摩羯座',
+              '水瓶座',
+              '雙魚座',
+            ]}
+            optionGroup={[
+              '牡羊座',
+              '金牛座',
+              '雙子座',
+              '巨蟹座',
+              '獅子座',
+              '處女座',
+              '天秤座',
+              '天蠍座',
+              '射手座',
+              '摩羯座',
+              '水瓶座',
+              '雙魚座',
+            ]}
+            getValue={setZodiac}
+            getName={setZodiacName}
+            width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+            addClassforLabel="try1" // 如果要在 label 添加 class
+            addClassforSelect="try2" // 如果要在 Select 添加 class
+            addClassforOption="try3" // 如果要在 Option 添加 class
+          />
+          <div className={styles.inputstyle}>
             <SelectOption
-              id="zodiac"
-              label="請選擇你的星座"
-              name="zodiac"
+              id="bloodtype"
+              label="血型"
+              name="bloodtype"
               selectedDefault="value" //預設選項，可不填，填寫 value
-              valueGroup={[
-                '牡羊座',
-                '金牛座',
-                '雙子座',
-                '巨蟹座',
-                '獅子座',
-                '處女座',
-                '天秤座',
-                '天蠍座',
-                '射手座',
-                '摩羯座',
-                '水瓶座',
-                '雙魚座',
-              ]}
-              optionGroup={[
-                '牡羊座',
-                '金牛座',
-                '雙子座',
-                '巨蟹座',
-                '獅子座',
-                '處女座',
-                '天秤座',
-                '天蠍座',
-                '射手座',
-                '摩羯座',
-                '水瓶座',
-                '雙魚座',
-              ]}
-              getValue={setZodiac}
-              getName={setZodiacName}
+              valueGroup={['noodles', 'rice', 'pasta', 'hamburger', 'BBQ']}
+              optionGroup={['A', 'B', 'O', 'AB']}
+              getValue={setBloodType}
+              getName={setBloodTypeName}
               width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
               addClassforLabel="try1" // 如果要在 label 添加 class
               addClassforSelect="try2" // 如果要在 Select 添加 class
               addClassforOption="try3" // 如果要在 Option 添加 class
             />
-            <div className={styles.inputstyle}>
-              <SelectOption
-                id="bloodtype"
-                label="血型"
-                name="bloodtype"
-                selectedDefault="value" //預設選項，可不填，填寫 value
-                valueGroup={['noodles', 'rice', 'pasta', 'hamburger', 'BBQ']}
-                optionGroup={['A', 'B', 'O', 'AB']}
-                getValue={setBloodType}
-                getName={setBloodTypeName}
-                width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                addClassforLabel="try1" // 如果要在 label 添加 class
-                addClassforSelect="try2" // 如果要在 Select 添加 class
-                addClassforOption="try3" // 如果要在 Option 添加 class
-              />
-            </div>
-            <div className={styles.inputstyle}>
-              <InputRadioGroup
-                label="抽菸"
-                name="smoke"
-                // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
-                idGroup={['有', '沒有']} // 個別 radio 的 ID
-                valueGroup={['有', '沒有']} // 個別 radio 的 name
-                labelGroup={['有', '沒有']} // 個別標籤
-                checked="birdValue" // 預設勾選，需填入 value，只能擇一
-                getValue={setSmoke}
-                getName={setSmokeName}
-                getLabel={setSmokeLabel}
-                addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
-                addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
-                addClassforInput="classTest3" // 如果要在 input 添加 class
-              ></InputRadioGroup>
-            </div>
-            <div className={styles.inputstyle}>
-              <InputRadioGroup
-                label="酒精"
-                name="alchohol"
-                // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
-                idGroup={['DogID', 'CatID', 'catValue']} // 個別 radio 的 ID
-                valueGroup={['滴酒不沾', '小酌', '酒豪']} // 個別 radio 的 name
-                labelGroup={['滴酒不沾', '小酌', '酒豪']} // 個別標籤
-                checked="value" // 預設勾選，需填入 value，只能擇一
-                getValue={setAlchohol}
-                getName={setAlchoholName}
-                getLabel={setAlchoholLabel}
-                addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
-                addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
-                addClassforInput="classTest3" // 如果要在 input 添加 class
-              ></InputRadioGroup>
-            </div>
-            <div className={styles.inputstyle}>
-              <SelectOption
-                id="education"
-                label="教育程度"
-                name="education"
-                selectedDefault="value" //預設選項，可不填，填寫 value
-                valueGroup={['國小', '國中', '高中', '學士', '碩士', '博士']}
-                optionGroup={['國小', '國中', '高中', '學士', '碩士', '博士']}
-                getValue={setEducation}
-                getName={setEducationName}
-                width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                addClassforLabel="try1" // 如果要在 label 添加 class
-                addClassforSelect="try2" // 如果要在 Select 添加 class
-                addClassforOption="try3" // 如果要在 Option 添加 class
-              />
-            </div>
-            <div className={styles.inputstyle}>
-              <div className={styles.inputbar}>
-                <InputText
-                  label="工作"
-                  name="job"
-                  getValue={setJob}
-                  getName={setJobName}
-                  width="input-width-100pa"
-                ></InputText>
-              </div>
-            </div>
-            <div>
-              <TextArea
-                id="profile"
-                label="自我介紹"
-                name="profile"
-                value="自我介紹轎討美例平爸的美今記與。王進將采五處是常一主城度斜有許誓我聞人懼沾至攸站…；中別光摯現觀樹角討撒此聲法！穩在士致猿到受禾陳方柴弟陳度上報傾實體嘶死至過…或望白梓場了了知們妞間跟，一西民式速盎水在對龍進"
-                placeholder="輸入文字啊"
-                width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                addClassforLabel="test123" // 如果要在 label 添加 class
-                addClassforTextarea="test321" // 如果要在 textarea 添加 class
-                getValue={setProfile}
-                getName={setProfileName}
-                required={true} // true：必填，false：非必填
-              />
-            </div>
-            <div className={styles.inputstyle}>
+          </div>
+          <div className={styles.inputstyle}>
+            <InputRadioGroup
+              label="抽菸"
+              name="smoke"
+              // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
+              idGroup={['有', '沒有']} // 個別 radio 的 ID
+              valueGroup={['有', '沒有']} // 個別 radio 的 name
+              labelGroup={['有', '沒有']} // 個別標籤
+              checked="birdValue" // 預設勾選，需填入 value，只能擇一
+              getValue={setSmoke}
+              getName={setSmokeName}
+              getLabel={setSmokeLabel}
+              addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
+              addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
+              addClassforInput="classTest3" // 如果要在 input 添加 class
+            ></InputRadioGroup>
+          </div>
+          <div className={styles.inputstyle}>
+            <InputRadioGroup
+              label="酒精"
+              name="alchohol"
+              // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
+              idGroup={['DogID', 'CatID', 'catValue']} // 個別 radio 的 ID
+              valueGroup={['滴酒不沾', '小酌', '酒豪']} // 個別 radio 的 name
+              labelGroup={['滴酒不沾', '小酌', '酒豪']} // 個別標籤
+              checked="value" // 預設勾選，需填入 value，只能擇一
+              getValue={setAlchohol}
+              getName={setAlchoholName}
+              getLabel={setAlchoholLabel}
+              addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
+              addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
+              addClassforInput="classTest3" // 如果要在 input 添加 class
+            ></InputRadioGroup>
+          </div>
+          <div className={styles.inputstyle}>
+            <SelectOption
+              id="education"
+              label="教育程度"
+              name="education"
+              selectedDefault="value" //預設選項，可不填，填寫 value
+              valueGroup={['國小', '國中', '高中', '學士', '碩士', '博士']}
+              optionGroup={['國小', '國中', '高中', '學士', '碩士', '博士']}
+              getValue={setEducation}
+              getName={setEducationName}
+              width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+              addClassforLabel="try1" // 如果要在 label 添加 class
+              addClassforSelect="try2" // 如果要在 Select 添加 class
+              addClassforOption="try3" // 如果要在 Option 添加 class
+            />
+          </div>
+          <div className={styles.inputstyle}>
+            <div className={styles.inputbar}>
               <InputText
-                label="手機"
-                name="mobile"
-                getValue={setMobile}
-                getName={setMobileName}
+                label="工作"
+                name="job"
+                getValue={setJob}
+                getName={setJobName}
                 width="input-width-100pa"
               ></InputText>
             </div>
-            <div className="d-flex justify-content-end gap-3">
-              <BtnNormal
-                type="button"
-                value="button"
-                btnText="上一頁"
-                addClassforButton="btn-dark"
-                onClick={() => {
-                  setPage(1)
-                }}
-              />
-              <BtnNormal
-                type="submit"
-                value="submit"
-                btnText="完成註冊"
-                addClassforButton="btn-dark"
-              />
-            </div>
-          </form>
+          </div>
+          <div>
+            <TextArea
+              id="profile"
+              label="自我介紹"
+              name="profile"
+              value="自我介紹轎討美例平爸的美今記與。王進將采五處是常一主城度斜有許誓我聞人懼沾至攸站…；中別光摯現觀樹角討撒此聲法！穩在士致猿到受禾陳方柴弟陳度上報傾實體嘶死至過…或望白梓場了了知們妞間跟，一西民式速盎水在對龍進"
+              placeholder="輸入文字啊"
+              width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+              addClassforLabel="test123" // 如果要在 label 添加 class
+              addClassforTextarea="test321" // 如果要在 textarea 添加 class
+              getValue={setProfile}
+              getName={setProfileName}
+              required={true} // true：必填，false：非必填
+            />
+          </div>
+          <div className={styles.inputstyle}>
+            <InputText
+              label="手機"
+              name="mobile"
+              getValue={setMobile}
+              getName={setMobileName}
+              width="input-width-100pa"
+            ></InputText>
+          </div>
+          <div className="d-flex justify-content-end gap-3">
+            <BtnNormal
+              type="button"
+              value="button"
+              btnText="上一頁"
+              addClassforButton="btn-dark"
+              onClick={() => {
+                setPage(1)
+              }}
+            />
+            <BtnNormal
+              type="submit"
+              value="submit"
+              btnText="完成註冊"
+              addClassforButton="btn-dark"
+            />
+          </div>
         </div>
       </div>
     </>
