@@ -2,7 +2,7 @@ import React from 'react'
 
 import styles from './friend2.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
-export default function Friend() {
+export default function Friend2({ setPage }) {
   return (
     <>
       <div className={styles.main}>
@@ -62,6 +62,9 @@ export default function Friend() {
                 value="button"
                 btnText="上一頁"
                 addClassforButton={`btn-dark ${styles.btnsize}`}
+                onClick={() => {
+                  setPage(1)
+                }}
               />
             </div>
           </div>
