@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './friend.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
-export default function Friend() {
+export default function Friend1({ setPage }) {
   return (
     <>
       <div className={styles.main}>
@@ -44,7 +44,12 @@ export default function Friend() {
             </div>
             <div className={`gap-3 ${styles.buttonbar}`}>
               <BtnNormal btnText="修改" />
-              <BtnNormal btnText="下一頁" />
+              <BtnNormal
+                btnText="下一頁"
+                onClick={() => {
+                  setPage(2)
+                }}
+              />
             </div>
           </div>
           <div className={styles.friendsheet}>

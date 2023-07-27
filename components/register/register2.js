@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './register2.module.css'
 import InputText from '@/components/common/input/input-text-flex'
 import InputTextDouble from '@/components/common/input/input-text-double'
@@ -7,42 +7,108 @@ import SelectOption from '@/components/common/input/select-option-flex'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
 import TextArea from '@/components/common/input/textarea-flex'
 import BtnNormal from '@/components/common/button/btn-normal'
+import { useRouter } from 'next/router'
+import { Logger } from 'sass'
 
-export default function RegisterCard() {
+export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
   const [member, setMember] = useState({
     height: '',
-    weight: '',
-    zodiac: '',
-    bloodtype: '',
-    smoke: '',
-    alchohol: '',
-    education_level: '',
-    job: '',
-    profile: '',
-    mobile: '',
+    // weight: '',
+    // zodiac: '',
+    // bloodtype: '',
+    // smoke: '',
+    // alchohol: '',
+    // education_level: '',
+    // job: '',
+    // profile: '',
+    // mobile: '',
   })
   const [height, setHeight] = useState('')
-  const [heightName, setHeightName] = useState('')
-  const [weight, setWeight] = useState('')
-  const [weightName, setWeightName] = useState('')
-  const [zodiac, setZodiac] = useState('')
-  const [zodiacName, setZodiacName] = useState('')
-  const [bloodType, setBloodType] = useState('')
-  const [bloodTypename, setBloodTypeName] = useState('')
-  const [smoke, setSmoke] = useState('')
-  const [smokeName, setSmokeName] = useState('')
-  const [smokeLabel, setSmokeLabel] = useState('')
-  const [alchohol, setAlchohol] = useState('')
-  const [alchoholName, setAlchoholName] = useState('')
-  const [alchoholLabel, setAlchoholLabel] = useState('')
-  const [education, setEducation] = useState('')
-  const [educationName, setEducationName] = useState('')
-  const [job, setJob] = useState('')
-  const [jobName, setJobName] = useState('')
-  const [profile, setProfile] = useState('')
-  const [profileName, setProfileName] = useState('')
-  const [mobile, setMobile] = useState('')
-  const [mobileName, setMobileName] = useState('')
+  // const [heightName, setHeightName] = useState('')
+  // const [weight, setWeight] = useState('')
+  // const [weightName, setWeightName] = useState('')
+  // const [zodiac, setZodiac] = useState('')
+  // const [zodiacName, setZodiacName] = useState('')
+  // const [bloodType, setBloodType] = useState('')
+  // const [bloodTypename, setBloodTypeName] = useState('')
+  // const [smoke, setSmoke] = useState('')
+  // const [smokeName, setSmokeName] = useState('')
+  // const [smokeLabel, setSmokeLabel] = useState('')
+  // const [alchohol, setAlchohol] = useState('')
+  // const [alchoholName, setAlchoholName] = useState('')
+  // const [alchoholLabel, setAlchoholLabel] = useState('')
+  // const [education, setEducation] = useState('')
+  // const [educationName, setEducationName] = useState('')
+  // const [job, setJob] = useState('')
+  // const [jobName, setJobName] = useState('')
+  // const [profile, setProfile] = useState('')
+  // const [profileName, setProfileName] = useState('')
+  // const [mobile, setMobile] = useState('')
+  // const [mobileName, setMobileName] = useState('')
+  // const [error8, setError8] = useState(false)
+  // const [errorTracker8, setErrorTracker8] = useState('')
+  // const [submitted, setSubmitted] = useState(false)
+  // const [clickSubmitted, setClickSubmitted] = useState(false)
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
+
+  //   setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
+  //   setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
+  //   if (error8 == true) {
+  //     var moveTo = document.getElementById(errorTracker8)
+  //     moveTo.scrollIntoView() // 滑向錯誤的地方
+  //     moveTo.focus()
+  //     return
+  //   }
+  // }
+  // const add = (e) => {
+  //   e.preventDefault()
+  //   fetch(process.env.API_SERVER + '/register/add', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       member_id: inputValue1,
+  //       email: inputValue2,
+  //       password: inputValue3,
+  //       images: inputValue4,
+  //       member_name: inputValue5,
+  //       member_birth: inputValue6,
+  //       id_number: inputValue7,
+  //       gender: inputValue8,
+  //       location: inputValue9,
+  //       height: inputValue10,
+  //       weight: inputValue11,
+  //       zodiac: inputValue12,
+  //       bloodtype: inputValue13,
+  //       smoke: inputValue14,
+  //       alchohol: inputValue15,
+  //       education_level: inputValue16,
+  //       job: inputValue17,
+  //       profile: inputValue18,
+  //       mobile: inputValue19,
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       console.log(data)
+  //       if (data.success) {
+  //         const obj = { ...data.data }
+  //         localStorage.setItem('auth', JSON.stringify(obj))
+  //         setAuth(obj)
+  //         // alert('登入成功')
+  //         router.push('/')
+  //       } else {
+  //         alert(data.error || '帳密錯誤')
+  //       }
+  //     })
+  // }
+  useEffect(() => {
+    setAaa((prev) => {
+      return { ...prev, height }
+    })
+  }, [height])
   return (
     <>
       <div className={styles.main}>
@@ -52,6 +118,7 @@ export default function RegisterCard() {
             <div className={styles.bread1}></div>
             <div className={styles.bread2}></div>
           </div>
+
           <div>
             <h2 className={styles.title}>*深入資料</h2>
           </div>
@@ -60,24 +127,29 @@ export default function RegisterCard() {
               <InputText
                 label="身高"
                 name="height"
-                value={height}
-                onChange
+                value={aaa.height}
+                // getValue={(value) => {
+                //   parseInt(value) != '' ? setHeight(value) : setHeight('')
+                // }}
                 getValue={(value) => {
-                  if (value >= 200) return setHeight(200)
-                  // setHeight(value)
+                  parseInt(value) != '' ? setHeight(value) : setHeight('')
                 }}
+                addClassforInput={height == '' ? styles.error : styles.right}
                 // getName={setHeightName}
                 width="input-width-100pa"
               ></InputText>
             </div>
           </div>
-          <div className={styles.inputstyle}>
+          {/* <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
               <InputText
                 label="體重"
                 name="weight"
-                getValue={setWeight}
                 getName={setWeightName}
+                getValue={(value) => {
+                  parseInt(value) != '' ? setHeight(value) : setHeight('')
+                }}
+                addClassforInput={height == '' ? styles.error : styles.right}
                 width="input-width-100pa"
               ></InputText>
             </div>
@@ -87,6 +159,20 @@ export default function RegisterCard() {
             label="請選擇你的星座"
             name="zodiac"
             selectedDefault="value" //預設選項，可不填，填寫 value
+            valueGroup={[
+              '牡羊座',
+              '金牛座',
+              '雙子座',
+              '巨蟹座',
+              '獅子座',
+              '處女座',
+              '天秤座',
+              '天蠍座',
+              '射手座',
+              '摩羯座',
+              '水瓶座',
+              '雙魚座',
+            ]}
             optionGroup={[
               '牡羊座',
               '金牛座',
@@ -136,8 +222,8 @@ export default function RegisterCard() {
               getValue={setSmoke}
               getName={setSmokeName}
               getLabel={setSmokeLabel}
-              addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
-              addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
+              addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
+              addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
               addClassforInput="classTest3" // 如果要在 input 添加 class
             ></InputRadioGroup>
           </div>
@@ -153,8 +239,8 @@ export default function RegisterCard() {
               getValue={setAlchohol}
               getName={setAlchoholName}
               getLabel={setAlchoholLabel}
-              addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
-              addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
+              addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
+              addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
               addClassforInput="classTest3" // 如果要在 input 添加 class
             ></InputRadioGroup>
           </div>
@@ -208,15 +294,24 @@ export default function RegisterCard() {
               getName={setMobileName}
               width="input-width-100pa"
             ></InputText>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-end gap-3">
             <BtnNormal
               type="button"
               value="button"
               btnText="上一頁"
               addClassforButton="btn-dark"
+              onClick={() => {
+                setPage(1)
+              }}
             />
-            <BtnNormal btnText="完成註冊" addClassforButton="btn-dark" />
+            {/* <BtnNormal
+              type="submit"
+              value="submit"
+              btnText="完成註冊"
+              addClassforButton="btn-dark"
+          
+            /> */}
           </div>
         </div>
       </div>

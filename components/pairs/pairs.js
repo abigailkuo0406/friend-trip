@@ -9,8 +9,8 @@ import PairBtns2 from '@/components/pairs/pairs-button2'
 
 export default function Pairs() {
   const [page, setPage] = useState(1)
-  const page1 = <PairBtns onClick={() => setPage(2)} />
-  const page2 = <PairBtns2 onClick={() => setPage(1)} />
+  const page1 = <PairBtns setPage={setPage} />
+  const page2 = <PairBtns2 setPage={setPage} />
   return (
     <>
       <div className={styles.main}>

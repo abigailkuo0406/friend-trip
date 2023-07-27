@@ -1,54 +1,93 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Image from 'next/image'
 import styles from './login.module.css'
 import logo from '@/assets/logo/FriendTrip-Logo.png'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputText from '@/components//common/input/input-text'
+import AuthContext from '@/context/AuthContext'
+import { useRouter } from 'next/router'
 export default function Login() {
   // input-text
-  const [inputValue, setinputValue] = useState('')
-  const [inputName, setinputName] = useState('')
+  const [inputValue1, setinputValue1] = useState('')
+  const [inputName1, setinputName1] = useState('')
+  const [inputValue2, setinputValue2] = useState('')
+  const [inputName2, setinputName2] = useState('')
   // textarea
   const [textareaText, setTextareaText] = useState('')
+  const router = useRouter()
+  const { auth, setAuth } = useContext(AuthContext)
+  const doLogin = (e) => {
+    e.preventDefault()
+    fetch(process.env.API_SERVER + '/login/admin', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: inputValue1,
+        password: inputValue2,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+        if (data.success) {
+          const obj = { ...data.data }
+          localStorage.setItem('auth', JSON.stringify(obj))
+          setAuth(obj)
+          // alert('登入成功')
+          router.push('/')
+        } else {
+          alert(data.error || '帳密錯誤')
+        }
+      })
+  }
+
   return (
     <>
       <div className={styles.white}>
         <div className={styles.leftplace}>
-          <Image src={logo} className={styles.photo} />
+          <Image src={logo} className={styles.photo} alt="logo.png" />
         </div>
         <div className={styles.rightplace}>
           <div className={styles.title}>
             <h1 className={styles.title}>註冊/登入</h1>
           </div>
-          <div className={styles.input}>
-            <div className={styles.up}>
-              <h5>電子信箱/帳號</h5>
-              <div className={styles.inputbox}>
-                <InputText
-                  getValue={setinputValue}
-                  getName={setinputName}
-                  width="input-width-100pa"
-                ></InputText>
+          <form onSubmit={doLogin}>
+            <div className={styles.input}>
+              <div className={styles.up}>
+                <h5>電子信箱/帳號</h5>
+                <div className={styles.inputbox}>
+                  <InputText
+                    getValue={setinputValue1}
+                    getName={setinputName1}
+                    width="input-width-100pa"
+                  ></InputText>
+                </div>
+              </div>
+              <div className={styles.down}>
+                <h5>密碼</h5>
+                <div className={styles.inputbox}>
+                  <InputText
+                    getValue={setinputValue2}
+                    getName={setinputName2}
+                    width="input-width-100pa"
+                  ></InputText>
+                </div>
               </div>
             </div>
-            <div className={styles.down}>
-              <h5>密碼</h5>
-              <div className={styles.inputbox}>
-                <InputText
-                  getValue={setinputValue}
-                  getName={setinputName}
-                  width="input-width-100pa"
-                ></InputText>
-              </div>
+            <div className={styles.btnbar}>
+              <BtnNormal
+                type="submit"
+                btnText="註冊/登入"
+                onClick={() => {
+                  console.log(inputValue1, ' \n', inputValue2)
+                }}
+                addClassforButton={`${styles.btn} btn-dark`}
+              />
             </div>
-          </div>
-          <div className={styles.btnbar}>
-            <BtnNormal
-              btnText="註冊/登入"
-              addClassforButton={`${styles.btn} btn-dark`}
-            />
-          </div>
+          </form>
           <div>
             <p className={`small-font ${styles.beside}`}>
               未收到驗證信/忘記密碼
