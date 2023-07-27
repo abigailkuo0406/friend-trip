@@ -38,7 +38,8 @@ export default function Reserve() {
                 reserve.rows.map((v, i) => {
                     return (
                         <div key={v.reserve_id}>
-                            < ReserveItem
+                            <ReserveItem
+                                reserveId={v.reserveId}
                                 restId={v.rest_id}
                                 restName={v.RestName}
                                 restImg={v.RestImg}

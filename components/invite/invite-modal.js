@@ -47,7 +47,7 @@ export default function InviteModal({
             })
     }, [])
 
-    
+
     return (
         <>
             <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
@@ -89,7 +89,7 @@ export default function InviteModal({
                                                 <Invite
                                                     friendName={v.member_name}
                                                     img={`http://localhost:3002/face/${v.images}`}
-                                                    friendId={v.FriendIDFriendId}
+                                                    friendId={v.FriendId}
                                                     onValueChange={handleValueChange}
                                                 />
                                             </div>

@@ -68,7 +68,7 @@ export default function Modal({
         setInviteList(ivList)
 
     }
-
+    console.log('SS', inviteList)
 
     return (
         <>
