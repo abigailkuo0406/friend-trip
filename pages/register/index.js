@@ -17,25 +17,24 @@ export default function Register() {
     fetch(process.env.API_SERVER + '/register/add', {
       method: 'POST',
       body: JSON.stringify({
-        member_id: inputValue1,
-        email: inputValue2,
-        password: inputValue3,
-        images: inputValue4,
-        member_name: inputValue5,
-        member_birth: inputValue6,
-        id_number: inputValue7,
-        gender: inputValue8,
-        location: inputValue9,
-        height: inputValue10,
-        weight: inputValue11,
-        zodiac: inputValue12,
-        bloodtype: inputValue13,
-        smoke: inputValue14,
-        alchohol: inputValue15,
-        education_level: inputValue16,
-        job: inputValue17,
-        profile: inputValue18,
-        mobile: inputValue19,
+        email: aaa.email,
+        password: aaa.height,
+        images: aaa.images,
+        member_name: aaa.member_name,
+        member_birth: aaa.member_birth,
+        id_number: aaa.id_number,
+        gender: aaa.gender,
+        location: aaa.location,
+        height: aaa.height,
+        weight: aaa.weight,
+        zodiac: aaa.zodiac,
+        bloodtype: aaa.bloodtype,
+        smoke: aaa.smoke,
+        alchohol: aaa.alchohol,
+        education_level: aaa.education_level,
+        job: aaa.job,
+        profile: aaa.profile,
+        mobile: aaa.mobile,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -66,6 +65,13 @@ export default function Register() {
           {page === 1 ? page1 : page2}
         </div>
       </form>
+      <BtnNormal
+        type="submit"
+        value="submit"
+        btnText="完成註冊"
+        addClassforButton="btn-dark"
+        onClick={add}
+      />
     </>
   )
 }

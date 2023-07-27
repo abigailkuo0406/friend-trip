@@ -61,49 +61,6 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
       return
     }
   }
-  const add = (e) => {
-    e.preventDefault()
-    fetch(process.env.API_SERVER + '/register/add', {
-      method: 'POST',
-      body: JSON.stringify({
-        member_id: inputValue1,
-        email: inputValue2,
-        password: inputValue3,
-        images: inputValue4,
-        member_name: inputValue5,
-        member_birth: inputValue6,
-        id_number: inputValue7,
-        gender: inputValue8,
-        location: inputValue9,
-        height: inputValue10,
-        weight: inputValue11,
-        zodiac: inputValue12,
-        bloodtype: inputValue13,
-        smoke: inputValue14,
-        alchohol: inputValue15,
-        education_level: inputValue16,
-        job: inputValue17,
-        profile: inputValue18,
-        mobile: inputValue19,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(data)
-        if (data.success) {
-          const obj = { ...data.data }
-          localStorage.setItem('auth', JSON.stringify(obj))
-          setAuth(obj)
-          // alert('登入成功')
-          router.push('/')
-        } else {
-          alert(data.error || '帳密錯誤')
-        }
-      })
-  }
   useEffect(() => {
     setAaa((prev) => {
       return { ...prev, height }
