@@ -6,74 +6,78 @@ import BtnNormal from '@/components/common/button/btn-normal'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
 import { useRouter } from 'next/router'
 
-export default function RegisterLetter1({ setPage, setAaa, aaa }) {
+export default function RegisterLetter1({
+  setPage,
+  setAaa,
+  aaa })
+{
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
-  const [id, setId] = useState('')
-  const [gender, setGender] = useState('')
-  const [location, setLocation] = useState('')
-  const [InputName4, setInputName4] = useState('')
-  const [InputLabel4, setInputLabel4] = useState('')
-  const [error8, setError8] = useState(false)
-  const [errorTracker8, setErrorTracker8] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const [clickSubmitted, setClickSubmitted] = useState(false)
+  // const [password, setPassword] = useState('')
+  // const [name, setName] = useState('')
+  // const [id, setId] = useState('')
+  // const [gender, setGender] = useState('')
+  // const [location, setLocation] = useState('')
+  // const [InputName4, setInputName4] = useState('')
+  // const [InputLabel4, setInputLabel4] = useState('')
+  // const [error8, setError8] = useState(false)
+  // const [errorTracker8, setErrorTracker8] = useState('')
+  // const [submitted, setSubmitted] = useState(false)
+  // const [clickSubmitted, setClickSubmitted] = useState(false)
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
 
-    setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
-    setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
-    if (error8 == true) {
-      var moveTo = document.getElementById(errorTracker8)
-      moveTo.scrollIntoView() // 滑向錯誤的地方
-      moveTo.focus()
-      return
-    }
-  }
-  const add = (e) => {
-    e.preventDefault()
-    fetch(process.env.API_SERVER + '/register/add', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        images: images,
-        member_name: member_name,
-        member_birth: member_birth,
-        id_number: id_number,
-        gender: gender,
-        location: location,
-        height: height,
-        weight: weight,
-        zodiac: zodiac,
-        bloodtype: bloodtype,
-        smoke: smoke,
-        alchohol: alchohol,
-        education_level: education_level,
-        job: job,
-        profile: profile,
-        mobile: mobile,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(data)
-        if (data.success) {
-          const obj = { ...data.data }
-          localStorage.setItem('auth', JSON.stringify(obj))
-          setAuth(obj)
-          // alert('登入成功')
-          router.push('/')
-        } else {
-          alert(data.error || '帳密錯誤')
-        }
-      })
-  }
+  //   setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
+  //   setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
+  //   if (error8 == true) {
+  //     var moveTo = document.getElementById(errorTracker8)
+  //     moveTo.scrollIntoView() // 滑向錯誤的地方
+  //     moveTo.focus()
+  //     return
+  //   }
+  // }
+  // const add = (e) => {
+  //   e.preventDefault()
+  //   fetch(process.env.API_SERVER + '/register/add', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       email: email,
+  //       password: password,
+  //       images: images,
+  //       member_name: member_name,
+  //       member_birth: member_birth,
+  //       id_number: id_number,
+  //       gender: gender,
+  //       location: location,
+  //       height: height,
+  //       weight: weight,
+  //       zodiac: zodiac,
+  //       bloodtype: bloodtype,
+  //       smoke: smoke,
+  //       alchohol: alchohol,
+  //       education_level: education_level,
+  //       job: job,
+  //       profile: profile,
+  //       mobile: mobile,
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       console.log(data)
+  //       if (data.success) {
+  //         const obj = { ...data.data }
+  //         localStorage.setItem('auth', JSON.stringify(obj))
+  //         setAuth(obj)
+  //         // alert('登入成功')
+  //         router.push('/')
+  //       } else {
+  //         alert(data.error || '帳密錯誤')
+  //       }
+  //     })
+  // }
   useEffect(() => {
     setAaa((prev) => {
       return { ...prev, email }
@@ -89,7 +93,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
             <div className={styles.bread1}></div>
             <div className={styles.bread2}></div>
           </div>
-          <form onSubmit={add}>
+          {/* <form onSubmit={add}> */}
             <div>
               <h2 className={styles.title}>快速註冊</h2>
             </div>
@@ -111,7 +115,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
                 ></InputText>
               </div>
             </div>
-            <div className={styles.inputstyle}>
+            {/* <div className={styles.inputstyle}>
               <div className={styles.inputbar}>
                 <InputText
                   label="密碼"
@@ -190,7 +194,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
                   width="input-width-100pa"
                 ></InputText>
               </div>
-            </div>
+            </div> */}
             <div className="d-flex justify-content-end">
               <BtnNormal
                 type="button"
@@ -202,7 +206,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
                 }}
               />
             </div>
-          </form>
+          {/* </form> */}
         </div>
       </div>
     </>

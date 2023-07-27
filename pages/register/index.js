@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import LoginLayout from '@/components/layout/login-layout'
 import RegisterLetter1 from '@/components/register/register'
 import RegisterLetter2 from '@/components/register/register2'
+import BtnNormal from '@/components/common/button/btn-normal'
+
 export default function Register() {
   const [aaa, setAaa] = useState({
     email: '',
-    photo: '',
+    // photo: '',
+    height: 0,
   })
   const [page, setPage] = useState(1)
   const [form, setForm] = useState('')
@@ -17,25 +20,12 @@ export default function Register() {
     fetch(process.env.API_SERVER + '/register/add', {
       method: 'POST',
       body: JSON.stringify({
-        member_id: inputValue1,
-        email: inputValue2,
-        password: inputValue3,
-        images: inputValue4,
-        member_name: inputValue5,
-        member_birth: inputValue6,
-        id_number: inputValue7,
-        gender: inputValue8,
-        location: inputValue9,
-        height: inputValue10,
-        weight: inputValue11,
-        zodiac: inputValue12,
-        bloodtype: inputValue13,
-        smoke: inputValue14,
-        alchohol: inputValue15,
-        education_level: inputValue16,
-        job: inputValue17,
-        profile: inputValue18,
-        mobile: inputValue19,
+        // member_id: inputValue1,
+        // email: inputValue2,
+        email: aaa.email,
+
+        // height: inputValue10,
+        height: aaa.height,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -66,6 +56,13 @@ export default function Register() {
           {page === 1 ? page1 : page2}
         </div>
       </form>
+      <BtnNormal
+        type="submit"
+        value="submit"
+        btnText="完成註冊"
+        addClassforButton="btn-dark"
+        onClick={add}
+      />
     </>
   )
 }

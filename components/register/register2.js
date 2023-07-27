@@ -13,97 +13,97 @@ import { Logger } from 'sass'
 export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
   const [member, setMember] = useState({
     height: '',
-    weight: '',
-    zodiac: '',
-    bloodtype: '',
-    smoke: '',
-    alchohol: '',
-    education_level: '',
-    job: '',
-    profile: '',
-    mobile: '',
+    // weight: '',
+    // zodiac: '',
+    // bloodtype: '',
+    // smoke: '',
+    // alchohol: '',
+    // education_level: '',
+    // job: '',
+    // profile: '',
+    // mobile: '',
   })
   const [height, setHeight] = useState('')
-  const [heightName, setHeightName] = useState('')
-  const [weight, setWeight] = useState('')
-  const [weightName, setWeightName] = useState('')
-  const [zodiac, setZodiac] = useState('')
-  const [zodiacName, setZodiacName] = useState('')
-  const [bloodType, setBloodType] = useState('')
-  const [bloodTypename, setBloodTypeName] = useState('')
-  const [smoke, setSmoke] = useState('')
-  const [smokeName, setSmokeName] = useState('')
-  const [smokeLabel, setSmokeLabel] = useState('')
-  const [alchohol, setAlchohol] = useState('')
-  const [alchoholName, setAlchoholName] = useState('')
-  const [alchoholLabel, setAlchoholLabel] = useState('')
-  const [education, setEducation] = useState('')
-  const [educationName, setEducationName] = useState('')
-  const [job, setJob] = useState('')
-  const [jobName, setJobName] = useState('')
-  const [profile, setProfile] = useState('')
-  const [profileName, setProfileName] = useState('')
-  const [mobile, setMobile] = useState('')
-  const [mobileName, setMobileName] = useState('')
-  const [error8, setError8] = useState(false)
-  const [errorTracker8, setErrorTracker8] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-  const [clickSubmitted, setClickSubmitted] = useState(false)
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  // const [heightName, setHeightName] = useState('')
+  // const [weight, setWeight] = useState('')
+  // const [weightName, setWeightName] = useState('')
+  // const [zodiac, setZodiac] = useState('')
+  // const [zodiacName, setZodiacName] = useState('')
+  // const [bloodType, setBloodType] = useState('')
+  // const [bloodTypename, setBloodTypeName] = useState('')
+  // const [smoke, setSmoke] = useState('')
+  // const [smokeName, setSmokeName] = useState('')
+  // const [smokeLabel, setSmokeLabel] = useState('')
+  // const [alchohol, setAlchohol] = useState('')
+  // const [alchoholName, setAlchoholName] = useState('')
+  // const [alchoholLabel, setAlchoholLabel] = useState('')
+  // const [education, setEducation] = useState('')
+  // const [educationName, setEducationName] = useState('')
+  // const [job, setJob] = useState('')
+  // const [jobName, setJobName] = useState('')
+  // const [profile, setProfile] = useState('')
+  // const [profileName, setProfileName] = useState('')
+  // const [mobile, setMobile] = useState('')
+  // const [mobileName, setMobileName] = useState('')
+  // const [error8, setError8] = useState(false)
+  // const [errorTracker8, setErrorTracker8] = useState('')
+  // const [submitted, setSubmitted] = useState(false)
+  // const [clickSubmitted, setClickSubmitted] = useState(false)
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
 
-    setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
-    setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
-    if (error8 == true) {
-      var moveTo = document.getElementById(errorTracker8)
-      moveTo.scrollIntoView() // 滑向錯誤的地方
-      moveTo.focus()
-      return
-    }
-  }
-  const add = (e) => {
-    e.preventDefault()
-    fetch(process.env.API_SERVER + '/register/add', {
-      method: 'POST',
-      body: JSON.stringify({
-        member_id: inputValue1,
-        email: inputValue2,
-        password: inputValue3,
-        images: inputValue4,
-        member_name: inputValue5,
-        member_birth: inputValue6,
-        id_number: inputValue7,
-        gender: inputValue8,
-        location: inputValue9,
-        height: inputValue10,
-        weight: inputValue11,
-        zodiac: inputValue12,
-        bloodtype: inputValue13,
-        smoke: inputValue14,
-        alchohol: inputValue15,
-        education_level: inputValue16,
-        job: inputValue17,
-        profile: inputValue18,
-        mobile: inputValue19,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(data)
-        if (data.success) {
-          const obj = { ...data.data }
-          localStorage.setItem('auth', JSON.stringify(obj))
-          setAuth(obj)
-          // alert('登入成功')
-          router.push('/')
-        } else {
-          alert(data.error || '帳密錯誤')
-        }
-      })
-  }
+  //   setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
+  //   setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
+  //   if (error8 == true) {
+  //     var moveTo = document.getElementById(errorTracker8)
+  //     moveTo.scrollIntoView() // 滑向錯誤的地方
+  //     moveTo.focus()
+  //     return
+  //   }
+  // }
+  // const add = (e) => {
+  //   e.preventDefault()
+  //   fetch(process.env.API_SERVER + '/register/add', {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       member_id: inputValue1,
+  //       email: inputValue2,
+  //       password: inputValue3,
+  //       images: inputValue4,
+  //       member_name: inputValue5,
+  //       member_birth: inputValue6,
+  //       id_number: inputValue7,
+  //       gender: inputValue8,
+  //       location: inputValue9,
+  //       height: inputValue10,
+  //       weight: inputValue11,
+  //       zodiac: inputValue12,
+  //       bloodtype: inputValue13,
+  //       smoke: inputValue14,
+  //       alchohol: inputValue15,
+  //       education_level: inputValue16,
+  //       job: inputValue17,
+  //       profile: inputValue18,
+  //       mobile: inputValue19,
+  //     }),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       console.log(data)
+  //       if (data.success) {
+  //         const obj = { ...data.data }
+  //         localStorage.setItem('auth', JSON.stringify(obj))
+  //         setAuth(obj)
+  //         // alert('登入成功')
+  //         router.push('/')
+  //       } else {
+  //         alert(data.error || '帳密錯誤')
+  //       }
+  //     })
+  // }
   useEffect(() => {
     setAaa((prev) => {
       return { ...prev, height }
@@ -140,7 +140,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               ></InputText>
             </div>
           </div>
-          <div className={styles.inputstyle}>
+          {/* <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
               <InputText
                 label="體重"
@@ -294,7 +294,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               getName={setMobileName}
               width="input-width-100pa"
             ></InputText>
-          </div>
+          </div> */}
           <div className="d-flex justify-content-end gap-3">
             <BtnNormal
               type="button"
@@ -305,12 +305,13 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
                 setPage(1)
               }}
             />
-            <BtnNormal
+            {/* <BtnNormal
               type="submit"
               value="submit"
               btnText="完成註冊"
               addClassforButton="btn-dark"
-            />
+          
+            /> */}
           </div>
         </div>
       </div>
