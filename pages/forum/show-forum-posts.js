@@ -25,13 +25,12 @@ export default function Products() {
     const usp = new URLSearchParams(router.query)
 
     // API串接
-    fetch('http://localhost:3002/twoBooks', {
+    fetch('http://localhost:3002/show-forum-posts', {
       method: 'GET',
-      
     })
       .then((r) => r.json())
       .then((d) => {
-        console.log('111',d.rows)
+        console.log('111', d.rows)
         setData(d)
       })
   }, [])

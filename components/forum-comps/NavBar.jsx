@@ -9,13 +9,13 @@ export default function NavBar() {
         </Link>
       </div>
       <div>
-        <Link href="/forum/add-post" className={styles.navlink}>
-          <h3 >新增文章</h3>
+        <Link href="/forum/add-new-post" className={styles.navlink}>
+          <h3>新增文章</h3>
         </Link>
       </div>
       <div>
         <Link href="/forum/my-posts" className={styles.navlink}>
-          <h3 >我發的文</h3>
+          <h3>我發的文</h3>
         </Link>
       </div>
     </nav>
