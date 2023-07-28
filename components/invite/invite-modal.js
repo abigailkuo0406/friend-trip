@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Btn from '@/components/common/button/btn-normal'
+import styles from '@/components/invite/friends-list.module.css'
+
 
 // 引入邀請元件
 import Invite from '@/components/invite/invite'
@@ -53,25 +55,25 @@ export default function InviteModal({
             <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            {/* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> */}
-                        </div>
-                        <div class="modal-body">
-                            <ul id="inviteList">
+                        {/* <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> */}
+                        <div class="modal-body mt-4">
+                            <ul id="inviteList" className={`d-flex justify-content-start ${styles.ivList}`}>
                                 {inviteList.map((v, i) => {
                                     return (
                                         // 陣列中有姓名才顯示li
-                                        <div key={i}>
+                                        <div key={i} className='me-2'>
                                             {v.inviteName
                                                 ?
                                                 <li>
                                                     <Image
                                                         src={v.inviteImg}
-                                                        className={`rounded`}
+                                                        className={styles.avatar}
                                                         width={50}
                                                         height={50}
                                                     />
-                                                    {v.inviteName}
+                                                    {/* {v.inviteName} */}
                                                 </li>
                                                 :
                                                 <li hidden></li>}
@@ -97,14 +99,14 @@ export default function InviteModal({
                                     }) : <li hidden></li>}
                             </ul>
                         </div>
+                        
+                        <div class="modal-footer">
                         <Btn
                             btnText='回上一頁'
                             bsModle1="#exampleModalToggle"
                             bsModle2='modal'
-                        />
-                        {/* <div class="modal-footer">
-                            <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">回上一頁</button>
-                        </div> */}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
