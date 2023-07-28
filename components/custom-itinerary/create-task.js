@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Router, useRouter } from 'next/router'
 import Link from 'next/link'
 import styles from './create-task.module.css'
@@ -12,8 +12,13 @@ import InputNumber from '../common/input/input-number'
 import BtnNormal from '../common/button/btn-normal'
 import ImageItemPpreview from './image-item-preview'
 import InputDate from '../common/input/input-date'
+import AuthContext from '@/context/AuthContext'
+
 
 export default function CreateTask() {
+  //取得登入之會員資料
+  const { auth } = useContext(AuthContext)
+  
   const router = useRouter()
   // 追蹤是否觸發了已經提交操作
   const [submitted, setSubmitted] = useState(false)
@@ -24,7 +29,7 @@ export default function CreateTask() {
   const [inputSubject, setInputSubject] = useState('')
 
   const [inputDateValue, setInputDateVlaue] = useState('')
-  const [inputDate, setInputDate] = useState('')
+  // const [inputDate, setInputDate] = useState('')
 
   const [inputDescriptionValue, setInputDescriptionValue] = useState('')
   const [inputDescription, setInputDescription] = useState('')
@@ -66,7 +71,6 @@ export default function CreateTask() {
     //   router.push('/custom-itinerary/arrange-schedule')
     // }, 3000)
 
-
     const formData = new FormData(document.getElementById('createInit'))
 
     if (formData.get('coverPhoto') != '') {
@@ -106,7 +110,8 @@ export default function CreateTask() {
   return (
     <>
       <article className="blog-post">
-        <form onSubmit={handleSubmit} id="createInit" name="add">
+        <form onSubmit={handleSubmit} id="createInit">
+        <input name="itin_member_id" defaultValue={auth.member_id} hidden />   
           <div className={`${styles.coverTitle}`}>
             <Link className={styles.link} href="/member/itinerary">
               <FaArrowLeftLong />
@@ -139,8 +144,6 @@ export default function CreateTask() {
                 label="出發日期"
                 width="input-width-10rem"
                 value={inputDateValue}
-                // getvalue={setInputDateVlaue}
-                // getname={setInputDate}
               ></InputDate>
 
               <AreaText

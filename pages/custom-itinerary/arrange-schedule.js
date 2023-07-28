@@ -14,6 +14,7 @@ import SearchView from '@/components/custom-itinerary/arrange-schedule/search-vi
 import Script from 'next/script'
 
 export default function ArrangeSchedule() {
+
   const [showSchedule, setShowSchedule] = useState(true)
   const [inputValue, setInputValue] = useState('')
   const autocompleteRef = useRef(null)
@@ -28,7 +29,7 @@ export default function ArrangeSchedule() {
 
   //定義照片的狀態
   const [photoUrl, setPhotoUrl] = useState('')
- 
+
   // 新增行程按鈕切換
   const handleAddScenery = () => {
     setShowSchedule(false)
@@ -59,7 +60,6 @@ export default function ArrangeSchedule() {
     }
     setSearchLngLat(viewPosition)
     setCenter(viewPosition)
-
 
     //景點詳細資料
     const selectedView = {
@@ -101,7 +101,6 @@ export default function ArrangeSchedule() {
     )
 
     function showPlacePhotos(place) {
-
       if (place.photos && place.photos.length > 0) {
         const photoUrl = place.photos[0].getUrl()
         const placePhotosDiv = document.getElementById('placeDetails')
@@ -125,14 +124,11 @@ export default function ArrangeSchedule() {
     ])
   }
 
- 
   // 當 addInitLocal 陣列改變時，將其存儲到 localStorage 中
   useEffect(() => {
-      localStorage.setItem('addInitLocal', JSON.stringify(addInitLocal))
-      console.log('addInitLocal======', addInitLocal)
+    localStorage.setItem('addInitLocal', JSON.stringify(addInitLocal))
+    console.log('addInitLocal======', addInitLocal)
   }, [addInitLocal])
-
- 
 
   //設定要存進給db資料(save)
   const [dataFromLocalStorage, setDataFromLocalStorage] = useState([])
@@ -143,10 +139,7 @@ export default function ArrangeSchedule() {
     console.log('Data from localStorage:', addInitLocal)
   }, [addInitLocal])
 
-
-
   const saveData = () => {
-
     console.log('dataFromLocalStorage:', JSON.stringify(dataFromLocalStorage))
 
     // API串接(行程寫進db)
@@ -156,7 +149,6 @@ export default function ArrangeSchedule() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(dataFromLocalStorage),
-    
     })
       .then((r) => r.json())
       .then((data) => {
@@ -165,16 +157,14 @@ export default function ArrangeSchedule() {
       .catch((error) => {
         console.log('發生錯誤，行程未送成功到資料庫', error)
       })
-      
   }
- 
+
   //  刪除景點
   const handleDeleteView = (index) => {
     const updatedViews = [...addInitLocal]
     updatedViews.splice(index, 1)
     setAddInitLocal(updatedViews)
   }
-
 
   return (
     <>
