@@ -1,4 +1,5 @@
 // import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,14 +11,35 @@ import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
 
+
+
 export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView,onSaveClick
 }) {
+
+ const[itineraryName,setItineraryName]=useState([])
+
+  useEffect(()=>{
+    fetch(`http://localhost:3002/try-name`)
+    .then((r)=>r.json())
+    .then((data)=>{
+      setItineraryName(data)
+      console.log('name:',data)
+    })
+    .catch((error)=>{
+      console.error('資料接收失敗',error)
+    })
+  },[])
+
 
   const handleSaveClick = () => {
     // 處理點擊事件的邏輯
     console.log("Handle Save Click is called!");
     onSaveClick()
   }
+
+
+
+
 
 
   return (
@@ -53,8 +75,14 @@ export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView
                   <FiMoreHorizontal />
                 </Link>
               </div>
-              <div className="trip-list-header-info mx-4">
-                <h4 className={styles.h4}>九份 & 平溪天燈一日遊</h4>
+              <div itineraryName="trip-list-header-info mx-4">
+
+              {itineraryName.map((name,index)=>{
+                return(
+                <h4 key={index} className={styles.h4}>{name}</h4>
+                )
+              })}
+            
                 <div className="d-flex mt-3">
                   <Image
                     src={Host}
