@@ -63,9 +63,32 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
   }
   useEffect(() => {
     setAaa((prev) => {
-      return { ...prev, height }
+      return {
+        ...prev,
+        height,
+        weight,
+        zodiac,
+        bloodType,
+        smoke,
+        alchohol,
+        education,
+        job,
+        profile,
+        mobile,
+      }
     })
-  }, [height])
+  }, [
+    height,
+    weight,
+    zodiac,
+    bloodType,
+    smoke,
+    alchohol,
+    education,
+    job,
+    profile,
+    mobile,
+  ])
   return (
     <>
       <div className={styles.main}>
@@ -89,7 +112,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
                 //   parseInt(value) != '' ? setHeight(value) : setHeight('')
                 // }}
                 getValue={(value) => {
-                  parseInt(value) != '' ? setHeight(value) : setHeight('')
+                  value != '' ? setHeight(parseInt(value)) : setHeight('')
                 }}
                 addClassforInput={height == '' ? styles.error : styles.right}
                 // getName={setHeightName}
@@ -104,7 +127,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
                 name="weight"
                 getName={setWeightName}
                 getValue={(value) => {
-                  parseInt(value) != '' ? setHeight(value) : setHeight('')
+                  value != '' ? setWeight(parseInt(value)) : setWeight('')
                 }}
                 addClassforInput={height == '' ? styles.error : styles.right}
                 width="input-width-100pa"
@@ -261,12 +284,6 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               onClick={() => {
                 setPage(1)
               }}
-            />
-            <BtnNormal
-              type="submit"
-              value="submit"
-              btnText="完成註冊"
-              addClassforButton="btn-dark"
             />
           </div>
         </div>
