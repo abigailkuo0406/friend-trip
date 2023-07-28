@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
+import { GoogleMap, useLoadScript, Marker} from '@react-google-maps/api'
+
 
 // 在元件外部定義 libraries 陣列作為常數變數
 const libraries = ['places']
@@ -48,10 +49,20 @@ export default function Map({ searchLngLat }) {
   })
   if (!isLoaded) return <div>Loading....</div>
 
+   // 路徑規劃
+  //  const directionsService=new google.maps.DirectionsRenderer()
+   
+  //  directionsService.route({
+  //   origin:new google.maps.LatLng(currentPosition.lat,currentPosition.lng),
+    
+  //  })
+
+
   return (
     <>
       {/* {console.log('searchLngLat(map.js):', searchLngLat)} */}
-      <div className="map">
+      <div>
+      <div id="map1"></div>
         <div
           style={{
             display: 'flex',
@@ -67,7 +78,7 @@ export default function Map({ searchLngLat }) {
             center={center} // 設定地圖中心點
             mapContainerClassName="map"
             mapContainerStyle={{
-              width: '85vw',
+              width: '100%',
               height: '700px',
               margin: 'auto',
             }}

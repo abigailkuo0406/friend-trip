@@ -42,14 +42,18 @@ export default function CreateTask() {
   //上傳照片
   const [file, setFiles] = useState(null)
 
-
   //除錯用
   const [error8, setError8] = useState(false)
   const [errorTracker8, setErrorTracker8] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
+    setSubmitted(true)
+    //新增成功呈現alert
+    if (handleSubmit) {
+      alert('新增成功')
+    }
+    // 更改追蹤是否提交的狀態，用於 <form> 內除錯
     setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
     if (error8 == true) {
       var moveTo = document.getElementById(errorTracker8)
@@ -58,22 +62,32 @@ export default function CreateTask() {
       return
     }
     //點選建立後3秒後跳轉
-    setTimeout(() => {
-      router.push('/custom-itinerary/arrange-schedule')
-    }, 3000)
+    // setTimeout(() => {
+    //   router.push('/custom-itinerary/arrange-schedule')
+    // }, 3000)
 
-    // console.log('行程名稱：', inputSubjectValue)
-    // console.log('出發日期：',inputDateValue)
-    // console.log('說明：',inputDescriptionValue)
-    // console.log('是否公開？',publicLabel+ ' ，value 為：',
-    // publicValue + ' ，name 為：',
-    // publicName)
-    // console.log('人數：',peopleNumValue)
-    // console.log('備註：',inputNoteValue)
 
     const formData = new FormData(document.getElementById('createInit'))
 
-    // API串接
+    if (formData.get('coverPhoto') != '') {
+      const imgData = new FormData() //建立一個新的空的formdata物件
+      imgData.set('coverPhoto', formData.get('coverPhoto')) //將選擇的檔案(input)加入到imgData，get(input中設定name)
+      fetch('http://localhost:3002/try-preview', {
+        method: 'POST',
+        body: imgData,
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          console.log(data)
+        })
+    }
+
+    // console.log('formData::', formData.get('coverPhoto'))
+    formData.set('coverPhoto', formData.get('coverPhoto').name)
+    console.log('new coverPhoto.name:', formData.get('coverPhoto'))
+    console.log('formData=>', formData)
+
+    // API串接(表單)
     fetch('http://localhost:3002/custom-itinerary', {
       method: 'POST',
       body: formData,
@@ -89,23 +103,23 @@ export default function CreateTask() {
     router.push('/ ')
   }
 
-  
   return (
     <>
       <article className="blog-post">
         <form onSubmit={handleSubmit} id="createInit" name="add">
           <div className={`${styles.coverTitle}`}>
-            <Link className={styles.link} href="/custom-itinerary">
+            <Link className={styles.link} href="/member/itinerary">
               <FaArrowLeftLong />
             </Link>
             <h3 className={styles.h3}>新增行程</h3>
           </div>
-          <div>
-            <label className={` ${styles.label}`}>旅程封面圖片</label>
-            <ImageItemPpreview />
-          </div>
           {/* 表格 */}
           <div className={styles.formbody}>
+            <div>
+              <label className={` ${styles.label}`}>旅程封面圖片</label>
+              <ImageItemPpreview name="coverPhoto" />
+            </div>
+
             <div className="container ">
               <InputText
                 id="inputSubject"
@@ -146,7 +160,7 @@ export default function CreateTask() {
                 name="public"
                 // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
                 idGroup={['PublicID', 'nonPublicID']} // 個別 radio 的 ID
-                valueGroup={['publicValue', 'nonPublicValue']} // 個別 radio 的 name
+                valueGroup={['公開', '不公開']} // 個別 radio 的 name
                 labelGroup={['公開', '不公開']} // 個別標籤
                 defaultChecked="publicValue"
                 getValue={setPublicValue}

@@ -29,7 +29,9 @@ export default function ImageItemPpreview(file, setFiles) {
 
   const changeHandler = (e) => {
     const file = e.target.files[0]
-
+    console.log('file:', file)
+    console.log('file:======', file.name)
+    console.log('e:', e)
     if (file) {
       setIsFilePicked(true)
       setSelectedFile(file)
@@ -41,14 +43,13 @@ export default function ImageItemPpreview(file, setFiles) {
   return (
     <>
       <div>
-     
         <div className="d-flex justify-content-center mt-3">
           <label className={styles.uploader}>
             <TbPhotoPlus className={styles.uploaderIcon} />
             <input
               className={styles.uploaderinput}
               type="file"
-              name="file"
+              name="coverPhoto"
               onChange={changeHandler}
             />
             <div>
