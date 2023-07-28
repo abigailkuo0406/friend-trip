@@ -50,7 +50,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
         location,
       }
     })
-  }, [email, password, name, id, gender, location])
+  }, [email, password, name, birth, id, gender, location])
 
   useEffect(() => {
     console.log('111', birth)
