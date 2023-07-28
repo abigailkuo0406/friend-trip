@@ -17,9 +17,8 @@ export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView
     // 處理點擊事件的邏輯
     console.log("Handle Save Click is called!");
     onSaveClick()
-    console.log('onSaveClick',onSaveClick());
   }
-// console.log('dataFromLocalStorage ScheduleSide ======',dataFromLocalStorage)
+
 
   return (
     <>

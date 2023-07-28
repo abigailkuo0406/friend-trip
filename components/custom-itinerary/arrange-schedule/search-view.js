@@ -1,14 +1,9 @@
-import { useState, useEffect } from 'react'
-// import styles from './arrange-schedule.module.css'
 import Link from 'next/link'
-import Image from 'next/image'
-import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import { BiSearchAlt, BiMap } from 'react-icons/bi'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
 import { BsFillTelephoneFill,BsFillStarFill} from 'react-icons/bs'
 import styles from './search-view.module.css'
-
 
 
 export default function SearchView({
@@ -18,8 +13,6 @@ export default function SearchView({
   changeToAddSchedule,
   photoUrl,
 }) { 
-// console.log('photoUrl:',photoUrl)
-
 
   return (
     <>
@@ -31,7 +24,7 @@ export default function SearchView({
               {/* 切換 */}
               <ul className="nav nav-underline"  >
                 <li className="nav-item mt-3 mx-3 " >
-                  <Link href="/custom-itinerary/">
+                  <Link href="/custom-itinerary/arrange-schedule">
                     <FaArrowLeftLong className={styles.searchArrow} />
                   </Link>
                 </li>
