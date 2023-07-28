@@ -7,6 +7,7 @@ const nextConfig = {
       'localhost',
       'static.skillshare.com',
       'images.unsplash.com',
+      'plus.unsplash.com',
     ],
   },
   // avoid cors with proxy
