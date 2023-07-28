@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect, Fragment,useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ProductPageLayout from '@/components/layout/product-page-layout'
@@ -6,8 +6,10 @@ import { useRouter } from 'next/router'
 import logo from '@/public/img/logo/FriendTrip-Logo.png'
 import { BsCart } from 'react-icons/bs'
 import CardProduct from '@/components/common/card/card-product'
+import AuthContext from '@/context/AuthContext'
 
 export default function ProductIndex() {
+  const {auth, setAuth } = useContext(AuthContext)
   const router = useRouter()
   const [data, setData] = useState({
     redirect: '',
@@ -18,6 +20,27 @@ export default function ProductIndex() {
     rows: [],
   })
   const [keyword, setKeyword] = useState('')
+  const [cartNumber, setCartNumber] = useState(0)
+
+  useEffect(() => {
+    console.log("有喔123：",auth)
+    if(auth.token){
+      console.log("ddd")
+    fetch(`${process.env.API_SERVER}/product/cart`, {
+      method: 'POST',
+      body: JSON.stringify({auth}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        setCartNumber(data.all.length)
+        console.log("有喔321：",data.all.length)
+      })}
+  }, [auth])
+
   useEffect(() => {
     setKeyword(router.query.keyword || '')
     const usp = new URLSearchParams(router.query)
@@ -31,6 +54,7 @@ export default function ProductIndex() {
         setData(data)
       })
   }, [router.query])
+  
 
   console.log('此頁的商品資料', data.rows)
   return (
@@ -45,7 +69,10 @@ export default function ProductIndex() {
           </div>
           <div className="PageCart col-4">
             <div>
+            <Link href="./product/cart">
               <BsCart></BsCart>
+              <span className="cartNumber">{cartNumber}</span>
+            </Link>
             </div>
           </div>
         </div>

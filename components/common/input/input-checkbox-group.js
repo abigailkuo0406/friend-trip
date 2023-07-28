@@ -8,11 +8,11 @@ export default function InputCheckboxGroup({
   valueGroup = [],
   labelGroup = [],
   checkedValue = [],
-  getValue = [],
-  getName,
-  addClassforTitleLabel,
-  addClassforEachLabel,
-  addClassforInput,
+  getValue=()=>{},
+  getName=()=>{},
+  addClassforTitleLabel = '',
+  addClassforEachLabel = '',
+  addClassforInput = '',
 }) {
   const [errorMessage, setErrorMessage] = useState('\u00A0') // 錯誤訊息用 // \u00A0 為會佔空間的空白，如果設空字串排版會爛掉
 
@@ -35,7 +35,7 @@ export default function InputCheckboxGroup({
   }, [inputValue1])
 
   return (
-    <div class="input-checkbox-section">
+    <div className="input-checkbox-section">
       <label className={`${addClassforTitleLabel} section-label`}>
         {label}
       </label>

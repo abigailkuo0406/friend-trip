@@ -1,10 +1,12 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect, Fragment, useContext } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import ProductPageLayout from '@/components/layout/product-page-layout'
 import InputNumber from '@/components/common/input/input-number'
 import BtnNormal from '@/components/common/button/btn-normal'
+import ModalCartAdd from '@/components/common/modal/modal_cart_add'
+import AuthContext from '@/context/AuthContext'
 
 import fakeIimg1 from '@/public/img/fake-data/fake-img-1.jpg'
 import { BsCart, BsCartPlus, BsHeartFill, BsHeart } from 'react-icons/bs'
@@ -12,6 +14,7 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 
 export default function ProductItem({}) {
+  const {auth, setAuth } = useContext(AuthContext)
   const router = useRouter()
   const [row, setRow] = useState({
     product_id: 0,
@@ -51,8 +54,42 @@ export default function ProductItem({}) {
   }
   const productBuyFormSubmit = (event) => {
     event.preventDefault()
-    router.push('/product/cart')
   }
+  const [cartNumber, setCartNumber]=useState(0)
+  useEffect(() => {
+    fetch(`${process.env.API_SERVER}/product/cart`, {
+      method: 'POST',
+      body: JSON.stringify({auth}),
+      // auth 為單純的 object 記錄所有會員資料，{auth} 為 key 為 auth 對應值為所有會員資料
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        setCartNumber(data.all.length)
+      })
+  }, [auth])
+  // 預先判斷購物車裡是否有該項商品
+  // useEffect(() => {
+  //   fetch(`${process.env.API_SERVER}/product/cart/add`, {
+  //     method: 'POST',
+  //     body: JSON.stringify({member: auth.member_id, productID: product_id}),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   }
+  //   )
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       console.log(data)
+
+  //     })
+  // }, [auth, product_id])
+  useEffect(()=>{
+    console.log("點選數量：",BuyValue)
+  },[BuyValue])
   useEffect(() => {
     fetch(process.env.API_SERVER + '/product/' + router.query.pid)
       .then((r) => r.json())
@@ -66,6 +103,22 @@ export default function ProductItem({}) {
   }, [router.query])
   const cateArray = product_category.split(' ')
 
+  const handleBuy = () =>{
+    fetch(`${process.env.API_SERVER}/product/cart/add`, {
+      method: 'POST',
+      body: JSON.stringify({member: auth.member_id, productID: product_id, productNum:BuyValue}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        // console.log("增加後總價：",data.all[0].cart_total)
+
+      })
+  }
+
   return (
     <>
       <div className="PidPageHeader">
@@ -75,11 +128,15 @@ export default function ProductItem({}) {
           </Link>
         </div>
 
-        <div className="PageCart">
-          <div>
-            <BsCart></BsCart>
+        <div className="PageCart col-4">
+            <div>
+            <Link href="./cart">
+              <BsCart></BsCart>
+              <span className="cartNumber">{cartNumber}</span>
+            </Link>
+              
+            </div>
           </div>
-        </div>
       </div>
       <section className="productPageMain">
         <div className="productPageMainIMG">
@@ -147,11 +204,15 @@ export default function ProductItem({}) {
                 addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                 disabled={false} // fase：可點，true：不可點
                 target=""
+                bsModle1="#buyModal"
+                bsModle2="modal"
+                onClick={handleBuy}
               ></BtnNormal>
             </form>
           </div>
         </div>
       </section>
+      <ModalCartAdd id="buyModal" productName={product_name} productPrice={product_price} productNum={BuyValue}></ModalCartAdd>
     </>
   )
 }
