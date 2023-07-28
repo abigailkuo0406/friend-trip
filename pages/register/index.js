@@ -3,12 +3,28 @@ import LoginLayout from '@/components/layout/login-layout'
 import RegisterLetter1 from '@/components/register/register'
 import RegisterLetter2 from '@/components/register/register2'
 import BtnNormal from '@/components/common/button/btn-normal'
-
 export default function Register() {
   const [aaa, setAaa] = useState({
     email: '',
-    // photo: '',
-    height: 0,
+    password: '',
+    images: '',
+    // member_name: '',
+    name: '',
+    member_birth: '',
+    id_number: '',
+    gender: '',
+    location: '',
+    height: '',
+    weight: '',
+    height: '',
+    zodiac: '',
+    bloodtype: '',
+    smoke: '',
+    alchohol: '',
+    education_level: '',
+    job: '',
+    profile: '',
+    mobile: '',
   })
   const [page, setPage] = useState(1)
   const [form, setForm] = useState('')
@@ -17,15 +33,30 @@ export default function Register() {
   console.log(page)
   const add = (e) => {
     e.preventDefault()
+    console.log('5555', aaa)
     fetch(process.env.API_SERVER + '/register/add', {
       method: 'POST',
       body: JSON.stringify({
-        // member_id: inputValue1,
-        // email: inputValue2,
         email: aaa.email,
+        password: aaa.password,
+        images: aaa.images,
+        // member_name: aaa.member_name,
+        member_name: aaa.name,
 
-        // height: inputValue10,
+        member_birth: aaa.birth,
+        id_number: aaa.id,
+        gender: aaa.gender,
+        location: aaa.location,
         height: aaa.height,
+        weight: aaa.weight,
+        zodiac: aaa.zodiac,
+        bloodtype: aaa.bloodtype,
+        smoke: aaa.smoke,
+        alchohol: aaa.alchohol,
+        education_level: aaa.education,
+        job: aaa.job,
+        profile: aaa.profile,
+        mobile: aaa.mobile,
       }),
       headers: {
         'Content-Type': 'application/json',
