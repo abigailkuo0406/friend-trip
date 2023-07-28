@@ -7,7 +7,8 @@ import RadioGroupInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date'
 import RestPhoto from '@/components/restaurant/restaurant-photo'
 import Image from 'next/image'
-
+import FriendsLtSty from '../invite/friends-list.module.css'
+import InfoSty from '@/components/restaurant/intro.module.css'
 
 export default function Modal({
     restId,
@@ -78,21 +79,17 @@ export default function Modal({
                         <div class="modal-header">
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-
                         <div className="d-flex mx-2 row">
                             <div className="modal-body col-5">
-                                <p>{restId}</p>
-                                <div className="d-flex">
+                                <div className={`${InfoSty.infoBox}`}>
                                     <h2>{restName}</h2>
-                                    <div>星星</div>
+                                    {/* <div>星星</div> */}
                                 </div>
-
-                                <div>
+                                <div className={`${InfoSty.infoBox}`}>
                                     <p>{restAddress}</p>
                                     <p>{restPhone}</p>
                                 </div>
-
-                                <div>
+                                <div className={`${InfoSty.infoBox}`}>
                                     <label>營業時間</label>
                                     <p>{restTime}</p>
                                     <label>料理特色</label>
@@ -108,16 +105,17 @@ export default function Modal({
                                     <input name="member_id" value={auth.member_id} hidden />
                                     <input name="rest_id" value={restId} hidden />
 
-                                    <div className="mb-3">
+                                    <div className={`${InfoSty.infoBox}`} >
                                         <DateInput
                                             id="reserveDate"
                                             name="reserve_date"
                                             label="訂位日期"
                                             width="input-width-10rem"
+                                            addClassforLabel={InfoSty.infolabel}
                                         />
                                     </div>
 
-                                    <div className="mb-3">
+                                    <div className={`${InfoSty.infoBox}`}>
 
                                         <RadioGroupInput
                                             label="訂位時間"
@@ -129,13 +127,13 @@ export default function Modal({
                                             getValue={setReserveTimeInputValue}
                                             getName={setReserveTimeInputName}
                                             getLabel={setReserveTimeInputLabel}
-                                            addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
-                                            addClassforEachLabel="btn btn-secondary me-3" // 如果要在個別選項 label 添加 class
-                                            addClassforInput="btn-check" // 如果要在 input 添加 class
+                                            addClassforTitleLabel={InfoSty.infolabel} // 如果要在標題 label 添加 class
+                                            addClassforEachLabel={`btn ${InfoSty.radioItem} me-3`} // 如果要在個別選項 label 添加 class
+                                            addClassforInput={`btn-check`} // 如果要在 input 添加 class
                                         />
                                     </div>
 
-                                    <div>
+                                    <div className={`${InfoSty.infoBox}`}>
                                         <NumberInput
                                             id="PeopleNum"
                                             label="訂位人數"
@@ -154,11 +152,11 @@ export default function Modal({
                                         />
                                     </div>
                                     <label>邀請好友</label>
-                                    <ul id="inviteList">
+                                    <ul id="inviteList" className={`d-flex justify-content-start mt-3`}>
                                         {inviteList.map((v, i) => {
                                             return (
                                                 // 陣列中有姓名才顯示li
-                                                <div key={i}>
+                                                <div key={i} className='me-2'>
                                                     {v.inviteName
                                                         ?
                                                         <li>
@@ -170,7 +168,6 @@ export default function Modal({
                                                                 width={50}
                                                                 height={50}
                                                             />
-                                                            {v.inviteName}
                                                         </li>
                                                         :
                                                         <li hidden></li>}
@@ -180,19 +177,21 @@ export default function Modal({
                                         })}
 
                                     </ul>
+                                    <div className="d-flex">
 
-                                    <Button
-                                        btnText="邀請好友"
-                                        bsModle1="#exampleModalToggle2"
-                                        bsModle2="modal"
-                                    />
-                                    <Button
-                                        type="submit"
-                                        value="submit"
-                                        btnText="直接訂位"
-                                        addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
-                                        disabled={false} // fase：可點，true：不可點
-                                    ></Button>
+                                        <Button
+                                            btnText="邀請好友"
+                                            bsModle1="#exampleModalToggle2"
+                                            bsModle2="modal"
+                                        />
+                                        <Button
+                                            type="submit"
+                                            value="submit"
+                                            btnText="直接訂位"
+                                            addClassforButton="btn-light ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                                            disabled={false} // fase：可點，true：不可點
+                                        ></Button>
+                                    </div>
                                 </form>
 
                             </div>
