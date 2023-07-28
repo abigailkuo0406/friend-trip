@@ -11,7 +11,6 @@ import NoSidebarLayout from '@/components/layout/nosidebar-layout'
 import Map from '@/components/custom-itinerary/arrange-schedule/map'
 import ScheduleSide from '@/components/custom-itinerary/arrange-schedule/arrange-schedule'
 import SearchView from '@/components/custom-itinerary/arrange-schedule/search-view'
-import Image from 'next/image'
 import Script from 'next/script'
 
 export default function ArrangeSchedule() {
@@ -33,8 +32,6 @@ export default function ArrangeSchedule() {
   const [addInitLocal, setAddInitLocal] = useState([])
   //定義照片的狀態
   const [photoUrl, setPhotoUrl] = useState('')
-  //定義行程照片狀態
-  // const [photoInfo,setPhotoInfo]=useState(null)
 
   // 新增行程按鈕切換
   const handleAddScenery = () => {
@@ -104,6 +101,7 @@ export default function ArrangeSchedule() {
     // const PlacesService =await google.maps.importLibrary('places')
     // const placesService = new window.google.maps.places.PlacesService(Map);
 
+    //place details 取得照片
     const PlacesService = new google.maps.places.PlacesService(map1)
 
     PlacesService.getDetails(
@@ -161,46 +159,67 @@ export default function ArrangeSchedule() {
 
   //當 addInitLocal 陣列改變時，將其存儲到 localStorage 中
   useEffect(() => {
-    localStorage.setItem('addInitLocal', JSON.stringify(addInitLocal))
+    if(addInitLocal.length>0){
+      localStorage.setItem('addInitLocal', JSON.stringify(addInitLocal))
+    }
   }, [addInitLocal])
   console.log('addInitLocal======', addInitLocal)
 
-  // 在組件掛載時，從 localStorage 中檢索 addInitLocal 陣列
-  // useEffect(() => {
-  //   const storedLocations = JSON.parse(localStorage.getItem('addInitLocal'))
-  //   console.log('storedLocations--------', storedLocations)
-  // }, [])
-
   //設定要存進給db資料(save)
   const [dataFromLocalStorage, setDataFromLocalStorage] = useState([])
+  const [saveDataInProgress, setSaveDataInProgress] = useState(false)
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('addInitLocal'))
     setDataFromLocalStorage(data || [])
   }, [addInitLocal])
   console.log('Data from localStorage:', dataFromLocalStorage)
-  
-const saveData=()=>{
-  console.log('dataFromLocalStorage:', JSON.stringify(dataFromLocalStorage))
 
-// API串接(行程寫進db)
-fetch('http://localhost:3002/save-view', {
-  method: 'POST',
-  headers:{
-    'Content-Type':'application/json',
-  },
-  body: JSON.stringify(dataFromLocalStorage)
-})
-  .then((r) => r.json().postData[0])
-  .then((data) => {
-    console.log('資料已成功送到資料庫:', data.postData[0]);
-  })
-  .catch((error)=>{
-    console.log('發生錯誤，行程未送成功到資料庫',error)
-  })
+  const saveData = () => {
+    console.log('dataFromLocalStorage:', JSON.stringify(dataFromLocalStorage))
 
-}
- 
+    // API串接(行程寫進db)
+    fetch('http://localhost:3002/save-view', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataFromLocalStorage),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log('資料已成功送到資料庫:', data)
+      })
+      .catch((error) => {
+        console.log('發生錯誤，行程未送成功到資料庫', error)
+      })
+  }
+
+  // const saveData=()=>{
+  //  if(!saveDataInProgress){
+  //   console.log('dataFromLocalStorage:', JSON.stringify(dataFromLocalStorage))
+
+  // // API串接(行程寫進db)
+  // fetch('http://localhost:3002/save-view', {
+  //   method: 'POST',
+  //   headers:{
+  //     'Content-Type':'application/json',
+  //   },
+  //   body: JSON.stringify(dataFromLocalStorage)
+  // })
+  //   .then((r) => r.json())
+  //   .then((data) => {
+  //     console.log('資料已成功送到資料庫:', data);
+  //   })
+  //   .catch((error)=>{
+  //     console.log('發生錯誤，行程未送成功到資料庫',error)
+  //   })
+  //   .finally(()=>{
+  //     setSaveDataInProgress(false)
+  //   })
+  //   setSaveDataInProgress(true)
+  // }
+  // }
 
   //  刪除景點
   const handleDeleteView = (index) => {
@@ -222,7 +241,6 @@ fetch('http://localhost:3002/save-view', {
           selectedView={addInitLocal}
           onDeleteView={handleDeleteView}
           onSaveClick={saveData}
-          
         />
       ) : (
         <Autocomplete
