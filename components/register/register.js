@@ -90,6 +90,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
             <div className={styles.inputbar}>
               <InputText
                 label="密碼"
+                value={aaa.password}
                 name="password"
                 getValue={(value) =>
                   value != '' ? setPassword(value) : setPassword('')
@@ -111,6 +112,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
               <InputText
                 label="會員名稱"
                 name="member_name"
+                value={aaa.name}
                 getValue={(value) =>
                   value != '' ? setName(value) : setName('')
                 }
@@ -124,7 +126,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
             <input
               type="date"
               className="rounded-3"
-              value={birth}
+              value={aaa.birth}
               onChange={handleDateChange}
             ></input>
           </div>
@@ -133,6 +135,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
               <InputText
                 label="身分證字號"
                 name="id_number"
+                value={aaa.id}
                 getValue={(value) => (value != '' ? setId(value) : setId(''))}
                 getName={() => 'whatever'}
                 width="input-width-100pa"
@@ -147,7 +150,8 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
               idGroup={['male', 'female']} // 個別 radio 的 ID
               valueGroup={['男', '女']} // 個別 radio 的 name
               labelGroup={['男', '女']} // 個別標籤
-              checked="birdValue" // 預設勾選，需填入 value，只能擇一
+              value={aaa.gender}
+              checked="男" // 預設勾選，需填入 value，只能擇一
               getValue={(value) =>
                 value != '' ? setGender(value) : setGender('')
               }
@@ -163,6 +167,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
               <InputText
                 label="地區"
                 name="location"
+                value={aaa.location}
                 getValue={(value) =>
                   value != '' ? setLocation(value) : setLocation('')
                 }
