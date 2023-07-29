@@ -10,7 +10,7 @@ export default function ForumHome() {
     // setKeyword(router.query.keyword || '')
     // const usp = new URLSearchParams(router.query)
 
-    // API串接
+    // API串接，如果不加 method: 'GET', 也沒關係，那是 default value
     fetch('http://localhost:3002/show-forum-posts', {
       method: 'GET',
     })
