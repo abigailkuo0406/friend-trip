@@ -1,15 +1,11 @@
 import AdminLayout from '@/components/layout/admin-layout'
-import Posts from '../../components/forum-comps/Posts'
-import NavBar from '../../components/forum-comps/NavBar'
-import Post from '@/components/forum-comps/Post'
+import Posts from '@/components/forum-comps/Posts'
+import NavBar from '@/components/forum-comps/NavBar'
 import { useState, useEffect } from 'react'
 
 export default function ForumHome() {
   const [posts, setPosts] = useState()
   useEffect(() => {
-    // setKeyword(router.query.keyword || '')
-    // const usp = new URLSearchParams(router.query)
-
     // API串接，如果不加 method: 'GET', 也沒關係，那是 default value
     fetch('http://localhost:3002/show-forum-posts', {
       method: 'GET',
