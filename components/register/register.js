@@ -5,7 +5,7 @@ import styles from './register.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
 import { useRouter } from 'next/router'
-
+import App from '@/components/register/imgupload'
 export default function RegisterLetter1({ setPage, setAaa, aaa }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -102,10 +102,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>照片</h5>
-            <BtnNormal
-              btnText="上傳"
-              addClassforButton={`btn-dark small-font ${styles.btnsize}`}
-            />
+            <App />
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>

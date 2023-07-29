@@ -7,7 +7,7 @@ export default function Register() {
   const [aaa, setAaa] = useState({
     email: '',
     password: '',
-    images: '',
+    img: '',
     // member_name: '',
     name: '',
     birth: '',
@@ -20,7 +20,7 @@ export default function Register() {
     bloodtype: '',
     smoke: '',
     alchohol: '',
-    education_level: '',
+    education: '',
     job: '',
     profile: '',
     mobile: '',
@@ -38,7 +38,7 @@ export default function Register() {
       body: JSON.stringify({
         email: aaa.email,
         password: aaa.password,
-        images: aaa.images,
+        images: aaa.img,
         // member_name: aaa.member_name,
         member_name: aaa.name,
 
@@ -64,21 +64,11 @@ export default function Register() {
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
-        if (data.success) {
-          const obj = { ...data.data }
-          localStorage.setItem('auth', JSON.stringify(obj))
-          setAuth(obj)
-          // alert('登入成功')
-          router.push('/')
-        } else {
-          alert(data.error || '帳密錯誤')
-        }
       })
   }
   useEffect(() => {
     console.log(aaa)
   }, [aaa])
-
   return (
     <>
       <form onSubmit={add}>
