@@ -1,5 +1,5 @@
 // import { useState } from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,37 +10,49 @@ import { FaRegEdit } from 'react-icons/fa'
 import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
+import AuthContext from '@/context/AuthContext'
 
-
-
-export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView,onSaveClick
+export default function ScheduleSide({
+  changeToSearch,
+  selectedView,
+  onDeleteView,
+  onSaveClick,
 }) {
+  const [itineraryName, setItineraryName] = useState([])
+  const [filteredItineraryName, setFilteredItineraryName] = useState([])
+  //取得登入之會員資料
+  const { auth } = useContext(AuthContext)
 
- const[itineraryName,setItineraryName]=useState([])
-
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`http://localhost:3002/try-name`)
-    .then((r)=>r.json())
-    .then((data)=>{
-      setItineraryName(data)
-      console.log('name:',data)
-    })
-    .catch((error)=>{
-      console.error('資料接收失敗',error)
-    })
-  },[])
+      .then((r) => r.json())
+      .then((data) => {
+        setItineraryName(data)
+        console.log('name:', data)
+      })
+      .catch((error) => {
+        console.error('資料接收失敗', error)
+      })
+  }, [])
 
+  useEffect(() => {
+    const filteredNames = itineraryName.filter(
+      (item) => item.itin_member_id === auth.member_id
+    )
+    // 將過濾後的行程按照建立時間降冪排序
+    filteredItineraryName.sort((a, b) => new Date(b.create_at))
+    // 選取排序後的第一個行程（最新建立的行程）
+    const mostRecentItinerary =
+      filteredNames.length > 0 ? [filteredNames[0]] : []
+
+    setFilteredItineraryName(mostRecentItinerary)
+  }, [itineraryName, auth.member_id])
 
   const handleSaveClick = () => {
     // 處理點擊事件的邏輯
-    console.log("Handle Save Click is called!");
+    console.log('Handle Save Click is called!')
     onSaveClick()
   }
-
-
-
-
-
 
   return (
     <>
@@ -58,11 +70,14 @@ export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView
                 </Link>
 
                 <button
-                      className={`btn ${styles.link}`}
-                      onClick={handleSaveClick}
-                    >  <LiaSave /></button>
+                  className={`btn ${styles.link}`}
+                  onClick={handleSaveClick}
+                >
+                  {' '}
+                  <LiaSave />
+                </button>
 
-{/* 
+                {/* 
 
                 <Link
                   href="/custom-itinerary/save-view-task"
@@ -76,13 +91,14 @@ export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView
                 </Link>
               </div>
               <div itineraryName="trip-list-header-info mx-4">
+                {filteredItineraryName.map((nameObj) => {
+                  return (
+                    <h4 key={nameObj.itin_member_id} className={styles.h4}>
+                      {nameObj.name}
+                    </h4>
+                  )
+                })}
 
-              {itineraryName.map((name,index)=>{
-                return(
-                <h4 key={index} className={styles.h4}>{name}</h4>
-                )
-              })}
-            
                 <div className="d-flex mt-3">
                   <Image
                     src={Host}
@@ -91,7 +107,7 @@ export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView
                     height={32}
                     priority={true} //圖片預先載入
                   />
-                  <p className="usr_name my-auto mx-2">Amber</p>
+                  <p className="usr_name my-auto mx-2">{auth.member_name}</p>
                 </div>
               </div>
               <div className="trip-list-day-container mx-2">
@@ -105,7 +121,10 @@ export default function ScheduleSide({ changeToSearch, selectedView,onDeleteView
                 </div>
                 {/* 行程card */}
                 <div className="overflow-y-auto" style={{ height: 520 }}>
-                  <InitCard selectedViews={selectedView} onDeleteViews={onDeleteView}/>
+                  <InitCard
+                    selectedViews={selectedView}
+                    onDeleteViews={onDeleteView}
+                  />
                   <div className={styles.add}>
                     <button
                       className={`btn ${styles.addbtn}`}
