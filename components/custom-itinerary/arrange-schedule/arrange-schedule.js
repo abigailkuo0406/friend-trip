@@ -18,6 +18,7 @@ export default function ScheduleSide({
   onDeleteView,
   onSaveClick,
 }) {
+  
   const [itineraryName, setItineraryName] = useState([])
   const [filteredItineraryName, setFilteredItineraryName] = useState([])
   //取得登入之會員資料
@@ -48,6 +49,8 @@ export default function ScheduleSide({
     setFilteredItineraryName(mostRecentItinerary)
   }, [itineraryName, auth.member_id])
 
+
+   
   const handleSaveClick = () => {
     // 處理點擊事件的邏輯
     console.log('Handle Save Click is called!')
@@ -73,7 +76,6 @@ export default function ScheduleSide({
                   className={`btn ${styles.link}`}
                   onClick={handleSaveClick}
                 >
-                  {' '}
                   <LiaSave />
                 </button>
 

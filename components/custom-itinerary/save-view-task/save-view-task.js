@@ -41,7 +41,7 @@ export default function SaveViewInit() {
             </div>
           </div>
           <div className="my-auto">
-            <Link href="/custom-itinerary" className={styles.pageLink}>
+            <Link href="/custom-itinerary/arrange-schedule" className={styles.pageLink}>
             <FaRegEdit />
             </Link>
           </div>
