@@ -3,7 +3,7 @@ import BtnNormal from '../common/button/btn-normal'
 
 export default function History({allClick, publicClick}) {
 
-console.log('publicClick',publicClick)
+// console.log('publicClick',publicClick)
   return (
     <>
       <div className={styles.container}>

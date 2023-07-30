@@ -20,9 +20,7 @@ export default function HistotyCard(props) {
 
    // 刪除
    const handleDelete = () => {
-    // console.log('Delete clicked for itin_id:', props.itin_id);
     props.onDelete(props.itin_id); // 傳遞 itin_id 到父元件的 handleDelete 函數
-    // console.log('after delete')
   }
   
 

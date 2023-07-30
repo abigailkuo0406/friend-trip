@@ -1,14 +1,12 @@
-// import { useState } from 'react'
 import { useEffect, useState, useContext } from 'react'
 import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import InitCard from './init-card'
-// import SearchView from './search-view'
 import Host from '@/assets/fake-data/fake-persona.png'
 import { FaRegEdit } from 'react-icons/fa'
 import { LiaSave } from 'react-icons/lia'
-import { FiMoreHorizontal } from 'react-icons/fi'
+import { FiMoreHorizontal } from 'react-icons/fi' 
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
 import AuthContext from '@/context/AuthContext'
 
@@ -92,7 +90,7 @@ export default function ScheduleSide({
                   <FiMoreHorizontal />
                 </Link>
               </div>
-              <div itineraryName="trip-list-header-info mx-4">
+              <div className="trip-list-header-info mx-4">
                 {filteredItineraryName.map((nameObj) => {
                   return (
                     <h4 key={nameObj.itin_member_id} className={styles.h4}>

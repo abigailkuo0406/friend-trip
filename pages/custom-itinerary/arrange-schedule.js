@@ -14,7 +14,6 @@ import SearchView from '@/components/custom-itinerary/arrange-schedule/search-vi
 import Script from 'next/script'
 
 export default function ArrangeSchedule() {
-
   const [showSchedule, setShowSchedule] = useState(true)
   const [inputValue, setInputValue] = useState('')
   const autocompleteRef = useRef(null)
@@ -140,15 +139,20 @@ export default function ArrangeSchedule() {
   }, [addInitLocal])
 
   const saveData = () => {
-    console.log('dataFromLocalStorage:', JSON.stringify(dataFromLocalStorage))
+    //景點行程順序
+    const dataWithOrder = dataFromLocalStorage.map((item, index) => ({
+      ...item,
+      itin_order: index,
+    }))
+    console.log('dataFromLocalStorage:', JSON.stringify(dataWithOrder))
 
-    // API串接(行程寫進db)
+    // 景點行程API串接(行程寫進db)
     fetch('http://localhost:3002/save-view', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(dataFromLocalStorage),
+      body: JSON.stringify(dataWithOrder),
     })
       .then((r) => r.json())
       .then((data) => {
