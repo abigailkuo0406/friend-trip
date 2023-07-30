@@ -9,6 +9,7 @@ import RestPhoto from '@/components/restaurant/restaurant-photo'
 import Image from 'next/image'
 import FriendsLtSty from '../invite/friends-list.module.css'
 import InfoSty from '@/components/restaurant/intro.module.css'
+import { useRouter } from 'next/router'
 
 export default function Modal({
     restId,
@@ -22,6 +23,7 @@ export default function Modal({
     restImg
 }) {
     // console.log('Modal層', restId)
+    const router = useRouter()
 
     //取得登入之會員資料
     const { auth } = useContext(AuthContext)
@@ -32,12 +34,6 @@ export default function Modal({
     const [reserveTimeInputName, setReserveTimeInputName] = useState('')
     const [reserveTimeInputLabel, setReserveTimeInputLabel] = useState('')
 
-    // useEffect(() => {
-    //     console.log('訂位時間:', reserveTimeInputValue)
-    //     console.log('訂位人數:', reservePeopleNumValue)
-
-
-    // }, [reserveTimeInputValue])
 
     // 預設訂位日期
     const [reserveDateInputVale, setReserveDateInputValue] = useState('')
@@ -69,7 +65,9 @@ export default function Modal({
         setInviteList(ivList)
 
     }
-    console.log('SS', inviteList)
+    const toReserveRecord = () => {
+        router.push('/member/reserve')
+    }
 
     return (
         <>
@@ -191,6 +189,8 @@ export default function Modal({
                                                 btnText="直接訂位"
                                                 addClassforButton="btn-light ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                                                 disabled={false} // fase：可點，true：不可點
+                                                onClick={toReserveRecord}
+                                                bsModl3='modal'
                                             ></Button>
                                         </div>
                                     </form>

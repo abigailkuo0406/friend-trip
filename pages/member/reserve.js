@@ -4,6 +4,8 @@ import ReserveItem from '@/components/reserve/reserve-item'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import AuthContext from '@/context/AuthContext'
+import Modal from '@/components/reserve/reserve-modal'
+
 
 
 export default function Reserve() {
@@ -38,9 +40,30 @@ export default function Reserve() {
             })
     }, [router.query])
 
-    console.log('aaa:', auth.token.member_id)
+    // console.log('aaa:', auth.token.member_id)
 
 
+    const [modal, setModal] = useState(0)
+    const [reserveDetails, setReserveDetails] = useState({
+        "restName": '',
+        "reserveDateArr": ['2000', '01', '01'],
+        "reserveTime": '',
+        "reservePeopleNum": 1,
+        "inviteListArr": {
+            "images": "",
+            "invite_id": 0,
+            "iv_member_id": 0,
+            "reserveId": 0,
+            "reserve_member_id": 0
+        }
+    })
+    // 接到Modal按鈕值和訂單細節
+    const modalShow = (modalState, reserveDetails) => {
+        setModal(modalState)
+        setReserveDetails(reserveDetails)
+
+    }
+    // console.log('11:', reserveDetails)
 
     return (
         <>
@@ -56,6 +79,7 @@ export default function Reserve() {
                                 reserveDate={v.reserve_date}
                                 reserveTime={v.reserve_time}
                                 reservePeopleNum={v.reserve_people}
+                                modalChange={modalShow}
                             />
 
                         </div>
@@ -63,6 +87,11 @@ export default function Reserve() {
                 }) :
                 <p>無符合條件之餐廳</p>
             }
+            <Modal
+                modalState={modal}
+                reserveDetails={reserveDetails}
+
+            />
 
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
