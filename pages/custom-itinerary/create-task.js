@@ -1,9 +1,18 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import CreateTaskIndex from '@/components/custom-itinerary/create-task'
 import AdminLayout from '@/components/layout/admin-layout'
 
 
+
 export default function CreateTask() {
+
+useEffect(()=>{
+  localStorage.removeItem('schedule_info')
+},[])
+
+
+
+
   return (
     <>
     <CreateTaskIndex/>

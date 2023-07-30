@@ -3,11 +3,13 @@ import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import User from '@/assets/fake-data/fake-persona.png'
 import { FaRegEdit } from 'react-icons/fa'
 import styles from './save-view-task.module.css'
-import { IoLocationOutline,IoTimeOutline } from 'react-icons/io5'
+import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import Link from 'next/link'
 
+
 export default function SaveViewInit() {
+
   return (
     <>
       <div className="container">
@@ -22,7 +24,7 @@ export default function SaveViewInit() {
             priority={true} //圖片預先載入
           />
           <h3 className="position-absolute bottom-0 start-0 text-white mx-3">
-            九份& 平溪天燈一日遊
+           Amber
           </h3>
         </div>
 
@@ -41,8 +43,11 @@ export default function SaveViewInit() {
             </div>
           </div>
           <div className="my-auto">
-            <Link href="/custom-itinerary/arrange-schedule" className={styles.pageLink}>
-            <FaRegEdit />
+            <Link
+              href="/custom-itinerary/arrange-schedule"
+              className={styles.pageLink}
+            >
+              <FaRegEdit />
             </Link>
           </div>
         </div>
@@ -82,7 +87,10 @@ export default function SaveViewInit() {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h1 className={`modal-title fs-5 ${styles.text}`} id="exampleModalLabel">
+                  <h1
+                    className={`modal-title fs-5 ${styles.text}`}
+                    id="exampleModalLabel"
+                  >
                     寧夏夜市
                   </h1>
                   <button
@@ -109,7 +117,9 @@ export default function SaveViewInit() {
                     星期六、17:00–01:00
                   </p>
                   <p className={styles.text}>
-                    <BsFillTelephoneFill className={`mx-2 ${styles.iconColor}`} />
+                    <BsFillTelephoneFill
+                      className={`mx-2 ${styles.iconColor}`}
+                    />
                     0987-456-794
                   </p>
                 </div>
