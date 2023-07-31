@@ -22,24 +22,24 @@ export default function SearchView({
           <div className="itinerary-fade-in  position-absolute ">
             <div className={`${styles.tripList} `} >
               {/* 切換 */}
-              <ul className="nav nav-underline"  >
-                <li className="nav-item mt-3 mx-3 " >
-                  <Link href="/custom-itinerary/arrange-schedule">
-                    <FaArrowLeftLong className={styles.searchArrow} />
+              <ul className={`nav ${styles.ulNav}`}>
+                <li className={`nav-item${styles.li}`}>
+                  <button className={`btn ${styles.searchArrow}`} onClick={changeToAddSchedule}>
+                    <FaArrowLeftLong />
+                  </button>
+                </li>
+                <li className={`nav-item${styles.li}`}>
+                  <Link href="#" className={styles.search}>
+                    <BiSearchAlt  />
+                    <p >搜尋</p>
                   </Link>
                 </li>
-                <li className="nav-item e">
-                  <Link href="#">
-                    <BiSearchAlt className={styles.search} />
-                    <p className={styles.search}>搜尋</p>
-                  </Link>
-                </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link href="#">
                     <BiMap className={`mx-5 ${styles.collect}`} />
                     <p className={`px-1 ${styles.collect}`}>我的景點收藏</p>
                   </Link>
-                </li>
+                </li> */}
               </ul>
               <nav className="navbar">
                 <div className="container-fluid">
@@ -89,9 +89,9 @@ export default function SearchView({
                             >
                               加入行程
                             </button>
-                            <button type="button" className="btn btn-light">
+                            {/* <button type="button" className="btn btn-light">
                               加入收藏
-                            </button>
+                            </button> */}
                           </div>
                         </ul>
                       )}

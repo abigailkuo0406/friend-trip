@@ -1,7 +1,7 @@
 import styles from './history.module.css'
 import BtnNormal from '../common/button/btn-normal'
 
-export default function History({allClick, publicClick}) {
+export default function History({allClick, publicClick,privateClick}) {
 
 // console.log('publicClick',publicClick)
   return (
@@ -39,7 +39,8 @@ export default function History({allClick, publicClick}) {
               </button>
             </div>
             <div className="mx-2">
-              <button type="button" className={`btn ${styles.textcolor}`}>
+              <button type="button" className={`btn ${styles.textcolor}`}
+              onClick={()=>privateClick()}>
                 私人行程
               </button>
             </div>

@@ -7,7 +7,7 @@ import Image from 'next/image'
 import person from '@/assets/fake-data/fake-persona.png'
 import Link from 'next/link'
 
-export default function HistotyCard(props) {
+export default function HistoryCard(props) {
   // 格式化日期
   const formatDateString = (dateString) => {
     const date = new Date(dateString)
@@ -23,6 +23,13 @@ export default function HistotyCard(props) {
     props.onDelete(props.itin_id) // 傳遞 itin_id 到父元件的 handleDelete 函數
   }
 
+
+  //取得itin_id
+  const changeLocalStorage=()=>{
+    console.log('changeLocalStorage==>',props.itin_id)
+    localStorage.setItem('schedule_info',JSON.stringify({'itin_member':props.itin_id}))
+  }
+
   // const handleCardClick=()=>{
   //   window.location.href=`/custom-itinerary/save-view-task/${props.itin_id}`
   // }
@@ -30,7 +37,7 @@ export default function HistotyCard(props) {
   return (
     <>
       <div className="container">
-        <Link href="/custom-itinerary/save-view-task">
+        <Link href="/custom-itinerary/save-view-task" onClick={changeLocalStorage}>
           <div className="card mb-3 rounded-4">
             <div className="row g-0">
               <div className="col-md-4">

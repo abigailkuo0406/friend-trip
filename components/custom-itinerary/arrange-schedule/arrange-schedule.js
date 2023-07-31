@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
+import { Router,useRouter } from 'next/router'
 import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,6 +9,7 @@ import { FaRegEdit } from 'react-icons/fa'
 import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi' 
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
+import { BiHomeHeart } from 'react-icons/bi' 
 import AuthContext from '@/context/AuthContext'
 
 export default function ScheduleSide({
@@ -16,7 +18,7 @@ export default function ScheduleSide({
   onDeleteView,
   onSaveClick,
 }) {
-  
+  const router = useRouter();
   const [itineraryName, setItineraryName] = useState([])
   const [filteredItineraryName, setFilteredItineraryName] = useState([])
   //取得登入之會員資料
@@ -53,6 +55,11 @@ export default function ScheduleSide({
     // 處理點擊事件的邏輯
     console.log('Handle Save Click is called!')
     onSaveClick()
+      //點選建立後3秒後跳轉
+    setTimeout(() => {
+      alert('行程建立成功')
+      router.push('/custom-itinerary/save-view-task')
+    }, 2000)
   }
 
   return (
@@ -63,13 +70,15 @@ export default function ScheduleSide({
           <div className="itinerary-fade-in">
             <div className={`trip-list ${styles.tripList} `}>
               <div className="d-flex justify-content-end ">
-                <Link href="#" className={styles.link}>
+              <Link href="/member/itinerary" className={styles.link}>
+                  <BiHomeHeart />
+                </Link>
+                {/* <Link href="#" className={styles.link}>
                   <FaRegEdit />
-                </Link>
-                <Link href="#" className={styles.link}>
+                </Link> */}
+                {/* <Link href="#" className={styles.link}>
                   <BsPersonPlus />
-                </Link>
-
+                </Link> */}
                 <button
                   className={`btn ${styles.link}`}
                   onClick={handleSaveClick}

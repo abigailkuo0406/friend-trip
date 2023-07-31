@@ -210,6 +210,7 @@ export default function ArrangeSchedule() {
             autocompleteRef={autocompleteRef}
             selectedView={selectedView}
             photoUrl={photoUrl}
+
           />
         </Autocomplete>
       )}

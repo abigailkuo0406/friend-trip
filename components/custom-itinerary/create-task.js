@@ -14,11 +14,10 @@ import ImageItemPpreview from './image-item-preview'
 import InputDate from '../common/input/input-date'
 import AuthContext from '@/context/AuthContext'
 
-
 export default function CreateTask() {
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
-  
+
   const router = useRouter()
   // 追蹤是否觸發了已經提交操作
   const [submitted, setSubmitted] = useState(false)
@@ -55,9 +54,9 @@ export default function CreateTask() {
     event.preventDefault()
     setSubmitted(true)
     //新增成功呈現alert
-    if (handleSubmit) {
-      alert('新增成功')
-    }
+    // if (handleSubmit) {
+    //   alert('新增成功')
+    // }
     // 更改追蹤是否提交的狀態，用於 <form> 內除錯
     setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
     if (error8 == true) {
@@ -67,9 +66,12 @@ export default function CreateTask() {
       return
     }
     //點選建立後3秒後跳轉
-    // setTimeout(() => {
-    //   router.push('/custom-itinerary/arrange-schedule')
-    // }, 3000)
+    setTimeout(() => {
+      if (handleSubmit) {
+        alert('新增成功')
+      }
+      router.push('/custom-itinerary/arrange-schedule')
+    }, 3000)
 
     const formData = new FormData(document.getElementById('createInit'))
 
@@ -111,7 +113,7 @@ export default function CreateTask() {
     <>
       <article className="blog-post">
         <form onSubmit={handleSubmit} id="createInit">
-        <input name="itin_member_id" defaultValue={auth.member_id} hidden />   
+          <input name="itin_member_id" defaultValue={auth.member_id} hidden />
           <div className={`${styles.coverTitle}`}>
             <Link className={styles.link} href="/member/itinerary">
               <FaArrowLeftLong />

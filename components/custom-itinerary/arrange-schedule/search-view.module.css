@@ -76,10 +76,6 @@
 
 /* SearchView */
 
-
-
-
-
 .text {
   color: #674c87;
   list-style: none;
@@ -92,37 +88,72 @@
   border: 1px solid #674c87;
 }
 .input:focus {
-  color: #674c87;
+  border-color:  #674c87;
   box-shadow: none;
 }
-.input:focus-visible {
-  outline: none;
+  /* .input:focus-visible {
+    outline: none;
+  } */
+
+.ulNav {
+  list-style: none;
+  text-align: center;
+}
+.li {
+  display: table-cell;
+  position: relative;
+  padding: 15px 0;
 }
 .searchArrow {
   color: #674c87;
-  font-size: 1.15rem;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+.searchArrow:hover {
+  color: #674c87;
 }
 .search {
   color: #674c87;
   font-size: 1rem;
+}
+.search::after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #674c87;
+  transition: 0.3s 0s, 0.3s 0s;
+  width: 0;
+}
+.search:hover::after {
+  width: 100%;
+  left: 0;
 }
 .collect {
   color: #674c87;
   font-size: 1rem;
 }
 
-
-
-
-
-
 /* ScheduleSide */
 .tripList {
-    height: 700px;
-    width: 380px;
-    background-color: #ffffff;
-    border-radius: 5px;
-  }
+  height: 700px;
+  width: 380px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  overflow: auto
+}
+   /* 更改滾動條的背景顏色和寬度 */
+/* .tripList::-webkit-scrollbar{
+  background-color: #ffffff;
+} */
+/* 更改滾動條滾動軸的顏色和圓角 */
+/* .tripList::-webkit-scrollbar-thumb {
+  background-color:#D0A5CA;
+  border-radius: 5px;
+} */
 
 .line {
   border-left: 2px solid #d8d8d8;
@@ -168,4 +199,3 @@
 .time::-webkit-datetime-edit-text {
   color: #674c87;
 }
-
