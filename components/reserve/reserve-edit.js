@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
+import Image from 'next/image'
+
 import Modal2 from '@/components/invite/invite-modal'
 import Button from '@/components/common/button/btn-normal'
+
 import InfoSty from '@/components/restaurant/intro.module.css'
+import FriendSty from '@/components/invite/friends-list.module.css'
+
 import NumberInput from '@/components/common/input/input-number'
 import RadioGroupInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date'
@@ -109,39 +114,32 @@ export default function ReserveEdit({
 
 
       <label>邀請好友</label>
-      {/* <ul id="inviteList" className={`d-flex justify-content-start mt-3`}>
-        {iL.map((v, i) => {
-          return (
-            // 陣列中有姓名才顯示li
-            <div key={i} className='me-2'>
-              {v.inviteName
-                ?
-                <li>
-                  <input name="iv_member_id" value={v.inviteId} hidden />
-
-                  <Image
-                    src={v.inviteImg}
-                    className={`${InfoSty.avatar}`}
+      <div className='d-flex'>
+        {reserveDetails ?
+          reserveDetails.inviteListArr.map((v, i) => {
+            return (
+              v.iv_member_id ?
+                <div key={i} className='me-2' >
+                  <Image src={`http://localhost:3002/face/${v.images}`}
+                    className={` ${FriendSty.avatar}`}
                     width={50}
-                    height={50}
-                  />
-                </li>
+                    height={50} />
+                </div>
                 :
-                <li hidden></li>}
+                <p>本次訂位無邀請好友</p>
+            )
+          })
+          :
+          ""
+        }
+        <Button
+          btnText="邀請好友"
+          bsModle1="#exampleModalToggle2"
+          bsModle2="modal"
+        />
+      </div>
 
-            </div>
-          )
-        })}
-
-      </ul> */}
-      {/* <Button
-        btnText="邀請好友"
-        bsModle1="#exampleModalToggle2"
-        bsModle2="modal"
-      /> */}
-      {/* <Modal2
-        onValueChange={inviteListChange}
-      /> */}
+    
       <div className='d-flex'>
         <Button
           btnText='取消修改'

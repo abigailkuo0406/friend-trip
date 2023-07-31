@@ -10,24 +10,27 @@ export default function ReserveModal({
     reserveDetails
 }) {
     console.log('yyy', reserveDetails)
-    // console.log('modalState', modalState)
+
+    // reserve.js傳下來的modalState
     const [modalChange, setModalChange] = useState(modalState)
 
     useEffect(() => {
         setModalChange(modalState)
     }, [modalState])
 
-    // console.log('modalChange:', modalChange)
+    // 匯入邀請MODAL的邀請名單
+    const [inviteList, setInviteList] = useState(reserveDetails.inviteListArr)
 
-    // 匯入好友名單
-    const [inviteList, setInviteList] = useState([
-        { inviteName: '', inviteImg: '', inviteId: 0 }
-    ])
+    useEffect(() => {
+        setInviteList(reserveDetails.inviteListArr)
+    }, [reserveDetails])
+
+
     const inviteListChange = (ivList) => {
         setInviteList(ivList)
 
     }
-    // console.log('eee', inviteList)
+    console.log('eee', inviteList)
 
     return (
         <>
@@ -63,7 +66,7 @@ export default function ReserveModal({
             {modalChange == 1 ?
                 <Modal2
                     onValueChange={inviteListChange}
-                    iL={inviteList}
+                    alreadyInvite={inviteList}
                 />
                 :
                 ""

@@ -22,62 +22,60 @@ export default function ReserveItem({
     const dateArr = reserveDate.split('-')
 
     // 定義邀請名單
-    const [invites, setInvites] = useState()
-    const [inviteList, setInviteList] = useState({
-        "images": "",
-        "invite_id": 0,
-        "iv_member_id": 0,
-        "reserveId": 0,
-        "reserve_member_id": 0
-    })
+    const [invitesData, setInvitesData] = useState()
+    const [invite, setInvite] = useState([])
 
-
-    // 取得訂位中邀請資料
+    // 取得訂位邀請資料
     useEffect(() => {
         fetch('http://localhost:3002/reserveinvites', {
             method: 'GET'
         })
             .then((r) => r.json())
             .then((invites) => {
-                setInvites(invites.rows)
+                setInvitesData(invites.rows)
             })
     }, [])
 
+
     // 針對訂單編號串接對應的邀請名單
     useEffect(() => {
-        if (invites) {
-            const arr = invites.filter((v) => {
+        if (invitesData) {
+            const arr = invitesData.filter((v) => {
                 return v.reserveId == reserveId
             })
-            setInviteList(arr[0])
+            // console.log('arr', arr)
+            setInvite(arr)
         }
-    }, [invites])
+    }, [invitesData])
+
+
+
 
 
     // 定義Modal按鈕值與訂單細節
     const [modal, setModal] = useState(0)
     const [reserveDetails, setReserveDetails] = useState({
         "reserveId": 0,
-        "restId":0,
+        "restId": 0,
         "restName": '',
-        "reserveDate":'2000-01-01',
+        "reserveDate": '2000-01-01',
         "reserveDateArr": ['2000', '01', '01'],
         "reserveTime": '',
         "reservePeopleNum": 1,
-        "inviteListArr": inviteList
+        "inviteListArr": invite
     })
 
     const showModal1 = () => setModal(1)
     const showModal2 = () => setModal(2)
     const print = () => setReserveDetails({
         "reserveId": reserveId,
-        "restId":restId,
+        "restId": restId,
         "restName": restName,
-        "reserveDate":reserveDate,
+        "reserveDate": reserveDate,
         "reserveDateArr": dateArr,
         "reserveTime": reserveTime,
         "reservePeopleNum": reservePeopleNum,
-        "inviteListArr": inviteList
+        "inviteListArr": invite
     })
 
     const modalOpen1 = () => {
@@ -119,6 +117,7 @@ export default function ReserveItem({
                         <div className="card-body">
                             <div className='d-flex'>
                                 <h2 className="card-title">{restName}</h2>
+                                <p>{reserveId}</p>
                                 <p className="card-text text-truncate my-4">訂單狀態</p>
                             </div>
 
@@ -148,15 +147,32 @@ export default function ReserveItem({
                                 </p>
                             </div>
 
-                            {inviteList.iv_member_id ?
-                                <div>
-                                    <p className="card-text text-truncate my-4">與會好友</p>
-                                    <Image src={`http://localhost:3002/face/${inviteList.images}`}
-                                        className={FriendSty.avatar}
-                                        width={50}
-                                        height={50} />
+
+                            <div>
+                                <p className="card-text text-truncate my-4">與會好友</p>
+
+                                <div className='d-flex'>
+                                    {invite ?
+                                        invite.map((v, i) => {
+                                            return (
+                                                v.iv_member_id ?
+                                                    <div key={i} className='me-2' >
+                                                        <Image src={`http://localhost:3002/face/${v.images}`}
+                                                            className={` ${FriendSty.avatar}`}
+                                                            width={50}
+                                                            height={50} />
+                                                    </div>
+                                                    :
+                                                    <p>本次訂位無邀請好友</p>
+                                            )
+                                        })
+                                        :
+                                        ""
+                                    }
                                 </div>
-                                : ''}
+
+                            </div>
+
                             {/* <p>訂單編號{reserveId}</p>
                             <p>好友{inviteList.iv_member_id}</p> */}
                             <div className='d-flex'>
@@ -179,7 +195,7 @@ export default function ReserveItem({
                 </div>
 
 
-            </div>
+            </div >
 
         </>
     )

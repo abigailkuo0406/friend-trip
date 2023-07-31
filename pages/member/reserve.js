@@ -40,6 +40,8 @@ export default function Reserve() {
             })
     }, [router.query])
 
+
+
     // console.log('aaa:', auth.token.member_id)
 
     // 接reserve-Item傳上來的值
@@ -50,13 +52,7 @@ export default function Reserve() {
         "reserveDateArr": ['2000', '01', '01'],
         "reserveTime": '',
         "reservePeopleNum": 1,
-        "inviteListArr": {
-            "images": "",
-            "invite_id": 0,
-            "iv_member_id": 0,
-            "reserveId": 0,
-            "reserve_member_id": 0
-        }
+        "inviteListArr": []
     })
     // 接到Modal按鈕值和訂單細節
     const modalShow = (modalState, reserveDetails) => {
@@ -64,8 +60,7 @@ export default function Reserve() {
         setReserveDetails(reserveDetails)
 
     }
-    // console.log('11:', reserveDetails)
-    console.log('xxx', reserveDetails)
+    // console.log('xxx', reserveDetails)
 
 
     return (
