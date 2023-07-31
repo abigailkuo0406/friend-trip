@@ -7,7 +7,7 @@ export default function Register() {
   const [aaa, setAaa] = useState({
     email: '',
     password: '',
-    img: '',
+    images: '',
     // member_name: '',
     name: '',
     birth: '',
@@ -20,7 +20,7 @@ export default function Register() {
     bloodtype: '',
     smoke: '',
     alchohol: '',
-    education: '',
+    education_level: '',
     job: '',
     profile: '',
     mobile: '',
@@ -38,7 +38,7 @@ export default function Register() {
       body: JSON.stringify({
         email: aaa.email,
         password: aaa.password,
-        images: aaa.img,
+        images: aaa.images,
         // member_name: aaa.member_name,
         member_name: aaa.name,
 
@@ -69,6 +69,7 @@ export default function Register() {
   useEffect(() => {
     console.log(aaa)
   }, [aaa])
+
   return (
     <>
       <form onSubmit={add}>
