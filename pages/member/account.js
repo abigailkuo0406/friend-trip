@@ -71,7 +71,7 @@ export default function EditHome() {
   }, [aaa])
   return (
     <>
-      <form onSubmit={add}>
+      <form onSubmit={edit}>
         <div className="d-flex justify-content-center">
           {page === 1 ? page1 : page2}
         </div>
