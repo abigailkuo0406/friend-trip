@@ -1,5 +1,8 @@
 .main {
-
+    width: 1300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .breadcontainer {
     /* border: 1px solid red; */
@@ -41,8 +44,8 @@
     font-weight: bold;
 }
 .cardbody{
-    width: 774px;
-    height: 758xpx;
+    width: 700px;
+    height: 700xpx;
     background-color: #fefefe;
     border-radius: 30px;
     padding: 10px 10px 10px 30px;
@@ -62,6 +65,7 @@
     align-items: center;
     font-size: 16px;
     color: var(--main-dark);
+    margin-right: 100px;
 }
 .inputbar{
     margin-top: 15px;
@@ -70,3 +74,12 @@
     width: 70px;
     height: 30px;
 }
+.input[type="date"] {
+    /* 添加你希望的背景颜色、边框、字体等样式 */
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    color: #333;
+  }
