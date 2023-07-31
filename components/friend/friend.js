@@ -5,17 +5,17 @@ import AuthContext from '@/context/AuthContext' // 會員 context 取用
 export default function Friend1({ setPage }) {
   const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
   useEffect(() => {
-    // fetch(process.env.API_SERVER + '/edit', {
-    //   method: 'POST',
-    //   body: JSON.stringify({ memberID: auth.member_id }),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
-    //   .then((r) => r.json())
-    //   .then((data) => {
-    //     console.log(data)
-    //   })
+    fetch(process.env.API_SERVER + '/catchMember', {
+      method: 'POST',
+      body: JSON.stringify({ memberID: auth.member_id }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log('幹：', data.all)
+      })
   }, [auth])
   console.log(auth)
   return (
@@ -59,7 +59,12 @@ export default function Friend1({ setPage }) {
               <p className={styles.p}>{auth.location}</p>
             </div>
             <div className={`gap-3 ${styles.buttonbar}`}>
-              <BtnNormal btnText="修改" />
+              {/* <a href="http://localhost:3000/member/account">
+                <BtnNormal
+                  btnText="修改"
+                  addClassforButton={`btn-dark ${styles.btnsize}`}
+                />
+              </a> */}
               <BtnNormal
                 btnText="下一頁"
                 onClick={() => {

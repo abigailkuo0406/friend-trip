@@ -55,10 +55,12 @@ export default function Friend2({ setPage }) {
               <p className={styles.p}>{auth.mobile}</p>
             </div>
             <div className="d-flex justify-content-end gap-3">
-              <BtnNormal
-                btnText="修改"
-                addClassforButton={`btn-dark ${styles.btnsize}`}
-              />
+              <a href="http://localhost:3000/member/account">
+                <BtnNormal
+                  btnText="修改"
+                  addClassforButton={`btn-dark ${styles.btnsize}`}
+                />
+              </a>
               <BtnNormal
                 type="button"
                 value="button"

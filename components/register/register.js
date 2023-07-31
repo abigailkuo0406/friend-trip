@@ -38,6 +38,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
     }
   }
   useEffect(() => {
+    /*
     setAaa((prev) => {
       return {
         ...prev,
@@ -50,6 +51,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
         location,
       }
     })
+    */
   }, [email, password, name, birth, id, gender, location])
 
   useEffect(() => {
@@ -102,7 +104,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>照片</h5>
-            <App />
+            <App dataObj={aaa.img} />
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
@@ -124,7 +126,11 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
               type="date"
               className="rounded-3"
               value={aaa.birth}
-              onChange={handleDateChange}
+              onChange={(e) => {
+                setAaa((old) => {
+                  return { ...old, birth: e.target.value }
+                })
+              }}
             ></input>
           </div>
           <div className={styles.inputstyle}>
