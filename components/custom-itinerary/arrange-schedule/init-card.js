@@ -5,6 +5,7 @@ import { BsStarHalf, BsStarFill } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
 import { AiOutlineDelete } from 'react-icons/ai'
 
+
 export default function InitCard({ selectedViews,onDeleteViews,photoUrl}) {
 
 

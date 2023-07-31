@@ -1,42 +1,93 @@
-.circle_text {
-  background-color: #fabcbf;
-  border-radius: 0.8em;
-  -moz-border-radius: 0.8em;
-  -webkit-border-radius: 0.8em;
-  color: #ffffff;
-  display: inline-block;
-  font-weight: bold;
-  line-height: 1.6em;
-  margin-right: 5px;
-  text-align: center;
-  width: 1.6em;
-}
 .line {
-  border-left: 2px solid #D8D8D8;
+  border-left: 2px solid #d8d8d8;
   height: 15%;
   margin-left: 11px;
   margin-top: 5px;
   position: absolute;
 }
-.pageLink{
+.pageLink {
   color: #674c87;
   font-size: 1.2rem;
-} 
-.modalLink{
+}
+.modalLink {
   color: #674c87;
-  text-decoration: none
+  text-decoration: none;
+}
+.modalLink:hover {
+  color: #674c87;
+}
+.modalLink:active {
+  color: #674c87;
+}
+.iconColor {
+  color: #674c87;
+  font-size: 1.2rem;
+}
+.text {
+  color: #674c87;  
+}
+.weekdayText{
+  margin-left: 2rem;
 }
 
-.modalLink:hover{
-  color: #674c87;
+.ol {
+  list-style: none;
+  /* padding: 0;
+  margin: 0; */
 }
-.modalLink:active{
-  color: #674c87;
-}
-.iconColor{
-  color: #674c87;
-  font-size: 1.2rem;
-}
-.text{
-  color: #674c87;
+
+ .li {
+  counter-increment:step;
+ }
+
+ .li:before{
+      line-height: 24px;
+      text-align: center;
+      color: #fff;
+      background: #fabcbf;;
+      content: counter(step); 
+      display:inline-block;
+      border-radius: 100%;
+      width: 25px;
+      height: 25px;
+  }
+
+
+
+ /* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+  .coverPhoto{
+    width: 100%;
+    height: 100%;
+  }
+
+ }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .coverPhoto{
+width: 100%;
+  }
+ }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  .coverPhoto{
+    width: 100%;
+    
+  }
+ }
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+  .coverPhoto{
+    width: 100%;
+  }
+ }
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+  .coverPhoto{
+    width: 100%;
+  }
 }
