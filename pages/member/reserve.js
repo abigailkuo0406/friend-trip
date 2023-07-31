@@ -42,9 +42,10 @@ export default function Reserve() {
 
     // console.log('aaa:', auth.token.member_id)
 
-
+    // 接reserve-Item傳上來的值
     const [modal, setModal] = useState(0)
     const [reserveDetails, setReserveDetails] = useState({
+        "reserveId": 0,
         "restName": '',
         "reserveDateArr": ['2000', '01', '01'],
         "reserveTime": '',
@@ -64,6 +65,8 @@ export default function Reserve() {
 
     }
     // console.log('11:', reserveDetails)
+    console.log('xxx', reserveDetails)
+
 
     return (
         <>

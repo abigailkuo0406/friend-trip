@@ -9,6 +9,7 @@ export default function ReserveModal({
     modalState,
     reserveDetails
 }) {
+    console.log('yyy', reserveDetails)
     // console.log('modalState', modalState)
     const [modalChange, setModalChange] = useState(modalState)
 
@@ -26,7 +27,7 @@ export default function ReserveModal({
         setInviteList(ivList)
 
     }
-    console.log('eee', inviteList)
+    // console.log('eee', inviteList)
 
     return (
         <>
@@ -41,7 +42,9 @@ export default function ReserveModal({
                                 <div className={`modal-body col-4`}>
                                     {modalChange == 1 ?
                                         <div>
-                                            <Edit />
+                                            <Edit
+                                                reserveDetails={reserveDetails}
+                                            />
                                         </div>
                                         :
                                         <div>

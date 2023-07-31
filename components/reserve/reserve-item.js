@@ -21,6 +21,7 @@ export default function ReserveItem({
     //拆分日期
     const dateArr = reserveDate.split('-')
 
+    // 定義邀請名單
     const [invites, setInvites] = useState()
     const [inviteList, setInviteList] = useState({
         "images": "",
@@ -56,7 +57,10 @@ export default function ReserveItem({
     // 定義Modal按鈕值與訂單細節
     const [modal, setModal] = useState(0)
     const [reserveDetails, setReserveDetails] = useState({
+        "reserveId": 0,
+        "restId":0,
         "restName": '',
+        "reserveDate":'2000-01-01',
         "reserveDateArr": ['2000', '01', '01'],
         "reserveTime": '',
         "reservePeopleNum": 1,
@@ -66,7 +70,10 @@ export default function ReserveItem({
     const showModal1 = () => setModal(1)
     const showModal2 = () => setModal(2)
     const print = () => setReserveDetails({
+        "reserveId": reserveId,
+        "restId":restId,
         "restName": restName,
+        "reserveDate":reserveDate,
         "reserveDateArr": dateArr,
         "reserveTime": reserveTime,
         "reservePeopleNum": reservePeopleNum,
