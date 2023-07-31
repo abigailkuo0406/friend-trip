@@ -90,7 +90,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
           </div>
 
           <div>
-            <h2 className={styles.title}>*深入資料</h2>
+            <h2 className={styles.title}>配對資料修改</h2>
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>

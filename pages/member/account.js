@@ -30,10 +30,10 @@ export default function EditHome() {
   const page1 = <Edit setPage={setPage} setAaa={setAaa} aaa={aaa} />
   const page2 = <Edit2 setPage={setPage} setAaa={setAaa} aaa={aaa} />
   console.log(page)
-  const add = (e) => {
+  const edit = (e) => {
     e.preventDefault()
     console.log('5555', aaa)
-    fetch(process.env.API_SERVER + '/edit/add', {
+    fetch(process.env.API_SERVER + '/edit', {
       method: 'POST',
       body: JSON.stringify({
         email: aaa.email,
@@ -79,9 +79,9 @@ export default function EditHome() {
       <BtnNormal
         type="submit"
         value="submit"
-        btnText="完成註冊"
+        btnText="完成修改"
         addClassforButton="btn-dark"
-        onClick={add}
+        onClick={edit}
       />
     </>
   )

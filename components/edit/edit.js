@@ -66,7 +66,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
             <div className={styles.bread2}></div>
           </div>
           <div>
-            <h2 className={styles.title}>快速註冊</h2>
+            <h2 className={styles.title}>個人資料修改</h2>
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
