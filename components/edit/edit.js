@@ -6,7 +6,7 @@ import BtnNormal from '@/components/common/button/btn-normal'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
 import { useRouter } from 'next/router'
 import App from '@/components/edit/imgupload'
-export default function RegisterLetter1({ setPage, setAaa, aaa }) {
+export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -44,13 +44,13 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
         email,
         password,
         name,
-        birth,
+        // birth,
         id,
         gender,
         location,
       }
     })
-  }, [email, password, name, birth, id, gender, location])
+  }, [email, password, name, id, gender, location])
 
   useEffect(() => {
     console.log('111', birth)
@@ -66,7 +66,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
             <div className={styles.bread2}></div>
           </div>
           <div>
-            <h2 className={styles.title}>個人資料修改</h2>
+            <h2 className={styles.title}>修改個人資料</h2>
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
@@ -90,7 +90,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
             <div className={styles.inputbar}>
               <InputText
                 label="密碼"
-                value={aaa.password}
+                value={aaa.password ? aaa.password : memberInfo?.password}
                 name="password"
                 getValue={(value) =>
                   value != '' ? setPassword(value) : setPassword('')
@@ -124,7 +124,9 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
               type="date"
               className="rounded-3"
               value={aaa.birth}
-              onChange={handleDateChange}
+              onChange={(e) => {
+                setAaa({ ...aaa, birth: e.target.value })
+              }}
             ></input>
           </div>
           <div className={styles.inputstyle}>

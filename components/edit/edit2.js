@@ -10,7 +10,7 @@ import BtnNormal from '@/components/common/button/btn-normal'
 import { useRouter } from 'next/router'
 import { Logger } from 'sass'
 
-export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
+export default function Edit2({ setPage, setForm, setAaa, aaa }) {
   const [height, setHeight] = useState('')
   const [heightName, setHeightName] = useState('')
   const [weight, setWeight] = useState('')
@@ -57,11 +57,11 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
         ...prev,
         height,
         weight,
-        zodiac,
-        bloodtype,
+        // zodiac,
+        // bloodtype,
         smoke,
         alchohol,
-        education,
+        // education,
         job,
         profile,
         mobile,
@@ -70,11 +70,11 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
   }, [
     height,
     weight,
-    zodiac,
-    bloodtype,
+    // zodiac,
+    // bloodtype,
     smoke,
     alchohol,
-    education,
+    // education,
     job,
     profile,
     mobile,
@@ -90,7 +90,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
           </div>
 
           <div>
-            <h2 className={styles.title}>配對資料修改</h2>
+            <h2 className={styles.title}>*修改個人配對資料</h2>
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
@@ -159,7 +159,10 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               '水瓶座',
               '雙魚座',
             ]}
-            getValue={setZodiac}
+            // getValue={setZodiac}
+            getValue={(value) => {
+              setAaa({ ...aaa, zodiac: value })
+            }}
             getName={setZodiacName}
             width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
             addClassforLabel="try1" // 如果要在 label 添加 class
@@ -175,7 +178,9 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               selectedDefault="value" //預設選項，可不填，填寫 value
               valueGroup={['A', 'B', 'O', 'AB']}
               optionGroup={['A', 'B', 'O', 'AB']}
-              getValue={setBloodType}
+              getValue={(value) => {
+                setAaa({ ...aaa, bloodtype: value })
+              }}
               getName={setBloodTypeName}
               width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
               addClassforLabel="try1" // 如果要在 label 添加 class
@@ -228,7 +233,9 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               selectedDefault="value" //預設選項，可不填，填寫 value
               valueGroup={['國小', '國中', '高中', '學士', '碩士', '博士']}
               optionGroup={['國小', '國中', '高中', '學士', '碩士', '博士']}
-              getValue={setEducation}
+              getValue={(value) => {
+                setAaa({ ...aaa, education: value })
+              }}
               getName={setEducationName}
               width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
               addClassforLabel="try1" // 如果要在 label 添加 class

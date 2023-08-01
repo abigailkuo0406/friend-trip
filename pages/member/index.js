@@ -24,7 +24,7 @@ export default function Friendhome() {
       .then((data) => {
         console.log(data)
         console.log('資料抓到', data.all)
-        setMemberInfo(data.all)
+        setMemberInfo(data.all[0])
       })
   }, [auth])
   useEffect(() => {

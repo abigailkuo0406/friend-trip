@@ -9,10 +9,10 @@ function App() {
     setImg(URL.createObjectURL(e.target.files[0]))
   }
   const imgUpload = (e) => {
+    setImg(URL.createObjectURL(e.target.files[0]))
     async function upload(formData) {
       try {
-        const response = await (process.env.API_SERVER + '/preview',
-        {
+        const response = await fetch(process.env.API_SERVER + '/preview', {
           method: 'POST',
           body: formData,
         })
@@ -43,7 +43,7 @@ function App() {
         type="file"
         name="preview"
         onChange={imgUpload}
-        onChange={handleChange}
+        // onChange={handleChange}
         className={styles.input}
       />
     </div>

@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
 import Edit from '@/components/edit/edit'
 import Edit2 from '@/components/edit/edit2'
 import BtnNormal from '@/components/common/button/btn-normal'
+import AuthContext from '@/context/AuthContext' // 會員 context 取用
+
 export default function EditHome() {
   const [aaa, setAaa] = useState({
     email: '',
@@ -27,8 +29,20 @@ export default function EditHome() {
   })
   const [page, setPage] = useState(1)
   const [form, setForm] = useState('')
-  const page1 = <Edit setPage={setPage} setAaa={setAaa} aaa={aaa} />
-  const page2 = <Edit2 setPage={setPage} setAaa={setAaa} aaa={aaa} />
+
+  const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
+  const [memberInfo, setMemberInfo] = useState()
+  const page1 = (
+    <Edit setPage={setPage} setAaa={setAaa} aaa={aaa} memberInfo={memberInfo} />
+  )
+  const page2 = (
+    <Edit2
+      setPage={setPage}
+      setAaa={setAaa}
+      aaa={aaa}
+      memberInfo={memberInfo}
+    />
+  )
   console.log(page)
   const edit = (e) => {
     e.preventDefault()
@@ -69,6 +83,24 @@ export default function EditHome() {
   useEffect(() => {
     console.log(aaa)
   }, [aaa])
+  useEffect(() => {
+    fetch(process.env.API_SERVER + '/catchMember', {
+      method: 'POST',
+      body: JSON.stringify({ memberID: auth.member_id }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+        console.log('資料抓到', data.all)
+        setMemberInfo(data.all[0])
+      })
+  }, [auth])
+  useEffect(() => {
+    console.log('資料塞到', memberInfo)
+  }, [memberInfo])
   return (
     <>
       <form onSubmit={edit}>
