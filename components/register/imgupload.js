@@ -38,12 +38,12 @@ function App() {
         height={100}
         className={styles.img}
         alt="face.png"
-        onChange={handleChange}
       />
       <input
         type="file"
         name="preview"
         onChange={imgUpload}
+        onChange={handleChange}
         className={styles.input}
       />
     </div>
