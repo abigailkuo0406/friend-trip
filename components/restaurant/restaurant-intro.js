@@ -156,13 +156,13 @@ export default function Modal({
                                                 return (
                                                     // 陣列中有姓名才顯示li
                                                     <div key={i} className='me-2'>
-                                                        {v.member_name
+                                                        {v.inviteName
                                                             ?
                                                             <li>
                                                                 <input name="iv_member_id" value={v.inviteId} hidden />
 
                                                                 <Image
-                                                                    src={`http://localhost:3002/face/${v.images}`}
+                                                                    src={v.inviteImg}
                                                                     className={`${InfoSty.avatar}`}
                                                                     width={50}
                                                                     height={50}
@@ -206,10 +206,7 @@ export default function Modal({
                 </div>
             </div>
             <Modal2
-                onValueChange={inviteListChange}
-                alreadyInvite={inviteList}
-
-            />
+                onValueChange={inviteListChange} />
 
 
         </>
