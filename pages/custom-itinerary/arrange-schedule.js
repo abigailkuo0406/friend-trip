@@ -104,7 +104,7 @@ export default function ArrangeSchedule() {
         const photoUrl = place.photos[0].getUrl()
         const placePhotosDiv = document.getElementById('placeDetails')
         const imageElement = document.createElement(`img`)
-        console.log('photoUrl==>',photoUrl)
+        console.log('photoUrl==>', photoUrl)
         imageElement.src = photoUrl
         imageElement.alt = 'Photo 1'
         imageElement.style.width = '300px'
@@ -130,47 +130,51 @@ export default function ArrangeSchedule() {
     console.log('addInitLocal======', addInitLocal)
   }, [addInitLocal])
 
-  //設定要存進給db資料(save)
+  //設定要存取到後端的狀態
   const [dataFromLocalStorage, setDataFromLocalStorage] = useState([])
-  const[itinId,setItinId]=useState('')
- 
+  // const[itinId,setItinId]=useState('')
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('addInitLocal'))
     setDataFromLocalStorage(data || [])
-    console.log('Data from localStorage:', addInitLocal)
+    // console.log('Data from localStorage:', addInitLocal)
   }, [addInitLocal])
 
-
-  useEffect(()=>{
-    console.log('Get schedule')
+ 
+  //編輯api
+  useEffect(() => {
+    // console.log('Get schedule')
     const storedData = localStorage.getItem('schedule_info')
     const parsedData = JSON.parse(storedData)
-    const itinId=parsedData.itin_member
+    const itinId =parsedData? parsedData.itin_member:''
+    // 設定預設值為空字串
     // API串接
     fetch(`http://localhost:3002/save-view/edit?itin_member=${itinId}`)
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
-
         localStorage.setItem('addInitLocal', JSON.stringify(data))
-        const parse_data =data
-        console.log('[]:',parse_data)
+        const parse_data = data
+        console.log('[]:', parse_data)
         setAddInitLocal(parse_data)
-        console.log('billy addInitLocal==>',addInitLocal)
+        console.log('test addInitLocal==>',addInitLocal)
       })
-  },[])
+  }, [])
 
 
+
+
+
+  //行程儲存到後端 saveData=>onClick
   const saveData = () => {
     const storedData = localStorage.getItem('schedule_info')
     const parsedData = JSON.parse(storedData)
-    const itinId=parsedData.itin_member
+    const itinId = parsedData.itin_member
     //景點行程順序
     const dataWithOrder = dataFromLocalStorage.map((item, index) => ({
       ...item,
       itin_order: index,
-      itin_id:itinId
+      itin_id: itinId,
     }))
     console.log('dataFromLocalStorage123:', JSON.stringify(dataWithOrder))
 
@@ -242,7 +246,6 @@ export default function ArrangeSchedule() {
             autocompleteRef={autocompleteRef}
             selectedView={selectedView}
             photoUrl={photoUrl}
-
           />
         </Autocomplete>
       )}

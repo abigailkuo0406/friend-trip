@@ -15,14 +15,28 @@ export default function SaveViewTask() {
   const itinDate = firstData ? firstData.date : ''
   const itinCoverPhoto = firstData ? firstData.coverPhoto : ''
 
-  const getName = () => {
+  const[memberName,setMemberName]=useState('')
+  
+  useEffect(()=>{
     const storedData = localStorage.getItem('auth')
-    const parsedData = JSON.parse(storedData);
-    const memberName=parsedData.member_name
-    console.log('storedData',memberName)
-    return memberName
-  }
-  const memberName = getName()
+        const parsedData = JSON.parse(storedData);
+        const name=parsedData? parsedData.member_name:''
+        setMemberName(name)
+  },[])
+
+  // const getName = () => {
+  //   if(typeof window!=='undefined'){
+  //     const storedData = localStorage.getItem('auth')
+  //     const parsedData = JSON.parse(storedData);
+  //     const memberName=parsedData? parsedData.member_name:''
+  //     console.log('storedData',memberName)
+  //     return memberName
+  //   }else{
+  //     console.log('getName,錯誤')
+  //   }
+    
+  // }
+
 
 
 
@@ -31,15 +45,21 @@ export default function SaveViewTask() {
     const storedData = localStorage.getItem('schedule_info')
     const parsedData = JSON.parse(storedData)
     const itinId=parsedData.itin_member
+
     // API串接
     fetch(`http://localhost:3002/save-view?itin_member=${itinId}`)
       .then((r) => r.json())
       .then((data) => {
         setData(data)
         console.log('data', data)
-        
+
       })
   }, [])
+
+
+
+
+
   // 格式化日期
   const formatDateString = (dateString) => {
     const date = new Date(dateString)
