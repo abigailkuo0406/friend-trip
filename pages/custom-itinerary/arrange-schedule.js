@@ -104,6 +104,7 @@ export default function ArrangeSchedule() {
         const photoUrl = place.photos[0].getUrl()
         const placePhotosDiv = document.getElementById('placeDetails')
         const imageElement = document.createElement(`img`)
+        console.log('photoUrl==>',photoUrl)
         imageElement.src = photoUrl
         imageElement.alt = 'Photo 1'
         imageElement.style.width = '300px'
@@ -131,6 +132,8 @@ export default function ArrangeSchedule() {
 
   //設定要存進給db資料(save)
   const [dataFromLocalStorage, setDataFromLocalStorage] = useState([])
+  const[itinId,setItinId]=useState('')
+ 
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('addInitLocal'))
@@ -138,13 +141,42 @@ export default function ArrangeSchedule() {
     console.log('Data from localStorage:', addInitLocal)
   }, [addInitLocal])
 
+
+  useEffect(()=>{
+    console.log('Get schedule')
+    const storedData = localStorage.getItem('schedule_info')
+    const parsedData = JSON.parse(storedData)
+    const itinId=parsedData.itin_member
+    // API串接
+    fetch(`http://localhost:3002/save-view/edit?itin_member=${itinId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+
+        localStorage.setItem('addInitLocal', JSON.stringify(data))
+        const parse_data =data
+        console.log('[]:',parse_data)
+        setAddInitLocal(parse_data)
+        console.log('billy addInitLocal==>',addInitLocal)
+      })
+  },[])
+
+
   const saveData = () => {
+    const storedData = localStorage.getItem('schedule_info')
+    const parsedData = JSON.parse(storedData)
+    const itinId=parsedData.itin_member
     //景點行程順序
     const dataWithOrder = dataFromLocalStorage.map((item, index) => ({
       ...item,
       itin_order: index,
+      itin_id:itinId
     }))
-    console.log('dataFromLocalStorage:', JSON.stringify(dataWithOrder))
+    console.log('dataFromLocalStorage123:', JSON.stringify(dataWithOrder))
+
+    // console.log('storedData123',storedData)
+    // console.log('parsedData123',parsedData)
+    // console.log('itinId123',itinId)
 
     // 景點行程API串接(行程寫進db)
     fetch('http://localhost:3002/save-view', {

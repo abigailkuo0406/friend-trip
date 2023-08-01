@@ -15,16 +15,29 @@ export default function SaveViewTask() {
   const itinDate = firstData ? firstData.date : ''
   const itinCoverPhoto = firstData ? firstData.coverPhoto : ''
 
+  const getName = () => {
+    const storedData = localStorage.getItem('auth')
+    const parsedData = JSON.parse(storedData);
+    const memberName=parsedData.member_name
+    console.log('storedData',memberName)
+    return memberName
+  }
+  const memberName = getName()
+
+
 
   //讀取資料庫
   useEffect(() => {
+    const storedData = localStorage.getItem('schedule_info')
+    const parsedData = JSON.parse(storedData)
+    const itinId=parsedData.itin_member
     // API串接
-    fetch(`http://localhost:3002/save-view`)
+    fetch(`http://localhost:3002/save-view?itin_member=${itinId}`)
       .then((r) => r.json())
       .then((data) => {
         setData(data)
         console.log('data', data)
-        console.log('data', data[0].date)
+        
       })
   }, [])
   // 格式化日期
@@ -55,7 +68,7 @@ export default function SaveViewTask() {
               priority={true} //圖片預先載入
             ></Image>
             <div className=" flex-column mx-2">
-              <p className="usr_name ">Amber</p>
+              <p className="usr_name">{memberName}</p>
               <p className="date">{formattedCreateAt}</p>
             </div>
           </div>
