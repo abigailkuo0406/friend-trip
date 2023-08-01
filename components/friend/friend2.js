@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import styles from './friend2.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext' // 會員 context 取用
-export default function Friend2({ setPage }) {
+export default function Friend2({ setPage, memberInfo }) {
   const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
   return (
     <>
@@ -16,43 +16,43 @@ export default function Friend2({ setPage }) {
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">身高</label>
-              <p>{auth.height}</p>
+              <p>{memberInfo[0].height}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">體重</label>
-              <p className={styles.p}>{auth.weight}</p>
+              <p className={styles.p}>{memberInfo[0].weight}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">星座</label>
-              <p className={styles.p}>{auth.zodiac}</p>
+              <p className={styles.p}>{memberInfo[0].zodiac}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">血型</label>
-              <p className={styles.p}>{auth.bloodtype}</p>
+              <p className={styles.p}>{memberInfo[0].bloodtype}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">抽菸</label>
-              <p className={styles.p}>{auth.smoke}</p>
+              <p className={styles.p}>{memberInfo[0].smoke}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">酒精</label>
-              <p className={styles.p}>{auth.alchohol}</p>
+              <p className={styles.p}>{memberInfo[0].alchohol}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">教育程度</label>
-              <p className={styles.p}>{auth.education_level}</p>
+              <p className={styles.p}>{memberInfo[0].education_level}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">工作</label>
-              <p className={styles.p}>{auth.job}</p>
+              <p className={styles.p}>{memberInfo[0].job}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">自我介紹</label>
-              <p className={styles.p}>{auth.profile}</p>
+              <p className={styles.p}>{memberInfo[0].profile}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">手機號碼</label>
-              <p className={styles.p}>{auth.mobile}</p>
+              <p className={styles.p}>{memberInfo[0].mobile}</p>
             </div>
             <div className="d-flex justify-content-end gap-3">
               <a href="http://localhost:3000/member/account">

@@ -2,22 +2,27 @@ import React, { useEffect, useState, useContext } from 'react'
 import styles from './friend.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext' // 會員 context 取用
-export default function Friend1({ setPage }) {
-  const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
-  useEffect(() => {
-    fetch(process.env.API_SERVER + '/catchMember', {
-      method: 'POST',
-      body: JSON.stringify({ memberID: auth.member_id }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        console.log('幹：', data.all)
-      })
-  }, [auth])
-  console.log(auth)
+export default function Friend1({ setPage, memberInfo = [] }) {
+  // const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
+  // const [memberInfo, setMemberInfo] = useState()
+  // const [memberPassword, setMemberPassword] = useState()
+  // useEffect(() => {
+  //   fetch(process.env.API_SERVER + '/catchMember', {
+  //     method: 'POST',
+  //     body: JSON.stringify({ memberID: auth.member_id }),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   })
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       console.log(data)
+  //       console.log('資料抓到', data.all)
+  //       setMemberInfo(data.all)
+  //       console.log('資料塞到', member)
+  //     })
+  // }, [auth])
+  // console.log(auth)
   return (
     <>
       <div className={styles.main}>
@@ -32,31 +37,31 @@ export default function Friend1({ setPage }) {
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">電子信箱</label>
-              <p className={styles.p}>{auth.email}</p>
+              <p className={styles.p}>{memberInfo[0].email}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">密碼</label>
-              <p className={styles.p}>{auth.password}</p>
+              <p className={styles.p}>{memberInfo[0].password}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">會員名稱</label>
-              <p className={styles.p}>{auth.member_name}</p>
+              <p className={styles.p}>{memberInfo[0].member_name}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">會員生日</label>
-              <p className={styles.p}>{auth.member_birth}</p>
+              <p className={styles.p}>{memberInfo[0].member_birth}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">身分證字號</label>
-              <p className={styles.p}>{auth.id_number}</p>
+              <p className={styles.p}>{memberInfo[0].id_number}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">性別</label>
-              <p className={styles.p}>{auth.gender}</p>
+              <p className={styles.p}>{memberInfo[0].gender}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">地區</label>
-              <p className={styles.p}>{auth.location}</p>
+              <p className={styles.p}>{memberInfo[0].location}</p>
             </div>
             <div className={`gap-3 ${styles.buttonbar}`}>
               {/* <a href="http://localhost:3000/member/account">
