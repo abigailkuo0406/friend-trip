@@ -61,17 +61,29 @@ export default function Rest() {
     }, [router.query])
 
 
-    //取得地區資料
     useEffect(() => {
+        //取得地區資料
+
         fetch(`http://localhost:3002/area`, {
             method: 'GET',
-
         })
             .then((a) => a.json())
             .then((areaData) => {
                 setArea(areaData)
 
             })
+
+        //取得料理類型資料
+        fetch(`http://localhost:3002/restmeal`, {
+            method: 'GET',
+
+        })
+            .then((a) => a.json())
+            .then((mealData) => {
+                setMeal(mealData)
+
+            })
+
 
     }, [])
 
@@ -83,21 +95,6 @@ export default function Rest() {
             areaGroup.push(areaItem)
         }
     }
-
-
-    //取得料理類型資料
-    useEffect(() => {
-        fetch(`http://localhost:3002/restmeal`, {
-            method: 'GET',
-
-        })
-            .then((a) => a.json())
-            .then((mealData) => {
-                setMeal(mealData)
-
-            })
-
-    }, [])
 
     //設定料理類型options
     let mealGroup = ['請選擇料理']
@@ -118,36 +115,56 @@ export default function Rest() {
     const [inputNameMeal, setInputNameMeal] = useState('')
 
     // 搜尋功能
+
     const searchRestaurant = (e) => {
         e.preventDefault();
-        console.log(inputValueArea)
-        console.log(inputValueMeal)
+        console.log('地區:' + inputValueArea)
+        console.log('料理:' + inputValueMeal)
 
-        if (inputNameArea == '基隆市' && inputNameMeal == '請選擇料理') {
+        if (inputValueArea == undefined && inputValueMeal == undefined) {
             alert('請選擇搜尋條件')
-        } else if (inputValueArea && inputValueMeal) {
-            router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
-        } else if (inputValueArea && !inputValueMeal) {
+            console.log('aa')
+        } else if (inputValueArea != '請選擇地區' && inputValueArea != undefined && inputValueMeal == '請選擇料理') {
             router.push(`?city=${inputValueArea}`)
-        } else if (!inputValueArea && inputValueMeal) {
-            router.push(`?meal=${inputValueMeal}`)
+            console.log('bb')
 
+        } else if (inputValueArea != '請選擇地區' && inputValueMeal == undefined) {
+            router.push(`?city=${inputValueArea}`)
+            console.log('cc')
+
+        } else if (inputValueArea == '請選擇地區' && inputValueMeal != '請選擇料理' && inputValueMeal != undefined) {
+            router.push(`?meal=${inputValueMeal}`)
+            console.log('dd')
+
+        } else if (inputValueArea == undefined && inputValueMeal != '請選擇料理') {
+            router.push(`?meal=${inputValueMeal}`)
+            console.log('ee')
+
+        } else if (inputValueArea != '請選擇地區' && inputValueMeal != '請選擇料理' && inputValueArea != undefined && inputValueMeal != undefined) {
+            router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
+            console.log('ff')
+        } else {
+            router.push(``)
+            console.log('zz')
         }
 
 
+
         // if (inputValueArea && !inputValueMeal) {
-        //   router.push(`?city=${inputValueArea}`)
+        //     router.push(`?city=${inputValueArea}`)
         // } else if (!inputValueArea && inputValueMeal) {
-        //   router.push(`?meal=${inputValueMeal}`)
+        //     router.push(`?meal=${inputValueMeal}`)
 
         // } else if (inputValueArea && inputValueMeal) {
-        //   router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
+        //     router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
         // } else {
-        //   alert('請選擇搜尋條件')
+        //     alert('請選擇搜尋條件')
         // }
 
-
     }
+
+
+
     const [rid, setRid] = useState()
     const [rName, setRName] = useState()
     const [rAddress, setRAdress] = useState()
@@ -158,9 +175,6 @@ export default function Rest() {
     const [rIntro, setRIntro] = useState()
     const [rImg, setRImg] = useState()
 
-
-
-    // const [modal, setModal] = useState(false)
 
     const showModal = (modalState, rid, rName, rAddress, rPhone, rTime, rMeal, rClass, rIntro, rImg) => {
         // console.log('接到的modalstate和rid', modalState, rid)
@@ -188,7 +202,7 @@ export default function Rest() {
                             id="area"
                             label="地區"
                             name="area"
-                            // selectedDefault='台北市' //預設選項，可不填，填寫 value
+                            // selectedDefault='請選擇地區' //預設選項，可不填，填寫 value
                             valueGroup={areaGroup}
                             optionGroup={areaGroup}
                             getValue={setInputValueArea}
@@ -203,7 +217,7 @@ export default function Rest() {
                             id="restaurantMeal"
                             label="料理類型"
                             name="restaurantMeal"
-                            // selectedDefault="日式" //預設選項，可不填，填寫 value
+                            // selectedDefault="請選擇料理類型" //預設選項，可不填，填寫 value
                             valueGroup={mealGroup}
                             optionGroup={mealGroup}
                             getValue={setInputValueMeal}
