@@ -69,19 +69,26 @@ export default function CreateTask() {
     //點選建立後3秒後跳轉
     setTimeout(() => {
       if (handleSubmit) {
-        Swal.fire(
-          '新增成功',
-          'success'
-        )
+        Swal.fire({
+          width: 400,
+          text: '建立行程成功',
+          icon: 'success',
+          iconColor: '#FABCBF',
+          color: '#674C87',
+          confirmButtonColor: '#674C87',
+          showConfirmButton: false,
+          timer: 1500,
+        })
       }
       router.push('/custom-itinerary/arrange-schedule')
-    }, 3000)
+    }, 2000)
 
     const formData = new FormData(document.getElementById('createInit'))
 
     if (formData.get('coverPhoto') != '') {
       const imgData = new FormData() //建立一個新的空的formdata物件
       imgData.set('coverPhoto', formData.get('coverPhoto')) //將選擇的檔案(input)加入到imgData，get(input中設定name)
+      
       fetch('http://localhost:3002/try-preview', {
         method: 'POST',
         body: imgData,
@@ -113,8 +120,23 @@ export default function CreateTask() {
     router.push('/ ')
   }
 
+  //   const handleClick=()=>{
+  //     Swal.fire({
+  //       width: 400,
+  //       text: '建立行程成功',
+  //       icon: 'success',
+  //       iconColor:'#FABCBF',
+  //       color: '#674C87',
+  //       confirmButtonColor: '#674C87',
+  //       showConfirmButton: false,
+  //       timer: 1500
+
+  //      } )
+  // }
+
   return (
     <>
+      {/* <button onClick={handleClick}> alart! </button> */}
       <article className="blog-post">
         <form onSubmit={handleSubmit} id="createInit">
           <input name="itin_member_id" defaultValue={auth.member_id} hidden />

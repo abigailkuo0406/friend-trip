@@ -111,6 +111,7 @@ export default function ArrangeSchedule() {
         imageElement.style.height = '200px'
         placePhotosDiv.innerHTML = '' // 清空先前的内容
         placePhotosDiv.appendChild(imageElement)
+        
       }
     }
 
@@ -206,6 +207,36 @@ export default function ArrangeSchedule() {
     setAddInitLocal(updatedViews)
   }
 
+    //test 
+    const showRoute=()=>{
+      console.log('SHOW ROUTE')
+      const directionsService = new google.maps.DirectionsService();
+      //
+      const intial=new google.maps.LatLng(25.0543,121.5256)
+      const waypoints=[{location:new google.maps.LatLng(25.0311,121.5360),stopover: true},{location:new google.maps.LatLng(25.0627,121.5338),stopover: true}]
+      const final=new google.maps.LatLng(25.0975,121.5145)
+      //
+    directionsService.route(
+      {
+          origin: intial,
+          destination: final, // destination
+          waypoints: waypoints, // 中間路過
+          travelMode: "WALKING",
+          avoidTolls: true, //避免收費站
+      },
+      (response, status) => {
+          if (status === "OK") {
+              console.log('directionsService is ok')
+              console.log("response : ",response)
+              setDirections(response);
+          }else{
+            console.log('not')
+          }
+      }
+  )
+    }
+
+
   return (
     <>
       <Head>
@@ -217,6 +248,7 @@ export default function ArrangeSchedule() {
           selectedView={addInitLocal}
           onDeleteView={handleDeleteView}
           onSaveClick={saveData}
+          onShowRoute={showRoute}
         />
       ) : (
         <Autocomplete
@@ -250,7 +282,7 @@ export default function ArrangeSchedule() {
         </Autocomplete>
       )}
 
-      <Map searchLngLat={searchLngLat} />
+      <Map searchLngLat={searchLngLat} directions={directions}/>
     </>
   )
 }

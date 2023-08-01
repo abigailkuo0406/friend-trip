@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
-import { GoogleMap, useLoadScript, Marker} from '@react-google-maps/api'
+import { GoogleMap, useLoadScript, Marker,DirectionsRenderer} from '@react-google-maps/api'
 
 
 // 在元件外部定義 libraries 陣列作為常數變數
 const libraries = ['places']
 
-export default function Map({ searchLngLat }) {
+export default function Map({ searchLngLat ,directions}) {
   
   //使用者當前位置
   const [currentPosition, setCurrentPosition] = useState(null)
@@ -25,7 +25,7 @@ export default function Map({ searchLngLat }) {
           lat: position.coords.latitude, //使用者所在位置的經緯度
           lng: position.coords.longitude,
         }
-        console.log('Inital Geolocation:', initialPosition)
+        // console.log('Inital Geolocation:', initialPosition)
         setCenter(initialPosition) //地圖中心點
         setCurrentPosition(initialPosition) //使用者目前位置
       })
@@ -48,15 +48,6 @@ export default function Map({ searchLngLat }) {
     libraries,
   })
   if (!isLoaded) return <div>Loading....</div>
-
-   // 路徑規劃
-  //  const directionsService=new google.maps.DirectionsRenderer()
-   
-  //  directionsService.route({
-  //   origin:new google.maps.LatLng(currentPosition.lat,currentPosition.lng),
-    
-  //  })
-
 
   return (
     <>
@@ -85,6 +76,7 @@ export default function Map({ searchLngLat }) {
           >
             {/* 查詢地點marker */}
             {searchLngLat && <Marker position={searchLngLat} />}
+            {directions && <DirectionsRenderer directions={directions} />}
           </GoogleMap>
         </div>
       </div>

@@ -10,12 +10,14 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
 import { BiHomeHeart } from 'react-icons/bi' 
 import AuthContext from '@/context/AuthContext'
+import Swal from 'sweetalert2'
 
 export default function ScheduleSide({
   changeToSearch,
   selectedView,
   onDeleteView,
   onSaveClick,
+  onShowRoute
 }) {
   const router = useRouter();
   const [itineraryName, setItineraryName] = useState([])
@@ -28,27 +30,12 @@ export default function ScheduleSide({
       .then((r) => r.json())
       .then((data) => {
         setItineraryName(data)
-        console.log('name:', data)
+        // console.log('name:', data)
       })
       .catch((error) => {
         console.error('資料接收失敗', error)
       })
   }, [])
-
-  // useEffect(() => {
-  //   const filteredNames = itineraryName.filter(
-  //     (item) => item.itin_member_id === auth.member_id
-  //   )
-
-  //   console.log('filteredNames====',filteredNames)
-  //   // 將過濾後的行程按照建立時間降冪排序
-  //   filteredItineraryName.sort((a, b) => new Date(b.create_at))
-  //   // 選取排序後的第一個行程（最新建立的行程）
-  //   const mostRecentItinerary =
-  //     filteredNames.length > 0 ? [filteredNames[0]] : []
-
-  //   setFilteredItineraryName(mostRecentItinerary)
-  // }, [itineraryName, auth.member_id])
   
   const[itinName,setItinName]=useState('')
   
@@ -153,6 +140,13 @@ export default function ScheduleSide({
                     >
                       <BsPlusLg />
                       新增行程
+                    </button>
+                    <button
+                      className={`btn ${styles.addbtn}`}
+                      onClick={onShowRoute}
+                    >
+                      <BsPlusLg />
+                      規劃路線
                     </button>
                   </div>
                 </div>
