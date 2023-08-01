@@ -44,13 +44,13 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
         email,
         password,
         name,
-        birth,
+        // birth,
         id,
         gender,
         location,
       }
     })
-  }, [email, password, name, birth, id, gender, location])
+  }, [email, password, name, id, gender, location])
 
   useEffect(() => {
     console.log('111', birth)
@@ -124,7 +124,9 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
               type="date"
               className="rounded-3"
               value={aaa.birth}
-              onChange={handleDateChange}
+              onChange={(e) => {
+                setAaa({ ...aaa, birth: e.target.value })
+              }}
             ></input>
           </div>
           <div className={styles.inputstyle}>

@@ -57,7 +57,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
         ...prev,
         height,
         weight,
-        zodiac,
+        // zodiac,
         bloodtype,
         smoke,
         alchohol,
@@ -70,7 +70,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
   }, [
     height,
     weight,
-    zodiac,
+    // zodiac,
     bloodtype,
     smoke,
     alchohol,
@@ -159,7 +159,10 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               '水瓶座',
               '雙魚座',
             ]}
-            getValue={setZodiac}
+            // getValue={setZodiac}
+            getValue={(value) => {
+              setAaa({ ...aaa, zodiac: value })
+            }}
             getName={setZodiacName}
             width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
             addClassforLabel="try1" // 如果要在 label 添加 class

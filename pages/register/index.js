@@ -38,7 +38,7 @@ export default function Register() {
       body: JSON.stringify({
         email: aaa.email,
         password: aaa.password,
-        images: aaa.images,
+        images: aaa.img,
         // member_name: aaa.member_name,
         member_name: aaa.name,
 
