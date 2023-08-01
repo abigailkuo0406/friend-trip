@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import InitCard from './init-card'
 import Host from '@/assets/fake-data/fake-persona.png'
-import { FaRegEdit } from 'react-icons/fa'
 import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi' 
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
@@ -36,19 +35,31 @@ export default function ScheduleSide({
       })
   }, [])
 
-  useEffect(() => {
-    const filteredNames = itineraryName.filter(
-      (item) => item.itin_member_id === auth.member_id
-    )
-    // 將過濾後的行程按照建立時間降冪排序
-    filteredItineraryName.sort((a, b) => new Date(b.create_at))
-    // 選取排序後的第一個行程（最新建立的行程）
-    const mostRecentItinerary =
-      filteredNames.length > 0 ? [filteredNames[0]] : []
+  // useEffect(() => {
+  //   const filteredNames = itineraryName.filter(
+  //     (item) => item.itin_member_id === auth.member_id
+  //   )
 
-    setFilteredItineraryName(mostRecentItinerary)
-  }, [itineraryName, auth.member_id])
+  //   console.log('filteredNames====',filteredNames)
+  //   // 將過濾後的行程按照建立時間降冪排序
+  //   filteredItineraryName.sort((a, b) => new Date(b.create_at))
+  //   // 選取排序後的第一個行程（最新建立的行程）
+  //   const mostRecentItinerary =
+  //     filteredNames.length > 0 ? [filteredNames[0]] : []
 
+  //   setFilteredItineraryName(mostRecentItinerary)
+  // }, [itineraryName, auth.member_id])
+  
+  const[itinName,setItinName]=useState('')
+  
+  
+  useEffect(()=>{
+    const storedData = localStorage.getItem('schedule_info')
+    const parsedData = JSON.parse(storedData)
+    const name =parsedData? parsedData.itin_name:''
+    setItinName(name)
+  },[])
+ 
 
    
   const handleSaveClick = () => {
@@ -100,14 +111,15 @@ export default function ScheduleSide({
                 </Link>
               </div>
               <div className="trip-list-header-info mx-4">
-                {filteredItineraryName.map((nameObj) => {
+              <h4>{itinName}</h4>
+                {/* {filteredItineraryName.map((nameObj) => {
                   return (
                     <h4 key={nameObj.itin_member_id} className={styles.h4}>
                       {nameObj.name}
                     </h4>
-                  )
-                })}
-
+                  ) */}
+                {/* })} */}
+        
                 <div className="d-flex mt-3">
                   <Image
                     src={Host}

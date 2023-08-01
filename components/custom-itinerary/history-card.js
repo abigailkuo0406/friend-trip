@@ -26,8 +26,8 @@ export default function HistoryCard(props) {
 
   //取得itin_id
   const changeLocalStorage=()=>{
-    console.log('changeLocalStorage==>',props.itin_id)
-    localStorage.setItem('schedule_info',JSON.stringify({'itin_member':props.itin_id}))
+    console.log('changeLocalStorage==>',props)
+    localStorage.setItem('schedule_info',JSON.stringify({'itin_member':props.itin_id,'itin_name':props.name}))
   }
 
   // const handleCardClick=()=>{

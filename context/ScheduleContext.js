@@ -35,9 +35,9 @@ export const ScheduleContextProvider = ({children})=>{
         .then((r) => r.json())
         .then((data) => {
           //判斷目前的itin_id位置
-          console.log('initial ==> itin_member:', data[0].itin_id)
+          console.log('initial ==> itin_member:', data[0])
           setItin_id(data[0].itin_id)
-          localStorage.setItem('schedule_info', JSON.stringify({'itin_member':data[0].itin_id}))
+          localStorage.setItem('schedule_info', JSON.stringify({'itin_member':data[0].itin_id,'itin_name':data[0].name}))
           
           console.log('<<<<<<     DB最新行程編號為:',data[0].itin_id,'     >>>>>>')
         })

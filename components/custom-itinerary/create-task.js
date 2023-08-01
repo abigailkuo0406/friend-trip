@@ -5,6 +5,7 @@ import styles from './create-task.module.css'
 import Image from 'next/image'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { TbPhotoPlus } from 'react-icons/tb'
+import Swal from 'sweetalert2'
 import InputText from '../common/input/input-text'
 import AreaText from '../common/input/textarea'
 import InputRadio from '../common/input/input-radio-group'
@@ -68,7 +69,10 @@ export default function CreateTask() {
     //點選建立後3秒後跳轉
     setTimeout(() => {
       if (handleSubmit) {
-        alert('新增成功')
+        Swal.fire(
+          '新增成功',
+          'success'
+        )
       }
       router.push('/custom-itinerary/arrange-schedule')
     }, 3000)

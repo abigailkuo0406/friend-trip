@@ -7,8 +7,10 @@ import Link from 'next/link'
 import User from '@/assets/fake-data/fake-persona.png'
 import { FaRegEdit } from 'react-icons/fa'
 import styles from '@/components/custom-itinerary/save-view-task/save-view-task.module.css'
+import { Router, useRouter } from 'next/router'
 
 export default function SaveViewTask() {
+  const router=useRouter()
   const [data, setData] = useState([])
   const firstData = data[0] // 取得第一筆資料
   const itinName = firstData ? firstData.itin_name : '' // 提取行程名稱
@@ -37,9 +39,6 @@ export default function SaveViewTask() {
     
   // }
 
-
-
-
   //讀取資料庫
   useEffect(() => {
     const storedData = localStorage.getItem('schedule_info')
@@ -52,12 +51,19 @@ export default function SaveViewTask() {
       .then((data) => {
         setData(data)
         console.log('data', data)
-
       })
   }, [])
 
 
+const handleEditClick=(itinId)=>{
+  console.log('EditClick Data',data)
+  console.log('EditClick itinId',itinId)
+  const itinName=data.find((item)=>item.itin_id===itinId)?.itin_name
+  console.log('itinName',itinName)
+  localStorage.setItem('edit itin_name',itinName)
+  router.push(`/custom-itinerary/arrange-schedule`)
 
+}
 
 
   // 格式化日期
@@ -93,9 +99,17 @@ export default function SaveViewTask() {
             </div>
           </div>
           <div className="my-auto">
+          {/* <button
+                  className={`btn ${styles.link}`}
+                  onClick={handleSaveClick}
+                >
+                  <FaRegEdit />
+                </button> */}
+
             <Link
               href="/custom-itinerary/arrange-schedule"
               className={styles.pageLink}
+  
             >
               <FaRegEdit />
             </Link>
