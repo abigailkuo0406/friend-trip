@@ -10,7 +10,7 @@ function App() {
   }
 
   return (
-    <div className="d-flex align-items-center ms-5">
+    <div className={`d-flex align-items-center ms-5 ${styles.container}`}>
       <Image
         src={img}
         width={100}
