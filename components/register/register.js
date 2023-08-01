@@ -102,7 +102,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>照片</h5>
-            <App dataObj={aaa.img} />
+            <App />
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
