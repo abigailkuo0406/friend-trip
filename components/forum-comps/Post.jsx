@@ -9,7 +9,7 @@ import HeaderOfThePost from './HeaderOfThePost'
 import ImgForThePost from './ImgForThePost'
 import ArticleOfPost from './ArticleOfPost'
 import { ClassNames } from '@emotion/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ShowInputOnPage from './ShowInputOnPage'
 import axios from 'axios'
 
@@ -22,6 +22,11 @@ export default function Post({
   imgOfPost,
   articleOfPost,
 }) {
+  const [comment,setComment]=useState('')
+  const [comments,setComments]=useState([])
+  useEffect(()=>{
+    
+  },[])
   function sendMsg(leftMsg) {
     axios
       .post('sample', { leaveMsg: leftMsg })

@@ -9,7 +9,7 @@ function ShowInputOnPage({ sendMsg }) {
   const avatarOfPostAuthor =
     'http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffake-persona.fa9c7bea.png&w=2048&q=75'
   //avatarOfPostAuthor from database
-  const [data, setData] = useState(['asdfasdf', 'asdfafsd'])
+  const [data, setData] = useState([])
   const msgRef = useRef(null)
   const changeHandler = (evnt) => {
     // setName(evnt.target.value)

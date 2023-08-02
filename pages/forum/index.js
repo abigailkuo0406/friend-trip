@@ -4,7 +4,7 @@ import NavBar from '@/components/forum-comps/NavBar'
 import { useState, useEffect } from 'react'
 
 export default function ForumHome() {
-  const [posts, setPosts] = useState()
+  const [posts, setPosts] = useState([])
   useEffect(() => {
     // API串接，如果不加 method: 'GET', 也沒關係，那是 default value
     fetch('http://localhost:3002/show-forum-posts', {
