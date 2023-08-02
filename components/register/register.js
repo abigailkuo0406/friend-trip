@@ -20,6 +20,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
   const [errorTracker8, setErrorTracker8] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [clickSubmitted, setClickSubmitted] = useState(false)
+  const [images, setImages] = useState()
 
   // 事件處理函式，在日期選擇時更新狀態
   const handleDateChange = (event) => {
@@ -48,6 +49,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
         id,
         gender,
         location,
+        images,
       }
     })
   }, [email, password, name, id, gender, location])
@@ -55,7 +57,13 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
   useEffect(() => {
     console.log('111', birth)
   }, [birth])
-
+  // useEffect(() => {
+  //   console.log(result)
+  // }, [img])
+  const resultChange = (resultObj) => {
+    resultObj ? console.log('11', resultObj.filename) : console.log('22')
+    resultObj ? setImages(resultObj.filename) : setImages('')
+  }
   return (
     <>
       <div className={styles.main}>
@@ -102,7 +110,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>照片</h5>
-            <App />
+            <App test1={resultChange} />
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
