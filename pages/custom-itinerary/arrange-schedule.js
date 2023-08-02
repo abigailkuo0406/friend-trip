@@ -232,20 +232,20 @@ export default function ArrangeSchedule() {
     // console.log('itinId123',itinId)
 
     // 景點行程API串接(行程寫進db)
-    // fetch('http://localhost:3002/save-view', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(dataWithOrder),
-    // })
-    //   .then((r) => r.json())
-    //   .then((data) => {
-    //     console.log('資料已成功送到資料庫:', data)
-    //   })
-    //   .catch((error) => {
-    //     console.log('發生錯誤，行程未送成功到資料庫', error)
-    //   })
+    fetch('http://localhost:3002/save-view', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataWithOrder),
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log('資料已成功送到資料庫:', data)
+      })
+      .catch((error) => {
+        console.log('發生錯誤，行程未送成功到資料庫', error)
+      })
   }
 
   //  刪除景點
