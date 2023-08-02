@@ -2,6 +2,7 @@
 import { FiMoreHorizontal } from 'react-icons/fi'
 import styles from './history.module.css'
 import Image from 'next/image'
+import Swal from 'sweetalert2'
 // import { useRouter } from 'next/router'
 // import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import person from '@/assets/fake-data/fake-persona.png'
@@ -20,9 +21,32 @@ export default function HistoryCard(props) {
 
   // 刪除
   const handleDelete = () => {
-    props.onDelete(props.itin_id) // 傳遞 itin_id 到父元件的 handleDelete 函數
+    Swal.fire({
+      title: `確定要刪除 ${props.name} 紀錄嗎?`,
+      text: "刪除後就不能保留囉！!",
+      icon: 'warning',
+      iconColor: '#D0A5CA',
+      showCancelButton: true,
+      color:'#717171',
+      confirmButtonColor: '#674C87',
+      cancelButtonColor: '#FABCBF',
+      confirmButtonText: '確定'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          width: 400,
+          text: '刪除成功',
+          icon: 'success',
+          iconColor: '#FABCBF',
+          color: '#674C87',
+          confirmButtonColor: '#674C87',
+        }).than(()=>{
+          props.onDelete(props.itin_id) // 傳遞 itin_id 到父元件的 handleDelete 函數
+        })
+      }
+    })
+  
   }
-
 
   //取得itin_id
   const changeLocalStorage=()=>{

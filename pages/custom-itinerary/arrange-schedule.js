@@ -266,9 +266,11 @@ export default function ArrangeSchedule() {
     console.log('SHOW ROUTE')
 
     const directionsService = new google.maps.DirectionsService()
-
-    const intial = new google.maps.LatLng(addInitLocal[0])
     console.log('intial', addInitLocal[0])
+    const intial = new google.maps.LatLng(addInitLocal[0])
+    console.log('addInitLocal.slice(1, -1)=>',addInitLocal.slice(1, -1))
+
+    console.log(addInitLocal.slice(1, -1))
     const waypoints = addInitLocal.slice(1, -1).map((item) => ({
       location: new google.maps.LatLng(item.lat, item.lng),
       stopover: true,

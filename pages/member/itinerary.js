@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+
 import AdminLayout from '@/components/layout/admin-layout'
 import CustomItineraryIndex from '@/components/custom-itinerary'
 import HistoryCard from '@/components/custom-itinerary/history-card'
@@ -36,22 +37,22 @@ export default function ItineraryIndex() {
   }, [router.query])
 
   // 刪除行程
-  const handleDelete = (itin_id) => {
-    fetch(`http://localhost:3002/custom-itinerary/${itin_id}`, {
-      method: 'DELETE',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('刪除成功:', data)
-        window.location.reload()
-      })
-      .catch(
-        (error) => {
-          console.error('刪除時發生錯誤:', error)
-        },
-        [router.query]
-      )
-  }
+  // const handleDelete = (itin_id) => {
+  //   fetch(`http://localhost:3002/custom-itinerary/${itin_id}`, {
+  //     method: 'DELETE',
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log('刪除成功:', data)
+  //       window.location.reload()
+  //     })
+  //     .catch(
+  //       (error) => {
+  //         console.error('刪除時發生錯誤:', error)
+  //       },
+  //       [router.query]
+  //     )
+  // }
 
   //公開行程filter
   const handlePublicTripsClick = () => {
@@ -135,9 +136,9 @@ export default function ItineraryIndex() {
 
       {/* 分頁 */}
       {/* 上一頁 */}
-      <div className="row">
-        <div className="col">
-          <nav aria-label="Page navigation example">
+      <div>
+        <div className="itin-card-pagination">
+          <nav aria-label="Page navigation">
             <ul className="pagination">
               <li className="page-item">
                 <Link
@@ -152,7 +153,7 @@ export default function ItineraryIndex() {
                   }
                   aria-label="Previous"
                 >
-                  <span aria-hidden="true">&laquo;</span>
+                  <span  aria-hidden="true">&laquo;</span>
                 </Link>
               </li>
               {/* 顯示頁碼 */}
