@@ -20,7 +20,7 @@ export default function ScheduleSide({
   onShowRoute
 }) {
   const router = useRouter();
-  const [itineraryName, setItineraryName] = useState([])
+  // const [itineraryName, setItineraryName] = useState([])
   // const [filteredItineraryName, setFilteredItineraryName] = useState([])
 
   //取得登入之會員資料
@@ -47,7 +47,6 @@ export default function ScheduleSide({
     setItinName(name)
   },[])
  
-
   //儲存行程到後端
   const handleSaveClick = () => {
     // 處理點擊事件的邏輯
