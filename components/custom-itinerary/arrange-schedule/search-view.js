@@ -7,7 +7,6 @@ import styles from './search-view.module.css'
 
 
 export default function SearchView({
-  inputValue,
   onInputChange,
   selectedView,
   changeToAddSchedule,
@@ -47,7 +46,7 @@ export default function SearchView({
                     className={`form-control  ${styles.input} `}
                     type="text"
                     placeholder="請輸入城市"
-                    value={inputValue}
+                    // value={inputValue}
                     onChange={onInputChange}
                   />
 

@@ -32,11 +32,14 @@ export default function ArrangeSchedule() {
   // 新增行程按鈕切換
   const handleAddScenery = () => {
     setShowSchedule(false)
+    setDirections(null)
   }
 
   const handleAddToSchedule = () => {
     setShowSchedule(true)
-    setSelectedView(selectedView)
+    //setSelectedView(selectedView)
+    setSelectedView(null)
+    setSearchLngLat(null)
   }
 
   const handleInputChange = (e) => {

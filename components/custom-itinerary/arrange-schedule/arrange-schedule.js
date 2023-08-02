@@ -21,25 +21,25 @@ export default function ScheduleSide({
 }) {
   const router = useRouter();
   const [itineraryName, setItineraryName] = useState([])
-  const [filteredItineraryName, setFilteredItineraryName] = useState([])
+  // const [filteredItineraryName, setFilteredItineraryName] = useState([])
+
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
 
-  useEffect(() => {
-    fetch(`http://localhost:3002/try-name`)
-      .then((r) => r.json())
-      .then((data) => {
-        setItineraryName(data)
-        // console.log('name:', data)
-      })
-      .catch((error) => {
-        console.error('資料接收失敗', error)
-      })
-  }, [])
+  // useEffect(() => {
+  //   fetch(`http://localhost:3002/try-name`)
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       setItineraryName(data)
+  //       // console.log('name:', data)
+  //     })
+  //     .catch((error) => {
+  //       console.error('資料接收失敗', error)
+  //     })
+  // }, [])
   
-  const[itinName,setItinName]=useState('')
-  
-  
+ //取得行程名稱
+  const[itinName,setItinName]=useState('')  
   useEffect(()=>{
     const storedData = localStorage.getItem('schedule_info')
     const parsedData = JSON.parse(storedData)
@@ -48,14 +48,24 @@ export default function ScheduleSide({
   },[])
  
 
-   
+  //儲存行程到後端
   const handleSaveClick = () => {
     // 處理點擊事件的邏輯
-    console.log('Handle Save Click is called!')
+    // console.log('Handle Save Click is called!')
+    Swal.fire({
+      width: 400,
+      title: '行程儲存成功囉！',
+      text:'好好享受這一天的旅程吧!',
+      icon: 'success',
+      iconColor: '#FABCBF',
+      color: '#674C87',
+      confirmButtonColor: '#674C87',
+      // showConfirmButton: false,
+      // timer: 1500,
+    })
     onSaveClick()
       //點選建立後3秒後跳轉
     setTimeout(() => {
-      alert('行程建立成功')
       router.push('/custom-itinerary/save-view-task')
     }, 2000)
   }
