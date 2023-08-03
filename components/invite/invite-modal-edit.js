@@ -6,23 +6,30 @@ import styles from '@/components/invite/friends-list.module.css'
 
 // 引入邀請元件
 import Invite from '@/components/invite/invite-edit'
-// 引入朋友假資料
-import friendss from '@/data/restaurant/friend-list.json'
 
 
 export default function InviteModalEdit({
-    onValueChange
+    onValueChange,
+    alreadyInvite
 }) {
+
+    console.log('alreadyInvite', alreadyInvite)
+
+
 
     /*邀請功能*/
     const [inviteList, setInviteList] = useState([])
-    // console.log('外層邀請清單:', inviteList)
 
-    const handleValueChange = (ivName, ivImg, ivBtn, ivId) => {
+    useEffect(() => {
+        setInviteList(alreadyInvite)
+    }, [alreadyInvite])
+    console.log('外層邀請清單:', inviteList)
+
+    const handleValueChange = (ivImg, ivBtn, ivId) => {
 
         if (ivBtn) {
             // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
-            setInviteList([{ 'inviteName': ivName, 'inviteImg': ivImg, 'inviteId': ivId }, ...inviteList])
+            setInviteList([{ 'images': ivImg, 'iv_member_id': ivId }, ...inviteList])
         }
         else {
             // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
@@ -37,8 +44,11 @@ export default function InviteModalEdit({
         onValueChange(inviteList)
     }, [inviteList])
 
+
+    // 設定好友列表
     const [friends, setFriends] = useState()
 
+    // 匯入好友資料
     useEffect(() => {
         fetch(`http://localhost:3002/friends`, {
             method: 'GET',
@@ -64,11 +74,11 @@ export default function InviteModalEdit({
                                     return (
                                         // 陣列中有姓名才顯示li
                                         <div key={i} className='me-2'>
-                                            {v.inviteName
+                                            {v.iv_member_id
                                                 ?
                                                 <li>
                                                     <Image
-                                                        src={v.inviteImg}
+                                                        src={`http://localhost:3002/face/${v.images}`}
                                                         className={styles.avatar}
                                                         width={50}
                                                         height={50}
@@ -90,8 +100,8 @@ export default function InviteModalEdit({
                                             <div key={i}>
                                                 <Invite
                                                     friendName={v.member_name}
-                                                    img={`http://localhost:3002/face/${v.images}`}
-                                                    friendId={v.FriendId}
+                                                    images={v.images}
+                                                    iv_member_id={v.FriendId}
                                                     onValueChange={handleValueChange}
                                                 />
                                             </div>

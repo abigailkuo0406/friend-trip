@@ -16,11 +16,12 @@ import InviteModalEdit from '@/components/invite/invite-modal-edit'
 
 export default function ReserveEdit({
   // iL,
-  reserveDetails
+  reserveDetails,
+  alreadyInvite
 }) {
 
 
-  console.log('11', reserveDetails)
+  console.log('11', alreadyInvite)
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
@@ -132,9 +133,9 @@ export default function ReserveEdit({
 
 
                   <label>邀請好友</label>
-                  {/* <div className='d-flex'>
-                    {reserveDetails ?
-                      reserveDetails.inviteListArr.map((v, i) => {
+                  <div className='d-flex'>
+                    {alreadyInvite ?
+                      alreadyInvite.map((v, i) => {
                         return (
                           v.iv_member_id ?
                             <div key={i} className='me-2' >
@@ -149,35 +150,40 @@ export default function ReserveEdit({
                       })
                       :
                       ""
-                    } */}
-                  <Button
-                    btnText="邀請好友"
-                    bsModle1="#exampleModalToggle2"
-                    bsModle2="modal"
-                  />
-                </div>
+                    }
+                    <Button
+                      btnText="邀請好友"
+                      bsModle1="#exampleModalToggle2"
+                      bsModle2="modal"
+                    />
+                  </div>
 
 
-                <div className='d-flex'>
-                  <Button
-                    btnText='取消修改'
-                    // onClick={modalOpen2}
-                    bsModl3='modal'
-                  />
-                  <Button
-                    type='submit'
-                    btnText='修改完成'
-                    onClick={handleSubmit}
-                    bsModl3='modal'
-                  />
+                  <div className='d-flex'>
+                    <Button
+                      btnText='取消修改'
+                      // onClick={modalOpen2}
+                      bsModl3='modal'
+                    />
+                    <Button
+                      type='submit'
+                      btnText='修改完成'
+                      onClick={handleSubmit}
+                      bsModl3='modal'
+                    />
+                  </div>
                 </div>
               </div>
+
 
             </div>
           </div>
         </div>
       </div>
-      <InviteModalEdit onValueChange={inviteListChange} />
+      <InviteModalEdit
+        onValueChange={inviteListChange}
+        alreadyInvite={alreadyInvite}
+      />
 
 
     </>

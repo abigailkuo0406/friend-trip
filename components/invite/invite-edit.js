@@ -6,8 +6,8 @@ import styles from '@/components/invite/friends-list.module.css'
 
 export default function InviteEdit({
   friendName,
-  img,
-  friendId,
+  images,
+  iv_member_id,
   onValueChange,
 }) {
   const [inviteFriend, setInviteFriend] = useState('')
@@ -23,8 +23,8 @@ export default function InviteEdit({
     if (!inviteBtn) {
       setInviteBtn(true)
       setInviteFriend(friendName)
-      setInviteImg(img)
-      setInviteId(friendId)
+      setInviteImg(images)
+      setInviteId(iv_member_id)
 
     }
     // 如果按鈕是true(移除)，重設按鈕為false(+)
@@ -37,7 +37,7 @@ export default function InviteEdit({
 
   // 每次按鈕值改變，就送出邀請姓名、照片路徑和按鈕值到父層
   useEffect(() => {
-    onValueChange(inviteFriend, inviteImg, inviteBtn, inviteId)
+    onValueChange(inviteImg, inviteBtn, inviteId)
 
 
   }, [inviteBtn])
@@ -47,7 +47,7 @@ export default function InviteEdit({
     <>
       <div className="my-4">
         <div className="d-flex align-items-center ">
-          <Image src={img} className={styles.avatar} width={50} height={50} />
+          <Image src={`http://localhost:3002/face/${images}`} className={styles.avatar} width={50} height={50} />
           <p className={`mx-5 ${styles.listText}`}>{friendName}</p>
 
           <Btn
