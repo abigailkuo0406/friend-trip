@@ -4,7 +4,7 @@ import { AiOutlinePlusCircle } from 'react-icons/ai'
 import Btn from '@/components/common/button/btn-normal'
 import styles from '@/components/invite/friends-list.module.css'
 
-export default function Invite({
+export default function InviteEdit({
   friendName,
   img,
   friendId,

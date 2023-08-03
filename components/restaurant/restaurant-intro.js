@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import Modal2 from '@/components/invite/invite-modal'
+import InviteModal from '@/components/invite/invite-modal'
 import Button from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext'
 import NumberInput from '@/components/common/input/input-number'
@@ -205,7 +205,7 @@ export default function Modal({
 
                 </div>
             </div>
-            <Modal2
+            <InviteModal
                 onValueChange={inviteListChange} />
 
 

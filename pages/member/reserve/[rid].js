@@ -1,7 +1,8 @@
-import React, { createContext } from 'react'
+import React, { createContext, useEffect } from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
 import Button from '@/components/common/button/btn-normal'
-import Modal from '@/components/reserve/reserve-edit'
+import ReserveEdit from '@/components/reserve/reserve-edit'
+
 
 
 
@@ -15,13 +16,32 @@ export default function ReseveDetails() {
     const router = useRouter()
 
     // 取得當頁動態編號
-    // const rid = parseInt(router.query.rid)
-// fetch(`http://localhost:3002/reserve/`)
+    const rid = parseInt(router.query.rid)
 
+    //設定單筆訂位資料
+    const [reserveDetails, setReserveDetails] = useState()
 
+    useEffect(() => {
+        fetch(`http://localhost:3002/reserve/${rid}`, {
+            method: 'GET'
+        })
+            .then((r) => r.json())
+            .then((details) => {
+                rid ? setReserveDetails(details.row) : 1
+                console.log(details.row)
+            })
+
+    }, [rid])
+
+    // //邀請好友名單
+    // const [inviteList, setInviteList] = useState([])
+    // const inviteListChange = (ivList) => {
+    //     setInviteList(ivList)
+
+    // }
     return (
         <>
-            <h1>訂單細節</h1>
+            <h1>訂單{rid}</h1>
             <Image />
             <h2>餐廳名稱</h2>
             <p>訂位日期</p>
@@ -40,12 +60,11 @@ export default function ReseveDetails() {
                 // onClick={modalOpen2}
                 />
             </div>
-            <Modal
-            // modalState={modal}
-            // reserveDetails={reserveDetails}
+            <ReserveEdit
+                // modalState={modal}
+                reserveDetails={reserveDetails}
 
             />
-
 
 
 

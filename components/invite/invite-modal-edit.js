@@ -5,12 +5,12 @@ import styles from '@/components/invite/friends-list.module.css'
 
 
 // 引入邀請元件
-import Invite from '@/components/invite/invite-modal-edit'
+import Invite from '@/components/invite/invite-edit'
 // 引入朋友假資料
 import friendss from '@/data/restaurant/friend-list.json'
 
 
-export default function InviteModal({
+export default function InviteModalEdit({
     onValueChange
 }) {
 
@@ -99,12 +99,12 @@ export default function InviteModal({
                                     }) : <li hidden></li>}
                             </ul>
                         </div>
-                        
+
                         <div class="modal-footer">
-                        <Btn
-                            btnText='回上一頁'
-                            bsModle1="#exampleModalToggle"
-                            bsModle2='modal'
+                            <Btn
+                                btnText='回上一頁'
+                                bsModle1="#exampleModalToggle"
+                                bsModle2='modal'
                             />
                         </div>
                     </div>
