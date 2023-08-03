@@ -199,7 +199,8 @@ export default function Modal({
 
                                 </div>
                                 <div className="col-6">
-                                    <RestPhoto file={restImg} rid={restId} />
+                                    {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
+
                                 </div>
                             </div>
                         </div>
