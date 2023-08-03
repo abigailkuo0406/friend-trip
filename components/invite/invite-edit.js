@@ -8,16 +8,22 @@ export default function InviteEdit({
   friendName,
   images,
   iv_member_id,
+  defaultBtn,
   onValueChange,
 }) {
+
   const [inviteFriend, setInviteFriend] = useState('')
   const [inviteImg, setInviteImg] = useState('')
   const [inviteId, setInviteId] = useState('')
 
-  const [inviteBtn, setInviteBtn] = useState(false)
+  const [inviteBtn, setInviteBtn] = useState(defaultBtn)
+
+
+  // console.log(friendName, defaultBtn, '11', inviteBtn)
 
 
   const handleClick = (e) => {
+    console.log('qq', inviteBtn)
 
     // 如果按鈕是false(+)，重設邀請姓名與照片路徑，把按鈕改成true(移除)
     if (!inviteBtn) {
@@ -30,6 +36,9 @@ export default function InviteEdit({
     // 如果按鈕是true(移除)，重設按鈕為false(+)
     else {
       setInviteBtn(false)
+      setInviteFriend(friendName)
+      setInviteImg(images)
+      setInviteId(iv_member_id)
 
     }
 

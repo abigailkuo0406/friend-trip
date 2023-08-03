@@ -13,9 +13,7 @@ export default function InviteModalEdit({
     alreadyInvite
 }) {
 
-    console.log('alreadyInvite', alreadyInvite)
-
-
+    // console.log('alreadyInvite', alreadyInvite)
 
     /*邀請功能*/
     const [inviteList, setInviteList] = useState([])
@@ -23,7 +21,7 @@ export default function InviteModalEdit({
     useEffect(() => {
         setInviteList(alreadyInvite)
     }, [alreadyInvite])
-    console.log('外層邀請清單:', inviteList)
+    // console.log('外層邀請清單:', inviteList)
 
     const handleValueChange = (ivImg, ivBtn, ivId) => {
 
@@ -35,7 +33,7 @@ export default function InviteModalEdit({
             // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
 
             const arr = inviteList.filter((v) => {
-                return v.inviteName !== ivName
+                return v.iv_member_id !== ivId
             })
             setInviteList(arr)
         }
@@ -46,7 +44,7 @@ export default function InviteModalEdit({
 
 
     // 設定好友列表
-    const [friends, setFriends] = useState()
+    const [friends, setFriends] = useState([])
 
     // 匯入好友資料
     useEffect(() => {
@@ -55,9 +53,39 @@ export default function InviteModalEdit({
         })
             .then((f) => f.json())
             .then((friendsData) => {
-                setFriends(friendsData.rows)
+                const friend = friendsData.rows.map((f) => {
+                    let defaultBtn = { "defaultBtn": false }
+
+                    f = { ...f, ...defaultBtn }
+
+                    // console.log('f', f)
+                    return f
+
+                })
+                setFriends(friend)
             })
     }, [])
+
+
+
+    const friendsBtn = friends.map((f, i, arr) => {
+        inviteList.forEach((iv) => {
+            if (f.FriendId == iv.iv_member_id) {
+                f.defaultBtn = true
+                // console.log('btntrue', f)
+            }
+        })
+        return f
+
+    })
+
+    // console.log('11', friendsBtn)
+
+
+
+
+
+
 
 
     return (
@@ -94,14 +122,15 @@ export default function InviteModalEdit({
 
                             </ul>
                             <ul id="friendsList" className="list">
-                                {friends ?
-                                    friends.map((v, i) => {
+                                {friendsBtn != [] ?
+                                    friendsBtn.map((v, i) => {
                                         return (
                                             <div key={i}>
                                                 <Invite
                                                     friendName={v.member_name}
                                                     images={v.images}
                                                     iv_member_id={v.FriendId}
+                                                    defaultBtn={v.defaultBtn}
                                                     onValueChange={handleValueChange}
                                                 />
                                             </div>

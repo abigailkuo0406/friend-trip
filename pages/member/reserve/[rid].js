@@ -2,10 +2,7 @@ import React, { createContext, useEffect } from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
 import Button from '@/components/common/button/btn-normal'
 import ReserveEdit from '@/components/reserve/reserve-edit'
-
-
-
-
+import FriendSty from '@/components/invite/friends-list.module.css'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -28,10 +25,15 @@ export default function ReseveDetails() {
             .then((r) => r.json())
             .then((details) => {
                 rid ? setReserveDetails(details.row) : 1
-                // console.log(details.row)
+                console.log('cccc', details.row)
             })
 
     }, [rid])
+    console.log(reserveDetails)
+
+    //拆分日期
+
+    const dateArr = reserveDetails ? reserveDetails.reserve_date.split('-') : []
 
     // 定義邀請名單
     const [invitesData, setInvitesData] = useState()
@@ -63,23 +65,74 @@ export default function ReseveDetails() {
 
                     return v.reserveId == rid
                 })
-                console.log('arr', arr)
+                // console.log('arr', arr)
                 setInvite(arr)
             }
         }
     }, [invitesData])
 
-    console.log('www:', invite)
+    // console.log('www:', invite)
 
     return (
         <>
-            <h1>訂單{rid}</h1>
-            <Image />
-            <h2>餐廳名稱</h2>
-            <p>訂位日期</p>
-            <p>訂位時間</p>
-            <p>訂位人數</p>
-            <p>與會好友</p>
+            {/* <h1>訂單{rid}</h1> */}
+            {reserveDetails ?
+                <div>
+                    <h2 className="card-text text-truncate me-2">
+                        {reserveDetails.RestName}
+                    </h2>
+                    <Image />
+                    <h4>訂位日期</h4>
+                    <div className='d-flex'>
+                        <p className="card-text text-truncate me-2">
+                            {dateArr[0]}
+                            <span className='ms-1'>年</span>
+                        </p>
+                        <p className="card-text text-truncate me-2">
+                            {dateArr[1]}
+                            <span className='ms-1'>月</span>
+                        </p>
+                        <p className="card-text text-truncate me-3">
+                            {dateArr[2]}
+                            <span className='ms-1'>日</span>
+                        </p>
+                    </div>
+                    <h4>訂位時間</h4>
+
+                    <p className="card-text text-truncate me-3">
+                        {reserveDetails.reserve_time}
+                    </p>
+                    <h4>訂位人數</h4>
+                    <p className="card-text text-truncate me-2">
+                        {reserveDetails.reserve_people}
+                        <span className='ms-1'>位成人</span>
+                    </p>
+                </div>
+                :
+                ''
+            }
+            <h4>邀請好友</h4>
+            <div className='d-flex'>
+                {invite ?
+                    invite.map((v, i) => {
+                        return (
+                            v.iv_member_id ?
+                                <div key={i} className='me-2' >
+                                    <Image src={`http://localhost:3002/face/${v.images}`}
+                                        className={` ${FriendSty.avatar}`}
+                                        width={50}
+                                        height={50} />
+                                </div>
+                                :
+                                <p>本次訂位無邀請好友</p>
+                        )
+                    })
+                    :
+                    ""
+                }
+
+            </div>
+
             <div className='d-flex'>
                 <Button
                     btnText='修改訂位'

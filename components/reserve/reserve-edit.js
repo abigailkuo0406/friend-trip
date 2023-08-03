@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useReducer } from 'react'
 import Image from 'next/image'
 
 import Button from '@/components/common/button/btn-normal'
@@ -11,6 +11,7 @@ import RadioGroupInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date'
 import AuthContext from '@/context/AuthContext'
 import InviteModalEdit from '@/components/invite/invite-modal-edit'
+import { useRouter } from 'next/router'
 
 
 
@@ -20,8 +21,8 @@ export default function ReserveEdit({
   alreadyInvite
 }) {
 
-
-  console.log('11', alreadyInvite)
+  const router = useRouter()
+  // console.log('11', alreadyInvite)
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
@@ -49,6 +50,7 @@ export default function ReserveEdit({
       method: 'PUT',
       body: editForm
     })
+    router.push('/member/reserve')
   }
 
   //邀請好友名單
