@@ -69,7 +69,7 @@ export default function RestaurantPhoto({
             <Image
               src={`http://localhost:3002/restImg/${file}`}
               className={`${styles.img1}`}
-              alt="..."
+              alt={file}
               width={500}
               height={500}
               priority={true}
@@ -85,6 +85,7 @@ export default function RestaurantPhoto({
                   <Image
                     src={`http://localhost:3002/restImg/${v.RestImg}`}
                     className={`${styles.img1}`}
+                    alt={v.RestImg}
                     width={500}
                     height={500}
                   />

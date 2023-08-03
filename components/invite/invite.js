@@ -47,7 +47,12 @@ export default function Invite({
     <>
       <div className="my-4">
         <div className="d-flex align-items-center ">
-          <Image src={img} className={styles.avatar} width={50} height={50} />
+          <Image
+            src={img}
+            className={styles.avatar}
+            alt={friendId}
+            width={50}
+            height={50} />
           <p className={`mx-5 ${styles.listText}`}>{friendName}</p>
 
           <Btn

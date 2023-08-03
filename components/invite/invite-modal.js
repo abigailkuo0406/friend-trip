@@ -70,6 +70,7 @@ export default function InviteModal({
                                                     <Image
                                                         src={v.inviteImg}
                                                         className={styles.avatar}
+                                                        alt={v.inviteImg}
                                                         width={50}
                                                         height={50}
                                                     />

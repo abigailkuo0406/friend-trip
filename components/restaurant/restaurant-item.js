@@ -67,6 +67,7 @@ export default function ListItem({
                             <Image
                                 src={`http://localhost:3002/restImg/${restImg}`}
                                 className={`ms-3 ${styles.img1}`}
+                                alt={restImg}
                                 width={200}
                                 height={200}
                                 priority={true}

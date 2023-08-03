@@ -166,6 +166,7 @@ export default function Modal({
                                                                 <Image
                                                                     src={v.inviteImg}
                                                                     className={`${InfoSty.avatar}`}
+                                                                    alt={v.inviteImg}
                                                                     width={50}
                                                                     height={50}
                                                                 />
