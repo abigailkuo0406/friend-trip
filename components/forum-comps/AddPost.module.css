@@ -2,7 +2,11 @@
   color: #674c87;
   font-weight: bold;
 }
-
+.btnBackground{
+  background-color:#fabcbf ;
+  color: #674c87;
+font-weight: bold;
+}
 .input[type='file'] {
   display: none;
 }
