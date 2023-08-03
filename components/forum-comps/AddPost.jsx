@@ -14,7 +14,6 @@ const AddPost = () => {
     setArticle({ ...article, [e.target.name]: e.target.value })
   }
 
-
   const handleSubmit = (e) => {
     e.preventDefault()
     const forumData = new FormData(e.target)
@@ -25,7 +24,6 @@ const AddPost = () => {
     })
       .then((r) => r.json())
       .then((data) => console.log(data))
-
   }
 
   return (
@@ -46,13 +44,11 @@ const AddPost = () => {
             <input type="file" name="avatar" />
           </label>
           <Image src={uploadImg} alt="postImg" />
-          {/* <Link href="/forum"> */}
           <input
             className="btn btn-primary mt-4 mx-auto"
             type="submit"
             value="確認新增文章"
           />
-          {/* </Link> */}
         </div>
       </form>
     </>
