@@ -64,6 +64,8 @@ export default function ArrangeSchedule() {
     setSearchLngLat(viewPosition)
     setCenter(viewPosition)
 
+    // console.log('place',place)
+    //->檢查lat lng有沒有更改
     //景點詳細資料
     const selectedView = {
       place_id: place.place_id,
@@ -75,11 +77,11 @@ export default function ArrangeSchedule() {
         place.formatted_phone_number && place.formatted_phone_number,
       rating: place.rating && place.rating,
       lng: (
-        (place.geometry.viewport.Ha.lo + place.geometry.viewport.Ha.hi) /
+        (place.geometry.viewport.Ga.lo + place.geometry.viewport.Ga.hi) /
         2
       ).toFixed(4),
       lat: (
-        (place.geometry.viewport.Va.lo + place.geometry.viewport.Va.hi) /
+        (place.geometry.viewport.Ua.lo + place.geometry.viewport.Ua.hi) /
         2
       ).toFixed(4),
     }
@@ -128,14 +130,14 @@ export default function ArrangeSchedule() {
               ? place.photos[0].getUrl()
               : ''
 
-          showPlacePhotos(place, photoUrl) // 傳入照片 URL
+          showPlacePhotos(place, selectedView) // 傳入照片 URL
 
           // 將景點資訊、照片URL和名稱存入一個物件中
           const viewInfo = {
             ...selectedView,
-            photoUrl: photoUrl, // 使用新的變數
+            photoUrl: selectedView.name, // 使用新的變數
           }
-          console.log('viewInfo', viewInfo)
+          // console.log('viewInfo', viewInfo)
           //將加入行程的景點存為新的陣列
           // 將 viewInfo 加入到 addInitLocal 陣列中
           setAddInitLocal((prevAddInitResults) => [
@@ -149,22 +151,42 @@ export default function ArrangeSchedule() {
     )
 
     //取得照片設定格式及擺放位置
-    function showPlacePhotos(place) {
+    function showPlacePhotos(place, selectedView) {
       if (place.photos && place.photos.length > 0) {
         const photoUrl = place.photos[0].getUrl()
+        const photoName = selectedView.name
         const placePhotosDiv = document.getElementById('placeDetails')
         const imageElement = document.createElement(`img`)
-        console.log('photoUrl==>', photoUrl)
+        console.log('place.photo==>', place)
         imageElement.src = photoUrl
         imageElement.alt = 'Photo 1'
         imageElement.style.width = '300px'
         imageElement.style.height = '200px'
         placePhotosDiv.innerHTML = '' // 清空先前的内容
         placePhotosDiv.appendChild(imageElement)
-        localStorage.setItem('photoUrl', photoUrl)
+
+        uploadPhotoToServer(photoUrl, photoName)
       } else {
         localStorage.removeItem('photoUrl')
       }
+    }
+      //將搜尋到照片存入後端
+    function uploadPhotoToServer(photoUrl, photoName) {
+      // 使用fetch API將照片發送到後端
+      fetch(`http://localhost:3002/upload-viewPhoto`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ photoUrl: photoUrl, photoName: photoName }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Photo upload successful:', data)
+        })
+        .catch((error) => {
+          console.log('Error uploading photo:', error)
+        })
     }
 
     // 將選擇的景點資訊存儲在狀態中
@@ -266,18 +288,29 @@ export default function ArrangeSchedule() {
     console.log('SHOW ROUTE')
 
     const directionsService = new google.maps.DirectionsService()
-    console.log('intial', addInitLocal[0])
-    const intial = new google.maps.LatLng(addInitLocal[0])
-    console.log('addInitLocal.slice(1, -1)=>',addInitLocal.slice(1, -1))
+    const intial = new google.maps.LatLng(
+      addInitLocal[0].lat,
+      addInitLocal[0].lng
+    )
+    console.log('intial', addInitLocal[0].lat, addInitLocal[0].lng)
 
-    console.log(addInitLocal.slice(1, -1))
     const waypoints = addInitLocal.slice(1, -1).map((item) => ({
       location: new google.maps.LatLng(item.lat, item.lng),
       stopover: true,
     }))
+
+    console.log(addInitLocal.slice(1, -1))
     console.log('waypoints', waypoints)
-    const final = new google.maps.LatLng(addInitLocal[addInitLocal.length - 1])
-    console.log('final', addInitLocal[addInitLocal.length - 1])
+    const final = new google.maps.LatLng(
+      addInitLocal[addInitLocal.length - 1].lat,
+      addInitLocal[addInitLocal.length - 1].lng
+    )
+
+    console.log(
+      'final',
+      addInitLocal[addInitLocal.length - 1].lat,
+      addInitLocal[addInitLocal.length - 1].lng
+    )
 
     directionsService.route(
       {
