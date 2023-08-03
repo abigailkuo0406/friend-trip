@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-
 import AdminLayout from '@/components/layout/admin-layout'
 import CustomItineraryIndex from '@/components/custom-itinerary'
 import HistoryCard from '@/components/custom-itinerary/history-card'
@@ -9,7 +8,6 @@ import HistoryCard from '@/components/custom-itinerary/history-card'
 
 export default function ItineraryIndex() {
   const router = useRouter()
-  // console.log(router)
   const [data, setData] = useState({
     redirect: '',
     totalRows: 0,
@@ -37,22 +35,20 @@ export default function ItineraryIndex() {
   }, [router.query])
 
   // 刪除行程
-  // const handleDelete = (itin_id) => {
-  //   fetch(`http://localhost:3002/custom-itinerary/${itin_id}`, {
-  //     method: 'DELETE',
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log('刪除成功:', data)
-  //       window.location.reload()
-  //     })
-  //     .catch(
-  //       (error) => {
-  //         console.error('刪除時發生錯誤:', error)
-  //       },
-  //       [router.query]
-  //     )
-  // }
+  const handleDelete = (itin_id) => {
+    fetch(`http://localhost:3002/custom-itinerary/${itin_id}`, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('刪除成功:', data)
+      })
+      .catch((error) => {
+        console.error('刪除時發生錯誤:', error);
+      })   
+  }
+
+
 
   //公開行程filter
   const handlePublicTripsClick = () => {

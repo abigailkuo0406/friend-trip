@@ -9,7 +9,7 @@ import { FaRegEdit } from 'react-icons/fa'
 import styles from '@/components/custom-itinerary/save-view-task/save-view-task.module.css'
 import { Router, useRouter } from 'next/router'
 import SaveViewModal from '@/components/custom-itinerary/save-view-task/save-view-modal'
-import { propTypes } from 'react-bootstrap/esm/Image'
+// import { propTypes } from 'react-bootstrap/esm/Image'
 
 export default function SaveViewTask() {
   const router = useRouter()
@@ -91,7 +91,6 @@ export default function SaveViewTask() {
           </div>
         </div>
       </div>
-
       <div>
         <div className="d-flex">
           <ol className={`${styles.ol}`}>
