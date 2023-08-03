@@ -135,7 +135,7 @@ export default function ArrangeSchedule() {
           // 將景點資訊、照片URL和名稱存入一個物件中
           const viewInfo = {
             ...selectedView,
-            photoUrl: selectedView.name, // 使用新的變數
+            photo_url: selectedView.name+'.jpg', // 使用新的變數
           }
           // console.log('viewInfo', viewInfo)
           //將加入行程的景點存為新的陣列

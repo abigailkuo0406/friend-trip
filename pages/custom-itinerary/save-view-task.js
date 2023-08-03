@@ -8,42 +8,32 @@ import User from '@/assets/fake-data/fake-persona.png'
 import { FaRegEdit } from 'react-icons/fa'
 import styles from '@/components/custom-itinerary/save-view-task/save-view-task.module.css'
 import { Router, useRouter } from 'next/router'
+import SaveViewModal from '@/components/custom-itinerary/save-view-task/save-view-modal'
+import { propTypes } from 'react-bootstrap/esm/Image'
 
 export default function SaveViewTask() {
-  const router=useRouter()
+  const router = useRouter()
   const [data, setData] = useState([])
   const firstData = data[0] // 取得第一筆資料
   const itinName = firstData ? firstData.itin_name : '' // 提取行程名稱
   const itinDate = firstData ? firstData.date : ''
   const itinCoverPhoto = firstData ? firstData.coverPhoto : ''
+  const [memberName, setMemberName] = useState('')
+  // 增加一個狀態來控制 modal 的顯示
+  const [showModal, setShowModal] = useState(null)
 
-  const[memberName,setMemberName]=useState('')
-  
-  useEffect(()=>{
+  useEffect(() => {
     const storedData = localStorage.getItem('auth')
-        const parsedData = JSON.parse(storedData);
-        const name=parsedData? parsedData.member_name:''
-        setMemberName(name)
-  },[])
+    const parsedData = JSON.parse(storedData)
+    const name = parsedData ? parsedData.member_name : ''
+    setMemberName(name)
+  }, [])
 
-  // const getName = () => {
-  //   if(typeof window!=='undefined'){
-  //     const storedData = localStorage.getItem('auth')
-  //     const parsedData = JSON.parse(storedData);
-  //     const memberName=parsedData? parsedData.member_name:''
-  //     console.log('storedData',memberName)
-  //     return memberName
-  //   }else{
-  //     console.log('getName,錯誤')
-  //   }
-    
-  // }
-
-  //讀取資料庫
+  //讀取資料庫(存放的景點)
   useEffect(() => {
     const storedData = localStorage.getItem('schedule_info')
     const parsedData = JSON.parse(storedData)
-    const itinId=parsedData.itin_member
+    const itinId = parsedData.itin_member
 
     // API串接
     fetch(`http://localhost:3002/save-view?itin_member=${itinId}`)
@@ -53,18 +43,6 @@ export default function SaveViewTask() {
         console.log('data', data)
       })
   }, [])
-
-
-const handleEditClick=(itinId)=>{
-  console.log('EditClick Data',data)
-  console.log('EditClick itinId',itinId)
-  const itinName=data.find((item)=>item.itin_id===itinId)?.itin_name
-  console.log('itinName',itinName)
-  localStorage.setItem('edit itin_name',itinName)
-  router.push(`/custom-itinerary/arrange-schedule`)
-
-}
-
 
   // 格式化日期
   const formatDateString = (dateString) => {
@@ -80,9 +58,7 @@ const handleEditClick=(itinId)=>{
     <>
       <div className="container">
         <div className="position-relative">
-          <CoverPhoto itinName={itinName}  
-            itinCoverPhoto={itinCoverPhoto}
-          />
+          <CoverPhoto itinName={itinName} itinCoverPhoto={itinCoverPhoto} />
         </div>
         <div className="d-flex justify-content-between mt-3 mx-2 ">
           <div className="d-flex align-items-cente ">
@@ -99,7 +75,7 @@ const handleEditClick=(itinId)=>{
             </div>
           </div>
           <div className="my-auto">
-          {/* <button
+            {/* <button
                   className={`btn ${styles.link}`}
                   onClick={handleSaveClick}
                 >
@@ -109,28 +85,45 @@ const handleEditClick=(itinId)=>{
             <Link
               href="/custom-itinerary/arrange-schedule"
               className={styles.pageLink}
-  
             >
               <FaRegEdit />
             </Link>
           </div>
         </div>
       </div>
-      <ol className={`${styles.ol}`}>
-        {data.map((v, i) => {
-          return (
-            <li key={i} className={`${styles.li}`}>
-              <SaveViewInit
-                itinOrder={v.itin_order}
-                name={v.name}
-                formattedAddress={v.formatted_address}
-                weekdayText={v.weekday_text}
-                phoneNumber={v.phone_number}
-              />
-            </li>
-          )
-        })}
-      </ol>
+
+      <div>
+        <div className="d-flex">
+          <ol className={`${styles.ol}`}>
+            {data.map((v, i) => (
+              <li key={i} className={`${styles.li}`}>
+                <div className="d-flex">
+                  {/* SaveViewInit */}
+                  <div>
+                    <SaveViewInit
+                      itinOrder={v.itin_order}
+                      name={v.name}
+                      photo_url={v.photo_url}
+                    />
+                  </div>
+                  {/* SaveViewModal */}
+                  <div className="d-flex align-items-center">
+                    <SaveViewModal
+                      key={v.sid}
+                      sid={v.sid}
+                      name={v.name}
+                      formattedAddress={v.formatted_address}
+                      photo_url={v.photo_url}
+                      weekdayText={v.weekday_text}
+                      phoneNumber={v.phone_number}
+                    />
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
     </>
   )
 }
