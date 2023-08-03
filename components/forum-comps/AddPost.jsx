@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 const AddPost = () => {
-  const router = useRouter()
   const [article, setArticle] = useState({
     content: '',
   })
