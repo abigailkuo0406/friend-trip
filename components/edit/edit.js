@@ -74,7 +74,7 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
                 label="電子信箱/帳號"
                 name="email"
                 //change
-                value={aaa.email}
+                value={aaa.email ? aaa.email : memberInfo?.email}
                 id="email"
                 // value=''
                 getValue={(value) => {
@@ -102,14 +102,14 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>照片</h5>
-            <App />
+            <App aaa={aaa} />
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
               <InputText
                 label="會員名稱"
                 name="member_name"
-                value={aaa.name}
+                value={aaa.member ? aaa.member : memberInfo?.member_name}
                 getValue={(value) =>
                   value != '' ? setName(value) : setName('')
                 }
@@ -123,7 +123,7 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
             <input
               type="date"
               className="rounded-3"
-              value={aaa.birth}
+              value={aaa.birth ? aaa.birth : memberInfo?.member_birth}
               onChange={(e) => {
                 setAaa({ ...aaa, birth: e.target.value })
               }}
@@ -134,7 +134,7 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
               <InputText
                 label="身分證字號"
                 name="id_number"
-                value={aaa.id}
+                value={aaa.id ? aaa.id : memberInfo?.id_number}
                 getValue={(value) => (value != '' ? setId(value) : setId(''))}
                 getName={() => 'whatever'}
                 width="input-width-100pa"
@@ -149,7 +149,7 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
               idGroup={['male', 'female']} // 個別 radio 的 ID
               valueGroup={['男', '女']} // 個別 radio 的 name
               labelGroup={['男', '女']} // 個別標籤
-              value={aaa.gender}
+              value={aaa.gender ? aaa.gender : memberInfo?.gender}
               checked="男" // 預設勾選，需填入 value，只能擇一
               getValue={(value) =>
                 value != '' ? setGender(value) : setGender('')
@@ -166,7 +166,7 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
               <InputText
                 label="地區"
                 name="location"
-                value={aaa.location}
+                value={aaa.location ? aaa.location : memberInfo?.location}
                 getValue={(value) =>
                   value != '' ? setLocation(value) : setLocation('')
                 }

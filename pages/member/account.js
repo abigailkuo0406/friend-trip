@@ -33,10 +33,17 @@ export default function EditHome() {
   const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
   const [memberInfo, setMemberInfo] = useState()
   const page1 = (
-    <Edit setPage={setPage} setAaa={setAaa} aaa={aaa} memberInfo={memberInfo} />
+    <Edit
+      key={memberInfo ? 'edit' : 'aaa'}
+      setPage={setPage}
+      setAaa={setAaa}
+      aaa={aaa}
+      memberInfo={memberInfo}
+    />
   )
   const page2 = (
     <Edit2
+      key={memberInfo ? 'edit' : 'aaa'}
       setPage={setPage}
       setAaa={setAaa}
       aaa={aaa}

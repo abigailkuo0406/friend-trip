@@ -10,7 +10,7 @@ import BtnNormal from '@/components/common/button/btn-normal'
 import { useRouter } from 'next/router'
 import { Logger } from 'sass'
 
-export default function Edit2({ setPage, setForm, setAaa, aaa }) {
+export default function Edit2({ setPage, setForm, setAaa, aaa, memberInfo }) {
   const [height, setHeight] = useState('')
   const [heightName, setHeightName] = useState('')
   const [weight, setWeight] = useState('')
@@ -97,7 +97,7 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
               <InputText
                 label="身高"
                 name="height"
-                value={aaa.height}
+                value={aaa.height ? aaa.height : memberInfo?.height}
                 // getValue={(value) => {
                 //   parseInt(value) != '' ? setHeight(value) : setHeight('')
                 // }}
@@ -116,7 +116,7 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
                 label="體重"
                 name="weight"
                 getName={setWeightName}
-                value={aaa.weight}
+                value={aaa.weight ? aaa.weight : memberInfo?.weight}
                 getValue={(value) => {
                   value != '' ? setWeight(parseInt(value)) : setWeight('')
                 }}
@@ -129,7 +129,7 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
             id="zodiac"
             label="請選擇你的星座"
             name="zodiac"
-            value={aaa.zodiac}
+            value={aaa.zodiac ? aaa.zodiac : memberInfo?.zodiac}
             selectedDefault="value" //預設選項，可不填，填寫 value
             valueGroup={[
               '牡羊座',
@@ -174,7 +174,7 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
               id="bloodtype"
               label="血型"
               name="bloodtype"
-              value={aaa.bloodtype}
+              value={aaa.bloodtype ? aaa.bloodtype : memberInfo?.bloodtype}
               selectedDefault="value" //預設選項，可不填，填寫 value
               valueGroup={['A', 'B', 'O', 'AB']}
               optionGroup={['A', 'B', 'O', 'AB']}
@@ -197,7 +197,7 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
               valueGroup={['有', '沒有']} // 個別 radio 的 name
               labelGroup={['有', '沒有']} // 個別標籤
               checked="有" // 預設勾選，需填入 value，只能擇一
-              value={aaa.smoke}
+              value={aaa.smoke ? aaa.smoke : memberInfo?.smoke}
               getValue={setSmoke}
               getName={setSmokeName}
               getLabel={setSmokeLabel}
@@ -215,7 +215,7 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
               valueGroup={['滴酒不沾', '小酌', '酒豪']} // 個別 radio 的 name
               labelGroup={['滴酒不沾', '小酌', '酒豪']} // 個別標籤
               checked="滴酒不沾" // 預設勾選，需填入 value，只能擇一
-              value={aaa.alchohol}
+              value={aaa.alchohol ? aaa.alchohol : memberInfo?.alchohol}
               getValue={setAlchohol}
               getName={setAlchoholName}
               getLabel={setAlchoholLabel}
@@ -229,7 +229,9 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
               id="education"
               label="教育程度"
               name="education"
-              value={aaa.education}
+              value={
+                aaa.education ? aaa.education : memberInfo?.education_level
+              }
               selectedDefault="value" //預設選項，可不填，填寫 value
               valueGroup={['國小', '國中', '高中', '學士', '碩士', '博士']}
               optionGroup={['國小', '國中', '高中', '學士', '碩士', '博士']}
@@ -248,7 +250,7 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
               <InputText
                 label="工作"
                 name="job"
-                value={aaa.job}
+                value={aaa.job ? aaa.job : memberInfo?.job}
                 getValue={setJob}
                 getName={setJobName}
                 width="input-width-100pa"
@@ -260,7 +262,7 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
               id="profile"
               label="自我介紹"
               name="profile"
-              value={aaa.profile}
+              value={aaa.profile ? aaa.profile : memberInfo?.profile}
               placeholder="輸入文字啊"
               width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
               addClassforLabel="test123" // 如果要在 label 添加 class
@@ -274,7 +276,7 @@ export default function Edit2({ setPage, setForm, setAaa, aaa }) {
             <InputText
               label="手機"
               name="mobile"
-              value={aaa.mobile}
+              value={aaa.mobile ? aaa.mobile : memberInfo?.mobile}
               getValue={setMobile}
               getName={setMobileName}
               width="input-width-100pa"

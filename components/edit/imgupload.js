@@ -1,13 +1,8 @@
 import React, { useState } from 'react'
 import styles from './imgupload.module.css'
 import Image from 'next/image'
-function App() {
+function App({ aaa }) {
   const [img, setImg] = useState('')
-  function handleChange(e) {
-    console.log(e.target.files)
-    console.log(e.target.files[0].name)
-    setImg(URL.createObjectURL(e.target.files[0]))
-  }
   const imgUpload = (e) => {
     setImg(URL.createObjectURL(e.target.files[0]))
     async function upload(formData) {
