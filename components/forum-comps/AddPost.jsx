@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 const AddPost = () => {
+  const router = useRouter()
   const [article, setArticle] = useState({
     content: '',
   })
@@ -23,6 +24,8 @@ const AddPost = () => {
     })
       .then((r) => r.json())
       .then((data) => console.log(data))
+
+    router.push('/forum')
   }
 
   return (
