@@ -26,6 +26,13 @@ export default function InputText({
     getValue(event.target.value)
     getName(event.target.name)
   }
+  useEffect(() => {
+    if(value != ''){
+      setInputValue(value)
+      getValue(value)
+      getName(name)
+    }
+  }, [value]) 
 
   // 如果為必填則 blur 後觸發，在 class 放入 .input-error-border 讓 <input> 視窗變紅色
   // 如果填完解除錯誤，則將原本的 className 替換回去

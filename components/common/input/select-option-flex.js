@@ -14,12 +14,14 @@ export default function SelectOption({
   addClassforLabel,
   addClassforSelect,
   addClassforOption,
+  value,
 }) {
   const [errorMessage, setErrorMessage] = useState('\u00A0') // 錯誤訊息用 // \u00A0 為會佔空間的空白，如果設空字串排版會爛掉
 
   useEffect(() => {
-    getValue(selectedDefault)
-    getName(name)
+    // console.log(selectedDefault)
+    // getValue(selectedDefault)
+    // getName(name)
   }, []) // 在第一次渲染時，如有預設 value 將 value 和 name 先傳回去，避免預設值會讀不到
   const handleChange = (event) => {
     console.log('選取了：', event.target.value)
@@ -42,6 +44,7 @@ export default function SelectOption({
           aria-label="Default select example"
           onChange={handleChange}
           className={`${addClassforSelect} w-100 input-text input-select`}
+          value={value}
         >
           {valueGroup.map((element, index) => (
             <MyOption

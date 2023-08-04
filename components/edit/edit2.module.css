@@ -1,5 +1,8 @@
 .main {
-
+    width: 1300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .breadcontainer {
     /* border: 1px solid red; */
@@ -41,8 +44,8 @@
     font-weight: bold;
 }
 .cardbody{
-    width: 774px;
-    height: 758xpx;
+    width: 700px;
+    height: 700xpx;
     background-color: #fefefe;
     border-radius: 30px;
     padding: 10px 10px 10px 30px;
@@ -65,4 +68,13 @@
 }
 .inputbar{
     margin-top: 15px;
+}
+.init{
+    padding: 0px;
+}
+.error{
+    border-color: red;
+}
+.right{
+    border-color: rgb(36, 205, 36);
 }

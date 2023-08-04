@@ -21,7 +21,7 @@ body
   --bg-main: #FBDCDD
   --bg-dark: #FABCBF
   --bg-light: #FCE5E7
-  --assist-gray: #717171
+  --assist-grey: #717171
   --assist-white: #FFFFFF
   --assist-lightgrey: #D8D8D8
   --warning: #874c6d
@@ -56,6 +56,10 @@ a, ul, ol
 // 輔助小字
 .small-font
   font-size: 0.75rem
+
+li
+  &::marker
+    content:""
 
 // 按鈕樣式 //.btn-dark 暗底 .btn-light 亮底 .btn-white 白底
 .btn
@@ -99,6 +103,8 @@ a, ul, ol
   width: 30%
 .input-width-10rem
   width: 10rem
+.input-width-8rem
+  width: 8rem
 .input-width-5rem
   width: 5rem
 .input-width-3rem
@@ -126,7 +132,7 @@ label
   border: 1.8px solid #D8d8d8
   border-radius: 8px
   &::placeholder
-      color: var(--assist-gray)
+      color: var(--assist-grey)
   &:focus
       color: var(--main-dark)
       box-shadow: none
@@ -147,7 +153,6 @@ label
     justify-content: space-between
     .input-text-section
       width: 50%
-      >div
       &:first-child
         margin-right:3%
       &:last-child
@@ -165,7 +170,7 @@ label
   border-radius: 8px
   height: 10rem
   &::placeholder
-      color: var(--assist-gray)
+      color: var(--assist-grey)
   &:focus
       color: var(--main-dark)
       box-shadow: none
@@ -184,7 +189,7 @@ label
     position: absolute
     top: 1.8px // 1.8px 為 外框寬度
     right: 1.8px // 1.8px 為 外框寬度
-    display:block
+    display: block
     background-color: var(--main-dark)
     height: calc(100% - 3.6px)
     width: 2rem
@@ -222,7 +227,7 @@ label
     position: absolute
     top: 1.8px // 1.8px 為 外框寬度
     right: 1.8px // 1.8px 為 外框寬度
-    display:block
+    display: block
     background-color: var(--main-dark)
     height: calc(50% - 1.8px)
     width: 2rem
@@ -246,7 +251,7 @@ label
     position: absolute
     bottom: 1.8px // 1.8px 為 外框寬度
     right: 1.8px // 1.8px 為 外框寬度
-    display:block
+    display: block
     background-color: var(--main-dark)
     height: calc(50% - 1.8px)
     width: 2rem
@@ -372,7 +377,7 @@ main
       color: var(--main)
 
     #User-Account
-      color: var(--assist-gray)
+      color: var(--assist-grey)
     #User-Status
       color: var(--main)
       margin-top: 1rem
@@ -415,6 +420,8 @@ main
 
 
       /* sidebar.js End ====================*/
+
+    
 
 
 

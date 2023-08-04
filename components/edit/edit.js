@@ -1,13 +1,64 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useEffect } from 'react'
+import { useState, useContext } from 'react'
 import InputText from '@/components/common/input/input-text-flex'
-import styles from './edit1.module.css'
+import styles from './edit.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
-export default function Edit() {
-  const [inputValue4, setInputValue4] = useState('')
+import { useRouter } from 'next/router'
+import App from '@/components/edit/imgupload'
+import Image from 'next/image'
+import AuthContext from '@/context/AuthContext'
+export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
+  const { auth, setAuth } = useContext(AuthContext)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [birth, setBirth] = useState('')
+  const [id, setId] = useState('')
+  const [gender, setGender] = useState('')
+  const [location, setLocation] = useState('')
   const [InputName4, setInputName4] = useState('')
   const [InputLabel4, setInputLabel4] = useState('')
+  const [error8, setError8] = useState(false)
+  const [errorTracker8, setErrorTracker8] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const [clickSubmitted, setClickSubmitted] = useState(false)
+
+  // 事件處理函式，在日期選擇時更新狀態
+  const handleDateChange = (event) => {
+    setBirth(event.target.value)
+  }
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
+    setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
+    if (error8 == true) {
+      var moveTo = document.getElementById(errorTracker8)
+      moveTo.scrollIntoView() // 滑向錯誤的地方
+      moveTo.focus()
+      return
+    }
+  }
+  useEffect(() => {
+    setAaa((prev) => {
+      return {
+        ...prev,
+        email,
+        password,
+        name,
+        // birth,
+        id,
+        gender,
+        location,
+      }
+    })
+  }, [email, password, name, id, gender, location])
+
+  useEffect(() => {
+    console.log('111', birth)
+  }, [birth])
+
   return (
     <>
       <div className={styles.main}>
@@ -18,14 +69,22 @@ export default function Edit() {
             <div className={styles.bread2}></div>
           </div>
           <div>
-            <h2 className={styles.title}>個人資料修改</h2>
+            <h2 className={styles.title}>修改個人資料</h2>
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
               <InputText
                 label="電子信箱/帳號"
-                getValue={() => 'whatever'}
-                getName={() => 'whatever'}
+                name="email"
+                //change
+                value={aaa.email ? aaa.email : memberInfo?.email}
+                id="email"
+                // value=''
+                getValue={(value) => {
+                  value != '' ? setEmail(value) : setEmail('')
+                }}
+                addClassforInput={email == '' ? styles.error : styles.right}
+                getName={() => {}}
                 width="input-width-100pa"
               ></InputText>
             </div>
@@ -34,7 +93,11 @@ export default function Edit() {
             <div className={styles.inputbar}>
               <InputText
                 label="密碼"
-                getValue={() => 'whatever'}
+                value={aaa.password ? aaa.password : memberInfo?.password}
+                name="password"
+                getValue={(value) =>
+                  value != '' ? setPassword(value) : setPassword('')
+                }
                 getName={() => 'whatever'}
                 width="input-width-100pa"
               ></InputText>
@@ -42,16 +105,25 @@ export default function Edit() {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>照片</h5>
-            <BtnNormal
-              btnText="上傳"
-              addClassforButton={`btn-dark small-font ${styles.btnsize}`}
-            />
+            {auth.images === '' ? (
+              <Image
+                src={`http://localhost:3002/img/${auth.images}`}
+                width={100}
+                height={100}
+              />
+            ) : (
+              <App aaa={aaa} />
+            )}
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
               <InputText
                 label="會員名稱"
-                getValue={() => 'whatever'}
+                name="member_name"
+                value={aaa.member ? aaa.member : memberInfo?.member_name}
+                getValue={(value) =>
+                  value != '' ? setName(value) : setName('')
+                }
                 getName={() => 'whatever'}
                 width="input-width-100pa"
               ></InputText>
@@ -59,13 +131,22 @@ export default function Edit() {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>會員生日</h5>
-            <input type="date"></input>
+            <input
+              type="date"
+              className="rounded-3"
+              value={aaa.birth ? aaa.birth : memberInfo?.member_birth}
+              onChange={(e) => {
+                setAaa({ ...aaa, birth: e.target.value })
+              }}
+            ></input>
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
               <InputText
                 label="身分證字號"
-                getValue={() => 'whatever'}
+                name="id_number"
+                value={aaa.id ? aaa.id : memberInfo?.id_number}
+                getValue={(value) => (value != '' ? setId(value) : setId(''))}
                 getName={() => 'whatever'}
                 width="input-width-100pa"
               ></InputText>
@@ -74,17 +155,20 @@ export default function Edit() {
           <div className={styles.inputstyle}>
             <InputRadioGroup
               label="性別"
-              name="animal"
+              name="gender"
               // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
-              idGroup={['DogID', 'CatID']} // 個別 radio 的 ID
-              valueGroup={['dogValue', 'catValue']} // 個別 radio 的 name
+              idGroup={['male', 'female']} // 個別 radio 的 ID
+              valueGroup={['男', '女']} // 個別 radio 的 name
               labelGroup={['男', '女']} // 個別標籤
-              checked="birdValue" // 預設勾選，需填入 value，只能擇一
-              getValue={setInputValue4}
+              value={aaa.gender ? aaa.gender : memberInfo?.gender}
+              checked="男" // 預設勾選，需填入 value，只能擇一
+              getValue={(value) =>
+                value != '' ? setGender(value) : setGender('')
+              }
               getName={setInputName4}
               getLabel={setInputLabel4}
-              addClassforTitleLabel="classTest1" // 如果要在標題 label 添加 class
-              addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
+              addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
+              addClassforEachLabel="classTest2 d-flex justify-contents-center align-items-center" // 如果要在個別選項 label 添加 class
               addClassforInput="classTest3" // 如果要在 input 添加 class
             ></InputRadioGroup>
           </div>
@@ -92,7 +176,11 @@ export default function Edit() {
             <div className={styles.inputbar}>
               <InputText
                 label="地區"
-                getValue={() => 'whatever'}
+                name="location"
+                value={aaa.location ? aaa.location : memberInfo?.location}
+                getValue={(value) =>
+                  value != '' ? setLocation(value) : setLocation('')
+                }
                 getName={() => 'whatever'}
                 width="input-width-100pa"
               ></InputText>
@@ -104,6 +192,9 @@ export default function Edit() {
               value="button"
               btnText="下一頁"
               addClassforButton="btn-dark"
+              onClick={() => {
+                setPage(2)
+              }}
             />
           </div>
         </div>

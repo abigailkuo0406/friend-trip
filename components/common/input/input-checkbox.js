@@ -5,13 +5,12 @@ export default function InputCheckbox({
   name = '',
   value = '',
   label = '',
-  getEachValue,
-  DelEachValue,
-  getName,
-  getLabel,
+  getEachValue=()=>{},
+  getName=()=>{},
+  getLabel=()=>{},
   checkedValue = [],
-  addClassforEachLabel,
-  addClassforInput,
+  addClassforEachLabel='',
+  addClassforInput='',
 }) {
   const isChecked = checkedValue.includes(value)
   const [inputValue1, setInputValue1] = useState(isChecked)
@@ -42,12 +41,12 @@ export default function InputCheckbox({
         name={name}
         id={id}
         value={value}
-        onClick={handleClick}
-        checked={inputValue1}
+        onChange={handleClick}
+        checked={isChecked}
         className={`${addClassforInput}`}
       ></input>
       <label htmlFor={id} className={`${addClassforEachLabel}`}>
-        {label}
+      {label}
       </label>
     </div>
   )

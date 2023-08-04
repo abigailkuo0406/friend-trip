@@ -11999,7 +11999,7 @@ body {
   --bg-main: #FBDCDD;
   --bg-dark: #FABCBF;
   --bg-light: #FCE5E7;
-  --assist-gray: #717171;
+  --assist-grey: #717171;
   --assist-white: #FFFFFF;
   --assist-lightgrey: #D8D8D8;
   --warning: #874c6d;
@@ -12053,6 +12053,10 @@ a, ul, ol {
 
 .small-font {
   font-size: 0.75rem;
+}
+
+li::marker {
+  content: "";
 }
 
 .btn {
@@ -12117,6 +12121,10 @@ a, ul, ol {
   width: 10rem;
 }
 
+.input-width-8rem {
+  width: 8rem;
+}
+
 .input-width-5rem {
   width: 5rem;
 }
@@ -12157,10 +12165,10 @@ label {
   border-radius: 8px;
 }
 .input-text::-moz-placeholder {
-  color: var(--assist-gray);
+  color: var(--assist-grey);
 }
 .input-text::placeholder {
-  color: var(--assist-gray);
+  color: var(--assist-grey);
 }
 .input-text:focus {
   color: var(--main-dark);
@@ -12212,10 +12220,10 @@ label {
   height: 10rem;
 }
 .area-text::-moz-placeholder {
-  color: var(--assist-gray);
+  color: var(--assist-grey);
 }
 .area-text::placeholder {
-  color: var(--assist-gray);
+  color: var(--assist-grey);
 }
 .area-text:focus {
   color: var(--main-dark);
@@ -12239,6 +12247,7 @@ label {
   position: absolute;
   top: 1.8px;
   right: 1.8px;
+  display: block;
   background-color: var(--main-dark);
   height: calc(100% - 3.6px);
   width: 2rem;
@@ -12286,6 +12295,7 @@ label {
   position: absolute;
   top: 1.8px;
   right: 1.8px;
+  display: block;
   background-color: var(--main-dark);
   height: calc(50% - 1.8px);
   width: 2rem;
@@ -12311,6 +12321,7 @@ label {
   position: absolute;
   bottom: 1.8px;
   right: 1.8px;
+  display: block;
   background-color: var(--main-dark);
   height: calc(50% - 1.8px);
   width: 2rem;
@@ -12466,7 +12477,7 @@ main > .row > div {
   color: var(--main);
 }
 #Sidebar #User-Info #User-Account {
-  color: var(--assist-gray);
+  color: var(--assist-grey);
 }
 #Sidebar #User-Info #User-Status {
   color: var(--main);

@@ -84,7 +84,6 @@ export default function AdminIndex() {
     console.log('勾選9：value 為：', inputValue10 + ' ，name 為：', inputName10)
     console.log('日期：value為：',inputValue11)
   }
-
   return (
     <>
       <label htmlFor="customRange1" className="form-label">
@@ -239,7 +238,7 @@ export default function AdminIndex() {
             addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
             addClassforInput="classTest3" // 如果要在 input 添加 class
           ></InputCheckboxGroup>
-          <InputDate
+          {/* <InputDate
             id='birthday'
             name='birthday'
             label='請選擇生日'
@@ -248,7 +247,7 @@ export default function AdminIndex() {
             // getvalue={setInputValue11}
             // getname={setInputName11}
             addClassforInput="classTest3"
-          ></InputDate>
+          ></InputDate> */}
           <BtnNormal
             type="submit"
             value="submit"

@@ -1,11 +1,11 @@
 import React from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
-import Edit from '@/components/edit/edit'
+import Edit2 from '@/components/edit/edit2'
 export default function EditHome() {
   return (
     <>
       <div className="d-flex justify-content-center">
-        <Edit />
+        <Edit2 />
       </div>
     </>
   )

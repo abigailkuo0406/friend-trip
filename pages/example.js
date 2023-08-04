@@ -25,12 +25,14 @@ export default function Products() {
     const usp = new URLSearchParams(router.query)
 
     // API串接
-    fetch('http://localhost:3002/products', {
+    fetch('http://localhost:3002/twoBooks', {
       method: 'GET',
+      
     })
       .then((r) => r.json())
-      .then((data) => {
-        setData(data)
+      .then((d) => {
+        console.log('111',d.rows)
+        setData(d)
       })
   }, [])
 

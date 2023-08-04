@@ -13,3 +13,10 @@
   padding: 6px 12px;
   cursor: pointer;
 }
+
+.inputButton {
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  color: #674c87;
+  background-color: #fbdcdd;
+}

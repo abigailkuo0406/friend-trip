@@ -1,3 +1,4 @@
+import Link from "next/link"
 export default function SidebarNavigation() {
   return (
     <>
@@ -8,24 +9,25 @@ export default function SidebarNavigation() {
               <div className="" id="navbarNav">
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/'>
                       聊天室
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/member/itinerary'>
                       行程
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/member/reserve'>
                       訂位
-                    </a>
+                    </Link>
+
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/member/post'>
                       文章
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item dropdown">
                     <a
@@ -38,28 +40,30 @@ export default function SidebarNavigation() {
                       購物
                     </a>
                     <ul className="dropdown-menu">
+
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <Link className="dropdown-item" href='/product/cart'>
                           購物車
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
-                          我的優惠券
-                        </a>
+                        <Link className="dropdown-item" href='/product/collection'>
+                          我的收藏
+                        </Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#">
+                        <Link className="dropdown-item" href='/product/order'>
                           歷史訂單
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
 
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/member'>
                       帳戶
-                    </a>
+                    </Link>
+
                   </li>
                 </ul>
               </div>

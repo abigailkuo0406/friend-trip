@@ -9,7 +9,9 @@ export default function Home() {
 
   return (
     <>
-      <Login />
+      <div className="d-flex justify-content-center">
+        <Login />
+      </div>
     </>
   )
 }

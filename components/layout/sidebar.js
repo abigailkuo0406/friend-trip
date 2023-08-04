@@ -15,7 +15,6 @@ export default function Sidebar() {
               style={{
               width: `100%`,
               height: `auto`,
-                
               }}
               
             ></Image>

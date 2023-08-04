@@ -18,6 +18,7 @@ export default function InputRadio({
   const handleClick = (event) => {
     setInputValue(undefined)
     killchecked(inputValue)
+    console.log(event.target.value);
     getValue(event.target.value)
     getName(event.target.name)
     getLabel(label)
