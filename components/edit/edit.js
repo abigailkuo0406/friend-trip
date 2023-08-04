@@ -105,10 +105,10 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>照片</h5>
-            {auth.member_id === ' ' ? (
+            {auth.images === '' ? (
               <Image
-                src={`http://localhost:3002/img/${auth.images}.png`}
-                width={110}
+                src={`http://localhost:3002/img/${auth.images}`}
+                width={100}
                 height={100}
               />
             ) : (
