@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 04, 2023 at 09:48 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- 主機： 127.0.0.1
+-- 產生時間： 2023 年 08 月 04 日 22:20
+-- 伺服器版本： 10.4.28-MariaDB
+-- PHP 版本： 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fridntrip_final`
+-- 資料庫： `fridntrip_final`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posts`
+-- 資料表結構 `posts`
 --
 
 CREATE TABLE `posts` (
@@ -37,7 +37,7 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `posts`
+-- 傾印資料表的資料 `posts`
 --
 
 INSERT INTO `posts` (`post_id`, `member_id`, `avatarOfPostAuthor`, `content`, `img`, `created_at`) VALUES
@@ -55,21 +55,21 @@ INSERT INTO `posts` (`post_id`, `member_id`, `avatarOfPostAuthor`, `content`, `i
 (76, 1, '', '這是我上禮拜去博朗大道拍的', 'http://localhost:3002/forum_pics/brownBlv.jpg', '2023-08-04 18:58:49');
 
 --
--- Indexes for dumped tables
+-- 已傾印資料表的索引
 --
 
 --
--- Indexes for table `posts`
+-- 資料表索引 `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`post_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
 --
--- AUTO_INCREMENT for table `posts`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `posts`
 --
 ALTER TABLE `posts`
   MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
