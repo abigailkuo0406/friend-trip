@@ -108,7 +108,7 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
             {auth.member_id === ' ' ? (
               <Image
                 src={`http://localhost:3002/img/${auth.images}.png`}
-                width={100}
+                width={110}
                 height={100}
               />
             ) : (
