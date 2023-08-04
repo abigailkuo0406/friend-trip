@@ -1,14 +1,14 @@
 import { useEffect, useState, useContext } from 'react'
-import { Router,useRouter } from 'next/router'
+import { Router, useRouter } from 'next/router'
 import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import InitCard from './init-card'
 import Host from '@/assets/fake-data/fake-persona.png'
 import { LiaSave } from 'react-icons/lia'
-import { FiMoreHorizontal } from 'react-icons/fi' 
+import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
-import { BiHomeHeart } from 'react-icons/bi' 
+import { BiHomeHeart } from 'react-icons/bi'
 import AuthContext from '@/context/AuthContext'
 import Swal from 'sweetalert2'
 
@@ -17,36 +17,24 @@ export default function ScheduleSide({
   selectedView,
   onDeleteView,
   onSaveClick,
-  onShowRoute
+  onShowRoute,
 }) {
-  const router = useRouter();
-  // const [itineraryName, setItineraryName] = useState([])
-  // const [filteredItineraryName, setFilteredItineraryName] = useState([])
+  const router = useRouter()
+
+  //取得行程名稱
+  const [itinName, setItinName] = useState('')
+  useEffect(() => {
+    const storedData = localStorage.getItem('schedule_info')
+    const parsedData = JSON.parse(storedData)
+    const name = parsedData ? parsedData.itin_name : ''
+    setItinName(name)
+
+    console.log('itinName',itinName)
+  }, [setItinName])
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:3002/try-name`)
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       setItineraryName(data)
-  //       // console.log('name:', data)
-  //     })
-  //     .catch((error) => {
-  //       console.error('資料接收失敗', error)
-  //     })
-  // }, [])
-  
- //取得行程名稱
-  const[itinName,setItinName]=useState('')  
-  useEffect(()=>{
-    const storedData = localStorage.getItem('schedule_info')
-    const parsedData = JSON.parse(storedData)
-    const name =parsedData? parsedData.itin_name:''
-    setItinName(name)
-  },[])
- 
   //儲存行程到後端
   const handleSaveClick = () => {
     // 處理點擊事件的邏輯
@@ -54,7 +42,7 @@ export default function ScheduleSide({
     Swal.fire({
       width: 400,
       title: '行程儲存成功囉！',
-      text:'好好享受這一天的旅程吧!',
+      text: '好好享受這一天的旅程吧!',
       icon: 'success',
       iconColor: '#FABCBF',
       color: '#674C87',
@@ -63,11 +51,13 @@ export default function ScheduleSide({
       // timer: 1500,
     })
     onSaveClick()
-      //點選建立後3秒後跳轉
+    //點選建立後3秒後跳轉
     setTimeout(() => {
       router.push('/custom-itinerary/save-view-task')
     }, 2000)
   }
+
+  
 
   return (
     <>
@@ -77,7 +67,7 @@ export default function ScheduleSide({
           <div className="itinerary-fade-in">
             <div className={`trip-list ${styles.tripList} `}>
               <div className="d-flex justify-content-end ">
-              <Link href="/member/itinerary" className={styles.link}>
+                <Link href="/member/itinerary" className={styles.link}>
                   <BiHomeHeart />
                 </Link>
                 {/* <Link href="#" className={styles.link}>
@@ -107,7 +97,7 @@ export default function ScheduleSide({
                 </Link>
               </div>
               <div className="trip-list-header-info mx-4">
-              <h4>{itinName}</h4>
+                <h4>{itinName}</h4>
                 {/* {filteredItineraryName.map((nameObj) => {
                   return (
                     <h4 key={nameObj.itin_member_id} className={styles.h4}>
@@ -115,7 +105,7 @@ export default function ScheduleSide({
                     </h4>
                   ) */}
                 {/* })} */}
-        
+
                 <div className="d-flex mt-3">
                   <Image
                     src={Host}
