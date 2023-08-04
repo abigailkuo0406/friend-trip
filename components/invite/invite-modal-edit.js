@@ -45,6 +45,7 @@ export default function InviteModalEdit({
 
     // 設定好友列表
     const [friends, setFriends] = useState([])
+    const [friendsBtnTemp, setFriendsBtnTemp] = useState([])
 
     // 匯入好友資料
     useEffect(() => {
@@ -53,6 +54,8 @@ export default function InviteModalEdit({
         })
             .then((f) => f.json())
             .then((friendsData) => {
+                // console.log('aa', friendsData.rows)
+
                 const friend = friendsData.rows.map((f) => {
                     let defaultBtn = { "defaultBtn": false }
 
@@ -67,8 +70,8 @@ export default function InviteModalEdit({
     }, [])
 
 
-
-    const friendsBtn = friends.map((f, i, arr) => {
+    useEffect(() => {
+        const friendsBtn = friends.map((f, i, arr) => {
         inviteList.forEach((iv) => {
             if (f.FriendId == iv.iv_member_id) {
                 f.defaultBtn = true
@@ -77,7 +80,10 @@ export default function InviteModalEdit({
         })
         return f
 
-    })
+        })
+        setFriendsBtnTemp(friendsBtn)
+    },[friends])
+    
 
     // console.log('11', friendsBtn)
 
@@ -122,8 +128,8 @@ export default function InviteModalEdit({
 
                             </ul>
                             <ul id="friendsList" className="list">
-                                {friendsBtn != [] ?
-                                    friendsBtn.map((v, i) => {
+                                {friendsBtnTemp != [] ?
+                                    friendsBtnTemp.map((v, i) => {
                                         return (
                                             <div key={i}>
                                                 <Invite
@@ -132,6 +138,7 @@ export default function InviteModalEdit({
                                                     iv_member_id={v.FriendId}
                                                     defaultBtn={v.defaultBtn}
                                                     onValueChange={handleValueChange}
+                                                    friendsBtnTemp={friendsBtnTemp}
                                                 />
                                             </div>
                                         )

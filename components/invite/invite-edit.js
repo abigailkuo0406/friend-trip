@@ -10,6 +10,7 @@ export default function InviteEdit({
   iv_member_id,
   defaultBtn,
   onValueChange,
+  friendsBtnTemp,
 }) {
 
   const [inviteFriend, setInviteFriend] = useState('')
@@ -49,7 +50,7 @@ export default function InviteEdit({
     onValueChange(inviteImg, inviteBtn, inviteId)
 
 
-  }, [inviteBtn])
+  }, [inviteBtn, friendsBtnTemp])
 
 
   return (

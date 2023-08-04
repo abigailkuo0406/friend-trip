@@ -25,11 +25,11 @@ export default function ReseveDetails() {
             .then((r) => r.json())
             .then((details) => {
                 rid ? setReserveDetails(details.row) : 1
-                console.log('cccc', details.row)
+                // console.log('cccc', details.row)
             })
 
     }, [rid])
-    console.log(reserveDetails)
+    // console.log(reserveDetails)
 
     //拆分日期
 
