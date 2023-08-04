@@ -137,7 +137,6 @@ export default function ArrangeSchedule() {
             ...selectedView,
             photo_url: selectedView.name+'.jpg', // 使用新的變數
           }
-          // console.log('viewInfo', viewInfo)
           //將加入行程的景點存為新的陣列
           // 將 viewInfo 加入到 addInitLocal 陣列中
           setAddInitLocal((prevAddInitResults) => [
@@ -203,7 +202,7 @@ export default function ArrangeSchedule() {
   // 當 addInitLocal 陣列改變時，將其存儲到 localStorage 中
   useEffect(() => {
     localStorage.setItem('addInitLocal', JSON.stringify(addInitLocal))
-    console.log('addInitLocal======', addInitLocal)
+    // console.log('addInitLocal======', addInitLocal)
   }, [addInitLocal])
 
   //設定要存取到後端的狀態
