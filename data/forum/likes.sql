@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 28, 2023 at 11:43 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- 主機： 127.0.0.1
+-- 產生時間： 2023 年 08 月 04 日 22:19
+-- 伺服器版本： 10.4.28-MariaDB
+-- PHP 版本： 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,27 +18,27 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fridntrip_final`
+-- 資料庫： `fridntrip_final`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `likes`
+-- 資料表結構 `likes`
 --
 
 CREATE TABLE `likes` (
   `like_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `likes`
+-- 傾印資料表的資料 `likes`
 --
 
-INSERT INTO `likes` (`like_id`, `user_id`, `post_id`, `created_at`) VALUES
+INSERT INTO `likes` (`like_id`, `member_id`, `post_id`, `created_at`) VALUES
 (2, 5, 7, '2023-07-25 20:19:06'),
 (3, 4, 8, '2023-07-22 20:34:11'),
 (4, 3, 5, '2023-07-27 20:39:46'),
@@ -47,37 +47,24 @@ INSERT INTO `likes` (`like_id`, `user_id`, `post_id`, `created_at`) VALUES
 (7, 5, 12, '2023-07-27 21:27:25');
 
 --
--- Indexes for dumped tables
+-- 已傾印資料表的索引
 --
 
 --
--- Indexes for table `likes`
+-- 資料表索引 `likes`
 --
 ALTER TABLE `likes`
-  ADD PRIMARY KEY (`like_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `post_id` (`post_id`);
+  ADD PRIMARY KEY (`like_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
 --
--- AUTO_INCREMENT for table `likes`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `likes`
 --
 ALTER TABLE `likes`
   MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `likes`
---
-ALTER TABLE `likes`
-  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 28, 2023 at 11:43 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- 主機： 127.0.0.1
+-- 產生時間： 2023 年 08 月 04 日 22:18
+-- 伺服器版本： 10.4.28-MariaDB
+-- PHP 版本： 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,28 +18,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fridntrip_final`
+-- 資料庫： `fridntrip_final`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- 資料表結構 `comments`
 --
 
 CREATE TABLE `comments` (
   `comment_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `content` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `comments`
+-- 傾印資料表的資料 `comments`
 --
 
-INSERT INTO `comments` (`comment_id`, `user_id`, `post_id`, `content`, `created_at`) VALUES
+INSERT INTO `comments` (`comment_id`, `member_id`, `post_id`, `content`, `created_at`) VALUES
 (2, 3, 6, '先把自己照顧好\r\n有好的身心狀態更有機會遇到和自己頻率相近的人', '2023-07-27 20:11:30'),
 (3, 2, 5, '每天還是要視訊聊一下才對啊！', '2023-07-26 20:37:52'),
 (4, 5, 3, '謝謝分享', '2023-07-27 21:07:25'),
@@ -49,37 +49,24 @@ INSERT INTO `comments` (`comment_id`, `user_id`, `post_id`, `content`, `created_
 (8, 2, 13, '不會啦！有明確目標去了就回來也沒有關係啊！', '2023-07-26 21:31:16');
 
 --
--- Indexes for dumped tables
+-- 已傾印資料表的索引
 --
 
 --
--- Indexes for table `comments`
+-- 資料表索引 `comments`
 --
 ALTER TABLE `comments`
-  ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `post_id` (`post_id`);
+  ADD PRIMARY KEY (`comment_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
 --
--- AUTO_INCREMENT for table `comments`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `comments`
 --
 ALTER TABLE `comments`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `posts` (`post_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
