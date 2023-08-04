@@ -57,10 +57,8 @@ export default function SaveViewModal(paProps) {
                 <div className={`${styles.text} mx-2 `}>
                   <p>
                     <IoTimeOutline className={`${styles.iconColor}`} />
-                    {paProps.weekdayText &&
-                      paProps.weekdayText.map((item, index) => (
-                        <span key={index}>{item}</span>
-                      ))}
+
+                    {paProps.weekdayText}
                   </p>
                 </div>
                 <div>
