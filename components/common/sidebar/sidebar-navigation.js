@@ -40,21 +40,21 @@ export default function SidebarNavigation() {
                       購物
                     </a>
                     <ul className="dropdown-menu">
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          購物車
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          我的優惠券
-                        </a>
-                      </li>
-                      <li>
 
-                        <a className="dropdown-item" href="#">
+                      <li>
+                        <Link className="dropdown-item" href='/product/cart'>
+                          購物車
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" href='/product/collection'>
+                          我的收藏
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" href='/product/order'>
                           歷史訂單
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
