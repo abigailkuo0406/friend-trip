@@ -36,3 +36,6 @@
     color: var(--main-dark);
     font-weight: bold;
 }
+.img{
+    border-radius: 50%;
+}
