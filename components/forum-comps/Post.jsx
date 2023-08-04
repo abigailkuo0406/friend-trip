@@ -1,15 +1,7 @@
-import Image from 'next/image'
-import styles from './Post.module.css'
-import { BsEmojiKiss } from 'react-icons/bs'
-import Msg from './Msg'
-import Link from 'next/link'
-import AvatarAndNameOfPostAuthor from './AvatarAndNameOfPostAuthor'
-import DeleteAndEditForThePost from './DeleteAndEditForThePost'
 import HeaderOfThePost from './HeaderOfThePost'
 import ImgForThePost from './ImgForThePost'
 import ArticleOfPost from './ArticleOfPost'
-import { ClassNames } from '@emotion/react'
-import React, { useState } from 'react'
+import React from 'react'
 import ShowInputOnPage from './ShowInputOnPage'
 import axios from 'axios'
 
@@ -21,10 +13,11 @@ export default function Post({
   dateOfPublishOfPost,
   imgOfPost,
   articleOfPost,
-}) {
+}){
+ 
   function sendMsg(leftMsg) {
     axios
-      .post('sample', { leaveMsg: leftMsg })
+      .post('http://localhost:3002/show-forum-posts', { leaveMsg: leftMsg })
       .then((d) => console.log(d))
       .catch((err) => console.log(err))
   }

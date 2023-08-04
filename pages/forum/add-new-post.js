@@ -2,6 +2,7 @@ import AdminLayout from '@/components/layout/admin-layout'
 import NavBar from '../../components/forum-comps/NavBar'
 import AddPost from '@/components/forum-comps/AddPost'
 
+
 export default function AddNewPost() {
   return (
     <>
