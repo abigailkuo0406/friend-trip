@@ -14,6 +14,7 @@ export default function Posts({ posts }) {
             dateOfPublishOfPost={post.created_at}
             imgOfPost={post.img}
             articleOfPost={post.content}
+            comment={post.comment}
           />
         )
       })}

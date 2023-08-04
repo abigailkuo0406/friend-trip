@@ -50,7 +50,6 @@ function ShowInputOnPage({ sendMsg }) {
         />
         <button onClick={handleSendMsg}>發表看法</button>
       </div>
-      {/* <span>{name}</span> */}
     </>
   )
 }

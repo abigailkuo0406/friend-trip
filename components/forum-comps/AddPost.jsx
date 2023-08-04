@@ -1,17 +1,14 @@
-import Image from 'next/image'
-import uploadImg from '@/public/img/forum-img/taidong.jpg'
 import styles from './AddPost.module.css'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 const AddPost = () => {
-  const [selectedImage, setSelectedImage] = useState(null) // for img preview
   const router = useRouter()
   const [article, setArticle] = useState({
     content: '',
   })
-
   // 👇 for img preview
+  const [selectedImage, setSelectedImage] = useState(null)
   const handleImageChange = (event) => {
     const file = event.target.files[0]
     if (file) {
@@ -46,36 +43,29 @@ const AddPost = () => {
     <>
       <form onSubmit={handleSubmit}>
         <div className="bg-light mt-4 p-5 rounded-5">
-          <div className={`h3 ${styles.fontStyle1}`}>新增文章</div>
-          <div className={`p-2 ${styles.fontStyle1}`}>* 文章內容</div>
+          <div className={`h4 ${styles.fontStyle1}`}>文章內容</div>
+          {/* <div className={`p-2 ${styles.fontStyle1}`}>* 文章內容</div> */}
           <textarea
             className="form-control"
-            placeholder="今天天氣好晴朗，青山綠水繞身旁，小鳥聲聲唱"
+            placeholder="在此輸入..."
             name="content"
             value={article.content}
             onChange={handleChange}
           ></textarea>
           <label className={`custom-file-upload p-2 ${styles.fontStyle1}`}>
-            <i className="fa fa-cloud-upload"></i> 上傳文章圖片
+            <i className="fa fa-cloud-upload"></i> 選擇圖片
             <input type="file" name="avatar" onChange={handleImageChange} />
-            {/*add onChange attribute for img preview*/}
           </label>
           {selectedImage && (
             <>
               <p>文章圖片預覽:</p>
-              <Image
-                src={selectedImage}
-                width={50}
-                height={50}
-                alt="previewImg"
-                className="img-fluid"
-              />
+              <img src={selectedImage} className="img-fluid" alt="previewImg" />
             </>
           )}
           <input
-            className="btn btn-primary mt-4 mx-auto"
+            className={`btn h4 mt-4 mx-auto ${styles.inputButton}`}
             type="submit"
-            value="確認新增文章"
+            value="上傳文章"
           />
         </div>
       </form>

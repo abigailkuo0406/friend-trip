@@ -13,10 +13,11 @@ export default function Post({
   dateOfPublishOfPost,
   imgOfPost,
   articleOfPost,
-}) {
+}){
+ 
   function sendMsg(leftMsg) {
     axios
-      .post('sample', { leaveMsg: leftMsg })
+      .post('http://localhost:3002/show-forum-posts', { leaveMsg: leftMsg })
       .then((d) => console.log(d))
       .catch((err) => console.log(err))
   }
