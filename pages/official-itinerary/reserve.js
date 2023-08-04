@@ -22,7 +22,7 @@ export default function reserve() {
         <br />
         集合地點：台北車站
         <br />
-        價格: TWD$42000/2-6人
+        價格: TWD$42000/2-6 人
         <br />
         <label htmlfor="start"> 參加日期:</label>
         <input
