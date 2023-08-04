@@ -8,6 +8,8 @@ import Btn from '@/components/common/button/btn-normal'
 import Modal from '@/components/restaurant/restaurant-intro'
 import AuthContext from '@/context/AuthContext'
 import IndexSty from './restaurant.module.css'
+import { MdNavigateNext,MdNavigateBefore } from 'react-icons/md'
+
 
 
 // 引入元件
@@ -273,90 +275,92 @@ export default function Rest() {
                     restIntro={rIntro}
                     restImg={rImg}
                 />
+                <div className="itin-card-pagination">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class={`page-item`}>
+                                <Link
+                                    className={`page-link ${IndexSty.restItem}`}
+                                    href={"?" + new URLSearchParams('page=1').toString()}
+                                    aria-label="Previous"
+                                >
+                                    <span aria-hidden="true">&laquo;</span>
 
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class={`page-item`}>
-                            <Link
-                                className={`page-link ${IndexSty.restItem}`}
-                                href={"?" + new URLSearchParams('page=1').toString()}
-                                aria-label="Previous"
-                            >
-                                <span aria-hidden="true">&laquo;</span>
+                                </Link>
 
-                            </Link>
+                            </li>
+                            <li class="page-item">
+                                <Link
+                                    className={`page-link ${IndexSty.restItem}`}
+                                    href={"?" +
+                                        new URLSearchParams(parseInt(restaurants.page) > 1
+                                            ?
+                                            `page=${parseInt(restaurants.page) - 1}`
+                                            :
+                                            'page=1').toString()}
+                                    aria-label="Previous"
+                                >
+                                    <span aria-hidden="true"><MdNavigateBefore /></span>
 
-                        </li>
-                        <li class="page-item">
-                            <Link
-                                className={`page-link ${IndexSty.restItem}`}
-                                href={"?" +
-                                    new URLSearchParams(parseInt(restaurants.page) > 1
-                                        ?
-                                        `page=${parseInt(restaurants.page) - 1}`
-                                        :
-                                        'page=1').toString()}
-                                aria-label="Previous"
-                            >
-                                <span aria-hidden="true">前一頁</span>
+                                </Link>
 
-                            </Link>
+                            </li>
 
-                        </li>
-
-                        {Array(5)
-                            .fill(1)
-                            .map((v, i) => {
-                                const p = restaurants.page - 2 + i;
-                                const query = { ...router.query };
-                                if (p < 1 || p > restaurants.totalPages) return;
-                                query.page = p;
-                                return (
-                                    <li
-                                        className={
-                                            `page-item ${IndexSty.restItem} ` + (p === restaurants.page ? "active" : "")
-                                        }
-                                        key={p}
-                                    >
-                                        <Link
-                                            className={`page-link ${IndexSty.restItem}`}
-                                            href={"?" + new URLSearchParams(query).toString()}
+                            {Array(5)
+                                .fill(1)
+                                .map((v, i) => {
+                                    const p = restaurants.page - 2 + i;
+                                    const query = { ...router.query };
+                                    if (p < 1 || p > restaurants.totalPages) return;
+                                    query.page = p;
+                                    return (
+                                        <li
+                                            className={
+                                                `page-item ${IndexSty.restItem} ` + (p === restaurants.page ? "active" : "")
+                                            }
+                                            key={p}
                                         >
-                                            {p}
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        <li class="page-item">
-                            <Link
-                                className={`page-link ${IndexSty.restItem}`}
-                                href={"?" +
-                                    new URLSearchParams(parseInt(restaurants.page) < restaurants.totalPages
-                                        ?
-                                        `page=${parseInt(restaurants.page) + 1}`
-                                        :
-                                        `page=${restaurants.totalPages}`).toString()}
-                                aria-label="Previous"
-                            >
-                                <span aria-hidden="true">下一頁</span>
+                                            <Link
+                                                className={`page-link ${IndexSty.restItem}`}
+                                                href={"?" + new URLSearchParams(query).toString()}
+                                            >
+                                                {p}
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
+                            <li class="page-item">
+                                <Link
+                                    className={`page-link ${IndexSty.restItem}`}
+                                    href={"?" +
+                                        new URLSearchParams(parseInt(restaurants.page) < restaurants.totalPages
+                                            ?
+                                            `page=${parseInt(restaurants.page) + 1}`
+                                            :
+                                            `page=${restaurants.totalPages}`).toString()}
+                                    aria-label="Previous"
+                                >
+                                    <span aria-hidden="true"><MdNavigateNext /></span>
 
-                            </Link>
+                                </Link>
 
-                        </li>
-                        <li class="page-item">
-                            <Link
-                                className={`page-link ${IndexSty.restItem}`}
-                                href={"?" + new URLSearchParams(`page=${restaurants.totalPages}`).toString()}
-                                aria-label="Next"
-                            >
-                                <span aria-hidden="true">&raquo;</span>
+                            </li>
+                            <li class="page-item">
+                                <Link
+                                    className={`page-link ${IndexSty.restItem}`}
+                                    href={"?" + new URLSearchParams(`page=${restaurants.totalPages}`).toString()}
+                                    aria-label="Next"
+                                >
+                                    <span aria-hidden="true">&raquo;</span>
 
-                            </Link>
+                                </Link>
 
-                        </li>
-                    </ul>
-                </nav>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
+
         </>
     )
 }

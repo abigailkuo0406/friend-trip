@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import AuthContext from '@/context/AuthContext'
 import Modal from '@/components/reserve/reserve-modal'
+import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
+
 
 
 
@@ -63,89 +65,93 @@ export default function Reserve() {
                 <p>無符合條件之餐廳</p>
             }
 
+            <div className="itin-card-pagination">
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <Link
-                            className="page-link"
-                            href={"?" + new URLSearchParams('page=1').toString()}
-                            aria-label="Previous"
-                        >
-                            <span aria-hidden="true">&laquo;</span>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <Link
+                                className="page-link"
+                                href={"?" + new URLSearchParams('page=1').toString()}
+                                aria-label="Previous"
+                            >
+                                <span aria-hidden="true">&laquo;</span>
 
-                        </Link>
+                            </Link>
 
-                    </li>
-                    <li class="page-item">
-                        <Link
-                            className="page-link"
-                            href={"?" +
-                                new URLSearchParams(parseInt(reserve.page) > 1
-                                    ?
-                                    `page=${parseInt(reserve.page) - 1}`
-                                    :
-                                    'page=1').toString()}
-                            aria-label="Previous"
-                        >
-                            <span aria-hidden="true">前一頁</span>
+                        </li>
+                        <li class="page-item">
+                            <Link
+                                className="page-link"
+                                href={"?" +
+                                    new URLSearchParams(parseInt(reserve.page) > 1
+                                        ?
+                                        `page=${parseInt(reserve.page) - 1}`
+                                        :
+                                        'page=1').toString()}
+                                aria-label="Previous"
+                            >
+                                <span aria-hidden="true"><MdNavigateBefore /></span>
 
-                        </Link>
 
-                    </li>
+                            </Link>
 
-                    {Array(5)
-                        .fill(1)
-                        .map((v, i) => {
-                            const p = reserve.page - 2 + i;
-                            const query = { ...router.query };
-                            if (p < 1 || p > reserve.totalPages) return;
-                            query.page = p;
-                            return (
-                                <li
-                                    className={
-                                        `page-item ` + (p === reserve.page ? "active" : "")
-                                    }
-                                    key={p}
-                                >
-                                    <Link
-                                        className="page-link"
-                                        href={"?" + new URLSearchParams(query).toString()}
+                        </li>
+
+                        {Array(5)
+                            .fill(1)
+                            .map((v, i) => {
+                                const p = reserve.page - 2 + i;
+                                const query = { ...router.query };
+                                if (p < 1 || p > reserve.totalPages) return;
+                                query.page = p;
+                                return (
+                                    <li
+                                        className={
+                                            `page-item ` + (p === reserve.page ? "active" : "")
+                                        }
+                                        key={p}
                                     >
-                                        {p}
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    <li class="page-item">
-                        <Link
-                            className="page-link"
-                            href={"?" +
-                                new URLSearchParams(parseInt(reserve.page) < reserve.totalPages
-                                    ?
-                                    `page=${parseInt(reserve.page) + 1}`
-                                    :
-                                    `page=${reserve.totalPages}`).toString()}
-                            aria-label="Previous"
-                        >
-                            <span aria-hidden="true">下一頁</span>
+                                        <Link
+                                            className="page-link"
+                                            href={"?" + new URLSearchParams(query).toString()}
+                                        >
+                                            {p}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        <li class="page-item">
+                            <Link
+                                className="page-link"
+                                href={"?" +
+                                    new URLSearchParams(parseInt(reserve.page) < reserve.totalPages
+                                        ?
+                                        `page=${parseInt(reserve.page) + 1}`
+                                        :
+                                        `page=${reserve.totalPages}`).toString()}
+                                aria-label="Previous"
+                            >
+                                <span aria-hidden="true"><MdNavigateNext /></span>
 
-                        </Link>
+                            </Link>
 
-                    </li>
-                    <li class="page-item">
-                        <Link
-                            className="page-link"
-                            href={"?" + new URLSearchParams(`page=${reserve.totalPages}`).toString()}
-                            aria-label="Next"
-                        >
-                            <span aria-hidden="true">&raquo;</span>
+                        </li>
+                        <li class="page-item">
+                            <Link
+                                className="page-link"
+                                href={"?" + new URLSearchParams(`page=${reserve.totalPages}`).toString()}
+                                aria-label="Next"
+                            >
+                                <span aria-hidden="true">&raquo;</span>
 
-                        </Link>
+                            </Link>
 
-                    </li>
-                </ul>
-            </nav>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
         </>
     )
 }
