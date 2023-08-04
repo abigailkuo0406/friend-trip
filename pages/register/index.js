@@ -8,20 +8,18 @@ export default function Register() {
     email: '',
     password: '',
     images: '',
-    // member_name: '',
     name: '',
-    member_birth: '',
-    id_number: '',
+    birth: '',
+    id: '',
     gender: '',
     location: '',
     height: '',
     weight: '',
-    height: '',
     zodiac: '',
     bloodtype: '',
     smoke: '',
     alchohol: '',
-    education_level: '',
+    education: '',
     job: '',
     profile: '',
     mobile: '',
@@ -40,9 +38,7 @@ export default function Register() {
         email: aaa.email,
         password: aaa.password,
         images: aaa.images,
-        // member_name: aaa.member_name,
         member_name: aaa.name,
-
         member_birth: aaa.birth,
         id_number: aaa.id,
         gender: aaa.gender,
@@ -65,20 +61,52 @@ export default function Register() {
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
-        if (data.success) {
-          const obj = { ...data.data }
-          localStorage.setItem('auth', JSON.stringify(obj))
-          setAuth(obj)
-          // alert('登入成功')
-          router.push('/')
-        } else {
-          alert(data.error || '帳密錯誤')
-        }
+        alert('註冊成功')
       })
   }
   useEffect(() => {
     console.log(aaa)
   }, [aaa])
+  const arr = [
+    'email',
+    'password',
+    'images',
+    'id_number',
+    'gender',
+    'location',
+    'height',
+    'weight',
+    'zodiac',
+    'bloodtype',
+    'smoke',
+    'alchohol',
+    'education_level',
+    'job',
+    'profile',
+    'mobile',
+  ]
+  const imgUpload = (e) => {
+    async function upload(formData) {
+      try {
+        const response = await (process.env.API_SERVER + '/register/add',
+        {
+          method: 'POST',
+          body: formData,
+        })
+        const result = await response.json()
+        console.log('Success:', result)
+      } catch (error) {
+        console.error('Error:', error)
+      }
+    }
+
+    const formData = new FormData()
+    for (let i = 0; i < arr.length; i++) {
+      formData.append(arr[i], aaa[arr[i]])
+      console.log(formData)
+    }
+    upload(formData)
+  }
 
   return (
     <>
@@ -87,13 +115,15 @@ export default function Register() {
           {page === 1 ? page1 : page2}
         </div>
       </form>
-      <BtnNormal
-        type="submit"
-        value="submit"
-        btnText="完成註冊"
-        addClassforButton="btn-dark"
-        onClick={add}
-      />
+      <div className="d-flex justify-content-center mt-5">
+        <BtnNormal
+          type="submit"
+          value="submit"
+          btnText="完成註冊"
+          addClassforButton="btn-dark"
+          onClick={add}
+        />
+      </div>
     </>
   )
 }
