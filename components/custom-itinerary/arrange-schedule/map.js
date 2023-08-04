@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api'
+import { GoogleMap, useLoadScript, Marker,DirectionsRenderer} from '@react-google-maps/api'
+
 
 // 在元件外部定義 libraries 陣列作為常數變數
 const libraries = ['places']
 
-export default function Map({ searchLngLat }) {
+export default function Map({ searchLngLat ,directions}) {
   
   //使用者當前位置
   const [currentPosition, setCurrentPosition] = useState(null)
@@ -15,31 +16,45 @@ export default function Map({ searchLngLat }) {
     lng: 0,
   })
 
-  // 初始載入執行getCurrentPosition
-  useEffect(() => {
-    //使用瀏覽器定位來取得位置
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        const initialPosition = {
-          lat: position.coords.latitude, //使用者所在位置的經緯度
-          lng: position.coords.longitude,
-        }
-        console.log('Inital Geolocation:', initialPosition)
-        setCenter(initialPosition) //地圖中心點
-        setCurrentPosition(initialPosition) //使用者目前位置
-      })
-    } else {
-      alert('瀏覽器不支援地理位置')
-    }
-  }, [])
+ // // 初始載入執行getCurrentPosition
+  // useEffect(() => {
+  //   //使用瀏覽器定位來取得位置
+  //   if (navigator.geolocation) {
+  //     navigator.geolocation.getCurrentPosition(function (position) {
+  //       const initialPosition = {
+  //         lat: position.coords.latitude, //使用者所在位置的經緯度
+  //         lng: position.coords.longitude,
+  //       }
+  //       // console.log('Inital Geolocation:', initialPosition)
+  //       setCenter(initialPosition) //地圖中心點
+  //       setCurrentPosition(initialPosition) //使用者目前位置
+  //     })
+  //   } else {
+  //     alert('瀏覽器不支援地理位置')
+  //   }
+  // }, [])
 
   // 更新地圖中心點，當 searchLngLat 變化時
   useEffect(() => {
     if (searchLngLat) {
       setCenter(searchLngLat)
-    }
-  }, [searchLngLat])
 
+    }else{
+      console.log('not lat lng')
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const initialPosition = {
+            lat: position.coords.latitude, //使用者所在位置的經緯度
+            lng: position.coords.longitude,
+          }
+          // console.log('Inital Geolocation:', initialPosition)
+          setCenter(initialPosition) //地圖中心點
+          setCurrentPosition(initialPosition) //使用者目前位置
+        })
+      } else {
+      alert('瀏覽器不支援地理位置')
+    } }
+  }, [searchLngLat])
   // 載入google map
   // isLoaded 為 true，代表成功載入API，將isLoaded存進Props 傳到需求google map API 的元件。
   const { isLoaded } = useLoadScript({
@@ -51,7 +66,8 @@ export default function Map({ searchLngLat }) {
   return (
     <>
       {/* {console.log('searchLngLat(map.js):', searchLngLat)} */}
-      <div className="map">
+      <div>
+      <div id="map1"></div>
         <div
           style={{
             display: 'flex',
@@ -67,13 +83,14 @@ export default function Map({ searchLngLat }) {
             center={center} // 設定地圖中心點
             mapContainerClassName="map"
             mapContainerStyle={{
-              width: '85vw',
+              width: '100%',
               height: '700px',
               margin: 'auto',
             }}
           >
             {/* 查詢地點marker */}
             {searchLngLat && <Marker position={searchLngLat} />}
+            {directions && <DirectionsRenderer directions={directions} />}
           </GoogleMap>
         </div>
       </div>

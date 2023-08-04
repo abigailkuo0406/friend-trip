@@ -28,11 +28,8 @@
         line-height: 100%
         border: none
         border-radius: 50%
-        &:hover
         &:focus
           box-shadow: none
-    .active
-      .page-link
     .pagination-icon
       padding-top: 0.34rem
 
@@ -79,8 +76,7 @@
                     transition: scale 300ms
                 &:hover
                     transform: scale(1.2)
-                &::after
-                    content:'153'
+                .cartNumber
                     font-size: 0.8rem
                     position: absolute
                     top: 0.2rem
@@ -162,7 +158,7 @@
       margin-right: 5%
   .productBrief
     cursor: default
-    color: var(--assist-gray)
+    color: var(--assist-grey)
     min-height: 4.5rem
     display: -webkit-box
     overflow: hidden
@@ -183,8 +179,12 @@
 
   .productAddCart 
     cursor: pointer
-    svg
-      color: var(--main-dark)
+    height: 100%
+    button
+      padding: 0
+      height: 100%
+      font-size: 1.4rem
+    
 .PidPageHeader
       width: 100%
       display: flex
@@ -214,8 +214,7 @@
                     transition: scale 300ms
                 &:hover
                     transform: scale(1.2)
-                &::after
-                    content:'153'
+                .cartNumber
                     font-size: 0.8rem
                     position: absolute
                     top: 0.2rem
@@ -323,20 +322,268 @@
   justify-content: space-between
   .order_left
     padding: 0 1.5rem
-    height: 500px
     width: 65%
   .order_right
-    padding: 0 1.5rem
-    height: 500px
+    padding: 0 2.5rem
     width: 35%
+    .order_rightHead
+      display: flex
+      align-items: flex-end
+      height: 2.5rem
+      .order_rightHead_logo
+        width:10rem
+        margin-right: 1rem
+        img
+          width: 100%
+          height: auto
+      .order_rightHead_title
+        p
+          margin: 0
+          color: var(--main-dark)
+    .checkingProdutList
+      width: 100%
+      thead
+        border-top: 1px solid var(--assist-lightgrey)
+        border-bottom: 1px solid var(--assist-lightgrey)
+        th
+          font-weight: normal
+          border-top: 1px solid var(--assist-lightgrey)
+          color: var(--assist-grey)
+          line-height: 2.5rem
+      tr
+        line-height: 4rem
+        color: var(--main)
+        border-bottom: 1px solid var(--assist-lightgrey)
+        p
+          margin: 0 0 1rem 0
+          line-height: normal
+          
+      .checkingProdutListName
+        display: flex
+        flex-direction: column
+        img
+          margin: 1rem 0 0.5rem 0
+          border-radius: 20px
+          height: 4rem
+          width: 4rem
+.checkingProdutTotal
+  display: flex
+  width: 100%
+  p
+    color: var(--assist-grey)
+  h4
+    color: var(--main-dark)
 .product_table
   width: 100%
   min-width: 100%
-
   thead
-    border-top: 1px solid var(--assist-gray)
-    border-bottom: 1px solid var(--assist-gray)
+    border-top: 1px solid var(--assist-lightgrey)
+    border-bottom: 1px solid var(--assist-lightgrey)
+    tr
+      width: 100%
     th
       font-weight: normal
-      border-top: 1px solid var(--assist-gray)
+      border-top: 1px solid var(--assist-lightgrey)
+      color: var(--assist-grey)
       line-height: 2.5rem
+    .product_th_check
+      width: 5%
+    .product_th_name
+      width: 25%
+    .product_th_price
+      width: 20%
+    .product_th_num
+      width: 5%
+    .product_th_total
+      width: 15%
+    .product_th_btn
+      width: 15%
+  .noItemCart
+    text-align: center
+    border: none
+    p
+      margin: 0
+      line-height: 8rem
+      font-style: italic
+  tbody
+    tr
+      border-bottom: 1px solid var(--assist-lightgrey)
+      td
+        color: var(--main-dark)
+    .product_td_check
+      label
+        // display: none
+    .product_td_img_name
+      .product_td_img
+        width: 4.5rem
+        img
+          width: 100%
+          height: auto
+          border-radius: 20px
+      .product_td_name
+        margin: 1rem 0 0 0
+        a
+          color: var(--main-dark)
+    .product_td_input
+      label
+        min-height: 24px
+        margin-bottom: 0.5rem
+      .input-error
+        font-size: 0.8rem
+    .product_td_btn
+      a
+        display: block
+        margin: 0.4rem 0
+      .cart-btn
+        padding: 0
+        
+.order_rightInfo
+  width: 100%
+  margin: 2rem 0
+  display: flex
+  flex-wrap: wrap
+  .order_rightInfoTitle
+    color: var(--assist-grey)
+    margin-right: 1rem
+  .order_rightInfoTotal
+    color: var(--main-dark)
+  .order_rightInfoSmall
+    color: var(--assist-grey)
+    width: 100%
+.order_rightAgree
+  .input-checkbox-section
+    width: 99%
+  .section-label
+    display: none
+  .radio-seciton
+    input
+      visibility: hidden
+      &::before
+          font-family: "Font Awesome 5 Free"
+          content:'\f111'
+          font-weight: 600
+          visibility: visible
+          color: var(--bg-light)
+      &:checked
+        &::before
+          font-family: "Font Awesome 5 Free"
+          content:'\f058'
+          font-weight: 600
+          visibility: visible
+          color: var(--main-dark)
+    .agree-policy-text
+      width: 100%
+      color: var(--assist-grey)
+      font-weight: 400
+
+      
+.order_rightButton
+  display: flex
+  button
+    &:first-child
+      margin-right:1.5rem
+  .order-btn
+    padding-right: 2.2rem
+    padding-left: 2.2rem
+
+.modalCartAdd
+  .modal-header
+    border: none
+    color: var(--assist-grey)
+    .modal-title
+      letter-spacing: 2px
+      .modal-title-point
+        color: var(--main-light)
+    .btn-close
+      position: absolute
+      top: 0
+      right: 0
+      background-color: var(--assist-lightgrey)
+      border-radius: 50%
+      opacity: 1
+      --bs-btn-close-color: green
+      &:hover
+        opacity: 1
+        background-color: var(--assist-white)
+  .modal-body
+    display: flex
+    .body-product-img
+      width: 40%
+      img
+        width: 10rem
+        height: 10rem
+    
+    .body-product-info
+      width: 60%
+.order_section
+  .order_left
+    form
+      .input-text-section
+        >div
+          display: flex
+      .input-member
+        width: 100%
+      .radio-seciton
+        .input-member
+          margin-left: 1rem
+        input
+          visibility: hidden
+          &::before
+              font-family: "Font Awesome 5 Free"
+              content:'\f111'
+              font-weight: 600
+              visibility: visible
+              color: var(--bg-light)
+          &:checked
+            &::before
+              font-family: "Font Awesome 5 Free"
+              content:'\f058'
+              font-weight: 600
+              visibility: visible
+              color: var(--main-dark)
+      .select-section
+        display: flex
+.collection_section
+  .order_left
+    width: 100%
+    .product_th_check
+    .product_th_name
+    .product_th_price
+    .product_th_brief
+    .product_th_btn
+    .collection_table
+      .productFavorit
+        cursor: pointer
+.payment-method
+  .payment-method-btn
+    display: flex
+    button
+      margin-right: 2rem
+.order_card_section
+  .order_left
+    width: 100%
+  .order-card
+    margin-bottom: 3rem
+    width: 100%
+    border-radius: 20px
+    >div
+      padding: 0.8rem 1.2rem
+    .order-card-header
+      display: flex
+      justify-content: space-between
+      align-items: center
+      border-radius: 20px 20px 0 0
+      background-color: var(--main-light)
+      color: var(--assist-white)
+      .order-card-header-id
+        display: flex
+    .order-card-body
+    .order-card-footer
+      background-color: var(--main-light)
+      border-radius: 0 0 20px 20px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      .order-card-total-price
+        color: var(--assist-white)
+      .order-card-btn

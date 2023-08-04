@@ -1,0 +1,22 @@
+.productCard {
+  height: 25rem;
+  border: none;
+}
+.productCardImg {
+  height: 13rem;
+  overflow: hidden;
+  object-fit: cover;
+}
+.productCardBody {
+  padding: 1rem 1.2rem;
+}
+.productName {
+  color: var(--main-dark);
+}
+.productBrief {
+  color: var(--assist-gray);
+}
+.cardBottom {
+  width: 100%;
+  background-color: bisque;
+}

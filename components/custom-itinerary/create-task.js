@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Router, useRouter } from 'next/router'
 import Link from 'next/link'
 import styles from './create-task.module.css'
 import Image from 'next/image'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { TbPhotoPlus } from 'react-icons/tb'
+import Swal from 'sweetalert2'
 import InputText from '../common/input/input-text'
 import AreaText from '../common/input/textarea'
 import InputRadio from '../common/input/input-radio-group'
@@ -12,8 +13,12 @@ import InputNumber from '../common/input/input-number'
 import BtnNormal from '../common/button/btn-normal'
 import ImageItemPpreview from './image-item-preview'
 import InputDate from '../common/input/input-date'
+import AuthContext from '@/context/AuthContext'
 
 export default function CreateTask() {
+  //取得登入之會員資料
+  const { auth } = useContext(AuthContext)
+
   const router = useRouter()
   // 追蹤是否觸發了已經提交操作
   const [submitted, setSubmitted] = useState(false)
@@ -24,7 +29,7 @@ export default function CreateTask() {
   const [inputSubject, setInputSubject] = useState('')
 
   const [inputDateValue, setInputDateVlaue] = useState('')
-  const [inputDate, setInputDate] = useState('')
+  // const [inputDate, setInputDate] = useState('')
 
   const [inputDescriptionValue, setInputDescriptionValue] = useState('')
   const [inputDescription, setInputDescription] = useState('')
@@ -42,14 +47,18 @@ export default function CreateTask() {
   //上傳照片
   const [file, setFiles] = useState(null)
 
-
   //除錯用
   const [error8, setError8] = useState(false)
   const [errorTracker8, setErrorTracker8] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    setSubmitted(true) // 更改追蹤是否提交的狀態，用於 <form> 內除錯
+    setSubmitted(true)
+    //新增成功呈現alert
+    // if (handleSubmit) {
+    //   alert('新增成功')
+    // }
+    // 更改追蹤是否提交的狀態，用於 <form> 內除錯
     setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
     if (error8 == true) {
       var moveTo = document.getElementById(errorTracker8)
@@ -59,21 +68,43 @@ export default function CreateTask() {
     }
     //點選建立後3秒後跳轉
     setTimeout(() => {
+      if (handleSubmit) {
+        Swal.fire({
+          width: 400,
+          text: '建立行程成功',
+          icon: 'success',
+          iconColor: '#FABCBF',
+          color: '#674C87',
+          confirmButtonColor: '#674C87',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      }
       router.push('/custom-itinerary/arrange-schedule')
-    }, 3000)
-
-    // console.log('行程名稱：', inputSubjectValue)
-    // console.log('出發日期：',inputDateValue)
-    // console.log('說明：',inputDescriptionValue)
-    // console.log('是否公開？',publicLabel+ ' ，value 為：',
-    // publicValue + ' ，name 為：',
-    // publicName)
-    // console.log('人數：',peopleNumValue)
-    // console.log('備註：',inputNoteValue)
+    }, 2000)
 
     const formData = new FormData(document.getElementById('createInit'))
 
-    // API串接
+    if (formData.get('coverPhoto') != '') {
+      const imgData = new FormData() //建立一個新的空的formdata物件
+      imgData.set('coverPhoto', formData.get('coverPhoto')) //將選擇的檔案(input)加入到imgData，get(input中設定name)
+      
+      fetch('http://localhost:3002/try-preview', {
+        method: 'POST',
+        body: imgData,
+      })
+        .then((r) => r.json())
+        .then((data) => {
+          console.log(data)
+        })
+    }
+
+    // console.log('formData::', formData.get('coverPhoto'))
+    formData.set('coverPhoto', formData.get('coverPhoto').name)
+    console.log('new coverPhoto.name:', formData.get('coverPhoto'))
+    console.log('formData=>', formData)
+
+    // API串接(表單)
     fetch('http://localhost:3002/custom-itinerary', {
       method: 'POST',
       body: formData,
@@ -89,23 +120,39 @@ export default function CreateTask() {
     router.push('/ ')
   }
 
-  
+  //   const handleClick=()=>{
+  //     Swal.fire({
+  //       width: 400,
+  //       text: '建立行程成功',
+  //       icon: 'success',
+  //       iconColor:'#FABCBF',
+  //       color: '#674C87',
+  //       confirmButtonColor: '#674C87',
+  //       showConfirmButton: false,
+  //       timer: 1500
+
+  //      } )
+  // }
+
   return (
     <>
+      {/* <button onClick={handleClick}> alart! </button> */}
       <article className="blog-post">
-        <form onSubmit={handleSubmit} id="createInit" name="add">
+        <form onSubmit={handleSubmit} id="createInit">
+          <input name="itin_member_id" defaultValue={auth.member_id} hidden />
           <div className={`${styles.coverTitle}`}>
-            <Link className={styles.link} href="/custom-itinerary">
+            <Link className={styles.link} href="/member/itinerary">
               <FaArrowLeftLong />
             </Link>
             <h3 className={styles.h3}>新增行程</h3>
           </div>
-          <div>
-            <label className={` ${styles.label}`}>旅程封面圖片</label>
-            <ImageItemPpreview />
-          </div>
           {/* 表格 */}
           <div className={styles.formbody}>
+            <div>
+              <label className={` ${styles.label}`}>旅程封面圖片</label>
+              <ImageItemPpreview name="coverPhoto" />
+            </div>
+
             <div className="container ">
               <InputText
                 id="inputSubject"
@@ -125,8 +172,6 @@ export default function CreateTask() {
                 label="出發日期"
                 width="input-width-10rem"
                 value={inputDateValue}
-                // getvalue={setInputDateVlaue}
-                // getname={setInputDate}
               ></InputDate>
 
               <AreaText
@@ -146,7 +191,7 @@ export default function CreateTask() {
                 name="public"
                 // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
                 idGroup={['PublicID', 'nonPublicID']} // 個別 radio 的 ID
-                valueGroup={['publicValue', 'nonPublicValue']} // 個別 radio 的 name
+                valueGroup={['公開', '不公開']} // 個別 radio 的 name
                 labelGroup={['公開', '不公開']} // 個別標籤
                 defaultChecked="publicValue"
                 getValue={setPublicValue}

@@ -72,3 +72,9 @@
 .init{
     padding: 0px;
 }
+.error{
+    border-color: red;
+}
+.right{
+    border-color: rgb(36, 205, 36);
+}

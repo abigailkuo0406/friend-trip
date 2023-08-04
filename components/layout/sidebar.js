@@ -15,9 +15,8 @@ export default function Sidebar() {
               style={{
               width: `100%`,
               height: `auto`,
-                
               }}
-              alt="persona"
+              
             ></Image>
           </div>
           <div id="User-Info">
@@ -56,7 +55,7 @@ export default function Sidebar() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <a className="nav-link" href="/member/itinerary">
                       行程
                     </a>
                   </li>

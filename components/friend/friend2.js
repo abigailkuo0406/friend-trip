@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import styles from './friend2.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
-export default function Friend() {
+import AuthContext from '@/context/AuthContext' // 會員 context 取用
+export default function Friend2({ setPage, memberInfo }) {
+  const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
   return (
     <>
       <div className={styles.main}>
@@ -14,54 +16,59 @@ export default function Friend() {
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">身高</label>
-              <p>180</p>
+              <p>{memberInfo.height}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">體重</label>
-              <p className={styles.p}>hjhjhjhj@gmail.jlkjl</p>
+              <p className={styles.p}>{memberInfo.weight}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">星座</label>
-              <p className={styles.p}>jk;jjhhjhjjjhk</p>
+              <p className={styles.p}>{memberInfo.zodiac}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">血型</label>
-              <p className={styles.p}>王大明</p>
+              <p className={styles.p}>{memberInfo.bloodtype}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">抽菸</label>
-              <p className={styles.p}>2000/02/02</p>
+              <p className={styles.p}>{memberInfo.smoke}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">酒精</label>
-              <p className={styles.p}>asfjhjhfdf</p>
+              <p className={styles.p}>{memberInfo.alchohol}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">教育程度</label>
-              <p className={styles.p}>女</p>
+              <p className={styles.p}>{memberInfo.education_level}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">工作</label>
-              <p className={styles.p}>台北市</p>
+              <p className={styles.p}>{memberInfo.job}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">自我介紹</label>
-              <p className={styles.p}>chinese lorem 100</p>
+              <p className={styles.p}>{memberInfo.profile}</p>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">手機號碼</label>
-              <p className={styles.p}>台北市</p>
+              <p className={styles.p}>{memberInfo.mobile}</p>
             </div>
             <div className="d-flex justify-content-end gap-3">
-              <BtnNormal
-                btnText="修改"
-                addClassforButton={`btn-dark ${styles.btnsize}`}
-              />
+              <a href="http://localhost:3000/member/account">
+                <BtnNormal
+                  btnText="修改"
+                  addClassforButton={`btn-dark ${styles.btnsize}`}
+                />
+              </a>
               <BtnNormal
                 type="button"
                 value="button"
                 btnText="上一頁"
                 addClassforButton={`btn-dark ${styles.btnsize}`}
+                onClick={() => {
+                  setPage(1)
+                }}
               />
             </div>
           </div>
