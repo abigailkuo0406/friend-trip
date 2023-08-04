@@ -44,7 +44,6 @@ const AddPost = () => {
       <form onSubmit={handleSubmit}>
         <div className="bg-light mt-4 p-5 rounded-5">
           <div className={`h4 ${styles.fontStyle1}`}>文章內容</div>
-          {/* <div className={`p-2 ${styles.fontStyle1}`}>* 文章內容</div> */}
           <textarea
             className="form-control"
             placeholder="在此輸入..."
