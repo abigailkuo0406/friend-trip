@@ -1,3 +1,4 @@
+import Link from "next/link"
 export default function SidebarNavigation() {
   return (
     <>
@@ -8,24 +9,25 @@ export default function SidebarNavigation() {
               <div className="" id="navbarNav">
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/'>
                       聊天室
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/member/itinerary'>
                       行程
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/member/reserve'>
                       訂位
-                    </a>
+                    </Link>
+
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/member/post'>
                       文章
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-item dropdown">
                     <a
@@ -49,6 +51,7 @@ export default function SidebarNavigation() {
                         </a>
                       </li>
                       <li>
+
                         <a className="dropdown-item" href="#">
                           歷史訂單
                         </a>
@@ -57,9 +60,10 @@ export default function SidebarNavigation() {
                   </li>
 
                   <li className="nav-item">
-                    <a className="nav-link" href="#">
+                    <Link className="nav-link active" aria-current="page" href='/member'>
                       帳戶
-                    </a>
+                    </Link>
+
                   </li>
                 </ul>
               </div>
