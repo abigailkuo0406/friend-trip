@@ -1,40 +1,33 @@
 import { useEffect, useState } from 'react'
-import CustomItineraryIndex from '@/components/custom-itinerary'
-import HistotyCard from '@/components/custom-itinerary/histoty-card'
-import AdminLayout from '@/components/layout/admin-layout'
-// import data from '@/data/custom-itinerary/itinerary.json'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+import AdminLayout from '@/components/layout/admin-layout'
+import CustomItineraryIndex from '@/components/custom-itinerary'
+import HistoryCard from '@/components/custom-itinerary/history-card'
 // import PageBtn from '@/components/custom-itinerary/page-btn'
 
 export default function ItineraryIndex() {
-  
+  const [filteredTripsData, setFilteredTripsData] = useState([])
   const router = useRouter()
-  // console.log(router)
   const [data, setData] = useState({
     redirect: '',
     totalRows: 0,
-    perPage: 5,
+    perPage: 4,
     totalPages: 0,
     page: 1,
     rows: [],
   })
-  const[isPublicClicked,setIsPublicClicked]=useState(false)
-  const [filteredTripsData, setFilteredTripsData]=useState([])
+
   //讀取資料庫
   useEffect(() => {
     const usp = new URLSearchParams(router.query)
     // API串接
-    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}`, {
-      method: 'GET',
-    })
+    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}`)
       .then((r) => r.json())
       .then((data) => {
         setData(data)
-        setFilteredTripsData(data.rows)
       })
   }, [router.query])
-
 
   // 刪除行程
   const handleDelete = (itin_id) => {
@@ -44,36 +37,53 @@ export default function ItineraryIndex() {
       .then((response) => response.json())
       .then((data) => {
         console.log('刪除成功:', data)
-        window.location.reload()
       })
       .catch((error) => {
         console.error('刪除時發生錯誤:', error)
-      },[router.query])
+      })
   }
 
-const handlePublicTripsClick=()=>{
-  setIsPublicClicked(true)
-  const publicTrips=data.rows.filter((trip)=>trip.public=='公開')
-  setFilteredTripsData(publicTrips)
-  
-}
+  //公開行程filter
+  const handlePublicTripsClick = () => {
+    const publicTrips = data.rows.filter((trip) => trip.public === '公開')
+    setFilteredTripsData(publicTrips)
+    setData((prevData)=>({
+      ...prevData,
+      totalRows:publicTrips.length,
+      totalPages:Math.ceil(publicTrips.length/data.perPage),
+      rows: publicTrips,
+    }))
+  }
 
-const handleAllTripsClick=()=>{
-  setFilteredTripsData(data.rows)
-  setIsPublicClicked(false)
-}
+
+  //不公開行程filter
+  const handlePrivateTripsClick = () => {
+    const filterPrivate = data.rows.filter((trip) => trip.public === '不公開')
+    setFilteredTripsData(filterPrivate)
+    setData((prevData)=>({
+      ...prevData,
+      totalRows:filterPrivate.length,
+      totalPages:Math.ceil(filterPrivate.length/prevData.perPage),
+      rows: filterPrivate,
+    }))
+  }
+
+  const handleAllTripsClick = () => {
+    setFilteredTripsData([])
+  }
 
   return (
     <>
-
       <CustomItineraryIndex 
-        publicClick={handlePublicTripsClick}
-        allClick={handleAllTripsClick}
-      />
+      privateClick={handlePrivateTripsClick}
+      publicClick={handlePublicTripsClick}
+      allClick={handleAllTripsClick}
+       />
+     
       {data.rows.map((v, i) => {
         return (
           <div key={i}>
-            <HistotyCard
+            <HistoryCard
               coverPhoto={v.coverPhoto}
               name={v.name}
               public={v.public}
@@ -81,16 +91,14 @@ const handleAllTripsClick=()=>{
               date={v.date}
               itin_id={v.itin_id}
               onDelete={() => handleDelete(v.itin_id)}
+              onChange={()=>changeLocalStorage(v.itin_id)}
             />
           </div>
         )
       })}
-
-      {/* 分頁 */}
-      {/* 上一頁 */}
-      <div className="row">
-        <div className="col">
-          <nav aria-label="Page navigation example">
+      <div>
+        <div className="itin-card-pagination">
+          <nav aria-label="Page navigation">
             <ul className="pagination">
               <li className="page-item">
                 <Link
@@ -109,7 +117,7 @@ const handleAllTripsClick=()=>{
                 </Link>
               </li>
               {/* 顯示頁碼 */}
-              {Array(5)
+              {Array(4)
                 .fill(1)
                 .map((v, i) => {
                   const p = data.page - 2 + i

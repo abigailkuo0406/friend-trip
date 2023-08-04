@@ -5,9 +5,9 @@ import { BsStarHalf, BsStarFill } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
 import { AiOutlineDelete } from 'react-icons/ai'
 
+
 export default function InitCard({ selectedViews,onDeleteViews,photoUrl}) {
 
-  console.log('selectedViews===============', selectedViews)
 
   const handleDeleteView = (index,viewName) => {
     const isConfirmed=window.confirm(`確定要刪除 "${viewName}"嗎？`)
@@ -51,6 +51,7 @@ export default function InitCard({ selectedViews,onDeleteViews,photoUrl}) {
           )
         })}
       </ol>
+
     </>
   )
 }

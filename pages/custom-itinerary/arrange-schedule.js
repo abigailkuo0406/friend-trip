@@ -15,42 +15,32 @@ import Script from 'next/script'
 
 export default function ArrangeSchedule() {
   const [showSchedule, setShowSchedule] = useState(true)
-  const [showSearchView, setShowSearchView] = useState(false)
-  // const [addToSchedule, setAddToSchedule] = useState(false)
   const [inputValue, setInputValue] = useState('')
-
   const autocompleteRef = useRef(null)
   const [searchLngLat, setSearchLngLat] = useState(null) //查詢地點marker
   const [directions, setDirections] = useState(null)
-
-  // const [selectedLocations, setSelectedLocations] = useState([])
 
   // 存儲選擇的景點資訊
   const [selectedView, setSelectedView] = useState(null)
 
   //定義存取多個景點陣列狀態
   const [addInitLocal, setAddInitLocal] = useState([])
+
   //定義照片的狀態
   const [photoUrl, setPhotoUrl] = useState('')
 
   // 新增行程按鈕切換
   const handleAddScenery = () => {
     setShowSchedule(false)
+    setDirections(null)
   }
 
+  // 加入行程按鈕切換
   const handleAddToSchedule = () => {
     setShowSchedule(true)
-    console.log('handleAddToSchedule selectedView=>', selectedView)
-    setSelectedView(selectedView)
-    // setPhotoUrl(photoUrl)
-    // console.log('handleAddToSchedule photoUrl', setPhotoUrl)
-
-    // const setNewLocals = () => {
-    //   //塞資料進去
-    //   localStorage.setItem('selectedView', JSON.stringify('selectedView'))
-    //   localStorage.setItem('font', 'xxxxxx')
-    console.log('selectedViewlocal=====', selectedView)
-    // }
+    //setSelectedView(selectedView)
+    setSelectedView(null)
+    setSearchLngLat(null)
   }
 
   const handleInputChange = (e) => {
@@ -74,8 +64,8 @@ export default function ArrangeSchedule() {
     setSearchLngLat(viewPosition)
     setCenter(viewPosition)
 
-    // console.log('地點資訊:', place)
-
+    // console.log('place',place)
+    //->檢查lat lng有沒有更改
     //景點詳細資料
     const selectedView = {
       place_id: place.place_id,
@@ -87,19 +77,44 @@ export default function ArrangeSchedule() {
         place.formatted_phone_number && place.formatted_phone_number,
       rating: place.rating && place.rating,
       lng: (
-        (place.geometry.viewport.Ha.lo + place.geometry.viewport.Ha.hi) /
+        (place.geometry.viewport.Ga.lo + place.geometry.viewport.Ga.hi) /
         2
       ).toFixed(4),
       lat: (
-        (place.geometry.viewport.Va.lo + place.geometry.viewport.Va.hi) /
+        (place.geometry.viewport.Ua.lo + place.geometry.viewport.Ua.hi) /
         2
       ).toFixed(4),
     }
-    console.log('selectedView父層=====>', selectedView)
 
-    console.log('place_id=>', selectedView.place_id)
-    // const PlacesService =await google.maps.importLibrary('places')
-    // const placesService = new window.google.maps.places.PlacesService(Map);
+    //place details 取得照片
+    // const PlacesService = new google.maps.places.PlacesService(map1)
+
+    // PlacesService.getDetails(
+    //   {
+    //     placeId: selectedView.place_id,
+    //   },
+    //   (place, status) => {
+    //     if (status === google.maps.places.PlacesServiceStatus.OK) {
+    //       // console.log('Object.keys=====>' + Object.keys(place.photos))
+    //       // console.log('obj.key()>>:' + Object.keys(place.photos[0]))
+    //       //取得照片網址=>Object.keys(place.photos[0])
+    //       showPlacePhotos(place)
+    //       // 將景點資訊、照片URL和名稱存入一個物件中
+    //     const viewInfo = {
+    //       ...selectedView,
+    //       photoUrl: photoUrl,
+    //     }
+    //     console.log('viewInfo',viewInfo)
+    //     // 將該物件加入到addInitLocal陣列中
+    //     setAddInitLocal((prevAddInitResults) => [
+    //       ...prevAddInitResults,
+    //       viewInfo,
+    //     ])
+    //     } else {
+    //       console.error('錯誤的狀態')
+    //     }
+    //   }
+    // )
 
     //place details 取得照片
     const PlacesService = new google.maps.places.PlacesService(map1)
@@ -110,27 +125,39 @@ export default function ArrangeSchedule() {
       },
       (place, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          console.log('placed=>', place)
-          console.log('Object.keys=====>' + Object.keys(place.photos))
-          console.log('obj.key()>>:' + Object.keys(place.photos[0]))
-          //取得照片網址=>Object.keys(place.photos[0])
+          const photoUrl =
+            place.photos && place.photos.length > 0
+              ? place.photos[0].getUrl()
+              : ''
 
-          console.log('place.getUrl[0] :' + place.photos[0].getUrl())
-          showPlacePhotos(place)
+          showPlacePhotos(place, selectedView) // 傳入照片 URL
+
+          // 將景點資訊、照片URL和名稱存入一個物件中
+          const viewInfo = {
+            ...selectedView,
+            photo_url: selectedView.name+'.jpg', // 使用新的變數
+          }
+          // console.log('viewInfo', viewInfo)
+          //將加入行程的景點存為新的陣列
+          // 將 viewInfo 加入到 addInitLocal 陣列中
+          setAddInitLocal((prevAddInitResults) => [
+            ...prevAddInitResults,
+            viewInfo,
+          ])
         } else {
           console.error('錯誤的狀態')
         }
       }
     )
 
-    function showPlacePhotos(place) {
-      // const placePhotosDiv = document.getElementById('placeDetails');
-      // placePhotosDiv.innerHTML = ''; // 清空先前的內容
-
+    //取得照片設定格式及擺放位置
+    function showPlacePhotos(place, selectedView) {
       if (place.photos && place.photos.length > 0) {
         const photoUrl = place.photos[0].getUrl()
+        const photoName = selectedView.name
         const placePhotosDiv = document.getElementById('placeDetails')
         const imageElement = document.createElement(`img`)
+        console.log('place.photo==>', place)
         imageElement.src = photoUrl
         imageElement.alt = 'Photo 1'
         imageElement.style.width = '300px'
@@ -138,53 +165,101 @@ export default function ArrangeSchedule() {
         placePhotosDiv.innerHTML = '' // 清空先前的内容
         placePhotosDiv.appendChild(imageElement)
 
-        // setSelectedView((prevSelectedView)=>({
-        //   ...prevSelectedView,
-        //   photoUrl:imageElement.src
-        // }))
-        // console.log("photoUrl prop in ArrangeSchedule:", placePhotosDiv.appendChild(imageElement))
+        uploadPhotoToServer(photoUrl, photoName)
+      } else {
+        localStorage.removeItem('photoUrl')
       }
+    }
+      //將搜尋到照片存入後端
+    function uploadPhotoToServer(photoUrl, photoName) {
+      // 使用fetch API將照片發送到後端
+      fetch(`http://localhost:3002/upload-viewPhoto`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ photoUrl: photoUrl, photoName: photoName }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Photo upload successful:', data)
+        })
+        .catch((error) => {
+          console.log('Error uploading photo:', error)
+        })
     }
 
     // 將選擇的景點資訊存儲在狀態中
     setSelectedView(selectedView)
 
     //將加入行程的景點存為新的陣列
-    setAddInitLocal((prevAddInitResults) => [
-      ...prevAddInitResults,
-      selectedView,
-    ])
-    // console.log('setAddInitLocal=====', selectedView)
+    // setAddInitLocal((prevAddInitResults) => [
+    //   ...prevAddInitResults,
+    //   {...selectedView,
+    //     photoUrl: photoUrl,
+    // }])
   }
 
-  //當 addInitLocal 陣列改變時，將其存儲到 localStorage 中
+  // 當 addInitLocal 陣列改變時，將其存儲到 localStorage 中
   useEffect(() => {
-    if(addInitLocal.length>0){
-      localStorage.setItem('addInitLocal', JSON.stringify(addInitLocal))
-    }
+    localStorage.setItem('addInitLocal', JSON.stringify(addInitLocal))
+    console.log('addInitLocal======', addInitLocal)
   }, [addInitLocal])
-  console.log('addInitLocal======', addInitLocal)
 
-  //設定要存進給db資料(save)
+  //設定要存取到後端的狀態
   const [dataFromLocalStorage, setDataFromLocalStorage] = useState([])
-  const [saveDataInProgress, setSaveDataInProgress] = useState(false)
+  // const[itinId,setItinId]=useState('')
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('addInitLocal'))
     setDataFromLocalStorage(data || [])
+    console.log('Data from localStorage:', addInitLocal)
   }, [addInitLocal])
-  console.log('Data from localStorage:', dataFromLocalStorage)
 
+  //編輯api
+  useEffect(() => {
+    // console.log('Get schedule')
+    const storedData = localStorage.getItem('schedule_info')
+    const parsedData = JSON.parse(storedData)
+    const itinId = parsedData ? parsedData.itin_member : ''
+    // 設定預設值為空字串
+    // API串接
+    fetch(`http://localhost:3002/save-view/edit?itin_member=${itinId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+        localStorage.setItem('addInitLocal', JSON.stringify(data))
+        const parse_data = data
+        console.log('[]:', parse_data)
+        setAddInitLocal(parse_data)
+        console.log('test addInitLocal==>', addInitLocal)
+      })
+  }, [])
+
+  //行程儲存到後端 saveData=>onClick
   const saveData = () => {
-    console.log('dataFromLocalStorage:', JSON.stringify(dataFromLocalStorage))
+    const storedData = localStorage.getItem('schedule_info')
+    const parsedData = JSON.parse(storedData)
+    const itinId = parsedData.itin_member
+    //景點行程順序
+    const dataWithOrder = dataFromLocalStorage.map((item, index) => ({
+      ...item,
+      itin_order: index,
+      itin_id: itinId,
+    }))
+    console.log('dataFromLocalStorage123:', JSON.stringify(dataWithOrder))
 
-    // API串接(行程寫進db)
+    // console.log('storedData123',storedData)
+    // console.log('parsedData123',parsedData)
+    // console.log('itinId123',itinId)
+
+    // 景點行程API串接(行程寫進db)
     fetch('http://localhost:3002/save-view', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(dataFromLocalStorage),
+      body: JSON.stringify(dataWithOrder),
     })
       .then((r) => r.json())
       .then((data) => {
@@ -195,32 +270,6 @@ export default function ArrangeSchedule() {
       })
   }
 
-  // const saveData=()=>{
-  //  if(!saveDataInProgress){
-  //   console.log('dataFromLocalStorage:', JSON.stringify(dataFromLocalStorage))
-
-  // // API串接(行程寫進db)
-  // fetch('http://localhost:3002/save-view', {
-  //   method: 'POST',
-  //   headers:{
-  //     'Content-Type':'application/json',
-  //   },
-  //   body: JSON.stringify(dataFromLocalStorage)
-  // })
-  //   .then((r) => r.json())
-  //   .then((data) => {
-  //     console.log('資料已成功送到資料庫:', data);
-  //   })
-  //   .catch((error)=>{
-  //     console.log('發生錯誤，行程未送成功到資料庫',error)
-  //   })
-  //   .finally(()=>{
-  //     setSaveDataInProgress(false)
-  //   })
-  //   setSaveDataInProgress(true)
-  // }
-  // }
-
   //  刪除景點
   const handleDeleteView = (index) => {
     const updatedViews = [...addInitLocal]
@@ -228,11 +277,64 @@ export default function ArrangeSchedule() {
     setAddInitLocal(updatedViews)
   }
 
+  //   const [routeReady, setRouteReady] = useState(false)
+
+  // useEffect(()=>{
+  //   showRoute()
+  // },[addInitLocal])
+
+  //路線規劃
+  const showRoute = () => {
+    console.log('SHOW ROUTE')
+
+    const directionsService = new google.maps.DirectionsService()
+    const intial = new google.maps.LatLng(
+      addInitLocal[0].lat,
+      addInitLocal[0].lng
+    )
+    console.log('intial', addInitLocal[0].lat, addInitLocal[0].lng)
+
+    const waypoints = addInitLocal.slice(1, -1).map((item) => ({
+      location: new google.maps.LatLng(item.lat, item.lng),
+      stopover: true,
+    }))
+
+    console.log(addInitLocal.slice(1, -1))
+    console.log('waypoints', waypoints)
+    const final = new google.maps.LatLng(
+      addInitLocal[addInitLocal.length - 1].lat,
+      addInitLocal[addInitLocal.length - 1].lng
+    )
+
+    console.log(
+      'final',
+      addInitLocal[addInitLocal.length - 1].lat,
+      addInitLocal[addInitLocal.length - 1].lng
+    )
+
+    directionsService.route(
+      {
+        origin: intial,
+        destination: final, // destination
+        waypoints: waypoints, // 中間路過
+        travelMode: 'WALKING',
+        avoidTolls: true, //避免收費站
+      },
+      (response, status) => {
+        if (status === 'OK') {
+          console.log('directionsService is ok')
+          console.log('response : ', response)
+          setDirections(response)
+        } else {
+          console.log('not')
+        }
+      }
+    )
+  }
+
   return (
     <>
-      {/*  */}
       <Head>
-        {/* {console.log('searchLngLat:',searchLngLat)} */}
         <Script src="https://maps.googleapis.com/maps/api/js?key=process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=places" />
       </Head>
       {showSchedule ? (
@@ -241,6 +343,7 @@ export default function ArrangeSchedule() {
           selectedView={addInitLocal}
           onDeleteView={handleDeleteView}
           onSaveClick={saveData}
+          onShowRoute={showRoute}
         />
       ) : (
         <Autocomplete
@@ -273,10 +376,8 @@ export default function ArrangeSchedule() {
           />
         </Autocomplete>
       )}
-      {/* {console.log('Initial showSchedule:', showSchedule)}
-      {console.log('Initial ShowSearchView:', showSearchView)} */}
 
-      <Map searchLngLat={searchLngLat} />
+      <Map searchLngLat={searchLngLat} directions={directions} />
     </>
   )
 }
