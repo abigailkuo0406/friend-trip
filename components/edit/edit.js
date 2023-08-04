@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import InputText from '@/components/common/input/input-text-flex'
 import styles from './edit.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
 import { useRouter } from 'next/router'
 import App from '@/components/edit/imgupload'
+import Image from 'next/image'
+import AuthContext from '@/context/AuthContext'
 export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
+  const { auth, setAuth } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -102,7 +105,15 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>照片</h5>
-            <App aaa={aaa} />
+            {auth.member_id === ' ' ? (
+              <Image
+                src={`http://localhost:3002/img/${auth.images}.png`}
+                width={100}
+                height={100}
+              />
+            ) : (
+              <App aaa={aaa} />
+            )}
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>

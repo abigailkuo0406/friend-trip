@@ -198,7 +198,9 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               labelGroup={['有', '沒有']} // 個別標籤
               checked="有" // 預設勾選，需填入 value，只能擇一
               value={aaa.smoke}
-              getValue={setSmoke}
+              getValue={(value) => {
+                setAaa({ ...aaa, smoke: value })
+              }}
               getName={setSmokeName}
               getLabel={setSmokeLabel}
               addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class
@@ -216,7 +218,9 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               labelGroup={['滴酒不沾', '小酌', '酒豪']} // 個別標籤
               checked="滴酒不沾" // 預設勾選，需填入 value，只能擇一
               value={aaa.alchohol}
-              getValue={setAlchohol}
+              getValue={(value) => {
+                setAaa({ ...aaa, alchohol: value })
+              }}
               getName={setAlchoholName}
               getLabel={setAlchoholLabel}
               addClassforTitleLabel="classTest1 d-flex justify-contents-center align-items-center" // 如果要在標題 label 添加 class

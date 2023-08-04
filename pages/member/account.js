@@ -32,37 +32,17 @@ export default function EditHome() {
 
   const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
   const [memberInfo, setMemberInfo] = useState()
-  const page1 = (
-    <Edit
-      key={memberInfo ? 'edit' : 'aaa'}
-      setPage={setPage}
-      setAaa={setAaa}
-      aaa={aaa}
-      memberInfo={memberInfo}
-    />
-  )
-  const page2 = (
-    <Edit2
-      key={memberInfo ? 'edit' : 'aaa'}
-      setPage={setPage}
-      setAaa={setAaa}
-      aaa={aaa}
-      memberInfo={memberInfo}
-    />
-  )
-  console.log(page)
   const edit = (e) => {
     e.preventDefault()
     console.log('5555', aaa)
     fetch(process.env.API_SERVER + '/edit', {
       method: 'POST',
       body: JSON.stringify({
+        memberID: auth.member_id,
         email: aaa.email,
         password: aaa.password,
-        images: aaa.img,
-        // member_name: aaa.member_name,
+        images: aaa.images,
         member_name: aaa.name,
-
         member_birth: aaa.birth,
         id_number: aaa.id,
         gender: aaa.gender,
@@ -85,8 +65,29 @@ export default function EditHome() {
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
+        alert('修改成功')
       })
   }
+  const page1 = (
+    <Edit
+      key={memberInfo ? 'edit' : 'aaa'}
+      setPage={setPage}
+      setAaa={setAaa}
+      aaa={aaa}
+      memberInfo={memberInfo}
+    />
+  )
+  const page2 = (
+    <Edit2
+      key={memberInfo ? 'edit' : 'aaa'}
+      setPage={setPage}
+      setAaa={setAaa}
+      aaa={aaa}
+      memberInfo={memberInfo}
+    />
+  )
+  console.log(page)
+
   useEffect(() => {
     console.log(aaa)
   }, [aaa])
