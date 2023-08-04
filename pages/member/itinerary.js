@@ -7,6 +7,7 @@ import HistoryCard from '@/components/custom-itinerary/history-card'
 // import PageBtn from '@/components/custom-itinerary/page-btn'
 
 export default function ItineraryIndex() {
+  const [filteredTripsData, setFilteredTripsData] = useState([])
   const router = useRouter()
   const [data, setData] = useState({
     redirect: '',
@@ -17,20 +18,14 @@ export default function ItineraryIndex() {
     rows: [],
   })
 
-  const [isPublicClicked, setIsPublicClicked] = useState(false)
-  const [privateClicked, setPrivateClicked] = useState(false)
-  const [filteredTripsData, setFilteredTripsData] = useState([])
   //讀取資料庫
   useEffect(() => {
     const usp = new URLSearchParams(router.query)
     // API串接
-    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}`, {
-      method: 'GET',
-    })
+    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}`)
       .then((r) => r.json())
       .then((data) => {
         setData(data)
-        setFilteredTripsData(data.rows)
       })
   }, [router.query])
 
@@ -44,53 +39,48 @@ export default function ItineraryIndex() {
         console.log('刪除成功:', data)
       })
       .catch((error) => {
-        console.error('刪除時發生錯誤:', error);
-      })   
+        console.error('刪除時發生錯誤:', error)
+      })
   }
-
-
 
   //公開行程filter
   const handlePublicTripsClick = () => {
-    setIsPublicClicked(true)
-    setPrivateClicked(false)
     const publicTrips = data.rows.filter((trip) => trip.public === '公開')
     setFilteredTripsData(publicTrips)
-    console.log('publicTrips', publicTrips)
-    const totalPages=Math.ceil(publicTrips.length/data.perPage)
     setData((prevData)=>({
       ...prevData,
       totalRows:publicTrips.length,
-      totalPages:totalPages,
-      page:1
+      totalPages:Math.ceil(publicTrips.length/data.perPage),
+      rows: publicTrips,
     }))
-    console.log('setData',setData)
   }
+
 
   //不公開行程filter
   const handlePrivateTripsClick = () => {
-    setIsPublicClicked(false)
-    setPrivateClicked(true)
-    const privateTrips = data.rows.filter((trip) => trip.public === '不公開')
-    setFilteredTripsData(privateTrips)
-    console.log('privateTrips', privateTrips)
+    const filterPrivate = data.rows.filter((trip) => trip.public === '不公開')
+    setFilteredTripsData(filterPrivate)
+    setData((prevData)=>({
+      ...prevData,
+      totalRows:filterPrivate.length,
+      totalPages:Math.ceil(filterPrivate.length/prevData.perPage),
+      rows: filterPrivate,
+    }))
   }
 
   const handleAllTripsClick = () => {
-    setFilteredTripsData(data.rows)
-    setIsPublicClicked(false)
-    setPrivateClicked(false)
-    console.log('data',data)
+    setFilteredTripsData([])
   }
 
   return (
     <>
-      <CustomItineraryIndex
-        publicClick={handlePublicTripsClick}
-        privateClick={handlePrivateTripsClick}
-        allClick={handleAllTripsClick}
-      />
-      {/* {data.rows.map((v, i) => {
+      <CustomItineraryIndex 
+      privateClick={handlePrivateTripsClick}
+      publicClick={handlePublicTripsClick}
+      allClick={handleAllTripsClick}
+       />
+     
+      {data.rows.map((v, i) => {
         return (
           <div key={i}>
             <HistoryCard
@@ -105,33 +95,7 @@ export default function ItineraryIndex() {
             />
           </div>
         )
-      })} */}
-      {filteredTripsData.map((v, i) => {
-        if (
-          (!isPublicClicked || v.public === '公開') &&
-          (!privateClicked || v.public === '不公開')
-        ) {
-          return (
-            <div key={i}>
-              <HistoryCard
-                coverPhoto={v.coverPhoto}
-                name={v.name}
-                public={v.public}
-                description={v.description}
-                date={v.date}
-                itin_id={v.itin_id}
-                onDelete={() => handleDelete(v.itin_id)}
-                onChange={() => changeLocalStorage(v.itin_id)}
-              />
-            </div>
-          )
-        } else {
-          return null // 否則不顯示該行程
-        }
       })}
-
-      {/* 分頁 */}
-      {/* 上一頁 */}
       <div>
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation">
@@ -149,7 +113,7 @@ export default function ItineraryIndex() {
                   }
                   aria-label="Previous"
                 >
-                  <span  aria-hidden="true">&laquo;</span>
+                  <span aria-hidden="true">&laquo;</span>
                 </Link>
               </li>
               {/* 顯示頁碼 */}
