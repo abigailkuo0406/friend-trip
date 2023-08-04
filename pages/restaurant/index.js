@@ -8,12 +8,13 @@ import Btn from '@/components/common/button/btn-normal'
 import Modal from '@/components/restaurant/restaurant-intro'
 import AuthContext from '@/context/AuthContext'
 import IndexSty from './restaurant.module.css'
-import { MdNavigateNext,MdNavigateBefore } from 'react-icons/md'
-
+import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
+import Swal from 'sweetalert2'
 
 
 // 引入元件
 import RestaurantList from '@/components/restaurant/restaurant-item'
+import { icon } from '@fortawesome/fontawesome-svg-core'
 
 
 export default function Rest() {
@@ -124,7 +125,17 @@ export default function Rest() {
         console.log('料理:' + inputValueMeal)
 
         if (inputValueArea == undefined && inputValueMeal == undefined) {
-            alert('請選擇搜尋條件')
+            // alert('請選擇搜尋條件')
+            Swal.fire({
+                width: 400,
+                text: '請選擇搜尋條件',
+                icon: 'warning',
+                iconColor: '#FABCBF',
+                color: '#674C87',
+                confirmButtonColor: '#674C87',
+                showConfirmButton: true,
+                // timer: 1500,
+            })
             console.log('aa')
         } else if (inputValueArea != '請選擇地區' && inputValueArea != undefined && inputValueMeal == '請選擇料理') {
             router.push(`?city=${inputValueArea}`)
