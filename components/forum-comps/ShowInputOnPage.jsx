@@ -6,8 +6,9 @@ import axios from 'axios'
 // TODO 把信息顯示和新增信息分開！！！
 function ShowInputOnPage({ sendMsg }) {
   //avatarOfPostAuthor from database
-  const avatarOfPostAuthor =
-    'http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffake-persona.fa9c7bea.png&w=2048&q=75'
+  // const avatarOfPostAuthor =
+  //   'http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffake-persona.fa9c7bea.png&w=2048&q=75'
+  const avatarOfPostAuthor = '/face/face23.png'
   //avatarOfPostAuthor from database
   const [data, setData] = useState([])
   const msgRef = useRef(null)
