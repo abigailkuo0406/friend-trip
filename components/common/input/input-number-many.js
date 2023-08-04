@@ -3,14 +3,14 @@ import React, { useState, useEffect, useRef } from 'react'
 export default function InputNumberMany({
   id,
   name = '',
-  value,
+  value = [],
   inputNumber = 1,
   maxLength = 1,
   label = '',
   getValue,
   getName,
   widthDiv,
-  widthInput,
+  widthInput="",
   middleText = '-',
   addClassforLabel,
   addClassforInput,
@@ -119,7 +119,11 @@ export default function InputNumberMany({
   const [inputValue, setInputValue] = useState(value)
   const blankArray = []
   for (let i = 0; i < inputNumber; i++) {
-    blankArray.push('')
+    if(value.length == inputNumber*maxLength){
+    blankArray.push(value.match(/(.{4})/g)[i])
+    } else (
+      blankArray.push('')
+    )
   }
   const [inputs, setInputs] = useState(blankArray)
 
@@ -127,7 +131,7 @@ export default function InputNumberMany({
     <div className="select-section">
       <label className={`${addClassforLabel} section-label`}>{label}</label>
       <div className={`${widthDiv} input-many`}>
-        {inputs.map((value, index) => (
+        {inputs.map((element, index) => (
           <React.Fragment key={index}>
             <input
               minLength={5}

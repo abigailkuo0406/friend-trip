@@ -7,7 +7,6 @@ import InputNumber from '@/components/common/input/input-number'
 import BtnNormal from '@/components/common/button/btn-normal'
 import ModalCartAdd from '@/components/common/modal/modal_cart_add'
 import AuthContext from '@/context/AuthContext'
-
 import fakeIimg1 from '@/public/img/fake-data/fake-img-1.jpg'
 import { BsCart, BsCartPlus, BsHeartFill, BsHeart } from 'react-icons/bs'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
@@ -15,6 +14,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 
 export default function ProductItem({}) {
   const {auth, setAuth } = useContext(AuthContext)
+
   const router = useRouter()
   const [row, setRow] = useState({
     product_id: 0,
@@ -47,17 +47,20 @@ export default function ProductItem({}) {
     product_upload,
   } = row
   const [favorit, setFavorit] = useState(false)
-  const [BuyValue, setBuyValue] = useState('')
+  const [buyValue, setBuyValue] = useState('')
   const [BuyName, setBuyName] = useState('')
+  const [collectionID, setCollectionID] = useState([]) // 判斷是否有收藏
+  const [likeClick, setLikeClick] = useState(false)
   const changeFavorit = (event) => {
     setFavorit(!favorit)
+    setLikeClick(true)
   }
   const productBuyFormSubmit = (event) => {
     event.preventDefault()
   }
   const [cartNumber, setCartNumber]=useState(0)
   useEffect(() => {
-    fetch(`${process.env.API_SERVER}/product/cart`, {
+    fetch(`${process.env.API_SERVER}/product/cart/read`, {
       method: 'POST',
       body: JSON.stringify({auth}),
       // auth 為單純的 object 記錄所有會員資料，{auth} 為 key 為 auth 對應值為所有會員資料
@@ -69,27 +72,12 @@ export default function ProductItem({}) {
       .then((r) => r.json())
       .then((data) => {
         setCartNumber(data.all.length)
-      })
+      })    
   }, [auth])
-  // 預先判斷購物車裡是否有該項商品
-  // useEffect(() => {
-  //   fetch(`${process.env.API_SERVER}/product/cart/add`, {
-  //     method: 'POST',
-  //     body: JSON.stringify({member: auth.member_id, productID: product_id}),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   }
-  //   )
-  //     .then((r) => r.json())
-  //     .then((data) => {
-  //       console.log(data)
+  
 
-  //     })
-  // }, [auth, product_id])
-  useEffect(()=>{
-    console.log("點選數量：",BuyValue)
-  },[BuyValue])
+
+
   useEffect(() => {
     fetch(process.env.API_SERVER + '/product/' + router.query.pid)
       .then((r) => r.json())
@@ -101,12 +89,10 @@ export default function ProductItem({}) {
         }
       })
   }, [router.query])
-  const cateArray = product_category.split(' ')
-
-  const handleBuy = () =>{
-    fetch(`${process.env.API_SERVER}/product/cart/add`, {
+  useEffect(()=>{
+    fetch(`${process.env.API_SERVER}/collection/findCollection`, {
       method: 'POST',
-      body: JSON.stringify({member: auth.member_id, productID: product_id, productNum:BuyValue}),
+      body: JSON.stringify({memberID: auth.member_id, productID: product_id}),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -114,10 +100,65 @@ export default function ProductItem({}) {
     )
       .then((r) => r.json())
       .then((data) => {
-        // console.log("增加後總價：",data.all[0].cart_total)
+        setCollectionID(data.all)
+      })
+  }, [row])
 
+
+
+  const cateArray = product_category.split(' ')
+
+  const handleBuy = () =>{
+    fetch(`${process.env.API_SERVER}/product/cart/add`, {
+      method: 'POST',
+      body: JSON.stringify({member: auth.member_id, productID: product_id, productNum:buyValue}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    )
+      .then((r) => r.json())
+      .then((data) => {
+        setCartNumber(data.all.length)
       })
   }
+
+  useEffect(()=>{
+    if(collectionID.length>0){
+      setFavorit(true)
+    }
+  },[collectionID])
+
+  useEffect(()=>{
+    // console.log("個別情形boolean：",favorit+"我的ID是：",productID)
+    if(auth.member_id != 0 && likeClick==true){
+      
+    if(favorit==true){
+      fetch(`${process.env.API_SERVER}/collection/addCollection`, {
+        method: 'POST',
+        body: JSON.stringify({memberID: auth.member_id, productID: product_id}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      )
+        .then((r) => r.json())
+        .then((data) => {
+        })
+    } else if (favorit==false){
+      fetch(`${process.env.API_SERVER}/collection/deleteCollection`, {
+        method: 'POST',
+        body: JSON.stringify({memberID: auth.member_id, productID: product_id}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      )
+        .then((r) => r.json())
+        .then((data) => {
+        })
+    }}
+  },[favorit,likeClick])
 
   return (
     <>
@@ -154,7 +195,7 @@ export default function ProductItem({}) {
               </Fragment>
             ))}
           </div>
-          <div class="productNameFavorit">
+          <div className="productNameFavorit">
             <h2 className="productName">{product_name}</h2>
             <div
               className="productFavorit"
@@ -169,16 +210,17 @@ export default function ProductItem({}) {
           <h4 className="productPrice">{`NT$ ${product_price}`}</h4>
           <div className="productRateIconNum">
             <div className="productRateIcon">
-              <AiFillStar></AiFillStar>
-              <AiFillStar></AiFillStar>
-              <AiFillStar></AiFillStar>
-              <AiFillStar></AiFillStar>
-              <AiFillStar></AiFillStar>
+              {Array.from({ length: product_rate }, (e, i) => (
+                <AiFillStar key={i} />
+               ))}
+               {Array.from({ length: 5-product_rate }, (e, i) => (
+                <AiOutlineStar key={i} />
+               ))}
             </div>
             <a className="productRateNum">{product_rate}</a>
           </div>
           <div>
-            <form class="productBuyForm" onSubmit={productBuyFormSubmit}>
+            <form className="productBuyForm" onSubmit={productBuyFormSubmit}>
               <InputNumber
                 id="BuyProductNum"
                 label=""
@@ -212,7 +254,7 @@ export default function ProductItem({}) {
           </div>
         </div>
       </section>
-      <ModalCartAdd id="buyModal" productName={product_name} productPrice={product_price} productNum={BuyValue}></ModalCartAdd>
+      <ModalCartAdd id="buyModal" productName={product_name} productPrice={product_price} productNum={buyValue > 99 ? 99 : buyValue}></ModalCartAdd>
     </>
   )
 }

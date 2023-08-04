@@ -7,22 +7,6 @@ export default function CartModalAdd({
   productPrice=0,
   productNum=0,
 }) {
-  // const [modalClass, setModalClass] = useState('modal fade')
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     handleCloseModal();
-  //   }, 2000);
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // const handleCloseModal = () => {
-  //  document.getElementById(id).className=="modal fade";
-  // };
-
-
- 
- 
 
   return (
     <div className="modal fade" id={id} tabindex="-1" aria-labelledby={`${id}Label`} aria-hidden="true">
@@ -46,10 +30,7 @@ export default function CartModalAdd({
           
         </div>
       </div>
-      {/* <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" className="btn btn-primary">Save changes</button>
-      </div> */}
+ 
     </div>
   </div>
 </div>
