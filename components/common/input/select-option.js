@@ -26,6 +26,12 @@ export default function SelectOption({
     getValue(event.target.value)
     getName(event.target.name)
   }
+  useEffect(() => {
+    getValue(selectedDefault)
+    getName(name)
+    
+  }, [selectedDefault]) 
+  
 
   return (
     <div className="select-section">

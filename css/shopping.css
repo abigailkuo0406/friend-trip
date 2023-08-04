@@ -212,9 +212,12 @@
 }
 .productCardBody .productAddCart {
   cursor: pointer;
+  height: 100%;
 }
-.productCardBody .productAddCart svg {
-  color: var(--main-dark);
+.productCardBody .productAddCart button {
+  padding: 0;
+  height: 100%;
+  font-size: 1.4rem;
 }
 
 .PidPageHeader {
@@ -392,7 +395,7 @@
   width: 65%;
 }
 .order_section .order_right {
-  padding: 0 1.5rem;
+  padding: 0 2.5rem;
   width: 35%;
 }
 .order_section .order_right .order_rightHead {
@@ -410,6 +413,49 @@
 }
 .order_section .order_right .order_rightHead .order_rightHead_title p {
   margin: 0;
+  color: var(--main-dark);
+}
+.order_section .order_right .checkingProdutList {
+  width: 100%;
+}
+.order_section .order_right .checkingProdutList thead {
+  border-top: 1px solid var(--assist-lightgrey);
+  border-bottom: 1px solid var(--assist-lightgrey);
+}
+.order_section .order_right .checkingProdutList thead th {
+  font-weight: normal;
+  border-top: 1px solid var(--assist-lightgrey);
+  color: var(--assist-grey);
+  line-height: 2.5rem;
+}
+.order_section .order_right .checkingProdutList tr {
+  line-height: 4rem;
+  color: var(--main);
+  border-bottom: 1px solid var(--assist-lightgrey);
+}
+.order_section .order_right .checkingProdutList tr p {
+  margin: 0 0 1rem 0;
+  line-height: normal;
+}
+.order_section .order_right .checkingProdutList .checkingProdutListName {
+  display: flex;
+  flex-direction: column;
+}
+.order_section .order_right .checkingProdutList .checkingProdutListName img {
+  margin: 1rem 0 0.5rem 0;
+  border-radius: 20px;
+  height: 4rem;
+  width: 4rem;
+}
+
+.checkingProdutTotal {
+  display: flex;
+  width: 100%;
+}
+.checkingProdutTotal p {
+  color: var(--assist-grey);
+}
+.checkingProdutTotal h4 {
   color: var(--main-dark);
 }
 
@@ -448,6 +494,15 @@
 .product_table thead .product_th_btn {
   width: 15%;
 }
+.product_table .noItemCart {
+  text-align: center;
+  border: none;
+}
+.product_table .noItemCart p {
+  margin: 0;
+  line-height: 8rem;
+  font-style: italic;
+}
 .product_table tbody tr {
   border-bottom: 1px solid var(--assist-lightgrey);
 }
@@ -464,6 +519,9 @@
 }
 .product_table tbody .product_td_img_name .product_td_name {
   margin: 1rem 0 0 0;
+}
+.product_table tbody .product_td_img_name .product_td_name a {
+  color: var(--main-dark);
 }
 .product_table tbody .product_td_input label {
   min-height: 24px;
@@ -573,4 +631,81 @@
 }
 .modalCartAdd .modal-body .body-product-info {
   width: 60%;
+}
+
+.order_section .order_left form .input-text-section > div {
+  display: flex;
+}
+.order_section .order_left form .input-member {
+  width: 100%;
+}
+.order_section .order_left form .radio-seciton .input-member {
+  margin-left: 1rem;
+}
+.order_section .order_left form .radio-seciton input {
+  visibility: hidden;
+}
+.order_section .order_left form .radio-seciton input::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f111";
+  font-weight: 600;
+  visibility: visible;
+  color: var(--bg-light);
+}
+.order_section .order_left form .radio-seciton input:checked::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f058";
+  font-weight: 600;
+  visibility: visible;
+  color: var(--main-dark);
+}
+.order_section .order_left form .select-section {
+  display: flex;
+}
+
+.collection_section .order_left {
+  width: 100%;
+}
+.collection_section .order_left .collection_table .productFavorit {
+  cursor: pointer;
+}
+
+.payment-method .payment-method-btn {
+  display: flex;
+}
+.payment-method .payment-method-btn button {
+  margin-right: 2rem;
+}
+
+.order_card_section .order_left {
+  width: 100%;
+}
+.order_card_section .order-card {
+  margin-bottom: 3rem;
+  width: 100%;
+  border-radius: 20px;
+}
+.order_card_section .order-card > div {
+  padding: 0.8rem 1.2rem;
+}
+.order_card_section .order-card .order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px 20px 0 0;
+  background-color: var(--main-light);
+  color: var(--assist-white);
+}
+.order_card_section .order-card .order-card-header .order-card-header-id {
+  display: flex;
+}
+.order_card_section .order-card .order-card-footer {
+  background-color: var(--main-light);
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order_card_section .order-card .order-card-footer .order-card-total-price {
+  color: var(--assist-white);
 }/*# sourceMappingURL=shopping.css.map */

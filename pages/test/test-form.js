@@ -84,7 +84,6 @@ export default function AdminIndex() {
     console.log('勾選9：value 為：', inputValue10 + ' ，name 為：', inputName10)
     console.log('日期：value為：',inputValue11)
   }
-
   return (
     <>
       <label htmlFor="customRange1" className="form-label">

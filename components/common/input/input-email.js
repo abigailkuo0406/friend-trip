@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-export default function InputText({
+export default function InputEmail({
   id = '',
   name = '',
   label,
@@ -54,7 +54,8 @@ export default function InputText({
         </label>
         <input
           id={id}
-          type="text"
+          type="email"
+          pattern=".+@globex\.com"
           name={name}
           className={`${width} ${addClassforInputState} input-text`}
           placeholder={placeholder}

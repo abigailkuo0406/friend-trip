@@ -13,9 +13,10 @@ export default function InputCheckboxGroup({
   addClassforTitleLabel = '',
   addClassforEachLabel = '',
   addClassforInput = '',
+  errorText="\u00A0"
 }) {
-  const [errorMessage, setErrorMessage] = useState('\u00A0') // 錯誤訊息用 // \u00A0 為會佔空間的空白，如果設空字串排版會爛掉
-
+  const [errorMessage, setErrorMessage] = useState(errorText) // 錯誤訊息用 // \u00A0 為會佔空間的空白，如果設空字串排版會爛掉
+  
   if (idGroup.length != valueGroup.length) {
     console.error('設定 InputCheckbox 時 idGroup 或是 valueGroup 錯誤')
   }
@@ -24,6 +25,9 @@ export default function InputCheckboxGroup({
     getValue(checkedValue)
     getName(name)
   }, [])
+  useEffect(() => {
+    setErrorMessage(errorText)
+  }, [errorText])
   const [inputValue1, setInputValue1] = useState(checkedValue)
 
   useEffect(() => {

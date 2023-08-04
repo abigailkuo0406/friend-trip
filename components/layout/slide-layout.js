@@ -2,11 +2,13 @@
 import Footer from './footer'
 import Sidebar from '@/components/common/sidebar/sidebar'
 import { AuthContextProvider } from '@/context/AuthContext'
+import { CartContextProvider } from '@/context/CartContext'
 
 export default function SlideLayout({ children }) {
   return (
     <>
       <AuthContextProvider>
+      <CartContextProvider>
         <div>
           <main className="container">
             <div className="row g-5 main-background">
@@ -18,6 +20,7 @@ export default function SlideLayout({ children }) {
           </main>
           <Footer />
         </div>
+        </CartContextProvider>
       </AuthContextProvider>
     </>
   )

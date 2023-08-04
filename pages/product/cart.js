@@ -1,16 +1,20 @@
 import React, { useState, useEffect, Fragment,useContext, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import logo from '@/public/img/logo/FriendTrip-Logo.png'
 import NoSidebarLayout from '@/components/layout/nosidebar-layout'
 import TableCart from '@/components/common/table/table-cart'
 import InputCheckboxGroup from '@/components/common/input/input-checkbox-group'
 import BtnNormal from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext'
+// import CartContext from '@/context/CartContext'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 
 export default function Cart() {
   const {auth, setAuth } = useContext(AuthContext)
+  // const {cart, setCart } = useContext(CartContext)
+  const router = useRouter()
   const [agree, setAgree]=useState(false)
   const [agreeName, setAgreeName]=useState('')
   const [cartCheckbox,setCartCheckbox]=useState(true)
@@ -18,25 +22,20 @@ export default function Cart() {
   const[change, setChange] = useState('')
   const[check, getCheck]=useState(true)
   const[inputCheck, setInputCheck]=useState(false)
-  const[deleteData, setDeleteData] = useState('') // 偵測是否有刪商品
+  const[deleteData, setDeleteData] = useState(0) // 偵測是否有刪商品
   const[changeValue, setChangeValue] = useState(NaN) // 存有改變數字的 number
   const[changeName, setChangeName] = useState(NaN) // 存有改變數字的 name
   const[getTotal, setGetTotal] = useState(0)
   const[total, setTotal] = useState(0)
-  const [cartProduct, setcartProduct]=useState([{
-    cart_total: 0.00,
-  }
-  ])
+  const[errorText, setErrorText] = useState("\u00A0")
+  const [cartProduct, setcartProduct]=useState([])
+  const [orderID, setOrderID] = useState('')
   useEffect(() => {
     localStorage.setItem("CartMoneyTotal", JSON.stringify({}))
     localStorage.setItem("CartCheck", JSON.stringify({}))
+    localStorage.setItem('cartProducts', JSON.stringify([]))
   }, [])
 
-
-
-
-  
-  
   useEffect(()=>{
     const CartCheck = JSON.parse(localStorage.getItem("CartCheck"))
     for(let element in CartCheck){
@@ -48,14 +47,15 @@ export default function Cart() {
     }
   },[check])
 
+
+
+
   useEffect(() => {
-  }, [inputCheck])
-  // 透過會員 id 抓取購物車所有商品的 id 和數量
-  useEffect(() => {
-    fetch(`${process.env.API_SERVER}/product/cart`, {
+    if(auth.member_id !=0){
+      console.log("來囉",process.env.API_SERVER)
+    fetch(`${process.env.API_SERVER}/product/cart/read`, {
       method: 'POST',
       body: JSON.stringify({auth}),
-      // auth 為單純的 object 記錄所有會員資料，{auth} 為 key 為 auth 對應值為所有會員資料
       headers: {
         'Content-Type': 'application/json',
       },
@@ -63,11 +63,23 @@ export default function Cart() {
     )
       .then((r) => r.json())
       .then((data) => {
-        console.log(`接收到${auth.member_name}的購物車資料囉，購物車內有幾項：${data.all.length}`)
-        setcartProduct(data.all)
-        setTotal(data.all[0].cart_total)
+        console.log("iiiiiii")
+        if(data){
+          console.log("生成購物車資料：",data.all)
+          console.log(`接收到${auth.member_name}的購物車資料囉，購物車內有幾項：${data.all.length}`)
+          setcartProduct(data.all)
+          if(data.all.length > 0){
+          setTotal(data.all[0].cart_total)
+          localStorage.setItem('cartProducts', JSON.stringify(data.all))
+          setCart(data.all)
+        }} else if(!data){
+          setcartProduct([])
+          setCart([])
+        }
       })
-  }, [auth, change, deleteData])
+      .catch((error) => {console.error("Error:", error)})}
+  }, [auth, deleteData, change, router])
+ 
   useEffect(() => {
 
     fetch(`${process.env.API_SERVER}/product/cart/change`, {
@@ -85,8 +97,9 @@ export default function Cart() {
       })
     // console.log("member：",auth.member_id+"，改變名稱：",changeName+"，數量：",changeValue+"，布林：",check)
   }, [changeValue])
-  useEffect(() => {
 
+  useEffect(() => {
+    if(auth.member_id>0){
   fetch(`${process.env.API_SERVER}/product/cart/change`, {
       method: 'POST',
       body: JSON.stringify({member:auth.member_id, check: check, name:changeName}),
@@ -100,10 +113,10 @@ export default function Cart() {
         setTotal(data.all[0].cart_total)
       })
     console.log("member：",auth.member_id+"，改變名稱：",changeName+"，布林：",check)
+    }
   }, [check, changeName])
 
   useEffect(() => {
-
     fetch(`${process.env.API_SERVER}/product/cart/change`, {
         method: 'POST',
         body: JSON.stringify({member:auth.member_id, allCheck: cartCheckbox}),
@@ -114,17 +127,23 @@ export default function Cart() {
       )
         .then((r) => r.json())
         .then((data) => {
+         
           setTotal(data.all[0].cart_total)
         })
     }, [cartCheckbox])
 
-  
-  
-
 
   const allproduct = cartProduct
+  useEffect(() => {
+    if(agree[1] == 'AgreePolicy'){
+      setErrorText("\u00A0")
+    }
+    }, [agree])
+  
 
   const letCheck = () => {
+    if(allproduct.length != 0){
+    if(agree[1] == 'AgreePolicy'){
     fetch(`${process.env.API_SERVER}/product/cart/checking`, {
       method: 'POST',
       body: JSON.stringify({member:auth.member_id}),
@@ -135,17 +154,32 @@ export default function Cart() {
     )
       .then((r) => r.json())
       .then((data) => {
-        console.log(data.all)
+        console.log("產生訂單編號：",data.Batch)
+        localStorage.setItem(`order_id`, data.Batch);
+        localStorage.setItem("checkoutInfo", JSON.stringify({}))
+        setOrderID(data.Batch)
+        
       })
+    
+        
+      } else{setErrorText("請閱讀並勾選同意本公司相關規定")}}
+      else if(allproduct.length==0){alert("購物車內尚無商品！")}
   }
 
+  const goBack = ()=>{
+    router.back()
+  }
+
+ 
+  
+ 
+if(true){
   return (
     <>
       <div className="CartPageHeader onePageHeader">
-        <div className="PageBack">
-          <Link replace href="../product">
+        <div className="PageBack" onClick={goBack}>
             <MdKeyboardArrowLeft></MdKeyboardArrowLeft>
-          </Link>
+   
         </div>
         <div className="PageTitle">
           <p>購物車</p>
@@ -183,29 +217,38 @@ export default function Cart() {
               </tr>
             </thead>
             <tbody>
-              {allproduct.map((i) => (
-            <Fragment key={i.product_id+"forCart"}>
-              <TableCart
-                cartCheckbox={cartCheckbox} // 決定是否全部有勾選
-                getCheck={getCheck}
-                memberID={i.member_id}
-                productID={i.product_id}
-                productIMG={i.product_main_img}
-                productName={i.product_name}
-                productPrice={i.product_price}
-                productNum={i.product_num}
-                productBrief={i.product_brief}
-                getValue={setChangeValue}
-                theValue={changeValue}
-                getName={setChangeName}
-                theName={changeName}
-                setDeleteData={setDeleteData}
-                setGetTotal={setGetTotal}
-                setTotal={setTotal}
-              ></TableCart>
-            </Fragment>
-          ))}
-            </tbody>
+  {cartProduct.length > 0 ? (
+    cartProduct.map((i) => (
+      <Fragment key={i.product_id + "forCart"}>
+        <TableCart
+          cartCheckbox={cartCheckbox} // 決定是否全部有勾選
+          getCheck={getCheck}
+          memberID={i.member_id}
+          productID={i.product_id}
+          productIMG={i.product_main_img}
+          productName={i.product_name}
+          productPrice={i.product_price}
+          productNum={i.product_num}
+          productBrief={i.product_brief}
+          productPost={i.product_post}
+          getValue={setChangeValue}
+          theValue={changeValue}
+          getName={setChangeName}
+          theName={changeName}
+          setDeleteData={setDeleteData}
+          setGetTotal={setGetTotal}
+          setTotal={setTotal}
+        ></TableCart>
+      </Fragment>
+    ))
+  ) : (
+    <tr className="noItemCart">
+      <td colSpan="10">
+        <p>此購物車尚無商品</p>
+      </td>
+    </tr>
+  )}
+</tbody>
           </table>
         </div>
         <div className="order_right">
@@ -218,6 +261,7 @@ export default function Cart() {
               <p className="order_rightInfoTitle">購物車總計</p><h4 className="order_rightInfoTotal">{total}</h4><p className="order_rightInfoSmall small-font">敬愛的顧客，以下價格皆含稅及運費</p>
             </div>
             <div className="order_rightAgree">
+           
             <InputCheckboxGroup
             name="AgreePolicy"
             // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
@@ -230,6 +274,7 @@ export default function Cart() {
             addClassforTitleLabel="" // 如果要在標題 label 添加 class
             addClassforEachLabel="agree-policy-text" // 如果要在個別選項 label 添加 class
             addClassforInput="" // 如果要在 input 添加 class
+            errorText={errorText}
           ></InputCheckboxGroup>
             </div>
             <div className="order_rightButton">
@@ -244,6 +289,7 @@ export default function Cart() {
             onClick={()=>{}}
           ></BtnNormal>
           <BtnNormal
+          href="./checkout?page=1"
             type="submit"
             value="submit"
             btnText="結帳"
@@ -257,7 +303,7 @@ export default function Cart() {
     </>
   )
 }
-
+}
 Cart.getLayout = function (page) {
   return <NoSidebarLayout>{page}</NoSidebarLayout>
 }

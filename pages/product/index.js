@@ -21,12 +21,15 @@ export default function ProductIndex() {
   })
   const [keyword, setKeyword] = useState('')
   const [cartNumber, setCartNumber] = useState(0)
-
+  const [allCollection, setAllCollection] = useState([]) // 存有所有收藏商品資料
+  const [allCollectionID, setAllCollectionID] = useState([]) // 存有所有收藏商品 ID
+  const [addProduct, setAddProduct] = useState([])
   useEffect(() => {
-    console.log("有喔123：",auth)
+    if(auth.member_id != 0){
+    localStorage.setItem("collectionID", JSON.stringify([]));
+    console.log("會員：",auth.member_id)
     if(auth.token){
-      console.log("ddd")
-    fetch(`${process.env.API_SERVER}/product/cart`, {
+    fetch(`${process.env.API_SERVER}/product/cart/read`, {
       method: 'POST',
       body: JSON.stringify({auth}),
       headers: {
@@ -36,10 +39,28 @@ export default function ProductIndex() {
     )
       .then((r) => r.json())
       .then((data) => {
+
         setCartNumber(data.all.length)
-        console.log("有喔321：",data.all.length)
-      })}
-  }, [auth])
+      })
+      
+
+      fetch(`${process.env.API_SERVER}/collection/findCollection`, {
+        method: 'POST',
+        body: JSON.stringify({memberID: auth.member_id}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      )
+        .then((r) => r.json())
+        .then((data) => {
+          console.log("這個：",data.all.map(item => item.product_id))
+          setAllCollectionID(data.all.map(item => item.product_id))
+          localStorage.setItem("collectionID", JSON.stringify(data.all.map(item => item.product_id)));
+        })
+    
+    }}
+  }, [auth, addProduct, router])
 
   useEffect(() => {
     setKeyword(router.query.keyword || '')
@@ -54,9 +75,11 @@ export default function ProductIndex() {
         setData(data)
       })
   }, [router.query])
-  
-
   console.log('此頁的商品資料', data.rows)
+
+  const goCart = () => {
+    router.push('./product/cart')
+  }
   return (
     <>
       <div className="container-fluid overflow-hidden">
@@ -69,10 +92,10 @@ export default function ProductIndex() {
           </div>
           <div className="PageCart col-4">
             <div>
-            <Link href="./product/cart">
+            <a href="./product/cart" >
               <BsCart></BsCart>
               <span className="cartNumber">{cartNumber}</span>
-            </Link>
+            </a>
             </div>
           </div>
         </div>
@@ -80,11 +103,15 @@ export default function ProductIndex() {
           {data.rows.map((i) => (
             <Fragment key={i.product_id}>
               <CardProduct
+                memberID={auth.member_id}
+                productID={i.product_id}
+                allCollectionID={allCollectionID.includes(i.product_id)}
                 productName={i.product_name}
                 productCategory={i.product_category}
                 productBrief={i.product_brief}
                 productPrice={i.product_price}
                 productPost={i.product_post}
+                setAddProduct={setAddProduct}
               ></CardProduct>
             </Fragment>
           ))}

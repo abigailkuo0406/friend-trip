@@ -3,11 +3,14 @@ import Footer from './footer'
 import SidebarProduct from '@/components/common/sidebar/sidebar-product'
 import Navbar from '@/components/common/navbar/navbar'
 import { AuthContextProvider } from '@/context/AuthContext'
+import { CartContextProvider } from '@/context/CartContext'
+
 
 export default function ProductPageLayout({ children }) {
   return (
     <>
       <AuthContextProvider>
+      <CartContextProvider>
         <div>
           <Navbar />
           <main className="container">
@@ -20,6 +23,7 @@ export default function ProductPageLayout({ children }) {
           </main>
           <Footer />
         </div>
+        </CartContextProvider>
       </AuthContextProvider>
     </>
   )

@@ -4,12 +4,15 @@ import Sidebar from '@/components/common/sidebar/sidebar'
 import Navbar from '@/components/common/navbar/navbar'
 import { AuthContextProvider } from '@/context/AuthContext'
 import { ScheduleContextProvider } from '@/context/ScheduleContext'
+import { CartContextProvider } from '@/context/CartContext'
+
 
 export default function NoSidebarLayout({ children, page }) {
   return (
     <>
       <AuthContextProvider>
       <ScheduleContextProvider>
+      <CartContextProvider>
         <div>
           <Navbar />
           <main className="container">
@@ -19,6 +22,8 @@ export default function NoSidebarLayout({ children, page }) {
           </main>
           <Footer />
         </div>
+        </CartContextProvider>
+
       </ScheduleContextProvider>
       </AuthContextProvider>
     </>

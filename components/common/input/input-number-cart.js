@@ -33,10 +33,13 @@ export default function InputNumber({
   
 
   const handleChange = (event) => {
+   
+    let newValue = event.target.value
+    newValue = newValue.replace(/[^0-9]/g, '')
     setAddClassforInputState(addClassforInput)
     setErrorMessage('\u00A0')
-    setInputValue(event.target.value)
-    getValue(event.target.value)
+    setInputValue(newValue)
+    getValue(newValue)
     getName(event.target.name)
   }
   const handleBlur = (event) => {

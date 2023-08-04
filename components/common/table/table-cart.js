@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import fakeIimg1 from '@/public/img/fake-data/fake-img-1.jpg'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputNumberCart from '@/components/common/input/input-number-cart'
@@ -16,6 +17,7 @@ export default function TableCart({
   productPrice = 0,
   productNum = 1,
   productBrief ='',
+  productPost='',
   getValue=()=>{},
   theValue=0,
   getName=()=>{},
@@ -55,9 +57,10 @@ export default function TableCart({
   }, [theSubtotal, []])
   
   const handleDelete = () =>{
+    console.log("oooooo：")
     fetch(`${process.env.API_SERVER}/product/cart/delete`, {
       method: 'POST',
-      body: JSON.stringify({member:memberID, product: productID}),
+      body: JSON.stringify({member:memberID, product: productID, deleteAll: false}),
       headers: {
         'Content-Type': 'application/json',
       },
@@ -65,25 +68,18 @@ export default function TableCart({
     )
       .then((r) => r.json())
       .then((data) => {
+        setDeleteData(productID)
+        if(data.all.length > 0){
         setTotal(data.all[0].cart_total)
-        setDeleteData(data)
+        } else if (data.all.length == 0){
+          setTotal(0.00)
+          }
       })
   }
   return (
     <>
       <tr>
         <td className="product_td_check">
-        {/* <InputCheckbox
-              name={productID}
-              id={productID}
-              value={productID}
-              label=""
-              getEachValue={setCheckValue}
-              getName={setCheckName}
-              checkedValue={`[${productID}]`}
-              addClassforEachLabel=""
-              addClassforInput=""
-            ></InputCheckbox> */}
             <input
               type="checkbox"
               name={productID}
@@ -102,14 +98,16 @@ export default function TableCart({
         </td>
         <td className="product_td_img_name">
         <div className="product_td_img">
+        <Link href={`./${productPost}`} >
           <Image
             src={fakeIimg1}
             className=""
             alt={productIMG}
           ></Image>
+        </Link>
         </div>
           
-          <p className="product_td_name">{productName}</p>
+          <p className="product_td_name"><Link href={`./${productPost}`}>{productName}</Link></p>
         </td>
         <td className="product_td_price">NT$ {productPrice}</td>
         <td className="product_td_input">
