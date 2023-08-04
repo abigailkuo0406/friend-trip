@@ -11,18 +11,19 @@ import friendss from '@/data/restaurant/friend-list.json'
 
 
 export default function InviteModal({
-    onValueChange
+    onValueChange,
+    alreadyInvite
 }) {
 
     /*邀請功能*/
-    const [inviteList, setInviteList] = useState([])
-    // console.log('外層邀請清單:', inviteList)
+    const [inviteList, setInviteList] = useState(alreadyInvite)
+    console.log('外層邀請清單:', inviteList)
 
     const handleValueChange = (ivName, ivImg, ivBtn, ivId) => {
 
         if (ivBtn) {
             // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
-            setInviteList([{ 'inviteName': ivName, 'inviteImg': ivImg, 'inviteId': ivId }, ...inviteList])
+            setInviteList([{ 'member_name': ivName, 'images': ivImg, 'inviteId': ivId }, ...inviteList])
         }
         else {
             // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
@@ -64,13 +65,12 @@ export default function InviteModal({
                                     return (
                                         // 陣列中有姓名才顯示li
                                         <div key={i} className='me-2'>
-                                            {v.inviteName
+                                            {v.member_name
                                                 ?
                                                 <li>
                                                     <Image
-                                                        src={v.inviteImg}
+                                                        src={`http://localhost:3002/face/${v.images}`}
                                                         className={styles.avatar}
-                                                        alt={v.inviteImg}
                                                         width={50}
                                                         height={50}
                                                     />
@@ -91,7 +91,7 @@ export default function InviteModal({
                                             <div key={i}>
                                                 <Invite
                                                     friendName={v.member_name}
-                                                    img={`http://localhost:3002/face/${v.images}`}
+                                                    img={v.images}
                                                     friendId={v.FriendId}
                                                     onValueChange={handleValueChange}
                                                 />
@@ -100,12 +100,12 @@ export default function InviteModal({
                                     }) : <li hidden></li>}
                             </ul>
                         </div>
-                        
+
                         <div class="modal-footer">
-                        <Btn
-                            btnText='回上一頁'
-                            bsModle1="#exampleModalToggle"
-                            bsModle2='modal'
+                            <Btn
+                                btnText='回上一頁'
+                                bsModle1="#exampleModalToggle"
+                                bsModle2='modal'
                             />
                         </div>
                     </div>

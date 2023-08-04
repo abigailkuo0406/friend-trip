@@ -4,6 +4,8 @@ import ReserveItem from '@/components/reserve/reserve-item'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import AuthContext from '@/context/AuthContext'
+import Modal from '@/components/reserve/reserve-modal'
+
 
 
 export default function Reserve() {
@@ -38,9 +40,6 @@ export default function Reserve() {
             })
     }, [router.query])
 
-    console.log('aaa:', auth.token.member_id)
-
-
 
     return (
         <>
@@ -63,6 +62,7 @@ export default function Reserve() {
                 }) :
                 <p>無符合條件之餐廳</p>
             }
+
 
             <nav aria-label="Page navigation example">
                 <ul class="pagination">

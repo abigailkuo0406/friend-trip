@@ -7,6 +7,8 @@ import SelectOption from '@/components/common/input/select-option'
 import Btn from '@/components/common/button/btn-normal'
 import Modal from '@/components/restaurant/restaurant-intro'
 import AuthContext from '@/context/AuthContext'
+import IndexSty from './restaurant.module.css'
+
 
 // 引入元件
 import RestaurantList from '@/components/restaurant/restaurant-item'
@@ -14,7 +16,7 @@ import RestaurantList from '@/components/restaurant/restaurant-item'
 
 export default function Rest() {
     const router = useRouter()
-    const { auth} = useContext(AuthContext)
+    const { auth } = useContext(AuthContext)
 
     const [restaurants, setRestaurants] = useState({
         redirect: '',
@@ -49,7 +51,7 @@ export default function Rest() {
         fetch(`http://localhost:3002/restaurant?${usp.toString()}`, {
             method: 'GET',
             headers: {
-                Authorization: 'Bearer '+ auth.token
+                Authorization: 'Bearer ' + auth.token
             }
         })
             .then((r) => r.json())
@@ -59,17 +61,29 @@ export default function Rest() {
     }, [router.query])
 
 
-    //取得地區資料
     useEffect(() => {
+        //取得地區資料
+
         fetch(`http://localhost:3002/area`, {
             method: 'GET',
-
         })
             .then((a) => a.json())
             .then((areaData) => {
                 setArea(areaData)
 
             })
+
+        //取得料理類型資料
+        fetch(`http://localhost:3002/restmeal`, {
+            method: 'GET',
+
+        })
+            .then((a) => a.json())
+            .then((mealData) => {
+                setMeal(mealData)
+
+            })
+
 
     }, [])
 
@@ -81,21 +95,6 @@ export default function Rest() {
             areaGroup.push(areaItem)
         }
     }
-
-
-    //取得料理類型資料
-    useEffect(() => {
-        fetch(`http://localhost:3002/restmeal`, {
-            method: 'GET',
-
-        })
-            .then((a) => a.json())
-            .then((mealData) => {
-                setMeal(mealData)
-
-            })
-
-    }, [])
 
     //設定料理類型options
     let mealGroup = ['請選擇料理']
@@ -116,36 +115,56 @@ export default function Rest() {
     const [inputNameMeal, setInputNameMeal] = useState('')
 
     // 搜尋功能
+
     const searchRestaurant = (e) => {
         e.preventDefault();
-        console.log(inputValueArea)
-        console.log(inputValueMeal)
+        console.log('地區:' + inputValueArea)
+        console.log('料理:' + inputValueMeal)
 
-        if (inputNameArea == '基隆市' && inputNameMeal == '請選擇料理') {
+        if (inputValueArea == undefined && inputValueMeal == undefined) {
             alert('請選擇搜尋條件')
-        } else if (inputValueArea && inputValueMeal) {
-            router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
-        } else if (inputValueArea && !inputValueMeal) {
+            console.log('aa')
+        } else if (inputValueArea != '請選擇地區' && inputValueArea != undefined && inputValueMeal == '請選擇料理') {
             router.push(`?city=${inputValueArea}`)
-        } else if (!inputValueArea && inputValueMeal) {
-            router.push(`?meal=${inputValueMeal}`)
+            console.log('bb')
 
+        } else if (inputValueArea != '請選擇地區' && inputValueMeal == undefined) {
+            router.push(`?city=${inputValueArea}`)
+            console.log('cc')
+
+        } else if (inputValueArea == '請選擇地區' && inputValueMeal != '請選擇料理' && inputValueMeal != undefined) {
+            router.push(`?meal=${inputValueMeal}`)
+            console.log('dd')
+
+        } else if (inputValueArea == undefined && inputValueMeal != '請選擇料理') {
+            router.push(`?meal=${inputValueMeal}`)
+            console.log('ee')
+
+        } else if (inputValueArea != '請選擇地區' && inputValueMeal != '請選擇料理' && inputValueArea != undefined && inputValueMeal != undefined) {
+            router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
+            console.log('ff')
+        } else {
+            router.push(``)
+            console.log('zz')
         }
 
 
+
         // if (inputValueArea && !inputValueMeal) {
-        //   router.push(`?city=${inputValueArea}`)
+        //     router.push(`?city=${inputValueArea}`)
         // } else if (!inputValueArea && inputValueMeal) {
-        //   router.push(`?meal=${inputValueMeal}`)
+        //     router.push(`?meal=${inputValueMeal}`)
 
         // } else if (inputValueArea && inputValueMeal) {
-        //   router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
+        //     router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
         // } else {
-        //   alert('請選擇搜尋條件')
+        //     alert('請選擇搜尋條件')
         // }
 
-
     }
+
+
+
     const [rid, setRid] = useState()
     const [rName, setRName] = useState()
     const [rAddress, setRAdress] = useState()
@@ -156,9 +175,6 @@ export default function Rest() {
     const [rIntro, setRIntro] = useState()
     const [rImg, setRImg] = useState()
 
-
-
-    // const [modal, setModal] = useState(false)
 
     const showModal = (modalState, rid, rName, rAddress, rPhone, rTime, rMeal, rClass, rIntro, rImg) => {
         // console.log('接到的modalstate和rid', modalState, rid)
@@ -179,40 +195,48 @@ export default function Rest() {
         <>
             <div className="container">
                 <h1>精選餐廳</h1>
-                <form className='d-flex' onSubmit={searchRestaurant}>
-                    <SelectOption
-                        id="area"
-                        label="地區"
-                        name="area"
-                        // selectedDefault='台北市' //預設選項，可不填，填寫 value
-                        valueGroup={areaGroup}
-                        optionGroup={areaGroup}
-                        getValue={setInputValueArea}
-                        getName={setInputNameArea}
-                        width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                        addClassforLabel="try1" // 如果要在 label 添加 class
-                        addClassforSelect="try2" // 如果要在 Select 添加 class
-                        addClassforOption="try3" // 如果要在 Option 添加 class
-                    ></SelectOption>
 
-                    <SelectOption
-                        id="restaurantMeal"
-                        label="料理類型"
-                        name="restaurantMeal"
-                        // selectedDefault="日式" //預設選項，可不填，填寫 value
-                        valueGroup={mealGroup}
-                        optionGroup={mealGroup}
-                        getValue={setInputValueMeal}
-                        getName={setInputNameMeal}
-                        width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-                        addClassforLabel="try1" // 如果要在 label 添加 class
-                        addClassforSelect="try2" // 如果要在 Select 添加 class
-                        addClassforOption="try3" // 如果要在 Option 添加 class
-                    ></SelectOption>
-                    <Btn
-                        type="submit"
-                        btnText='搜尋'
-                    ></Btn>
+                <form className='row d-flex' onSubmit={searchRestaurant} >
+                    <div className='col-5 d-flex align-items-center justify-content-between'>
+                        <SelectOption
+                            id="area"
+                            label="地區"
+                            name="area"
+                            // selectedDefault='請選擇地區' //預設選項，可不填，填寫 value
+                            valueGroup={areaGroup}
+                            optionGroup={areaGroup}
+                            getValue={setInputValueArea}
+                            getName={setInputNameArea}
+                            width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+                            addClassforLabel="try1" // 如果要在 label 添加 class
+                            addClassforSelect="try2" // 如果要在 Select 添加 class
+                            addClassforOption="try3" // 如果要在 Option 添加 class
+                        ></SelectOption>
+
+                        <SelectOption
+                            id="restaurantMeal"
+                            label="料理類型"
+                            name="restaurantMeal"
+                            // selectedDefault="請選擇料理類型" //預設選項，可不填，填寫 value
+                            valueGroup={mealGroup}
+                            optionGroup={mealGroup}
+                            getValue={setInputValueMeal}
+                            getName={setInputNameMeal}
+                            width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+                            addClassforLabel="try1" // 如果要在 label 添加 class
+                            addClassforSelect="try2" // 如果要在 Select 添加 class
+                            addClassforOption="try3" // 如果要在 Option 添加 class
+                        ></SelectOption>
+                    </div>
+                    <div className='col-7 d-flex align-items-center justify-content-start' >
+                        <Btn
+                            type="submit"
+                            btnText='搜尋'
+                            addClassforButton={`btn-dark ms-4`}
+
+                        ></Btn>
+                    </div>
+
                 </form>
                 {restaurants.totalRows > 0 ?
                     restaurants.rows.map((v, i) => {
@@ -252,9 +276,9 @@ export default function Rest() {
 
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item">
+                        <li class={`page-item`}>
                             <Link
-                                className="page-link"
+                                className={`page-link ${IndexSty.restItem}`}
                                 href={"?" + new URLSearchParams('page=1').toString()}
                                 aria-label="Previous"
                             >
@@ -265,7 +289,7 @@ export default function Rest() {
                         </li>
                         <li class="page-item">
                             <Link
-                                className="page-link"
+                                className={`page-link ${IndexSty.restItem}`}
                                 href={"?" +
                                     new URLSearchParams(parseInt(restaurants.page) > 1
                                         ?
@@ -290,12 +314,12 @@ export default function Rest() {
                                 return (
                                     <li
                                         className={
-                                            `page-item ` + (p === restaurants.page ? "active" : "")
+                                            `page-item ${IndexSty.restItem} ` + (p === restaurants.page ? "active" : "")
                                         }
                                         key={p}
                                     >
                                         <Link
-                                            className="page-link"
+                                            className={`page-link ${IndexSty.restItem}`}
                                             href={"?" + new URLSearchParams(query).toString()}
                                         >
                                             {p}
@@ -305,7 +329,7 @@ export default function Rest() {
                             })}
                         <li class="page-item">
                             <Link
-                                className="page-link"
+                                className={`page-link ${IndexSty.restItem}`}
                                 href={"?" +
                                     new URLSearchParams(parseInt(restaurants.page) < restaurants.totalPages
                                         ?
@@ -321,7 +345,7 @@ export default function Rest() {
                         </li>
                         <li class="page-item">
                             <Link
-                                className="page-link"
+                                className={`page-link ${IndexSty.restItem}`}
                                 href={"?" + new URLSearchParams(`page=${restaurants.totalPages}`).toString()}
                                 aria-label="Next"
                             >

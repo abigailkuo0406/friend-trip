@@ -12,7 +12,8 @@ export default function BtnNormal({
   href = '',
   target = '',
   bsModle1 = '',
-  bsModle2=''
+  bsModle2 = '',
+  bsModl3 = ''
 }) {
   //
   return (
@@ -28,6 +29,7 @@ export default function BtnNormal({
         onClick={onClick}
         data-bs-target={bsModle1}
         data-bs-toggle={bsModle2}
+        data-bs-dismiss={bsModl3}
       >
         {addIMGLeft}
         <span>{btnText}</span>

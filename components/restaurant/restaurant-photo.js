@@ -4,25 +4,25 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 import styles from './restaurant.module.css'
 
-export default function RestaurantPhoto({ file, rid }) {
-  const [restPhotos, setRestPhotos] = useState({
-    redirect: '',
-    totalRows: 0,
-    perPage: 4,
-    totalPages: 0,
-    page: 1,
-    rows: [],
-  })
+export default function RestaurantPhoto({
+  file,
+  rid
+}) {
+  const [restPhotos, setRestPhotos] = useState([])
+
   useEffect(() => {
     // API串接
     fetch('http://localhost:3002/restphoto', {
       method: 'GET',
     })
       .then((r) => r.json())
-      .then((restphotos) => {
+      .then((photos) => {
+        const restphotos = photos.rows.filter((photo) => {
+          return photo.RestID == rid
+        })
         setRestPhotos(restphotos)
       })
-  }, [])
+  }, [rid])
 
   return (
     <>
@@ -69,33 +69,33 @@ export default function RestaurantPhoto({ file, rid }) {
             <Image
               src={`http://localhost:3002/restImg/${file}`}
               className={`${styles.img1}`}
-              alt="..."
+              alt={file}
               width={500}
               height={500}
               priority={true}
             />
           </div>
-          {restPhotos.rows.map((v, i) => {
-
-            {/* console.log('後端傳出來的restPhotos:', restPhotos)
-            console.log('後端傳出來的restPhotos.rows', restPhotos.rows) */}
-
-
-            return (
-              <div
-                key={v.RestID}
-                className={`carousel-item ${styles.imgClass2}`}
-              >
-                <Image
-                  src={`http://localhost:3002/restImg/${v.RestImg}`}
-                  className={`${styles.img1}`}
-                  width={500}
-                  height={500}
-                />
-                <p>{v.RestImg}</p>
-              </div>
-            )
-          })}
+          {restPhotos != [] ?
+            restPhotos.map((v, i) => {
+              return (
+                <div
+                  key={v.RestID}
+                  className={`carousel-item ${styles.imgClass2}`}
+                >
+                  <Image
+                    src={`http://localhost:3002/restImg/${v.RestImg}`}
+                    className={`${styles.img1}`}
+                    alt={v.RestImg}
+                    width={500}
+                    height={500}
+                  />
+                  <p>{v.RestImg}</p>
+                </div>
+              )
+            })
+            :
+            ''
+          }
         </div>
         <button
           className="carousel-control-prev"

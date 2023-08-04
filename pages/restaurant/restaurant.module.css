@@ -1,0 +1,40 @@
+.restItem {
+  /* background-color: black; */
+  color: #674c87;
+}
+.restItem:hover {
+  background-color: #674c87;
+  color: white;
+}
+
+.restItem:active {
+  background-color: #674c87;
+  color: white;
+}
+/* .pagination {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.pagination > .active > .page-link {
+  background-color: var(--main-dark);
+  color: var(--assist-white);
+}
+.pagination > .page-link {
+  color: var(--main);
+  margin: 0;
+  padding: 0.4rem 0 0 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 100%;
+  border: none;
+  border-radius: 50%;
+}
+.pagination > .page-link:focus {
+  box-shadow: none;
+}
+.pagination-icon {
+  padding-top: 0.34rem;
+} */
