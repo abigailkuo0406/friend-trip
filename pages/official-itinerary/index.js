@@ -29,9 +29,9 @@ export default function OfficialItinerary() {
           <h10>碧湖公園。內湖小白宮｜在水一方的夢幻閱覽室</h10>
           <br />
           <span>TWD 42000/2-6人</span>
-          <div className={styles.empty_star}>★★★★★</div>
+          <div className={styles.empty_star}>★</div>
           <button type="button" className={styles.bnt}>
-            <a href="./reserve.js">參加</a>
+            <a href="http://localhost:3000/official-itinerary/reserve">參加</a>
           </button>
         </li>
         <li>
@@ -39,7 +39,7 @@ export default function OfficialItinerary() {
           <h10>碧山巖櫻花隧道開花了。內湖最美粉紅風暴</h10>
           <br />
           <span>TWD 42000/2-4人</span>
-          <div className={styles.empty_star}>★★★★★</div>
+          <div className={styles.empty_star}>★★</div>
           <button type="button" className={styles.bnt}>
             參加
           </button>
@@ -49,7 +49,7 @@ export default function OfficialItinerary() {
           <h10>台北賞櫻景點。拍攝夜櫻最佳時間點</h10>
           <br />
           <span>TWD 42000/2-3人</span>
-          <div className={styles.empty_star}>★★★★★</div>
+          <div className={styles.empty_star}>★★</div>
           <button type="button" className={styles.bnt}>
             參加
           </button>
@@ -59,7 +59,7 @@ export default function OfficialItinerary() {
           <h10>大溝溪生態治水園區。美麗花海賞心悅目</h10>
           <br />
           <span>TWD 42000/2-6人</span>
-          <div className={styles.empty_star}>★★★★★</div>
+          <div className={styles.empty_star}>★★★</div>
           <button type="button" className={styles.bnt}>
             參加
           </button>
@@ -69,7 +69,7 @@ export default function OfficialItinerary() {
           <h10>圓覺瀑布。壯觀的巨石陣溪谷｜</h10>
           <br />
           <span>TWD 42000/2-6人</span>
-          <div className={styles.empty_star}>★★★★★</div>
+          <div className={styles.empty_star}>★★★</div>
           <button type="button" className={styles.bnt}>
             參加
           </button>
@@ -79,7 +79,7 @@ export default function OfficialItinerary() {
           <h10>大溝溪步道。台北內湖溪谷幽境</h10>
           <br />
           <span>TWD 42000/2-6人</span>
-          <div className={styles.empty_star}>★★★★★</div>
+          <div className={styles.empty_star}>★★★★</div>
           <button type="button" className={styles.bnt}>
             參加
           </button>
@@ -89,7 +89,7 @@ export default function OfficialItinerary() {
           <h10>華山文創園區與周邊。咖啡美食20家</h10>
           <br />
           <span>TWD 42000/2-6人</span>
-          <div className={styles.empty_star}>★★★★★</div>
+          <div className={styles.empty_star}>★★★★</div>
           <button type="button" className={styles.bnt}>
             參加
           </button>

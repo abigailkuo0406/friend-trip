@@ -6,12 +6,11 @@ import img1 from '@/public/officialimg/1.jpg'
 
 export default function reserve() {
   return (
-    // <div style="width: 1000px; margin: 0 auto">
     <div className={styles.body}>
       <h1>碧湖公園。內湖小白宮｜在水一方的夢幻閱覽室.</h1>
       <br />
       <Image width={800} height={600} src={img1} alt="1" />
-      {/* <p style="line-height: 80px"> */}
+
       <p className={styles.word}>
         隱身在內湖區的碧湖公園
         <br />
@@ -30,16 +29,22 @@ export default function reserve() {
           type="date"
           id="start"
           name="trip-start"
-          value="2018-07-22"
-          min="2018-01-01"
-          max="2018-12-31"
+          value="2022-07-22"
+          min="2022-01-01"
+          max="2022-12-31"
         />
         <br />
+      </p>
+      <p>
         <label htmlfor="people">人數:</label>
-        <input type="text" placeholder="請輸入人數" />
+        <input type="number" placeholder="請輸入人數" width={60} height={30} />
         <br />
-        <button type="button" style="width: 100%">
-          報名
+      </p>
+      <p>
+        <button type="button">
+          <a href="http://localhost:3000/official-itinerary/reservefinish">
+            報名
+          </a>
         </button>
       </p>
     </div>
