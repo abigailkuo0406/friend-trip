@@ -5,10 +5,24 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 const AddPost = () => {
+  const [selectedImage, setSelectedImage] = useState(null) // for img preview
   const router = useRouter()
   const [article, setArticle] = useState({
     content: '',
   })
+
+  // 👇 for img preview
+  const handleImageChange = (event) => {
+    const file = event.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        setSelectedImage(e.target.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+  // ☝️ for img preview
 
   const handleChange = (e) => {
     setArticle({ ...article, [e.target.name]: e.target.value })
@@ -43,9 +57,16 @@ const AddPost = () => {
           ></textarea>
           <label className={`custom-file-upload p-2 ${styles.fontStyle1}`}>
             <i className="fa fa-cloud-upload"></i> 上傳文章圖片
-            <input type="file" name="avatar" />
+            <input type="file" name="avatar" onChange={handleImageChange} />
+            {/*add onChange attribute for img preview*/}
           </label>
-          <Image src={uploadImg} alt="postImg" className="img-fluid" />
+          {selectedImage && (
+          <>
+          <h2>Preview:</h2>
+          <Image src={selectedImage} width={50} height={50} alt="previewImg" className="img-fluid" />
+            {/*in src attribute, change uploadImg to selectedImage for img preview*/}
+          </>
+          )}
           <input
             className="btn btn-primary mt-4 mx-auto"
             type="submit"
