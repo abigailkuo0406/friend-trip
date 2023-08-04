@@ -104,6 +104,7 @@ export default function EditHome() {
         console.log(data)
         console.log('資料抓到', data.all)
         setMemberInfo(data.all[0])
+        setAaa(data.all[0])
       })
   }, [auth])
   useEffect(() => {
@@ -112,9 +113,13 @@ export default function EditHome() {
   return (
     <>
       <form onSubmit={edit}>
-        <div className="d-flex justify-content-center">
-          {page === 1 ? page1 : page2}
-        </div>
+        {memberInfo && memberInfo.email ? (
+          <div className="d-flex justify-content-center">
+            {page === 1 ? page1 : page2}
+          </div>
+        ) : (
+          <div></div>
+        )}
       </form>
       <BtnNormal
         type="submit"
