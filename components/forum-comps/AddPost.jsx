@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import uploadImg from '@/public/face/face15.png'
+import uploadImg from '@/public/img/forum-img/taidong.jpg'
 import styles from './AddPost.module.css'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
@@ -45,7 +45,7 @@ const AddPost = () => {
             <i className="fa fa-cloud-upload"></i> 上傳文章圖片
             <input type="file" name="avatar" />
           </label>
-          <Image src={uploadImg} alt="postImg" />
+          <Image src={uploadImg} alt="postImg" className="img-fluid" />
           <input
             className="btn btn-primary mt-4 mx-auto"
             type="submit"
