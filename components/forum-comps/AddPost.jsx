@@ -61,11 +61,16 @@ const AddPost = () => {
             {/*add onChange attribute for img preview*/}
           </label>
           {selectedImage && (
-          <>
-          <h2>Preview:</h2>
-          <Image src={selectedImage} width={50} height={50} alt="previewImg" className="img-fluid" />
-            {/*in src attribute, change uploadImg to selectedImage for img preview*/}
-          </>
+            <>
+              <p>文章圖片預覽:</p>
+              <Image
+                src={selectedImage}
+                width={50}
+                height={50}
+                alt="previewImg"
+                className="img-fluid"
+              />
+            </>
           )}
           <input
             className="btn btn-primary mt-4 mx-auto"
