@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import InitCard from './init-card'
 import Host from '@/assets/fake-data/fake-persona.png'
+import persona from '@/public/img/fake-data/fake-persona.png'
 import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
@@ -12,7 +13,7 @@ import { BiHomeHeart } from 'react-icons/bi'
 import AuthContext from '@/context/AuthContext'
 import Swal from 'sweetalert2'
 
-export default function ScheduleSide({
+export default function ScheduleSide ({
   changeToSearch,
   selectedView,
   onDeleteView,
@@ -29,7 +30,7 @@ export default function ScheduleSide({
     const name = parsedData ? parsedData.itin_name : ''
     setItinName(name)
 
-    console.log('itinName',itinName)
+    console.log('itinName', itinName)
   }, [setItinName])
 
   //取得登入之會員資料
@@ -57,7 +58,7 @@ export default function ScheduleSide({
     }, 2000)
   }
 
-  
+
 
   return (
     <>
@@ -108,10 +109,10 @@ export default function ScheduleSide({
 
                 <div className="d-flex mt-3">
                   <Image
-                    src={Host}
-                    alt="Host"
-                    width={32}
-                    height={32}
+                    src={auth.images ? `http://localhost:3002/face/${auth.images}` : persona}
+                    alt={auth.member_name}
+                    width={40}
+                    height={40}
                     priority={true} //圖片預先載入
                   />
                   <p className="usr_name my-auto mx-2">{auth.member_name}</p>

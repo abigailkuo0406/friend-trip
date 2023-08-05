@@ -31,9 +31,9 @@ function App({ test1 }) {
     console.log(formData)
     upload(formData)
   }
-  useEffect(() => {
-    test1(resultState)
-  }, [resultState])
+  // useEffect(() => {
+  //   test1(resultState)
+  // }, [resultState])
 
   return (
     <div className={`d-flex align-items-center ms-5 ${styles.container}`}>

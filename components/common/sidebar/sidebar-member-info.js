@@ -15,7 +15,7 @@ export default function SidebarMemberInfo() {
     var index = auth.email.indexOf('@')
     newid = '@' + auth.email.substring(0, index)
   }
-  console.log(auth)
+  console.log('aa',auth)
 
   return (
     <>
