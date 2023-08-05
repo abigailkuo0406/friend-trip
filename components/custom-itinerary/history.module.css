@@ -38,7 +38,7 @@
   border: 1px solid #674c87;
 }
 
-.textcolor:hover{
+.textcolor:hover,.textcolor:focus{
   background-color: #674c87;
   color: #FFFFFF;
   border: 1px solid #674c87;
@@ -49,6 +49,7 @@
   background-color: #674c87 !important; /* 新增這一行，設定按鈕被點擊時的背景顏色 */
   border: 1px solid #674c87;
 }
+
 
 .sort{
   color: #674c87;
