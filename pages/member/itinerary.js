@@ -1,12 +1,15 @@
-import { useEffect, useState, useContext} from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import AdminLayout from '@/components/layout/admin-layout'
 import CustomItineraryIndex from '@/components/custom-itinerary'
 import HistoryCard from '@/components/custom-itinerary/history-card'
+import AuthContext from '@/context/AuthContext'
 // import PageBtn from '@/components/custom-itinerary/page-btn'
 
-export default function ItineraryIndex() {
+export default function ItineraryIndex () {
+  //取得登入之會員資料
+  const { auth } = useContext(AuthContext)
   const [filteredTripsData, setFilteredTripsData] = useState([])
   const router = useRouter()
   const [data, setData] = useState({
@@ -22,7 +25,7 @@ export default function ItineraryIndex() {
   useEffect(() => {
     const usp = new URLSearchParams(router.query)
     // API串接
-    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}`)
+    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}&member_id=${auth.member_id}`)
       .then((r) => r.json())
       .then((data) => {
         setData(data)
@@ -47,10 +50,10 @@ export default function ItineraryIndex() {
   const handlePublicTripsClick = () => {
     const publicTrips = data.rows.filter((trip) => trip.public === '公開')
     setFilteredTripsData(publicTrips)
-    setData((prevData)=>({
+    setData((prevData) => ({
       ...prevData,
-      totalRows:publicTrips.length,
-      totalPages:Math.ceil(publicTrips.length/data.perPage),
+      totalRows: publicTrips.length,
+      totalPages: Math.ceil(publicTrips.length / data.perPage),
       rows: publicTrips,
     }))
   }
@@ -60,10 +63,10 @@ export default function ItineraryIndex() {
   const handlePrivateTripsClick = () => {
     const filterPrivate = data.rows.filter((trip) => trip.public === '不公開')
     setFilteredTripsData(filterPrivate)
-    setData((prevData)=>({
+    setData((prevData) => ({
       ...prevData,
-      totalRows:filterPrivate.length,
-      totalPages:Math.ceil(filterPrivate.length/prevData.perPage),
+      totalRows: filterPrivate.length,
+      totalPages: Math.ceil(filterPrivate.length / prevData.perPage),
       rows: filterPrivate,
     }))
   }
@@ -74,12 +77,12 @@ export default function ItineraryIndex() {
 
   return (
     <>
-      <CustomItineraryIndex 
-      privateClick={handlePrivateTripsClick}
-      publicClick={handlePublicTripsClick}
-      allClick={handleAllTripsClick}
-       />
-     
+      <CustomItineraryIndex
+        privateClick={handlePrivateTripsClick}
+        publicClick={handlePublicTripsClick}
+        allClick={handleAllTripsClick}
+      />
+
       {data.rows.map((v, i) => {
         return (
           <div key={i}>
@@ -91,7 +94,7 @@ export default function ItineraryIndex() {
               date={v.date}
               itin_id={v.itin_id}
               onDelete={() => handleDelete(v.itin_id)}
-              onChange={()=>changeLocalStorage(v.itin_id)}
+              onChange={() => changeLocalStorage(v.itin_id)}
             />
           </div>
         )

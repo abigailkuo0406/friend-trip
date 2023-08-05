@@ -23,7 +23,7 @@ export default function SaveViewModal(paProps) {
         <div
           className="modal fade"
           id={`exampleModal_${paProps.sid}`}
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >

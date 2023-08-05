@@ -28,7 +28,7 @@ export default function PublicCard (props) {
     console.log('changeSelectLocalStorage==>', props)
     localStorage.setItem(
       'select_schedule_info',
-      JSON.stringify({ itin_member: props.itin_id, itin_name: props.name,itin_memberName:props.member_name,itin_image:props.member_images
+      JSON.stringify({ itin_member: props.itin_id, itin_name: props.name,itin_memberName:props.member_name,itin_image:props.member_images,itin_ppl:props.ppl
       })
     )
   }

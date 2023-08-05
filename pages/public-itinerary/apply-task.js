@@ -44,7 +44,6 @@ export default function ApplyTask () {
         setMemberName(data[0].member_name)
         setMemberImg(data[0].images)
         console.log(memberImg)
-
       })
   }, [])
 
@@ -54,7 +53,7 @@ export default function ApplyTask () {
     const year = date.getFullYear()
     const month = String(date.getMonth() + 1).padStart(2, '0') //padStart->日期維持2位數 ex.月份05
     const day = String(date.getDate()).padStart(2, '0')
-    return `${year}年${month}月${day}日`
+    return `${year}/${month}/${day}`
   }
   const formattedCreateAt = formatDateString(itinDate) // 格式化后的創建日期
 
@@ -76,8 +75,11 @@ export default function ApplyTask () {
             ></Image>
             <div className="flex-column mx-3">
               <p className="usr_name">{memberName}</p>
-              <p className="date">{formattedCreateAt}</p>
             </div>
+            {/* <div>
+              <p>*參加日期:</p>
+              <p className="date">{formattedCreateAt}</p>
+            </div> */}
           </div>
         </div>
       </div>
@@ -111,18 +113,18 @@ export default function ApplyTask () {
                 </div>
               </li>
             ))}
-            
-       
+
+
           </ol>
-          
+
         </div>
         <div>
-              <ApplyTaskNote
-                note={itinNote}
-                itinDate={itinDate}
-                ppl={itinPpl}
-              />
-            </div>
+          <ApplyTaskNote
+            note={itinNote}
+            itinDate={itinDate}
+            ppl={itinPpl}
+          />
+        </div>
       </div>
 
     </>
