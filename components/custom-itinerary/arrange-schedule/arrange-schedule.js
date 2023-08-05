@@ -12,6 +12,7 @@ import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
 import { BiHomeHeart } from 'react-icons/bi'
 import AuthContext from '@/context/AuthContext'
 import Swal from 'sweetalert2'
+import ScheduleContext from '@/context/ScheduleContext'
 
 export default function ScheduleSide ({
   changeToSearch,
@@ -35,6 +36,7 @@ export default function ScheduleSide ({
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
+  const {itin_name}=useContext(ScheduleContext)
 
   //儲存行程到後端
   const handleSaveClick = () => {
@@ -98,7 +100,7 @@ export default function ScheduleSide ({
                 </Link>
               </div>
               <div className="trip-list-header-info mx-4">
-                <h4>{itinName}</h4>
+                <h4>{itin_name}</h4>
                 {/* {filteredItineraryName.map((nameObj) => {
                   return (
                     <h4 key={nameObj.itin_member_id} className={styles.h4}>

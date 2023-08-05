@@ -1,32 +1,36 @@
-import { useEffect, useState , useContext } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
 import Image from 'next/image'
 import Link from 'next/link'
 import persona from '@/assets/fake-data/fake-persona.png'
 import SaveViewInit from '@/components/custom-itinerary/save-view-task/save-view-task'
 import CoverPhoto from '@/components/custom-itinerary/save-view-task/cover-photo'
-import { FaRegEdit } from 'react-icons/fa'
-import styles from '@/components/custom-itinerary/save-view-task/save-view-task.module.css'
+// import styles from '@/components/custom-itinerary/save-view-task/save-view-task.module.css'\
+import styles from '@/components/public-itinerary/public-init.module.css'
 import { Router, useRouter } from 'next/router'
 import SaveViewModal from '@/components/custom-itinerary/save-view-task/save-view-modal'
 import AuthContext from '@/context/AuthContext'
 import ApplyTaskNote from '@/components/public-itinerary/apply-task-note'
 
 
-export default function ApplyTask() {
-    //取得登入之會員資料
-    const { auth } = useContext(AuthContext)
+export default function ApplyTask () {
+  //取得登入之會員資料
+  const { auth } = useContext(AuthContext)
   const router = useRouter()
   const [data, setData] = useState([])
   const firstData = data[0] // 取得第一筆資料
   const itinName = firstData ? firstData.name : '' // 提取行程名稱
   const itinDate = firstData ? firstData.date : ''
+  const itinPpl = firstData ? firstData.ppl : ''
+  const itinNote = firstData ? firstData.note : ''
   const itinCoverPhoto = firstData ? firstData.coverPhoto : ''
+
   const [memberName, setMemberName] = useState('')
+  const [memberImg, setMemberImg] = useState('')
   // 增加一個狀態來控制 modal 的顯示
   const [showModal, setShowModal] = useState(null)
 
-   
+
   useEffect(() => {
     const storedData = localStorage.getItem('select_schedule_info')
     const parsedData = JSON.parse(storedData)
@@ -36,12 +40,16 @@ export default function ApplyTask() {
       .then((r) => r.json())
       .then((data) => {
         setData(data)
-        console.log('data==>', data)
+        console.log('data==>', data[0])
+        setMemberName(data[0].member_name)
+        setMemberImg(data[0].images)
+        console.log(memberImg)
+
       })
   }, [])
 
-   // 格式化日期
-   const formatDateString = (dateString) => {
+  // 格式化日期
+  const formatDateString = (dateString) => {
     const date = new Date(dateString)
     const year = date.getFullYear()
     const month = String(date.getMonth() + 1).padStart(2, '0') //padStart->日期維持2位數 ex.月份05
@@ -59,15 +67,15 @@ export default function ApplyTask() {
         <div className="d-flex justify-content-between mt-3 mx-2 ">
           <div className="d-flex align-items-cente">
             <Image
-             src={data.images ? `http://localhost:3002/face/${data.images}` : persona}
-             alt={data.member_name}
+              src={memberImg ? `http://localhost:3002/face/${memberImg}` : persona}
+              alt={memberName}
               width={50}
               height={50}
               priority={true} //圖片預先載入
               className="rounded-circle"
             ></Image>
             <div className="flex-column mx-3">
-              <p className="usr_name">{data.member_name}</p>
+              <p className="usr_name">{memberName}</p>
               <p className="date">{formattedCreateAt}</p>
             </div>
           </div>
@@ -99,17 +107,22 @@ export default function ApplyTask() {
                       weekdayText={v.weekday_text}
                       phoneNumber={v.phone_number}
                     />
-
-                  <ApplyTaskNote
-                    note={v.note}
-                  /> 
                   </div>
-                
                 </div>
               </li>
             ))}
+            
+       
           </ol>
+          
         </div>
+        <div>
+              <ApplyTaskNote
+                note={itinNote}
+                itinDate={itinDate}
+                ppl={itinPpl}
+              />
+            </div>
       </div>
 
     </>

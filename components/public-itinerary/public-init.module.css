@@ -31,3 +31,25 @@
    margin-right: 20px;
    margin-bottom: 15px;
 }
+.inputJoinDate{
+    width: 100%;
+    color: #674c87;
+    padding: 0.2rem 2.5rem 0.2rem 0.5rem;
+    border: 1.8px solid #D8d8d8;
+    border-radius: 20px ;
+    border: none;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.joinBtn{
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    padding-left: 1rem;
+    margin: auto;
+    color:white; 
+    background-color: #674c87;
+    text-align: center; 
+
+}
