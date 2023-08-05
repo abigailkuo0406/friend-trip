@@ -24,6 +24,14 @@ export default function PublicCard (props) {
 
   console.log('props.itin_id',props.itin_id)
 
+  //取得itin_id
+  const changeSelectLocalStorage = () => {
+    console.log('changeSelectLocalStorage==>', props)
+    localStorage.setItem(
+      'select_schedule_info',
+      JSON.stringify({ itin_member: props.itin_id, itin_name: props.name })
+    )
+  }
   return (
     <>
 
@@ -58,7 +66,7 @@ export default function PublicCard (props) {
               </div>
               <Link
                 href="/public-itinerary/apply-task"
-                onChange={()=>changeLocalStorage(v.itin_id)}
+                onChange={changeSelectLocalStorage}
               >
               <button type="button" className={`btn ${styles.btn}`}>參加</button>
               </Link>

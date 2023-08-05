@@ -10,7 +10,7 @@ export default function CoverPhoto(props) {
     <>
       <Image
         src={`http://localhost:3002/img/itinerary-photo/${itinCoverPhoto}`}
-        alt="Picture of the Jiufen"
+        alt={itinCoverPhoto}
         width={940}
         height={400}
         quality={75} //圖片質量

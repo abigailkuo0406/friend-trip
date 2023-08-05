@@ -31,9 +31,6 @@ export default function PublicSchedule () {
       })
   }, [router.query])
 
-  const handleJoin=()=>{
-   
-  }
 
 
   return (
@@ -56,7 +53,7 @@ export default function PublicSchedule () {
               itin_member_id={v.itin_member_id}
               member_name={v.member_name}
               member_images={v.images}
-              
+              onChange={()=>changeSelectLocalStorage(v.itin_id)}              
               />
             </div>
           )

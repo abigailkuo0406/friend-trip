@@ -28,7 +28,7 @@ export default function ApplyTask() {
 
    
   useEffect(() => {
-    const storedData = localStorage.getItem('schedule_info')
+    const storedData = localStorage.getItem('select_schedule_info')
     const parsedData = JSON.parse(storedData)
     const itinId = parsedData.itin_member
     // API串接
@@ -85,6 +85,7 @@ export default function ApplyTask() {
                       itinOrder={v.itin_order}
                       name={v.name}
                       photo_url={v.photo_url}
+
                     />
                   </div>
                   {/* SaveViewModal */}
@@ -99,9 +100,9 @@ export default function ApplyTask() {
                       phoneNumber={v.phone_number}
                     />
 
-                  {/* <ApplyTaskNote
+                  <ApplyTaskNote
                     note={v.note}
-                  />  */}
+                  /> 
                   </div>
                 
                 </div>
