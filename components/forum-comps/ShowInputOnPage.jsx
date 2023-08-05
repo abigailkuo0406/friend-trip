@@ -1,13 +1,12 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useContext } from 'react'
 import styles from './ShowInputOnPage.module.css'
 import AvatarAndNameOfPostAuthor from './AvatarAndNameOfPostAuthor'
 import axios from 'axios'
+import AuthContext from '@/context/AuthContext'
 
 // TODO 把信息顯示和新增信息分開！！！
-function ShowInputOnPage({ sendMsg }) {
-  //avatarOfPostAuthor from database
-  // const avatarOfPostAuthor =
-  //   'http://localhost:3000/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffake-persona.fa9c7bea.png&w=2048&q=75'
+function ShowInputOnPage({ sendMsg, comments, post_id }) {
+  const { auth, setAuth } = useContext(AuthContext)
   const avatarOfPostAuthor = '/face/face23.png'
   //avatarOfPostAuthor from database
   const [data, setData] = useState([])
@@ -26,19 +25,23 @@ function ShowInputOnPage({ sendMsg }) {
   return (
     <>
       <ul className={styles.listStyle}>
-        {data.map((item) => {
-          return (
-            <>
-              <li className="d-flex">
-                <AvatarAndNameOfPostAuthor
-                  avatarOfPostAuthor={avatarOfPostAuthor}
-                  authorOfThePost
-                />
-                {item}
-              </li>
-            </>
-          )
-        })}
+        {comments
+          .filter((i) => i.post_id == post_id)
+          .map((item) => {
+            return (
+              <>
+                <li className="d-flex">
+                  <AvatarAndNameOfPostAuthor
+                    avatarOfPostAuthor={
+                      'http://localhost:3002/face/' + item.images
+                    }
+                    authorOfThePost
+                  />
+                  {item.content}
+                </li>
+              </>
+            )
+          })}
       </ul>
       <div className="d-flex">
         <p>🗣️</p>

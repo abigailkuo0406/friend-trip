@@ -6,15 +6,15 @@ import ShowInputOnPage from './ShowInputOnPage'
 import axios from 'axios'
 
 export default function Post({
-  id,
+  post_id,
   avatarOfPostAuthor,
   authorOfThePost,
   isLogginUserAuthorOfThePost,
   dateOfPublishOfPost,
   imgOfPost,
   articleOfPost,
-}){
- 
+  comments,
+}) {
   function sendMsg(leftMsg) {
     axios
       .post('http://localhost:3002/show-forum-posts', { leaveMsg: leftMsg })
@@ -31,7 +31,12 @@ export default function Post({
       />
       <ImgForThePost imgSrc={imgOfPost} className="my-md-4" />
       <ArticleOfPost content={articleOfPost} className="my-md-4" />
-      <ShowInputOnPage sendMsg={sendMsg} />
+
+      <ShowInputOnPage
+        sendMsg={sendMsg}
+        comments={comments}
+        post_id={post_id}
+      />
     </div>
   )
 }

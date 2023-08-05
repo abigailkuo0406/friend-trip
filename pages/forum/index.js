@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 
 export default function ForumHome() {
   const [posts, setPosts] = useState([])
+  const [comments, setComments] = useState([])
   useEffect(() => {
     // API串接，如果不加 method: 'GET', 也沒關係，那是 default value
     fetch('http://localhost:3002/show-forum-posts', {
@@ -14,6 +15,7 @@ export default function ForumHome() {
       .then((d) => {
         console.log('111', d.rows)
         setPosts(d.rows)
+        setComments(d.comments)
         console.log('eddie', d.rows.file_url)
       })
   }, [])
@@ -22,7 +24,7 @@ export default function ForumHome() {
   return (
     <>
       <NavBar />
-      <Posts posts={posts} />
+      <Posts posts={posts} comments={comments} />
     </>
   )
 }
