@@ -120,6 +120,7 @@ export default function ScheduleSide ({
                   <p className="usr_name my-auto mx-2">{auth.member_name}</p>
                 </div>
               </div>
+              
               <div className="trip-list-day-container mx-2">
                 {/* <div className="trip-list-day-header mx-3">
                   <div className="d-flex mt-2">
