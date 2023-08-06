@@ -24,7 +24,7 @@ export default function InviteModalEdit({
     // console.log('外層邀請清單:', inviteList)
 
     const handleValueChange = (ivImg, ivBtn, ivId) => {
-
+        console.log('yy', ivId)
         if (ivBtn) {
             // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
             setInviteList([{ 'images': ivImg, 'iv_member_id': ivId }, ...inviteList])
@@ -68,22 +68,22 @@ export default function InviteModalEdit({
                 setFriends(friend)
             })
     }, [])
-
+    // console.log('friends', friends)
 
     useEffect(() => {
         const friendsBtn = friends.map((f, i, arr) => {
-        inviteList.forEach((iv) => {
-            if (f.FriendId == iv.iv_member_id) {
-                f.defaultBtn = true
-                // console.log('btntrue', f)
-            }
-        })
-        return f
+            inviteList.forEach((iv) => {
+                if (f.FriendId == iv.iv_member_id) {
+                    f.defaultBtn = true
+                    console.log('btntrue', f)
+                }
+            })
+            return f
 
         })
         setFriendsBtnTemp(friendsBtn)
-    },[friends])
-    
+    }, [friends])
+
 
     // console.log('11', friendsBtn)
 

@@ -46,19 +46,28 @@ export default function ReserveEdit({
 
   const handleSubmit = (e) => {
     const editForm = new FormData(document.getElementById('reserveEdit'))
+    const editForm2 = new FormData(document.getElementById('invitesEdit'))
     fetch('http://localhost:3002/reserve/edit', {
       method: 'PUT',
       body: editForm
+    })
+    fetch('http://localhost:3002/reserve/delete', {
+      method: 'POST',
+    })
+    fetch('http://localhost:3002/reserve/invite-edit', {
+      method: 'POST',
+      body: editForm2
     })
     router.push('/member/reserve')
   }
 
   //邀請好友名單
-  const [inviteList, setInviteList] = useState([])
+  const [inviteList, setInviteList] = useState([alreadyInvite])
   const inviteListChange = (ivList) => {
     setInviteList(ivList)
 
   }
+  console.log('aaa', inviteList)
 
   return (
     <>
@@ -133,52 +142,62 @@ export default function ReserveEdit({
                     ''
                   }
 
-
-                  <label>邀請好友</label>
-                  <div className='d-flex'>
-                    {alreadyInvite ?
-                      alreadyInvite.map((v, i) => {
-                        return (
-                          v.iv_member_id ?
-                            <div key={i} className='me-2' >
-                              <Image src={`http://localhost:3002/face/${v.images}`}
-                                className={` ${FriendSty.avatar}`}
-                                width={50}
-                                height={50} />
-                            </div>
-                            :
-                            <p>本次訂位無邀請好友</p>
-                        )
-                      })
+                  <form id="invitesEdit" onSubmit={handleSubmit}>
+                    {reserveDetails
+                      ?
+                      <input name="reserve_id" value={reserveDetails.reserveId} />
                       :
-                      ""
+                      <input name="reserve_id" />
                     }
-                    <Button
-                      btnText="邀請好友"
-                      bsModle1="#exampleModalToggle2"
-                      bsModle2="modal"
-                    />
-                  </div>
+
+                    <label>邀請好友</label>
+                    <div className='d-flex'>
+                      {inviteList ?
+                        inviteList.map((v, i) => {
+                          return (
+                            v.iv_member_id ?
+                              <div key={i} className='me-2' >
+                                <input name="iv_member_id" value={v.iv_member_id} />
+                                <Image src={`http://localhost:3002/face/${v.images}`}
+                                  className={` ${FriendSty.avatar}`}
+                                  width={50}
+                                  height={50} />
+                              </div>
+                              :
+                              <p>本次訂位無邀請好友</p>
+                          )
+                        })
+                        :
+                        ""
+                      }
+                    </div>
+
+                  </form>
+                  <Button
+                    btnText="邀請好友"
+                    bsModle1="#exampleModalToggle2"
+                    bsModle2="modal"
+                  />
+                </div>
 
 
-                  <div className='d-flex'>
-                    <Button
-                      btnText='取消修改'
-                      // onClick={modalOpen2}
-                      bsModl3='modal'
-                    />
-                    <Button
-                      type='submit'
-                      btnText='修改完成'
-                      onClick={handleSubmit}
-                      bsModl3='modal'
-                    />
-                  </div>
+                <div className='d-flex'>
+                  <Button
+                    btnText='取消修改'
+                    // onClick={modalOpen2}
+                    bsModl3='modal'
+                  />
+                  <Button
+                    type='submit'
+                    btnText='修改完成'
+                    onClick={handleSubmit}
+                    bsModl3='modal'
+                  />
                 </div>
               </div>
-
-
             </div>
+
+
           </div>
         </div>
       </div>

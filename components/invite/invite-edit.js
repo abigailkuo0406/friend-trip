@@ -57,7 +57,12 @@ export default function InviteEdit({
     <>
       <div className="my-4">
         <div className="d-flex align-items-center ">
-          <Image src={`http://localhost:3002/face/${images}`} className={styles.avatar} width={50} height={50} />
+          <Image
+            src={`http://localhost:3002/face/${images}`}
+            alt={images}
+            className={styles.avatar}
+            width={50}
+            height={50} />
           <p className={`mx-5 ${styles.listText}`}>{friendName}</p>
 
           <Btn

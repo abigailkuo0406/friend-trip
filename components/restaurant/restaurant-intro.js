@@ -53,6 +53,7 @@ export default function Modal({
         const formData = new FormData(document.getElementById('reserve'))
 
 
+
         fetch('http://localhost:3002/restaurant', {
             method: 'POST',
             body: formData,
@@ -103,8 +104,6 @@ export default function Modal({
                                     <form id="reserve" onSubmit={handleSubmit}>
                                         <input name="member_id" value={auth.member_id} hidden />
                                         <input name="rest_id" value={restId} hidden />
-                                        <input name="btn_value" value={1} hidden />
-
 
                                         <div className={`${InfoSty.infoBox}`} >
                                             <DateInput
