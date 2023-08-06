@@ -4,7 +4,6 @@ import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import InitCard from './init-card'
-import Host from '@/assets/fake-data/fake-persona.png'
 import persona from '@/public/img/fake-data/fake-persona.png'
 import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
@@ -50,7 +49,7 @@ export default function ScheduleSide ({
       iconColor: '#FABCBF',
       color: '#674C87',
       confirmButtonColor: '#674C87',
-      // showConfirmButton: false,
+      // showConfirmButton: true,
       // timer: 1500,
     })
     onSaveClick()
@@ -99,7 +98,7 @@ export default function ScheduleSide ({
                   <FiMoreHorizontal />
                 </Link>
               </div>
-              <div className="trip-list-header-info mx-4">
+              <div className={`trip-list-header-info mx-4 ${styles.itinNameColor}`}>
                 <h4>{itin_name}</h4>
                 {/* {filteredItineraryName.map((nameObj) => {
                   return (
@@ -116,6 +115,7 @@ export default function ScheduleSide ({
                     width={40}
                     height={40}
                     priority={true} //圖片預先載入
+                    className={`rounded-circle ${styles.perName}`}
                   />
                   <p className="usr_name my-auto mx-2">{auth.member_name}</p>
                 </div>

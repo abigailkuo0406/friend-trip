@@ -54,34 +54,43 @@ export default function CreateTask () {
   const handleSubmit = (event) => {
     event.preventDefault()
     setSubmitted(true)
-    //新增成功呈現alert
-    // if (handleSubmit) {
-    //   alert('新增成功')
-    // }
     // 更改追蹤是否提交的狀態，用於 <form> 內除錯
     setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
     if (error8 == true) {
       var moveTo = document.getElementById(errorTracker8)
       moveTo.scrollIntoView() // 滑向錯誤的地方
       moveTo.focus()
-      return
+      return 
+    }
+    if (handleSubmit) {
+      Swal.fire({
+        width: 400,
+        text: '建立行程成功',
+        icon: 'success',
+        iconColor: '#FABCBF',
+        color: '#674C87',
+        confirmButtonColor: '#674C87',
+        showConfirmButton: true,
+        timer: 1500,
+      })
+      router.push('/custom-itinerary/arrange-schedule')
     }
     //點選建立後3秒後跳轉
-    setTimeout(() => {
-      if (handleSubmit) {
-        Swal.fire({
-          width: 400,
-          text: '建立行程成功',
-          icon: 'success',
-          iconColor: '#FABCBF',
-          color: '#674C87',
-          confirmButtonColor: '#674C87',
-          showConfirmButton: true,
-          timer: 1500,
-        })
-      }
-      router.push('/custom-itinerary/arrange-schedule')
-    }, 2000)
+    // setTimeout(() => {
+    //   if (handleSubmit) {
+    //     Swal.fire({
+    //       width: 400,
+    //       text: '建立行程成功',
+    //       icon: 'success',
+    //       iconColor: '#FABCBF',
+    //       color: '#674C87',
+    //       confirmButtonColor: '#674C87',
+    //       showConfirmButton: true,
+    //       timer: 1000,
+    //     })
+    //   }
+    //   router.push('/custom-itinerary/arrange-schedule')
+    // }, 2000)
 
     const formData = new FormData(document.getElementById('createInit'))
 
@@ -99,7 +108,6 @@ export default function CreateTask () {
         })
     }
 
-    // console.log('formData::', formData.get('coverPhoto'))
     formData.set('coverPhoto', formData.get('coverPhoto').name)
     console.log('new coverPhoto.name:', formData.get('coverPhoto'))
     console.log('formData=>', formData)

@@ -15,11 +15,14 @@ justify-content: center;
 }
 
 .inputTimeD{
-  margin-top: 1.8rem;
-  margin-bottom: 1.8rem;
+  margin-top: 1.4rem;
+  margin-bottom: 1.5rem;
   margin-left: 1rem;
 }
 .timeLable{
+  margin: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   font-weight: 500;
   color: #674C87;
   width: 10rem;

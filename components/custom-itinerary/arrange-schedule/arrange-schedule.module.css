@@ -167,4 +167,7 @@
 .time::-webkit-datetime-edit-text {
   color: #674c87;
 }
+.itinNameColor,.perName{
+  color: #674c87;
+}
 
