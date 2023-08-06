@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Image from 'next/image'
 import Btn from '@/components/common/button/btn-normal'
 import styles from '@/components/invite/friends-list.module.css'
+import AuthContext from '@/context/AuthContext'
+
 
 
 // 引入邀請元件
@@ -10,6 +12,8 @@ import Invite from '@/components/invite/invite'
 export default function InviteModal({
     onValueChange
 }) {
+
+    const { auth, setAuth } = useContext(AuthContext)
 
     /*邀請功能*/
     const [inviteList, setInviteList] = useState([])
@@ -37,14 +41,21 @@ export default function InviteModal({
     const [friends, setFriends] = useState()
 
     useEffect(() => {
+        // fetch(`http://localhost:3002/friends`, {
+        //     method: 'GET',
+        // })
         fetch(`http://localhost:3002/friends`, {
-            method: 'GET',
+            method: 'POST',
+            body: JSON.stringify({ memberID: auth.member_id }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
             .then((f) => f.json())
             .then((friendsData) => {
-                setFriends(friendsData.rows)
+                setFriends(friendsData.all)
             })
-    }, [])
+    }, [auth])
 
 
     return (
@@ -97,12 +108,12 @@ export default function InviteModal({
                                     }) : <li hidden></li>}
                             </ul>
                         </div>
-                        
+
                         <div class="modal-footer">
-                        <Btn
-                            btnText='回上一頁'
-                            bsModle1="#exampleModalToggle"
-                            bsModle2='modal'
+                            <Btn
+                                btnText='回上一頁'
+                                bsModle1="#exampleModalToggle"
+                                bsModle2='modal'
                             />
                         </div>
                     </div>

@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useContext} from 'react'
 import Image from 'next/image'
 import Btn from '@/components/common/button/btn-normal'
 import styles from '@/components/invite/friends-list.module.css'
+import AuthContext from '@/context/AuthContext'
+
 
 
 // 引入邀請元件
@@ -12,6 +14,8 @@ export default function InviteModalEdit({
     onValueChange,
     alreadyInvite
 }) {
+    const { auth, setAuth } = useContext(AuthContext)
+
 
     // console.log('alreadyInvite', alreadyInvite)
 
@@ -49,14 +53,21 @@ export default function InviteModalEdit({
 
     // 匯入好友資料
     useEffect(() => {
+        // fetch(`http://localhost:3002/friends`, {
+        //     method: 'GET',
+        // })
         fetch(`http://localhost:3002/friends`, {
-            method: 'GET',
+            method: 'POST',
+            body: JSON.stringify({ memberID: auth.member_id }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
             .then((f) => f.json())
             .then((friendsData) => {
                 // console.log('aa', friendsData.rows)
 
-                const friend = friendsData.rows.map((f) => {
+                const friend = friendsData.all.map((f) => {
                     let defaultBtn = { "defaultBtn": false }
 
                     f = { ...f, ...defaultBtn }
