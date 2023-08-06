@@ -4,7 +4,7 @@ import Link from 'next/link'
 import styles from './create-task.module.css'
 import Image from 'next/image'
 import { FaArrowLeftLong } from 'react-icons/fa6'
-import { TbPhotoPlus } from 'react-icons/tb'
+// import { TbPhotoPlus } from 'react-icons/tb'
 import Swal from 'sweetalert2'
 import InputText from '../common/input/input-text'
 import AreaText from '../common/input/textarea'
@@ -15,7 +15,7 @@ import ImageItemPpreview from './image-item-preview'
 import InputDate from '../common/input/input-date'
 import AuthContext from '@/context/AuthContext'
 
-export default function CreateTask() {
+export default function CreateTask () {
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
 
@@ -76,7 +76,7 @@ export default function CreateTask() {
           iconColor: '#FABCBF',
           color: '#674C87',
           confirmButtonColor: '#674C87',
-          showConfirmButton: false,
+          showConfirmButton: true,
           timer: 1500,
         })
       }
@@ -88,7 +88,7 @@ export default function CreateTask() {
     if (formData.get('coverPhoto') != '') {
       const imgData = new FormData() //建立一個新的空的formdata物件
       imgData.set('coverPhoto', formData.get('coverPhoto')) //將選擇的檔案(input)加入到imgData，get(input中設定name)
-      
+
       fetch('http://localhost:3002/try-preview', {
         method: 'POST',
         body: imgData,
@@ -158,22 +158,25 @@ export default function CreateTask() {
                 id="inputSubject"
                 name="name"
                 label="行程名稱"
-                value="" // 預設文字
                 placeholder="請輸入"
                 width="input-width-100pa"
                 getValue={setinputSubjectValue} // 獲取填寫的數值
                 getName={setInputSubject} // 獲取 name
                 required={true} // true：必填，false：非必填
               ></InputText>
-
-              <InputDate
-                id="inputDate"
-                name="date"
-                label="出發日期"
-                width="input-width-10rem"
-                value={inputDateValue}
-              ></InputDate>
-
+              <div className='d-flex'>
+                <InputDate
+                  id="inputDate"
+                  name="date"
+                  label="出發日期"
+                  width="input-width-10rem"
+                  value={inputDateValue}
+                ></InputDate>
+                <div className={styles.inputTimeD}>
+                  <p className={styles.timeLable}>出發時間</p>
+                  <input type="time" name="time" className={styles.inputTime}></input>
+                </div>
+              </div>
               <AreaText
                 id="description"
                 label="說明"

@@ -36,23 +36,18 @@ export const ScheduleContextProvider = ({children})=>{
         .then((r) => r.json())
         .then((data) => {
           //判斷目前的itin_id位置
-          // console.log('initial ==> itin_member:', data[0])
           setItin_id(data[0].itin_id)
-          localStorage.setItem('schedule_info', JSON.stringify({'itin_member':data[0].itin_id,'itin_name':data[0].name}))
           setItin_name(data[0].name)
-          
-          // console.log('<<<<<<     DB最新行程編號為:',data[0].itin_id,'     >>>>>>')
+          localStorage.setItem('schedule_info', JSON.stringify({'itin_member':data[0].itin_id,'itin_name':data[0].name,'itin_member_id':data[0].itin_member_id}))
+                    
         })
         .catch((error) => {
           console.error('資料接收失敗', error)
         });
-        // console.log('Itin_idItin_idItin_idItin_id=>',Itin_id)
 
       }else{
         const schedule_info = localStorage.getItem('schedule_info')
         const parsed_schedule_info = JSON.parse(schedule_info);
-        // console.log('<<<<<<     有特定行程編號     >>>>>>')
-        // console.log('(     localStorage 最新行程編號為:',parsed_schedule_info.itin_member,'     )')
         setItin_name(parsed_schedule_info.itin_name)
 
       }

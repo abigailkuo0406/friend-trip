@@ -10,7 +10,6 @@ import AuthContext from '@/context/AuthContext'
 export default function ItineraryIndex () {
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
-  const [filteredTripsData, setFilteredTripsData] = useState([])
   const router = useRouter()
   const [data, setData] = useState({
     redirect: '',
@@ -21,14 +20,18 @@ export default function ItineraryIndex () {
     rows: [],
   })
 
+  const [filterCondition,setFilterCondition]=useState('') //控制分頁
+
   //讀取資料庫
   useEffect(() => {
+
     const usp = new URLSearchParams(router.query)
     // API串接
-    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}&member_id=${auth.member_id}`)
+    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}&member_id=${auth.member_id}&filtercondition=${filterCondition}`)
       .then((r) => r.json())
       .then((data) => {
         setData(data)
+        console.log('data==>',data)
       })
   }, [router.query])
 
@@ -48,32 +51,40 @@ export default function ItineraryIndex () {
 
   //公開行程filter
   const handlePublicTripsClick = () => {
-    const publicTrips = data.rows.filter((trip) => trip.public === '公開')
-    setFilteredTripsData(publicTrips)
-    setData((prevData) => ({
-      ...prevData,
-      totalRows: publicTrips.length,
-      totalPages: Math.ceil(publicTrips.length / data.perPage),
-      rows: publicTrips,
-    }))
+    setFilterCondition('public')
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: 1 }, // 設定 page 為 1
+    });
   }
 
 
   //不公開行程filter
   const handlePrivateTripsClick = () => {
-    const filterPrivate = data.rows.filter((trip) => trip.public === '不公開')
-    setFilteredTripsData(filterPrivate)
-    setData((prevData) => ({
-      ...prevData,
-      totalRows: filterPrivate.length,
-      totalPages: Math.ceil(filterPrivate.length / prevData.perPage),
-      rows: filterPrivate,
-    }))
+    setFilterCondition('private')
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: 1 }, // 設定 page 為 1
+    });
   }
 
   const handleAllTripsClick = () => {
-    setFilteredTripsData([])
+    setFilterCondition('')
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: 1 }, // 設定 page 為 1
+    });
   }
+
+  const handleJoinClick = () => {
+    setFilterCondition('join')
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: 1 }, // 設定 page 為 1
+    });
+  }
+
+
 
   return (
     <>
@@ -81,6 +92,7 @@ export default function ItineraryIndex () {
         privateClick={handlePrivateTripsClick}
         publicClick={handlePublicTripsClick}
         allClick={handleAllTripsClick}
+        joinCick={handleJoinClick}
       />
 
       {data.rows.map((v, i) => {
@@ -93,6 +105,8 @@ export default function ItineraryIndex () {
               description={v.description}
               date={v.date}
               itin_id={v.itin_id}
+              member_id={v.itin_member_id}
+              filterCondition={filterCondition}
               onDelete={() => handleDelete(v.itin_id)}
               onChange={() => changeLocalStorage(v.itin_id)}
             />

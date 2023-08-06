@@ -1,7 +1,7 @@
 import styles from './history.module.css'
 import BtnNormal from '../common/button/btn-normal'
 
-export default function History({allClick, publicClick,privateClick}) {
+export default function History({allClick, publicClick,privateClick,joinCick}) {
 
 
   return (
@@ -38,12 +38,12 @@ export default function History({allClick, publicClick,privateClick}) {
               </button>
             </div>
             <div className="mx-2">
-              <button type="button" className={`btn ${styles.textcolor}`}>
-                官方行程
+              <button type="button" className={`btn ${styles.textcolor}`} onClick={joinCick}>
+                跟團行程
               </button>
             </div>
           </div>
-          <div className="input-group mx-2" style={{ width: 280 }}>
+          {/* <div className="input-group mx-2" style={{ width: 280 }}>
             <p
               className={`my-auto me-3 ${styles.sort} `}
               htmlFor="inputGroupSelect01"
@@ -57,7 +57,7 @@ export default function History({allClick, publicClick,privateClick}) {
             >
               <option value="1">最新日期</option>
             </select>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

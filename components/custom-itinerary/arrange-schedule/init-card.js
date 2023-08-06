@@ -20,10 +20,10 @@ export default function InitCard({ selectedViews,onDeleteViews,photoUrl}) {
 
   return (
     <>
-      <ol className={`${styles.ol}`}>
+      <ol className={`${styles.ol} mx-2`}>
         {selectedViews.map((view, index) => {
           return (
-              <li key={index} className={styles.li}>
+              <li key={index} className={`mt-2 ${styles.li}`}>
                 {view && view.name && (
                   <div
                     type="button"
@@ -37,7 +37,7 @@ export default function InitCard({ selectedViews,onDeleteViews,photoUrl}) {
               hight={120}
               className="mx-2"
             /> */}
-                    <h6 className="my-auto">{view.name}</h6>
+                    <h6 className="my-auto mx-2">{view.name}</h6>
                     <button
                       type="button"
                       className="btn"

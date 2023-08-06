@@ -121,23 +121,23 @@ export default function ScheduleSide ({
                 </div>
               </div>
               <div className="trip-list-day-container mx-2">
-                <div className="trip-list-day-header mx-3">
+                {/* <div className="trip-list-day-header mx-3">
                   <div className="d-flex mt-2">
                     <h6 className="mt-1 mx-1">出發時間：</h6>
                     <div>
                       <input type="time" className={`${styles.time}`}></input>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 {/* 行程card */}
-                <div className="overflow-y-auto" style={{ height: 520 }}>
+                <div className="overflow-y-auto mt-4 mx-3" style={{ height: 520 }}>
                   <InitCard
                     selectedViews={selectedView}
                     onDeleteViews={onDeleteView}
                   />
                   <div className={styles.add}>
                     <button
-                      className={`btn ${styles.addbtn}`}
+                      className={`btn ${styles.addbtn} mt-4`}
                       onClick={changeToSearch}
                     >
                       <BsPlusLg />
