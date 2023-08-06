@@ -6,9 +6,6 @@ import styles from '@/components/invite/friends-list.module.css'
 
 // 引入邀請元件
 import Invite from '@/components/invite/invite'
-// 引入朋友假資料
-import friendss from '@/data/restaurant/friend-list.json'
-
 
 export default function InviteModal({
     onValueChange
