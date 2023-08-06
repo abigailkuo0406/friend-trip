@@ -5,7 +5,7 @@ import AdminLayout from '@/components/layout/admin-layout'
 import CustomItineraryIndex from '@/components/custom-itinerary'
 import HistoryCard from '@/components/custom-itinerary/history-card'
 import AuthContext from '@/context/AuthContext'
-// import PageBtn from '@/components/custom-itinerary/page-btn'
+import { MdNavigateNext, MdNavigateBefore,MdKeyboardDoubleArrowRight,MdKeyboardDoubleArrowLeft } from 'react-icons/md'
 
 export default function ItineraryIndex () {
   //取得登入之會員資料
@@ -20,7 +20,7 @@ export default function ItineraryIndex () {
     rows: [],
   })
 
-  const [filterCondition,setFilterCondition]=useState('') //控制分頁
+  const [filterCondition, setFilterCondition] = useState('') //控制分頁
 
   //讀取資料庫
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function ItineraryIndex () {
       .then((r) => r.json())
       .then((data) => {
         setData(data)
-        console.log('data==>',data)
+        console.log('data==>', data)
       })
   }, [router.query])
 
@@ -123,6 +123,19 @@ export default function ItineraryIndex () {
                   href={
                     '?' +
                     new URLSearchParams(
+                      'page=1').toString()
+                  }
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true"><MdKeyboardDoubleArrowLeft/></span>
+                </Link>
+              </li>
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  href={
+                    '?' +
+                    new URLSearchParams(
                       parseInt(data.page) > 1
                         ? `page=${parseInt(data.page) - 1}`
                         : 'page=1'
@@ -130,7 +143,7 @@ export default function ItineraryIndex () {
                   }
                   aria-label="Previous"
                 >
-                  <span aria-hidden="true">&laquo;</span>
+                  <span aria-hidden="true"><MdNavigateBefore /></span>
                 </Link>
               </li>
               {/* 顯示頁碼 */}
@@ -171,7 +184,19 @@ export default function ItineraryIndex () {
                   }
                   aria-label="Next"
                 >
-                  <span aria-hidden="true">&raquo;</span>
+                  <span aria-hidden="true"><MdNavigateNext /></span>
+                </Link>
+              </li>
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  href={
+                    '?' +
+                    new URLSearchParams(`page=${data.totalPages}`).toString()
+                  }
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true"><MdKeyboardDoubleArrowRight/></span>
                 </Link>
               </li>
             </ul>

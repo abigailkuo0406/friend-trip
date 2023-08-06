@@ -21,6 +21,8 @@ export default function HistoryCard(props) {
   }
   const formattedCreateAt = formatDateString(props.date) // 格式化后的創建日期
 
+ 
+
   // 刪除
   const handleDelete = (e) => {
     e.preventDefault() //取消點擊的預設行為，防止Link元件點擊被觸發
@@ -80,9 +82,9 @@ export default function HistoryCard(props) {
                     priority={true}
                   ></Image>
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-8 ">
                   <div className="card-body">
-                    <div className="d-flex justify-content-between ">
+                    <div className="d-flex justify-content-between  ">
                       <div className="d-flex ">
                         <h5 className={styles.text}>{props.name}</h5>
                         <p className={`badge ${styles.public}`}>
@@ -115,10 +117,13 @@ export default function HistoryCard(props) {
                         ):(<div></div>)}
                       </div>
                     </div>
-                    <p className="card-text text-truncate">
+                    <div className={`card-text ${styles.truncate}`}>
+                    <p className={`${styles.truncateText}`}>
                       {props.description}
                     </p>
-                    <div className="d-flex ">
+                    </div>
+                  
+                    {/* <div className="d-flex ">
                       <div>
                         好友：
                         <Image
@@ -136,7 +141,7 @@ export default function HistoryCard(props) {
                           priority={true}
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <div className={styles.cardText}>
                       <small>{formattedCreateAt}</small>
                     </div>
