@@ -11,6 +11,7 @@ export default function FriendList() {
     const [friends, setFriends] = useState()
 
     useEffect(() => {
+        console.log('aaaaa')
         fetch(`http://localhost:3002/friends`, {
             method: 'POST',
             body: JSON.stringify({ memberID: auth.member_id }),
@@ -32,7 +33,7 @@ export default function FriendList() {
         //     .then((friendsData) => {
         //         setFriends(friendsData.rows)
         //     })
-    }, [])
+    }, [auth])
     return (
         <>
             <div className={styles.friendsheet}>
