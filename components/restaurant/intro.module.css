@@ -1,6 +1,7 @@
 .infoBox {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 .infolabel {
@@ -8,13 +9,26 @@
   padding: 0;
 }
 
-.radioItem{
-    background-color: #D0A5CA;
-    text-align: center;
-
+.radioItem {
+  background-color: #b497d4;
+  color: white;
+  width: 80px;
+  height: 35px;
+  justify-content: center;
+  /* align-items: center; */
+  border-radius: 50rem;
+}
+.radioItem:hover {
+  background-color: #d0a5ca;
+  color: white;
 }
 
-.leftBox{
+.radio:checked + .radioItem {
+  background-color: black;
+  color: white;
+}
+
+.leftBox {
   margin-right: 50px;
 }
 

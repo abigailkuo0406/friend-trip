@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useContext} from 'react'
 import Image from 'next/image'
 import Btn from '@/components/common/button/btn-normal'
 import styles from '@/components/invite/friends-list.module.css'
+import AuthContext from '@/context/AuthContext'
+
 
 
 // 引入邀請元件
@@ -12,8 +14,10 @@ export default function InviteModalEdit({
     onValueChange,
     alreadyInvite
 }) {
+    const { auth, setAuth } = useContext(AuthContext)
 
-    // console.log('alreadyInvite', alreadyInvite)
+
+    console.log('ivModal', alreadyInvite)
 
     /*邀請功能*/
     const [inviteList, setInviteList] = useState([])
@@ -23,11 +27,19 @@ export default function InviteModalEdit({
     }, [alreadyInvite])
     // console.log('外層邀請清單:', inviteList)
 
-    const handleValueChange = (ivImg, ivBtn, ivId) => {
-
+    const handleValueChange = (ivName,ivImg, ivBtn, ivId) => {
+        // console.log('yy', ivId)
         if (ivBtn) {
             // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
-            setInviteList([{ 'images': ivImg, 'iv_member_id': ivId }, ...inviteList])
+            setInviteList([{
+                "reserveId": alreadyInvite.reserveId,
+                "reserve_member_id": alreadyInvite.reserve_member_id,
+                // "invite_id": null,
+                "iv_member_id": ivId,
+                "images": ivImg,
+                "member_name": ivName
+              }, ...inviteList])
+            
         }
         else {
             // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
@@ -39,6 +51,7 @@ export default function InviteModalEdit({
         }
     }
     useEffect(() => {
+        console.log('重選後的邀請清單',inviteList)
         onValueChange(inviteList)
     }, [inviteList])
 
@@ -49,14 +62,21 @@ export default function InviteModalEdit({
 
     // 匯入好友資料
     useEffect(() => {
+        // fetch(`http://localhost:3002/friends`, {
+        //     method: 'GET',
+        // })
         fetch(`http://localhost:3002/friends`, {
-            method: 'GET',
+            method: 'POST',
+            body: JSON.stringify({ memberID: auth.member_id }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
             .then((f) => f.json())
             .then((friendsData) => {
                 // console.log('aa', friendsData.rows)
 
-                const friend = friendsData.rows.map((f) => {
+                const friend = friendsData.all.map((f) => {
                     let defaultBtn = { "defaultBtn": false }
 
                     f = { ...f, ...defaultBtn }
@@ -67,32 +87,25 @@ export default function InviteModalEdit({
                 })
                 setFriends(friend)
             })
-    }, [])
-
+    }, [auth])
+    // console.log('編輯裡的好友列表', friends)
 
     useEffect(() => {
         const friendsBtn = friends.map((f, i, arr) => {
-        inviteList.forEach((iv) => {
-            if (f.FriendId == iv.iv_member_id) {
-                f.defaultBtn = true
-                // console.log('btntrue', f)
-            }
-        })
-        return f
+            inviteList.forEach((iv) => {
+                if (f.FriendId == iv.iv_member_id) {
+                    f.defaultBtn = true
+                    console.log('btntrue', f)
+                }
+            })
+            return f
 
         })
         setFriendsBtnTemp(friendsBtn)
-    },[friends])
-    
+    }, [friends])
+
 
     // console.log('11', friendsBtn)
-
-
-
-
-
-
-
 
     return (
         <>

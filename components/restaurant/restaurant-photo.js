@@ -4,10 +4,7 @@ import { useEffect } from 'react'
 import Image from 'next/image'
 import styles from './restaurant.module.css'
 
-export default function RestaurantPhoto({
-  file,
-  rid
-}) {
+export default function RestaurantPhoto({ file, rid }) {
   const [restPhotos, setRestPhotos] = useState([])
 
   useEffect(() => {
@@ -24,12 +21,41 @@ export default function RestaurantPhoto({
       })
   }, [rid])
 
+  console.log('qq', restPhotos)
   return (
     <>
       {/* 照片區 */}
 
       <div id={`carouselExampleIndicators${rid}`} className="carousel slide">
         <div className="carousel-indicators">
+          {/* {restPhotos != []
+            ? restPhotos.map((v, i) => {
+                return (
+                  <div
+                    key={i}
+                    className={`carousel-item ${styles.imgClass2} ${
+                      i == 0 ? 'active' : ''
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      data-bs-target={`#carouselExampleIndicators${rid}`}
+                      data-bs-slide-to="0"
+                      className="active"
+                      aria-current="true"
+                      aria-label="Slide 1"
+                    ></button>
+                    <Image
+                      src={`http://localhost:3002/restImg/${v.RestImg}`}
+                      className={`${styles.img1}`}
+                      alt={v.RestImg}
+                      width={500}
+                      height={500}
+                    />
+                  </div>
+                )
+              })
+            : ''} */}
           <button
             type="button"
             data-bs-target={`#carouselExampleIndicators${rid}`}
@@ -37,7 +63,8 @@ export default function RestaurantPhoto({
             className="active"
             aria-current="true"
             aria-label="Slide 1"
-          ></button>
+          >
+          </button>
           <button
             type="button"
             data-bs-target={`#carouselExampleIndicators${rid}`}
@@ -65,37 +92,26 @@ export default function RestaurantPhoto({
         </div>
 
         <div className="carousel-inner">
-          <div className={`carousel-item active ${styles.imgClass2}`}>
-            <Image
-              src={`http://localhost:3002/restImg/${file}`}
-              className={`${styles.img1}`}
-              alt={file}
-              width={500}
-              height={500}
-              priority={true}
-            />
-          </div>
-          {restPhotos != [] ?
-            restPhotos.map((v, i) => {
-              return (
-                <div
-                  key={v.RestID}
-                  className={`carousel-item ${styles.imgClass2}`}
-                >
-                  <Image
-                    src={`http://localhost:3002/restImg/${v.RestImg}`}
-                    className={`${styles.img1}`}
-                    alt={v.RestImg}
-                    width={500}
-                    height={500}
-                  />
-                  <p>{v.RestImg}</p>
-                </div>
-              )
-            })
-            :
-            ''
-          }
+          {restPhotos != []
+            ? restPhotos.map((v, i) => {
+                return (
+                  <div
+                    key={i}
+                    className={`carousel-item ${styles.imgClass2} ${
+                      i == 0 ? 'active' : ''
+                    }`}
+                  >
+                    <Image
+                      src={`http://localhost:3002/restImg/${v.RestImg}`}
+                      className={`${styles.img1}`}
+                      alt={v.RestImg}
+                      width={500}
+                      height={500}
+                    />
+                  </div>
+                )
+              })
+            : ''}
         </div>
         <button
           className="carousel-control-prev"

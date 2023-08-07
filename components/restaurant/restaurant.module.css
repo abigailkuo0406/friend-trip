@@ -7,11 +7,11 @@
   width: 100%;
   /* height: auto; */
   object-fit: cover;
-  border-radius: 15px;
+  /* border-radius: 15px; */
 }
 .imgClass2 {
   width: 1000px;
-  height: 1000px;
+  /* height: 1000px; */
   overflow: hidden;
 }
 
@@ -29,7 +29,7 @@
   color: white;
 }
 
-.area:hover{
+.area:hover {
   background-color: #d0a5ca;
   color: white;
 }
@@ -40,14 +40,13 @@
   height: 100%;
   border-radius: 0px 20px 20px 0px;
 }
-.reserveBtn>span{
+.reserveBtn > span {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: 30%;
   font-size: 20px;
   color: white;
-
 }
 
 .reserveBtn:hover {
