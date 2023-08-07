@@ -1,8 +1,11 @@
 import styles from './AddPost.module.css'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import AuthContext from '@/context/AuthContext'
 
 const AddPost = () => {
+  const { auth } = useContext(AuthContext)
+  console.log(auth.member_id)
   const router = useRouter()
   const [article, setArticle] = useState({
     content: '',
