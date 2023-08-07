@@ -29,7 +29,7 @@ export default function ReseveDetails() {
         // console.log('cccc', details.row)
       })
   }, [rid])
-  // console.log(reserveDetails)
+  console.log('rid頁的reserveDetails',reserveDetails)
 
   //拆分日期
   const dateArr = reserveDetails ? reserveDetails.reserve_date.split('-') : []
@@ -56,26 +56,26 @@ export default function ReseveDetails() {
         // console.log('xxx:', invites)
       })
   }, [auth])
-  console.log('fetch出的邀請資料(在rid頁)', invitesData)
+  // console.log('fetch出的邀請資料(在rid頁)', invitesData)
 
   // 針對訂單編號串接對應的邀請名單
   useEffect(() => {
     if (rid) {
       if (invitesData) {
         const arr = invitesData.filter((v) => {
-          console.log('33', rid, v)
+          // console.log('33', rid, v)
           if (v.invite_id != null) {
             return v.reserveId == rid
           }
 
         })
-        console.log('arr', arr)
+        // console.log('arr', arr)
         setInvite(arr)
       }
     }
   }, [invitesData])
 
-  console.log('針對訂單編號串接對應的邀請名單:', invite)
+  // console.log('針對訂單編號串接對應的邀請名單:', invite)
 
   return (
     <>

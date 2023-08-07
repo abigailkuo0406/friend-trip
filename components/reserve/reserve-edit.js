@@ -19,10 +19,13 @@ export default function ReserveEdit({
   alreadyInvite,
 }) {
   const router = useRouter()
-  // console.log('編輯modeal的reserveDetails', reserveDetails)
+
+  console.log('編輯modal裡的reserveDetails', reserveDetails)
+
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
+
 
   //預設訂位時間
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
@@ -38,13 +41,24 @@ export default function ReserveEdit({
   const [reservePeopleNumValue, setReservePeopleNumValue] = useState('')
   const [reservePeopleNumName, setReservePeopleNumName] = useState('')
 
+  // useEffect(() => {
+  //   reserveDetails ? setReserveTimeInputValue(reserveDetails.reserve_time) : setReserveTimeInputValue('')
+  //   reserveDetails ? setReserveDateInputValue(reserveDetails.reserve_date) : setReserveDateInputValue('')
+  //   reserveDetails ? setReservePeopleNumValue(reserveDetails.reserve_people) : setReservePeopleNumValue('')
+  //   reserveDetails ? console.log('編輯modal裡的日期', reserveDetails.reserve_date) : console.log('還沒有值')
+  //   reserveDetails ? console.log('編輯modal裡的時間', reserveDetails.reserve_time) : console.log('還沒有值')
+  //   reserveDetails ? console.log('編輯modal裡的人數', reserveDetails.reserve_people) : console.log('還沒有值')
+
+
+  // }, [reserveDetails])
+
   //初始邀請好友名單
   const [inviteList, setInviteList] = useState([])
   useEffect(() => {
     setInviteList(alreadyInvite)
   }, [alreadyInvite])
 
-  console.log('編輯modal邀請清單', inviteList)
+  // console.log('編輯modal邀請清單', inviteList)
 
 
   // 子層傳上來的好友名單
@@ -96,12 +110,7 @@ export default function ReserveEdit({
                   <h3>修改訂位</h3>
                   {reserveDetails ? (
                     <form id="reserveEdit" onSubmit={handleSubmit}>
-                      {/* <input name="member_id" value={auth.member_id} hidden /> */}
-                      {/* <input name="rest_id" value={reserveDetails.rest_id} hidden/> */}
-                      {/* <input
-                        name="reserve_id"
-                        value={reserveDetails.reserveId}
-                      /> */}
+
 
                       <div className={`${InfoSty.infoBox}`}>
                         <DateInput
@@ -111,8 +120,8 @@ export default function ReserveEdit({
                           width="input-width-10rem"
                           getValue={setReserveDateInputValue}
                           getName={setReserveDateInputName}
-                        // addClassforLabel={InfoSty.infolabel}
-                        // value={reserveDetails.reserve_date}
+                          // addClassforLabel={InfoSty.infolabel}
+                          value={reserveDetails.reserve_date}
                         />
                       </div>
 
@@ -122,9 +131,9 @@ export default function ReserveEdit({
                           name="reserve_time"
                           // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
                           idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
-                          valueGroup={['11:30:30', '12:30:25', '13:30:15']} // 個別 radio 的 name
+                          valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
                           labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
-                          value={reserveDetails.reserve_time}
+                          checked={reserveDetails.reserve_time}
                           getValue={setReserveTimeInputValue}
                           getName={setReserveTimeInputName}
                           getLabel={setReserveTimeInputLabel}

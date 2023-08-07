@@ -24,6 +24,8 @@ export default function ReserveItem({
 
   //拆分日期
   const dateArr = reserveDate.split('-')
+  //拆分時間
+  const timeArr = reserveTime.split(':')
 
   // 定義邀請名單
   const [invitesData, setInvitesData] = useState()
@@ -93,7 +95,9 @@ export default function ReserveItem({
                   {dateArr[2]}
                   <span className="ms-1">日</span>
                 </p>
-                <p className="card-text text-truncate me-3">{reserveTime}</p>
+                <p className="card-text text-truncate me-3">
+                  {timeArr[0]}:{timeArr[1]}
+                </p>
                 <p className="card-text text-truncate me-2">
                   {reservePeopleNum}
                   <span className="ms-1">位成人</span>
