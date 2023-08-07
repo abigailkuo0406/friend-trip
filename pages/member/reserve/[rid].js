@@ -64,8 +64,10 @@ export default function ReseveDetails() {
       if (invitesData) {
         const arr = invitesData.filter((v) => {
           console.log('33', rid, v)
+          if (v.invite_id != null) {
+            return v.reserveId == rid
+          }
 
-          return v.reserveId == rid
         })
         console.log('arr', arr)
         setInvite(arr)
@@ -115,22 +117,24 @@ export default function ReseveDetails() {
       )}
       <h4>邀請好友</h4>
       <div className="d-flex">
-        {invite
-          ? invite.map((v, i) => {
-              return v.iv_member_id ? (
-                <div key={i} className="me-2">
-                  <Image
-                    src={`http://localhost:3002/face/${v.images}`}
-                    className={` ${FriendSty.avatar}`}
-                    width={50}
-                    height={50}
-                  />
-                </div>
-              ) : (
-                <p>本次訂位無邀請好友</p>
-              )
-            })
-          : ''}
+        {invite.length > 0
+          ?(
+          invite.map((v, i) => {
+            return (
+              <div key={i} className="me-2">
+                <Image
+                  src={`http://localhost:3002/face/${v.images}`}
+                  className={` ${FriendSty.avatar}`}
+                  width={50}
+                  height={50}
+                />
+              </div>
+            )
+        })
+        )  :(
+        <p>本次訂位無邀請好友</p>
+        )
+        }
       </div>
 
       <div className="d-flex">
@@ -142,7 +146,7 @@ export default function ReseveDetails() {
         />
         <Button
           btnText="取消訂位"
-          // onClick={modalOpen2}
+        // onClick={modalOpen2}
         />
       </div>
       <ReserveEdit

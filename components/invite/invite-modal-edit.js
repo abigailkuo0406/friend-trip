@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Image from 'next/image'
 import Btn from '@/components/common/button/btn-normal'
 import styles from '@/components/invite/friends-list.module.css'
@@ -16,30 +16,29 @@ export default function InviteModalEdit({
 }) {
     const { auth, setAuth } = useContext(AuthContext)
 
-
-    console.log('ivModal', alreadyInvite)
-
     /*邀請功能*/
     const [inviteList, setInviteList] = useState([])
 
     useEffect(() => {
         setInviteList(alreadyInvite)
     }, [alreadyInvite])
-    // console.log('外層邀請清單:', inviteList)
+    // console.log('邀請modal邀請清單:', inviteList)
 
-    const handleValueChange = (ivName,ivImg, ivBtn, ivId) => {
-        // console.log('yy', ivId)
+    const handleValueChange = (ivName, ivImg, ivBtn, ivId) => {
         if (ivBtn) {
             // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
-            setInviteList([{
-                "reserveId": alreadyInvite.reserveId,
-                "reserve_member_id": alreadyInvite.reserve_member_id,
-                // "invite_id": null,
-                "iv_member_id": ivId,
-                "images": ivImg,
-                "member_name": ivName
-              }, ...inviteList])
-            
+            inviteList ?
+                setInviteList([{
+                    "reserveId": inviteList.reserveId,
+                    "reserve_member_id": inviteList.reserve_member_id,
+                    // "invite_id": null,
+                    "iv_member_id": ivId,
+                    "images": ivImg,
+                    "member_name": ivName
+                }, ...inviteList])
+                :
+                ''
+
         }
         else {
             // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
@@ -51,9 +50,10 @@ export default function InviteModalEdit({
         }
     }
     useEffect(() => {
-        console.log('重選後的邀請清單',inviteList)
         onValueChange(inviteList)
     }, [inviteList])
+    // console.log('重選後要傳回去的邀請清單', inviteList)
+
 
 
     // 設定好友列表
@@ -88,8 +88,8 @@ export default function InviteModalEdit({
                 setFriends(friend)
             })
     }, [auth])
-    // console.log('編輯裡的好友列表', friends)
 
+    // 比對按鈕值
     useEffect(() => {
         const friendsBtn = friends.map((f, i, arr) => {
             inviteList.forEach((iv) => {
@@ -105,7 +105,6 @@ export default function InviteModalEdit({
     }, [friends])
 
 
-    // console.log('11', friendsBtn)
 
     return (
         <>

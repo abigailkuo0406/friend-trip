@@ -19,7 +19,7 @@ export default function ReserveEdit({
   alreadyInvite,
 }) {
   const router = useRouter()
-  console.log('編輯modeal的reserveDetails', reserveDetails)
+  // console.log('編輯modeal的reserveDetails', reserveDetails)
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
@@ -38,22 +38,32 @@ export default function ReserveEdit({
   const [reservePeopleNumValue, setReservePeopleNumValue] = useState('')
   const [reservePeopleNumName, setReservePeopleNumName] = useState('')
 
-  //邀請好友名單
-  const [inviteList, setInviteList] = useState([alreadyInvite])
+  //初始邀請好友名單
+  const [inviteList, setInviteList] = useState([])
+  useEffect(() => {
+    setInviteList(alreadyInvite)
+  }, [alreadyInvite])
+
+  console.log('編輯modal邀請清單', inviteList)
+
+
+  // 子層傳上來的好友名單
   const inviteListChange = (ivList) => {
     setInviteList(ivList)
   }
 
+
+
+  // 送出表單
   const handleSubmit = (e) => {
     const editForm = new FormData(document.getElementById('reserveEdit'))
 
-    console.log('pppppp',reserveDateInputVale)
     fetch('http://localhost:3002/reserve/edit', {
       method: 'PUT',
       body: JSON.stringify({
         member_id: auth.member_id,
         rest_id: reserveDetails.rest_id,
-        reserve_id:reserveDetails.reserveId,
+        reserve_id: reserveDetails.reserveId,
         reserve_date: reserveDateInputVale,
         reserve_time: reserveTimeInputValue,
         reserve_people: reservePeopleNumValue,
@@ -63,20 +73,10 @@ export default function ReserveEdit({
         'Content-Type': 'application/json',
       },
     })
-    // fetch('http://localhost:3002/reserve/invite-edit', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     reserve_id: reserveDetails.reserveId,
-    //     invites: inviteList,
-    //   }),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
+
     router.push('/member/reserve')
   }
 
-  // console.log('編輯邀請名單', inviteList)
 
   return (
     <>
@@ -89,21 +89,19 @@ export default function ReserveEdit({
       >
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            {/* <div class="modal-header">
-                <button type="button" class="btn-close me-3" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div> */}
+
             <div className="container-fluid">
               <div className="d-flex mx-5 my-3 row">
                 <div className={`modal-body col-4`}>
                   <h3>修改訂位</h3>
                   {reserveDetails ? (
                     <form id="reserveEdit" onSubmit={handleSubmit}>
-                      <input name="member_id" value={auth.member_id} hidden />
-                      <input name="rest_id" value={reserveDetails.rest_id} />
-                      <input
+                      {/* <input name="member_id" value={auth.member_id} hidden /> */}
+                      {/* <input name="rest_id" value={reserveDetails.rest_id} hidden/> */}
+                      {/* <input
                         name="reserve_id"
                         value={reserveDetails.reserveId}
-                      />
+                      /> */}
 
                       <div className={`${InfoSty.infoBox}`}>
                         <DateInput
@@ -113,8 +111,8 @@ export default function ReserveEdit({
                           width="input-width-10rem"
                           getValue={setReserveDateInputValue}
                           getName={setReserveDateInputName}
-                          // addClassforLabel={InfoSty.infolabel}
-                          // value={reserveDetails.reserve_date}
+                        // addClassforLabel={InfoSty.infolabel}
+                        // value={reserveDetails.reserve_date}
                         />
                       </div>
 
@@ -159,40 +157,30 @@ export default function ReserveEdit({
                     ''
                   )}
 
-                  <form id="invitesEdit" onSubmit={handleSubmit}>
-                    {reserveDetails ? (
-                      <input
-                        name="reserve_id"
-                        value={reserveDetails.reserveId}
-                      />
-                    ) : (
-                      <input name="reserve_id" />
-                    )}
-
-                    <label>邀請好友</label>
-                    <div className="d-flex">
-                      {inviteList
-                        ? inviteList.map((v, i) => {
-                            return v.iv_member_id ? (
-                              <div key={i} className="me-2">
-                                <input
-                                  name="iv_member_id"
-                                  value={v.iv_member_id}
-                                />
-                                <Image
-                                  src={`http://localhost:3002/face/${v.images}`}
-                                  className={` ${FriendSty.avatar}`}
-                                  width={50}
-                                  height={50}
-                                />
-                              </div>
-                            ) : (
-                              <p>本次訂位無邀請好友</p>
-                            )
-                          })
-                        : ''}
-                    </div>
-                  </form>
+                  <label>邀請好友</label>
+                  <div className="d-flex">
+                    {inviteList.length > 0
+                      ?
+                      (inviteList.map((v, i) => {
+                        return (
+                          <div key={i} className="me-2">
+                            {/* <input
+                              name="iv_member_id"
+                              value={v.iv_member_id}
+                            /> */}
+                            <Image
+                              src={`http://localhost:3002/face/${v.images}`}
+                              className={` ${FriendSty.avatar}`}
+                              width={50}
+                              height={50}
+                            />
+                          </div>
+                        )
+                      })
+                      )
+                      : (<p>本次訂位無邀請好友</p>
+                      )}
+                  </div>
                   <Button
                     btnText="邀請好友"
                     bsModle1="#exampleModalToggle2"
