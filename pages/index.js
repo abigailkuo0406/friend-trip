@@ -1,10 +1,11 @@
 import AdminLayout from '@/components/layout/admin-layout'
 import HomePageStyle from '@/css/homepage.module.css'
-import { useState } from 'react'
-import Jiufen from '@/assets/fake-data/fake-jiufen.png'
-import User from '@/public/img/avatar/face/face1.png'
+import { useEffect, useState } from 'react'
 import Btn from '@/components/common/button/btn-normal'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { BsPcDisplayHorizontal } from 'react-icons/bs'
+import Carousel from '@/components/common/carousel/carousel'
 
 export default function AdminIndex() {
   const photos = [
@@ -22,11 +23,41 @@ export default function AdminIndex() {
     },
   ]
 
-  const [flippedIndex, setFlippedIndex] = useState(null)
+  // const [flippedIndex, setFlippedIndex] = useState(null)
+  const [sqlResult, setSqlResult] = useState(null)
 
   const handleClick = (index) => {
     setFlippedIndex(index === flippedIndex ? null : index)
   }
+
+  const router = useRouter()
+  // const [data, setData] = useState({
+  //   redirect: '',
+  //   totalRows: 0,
+  //   perPage: 6,
+  //   totalPages: 0,
+  //   page: 1,
+  //   rows: [],
+  // })
+
+  //讀取資料庫
+  // useEffect(() => {
+    // const usp = new URLSearchParams(router.query)
+    // const usp1=6
+    // console.log(usp)
+    // API串接
+
+
+// useEffect(()=>{
+//     fetch(`http://localhost:3002/public-itinerary/home`)
+//       .then((r) => r.json())
+//       .then((data) => {
+//         setSqlResult(data)
+//         console.log('index data=',data)
+//       })
+//  },[])
+
+  // }, [])
 
   return (
     <>
@@ -35,30 +66,13 @@ export default function AdminIndex() {
           <p className={HomePageStyle.cardTitle}>認識理想中的他與她！</p>
           <Btn btnText="抽好友這裡去→" addClassforButton="btn-light" />
         </div>
-      </article> 
+      </article>
+      {/* 公開行程輪播 */}
       <h3>首選規畫師</h3>
-      <div className="percarousel">
-        <div className="slider">
-          <div className="slide-track">
-            {photos.map((photo, index) => (
-              <a href="https://tw.yahoo.com/" key={index}>
-                <div
-                  className={`slide ${index === flippedIndex ? 'flipped' : ''}`}
-                  onClick={() => handleClick(index)}
-                >
-                  {index === flippedIndex ? (
-                    <div className="back">
-                      <p>{photo.description}</p>
-                    </div>
-                  ) : (
-                    <img src={photo.src} height="200" width="150" alt="" className="mx-3"/>
-                  )}
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Carousel
+        // sqlResult={sqlResult}
+      />
+      {/*建立專屬行程、浪漫餐廳首選 */}
       <article className="blog-post d-flex mb-3">
         <a
           href="/custom-itinerary/create-task"
@@ -74,7 +88,7 @@ export default function AdminIndex() {
           <p className={HomePageStyle.cardText}>浪漫餐廳首選</p>
         </a>
       </article>
-
+      {/* 官方行程推薦、 心動時分小物*/}
       <article className="blog-post d-flex mb-4">
         <a
           href="/official-itinerary"
@@ -89,7 +103,7 @@ export default function AdminIndex() {
           <p className={HomePageStyle.cardText}>心動時分小物</p>
         </a>
       </article>
-
+      {/* 論壇 */}
       <article className="blog-post mb-4">
         <a
           href="/forum"
