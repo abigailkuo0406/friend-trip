@@ -4,15 +4,16 @@ import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import InitCard from './init-card'
-import Host from '@/assets/fake-data/fake-persona.png'
+import persona from '@/public/img/fake-data/fake-persona.png'
 import { LiaSave } from 'react-icons/lia'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { BsStarHalf, BsStarFill, BsPlusLg, BsPersonPlus } from 'react-icons/bs'
 import { BiHomeHeart } from 'react-icons/bi'
 import AuthContext from '@/context/AuthContext'
 import Swal from 'sweetalert2'
+import ScheduleContext from '@/context/ScheduleContext'
 
-export default function ScheduleSide({
+export default function ScheduleSide ({
   changeToSearch,
   selectedView,
   onDeleteView,
@@ -29,11 +30,12 @@ export default function ScheduleSide({
     const name = parsedData ? parsedData.itin_name : ''
     setItinName(name)
 
-    console.log('itinName',itinName)
+    console.log('itinName', itinName)
   }, [setItinName])
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
+  const {itin_name}=useContext(ScheduleContext)
 
   //儲存行程到後端
   const handleSaveClick = () => {
@@ -47,7 +49,7 @@ export default function ScheduleSide({
       iconColor: '#FABCBF',
       color: '#674C87',
       confirmButtonColor: '#674C87',
-      // showConfirmButton: false,
+      // showConfirmButton: true,
       // timer: 1500,
     })
     onSaveClick()
@@ -57,7 +59,7 @@ export default function ScheduleSide({
     }, 2000)
   }
 
-  
+
 
   return (
     <>
@@ -66,10 +68,23 @@ export default function ScheduleSide({
           {/* sidebar */}
           <div className="itinerary-fade-in">
             <div className={`trip-list ${styles.tripList} `}>
-              <div className="d-flex justify-content-end ">
+              <div className="d-flex  justify-content-between ">
+              <div className="d-flex">
+              <Image
+                    src={auth.images ? `http://localhost:3002/face/${auth.images}` : persona}
+                    alt={auth.member_name}
+                    width={40}
+                    height={40}
+                    priority={true} //圖片預先載入
+                    className={`rounded-circle mt-3 ${styles.perName}`}
+                  />
+                  <p className={`my-auto mx-3 ${styles.itinNameColor}`}>{auth.member_name}</p>
+               </div>   
+                  <div className='d-flex justify-content-end'>
                 <Link href="/member/itinerary" className={styles.link}>
                   <BiHomeHeart />
                 </Link>
+              
                 {/* <Link href="#" className={styles.link}>
                   <FaRegEdit />
                 </Link> */}
@@ -82,59 +97,44 @@ export default function ScheduleSide({
                 >
                   <LiaSave />
                 </button>
-
-                {/* 
-
-                <Link
-                  href="/custom-itinerary/save-view-task"
-                  className={styles.link}
-                  role="button"
-                >
-                
-                </Link> */}
                 <Link href="#" className={styles.link}>
                   <FiMoreHorizontal />
                 </Link>
-              </div>
-              <div className="trip-list-header-info mx-4">
-                <h4>{itinName}</h4>
-                {/* {filteredItineraryName.map((nameObj) => {
-                  return (
-                    <h4 key={nameObj.itin_member_id} className={styles.h4}>
-                      {nameObj.name}
-                    </h4>
-                  ) */}
-                {/* })} */}
-
-                <div className="d-flex mt-3">
-                  <Image
-                    src={Host}
-                    alt="Host"
-                    width={32}
-                    height={32}
-                    priority={true} //圖片預先載入
-                  />
-                  <p className="usr_name my-auto mx-2">{auth.member_name}</p>
                 </div>
               </div>
+              <div className={`trip-list-header-info mx-4 ${styles.itinNameColor}`}>
+                <h4 className='mt-3 mx-2'>{itin_name}</h4>
+                {/* <div className="d-flex mt-3">
+                  <Image
+                    src={auth.images ? `http://localhost:3002/face/${auth.images}` : persona}
+                    alt={auth.member_name}
+                    width={40}
+                    height={40}
+                    priority={true} //圖片預先載入
+                    className={`rounded-circle ${styles.perName}`}
+                  />
+                  <p className="usr_name my-auto mx-2">{auth.member_name}</p>
+                </div> */}
+              </div>
+              
               <div className="trip-list-day-container mx-2">
-                <div className="trip-list-day-header mx-3">
+                {/* <div className="trip-list-day-header mx-3">
                   <div className="d-flex mt-2">
                     <h6 className="mt-1 mx-1">出發時間：</h6>
                     <div>
                       <input type="time" className={`${styles.time}`}></input>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 {/* 行程card */}
-                <div className="overflow-y-auto" style={{ height: 520 }}>
+                <div className="overflow-y-auto mt-4 mx-3" style={{ height: 520 }}>
                   <InitCard
                     selectedViews={selectedView}
                     onDeleteViews={onDeleteView}
                   />
                   <div className={styles.add}>
                     <button
-                      className={`btn ${styles.addbtn}`}
+                      className={`btn ${styles.addbtn} mt-4`}
                       onClick={changeToSearch}
                     >
                       <BsPlusLg />

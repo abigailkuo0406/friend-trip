@@ -1,12 +1,15 @@
 import React from 'react'
 import Image from 'next/image'
 import styles from './save-view-task.module.css'
-import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
-import { BsFillTelephoneFill } from 'react-icons/bs'
+import { IoLocationOutline, IoTimeOutline} from 'react-icons/io5'
+import { BsTelephone } from 'react-icons/bs'
+import {TfiLocationPin} from 'react-icons/tfi'
 
-export default function SaveViewModal(paProps) {
-  // const formattedWeekdayText = props.weekdayText.split(/,|"/)Ｆ
+
+export default function SaveViewModal (paProps) {
   const { photo_url, sid } = paProps
+  const formattedWeekdayText = paProps.weekdayText.replace(/,星期/g, '\n星期')
+  const weekdayText = formattedWeekdayText.replace(/"/g, '\n')
 
   return (
     <>
@@ -23,14 +26,14 @@ export default function SaveViewModal(paProps) {
         <div
           className="modal fade"
           id={`exampleModal_${paProps.sid}`}
-          tabindex="-1"
+          tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
           <div className="modal-dialog  modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
-                <h1 className="modal-title fs-5" id={`exampleModal_${sid}`}>
+                <h1 className={`modal-title fs-5 ${styles.text}`} id={`exampleModal_${sid}`}>
                   {paProps.name}
                 </h1>
                 <button
@@ -48,29 +51,28 @@ export default function SaveViewModal(paProps) {
                   alt={photo_url}
                   priority={true} //圖片預先載入
                 />
-                <div>
-                  <p className={styles.text}>
-                    <IoLocationOutline className={`mx-2 ${styles.iconColor}`} />
-                    {paProps.formattedAddress}
+                <div className={`d-flex mt-4 ${styles.text}`}>
+                    <TfiLocationPin className={`${styles.location}`}/>
+                    <p className='mx-3'>{paProps.formattedAddress}
                   </p>
                 </div>
-                <div className={`${styles.text} mx-2 `}>
-                  <p>
-                    <IoTimeOutline className={`${styles.iconColor}`} />
-
-                    {paProps.weekdayText}
-                  </p>
+                <div className={`${styles.text} d-flex
+                `}>
+                  <div className={`d-flex ${styles.weekdayText}`} >
+                  <IoTimeOutline className={`${styles.iconColor}`}
+                  />
+                  <p className='mx-3'>{weekdayText}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className={styles.text}>
-                    <BsFillTelephoneFill
-                      className={`mx-2 ${styles.iconColor}`}
+                <div className={`d-flex ${styles.text}`}>
+                    <BsTelephone
+                      className={`${styles.iconColor}`}
                     />
-                    {paProps.phoneNumber}
+                   <p className='mx-3'> {paProps.phoneNumber}
                   </p>
                 </div>
               </div>
-              <div className="modal-footer">
+              {/* <div className="modal-footer">
                 <button
                   type="button"
                   className="btn btn-secondary"
@@ -78,7 +80,7 @@ export default function SaveViewModal(paProps) {
                 >
                   關閉
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

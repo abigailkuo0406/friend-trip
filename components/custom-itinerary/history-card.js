@@ -1,12 +1,16 @@
 import { FiMoreHorizontal } from 'react-icons/fi'
+import { useContext } from 'react'
 import styles from './history.module.css'
 import Image from 'next/image'
 import Swal from 'sweetalert2'
 import person from '@/assets/fake-data/fake-persona.png'
 import Link from 'next/link'
+import AuthContext from '@/context/AuthContext'
 
 
 export default function HistoryCard(props) {
+   //取得登入之會員資料
+   const { auth } = useContext(AuthContext)
   // 格式化日期
   const formatDateString = (dateString) => {
     const date = new Date(dateString)
@@ -16,6 +20,8 @@ export default function HistoryCard(props) {
     return `${year}年${month}月${day}日`
   }
   const formattedCreateAt = formatDateString(props.date) // 格式化后的創建日期
+
+ 
 
   // 刪除
   const handleDelete = (e) => {
@@ -52,7 +58,7 @@ export default function HistoryCard(props) {
     console.log('changeLocalStorage==>', props)
     localStorage.setItem(
       'schedule_info',
-      JSON.stringify({ itin_member: props.itin_id, itin_name: props.name })
+      JSON.stringify({ itin_member: props.itin_id, itin_name: props.name,itin_member_id:props.member_id})
     )
   }
 
@@ -76,9 +82,9 @@ export default function HistoryCard(props) {
                     priority={true}
                   ></Image>
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-8 ">
                   <div className="card-body">
-                    <div className="d-flex justify-content-between ">
+                    <div className="d-flex justify-content-between  ">
                       <div className="d-flex ">
                         <h5 className={styles.text}>{props.name}</h5>
                         <p className={`badge ${styles.public}`}>
@@ -86,7 +92,8 @@ export default function HistoryCard(props) {
                         </p>
                       </div>
                       <div>
-                        {/* 刪除 */}
+                        {/* 刪除 ,控制狀態要不要顯示刪除icon*/}
+                        {props.filterCondition =='public' ||props.filterCondition =='private'  ?(
                         <div className="dropdown">
                           <button
                             className="btn"
@@ -107,12 +114,16 @@ export default function HistoryCard(props) {
                             </li>
                           </ul>
                         </div>
+                        ):(<div></div>)}
                       </div>
                     </div>
-                    <p className="card-text text-truncate">
+                    <div className={`card-text ${styles.truncate}`}>
+                    <p className={`${styles.truncateText}`}>
                       {props.description}
                     </p>
-                    <div className="d-flex ">
+                    </div>
+                  
+                    {/* <div className="d-flex ">
                       <div>
                         好友：
                         <Image
@@ -130,7 +141,7 @@ export default function HistoryCard(props) {
                           priority={true}
                         />
                       </div>
-                    </div>
+                    </div> */}
                     <div className={styles.cardText}>
                       <small>{formattedCreateAt}</small>
                     </div>
