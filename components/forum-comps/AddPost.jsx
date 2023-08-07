@@ -45,7 +45,9 @@ const AddPost = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        {/* 👇 這一行將登入者的 member_id 在送出表單時一起傳出去 */}
         <input name="member_id" defaultValue={auth.member_id} hidden />
+        {/* ☝️ 這一行將登入者的 member_id 在送出表單時一起傳出去 */}
         <div className="bg-light mt-4 p-5 rounded-5">
           <div className={`h4 ${styles.fontStyle1}`}>文章內容</div>
           <textarea
