@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import AuthContext from '@/context/AuthContext'
 
 const AddPost = () => {
-  const { auth } = useContext(AuthContext)
+  const { auth } = useContext(AuthContext) //???可以取得登入者的 member_id 嗎???
   console.log(auth.member_id)
   const router = useRouter()
   const [article, setArticle] = useState({
