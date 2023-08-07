@@ -37,7 +37,7 @@ export default function Friend1({ setPage, memberInfo }) {
               <label htmlFor="emailadd">照片</label>
               <Image
                 className={styles.img}
-                src={`http://localhost:3002/img/${auth.images}`}
+                src={`http://localhost:3002/face/${auth.images}`}
                 width={100}
                 height={100}
               />
