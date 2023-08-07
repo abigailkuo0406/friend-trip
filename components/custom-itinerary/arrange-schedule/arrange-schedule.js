@@ -68,10 +68,23 @@ export default function ScheduleSide ({
           {/* sidebar */}
           <div className="itinerary-fade-in">
             <div className={`trip-list ${styles.tripList} `}>
-              <div className="d-flex justify-content-end ">
+              <div className="d-flex  justify-content-between ">
+              <div className="d-flex">
+              <Image
+                    src={auth.images ? `http://localhost:3002/face/${auth.images}` : persona}
+                    alt={auth.member_name}
+                    width={40}
+                    height={40}
+                    priority={true} //圖片預先載入
+                    className={`rounded-circle mt-3 ${styles.perName}`}
+                  />
+                  <p className={`my-auto mx-3 ${styles.itinNameColor}`}>{auth.member_name}</p>
+               </div>   
+                  <div className='d-flex justify-content-end'>
                 <Link href="/member/itinerary" className={styles.link}>
                   <BiHomeHeart />
                 </Link>
+              
                 {/* <Link href="#" className={styles.link}>
                   <FaRegEdit />
                 </Link> */}
@@ -84,31 +97,14 @@ export default function ScheduleSide ({
                 >
                   <LiaSave />
                 </button>
-
-                {/* 
-
-                <Link
-                  href="/custom-itinerary/save-view-task"
-                  className={styles.link}
-                  role="button"
-                >
-                
-                </Link> */}
                 <Link href="#" className={styles.link}>
                   <FiMoreHorizontal />
                 </Link>
+                </div>
               </div>
               <div className={`trip-list-header-info mx-4 ${styles.itinNameColor}`}>
-                <h4>{itin_name}</h4>
-                {/* {filteredItineraryName.map((nameObj) => {
-                  return (
-                    <h4 key={nameObj.itin_member_id} className={styles.h4}>
-                      {nameObj.name}
-                    </h4>
-                  ) */}
-                {/* })} */}
-
-                <div className="d-flex mt-3">
+                <h4 className='mt-3 mx-2'>{itin_name}</h4>
+                {/* <div className="d-flex mt-3">
                   <Image
                     src={auth.images ? `http://localhost:3002/face/${auth.images}` : persona}
                     alt={auth.member_name}
@@ -118,7 +114,7 @@ export default function ScheduleSide ({
                     className={`rounded-circle ${styles.perName}`}
                   />
                   <p className="usr_name my-auto mx-2">{auth.member_name}</p>
-                </div>
+                </div> */}
               </div>
               
               <div className="trip-list-day-container mx-2">

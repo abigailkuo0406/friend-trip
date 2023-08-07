@@ -1,9 +1,8 @@
 // import styles from './arrange-schedule.module.css'
 import Image from 'next/image'
 import Jiufen from '@/assets/fake-data/fake-jiufen.png'
-import { BsStarHalf, BsStarFill } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
-import { AiOutlineDelete } from 'react-icons/ai'
+import {RiDeleteBinLine } from 'react-icons/ri'
 import Swal from 'sweetalert2'
 
 
@@ -71,20 +70,13 @@ export default function InitCard ({ selectedViews, onDeleteViews, photoUrl }) {
                   className={`btn d-flex ${styles.viweColor}`}
                 >
                   <div id="placeDetails"><img src={photoUrl}></img></div>
-                  {/* <Image
-              src={selectedView.Image}
-              alt={selectedView.name}
-              width={120}
-              hight={120}
-              className="mx-2"
-            /> */}
-                  <h6 className="my-auto mx-2">{view.name}</h6>
+                  <h5 className="my-auto mx-3">{view.name}</h5>
                   <button
                     type="button"
-                    className="btn"
-                    onClick={() => handleDeleteView(index, view.name)}
+                    className={`btn ${styles.riDeleteBinLine}`}
+                    onClick={() => handleDeleteView(index,view.name)}
                   >
-                    <AiOutlineDelete />
+                    <RiDeleteBinLine />
                   </button>
                 </div>
               )}
