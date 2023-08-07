@@ -1,0 +1,63 @@
+@charset "UTF-8";
+.percarousel {
+  height: 18rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1750px);
+  }
+}
+.slider {
+  height: 250px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 960px;
+}
+.slider::before, .slider::after {
+  content: "";
+  height: 300px;
+  position: absolute;
+  width: 250px;
+  z-index: 2;
+}
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+.slider::before {
+  left: 0;
+  top: 0;
+}
+.slider .slide-track {
+  animation: scroll 40s linear infinite; /* 設置Slider輪播動畫 */
+  display: flex;
+  width: 2500px; /* 設置輪播軌道的寬度 */
+}
+.slider .slide-track:hover {
+  animation-play-state: paused; /* 暫停動畫 */
+  transform: scale(1.2); /* 放大照片 */
+  z-index: 1; /* 確保懸停的幻燈片在最上層 */
+}
+.slider .slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 220px;
+}
+.slider .slide:hover {
+  animation-play-state: paused; /* 暫停動畫 */
+  transform: scale(1.2); /* 放大照片 */
+  z-index: 1; /* 確保懸停的幻燈片在最上層 */
+}
+.slider .slide img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 76px 76px 76px 76px;
+}/*# sourceMappingURL=carousel.css.map */

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import '@/css/global.css'
 import '@/css/shopping.css'
 import '@/css/history.css'
+import '@/styles/carousel.scss'
 import DefaultLayout from '@/components/layout/default-layout'
 
 export default function MyApp({ Component, pageProps }) {

@@ -21,4 +21,20 @@
 .viweColor {
   color: #674c87;
   margin-left: 1.25rem;
+}
+.viweColor:hover {
+  color: #674c87;
+}
+.viweColor:active {
+  color: #674c87;
+}
+
+.riDeleteBinLine {
+  color: #674c87;
+}
+.riDeleteBinLine:hover {
+  color: #674c87;
+}
+.riDeleteBinLine:active {
+  color: #674c87;
 }/*# sourceMappingURL=arrange-schedule.module.css.map */
