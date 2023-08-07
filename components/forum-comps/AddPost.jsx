@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import AuthContext from '@/context/AuthContext'
 
 const AddPost = () => {
-  const { auth } = useContext(AuthContext) //???可以取得登入者的 member_id 嗎???
+  const { auth } = useContext(AuthContext) //auth裡面取得了登入者的信息，之後在node後端的routes檔案夾裡的 add-a-post.js 的第73行裡面填入 req.body.member_id，這個會對應到上面 INSERT INTO 的 `member_id`，這樣就會寫入到 posts裡面的 member_id 欄位
   console.log(auth.member_id)
   const router = useRouter()
   const [article, setArticle] = useState({
@@ -45,6 +45,7 @@ const AddPost = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <input name="member_id" defaultValue={auth.member_id} hidden />
         <div className="bg-light mt-4 p-5 rounded-5">
           <div className={`h4 ${styles.fontStyle1}`}>文章內容</div>
           <textarea
