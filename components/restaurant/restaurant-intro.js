@@ -4,12 +4,13 @@ import Button from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext'
 import NumberInput from '@/components/common/input/input-number'
 import RadioGroupInput from '@/components/common/input/input-radio-group'
-import DateInput from '@/components/common/input/input-date'
+import DateInput from '@/components/common/input/input-date2'
 import RestPhoto from '@/components/restaurant/restaurant-photo'
 import Image from 'next/image'
 import FriendsLtSty from '../invite/friends-list.module.css'
 import InfoSty from '@/components/restaurant/intro.module.css'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 export default function Modal({
   restId,
@@ -35,34 +36,77 @@ export default function Modal({
 
   // 預設訂位日期
   const [reserveDateInputVale, setReserveDateInputValue] = useState('')
-  // const [reserveDateInputName, setReserveDateInputName] = useState('')
+  const [reserveDateInputName, setReserveDateInputName] = useState('')
   // const [reserveDateInputLabel, setReserveDateInputLabel] = useState('')
 
   // 預設訂位人數
   const [reservePeopleNumValue, setReservePeopleNumValue] = useState('')
   const [reservePeopleNumName, setReservePeopleNumName] = useState('')
 
-  /* 提交訂位表單*/
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    // console.log('訂位123:', reserveTimeInputValue)
-    // console.log('訂位456:', reservePeopleNumValue)
-
-    const formData = new FormData(document.getElementById('reserve'))
-
-    fetch('http://localhost:3002/restaurant', {
-      method: 'POST',
-      body: formData,
-    })
-  }
-
   const [inviteList, setInviteList] = useState([])
   const inviteListChange = (ivList) => {
     setInviteList(ivList)
   }
-  const toReserveRecord = () => {
-    router.push('/member/reserve')
+  console.log('eee', inviteList.length, 'rrrr')
+
+  /* 提交訂位表單*/
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    if (reserveDateInputVale == '') {
+      //    alert('請選擇訂位日期')
+      Swal.fire({
+        width: 400,
+        text: '請選擇訂位日期',
+        icon: 'warning',
+        iconColor: '#FABCBF',
+        color: '#674C87',
+        confirmButtonColor: '#674C87',
+        // showConfirmButton: true,
+        timer: 1500,
+      })
+    } else if (!reserveTimeInputValue) {
+      Swal.fire({
+        width: 400,
+        text: '請選擇訂位時間',
+        icon: 'warning',
+        iconColor: '#FABCBF',
+        color: '#674C87',
+        confirmButtonColor: '#674C87',
+        showConfirmButton: true,
+      })
+    } else if (inviteList.length == 0) {
+      Swal.fire({
+        width: 400,
+        text: '本次訂位是否不邀請好友？',
+        icon: 'warning',
+        iconColor: '#FABCBF',
+        color: '#674C87',
+        confirmButtonColor: '#674C87',
+        showConfirmButton: true,
+      })
+    } else if (inviteList.length > reservePeopleNumValue - 1) {
+      Swal.fire({
+        width: 400,
+        text: '邀請好友超出訂位人數',
+        icon: 'warning',
+        iconColor: '#FABCBF',
+        color: '#674C87',
+        confirmButtonColor: '#674C87',
+        showConfirmButton: true,
+      })
+    } else {
+      const formData = new FormData(document.getElementById('reserve'))
+
+      fetch('http://localhost:3002/restaurant', {
+        method: 'POST',
+        body: formData,
+      })
+      router.push('/member/reserve')
+    }
   }
+
+ 
 
   return (
     <>
@@ -116,6 +160,8 @@ export default function Modal({
                           name="reserve_date"
                           label="訂位日期"
                           width="input-width-10rem"
+                          getValue={setReserveDateInputValue}
+                          getName={setReserveDateInputName}
                           addClassforLabel={InfoSty.infolabel}
                         />
                       </div>
@@ -241,7 +287,6 @@ export default function Modal({
                           btnText="確認訂位"
                           addClassforButton="btn-light ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                           disabled={false} // fase：可點，true：不可點
-                          onClick={toReserveRecord}
                           bsModl3="modal"
                         ></Button>
                       </div>
