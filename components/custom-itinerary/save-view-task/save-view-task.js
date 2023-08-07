@@ -9,13 +9,13 @@ export default function SaveViewInit(props) {
         {/* <div>
           <p className="mx-3">8:00</p>
         </div> */}
-        <div className='mx-5'>
+        <div className='mx-5 '>
         <Image
           src={`http://localhost:3002/img/view-img/${photo_url}`}
           priority={true}
           alt={photo_url}
-          width={250}
-          height={250}
+          width={200}
+          height={150}
           quality={75} //圖片質量
           className={styles.viewImg}
         />

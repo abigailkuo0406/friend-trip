@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import persona from '@/assets/fake-data/fake-persona.png'
 import { FaRegEdit } from 'react-icons/fa'
+import { LuCalendarClock } from 'react-icons/lu'
 import styles from '@/components/custom-itinerary/save-view-task/save-view-task.module.css'
 import { Router, useRouter } from 'next/router'
 import SaveViewModal from '@/components/custom-itinerary/save-view-task/save-view-modal'
@@ -25,7 +26,7 @@ export default function SaveViewTask () {
   const [memberName, setMemberName] = useState('')
   const [memberID, setMemberID] = useState('') //追蹤登入使用者是誰
   const [itinMemberID, setItinMemberID] = useState('') //建立行程使用者
-  const [memberImg,setMemberImg]=useState('')
+  const [memberImg, setMemberImg] = useState('')
 
   // 增加一個狀態來控制 modal 的顯示
   const [showModal, setShowModal] = useState(null)
@@ -53,7 +54,7 @@ export default function SaveViewTask () {
         console.log('data', data)
         setMemberName(data[0].member_name)
         setMemberImg(data[0].images)
-        
+
       })
   }, [])
 
@@ -66,19 +67,20 @@ export default function SaveViewTask () {
     return `${year}/${month}/${day}`
   }
   const formattedCreateAt = formatDateString(itinDate) // 格式化后的創建日期
- 
- 
+
+
 
 
 
 
   return (
     <>
-      <div className="container">
+    <div className="container">
+      <div>
         <div className="position-relative">
           <CoverPhoto itinName={itinName} itinCoverPhoto={itinCoverPhoto} />
         </div>
-        <div className="d-flex justify-content-between mt-3 mx-2 ">
+        <div className="d-flex justify-content-between mt-3 mx-2">
           <div className="d-flex align-items-cente">
             <Image
               src={memberImg ? `http://localhost:3002/face/${memberImg}` : persona}
@@ -86,32 +88,32 @@ export default function SaveViewTask () {
               width={60}
               height={60}
               priority={true} //圖片預先載入
-              className="rounded-circle"
+              className={`rounded-circle`}
             ></Image>
             <div className="flex-column">
-              <p className="usr_name mx-3">{memberName}</p>
-              <p className="date mx-2">{formattedCreateAt}</p>
+              <p className={`usr_name my-4 mx-3 ${styles.text}`}>{memberName}</p>
+
             </div>
           </div>
-         
-         {memberID==itinMemberID?(
-          <div className="my-auto">
-            <Link
-              href="/custom-itinerary/arrange-schedule"
-              className={styles.pageLink}
-            >
-              <FaRegEdit />
-            </Link>
-          </div>
-          ):(<div></div>)}
+          {memberID == itinMemberID ? (
+            <div className="my-auto">
+              <Link
+                href="/custom-itinerary/arrange-schedule"
+                className={styles.pageLink}
+              >
+                <FaRegEdit />
+              </Link>
+            </div>
+          ) : (<div></div>)}
         </div>
       </div>
       {/* 出發時間 */}
-      <div className='mx-4'>
-      <p>出發時間:{itinTime}</p>
-          </div>
-      <div>
-        <div className="d-flex">
+      <div className={`pt-3 ${styles.text}`}>
+        <div><LuCalendarClock className={`${styles.calendarClock}`} />{formattedCreateAt} {itinTime}
+        </div>
+      </div>
+      <div> 
+        <div className="d-flex mt-5">
           <ol className={`${styles.ol}`}>
             {data.map((v, i) => (
               <li key={i} className={`${styles.li}`}>
@@ -141,6 +143,7 @@ export default function SaveViewTask () {
             ))}
           </ol>
         </div>
+      </div>
       </div>
     </>
   )

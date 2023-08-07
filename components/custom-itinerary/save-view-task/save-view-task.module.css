@@ -24,17 +24,21 @@
 .modalClose:focus {
   box-shadow: none;
 }
-
+.location{
+  color: #674c87;
+  font-size: 1.5rem;
+}
 .iconColor {
   color: #674c87;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 .text {
   color: #674c87;
 }
-.weekdayText {
-  margin-left: 2rem;
+.weekdayText{
+ white-space: pre-line;
 }
+
 
 .ol {
   list-style: none;
@@ -44,6 +48,7 @@
 
 .li {
   counter-increment: step;
+    position: relative;
 }
 
 .li:before {
@@ -59,7 +64,13 @@
 }
 
 .viewImg {
-  border-radius: 50%;
+border-radius: 10px;
+}
+.calendarClock{
+  margin-left: 2rem;
+margin-right: 1.5rem;
+  font-size: 1.3rem;
+
 }
 
 /* Small devices (landscape phones, 576px and up) */

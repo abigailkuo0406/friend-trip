@@ -4,18 +4,59 @@ import Jiufen from '@/assets/fake-data/fake-jiufen.png'
 import { BsStarHalf, BsStarFill } from 'react-icons/bs'
 import styles from './arrange-schedule.module.scss'
 import { AiOutlineDelete } from 'react-icons/ai'
+import Swal from 'sweetalert2'
 
 
-export default function InitCard({ selectedViews,onDeleteViews,photoUrl}) {
+export default function InitCard ({ selectedViews, onDeleteViews, photoUrl }) {
 
 
-  const handleDeleteView = (index,viewName) => {
-    const isConfirmed=window.confirm(`確定要刪除 "${viewName}"嗎？`)
-    // 調用傳入的 onDeleteView 函式，將對應索引的行程刪除
-    if(isConfirmed){
-      onDeleteViews(index);
-    }
-   
+  // const handleDeleteView = (index,viewName) => {
+  //   const isConfirmed=window.confirm(`確定要刪除 "${viewName}"嗎？`)
+  //   // 調用傳入的 onDeleteView 函式，將對應索引的行程刪除
+  //   Swal.fire({
+  //     width: 400,
+  //     title: '行程儲存成功囉！',
+  //     text: `確定要刪除 "${viewName}"嗎？`,
+  //     icon: 'success',
+  //     iconColor: '#FABCBF',
+  //     color: '#674C87',
+  //     confirmButtonColor: '#674C87',
+  //     // showConfirmButton: true,
+  //     // timer: 1500,
+  //   })
+  //   if(isConfirmed){
+
+  //     onDeleteViews(index);
+  //   }
+
+  // }
+
+  const handleDeleteView = (index, viewName) => {
+    const isConfirmed =
+      Swal.fire({
+        title: `確定要刪除 ${viewName} 紀錄嗎?`,
+        text: '刪除後就不能保留囉！!',
+        icon: 'warning',
+        iconColor: '#D0A5CA',
+        showCancelButton: true,
+        color: '#717171',
+        confirmButtonColor: '#674C87',
+        cancelButtonColor: '#FABCBF',
+        confirmButtonText: '確定',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            width: 400,
+            text: '刪除成功',
+            icon: 'success',
+            iconColor: '#FABCBF',
+            color: '#674C87',
+            confirmButtonColor: '#674C87',
+          }).then(() => {
+            onDeleteViews(index)
+          })
+        }
+      })
   }
 
   return (
@@ -23,31 +64,31 @@ export default function InitCard({ selectedViews,onDeleteViews,photoUrl}) {
       <ol className={`${styles.ol} mx-2`}>
         {selectedViews.map((view, index) => {
           return (
-              <li key={index} className={`mt-2 ${styles.li}`}>
-                {view && view.name && (
-                  <div
-                    type="button"
-                    className={`btn d-flex ${styles.viweColor}`}
-                  >
-                    <div id="placeDetails"><img src={photoUrl}></img></div>  
-                    {/* <Image
+            <li key={index} className={`mt-2 ${styles.li}`}>
+              {view && view.name && (
+                <div
+                  type="button"
+                  className={`btn d-flex ${styles.viweColor}`}
+                >
+                  <div id="placeDetails"><img src={photoUrl}></img></div>
+                  {/* <Image
               src={selectedView.Image}
               alt={selectedView.name}
               width={120}
               hight={120}
               className="mx-2"
             /> */}
-                    <h6 className="my-auto mx-2">{view.name}</h6>
-                    <button
-                      type="button"
-                      className="btn"
-                      onClick={() => handleDeleteView(index,view.name)}
-                    >
-                      <AiOutlineDelete />
-                    </button>
-                  </div>
-                )}
-              </li>
+                  <h6 className="my-auto mx-2">{view.name}</h6>
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => handleDeleteView(index, view.name)}
+                  >
+                    <AiOutlineDelete />
+                  </button>
+                </div>
+              )}
+            </li>
           )
         })}
       </ol>
