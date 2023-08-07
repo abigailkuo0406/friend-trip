@@ -47,7 +47,7 @@ export default function Modal({
   const inviteListChange = (ivList) => {
     setInviteList(ivList)
   }
-  console.log('eee', inviteList.length, 'rrrr')
+  console.log('eee', reserveTimeInputValue, 'rrrr')
 
   /* 提交訂位表單*/
   const handleSubmit = (event) => {
@@ -100,13 +100,22 @@ export default function Modal({
 
       fetch('http://localhost:3002/restaurant', {
         method: 'POST',
-        body: formData,
+        // body: formData,
+        body: JSON.stringify({
+          member_id: auth.member_id,
+          rest_id: restId,
+          reserve_date: reserveDateInputVale,
+          reserve_time: reserveTimeInputValue,
+          reserve_people: reservePeopleNumValue,
+          invites: inviteList,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
       router.push('/member/reserve')
     }
   }
-
- 
 
   return (
     <>

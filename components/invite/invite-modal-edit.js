@@ -17,7 +17,7 @@ export default function InviteModalEdit({
     const { auth, setAuth } = useContext(AuthContext)
 
 
-    // console.log('alreadyInvite', alreadyInvite)
+    console.log('ivModal', alreadyInvite)
 
     /*邀請功能*/
     const [inviteList, setInviteList] = useState([])
@@ -27,11 +27,19 @@ export default function InviteModalEdit({
     }, [alreadyInvite])
     // console.log('外層邀請清單:', inviteList)
 
-    const handleValueChange = (ivImg, ivBtn, ivId) => {
-        console.log('yy', ivId)
+    const handleValueChange = (ivName,ivImg, ivBtn, ivId) => {
+        // console.log('yy', ivId)
         if (ivBtn) {
             // 子層傳上來的按鈕值為true(+)，就把傳上來的邀請姓名和照片路徑拷貝到邀請清單中
-            setInviteList([{ 'images': ivImg, 'iv_member_id': ivId }, ...inviteList])
+            setInviteList([{
+                "reserveId": alreadyInvite.reserveId,
+                "reserve_member_id": alreadyInvite.reserve_member_id,
+                // "invite_id": null,
+                "iv_member_id": ivId,
+                "images": ivImg,
+                "member_name": ivName
+              }, ...inviteList])
+            
         }
         else {
             // 子層傳上來的按鈕值為false(移除)，由於傳上來的邀請姓名和照片路徑state沒有變，輸出一個過濾掉該邀請姓名的陣列(arr)，再重設回邀請清單
@@ -43,6 +51,7 @@ export default function InviteModalEdit({
         }
     }
     useEffect(() => {
+        console.log('重選後的邀請清單',inviteList)
         onValueChange(inviteList)
     }, [inviteList])
 
@@ -78,8 +87,8 @@ export default function InviteModalEdit({
                 })
                 setFriends(friend)
             })
-    }, [])
-    // console.log('friends', friends)
+    }, [auth])
+    // console.log('編輯裡的好友列表', friends)
 
     useEffect(() => {
         const friendsBtn = friends.map((f, i, arr) => {
@@ -97,13 +106,6 @@ export default function InviteModalEdit({
 
 
     // console.log('11', friendsBtn)
-
-
-
-
-
-
-
 
     return (
         <>
