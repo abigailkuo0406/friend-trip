@@ -74,7 +74,7 @@ export default function ApplyTask () {
               className="rounded-circle"
             ></Image>
             <div className="flex-column mx-3">
-              <p className="usr_name">{memberName}</p>
+              <p className="usr_name mt-3">{memberName}</p>
             </div>
             {/* <div>
               <p>*參加日期:</p>
@@ -84,7 +84,7 @@ export default function ApplyTask () {
         </div>
       </div>
       <div>
-        <div className="d-flex">
+        <div className="d-flex mt-4">
           <ol className={`${styles.ol}`}>
             {data.map((v, i) => (
               <li key={i} className={`${styles.li}`}>
@@ -113,10 +113,7 @@ export default function ApplyTask () {
                 </div>
               </li>
             ))}
-
-
           </ol>
-
         </div>
         <div>
           <ApplyTaskNote

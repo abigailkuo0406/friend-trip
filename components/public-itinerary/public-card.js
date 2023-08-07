@@ -51,7 +51,7 @@ export default function PublicCard (props) {
               {/* 會員(大頭照＋名稱) */}
               <Image
                 src={auth.images ? `http://localhost:3002/face/${props.member_images}` : persona}
-                className="rounded-circle my-auto"
+                className="rounded-circle"
                 alt={auth.member_name}
                 width={32}
                 height={32}

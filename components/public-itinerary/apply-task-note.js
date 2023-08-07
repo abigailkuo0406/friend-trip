@@ -6,8 +6,8 @@ import AuthContext from '@/context/AuthContext'
 
 export default function ApplyTaskNote (props) {
 
-    //取得登入之會員資料
-    const { auth } = useContext(AuthContext)
+  //取得登入之會員資料
+  const { auth } = useContext(AuthContext)
   // 格式化日期
   const formatDateString = (dateString) => {
     const date = new Date(dateString)
@@ -24,10 +24,10 @@ export default function ApplyTaskNote (props) {
     const itinMember = parsedData.itin_member
     const memberID = auth.member_id
 
-    console.log('itinMember',itinMember)
-    console.log('memberID',memberID)
+    console.log('itinMember', itinMember)
+    console.log('memberID', memberID)
     console.log('joinPublicItinerary==>', 'OK')
-    
+
     // 景點行程API串接(行程寫進db)
 
     fetch('http://localhost:3002/public-itinerary/join-public', {
@@ -35,7 +35,7 @@ export default function ApplyTaskNote (props) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({member_id:memberID,itin_id:itinMember}),
+      body: JSON.stringify({ member_id: memberID, itin_id: itinMember }),
     })
       .then((r) => r.json())
       .then((data) => {
@@ -45,18 +45,24 @@ export default function ApplyTaskNote (props) {
         console.log('發生錯誤，行程未送成功到資料庫', error)
       })
 
+
+    const noteText = props.note.replace(/\*/g,'\n')
+    console.log('props.note',props.note)
+
+
   }
   return (
     <>
       <div>
-        <p>備註：{props.note}</p>
+        <span className={styles.spnaName}>備註：</span>
+        <p className={`${styles.noteText}`}>{props.note}<br/></p>
       </div>
       <div>
-        <p>*參加日期:</p>
+        <p className={styles.spnaName}>*參加日期:</p>
         <input className={styles.inputJoinDate} type="text" value={formattedCreateAt} aria-label="readonly input example" readonly />
       </div>
       <div>
-        <p>最低成團人數：{props.ppl}</p>
+        <p className={styles.spnaName}>最低成團人數：{props.ppl}</p>
       </div>
       <div>
         <Link
