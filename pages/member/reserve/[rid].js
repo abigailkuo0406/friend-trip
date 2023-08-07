@@ -7,7 +7,10 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import AuthContext from '@/context/AuthContext'
 
-export default function ReseveDetails() {
+export default function ReseveDetails({
+  state
+}) {
+  console.log('stateText', state)
   const { auth } = useContext(AuthContext)
 
   // 取用useRouter方法
@@ -29,7 +32,7 @@ export default function ReseveDetails() {
         // console.log('cccc', details.row)
       })
   }, [rid])
-  console.log('rid頁的reserveDetails',reserveDetails)
+  // console.log('rid頁的reserveDetails', reserveDetails)
 
   //拆分日期
   const dateArr = reserveDetails ? reserveDetails.reserve_date.split('-') : []
@@ -77,6 +80,19 @@ export default function ReseveDetails() {
 
   // console.log('針對訂單編號串接對應的邀請名單:', invite)
 
+  // 取消訂位
+  const cancel = () => {
+    fetch('http://localhost:3002/reserve/state', {
+      method: 'PUT',
+      body: JSON.stringify({ reserve_id: rid }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    router.push('/member/reserve')
+
+  }
+
   return (
     <>
       {/* <h1>訂單{rid}</h1> */}
@@ -118,25 +134,24 @@ export default function ReseveDetails() {
       <h4>邀請好友</h4>
       <div className="d-flex">
         {invite.length > 0
-          ?(
-          invite.map((v, i) => {
-            return (
-              <div key={i} className="me-2">
-                <Image
-                  src={`http://localhost:3002/face/${v.images}`}
-                  className={` ${FriendSty.avatar}`}
-                  width={50}
-                  height={50}
-                />
-              </div>
-            )
-        })
-        )  :(
-        <p>本次訂位無邀請好友</p>
-        )
+          ? (
+            invite.map((v, i) => {
+              return (
+                <div key={i} className="me-2">
+                  <Image
+                    src={`http://localhost:3002/face/${v.images}`}
+                    className={` ${FriendSty.avatar}`}
+                    width={50}
+                    height={50}
+                  />
+                </div>
+              )
+            })
+          ) : (
+            <p>本次訂位無邀請好友</p>
+          )
         }
       </div>
-
       <div className="d-flex">
         <Button
           btnText="修改訂位"
@@ -146,9 +161,11 @@ export default function ReseveDetails() {
         />
         <Button
           btnText="取消訂位"
-        // onClick={modalOpen2}
+          onClick={cancel}
         />
       </div>
+
+
       <ReserveEdit
         // modalState={modal}
         reserveDetails={reserveDetails}

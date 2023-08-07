@@ -52,6 +52,7 @@ export default function Reserve() {
                 reserveDate={v.reserve_date}
                 reserveTime={v.reserve_time}
                 reservePeopleNum={v.reserve_people}
+                state={v.state}
               />
             </div>
           )

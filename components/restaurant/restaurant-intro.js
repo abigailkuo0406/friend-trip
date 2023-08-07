@@ -47,7 +47,6 @@ export default function Modal({
   const inviteListChange = (ivList) => {
     setInviteList(ivList)
   }
-  console.log('eee', reserveTimeInputValue, 'rrrr')
 
   /* 提交訂位表單*/
   const handleSubmit = (event) => {
@@ -107,6 +106,7 @@ export default function Modal({
           reserve_date: reserveDateInputVale,
           reserve_time: reserveTimeInputValue,
           reserve_people: reservePeopleNumValue,
+          state: 1,
           invites: inviteList,
         }),
         headers: {
@@ -160,8 +160,10 @@ export default function Modal({
                   </div>
                   <div className={`${InfoSty.infoBox}`}>
                     <form id="reserve" onSubmit={handleSubmit}>
-                      <input name="member_id" value={auth.member_id} hidden />
+                      {/* <input name="member_id" value={auth.member_id} hidden />
                       <input name="rest_id" value={restId} hidden />
+                      <input name="state" value={parseInt('1')} hidden /> */}
+
 
                       <div className={`${InfoSty.infoBox}`}>
                         <DateInput

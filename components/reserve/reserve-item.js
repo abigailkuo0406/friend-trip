@@ -13,6 +13,7 @@ export default function ReserveItem({
   reserveDate,
   reserveTime,
   reservePeopleNum,
+  state
 }) {
   const { auth } = useContext(AuthContext)
 
@@ -26,6 +27,36 @@ export default function ReserveItem({
   const dateArr = reserveDate.split('-')
   //拆分時間
   const timeArr = reserveTime.split(':')
+
+  // 定義當日
+  const today = new Date()
+  const nowYear = today.getFullYear()
+  const nowMonth = today.getMonth() + 1
+  const nowDate = today.getDate()
+
+  // 定義狀態
+  let stateText = ''
+  switch (state) {
+    case 0:
+      stateText = '已取消';
+      break;
+    case 1:
+      stateText = '預定中'
+
+  }
+  if (state == 1) {
+    if (dateArr[0] == nowYear) {
+      if (dateArr[1] == nowMonth) {
+        if (dateArr[2] < nowDate) {
+          stateText = '訂位完成'
+        }
+      } else if (dateArr[1] < nowMonth) {
+        stateText = '訂位完成'
+      }
+    } else if (dateArr[0] < nowYear) {
+      stateText = '訂位完成'
+    }
+  }
 
   // 定義邀請名單
   const [invitesData, setInvitesData] = useState()
@@ -78,7 +109,7 @@ export default function ReserveItem({
               <div className="d-flex">
                 <h2 className="card-title">{restName}</h2>
                 <p>{reserveId}</p>
-                <p className="card-text text-truncate my-4">訂單狀態</p>
+                <p className="card-text text-truncate my-4">{stateText}</p>
               </div>
 
               <div className="d-flex">
@@ -128,10 +159,11 @@ export default function ReserveItem({
                                 </div> */}
             </div>
 
-            {/* <p>訂單編號{reserveId}</p>
-                            <p>好友{inviteList.iv_member_id}</p> */}
-
-            <Button btnText="詳細資訊" onClick={routerChange} />
+            {state == 1 ?
+              <Button btnText="詳細資訊" onClick={routerChange} />
+              :
+              <p></p>
+            }
           </div>
         </div>
       </div>
