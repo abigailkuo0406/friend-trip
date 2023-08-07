@@ -74,7 +74,7 @@ export default function ApplyTask () {
               className="rounded-circle"
             ></Image>
             <div className="flex-column mx-3">
-              <p className="usr_name mt-3">{memberName}</p>
+              <p className={ `usr_name mt-3 ${styles.spnaName}`}>{memberName}</p>
             </div>
             {/* <div>
               <p>*參加日期:</p>
@@ -115,7 +115,7 @@ export default function ApplyTask () {
             ))}
           </ol>
         </div>
-        <div>
+        <div className='mx-4 mt-3'>
           <ApplyTaskNote
             note={itinNote}
             itinDate={itinDate}
