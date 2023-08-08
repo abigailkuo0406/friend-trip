@@ -2,20 +2,6 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 
 export default function Carousel(props) {
-    const photos = [
-        {
-          src: '/img/avatar/face/face1.png',
-          description: '這裡是照片face1的敘述...',
-        },
-        {
-          src: '/img/avatar/face/face2.png',
-          description: '這裡是照片face2的敘述...',
-        },
-        {
-          src: '/img/avatar/face/face3.png',
-          description: '這裡是照片face3的敘述...',
-        },
-      ]
     const [flippedIndex, setFlippedIndex] = useState(null)
     const handleClick = (index) => {
         setFlippedIndex(index === flippedIndex ? null : index)
@@ -34,7 +20,7 @@ export default function Carousel(props) {
         },[])
         
         const changeSelectLocalStorage = (itin_id,name,member_name,member_images,ppl) => {
-          console.log('changeSelectLocalStorage==>', itin_id,name,member_name,member_images,ppl)
+        //   console.log('changeSelectLocalStorage==>', itin_id,name,member_name,member_images,ppl)
       
           localStorage.setItem(
             'select_schedule_info',
@@ -42,7 +28,7 @@ export default function Carousel(props) {
             })
       
             )
-          console.log('change success')
+        //   console.log('change success')
         }
 
 
@@ -53,7 +39,8 @@ export default function Carousel(props) {
         <div className="slider">
           <div className="slide-track">
             {data.map((item, index) => (
-              <a href="http://localhost:3000/public-itinerary/apply-task" key={index}>
+              <a href="http://localhost:3000/public-itinerary/apply-task" key={index}
+               className="slide-link" >
                 <div
                   className={`slide ${index === flippedIndex ? 'flipped' : ''}`}
                   onClick={() => handleClick(index)}
@@ -65,8 +52,56 @@ export default function Carousel(props) {
                   ) : (
                     <img
                       src={`http://localhost:3002/face/${item.images}`}
-                      height="200"
-                      width="150"
+                      height="80"
+                      width="80"
+                      alt=""
+                      className="mx-3"
+                      onClick={()=> changeSelectLocalStorage(item.itin_id,item.name,item.member_name,item.images,item.ppl)}
+                    />
+                  )}
+                </div>
+              </a>
+            ))}
+            {data.map((item, index) => (
+              <a href="http://localhost:3000/public-itinerary/apply-task" key={index}
+               className="slide-link" >
+                <div
+                  className={`slide ${index === flippedIndex ? 'flipped' : ''}`}
+                  onClick={() => handleClick(index)}
+                >
+                  {index === flippedIndex ? (
+                    <div className="back">
+                      <p>{item.name}</p>
+                    </div>
+                  ) : (
+                    <img
+                      src={`http://localhost:3002/face/${item.images}`}
+                      height="80"
+                      width="80"
+                      alt=""
+                      className="mx-3"
+                      onClick={()=> changeSelectLocalStorage(item.itin_id,item.name,item.member_name,item.images,item.ppl)}
+                    />
+                  )}
+                </div>
+              </a>
+            ))}
+            {data.map((item, index) => (
+              <a href="http://localhost:3000/public-itinerary/apply-task" key={index}
+               className="slide-link" >
+                <div
+                  className={`slide ${index === flippedIndex ? 'flipped' : ''}`}
+                  onClick={() => handleClick(index)}
+                >
+                  {index === flippedIndex ? (
+                    <div className="back">
+                      <p>{item.name}</p>
+                    </div>
+                  ) : (
+                    <img
+                      src={`http://localhost:3002/face/${item.images}`}
+                      height="80"
+                      width="80"
                       alt=""
                       className="mx-3"
                       onClick={()=> changeSelectLocalStorage(item.itin_id,item.name,item.member_name,item.images,item.ppl)}
@@ -76,10 +111,11 @@ export default function Carousel(props) {
               </a>
             ))}
           </div>
+          
         </div>
+        
       </div>
-
-
+      
     </>
   )
 }

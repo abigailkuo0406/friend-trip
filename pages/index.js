@@ -8,56 +8,16 @@ import { BsPcDisplayHorizontal } from 'react-icons/bs'
 import Carousel from '@/components/common/carousel/carousel'
 
 export default function AdminIndex() {
-  const photos = [
-    {
-      src: '/img/avatar/face/face1.png',
-      description: '這裡是照片face1的敘述...',
-    },
-    {
-      src: '/img/avatar/face/face2.png',
-      description: '這裡是照片face2的敘述...',
-    },
-    {
-      src: '/img/avatar/face/face3.png',
-      description: '這裡是照片face3的敘述...',
-    },
-  ]
+ 
 
-  // const [flippedIndex, setFlippedIndex] = useState(null)
-  const [sqlResult, setSqlResult] = useState(null)
+  // const [sqlResult, setSqlResult] = useState(null)
 
-  const handleClick = (index) => {
-    setFlippedIndex(index === flippedIndex ? null : index)
-  }
+  // const handleClick = (index) => {
+  //   setFlippedIndex(index === flippedIndex ? null : index)
+  // }
 
-  const router = useRouter()
-  // const [data, setData] = useState({
-  //   redirect: '',
-  //   totalRows: 0,
-  //   perPage: 6,
-  //   totalPages: 0,
-  //   page: 1,
-  //   rows: [],
-  // })
+  // const router = useRouter()
 
-  //讀取資料庫
-  // useEffect(() => {
-    // const usp = new URLSearchParams(router.query)
-    // const usp1=6
-    // console.log(usp)
-    // API串接
-
-
-// useEffect(()=>{
-//     fetch(`http://localhost:3002/public-itinerary/home`)
-//       .then((r) => r.json())
-//       .then((data) => {
-//         setSqlResult(data)
-//         console.log('index data=',data)
-//       })
-//  },[])
-
-  // }, [])
 
   return (
     <>
@@ -68,10 +28,8 @@ export default function AdminIndex() {
         </div>
       </article>
       {/* 公開行程輪播 */}
-      <h3>首選規畫師</h3>
-      <Carousel
-        // sqlResult={sqlResult}
-      />
+      <h3 className='carousel-text'>首選規畫師</h3>
+      <Carousel/>
       {/*建立專屬行程、浪漫餐廳首選 */}
       <article className="blog-post d-flex mb-3">
         <a
