@@ -36,7 +36,7 @@ export default function PublicSchedule () {
   return (
     <>
       <div className="d-flex mb-2 ">
-        <h3 className="my-auto mx-auto">公開行程</h3>
+        <h1 className="my-auto mx-auto">公開行程</h1>
       </div>
       {/* <SortBoard /> */}
       <div className="d-flex flex-wrap">

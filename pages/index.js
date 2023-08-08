@@ -8,16 +8,6 @@ import { BsPcDisplayHorizontal } from 'react-icons/bs'
 import Carousel from '@/components/common/carousel/carousel'
 
 export default function AdminIndex() {
- 
-
-  // const [sqlResult, setSqlResult] = useState(null)
-
-  // const handleClick = (index) => {
-  //   setFlippedIndex(index === flippedIndex ? null : index)
-  // }
-
-  // const router = useRouter()
-
 
   return (
     <>
@@ -28,8 +18,8 @@ export default function AdminIndex() {
         </div>
       </article>
       {/* 公開行程輪播 */}
-      <h3 className='carousel-text'>首選規畫師</h3>
-      <Carousel/>
+      <h3 className="carousel-text">首選規畫師</h3>
+      <Carousel />
       {/*建立專屬行程、浪漫餐廳首選 */}
       <article className="blog-post d-flex mb-3">
         <a
