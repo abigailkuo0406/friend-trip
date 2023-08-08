@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import PublicScheduleIndex from '@/components/public-itinerary/public-card'
+import styles from '@/components/public-itinerary/public-init.module.css'
 import SortBoard from '@/components/public-itinerary/sort-board'
 import AdminLayout from '@/components/layout/admin-layout'
 import data from '@/data/custom-itinerary/itinerary.json'
@@ -36,10 +37,10 @@ export default function PublicSchedule () {
   return (
     <>
       <div className="d-flex mb-2 ">
-        <h1 className="my-auto mx-auto">公開行程</h1>
+        <h1 className={`mb-3 mx-5 ${styles.spnaName}`}>公開行程</h1>
       </div>
       {/* <SortBoard /> */}
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap justify-content-around">
         {data.rows.map((v, i) => {
           return (
             <div key={i}>

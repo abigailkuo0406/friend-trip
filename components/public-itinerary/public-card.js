@@ -4,7 +4,6 @@ import Host from '@/assets/fake-data/fake-persona.png'
 import styles from './public-init.module.css'
 import Link from 'next/link'
 import AuthContext from '@/context/AuthContext'
-import { PopoverPaper } from '@mui/material'
 import { TbPropeller } from 'react-icons/tb'
 
 
@@ -36,7 +35,7 @@ export default function PublicCard (props) {
     <>
 
       <div>
-        <div className={`card mx-2 mb-3 ${styles.card}`} style={{ width: 250 }}>
+        <div className={`card mb-4  ${styles.card}`} style={{ width: 250 }}>
           {/* 行程封面照 */}
           <Image
             src={`http://localhost:3002/img/itinerary-photo/${props.coverPhoto}`}
@@ -47,21 +46,21 @@ export default function PublicCard (props) {
             priority={true}
           />
           <div className="card-body">
-            <div className="d-flex mb-4">
+            <div className="d-flex mb-2">
               {/* 會員(大頭照＋名稱) */}
               <Image
                 src={auth.images ? `http://localhost:3002/face/${props.member_images}` : persona}
                 className="rounded-circle"
                 alt={auth.member_name}
-                width={32}
-                height={32}
+                width={35}
+                height={35}
                 priority={true} //圖片預先載入
               />
-              <p className="d-flex align-items-center mt-3 mx-2">{props.member_name}</p>
+              <p className={`d-flex align-items-center mx-2 mt-1 ${styles.spnaName}`}>{props.member_name}</p>
             </div>
-            <h5 className={`card-title text-truncate ${styles.cardTitle}`}>{props.name}</h5>
-            <div className="d-flex justify-content-between pt-2 ">
-              <div className="pt-2">
+            <h5 className={`card-title text-truncate mx-2 ${styles.cardTitle}`}>{props.name}</h5>
+            <div className="d-flex justify-content-between">
+              <div className="mx-2 mt-2">
                 <p className={`card-text ${styles.cardText}`} >{formattedCreateAt}</p>
               </div>
               <Link
