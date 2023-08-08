@@ -23,7 +23,9 @@ export default function Pairs({ memberinfo, Random, setImgIndex, imgIndex }) {
       <div className={styles.main}>
         <div className={`card ${styles.card}`} style={{ width: '18rem' }}>
           <div className={`d-flex justify-content-end ${styles.white}`}>
-            <i className="fa-solid fa-sliders fa-rotate-270"></i>
+            <a className={styles.link} href="./pair/condition">
+              <i className="fa-solid fa-sliders fa-rotate-270"></i>
+            </a>
           </div>
           <div className={` ${styles.imgborder}`}>
             <div className={styles.imgabove}>

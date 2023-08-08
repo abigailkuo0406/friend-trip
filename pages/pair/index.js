@@ -13,10 +13,11 @@ export default function PairsIndex() {
     const photos = []
     for (let i = 0; i < memberinfo?.length; i++) {
       photos.push(memberinfo[i].images)
-      // console.log(memberinfo[i].images)
+      console.log(memberinfo)
       // console.log(photos)
     }
-    setRandomState(_.shuffle(photos))
+    setRandomState(photos)
+    // setRandomState(_.shuffle(photos))
   }, [memberinfo])
 
   useEffect(() => {
