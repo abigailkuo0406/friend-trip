@@ -1,0 +1,15 @@
+.base {
+  width: 80%;
+  height: 100%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.title {
+  color: #674c87;
+}
+.restName {
+    color: #D0A5CA;
+  }
+  

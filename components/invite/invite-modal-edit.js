@@ -22,7 +22,6 @@ export default function InviteModalEdit({
     useEffect(() => {
         setInviteList(alreadyInvite)
     }, [alreadyInvite])
-    // console.log('邀請modal邀請清單:', inviteList)
 
     const handleValueChange = (ivName, ivImg, ivBtn, ivId) => {
         if (ivBtn) {
@@ -52,7 +51,6 @@ export default function InviteModalEdit({
     useEffect(() => {
         onValueChange(inviteList)
     }, [inviteList])
-    // console.log('重選後要傳回去的邀請清單', inviteList)
 
 
 
@@ -74,14 +72,12 @@ export default function InviteModalEdit({
         })
             .then((f) => f.json())
             .then((friendsData) => {
-                // console.log('aa', friendsData.rows)
 
                 const friend = friendsData.all.map((f) => {
                     let defaultBtn = { "defaultBtn": false }
 
                     f = { ...f, ...defaultBtn }
 
-                    // console.log('f', f)
                     return f
 
                 })
@@ -95,7 +91,6 @@ export default function InviteModalEdit({
             inviteList.forEach((iv) => {
                 if (f.FriendId == iv.iv_member_id) {
                     f.defaultBtn = true
-                    console.log('btntrue', f)
                 }
             })
             return f

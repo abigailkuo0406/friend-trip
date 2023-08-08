@@ -121,8 +121,6 @@ export default function Rest() {
 
     const searchRestaurant = (e) => {
         e.preventDefault();
-        console.log('地區:' + inputValueArea)
-        console.log('料理:' + inputValueMeal)
 
         if (inputValueArea == undefined && inputValueMeal == undefined) {
             // alert('請選擇搜尋條件')
@@ -136,43 +134,31 @@ export default function Rest() {
                 showConfirmButton: true,
                 // timer: 1500,
             })
-            console.log('aa')
+            // console.log('aa')
         } else if (inputValueArea != '請選擇地區' && inputValueArea != undefined && inputValueMeal == '請選擇料理') {
             router.push(`?city=${inputValueArea}`)
-            console.log('bb')
+            // console.log('bb')
 
         } else if (inputValueArea != '請選擇地區' && inputValueMeal == undefined) {
             router.push(`?city=${inputValueArea}`)
-            console.log('cc')
+            // console.log('cc')
 
         } else if (inputValueArea == '請選擇地區' && inputValueMeal != '請選擇料理' && inputValueMeal != undefined) {
             router.push(`?meal=${inputValueMeal}`)
-            console.log('dd')
+            // console.log('dd')
 
         } else if (inputValueArea == undefined && inputValueMeal != '請選擇料理') {
             router.push(`?meal=${inputValueMeal}`)
-            console.log('ee')
+            // console.log('ee')
 
         } else if (inputValueArea != '請選擇地區' && inputValueMeal != '請選擇料理' && inputValueArea != undefined && inputValueMeal != undefined) {
             router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
             console.log('ff')
         } else {
             router.push(``)
-            console.log('zz')
+            // console.log('zz')
         }
 
-
-
-        // if (inputValueArea && !inputValueMeal) {
-        //     router.push(`?city=${inputValueArea}`)
-        // } else if (!inputValueArea && inputValueMeal) {
-        //     router.push(`?meal=${inputValueMeal}`)
-
-        // } else if (inputValueArea && inputValueMeal) {
-        //     router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
-        // } else {
-        //     alert('請選擇搜尋條件')
-        // }
 
     }
 
@@ -190,8 +176,6 @@ export default function Rest() {
 
 
     const showModal = (modalState, rid, rName, rAddress, rPhone, rTime, rMeal, rClass, rIntro, rImg) => {
-        // console.log('接到的modalstate和rid', modalState, rid)
-        // setModal(modalState)
         setRid(rid)
         setRName(rName)
         setRAdress(rAddress)

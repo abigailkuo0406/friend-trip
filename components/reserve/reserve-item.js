@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Image from 'next/image'
-import styles from '../restaurant/restaurant.module.css'
 import Button from '@/components/common/button/btn-normal'
 import { useRouter } from 'next/router'
 import AuthContext from '@/context/AuthContext'
+import styles from '@/components/reserve/reserve.module.css'
+import FriendSty from '@/components/invite/friends-list.module.css'
 
 export default function ReserveItem({
   reserveId,
@@ -13,7 +14,7 @@ export default function ReserveItem({
   reserveDate,
   reserveTime,
   reservePeopleNum,
-  state
+  state,
 }) {
   const { auth } = useContext(AuthContext)
 
@@ -38,11 +39,10 @@ export default function ReserveItem({
   let stateText = ''
   switch (state) {
     case 0:
-      stateText = '已取消';
-      break;
+      stateText = '已取消'
+      break
     case 1:
       stateText = '預定中'
-
   }
   if (state == 1) {
     if (dateArr[0] == nowYear) {
@@ -106,13 +106,18 @@ export default function ReserveItem({
 
           <div className="col-md-9">
             <div className="card-body">
-              <div className="d-flex">
-                <h2 className="card-title">{restName}</h2>
-                <p>{reserveId}</p>
-                <p className="card-text text-truncate my-4">{stateText}</p>
+              <div className={`d-flex align-items-center ${styles.cardHead}`}>
+                <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
+                <p
+                  className={`ms-4 ${
+                    state == 0 ? styles.stateCancel : styles.state
+                  }`}
+                >
+                  {stateText}
+                </p>
               </div>
 
-              <div className="d-flex">
+              <div className="d-flex mt-2">
                 <p className="card-text text-truncate me-2">訂位資訊：</p>
                 <p className="card-text text-truncate me-2">
                   {dateArr[0]}
@@ -135,35 +140,35 @@ export default function ReserveItem({
                 </p>
               </div>
 
-              {/* <div>
-                                <p className="card-text text-truncate my-4">與會好友</p>
-
-                                <div className='d-flex'>
-                                    {invite ?
-                                        invite.map((v, i) => {
-                                            return (
-                                                v.iv_member_id ?
-                                                    <div key={i} className='me-2' >
-                                                        <Image src={`http://localhost:3002/face/${v.images}`}
-                                                            className={` ${FriendSty.avatar}`}
-                                                            width={50}
-                                                            height={50} />
-                                                    </div>
-                                                    :
-                                                    <p>本次訂位無邀請好友</p>
-                                            )
-                                        })
-                                        :
-                                        ""
-                                    }
-                                </div> */}
+              <div>
+                <p className="card-text text-truncate my-4">與會好友</p>
+                <div className="d-flex">
+                  {invite.length > 0 ? (
+                    invite.map((v, i) => {
+                      return (
+                        <div key={i} className="me-2">
+                          <Image
+                            src={`http://localhost:3002/face/${v.images}`}
+                            className={` ${FriendSty.avatar}`}
+                            width={50}
+                            height={50}
+                          />
+                        </div>
+                      )
+                    })
+                  ) : (
+                    <p>本次訂位無邀請好友</p>
+                  )}
+                </div>
+              </div>
+              {state == 1 ? (
+                <div className="pe-4 position-absolute end-0">
+                  <Button btnText="詳細資訊" onClick={routerChange} />
+                </div>
+              ) : (
+                <p></p>
+              )}
             </div>
-
-            {state == 1 ?
-              <Button btnText="詳細資訊" onClick={routerChange} />
-              :
-              <p></p>
-            }
           </div>
         </div>
       </div>

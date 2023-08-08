@@ -21,41 +21,13 @@ export default function RestaurantPhoto({ file, rid }) {
       })
   }, [rid])
 
-  console.log('qq', restPhotos)
   return (
     <>
       {/* 照片區 */}
 
       <div id={`carouselExampleIndicators${rid}`} className="carousel slide">
         <div className="carousel-indicators">
-          {/* {restPhotos != []
-            ? restPhotos.map((v, i) => {
-                return (
-                  <div
-                    key={i}
-                    className={`carousel-item ${styles.imgClass2} ${
-                      i == 0 ? 'active' : ''
-                    }`}
-                  >
-                    <button
-                      type="button"
-                      data-bs-target={`#carouselExampleIndicators${rid}`}
-                      data-bs-slide-to="0"
-                      className="active"
-                      aria-current="true"
-                      aria-label="Slide 1"
-                    ></button>
-                    <Image
-                      src={`http://localhost:3002/restImg/${v.RestImg}`}
-                      className={`${styles.img1}`}
-                      alt={v.RestImg}
-                      width={500}
-                      height={500}
-                    />
-                  </div>
-                )
-              })
-            : ''} */}
+          
           <button
             type="button"
             data-bs-target={`#carouselExampleIndicators${rid}`}

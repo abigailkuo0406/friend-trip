@@ -35,8 +35,6 @@ export default function ListItem({
     const showModal = () => setModal(true)
 
     const modalOpen = () => {
-        console.log('第二層:', restRid)
-        console.log('modal開')
         showModal()
         setRid(restRid)
         setRName(restName)
@@ -51,7 +49,6 @@ export default function ListItem({
     }
 
     useEffect(() => {
-        // console.log('傳上去的rid', rid)
         modalChange(modal, rid, rName, rAddress, rPhone, rTime, rMeal, rClass, rIntro, rImg)
 
     }, [modal])

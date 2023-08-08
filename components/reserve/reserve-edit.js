@@ -1,31 +1,22 @@
-import React, { useState, useEffect, useContext, useReducer } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Image from 'next/image'
-
 import Button from '@/components/common/button/btn-normal'
-
 import InfoSty from '@/components/restaurant/intro.module.css'
 import FriendSty from '@/components/invite/friends-list.module.css'
-
 import NumberInput from '@/components/common/input/input-number'
 import RadioGroupInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date2'
 import AuthContext from '@/context/AuthContext'
 import InviteModalEdit from '@/components/invite/invite-modal-edit'
 import { useRouter } from 'next/router'
+import styles from '@/pages/member/reserve/rid.module.css'
 
-export default function ReserveEdit({
-  // iL,
-  reserveDetails,
-  alreadyInvite,
-}) {
+export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
   const router = useRouter()
-
-  console.log('編輯modal裡的reserveDetails', reserveDetails)
-
+  // console.log('aa', reserveDetails)
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
-
 
   //預設訂位時間
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
@@ -41,36 +32,20 @@ export default function ReserveEdit({
   const [reservePeopleNumValue, setReservePeopleNumValue] = useState('')
   const [reservePeopleNumName, setReservePeopleNumName] = useState('')
 
-  // useEffect(() => {
-  //   reserveDetails ? setReserveTimeInputValue(reserveDetails.reserve_time) : setReserveTimeInputValue('')
-  //   reserveDetails ? setReserveDateInputValue(reserveDetails.reserve_date) : setReserveDateInputValue('')
-  //   reserveDetails ? setReservePeopleNumValue(reserveDetails.reserve_people) : setReservePeopleNumValue('')
-  //   reserveDetails ? console.log('編輯modal裡的日期', reserveDetails.reserve_date) : console.log('還沒有值')
-  //   reserveDetails ? console.log('編輯modal裡的時間', reserveDetails.reserve_time) : console.log('還沒有值')
-  //   reserveDetails ? console.log('編輯modal裡的人數', reserveDetails.reserve_people) : console.log('還沒有值')
-
-
-  // }, [reserveDetails])
-
   //初始邀請好友名單
   const [inviteList, setInviteList] = useState([])
   useEffect(() => {
     setInviteList(alreadyInvite)
   }, [alreadyInvite])
 
-  // console.log('編輯modal邀請清單', inviteList)
-
-
   // 子層傳上來的好友名單
   const inviteListChange = (ivList) => {
     setInviteList(ivList)
   }
 
-
-
   // 送出表單
   const handleSubmit = (e) => {
-    const editForm = new FormData(document.getElementById('reserveEdit'))
+    // const editForm = new FormData(document.getElementById('reserveEdit'))
 
     fetch('http://localhost:3002/reserve/edit', {
       method: 'PUT',
@@ -91,7 +66,6 @@ export default function ReserveEdit({
     router.push('/member/reserve')
   }
 
-
   return (
     <>
       <div
@@ -103,15 +77,14 @@ export default function ReserveEdit({
       >
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-
             <div className="container-fluid">
               <div className="d-flex mx-5 my-3 row">
-                <div className={`modal-body col-4`}>
-                  <h3>修改訂位</h3>
+                <div className={`modal-body col-4 text-center`}>
+                  <h2 className={`card-text ${styles.restName}`}>
+                    {reserveDetails ? reserveDetails.RestName : ''}
+                  </h2>
                   {reserveDetails ? (
                     <form id="reserveEdit" onSubmit={handleSubmit}>
-
-
                       <div className={`${InfoSty.infoBox}`}>
                         <DateInput
                           id="reserveDate"
@@ -120,7 +93,7 @@ export default function ReserveEdit({
                           width="input-width-10rem"
                           getValue={setReserveDateInputValue}
                           getName={setReserveDateInputName}
-                          // addClassforLabel={InfoSty.infolabel}
+                          addClassforLabel={styles.infolabel}
                           value={reserveDetails.reserve_date}
                         />
                       </div>
@@ -167,10 +140,9 @@ export default function ReserveEdit({
                   )}
 
                   <label>邀請好友</label>
-                  <div className="d-flex">
-                    {inviteList.length > 0
-                      ?
-                      (inviteList.map((v, i) => {
+                  <div className="d-flex mb-4 justify-content-center">
+                    {inviteList.length > 0 ? (
+                      inviteList.map((v, i) => {
                         return (
                           <div key={i} className="me-2">
                             {/* <input
@@ -186,9 +158,9 @@ export default function ReserveEdit({
                           </div>
                         )
                       })
-                      )
-                      : (<p>本次訂位無邀請好友</p>
-                      )}
+                    ) : (
+                      <p>本次訂位無邀請好友</p>
+                    )}
                   </div>
                   <Button
                     btnText="邀請好友"
@@ -197,11 +169,12 @@ export default function ReserveEdit({
                   />
                 </div>
 
-                <div className="d-flex">
+                <div className="d-flex justify-content-center">
                   <Button
                     btnText="取消修改"
                     // onClick={modalOpen2}
                     bsModl3="modal"
+                    addClassforButton="btn-dark me-5"
                   />
                   <Button
                     type="submit"

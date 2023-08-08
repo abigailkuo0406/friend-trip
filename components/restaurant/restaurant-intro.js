@@ -47,13 +47,13 @@ export default function Modal({
   const inviteListChange = (ivList) => {
     setInviteList(ivList)
   }
+  const [submitState, setSubmitState] = useState(0)
 
   /* 提交訂位表單*/
   const handleSubmit = (event) => {
     event.preventDefault()
 
     if (reserveDateInputVale == '') {
-      //    alert('請選擇訂位日期')
       Swal.fire({
         width: 400,
         text: '請選擇訂位日期',
@@ -96,7 +96,6 @@ export default function Modal({
       })
     } else {
       const formData = new FormData(document.getElementById('reserve'))
-
       fetch('http://localhost:3002/restaurant', {
         method: 'POST',
         // body: formData,
@@ -163,7 +162,6 @@ export default function Modal({
                       {/* <input name="member_id" value={auth.member_id} hidden />
                       <input name="rest_id" value={restId} hidden />
                       <input name="state" value={parseInt('1')} hidden /> */}
-
 
                       <div className={`${InfoSty.infoBox}`}>
                         <DateInput
@@ -298,7 +296,7 @@ export default function Modal({
                           btnText="確認訂位"
                           addClassforButton="btn-light ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                           disabled={false} // fase：可點，true：不可點
-                          bsModl3="modal"
+                          bsModl3={`modal`}
                         ></Button>
                       </div>
                     </form>
