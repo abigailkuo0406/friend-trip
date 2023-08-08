@@ -4,7 +4,7 @@ import SlideLayout from '@/components/layout/slide-layout'
 import Pairs from '@/components/pairs/pairs'
 export default function PairsIndex() {
   const { auth, setAuth } = useContext(AuthContext)
-  const { memberinfo, setMemberInfo } = useState()
+  const [memberinfo, setMemberInfo] = useState()
   useEffect(() => {
     fetch(process.env.API_SERVER + '/select', {
       method: 'POST',
@@ -19,12 +19,16 @@ export default function PairsIndex() {
       .then((data) => {
         console.log(data)
         alert('篩選成功')
+        console.log('資料抓到', data.all)
+        setMemberInfo(data.all)
       })
   }, [auth])
+
+  // if (!memberinfo) return <p>Loading...</p>
   return (
     <>
       <div className="d-flex justify-contents-center">
-        <Pairs auth={auth} />
+        <Pairs memberinfo={memberinfo} />
       </div>
     </>
   )

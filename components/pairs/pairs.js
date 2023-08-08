@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import styles from './pairs.module.css'
 import Face from '@/public/img/avatar/face/face52.png'
 import Image from 'next/image'
@@ -7,10 +7,28 @@ import Logo from '@/public/FriendTrip-Logo.png'
 import PairBtns from '@/components/pairs/pairs-button'
 import PairBtns2 from '@/components/pairs/pairs-button2'
 
-export default function Pairs({ auth }) {
+export default function Pairs({ memberinfo }) {
   const [page, setPage] = useState(1)
   const page1 = <PairBtns setPage={setPage} />
   const page2 = <PairBtns2 setPage={setPage} />
+  const photos = []
+  for (let i = 0; i < memberinfo?.length; i++) {
+    photos.push(memberinfo[i].images)
+    // console.log(memberinfo[i].images)
+    // console.log(photos)
+  }
+  const [displayedPhotos, setDisplayedPhotos] = useState([])
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0)
+
+  const handleNextClick = () => {
+    if (currentPhotoIndex < photos.length) {
+      setDisplayedPhotos((prevPhotos) => [
+        ...prevPhotos,
+        photos[currentPhotoIndex],
+      ])
+      setCurrentPhotoIndex((prevIndex) => prevIndex + 1)
+    }
+  }
   return (
     <>
       <div className={styles.main}>
@@ -27,13 +45,17 @@ export default function Pairs({ auth }) {
               />
             </div>
             <div className={styles.imgContainer}>
-              <Image
-                src={`http://localhost:3002/face/${auth.images}`}
-                className={`${styles.img}`}
-                width={100}
-                height={100}
-                alt="face1.png"
-              />
+              {memberinfo?.map((memberinfo) => (
+                <Fragment key={memberinfo.member_id}>
+                  <Image
+                    src={`http://localhost:3002/face/${memberinfo.images}`}
+                    className={`${styles.img}`}
+                    width={100}
+                    height={100}
+                    alt="face1.png"
+                  />
+                </Fragment>
+              ))}
             </div>
           </div>
           <div className={`card-body ${styles.cardprofile}`}>
