@@ -21,7 +21,7 @@ export default function Pairs() {
           <div className={` ${styles.imgborder}`}>
             <div className={styles.imgabove}>
               <Image
-                src={Logo}
+                src={http://localhost:3002/face/face2.png}
                 className={`${styles.imglogo}`}
                 alt="logo.png"
               />

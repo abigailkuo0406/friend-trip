@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styles from './condition.module.css'
 import BtnNormal from '@/components/common/button/btn-normal.js'
 import Slider from '@mui/material/Slider'
-
+import AuthContext from '@/context/AuthContext' // 會員
 import { createTheme } from '@mui/material'
+import { FaArrowLeft } from 'react-icons/fa'
 const theme = createTheme({
   palette: {
     primary: {
@@ -16,17 +17,49 @@ import { ThemeProvider } from '@mui/material'
 
 export default function Condition() {
   const [value, setValue] = React.useState([0, 10])
+  const [gender, setGender] = useState('')
+
+  const { auth, setAuth } = useContext(AuthContext)
+  const select = (e) => {
+    e.preventDefault()
+    console.log('啟動篩選')
+    fetch(process.env.API_SERVER + '/select', {
+      method: 'POST',
+      body: JSON.stringify({
+        memberID: auth.member_id,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+        alert('篩選成功')
+      })
+  }
+  useEffect(() => {
+    console.log(gender)
+  }, [gender])
+  useEffect(() => {
+    console.log(value)
+  }, [value])
   return (
     <>
       <div className={styles.container}>
         <div className={styles.main}>
           <div>
-            <i class="fa-solid fa-arrow-left"></i>
+            <button onClick={select}>
+              <FaArrowLeft type="button"></FaArrowLeft>
+            </button>
           </div>
           <div className="mt-3">
             <h4 className={styles.font}>對象</h4>
             <div className={styles.btns}>
               <BtnNormal
+                onClick={() => {
+                  setGender('女')
+                }}
                 className="btn"
                 btnText="生理女性"
                 addClassforButton="btn-light"
@@ -34,6 +67,9 @@ export default function Condition() {
               <BtnNormal
                 btnText="生理男性"
                 addClassforButton="btn-light ms-3"
+                onClick={() => {
+                  setGender('男')
+                }}
               />
               <BtnNormal btnText="都可以" addClassforButton="btn-light ms-3" />
             </div>
