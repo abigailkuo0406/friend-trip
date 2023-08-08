@@ -1,10 +1,8 @@
 import AvatarAndNameOfPostAuthor from './AvatarAndNameOfPostAuthor'
-import DeleteAndEditForThePost from './DeleteAndEditForThePost'
 import moment from 'moment/moment'
 function HeaderOfThePost({
   avatarOfPostAuthor,
   authorOfThePost,
-  isLogginUserAuthorOfThePost,
   dateOfPublishOfPost,
 }) {
   const rawDateOfPublishOfPost = dateOfPublishOfPost
@@ -17,9 +15,9 @@ function HeaderOfThePost({
             avatarOfPostAuthor={avatarOfPostAuthor}
             authorOfThePost={authorOfThePost}
           />
-          <DeleteAndEditForThePost
+          {/* <DeleteAndEditForThePost
             isLogginUserAuthorOfThePost={isLogginUserAuthorOfThePost}
-          />
+          /> */}
         </div>
         <time className="mb-0">發文時間：{formattedDate}</time>
       </div>

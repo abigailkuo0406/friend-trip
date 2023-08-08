@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 
-function AvatarAndNameOfPostAuthor({ avatarOfPostAuthor, authorOfThePost }) {
-  const avatarPicPath = 'http://localhost:3002/face/' + avatarOfPostAuthor
+function AvatarAndNameOfCommentCreator({ avatarOfCommentCreator, authorOfTheComment }) {
+  const avatarPicPath='http://localhost:3002/face/'+avatarOfCommentCreator
   return (
     <div className="d-flex align-items-center">
       <div
@@ -16,17 +16,18 @@ function AvatarAndNameOfPostAuthor({ avatarOfPostAuthor, authorOfThePost }) {
       >
         <Image
           // className="rounded-circle m-1 img-fluid"
-          alt="Author_of_the_post"
+          alt="Author_of_the_comment"
           src={avatarPicPath}
           // width={50}
           // height={50}
           fill
           objectFit="cover"
         />
+
       </div>
-      <p className="m-1">{authorOfThePost}</p>
+      <p className="m-1">{authorOfTheComment}</p>
     </div>
   )
 }
 
-export default AvatarAndNameOfPostAuthor
+export default AvatarAndNameOfCommentCreator

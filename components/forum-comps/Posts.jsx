@@ -9,8 +9,7 @@ export default function Posts({ posts, comments }) {
             key={post.post_id}
             post_id={post.post_id}
             avatarOfPostAuthor={post.images}
-            authorOfThePost={post.username}
-            isLogginUserAuthorOfThePost={post.isLogginUserAuthorOfThePost}
+            authorOfThePost={post.member_name}
             dateOfPublishOfPost={post.created_at}
             imgOfPost={post.img}
             articleOfPost={post.content}

@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
+import AuthContext from '@/context/AuthContext'
 
-function AvatarAndNameOfPostAuthor({ avatarOfPostAuthor, authorOfThePost }) {
-  const avatarPicPath = 'http://localhost:3002/face/' + avatarOfPostAuthor
+function AvatarOfLoggedInUser() {
+  const { auth } = useContext(AuthContext)
+  const avatarOfLoggedInUser = `http://localhost:3002/face/${auth.images}`
+  console.log('LoggedUser: ',avatarOfLoggedInUser)
   return (
     <div className="d-flex align-items-center">
       <div
@@ -14,19 +17,18 @@ function AvatarAndNameOfPostAuthor({ avatarOfPostAuthor, authorOfThePost }) {
           borderRadius: '50%',
         }}
       >
-        <Image
+        <img
           // className="rounded-circle m-1 img-fluid"
           alt="Author_of_the_post"
-          src={avatarPicPath}
+          src={avatarOfLoggedInUser}
           // width={50}
           // height={50}
           fill
           objectFit="cover"
         />
       </div>
-      <p className="m-1">{authorOfThePost}</p>
     </div>
   )
 }
 
-export default AvatarAndNameOfPostAuthor
+export default AvatarOfLoggedInUser

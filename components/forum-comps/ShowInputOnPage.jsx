@@ -3,12 +3,11 @@ import styles from './ShowInputOnPage.module.css'
 import AvatarAndNameOfPostAuthor from './AvatarAndNameOfPostAuthor'
 import axios from 'axios'
 import AuthContext from '@/context/AuthContext'
+import AvatarOfLoggedInUser from './AvatarOfLoggedInUser'
 
 // TODO 把信息顯示和新增信息分開！！！
 function ShowInputOnPage({ sendMsg, comments, post_id }) {
   const { auth, setAuth } = useContext(AuthContext)
-  const avatarOfPostAuthor = '/face/face23.png'
-  //avatarOfPostAuthor from database
   const [data, setData] = useState([])
   const msgRef = useRef(null)
   const changeHandler = (evnt) => {
@@ -44,7 +43,9 @@ function ShowInputOnPage({ sendMsg, comments, post_id }) {
           })}
       </ul>
       <div className="d-flex">
+        {/* 顯示登入者頭圖 */}
         <p>🗣️</p>
+        <AvatarOfLoggedInUser />
         <input
           type="text"
           ref={msgRef}

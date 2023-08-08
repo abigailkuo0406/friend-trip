@@ -4,6 +4,8 @@ import ArticleOfPost from './ArticleOfPost'
 import React from 'react'
 import ShowInputOnPage from './ShowInputOnPage'
 import axios from 'axios'
+import ShowComments from './ShowComments'
+import AddComment from './AddComment'
 
 export default function Post({
   post_id,
@@ -26,17 +28,13 @@ export default function Post({
       <HeaderOfThePost
         avatarOfPostAuthor={avatarOfPostAuthor}
         authorOfThePost={authorOfThePost}
-        isLogginUserAuthorOfThePost={isLogginUserAuthorOfThePost}
         dateOfPublishOfPost={dateOfPublishOfPost}
       />
       <ImgForThePost imgSrc={imgOfPost} className="my-md-4" />
       <ArticleOfPost content={articleOfPost} className="my-md-4" />
-
-      <ShowInputOnPage
-        sendMsg={sendMsg}
-        comments={comments}
-        post_id={post_id}
-      />
+      {/* 嘗試將 AddComment 與 ShowComment 分開寫成元件 */}
+      <ShowComments comments={comments} post_id={post_id} />
+      <AddComment />
     </div>
   )
 }
