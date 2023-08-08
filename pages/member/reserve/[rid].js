@@ -42,6 +42,8 @@ export default function ReseveDetails({ state }) {
 
   // 取得訂位邀請資料
   useEffect(() => {
+    if (!auth.member_id) return
+
     fetch('http://localhost:3002/reserveinvites', {
       method: 'POST',
       body: JSON.stringify({ memberID: auth.member_id }),
@@ -128,7 +130,7 @@ export default function ReseveDetails({ state }) {
                 invite.map((v, i) => {
                   return (
                     <div key={i} className="me-2">
-                         <Image
+                      <Image
                         src={`http://localhost:3002/face/${v.images}`}
                         className={` ${FriendSty.avatar}`}
                         width={50}
