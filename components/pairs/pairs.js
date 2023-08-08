@@ -7,7 +7,7 @@ import Logo from '@/public/FriendTrip-Logo.png'
 import PairBtns from '@/components/pairs/pairs-button'
 import PairBtns2 from '@/components/pairs/pairs-button2'
 
-export default function Pairs() {
+export default function Pairs({ auth }) {
   const [page, setPage] = useState(1)
   const page1 = <PairBtns setPage={setPage} />
   const page2 = <PairBtns2 setPage={setPage} />
@@ -21,13 +21,19 @@ export default function Pairs() {
           <div className={` ${styles.imgborder}`}>
             <div className={styles.imgabove}>
               <Image
-                src={http://localhost:3002/face/face2.png}
+                src={Logo}
                 className={`${styles.imglogo}`}
                 alt="logo.png"
               />
             </div>
             <div className={styles.imgContainer}>
-              <Image src={Face} className={`${styles.img}`} alt="face1.png" />
+              <Image
+                src={`http://localhost:3002/face/${auth.images}`}
+                className={`${styles.img}`}
+                width={100}
+                height={100}
+                alt="face1.png"
+              />
             </div>
           </div>
           <div className={`card-body ${styles.cardprofile}`}>
