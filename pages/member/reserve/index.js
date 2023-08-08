@@ -4,7 +4,7 @@ import ReserveItem from '@/components/reserve/reserve-item'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import AuthContext from '@/context/AuthContext'
-import Modal from '@/components/reserve/reserve-modal'
+import CommentModal from '@/components/reserve/comment'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 
 export default function Reserve() {
@@ -38,6 +38,21 @@ export default function Reserve() {
       })
   }, [router.query])
 
+  // 預設要傳入comment的資料
+  const [reservationId, setReservationId] = useState()
+  const [restaurantId, setRestaurantId] = useState()
+  const [rName, setRName] = useState()
+  const [rImg, setRImg] = useState()
+
+  const showModal = (
+    modal, reservationId, restaurantId, rName, rImg
+  ) => {
+    setReservationId(reservationId)
+    setRestaurantId(restaurantId)
+    setRName(rName)
+    setRImg(rImg)
+  }
+
   return (
     <>
       {reserve.totalRows > 0 ? (
@@ -53,6 +68,7 @@ export default function Reserve() {
                 reserveTime={v.reserve_time}
                 reservePeopleNum={v.reserve_people}
                 state={v.state}
+                modalChange={showModal}
               />
             </div>
           )
@@ -60,6 +76,14 @@ export default function Reserve() {
       ) : (
         <p>目前尚無訂位</p>
       )}
+      <CommentModal
+        reservationId={reservationId}
+        restId={restaurantId}
+        restName={rName}
+        restImg={rImg}
+      />
+
+
       {reserve.totalRows > 0 ? (
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation example">

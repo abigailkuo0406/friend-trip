@@ -15,6 +15,7 @@ export default function ReserveItem({
   reserveTime,
   reservePeopleNum,
   state,
+  modalChange
 }) {
   const { auth } = useContext(AuthContext)
 
@@ -88,6 +89,30 @@ export default function ReserveItem({
     }
   }, [invitesData])
 
+  const [modal, setModal] = useState(false)
+  const [reservationId, setReservationId] = useState()
+  const [restaurantId, setResttauranId] = useState()
+  const [rName, setRName] = useState()
+  const [rImg, setRImg] = useState()
+
+  const showModal = () => setModal(true)
+
+  // 開啟評論modal
+  const modalOpen = () => {
+    showModal()
+    setResttauranId(restId)
+    setReservationId(reserveId)
+    setRName(restName)
+    setRImg(restImg)
+
+  }
+
+  //modal值為true，回傳資料到index.js(reserve) 
+  useEffect(() => {
+    modalChange(modal, reservationId, restaurantId, rName, rImg)
+
+  }, [modal])
+
   return (
     <>
       <div className="card mb-3 radius20px">
@@ -109,9 +134,8 @@ export default function ReserveItem({
               <div className={`d-flex align-items-center ${styles.cardHead}`}>
                 <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
                 <p
-                  className={`ms-4 ${
-                    state == 0 ? styles.stateCancel : styles.state
-                  }`}
+                  className={`ms-4 ${state == 0 ? styles.stateCancel : styles.state
+                    }`}
                 >
                   {stateText}
                 </p>
@@ -161,13 +185,16 @@ export default function ReserveItem({
                   )}
                 </div>
               </div>
-              {state == 1 ? (
-                <div class="d-flex justify-content-end pe-2">
-                  <Button btnText="詳細資訊" onClick={routerChange} />
-                </div>
-              ) : (
-                <p></p>
-              )}
+
+              <div class="d-flex justify-content-end pe-2">
+                <Button btnText="詳細資訊" onClick={routerChange} />
+                <Button
+                  btnText="撰寫評論"
+                  onClick={modalOpen}
+                  bsModle1={`#exampleModal`}
+                  bsModle2='modal' />
+              </div>
+
             </div>
           </div>
         </div>
