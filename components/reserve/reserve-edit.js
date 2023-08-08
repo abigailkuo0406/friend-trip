@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Image from 'next/image'
 import Button from '@/components/common/button/btn-normal'
-import InfoSty from '@/components/restaurant/intro.module.css'
 import FriendSty from '@/components/invite/friends-list.module.css'
 import NumberInput from '@/components/common/input/input-number'
 import RadioGroupInput from '@/components/common/input/input-radio-group'
@@ -10,6 +9,8 @@ import AuthContext from '@/context/AuthContext'
 import InviteModalEdit from '@/components/invite/invite-modal-edit'
 import { useRouter } from 'next/router'
 import styles from '@/pages/member/reserve/rid.module.css'
+import InfoSty from '@/components/restaurant/intro.module.css'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 
 export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
   const router = useRouter()
@@ -79,7 +80,7 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
           <div class="modal-content">
             <div className="container-fluid">
               <div className="d-flex mx-5 my-3 row">
-                <div className={`modal-body col-4 text-center`}>
+                <div className={`modal-body col-4`}>
                   <h2 className={`card-text ${styles.restName}`}>
                     {reserveDetails ? reserveDetails.RestName : ''}
                   </h2>
@@ -93,12 +94,13 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                           width="input-width-10rem"
                           getValue={setReserveDateInputValue}
                           getName={setReserveDateInputName}
-                          addClassforLabel={styles.infolabel}
+                          addClassforLabel={InfoSty.infolabel}
+                          addClassforDiv={`restLabel`}
                           value={reserveDetails.reserve_date}
                         />
                       </div>
 
-                      <div className={`${InfoSty.infoBox}`}>
+                      <div className={`d-flex`}>
                         <RadioGroupInput
                           label="訂位時間"
                           name="reserve_time"
@@ -106,16 +108,16 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                           idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
                           valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
                           labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
-                          checked={reserveDetails.reserve_time}
                           getValue={setReserveTimeInputValue}
                           getName={setReserveTimeInputName}
                           getLabel={setReserveTimeInputLabel}
                           addClassforTitleLabel={InfoSty.infolabel} // 如果要在標題 label 添加 class
-                          addClassforEachLabel={`btn ${InfoSty.radioItem} me-3`} // 如果要在個別選項 label 添加 class
-                          addClassforInput={`btn-check`} // 如果要在 input 添加 class
+                          addClassforEachLabel={`btn restRadiobtn ${InfoSty.radioItem} restRadioLabel me-3`} // 如果要在個別選項 label 添加 class
+                          addClassforInput={`btn-check restRadiobtn-check`} // 如果要在 input 添加 class
+                          addClassforDiv={`restLabel`}
+                          checked={reserveDetails.reserve_time}
                         />
                       </div>
-
                       <div className={`${InfoSty.infoBox}`}>
                         <NumberInput
                           id="PeopleNum"
@@ -132,6 +134,7 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                           width="input-width-5rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
                           addClassforLabel="try1" // 如果要在 label 添加 class
                           addClassforInput="try2 test123" // 如果要在 input 添加 class
+                          addClassforDiv={`restLabel`}
                         />
                       </div>
                     </form>
@@ -139,8 +142,8 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                     ''
                   )}
 
-                  <label>邀請好友</label>
-                  <div className="d-flex mb-4 justify-content-center">
+                  <label className="mb-3">與會好友</label>
+                  <div className="d-flex align-items-center">
                     {inviteList.length > 0 ? (
                       inviteList.map((v, i) => {
                         return (
@@ -161,15 +164,20 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                     ) : (
                       <p>本次訂位無邀請好友</p>
                     )}
+                    <div>
+                      <Button
+                        btnText={
+                          <AiOutlinePlusCircle className={styles.plus} />
+                        }
+                        bsModle1="#exampleModalToggle2"
+                        bsModle2="modal"
+                        addClassforButton={styles.ivBtn}
+                      />
+                    </div>
                   </div>
-                  <Button
-                    btnText="邀請好友"
-                    bsModle1="#exampleModalToggle2"
-                    bsModle2="modal"
-                  />
                 </div>
 
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mt-4">
                   <Button
                     btnText="取消修改"
                     // onClick={modalOpen2}

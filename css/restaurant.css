@@ -1,0 +1,21 @@
+.restRadioLabel {
+  min-width: 0;
+}
+
+.restLabel {
+  margin-top: 0;
+  /* margin-bottom: 0; */
+}
+.restRadiobtn {
+  border: none;
+  border-radius: 20px;
+  padding-right: 0.9rem;
+  padding-left: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+.restRadiobtn-check:checked + .restRadiobtn {
+  color: var(--assist-white);
+  background-color: var(--main-dark);
+  border-color: var(--bs-btn-active-border-color);
+}

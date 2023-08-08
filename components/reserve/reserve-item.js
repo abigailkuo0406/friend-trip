@@ -91,9 +91,9 @@ export default function ReserveItem({
   return (
     <>
       <div className="card mb-3 radius20px">
-        <div className="row g-0 my-3">
-          <div className="col-md-3">
-            <div className={styles.imgClass}>
+        <div className="row g-2 my-3">
+          <div className="col-md-3 ">
+            <div className={`${styles.imgClass}`}>
               <Image
                 src={`http://localhost:3002/restImg/${restImg}`}
                 className={`rounded ms-2 ${styles.img1}`}
@@ -105,7 +105,7 @@ export default function ReserveItem({
           </div>
 
           <div className="col-md-9">
-            <div className="card-body">
+            <div className="card-body ms-3">
               <div className={`d-flex align-items-center ${styles.cardHead}`}>
                 <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
                 <p
@@ -118,30 +118,30 @@ export default function ReserveItem({
               </div>
 
               <div className="d-flex mt-2">
-                <p className="card-text text-truncate me-2">訂位資訊：</p>
-                <p className="card-text text-truncate me-2">
+                <p className={`card-text me-2 ${styles.text}`}>訂位資訊：</p>
+                <p className={`card-text me-2 ${styles.text}`}>
                   {dateArr[0]}
                   <span className="ms-1">年</span>
                 </p>
-                <p className="card-text text-truncate me-2">
+                <p className={`card-text me-2 ${styles.text}`}>
                   {dateArr[1]}
                   <span className="ms-1">月</span>
                 </p>
-                <p className="card-text text-truncate me-3">
+                <p className={`card-text me-4 ${styles.text}`}>
                   {dateArr[2]}
                   <span className="ms-1">日</span>
                 </p>
-                <p className="card-text text-truncate me-3">
+                <p className={`card-text me-4 ${styles.text}`}>
                   {timeArr[0]}:{timeArr[1]}
                 </p>
-                <p className="card-text text-truncate me-2">
+                <p className={`card-text me-2 ${styles.text}`}>
                   {reservePeopleNum}
                   <span className="ms-1">位成人</span>
                 </p>
               </div>
 
               <div>
-                <p className="card-text text-truncate my-4">與會好友</p>
+                <p className={`card-text me-2 ${styles.text}`}>與會好友：</p>
                 <div className="d-flex">
                   {invite.length > 0 ? (
                     invite.map((v, i) => {
@@ -162,7 +162,7 @@ export default function ReserveItem({
                 </div>
               </div>
               {state == 1 ? (
-                <div className="pe-4 position-absolute end-0">
+                <div class="d-flex justify-content-end pe-2">
                   <Button btnText="詳細資訊" onClick={routerChange} />
                 </div>
               ) : (

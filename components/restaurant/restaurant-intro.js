@@ -172,6 +172,7 @@ export default function Modal({
                           getValue={setReserveDateInputValue}
                           getName={setReserveDateInputName}
                           addClassforLabel={InfoSty.infolabel}
+                          addClassforDiv={`restLabel`}
                         />
                       </div>
                       {/* <label className={InfoSty.infoBox}>訂位時間</label> */}
@@ -229,8 +230,9 @@ export default function Modal({
                           getName={setReserveTimeInputName}
                           getLabel={setReserveTimeInputLabel}
                           addClassforTitleLabel={InfoSty.infolabel} // 如果要在標題 label 添加 class
-                          addClassforEachLabel={`btn ${InfoSty.radioItem} me-3`} // 如果要在個別選項 label 添加 class
-                          addClassforInput={`btn-check`} // 如果要在 input 添加 class
+                          addClassforEachLabel={`btn restRadiobtn ${InfoSty.radioItem} restRadioLabel me-3`} // 如果要在個別選項 label 添加 class
+                          addClassforInput={`btn-check restRadiobtn-check`} // 如果要在 input 添加 class
+                          addClassforDiv={`restLabel`}
                         />
                       </div>
 
@@ -250,6 +252,7 @@ export default function Modal({
                           width="input-width-5rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
                           addClassforLabel="try1" // 如果要在 label 添加 class
                           addClassforInput="try2 test123" // 如果要在 input 添加 class
+                          addClassforDiv={`restLabel`}
                         />
                       </div>
                       <label>邀請好友</label>
@@ -289,12 +292,13 @@ export default function Modal({
                           btnText="邀請好友"
                           bsModle1="#exampleModalToggle2"
                           bsModle2="modal"
+                          addClassforButton="btn-light"
                         />
                         <Button
                           type="submit"
                           value="submit"
                           btnText="確認訂位"
-                          addClassforButton="btn-light ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                          addClassforButton="btn-dark ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                           disabled={false} // fase：可點，true：不可點
                           bsModl3={`modal`}
                         ></Button>

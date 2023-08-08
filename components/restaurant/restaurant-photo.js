@@ -23,11 +23,9 @@ export default function RestaurantPhoto({ file, rid }) {
 
   return (
     <>
-      {/* 照片區 */}
-
+{/* 
       <div id={`carouselExampleIndicators${rid}`} className="carousel slide">
         <div className="carousel-indicators">
-          
           <button
             type="button"
             data-bs-target={`#carouselExampleIndicators${rid}`}
@@ -35,8 +33,7 @@ export default function RestaurantPhoto({ file, rid }) {
             className="active"
             aria-current="true"
             aria-label="Slide 1"
-          >
-          </button>
+          ></button>
           <button
             type="button"
             data-bs-target={`#carouselExampleIndicators${rid}`}
@@ -108,6 +105,53 @@ export default function RestaurantPhoto({ file, rid }) {
             aria-hidden="true"
           ></span>
           <span className="visually-hidden">Next</span>
+        </button>
+      </div> */}
+
+      <div
+        id="carouselExampleAutoplaying"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div className="carousel-inner">
+          {restPhotos != []
+            ? restPhotos.map((v, i) => {
+                return (
+                  <div
+                    key={i}
+                    className={`carousel-item ${styles.imgClass2} ${
+                      i == 0 ? 'active' : ''
+                    } data-bs-interval=${300}`}
+                  >
+                    <Image
+                      src={`http://localhost:3002/restImg/${v.RestImg}`}
+                      className={`${styles.img1}`}
+                      alt={v.RestImg}
+                      width={500}
+                      height={500}
+                    />
+                  </div>
+                )
+              })
+            : ''}
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
         </button>
       </div>
     </>

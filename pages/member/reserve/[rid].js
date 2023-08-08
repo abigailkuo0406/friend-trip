@@ -91,44 +91,44 @@ export default function ReseveDetails({ state }) {
               {reserveDetails.RestName}
             </h2>
             <div className={`mt-4`}>
-              <h4 className={`${styles.title}`}>訂位日期</h4>
+              <h3 className={`${styles.label}`}>訂位日期</h3>
               <div className="d-flex justify-content-center">
-                <p className="card-text text-truncate me-2">
+                <p className={`card-text me-2 ${styles.text}`}>
                   {dateArr[0]}
-                  <span className="ms-1">年</span>
+                  <span className={`card-text ms-1 ${styles.text}`}>年</span>
                 </p>
-                <p className="card-text text-truncate me-2">
+                <p className={`card-text me-2 ${styles.text}`}>
                   {dateArr[1]}
-                  <span className="ms-1">月</span>
+                  <span className={`card-text ms-1 ${styles.text}`}>月</span>
                 </p>
-                <p className="card-text text-truncate">
+                <p className={`card-text me-2 ${styles.text}`}>
                   {dateArr[2]}
-                  <span className="ms-1">日</span>
+                  <span className={`card-text ms-1 ${styles.text}`}>日</span>
                 </p>
               </div>
             </div>
 
             <div className={`mb-4`}>
-              <h4 className={`${styles.title}`}>訂位時間</h4>
-              <p className="card-text text-truncate">
+              <h3 className={`${styles.label}`}>訂位時間</h3>
+              <p className={`card-text me-2 ${styles.text}`}>
                 {timeArr[0]}:{timeArr[1]}
               </p>
             </div>
             <div className={`mb-4`}>
-              <h4 className={`${styles.title}`}>訂位人數</h4>
-              <p className="card-text text-truncate">
+              <h4 className={`${styles.label}`}>訂位人數</h4>
+              <p className={`card-text me-2 ${styles.text}`}>
                 {reserveDetails.reserve_people}
                 <span className="ms-1">位成人</span>
               </p>
             </div>
 
-            <h4 className={`${styles.title} mb-3`}>邀請好友</h4>
+            <h3 className={`${styles.label} mb-3`}>邀請好友</h3>
             <div className="d-flex mb-4 justify-content-center">
               {invite.length > 0 ? (
                 invite.map((v, i) => {
                   return (
                     <div key={i} className="me-2">
-                      <Image
+                         <Image
                         src={`http://localhost:3002/face/${v.images}`}
                         className={` ${FriendSty.avatar}`}
                         width={50}
