@@ -10,16 +10,18 @@ export default function PairsIndex() {
   const [randomstate, setRandomState] = useState([])
 
   useEffect(() => {
-    const photos = []
-    for (let i = 0; i < memberinfo?.length; i++) {
-      photos.push(memberinfo[i].images)
-      console.log(memberinfo)
-      // console.log(photos)
-    }
+    // const photos = []
+    // for (let i = 0; i < memberinfo?.length; i++) {
+    //   // photos.push(memberinfo[i].images)
+    //   // console.log(memberinfo)
+    //   // console.log(photos)
+    // }
+    if (!memberinfo) return
+    const photos = memberinfo.sort(() => Math.random() - 0.5)
     setRandomState(photos)
     // setRandomState(_.shuffle(photos))
   }, [memberinfo])
-
+  console.log(randomstate)
   useEffect(() => {
     fetch(process.env.API_SERVER + '/select', {
       method: 'POST',
@@ -45,11 +47,12 @@ export default function PairsIndex() {
       <div className="d-flex justify-contents-center">
         <Pairs
           memberinfo={memberinfo}
-          Random={randomstate}
+          randomstate={randomstate}
           setImgIndex={setImgIndex}
           imgIndex={imgIndex}
         />
       </div>
+      {console.log(randomstate)}
     </>
   )
 }
