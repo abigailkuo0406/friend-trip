@@ -159,7 +159,7 @@ export default function Rest() {
     }
   }
 
-  const [rid, setRid] = useState()
+  const [rid, setRid] = useState(0)
   const [rName, setRName] = useState()
   const [rAddress, setRAdress] = useState()
   const [rPhone, setRPhone] = useState()

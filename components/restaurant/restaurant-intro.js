@@ -11,6 +11,7 @@ import FriendsLtSty from '../invite/friends-list.module.css'
 import InfoSty from '@/components/restaurant/intro.module.css'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
+import Comment from './comment'
 
 export default function Modal({
   restId,
@@ -47,7 +48,40 @@ export default function Modal({
   const inviteListChange = (ivList) => {
     setInviteList(ivList)
   }
-  const [submitState, setSubmitState] = useState(0)
+
+  const [cts, setComments] = useState([])
+  // 取得評論資料
+  useEffect(() => {
+    if (!restId) return
+    fetch("http://localhost:3002/comment", {
+      method: "POST",
+      body: JSON.stringify({
+        restId: restId
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then((c) => c.json())
+      .then((ct) => {
+        console.log('fetch進來的comment', ct)
+        setComments(ct)
+
+      })
+
+  }, [restId])
+  console.log('intro裡的comments', cts)
+  useEffect(() => {
+    console.log('useEffect裡的comments', cts)
+
+    cts.map((v, i, arr) => {
+      console.log('v', v)
+      console.log('i', i)
+      console.log('arr', arr)
+
+
+    })
+  }, [cts])
 
   /* 提交訂位表單*/
   const handleSubmit = (event) => {
@@ -135,9 +169,9 @@ export default function Modal({
                 aria-label="Close"
               ></button>
             </div>
-            <div className="container-fluid">
+            <div className="modal-body container-fluid">
               <div className="d-flex mx-5 my-3 row">
-                <div className={`modal-body col-4 ${InfoSty.leftBox}`}>
+                <div className={`col-4 ${InfoSty.leftBox}`}>
                   <div className={`${InfoSty.infoBox}`}>
                     <h2>{restName}</h2>
                     {/* <div>星星</div> */}
@@ -307,7 +341,34 @@ export default function Modal({
                   </div>
                 </div>
                 <div className="col-6">
-                  {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
+                  <div>
+                    {/* {restId ? <RestPhoto file={restImg} rid={restId} /> : ''} */}
+                    <div>
+                      <h2>最新評論</h2>
+                      {cts ?
+                        cts.map((v, i) => {
+                          return (
+                            <div key={i}>
+                              <Comment
+                                commentMemberId={v.comtMemberId}
+                                commentMemberName={v.member_name}
+                                commentMemberImg={v.images}
+                                commentRestId={v.ComtRestId}
+                                commentRestName={v.RestName}
+                                comment={v.ComtText}
+                                rate={v.rating}
+                              />
+
+                            </div>
+                          )
+                        })
+                        :
+                        <p>目前尚無餐廳評論資料</p>
+                      }
+
+                    </div>
+
+                  </div>
                 </div>
               </div>
             </div>

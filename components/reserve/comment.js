@@ -22,18 +22,21 @@ export default function Comment({
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        const formData = new FormData(document.getElementById('comment'))
         fetch('http://localhost:3002/comment/addcomment', {
             method: "POST",
-            body: JSON.stringify({
-                RestID: restId,
-                member_id: auth.member_id,
-                RestStarP: 5,
-                ComtText: textAreaValue,
+            body: formData,
 
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            // body: JSON.stringify({
+            //     RestID: restId,
+            //     member_id: auth.member_id,
+            //     rating: 5,
+            //     ComtText: textAreaValue,
+
+            // }),
+            // headers: {
+            //     'Content-Type': 'application/json',
+            // },
         })
 
     }
@@ -48,17 +51,17 @@ export default function Comment({
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <button
-                                type="button"
-                                class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
                         <form id='comment' onSubmit={handleSubmit}>
 
                             <div class="modal-body">
-
                                 <h1>{restName}</h1>
                                 <p>訂單編號{reservationId}</p>
+                                <input
+                                    name='RestID' id='RestID'
+                                    value={restId} hidden />
+                                <input
+                                    name='member_id' id='member_id'
+                                    value={auth.member_id} hidden />
                                 <p>餐廳地址</p>
                                 <div className='d-flex  align-items-center  '>
                                     <Image
@@ -70,9 +73,19 @@ export default function Comment({
                                     <p>{auth.member_name}</p>
                                 </div>
                                 <p>請給予餐廳評分</p>
+                                <div className={`d-flex starBlock justify-content-center`}>
+                                    <div class="star-cb-group">
+                                        <input type="radio" id="rating-5" name="rating" value="5" /><label for="rating-5" className='restRadioLabel'>5</label>
+                                        <input type="radio" id="rating-4" name="rating" value="4" /><label for="rating-4" className='restRadioLabel'>4</label>
+                                        <input type="radio" id="rating-3" name="rating" value="3" /><label for="rating-3" className='restRadioLabel'>3</label>
+                                        <input type="radio" id="rating-2" name="rating" value="2" /><label for="rating-2" className='restRadioLabel'>2</label>
+                                        <input type="radio" id="rating-1" name="rating" value="1" checked /><label for="rating-1" className='restRadioLabel'>1</label>
+                                        {/* <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label> */}
+                                    </div>
+                                </div>
                                 <TextArea
                                     id=''
-                                    name=''
+                                    name='ComtText'
                                     label='請寫下您的評論'
                                     getValue={setTextAreaValue}
                                     getName={setTextAreaName}
@@ -84,6 +97,8 @@ export default function Comment({
                                 <Btn
                                     btnText='取消評論'
                                     addClassforButton="btn-light"
+                                    bsModl3={`modal`}
+
 
                                 />
                                 <Btn
