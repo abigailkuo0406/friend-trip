@@ -7,6 +7,10 @@
   margin-bottom: 0;
 }
 
+.ComentTextArea {
+  width: auto;
+}
+
 .restRadiobtn {
   border: none;
   border-radius: 20px;
@@ -16,7 +20,7 @@
   align-items: center;
 }
 
-.restRadiobtn-check:checked+.restRadiobtn {
+.restRadiobtn-check:checked + .restRadiobtn {
   color: var(--assist-white);
   background-color: var(--main-dark);
   border-color: var(--bs-btn-active-border-color);
@@ -25,13 +29,12 @@
 /* 定義變數 */
 :root {
   --unchecked-star: '\2606';
-  --unchecked-color: #FFFFFF;
+  --unchecked-color: #ffffff;
   --checked-star: '\2605';
-  --checked-color: #674C87;
+  --checked-color: #674c87;
 }
 
 /* 全局樣式 */
-
 
 .starBlock {
   border: 0;
@@ -48,7 +51,6 @@
   background: transparent;
 } */
 
-
 /* 星星評分部分 */
 .star-cb-group {
   font-size: 0;
@@ -56,61 +58,58 @@
   direction: rtl;
 }
 
-.star-cb-group>input {
+.star-cb-group > input {
   display: none;
 }
 
-.star-cb-group>input+label {
+.star-cb-group > input + label {
   display: inline-block;
   overflow: hidden;
   text-indent: 9999px;
   width: 1em;
   white-space: nowrap;
   cursor: pointer;
-  margin-right: 30px;
+  margin: 0px 10px;
   font-size: 35px;
-
 }
 
-.star-cb-group>input+label:before {
+.star-cb-group > input + label:before {
   display: inline-block;
   text-indent: -9999px;
   content: var(--unchecked-star);
   /* color: var(--unchecked-color); */
 }
 
-
-.star-cb-group>input:checked~label:before,
-.star-cb-group>input+label:hover~label:before,
-.star-cb-group>input+label:hover:before {
+.star-cb-group > input:checked ~ label:before,
+.star-cb-group > input + label:hover ~ label:before,
+.star-cb-group > input + label:hover:before {
   content: var(--checked-star);
   color: var(--checked-color);
   text-shadow: 0 0 1px #333;
 }
 
-.star-cb-group>.star-cb-clear+label {
+.star-cb-group > .star-cb-clear + label {
   text-indent: -9999px;
   width: 0.5em;
   margin-left: -0.5em;
 }
 
-.star-cb-group>.star-cb-clear+label:before {
+.star-cb-group > .star-cb-clear + label:before {
   width: 0.5em;
 }
 
-.star-cb-group:hover>input+label:before {
+.star-cb-group:hover > input + label:before {
   content: var(--unchecked-star);
   /* color: var(--unchecked-color); */
   text-shadow: none;
 }
 
-.star-cb-group:hover>input+label:hover~label:before,
-.star-cb-group:hover>input+label:hover:before {
+.star-cb-group:hover > input + label:hover ~ label:before,
+.star-cb-group:hover > input + label:hover:before {
   content: var(--checked-star);
   color: var(--checked-color);
   text-shadow: 0 0 1px #333;
 }
-
 
 .rateStarFill {
   display: inline-block;
@@ -121,7 +120,6 @@
   cursor: default;
   margin-right: 12px;
   font-size: 25px;
-
 }
 
 .rateStarFill:before {
@@ -131,7 +129,6 @@
   content: var(--checked-star);
   /* color: var(--unchecked-color); */
   color: var(--checked-color);
-
 }
 
 .rateStarBlank {
@@ -140,7 +137,7 @@
   text-indent: 9999px;
   width: 1em;
   white-space: nowrap;
-  cursor:default;
+  cursor: default;
   margin-right: 12px;
   font-size: 25px;
 }
@@ -152,10 +149,8 @@
   /* content: var(--checked-star); */
   /* color: var(--unchecked-color); */
   /* color: var(--checked-color); */
-
 }
 
 .restTittle {
   margin: 0;
 }
-
