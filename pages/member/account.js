@@ -121,13 +121,15 @@ export default function EditHome() {
           <div></div>
         )}
       </form>
-      <BtnNormal
-        type="submit"
-        value="submit"
-        btnText="完成修改"
-        addClassforButton="btn-dark"
-        onClick={edit}
-      />
+      <div className="d-flex justify-content-center mt-5">
+        <BtnNormal
+          type="submit"
+          value="submit"
+          btnText="完成修改"
+          addClassforButton="btn-dark"
+          onClick={edit}
+        />
+      </div>
     </>
   )
 }
