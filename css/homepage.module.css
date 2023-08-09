@@ -58,6 +58,9 @@
 .cardItinerary {
   background-image: url('../public/homepage/homepge1.jpg');
 }
+.cardPublic{
+  background-image: url('../public/homepage/homepge19.jpg');
+}
 
 .cardRestaurant {
   background-image: url('../public/homepage/homepge14.jpg');

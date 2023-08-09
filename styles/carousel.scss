@@ -17,13 +17,13 @@ $animationSpeed: 40s;
 	  transform: translateX(0);
 	}
 	100% {
-	  transform: translateX(calc(-250px * 6));
+	  transform: translateX(calc(-180px * 6));
 	}
   }
 
 // 定義Slider的樣式
 .slider {
-	height: 300px;
+	height: 200px;
 	margin: auto;
 	overflow: hidden;
 	position: relative;
@@ -32,9 +32,9 @@ $animationSpeed: 40s;
 	&::before,
 	&::after {
 		content: "";
-		height: 220px;
+		height: 100px;
 		position: absolute;
-		width: 180px;
+		width: 120px;
 		z-index: 2;
 	}
 	
@@ -52,22 +52,22 @@ $animationSpeed: 40s;
 	.slide-track {
 		animation: scroll $animationSpeed linear infinite;/* 設置Slider輪播動畫 */
 		display: flex;
-		width: calc(250px * 6);/* 設置輪播軌道的寬度 */
+		width: calc(180px * 12);/* 設置輪播軌道的寬度 */
 		 &:hover {
             animation-play-state: paused; /* 暫停動畫 */
-            transform: scale(2); /* 放大照片 */
-            z-index: 1; /* 確保懸停的幻燈片在最上層 */
+            // transform: scale(2); /* 放大照片 */
+        //     // z-index: 1; /* 確保懸停的幻燈片在最上層 */
           }
 	}
 	.slide {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 120px;
-		height: 150px;
-		&:hover a {
-            animation-play-state: paused; /* 暫停動畫 */
-            transform: scale(2); /* 放大照片 */
+		width: 120px; //照片大小跟位置
+		height:120px;
+		&:hover{
+        //     animation-play-state: paused; /* 暫停動畫 */
+            transform: scale(1.5); /* 放大照片 */
             z-index: 1; /* 確保懸停的幻燈片在最上層 */
           }
 		  img {

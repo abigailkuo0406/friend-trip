@@ -28,8 +28,6 @@ export default function CreateTask() {
   const [inputSubjectValue, setinputSubjectValue] = useState('')
   const [inputSubject, setInputSubject] = useState('')
 
- 
-
   const [inputDateValue, setInputDateVlaue] = useState('')
   // const [inputDate, setInputDate] = useState('')
 
@@ -53,19 +51,18 @@ export default function CreateTask() {
   const [error8, setError8] = useState(false)
   const [errorTracker8, setErrorTracker8] = useState('')
 
-
-  const [inputSubjectError, setInputSubjectError] = useState(false);
-  const [inputSubjectErrorTracker, setInputSubjectErrorTracker] = useState('');
+  const [inputSubjectError, setInputSubjectError] = useState(false)
+  const [inputSubjectErrorTracker, setInputSubjectErrorTracker] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    if(inputSubjectError==''){
+    if (inputSubjectError == '') {
       setInputSubjectError(true)
-      setInputSubjectErrorTracker('inputSubject');
+      setInputSubjectErrorTracker('inputSubject')
       console.log('請填寫行程名稱')
 
-      return;
+      return
     }
 
     setSubmitted(true)
@@ -148,6 +145,7 @@ export default function CreateTask() {
     <>
       <article className="blog-post">
         <form onSubmit={handleSubmit} id="createInit">
+    
           <input name="itin_member_id" defaultValue={auth.member_id} hidden />
           <div className={`${styles.coverTitle}`}>
             <Link className={styles.link} href="/member/itinerary">
@@ -161,7 +159,7 @@ export default function CreateTask() {
               <label className={` ${styles.label}`}>旅程封面圖片</label>
               <ImageItemPpreview name="coverPhoto" />
             </div>
-            <div className="container ">
+            <div className="container">
               <InputText
                 id="inputSubject"
                 name="name"
@@ -187,7 +185,6 @@ export default function CreateTask() {
                     type="time"
                     name="time"
                     className={`${styles.inputTime} input-text`}
-                    
                   ></input>
                 </div>
               </div>

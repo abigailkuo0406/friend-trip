@@ -45,6 +45,12 @@ export default function AdminIndex() {
           <p className={HomePageStyle.cardText}>官方行程推薦</p>
         </a>
         <a
+          href="/public-itinerary"
+          className={`${HomePageStyle.cardPublic} ${HomePageStyle.cardMain} me-3`}
+        >
+          <p className={HomePageStyle.cardText}>公開行程推薦</p>
+        </a>
+        <a
           href="/product"
           className={`${HomePageStyle.cardProduct} ${HomePageStyle.cardMain}`}
         >

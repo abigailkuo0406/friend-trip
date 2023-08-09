@@ -8,11 +8,11 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-1500px);
+    transform: translateX(-1080px);
   }
 }
 .slider {
-  height: 300px;
+  height: 200px;
   margin: auto;
   overflow: hidden;
   position: relative;
@@ -20,9 +20,9 @@
 }
 .slider::before, .slider::after {
   content: "";
-  height: 220px;
+  height: 100px;
   position: absolute;
-  width: 180px;
+  width: 120px;
   z-index: 2;
 }
 .slider::after {
@@ -37,23 +37,20 @@
 .slider .slide-track {
   animation: scroll 40s linear infinite; /* 設置Slider輪播動畫 */
   display: flex;
-  width: 1500px; /* 設置輪播軌道的寬度 */
+  width: 2160px; /* 設置輪播軌道的寬度 */
 }
 .slider .slide-track:hover {
   animation-play-state: paused; /* 暫停動畫 */
-  transform: scale(2); /* 放大照片 */
-  z-index: 1; /* 確保懸停的幻燈片在最上層 */
 }
 .slider .slide {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 120px;
-  height: 150px;
+  height: 120px;
 }
-.slider .slide:hover a {
-  animation-play-state: paused; /* 暫停動畫 */
-  transform: scale(2); /* 放大照片 */
+.slider .slide:hover {
+  transform: scale(1.5); /* 放大照片 */
   z-index: 1; /* 確保懸停的幻燈片在最上層 */
 }
 .slider .slide img {
