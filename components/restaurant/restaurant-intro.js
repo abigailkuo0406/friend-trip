@@ -102,7 +102,7 @@ export default function Modal({
         aria-labelledby="exampleModalToggleLabel"
         tabindex="-1"
       >
-        <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <button
@@ -114,7 +114,8 @@ export default function Modal({
             </div>
             <div className="modal-body container-fluid">
               <div className="d-flex mx-5 my-3 row">
-                <div className={`col-4 ${InfoSty.leftBox}`}>
+              {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
+                <div className={`${InfoSty.leftBox}`}>
                   <div className={`${InfoSty.infoBox}`}>
                     <h2 className={`${InfoSty.commentTitle}`}>{restName}</h2>
                     {/* <div>星星</div> */}
@@ -136,10 +137,6 @@ export default function Modal({
                   </div>
                   <div className={`${InfoSty.infoBox}`}>
                     <form id="reserve" onSubmit={handleSubmit}>
-                      {/* <input name="member_id" value={auth.member_id} hidden />
-                      <input name="rest_id" value={restId} hidden />
-                      <input name="state" value={parseInt('1')} hidden /> */}
-
                       <div className={`${InfoSty.infoBox} mb-4`}>
                         <DateInput
                           id="reserveDate"
@@ -252,7 +249,9 @@ export default function Modal({
                           邀請好友超出訂位人數
                         </p>
                       ) : (
-                        <p hidden></p>
+                        <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
+                          最多可邀請{reservePeopleNumValue - 1}位好友
+                        </p>
                       )}
 
                       <div className="d-flex">
@@ -268,9 +267,9 @@ export default function Modal({
                     </form>
                   </div>
                 </div>
-                <div className="col-6">
+                <div className="">
                   <div>
-                    {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
+                    
                     <div className={`${InfoSty.commentBox}`}>
                       <h4 className={`${InfoSty.commentTitle} mb-4`}>
                         最新評論

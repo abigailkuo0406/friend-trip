@@ -118,12 +118,12 @@ export default function ReserveItem({
   return (
     <>
       <div className="card mb-3 radius20px">
-        <div className="row g-2 my-3">
-          <div className="col-md-3 ">
-            <div className={`${styles.imgClass}`}>
+        <div className="row g-0 my-3">
+          <div className="col-md-4 ">
+            <div className={``}>
               <Image
                 src={`http://localhost:3002/restImg/${restImg}`}
-                className={`rounded ms-2 ${styles.img1}`}
+                className={`rounded ${styles.img1}`}
                 width={200}
                 height={200}
                 priority={true}
@@ -131,7 +131,7 @@ export default function ReserveItem({
             </div>
           </div>
 
-          <div className="col-md-9">
+          <div className="col-md-8">
             <div className="card-body ms-3">
               <div className={`d-flex align-items-center ${styles.cardHead}`}>
                 <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
