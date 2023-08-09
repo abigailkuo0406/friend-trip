@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import AuthContext from '@/context/AuthContext'
 import styles from '@/pages/member/reserve/rid.module.css'
+import Link from 'next/link'
 
 export default function ReseveDetails({ state }) {
   const { auth } = useContext(AuthContext)
@@ -29,6 +30,7 @@ export default function ReseveDetails({ state }) {
         rid ? setReserveDetails(details.row) : 1
       })
   }, [rid])
+  console.log('reserveDetails', reserveDetails)
 
   //拆分日期
   const dateArr = reserveDetails ? reserveDetails.reserve_date.split('-') : []
@@ -145,16 +147,28 @@ export default function ReseveDetails({ state }) {
                 <p>本次訂位無邀請好友</p>
               )}
             </div>
-            <div className="d-flex justify-content-center">
-              <Button
-                btnText="修改訂位"
-                // onClick={modalOpen1}
-                bsModle1={`#exampleModalToggle`}
-                bsModle2="modal"
-                addClassforButton="btn-dark me-5"
-              />
-              <Button btnText="取消訂位" onClick={cancel} />
-            </div>
+            {reserveDetails.state == 1 ?
+              <div className="d-flex justify-content-center">
+                <Button
+                  btnText="修改訂位"
+                  // onClick={modalOpen1}
+                  bsModle1={`#exampleModalToggle`}
+                  bsModle2="modal"
+                  addClassforButton="btn-dark me-5"
+                />
+                <Button btnText="取消訂位" onClick={cancel} />
+              </div>
+              :
+              <div className="d-flex justify-content-center">
+                <p>本次訂位已取消</p>
+                {/* <Link href='/member/reserve'>
+                  <Button btnText="回上一頁"></Button>
+                </Link> */}
+              </div>
+
+
+            }
+
           </div>
         </div>
       ) : (

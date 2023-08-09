@@ -8,10 +8,12 @@ import CommentModal from '@/components/reserve/comment'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 
 export default function Reserve() {
+  console.log('跳轉頁面渲染')
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
 
   const router = useRouter()
+
 
   const [reserve, setReserve] = useState({
     redirect: '',
@@ -37,6 +39,11 @@ export default function Reserve() {
         setReserve(reserveDetails)
       })
   }, [router.query])
+
+  const [itemState, setItemState] = useState()
+  useEffect(() => {
+    setItemState()
+  },[reserve])
 
   // 預設要傳入comment的資料
   const [reservationId, setReservationId] = useState()

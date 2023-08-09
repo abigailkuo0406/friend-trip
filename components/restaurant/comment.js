@@ -16,8 +16,6 @@ export default function Comment({
 }) {
     const { auth } = useContext(AuthContext)
 
-
-    console.log('comment裡的commentText', comment)
     return (
         <>
 

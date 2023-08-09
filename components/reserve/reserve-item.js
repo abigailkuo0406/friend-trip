@@ -19,7 +19,7 @@ export default function ReserveItem({
   modalChange,
 }) {
   const { auth } = useContext(AuthContext)
-  
+
 
   // 跳轉單一訂單頁
   const router = useRouter()
@@ -40,26 +40,36 @@ export default function ReserveItem({
 
   // 定義狀態
   let stateText = ''
+  let itemState = 0
+
   switch (state) {
     case 0:
       stateText = '已取消'
       break
     case 1:
       stateText = '預定中'
+      itemState = 1
+
   }
   if (state == 1) {
     if (dateArr[0] == nowYear) {
       if (dateArr[1] == nowMonth) {
         if (dateArr[2] < nowDate) {
           stateText = '訂位完成'
+          itemState = 2
+
         }
       } else if (dateArr[1] < nowMonth) {
         stateText = '訂位完成'
+        itemState = 2
+
       }
     } else if (dateArr[0] < nowYear) {
       stateText = '訂位完成'
+      itemState = 2
     }
   }
+  // console.log(restName, stateText)
 
   // 定義邀請名單
   const [invitesData, setInvitesData] = useState()
@@ -136,9 +146,8 @@ export default function ReserveItem({
               <div className={`d-flex align-items-center ${styles.cardHead}`}>
                 <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
                 <p
-                  className={`ms-4 ${
-                    state == 0 ? styles.stateCancel : styles.state
-                  }`}
+                  className={`ms-4 ${state == 0 ? styles.stateCancel : styles.state
+                    }`}
                 >
                   {stateText}
                 </p>
@@ -193,14 +202,26 @@ export default function ReserveItem({
                 </div>
               </div>
 
-              <div class="d-flex justify-content-end pe-2">
-                <Button btnText="詳細資訊" onClick={routerChange} />
-                <Button
-                  btnText="撰寫評論"
-                  onClick={modalOpen}
-                  bsModle1={`#exampleModal`}
-                  bsModle2="modal"
-                />
+              <div class="d-flex mt-3">
+                {
+                  itemState == 0 &&
+                  <Button btnText="詳細資訊" onClick={routerChange} addClassforButton={styles.stateCancel} />
+                }
+                {
+                  itemState == 1 &&
+                  <Button btnText="詳細資訊" onClick={routerChange}/>
+
+                }
+                {
+                  itemState == 2 &&
+                  <Button
+                    btnText="撰寫評論"
+                    onClick={modalOpen}
+                    bsModle1={`#exampleModal`}
+                    bsModle2="modal"
+                  />
+                }
+
               </div>
             </div>
           </div>
