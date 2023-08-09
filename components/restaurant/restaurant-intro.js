@@ -77,24 +77,32 @@ export default function restIntro({
 
   // 監控按鈕關閉modal屬性
   const [modalClose, setModalClose] = useState('')
-  // console.log('date改變', reserveDateInputVale)
-  // console.log('time改變', reserveTimeInputValue)
 
-  // 驗證訂位日期與時間
+  // 初始化訂位日期、時間與人數的驗證訊息
   const [dateVerify, setDateVerify] = useState(true)
   const [timeVerify, setTimeVerify] = useState(true)
+  const [numOfPeopleVerify, setNumOfPeopleVerify] = useState(true)
 
+  // 呼叫跳出驗證訊息
   const verifyHint = () => {
     reserveDateInputVale == '' && setDateVerify(false)
     !reserveTimeInputValue && setTimeVerify(false)
+    inviteList.length > reservePeopleNumValue - 1 && setNumOfPeopleVerify(false)
   }
 
+  // 監控表單是否可以送出；通過驗證則消除驗證訊息
   useEffect(() => {
-    reserveDateInputVale && reserveTimeInputValue && setModalClose('modal')
+    reserveDateInputVale && reserveTimeInputValue && inviteList.length <= reservePeopleNumValue - 1 && setModalClose('modal')
+
+    reserveDateInputVale && reserveTimeInputValue && inviteList.length > reservePeopleNumValue - 1 && setModalClose('')
+
     reserveDateInputVale != '' && setDateVerify(true)
     reserveTimeInputValue && setTimeVerify(true)
-  }, [reserveDateInputVale, reserveTimeInputValue])
-  // console.log('modalClose改變', modalClose)
+    inviteList.length <= reservePeopleNumValue - 1 && setNumOfPeopleVerify(true)
+
+  }, [reserveDateInputVale, reserveTimeInputValue, reservePeopleNumValue, inviteList.length])
+
+  console.log('modalClose改變', modalClose)
 
 
   /* 提交訂位表單*/
@@ -271,6 +279,11 @@ export default function restIntro({
                         />
                       </div>
                       <label className="mt-4">邀請好友</label>
+                      {/* {numOfPeopleVerify &&
+                        <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
+                          最多可邀請{reservePeopleNumValue - 1}位好友
+                        </p>
+                      } */}
                       <div
                         id="inviteList"
                         className={`d-flex justify-content-start mt-3 me-2`}
@@ -311,15 +324,11 @@ export default function restIntro({
                         />
                       </div>
 
-                      {inviteList.length > reservePeopleNumValue - 1 ? (
-                        <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
-                          邀請好友超出訂位人數
-                        </p>
-                      ) : (
+                      {!numOfPeopleVerify &&
                         <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
                           最多可邀請{reservePeopleNumValue - 1}位好友
                         </p>
-                      )}
+                      }
 
                       <div id='submitButton' className="d-flex">
                         {modalClose == '' &&

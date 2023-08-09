@@ -8,8 +8,12 @@ import { useRouter } from 'next/router'
 import AuthContext from '@/context/AuthContext'
 import styles from '@/pages/member/reserve/rid.module.css'
 import Link from 'next/link'
+import Swal from 'sweetalert2'
+
 
 export default function ReseveDetails({ state }) {
+  console.log('rid頁重新選染')
+
   const { auth } = useContext(AuthContext)
 
   // 取用useRouter方法
@@ -81,6 +85,16 @@ export default function ReseveDetails({ state }) {
       headers: {
         'Content-Type': 'application/json',
       },
+    })
+    Swal.fire({
+      width: 400,
+      text: '已取消訂位',
+      icon: 'success',
+      iconColor: '#674C87',
+      color: '#674C87',
+      confirmButtonColor: '#674C87',
+      showConfirmButton: true,
+      // timer: 1500,
     })
     router.push('/member/reserve')
   }

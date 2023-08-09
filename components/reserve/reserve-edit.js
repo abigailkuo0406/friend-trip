@@ -11,6 +11,8 @@ import { useRouter } from 'next/router'
 import styles from '@/pages/member/reserve/rid.module.css'
 import InfoSty from '@/components/restaurant/intro.module.css'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
+import Swal from 'sweetalert2'
+
 
 export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
   const router = useRouter()
@@ -47,6 +49,30 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
     setInviteList(ivList)
   }
 
+  // 監控按鈕關閉modal屬性
+  const [modalClose, setModalClose] = useState('')
+
+  // 初始化訂位人數的驗證訊息
+  const [numOfPeopleVerify, setNumOfPeopleVerify] = useState(true)
+
+  // 呼叫跳出驗證訊息
+  const verifyHint = () => {
+    inviteList.length > reservePeopleNumValue - 1 && setNumOfPeopleVerify(false)
+  }
+
+  useEffect(() => {
+    reserveDateInputVale && reserveTimeInputValue && inviteList.length <= reservePeopleNumValue - 1 && setModalClose('modal')
+
+    reserveDateInputVale && reserveTimeInputValue && inviteList.length > reservePeopleNumValue - 1 && setModalClose('')
+
+    inviteList.length <= reservePeopleNumValue - 1 && setNumOfPeopleVerify(true)
+
+  }, [reserveDateInputVale, reserveTimeInputValue, reservePeopleNumValue, inviteList.length])
+
+  console.log('modalClose改變', modalClose)
+
+
+
   // 送出表單
   const handleSubmit = (e) => {
     // const editForm = new FormData(document.getElementById('reserveEdit'))
@@ -66,8 +92,18 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
         'Content-Type': 'application/json',
       },
     })
+    Swal.fire({
+      width: 400,
+      text: '修改訂位完成',
+      icon: 'success',
+      iconColor: '#674C87',
+      color: '#674C87',
+      confirmButtonColor: '#674C87',
+      showConfirmButton: true,
+      // timer: 1500,
+    })
 
-    router.push('/member/reserve')
+    router.push(`/member/reserve`)
   }
 
   return (
@@ -167,6 +203,9 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                     ) : (
                       <p className="restLabel">本次訂位無邀請好友</p>
                     )}
+
+
+
                     <div>
                       <Button
                         btnText={
@@ -177,7 +216,13 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                         addClassforButton={styles.ivBtn}
                       />
                     </div>
+
                   </div>
+                  {!numOfPeopleVerify &&
+                    <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
+                      最多可邀請{reservePeopleNumValue - 1}位好友
+                    </p>
+                  }
                 </div>
 
                 <div className="d-flex justify-content-center mt-4">
@@ -187,12 +232,24 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                     bsModl3="modal"
                     addClassforButton="btn-dark me-5"
                   />
-                  <Button
-                    type="submit"
-                    btnText="修改完成"
-                    onClick={handleSubmit}
-                    bsModl3="modal"
-                  />
+                  {modalClose == '' &&
+                    <Button
+                      btnText="修改完成"
+                      addClassforButton="btn-dark"
+                      bsModl3=''
+                      onClick={verifyHint}
+                    ></Button>
+                  }
+                  {modalClose == 'modal' &&
+                    <Button
+                      type="submit"
+                      value="submit"
+                      btnText="修改完成"
+                      addClassforButton="btn-dark"
+                      onClick={handleSubmit}
+                      bsModl3='modal'
+                    ></Button>
+                  }
                 </div>
               </div>
             </div>
