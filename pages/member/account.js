@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
+import { useRouter } from 'next/router'
 import AdminLayout from '@/components/layout/admin-layout'
 import Edit from '@/components/edit/edit'
 import Edit2 from '@/components/edit/edit2'
@@ -32,6 +33,7 @@ export default function EditHome() {
 
   const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
   const [memberInfo, setMemberInfo] = useState()
+  const router = useRouter()
   const edit = (e) => {
     e.preventDefault()
     console.log('5555', aaa)
@@ -67,6 +69,7 @@ export default function EditHome() {
         console.log(data)
         alert('修改成功')
       })
+      .then(() => router.push('/member'))
   }
   const page1 = (
     <Edit
