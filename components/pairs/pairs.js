@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from 'react'
 import styles from './pairs.module.css'
 import Face from '@/public/img/avatar/face/face52.png'
 import Image from 'next/image'
-import { TbZodiacLeo } from 'react-icons/tb'
 import Logo from '@/public/FriendTrip-Logo.png'
 import PairBtns from '@/components/pairs/pairs-button'
 import PairBtns2 from '@/components/pairs/pairs-button2'
@@ -14,7 +13,9 @@ export default function Pairs({
   imgIndex,
 }) {
   const [page, setPage] = useState(1)
-  const page1 = <PairBtns setPage={setPage} />
+  const page1 = (
+    <PairBtns setPage={setPage} setImgIndex={setImgIndex} imgIndex={imgIndex} />
+  )
   const page2 = (
     <PairBtns2
       setPage={setPage}
@@ -53,12 +54,14 @@ export default function Pairs({
               </div>
               <div className={`card-body ${styles.cardprofile}`}>
                 <h5 className={`card-title text-center ${styles.fontcolor}`}>
-                  {randomstate[imgIndex].member_name}
-                  <TbZodiacLeo />
+                  {randomstate[imgIndex].member_name}{' '}
+                  {randomstate[imgIndex].gender} {randomstate[imgIndex].age}歲
+                  <br />
+                  {randomstate[imgIndex].height}公分{' '}
+                  {randomstate[imgIndex].zodiac}
                 </h5>
                 <p className={`card-text text-center ${styles.fontcolor}`}>
-                  不菸不酒 工程師 高爾夫 衝浪 <br />
-                  想找一起打高爾夫的朋友~
+                  {randomstate[imgIndex].profile}
                 </p>
               </div>
               {page === 1 ? page1 : page2}
