@@ -207,7 +207,7 @@ export default function Modal({
                         />
                       </div>
                       <label className="mt-4">邀請好友</label>
-                      <ul
+                      <div
                         id="inviteList"
                         className={`d-flex justify-content-start mt-3 me-2`}
                       >
@@ -245,7 +245,7 @@ export default function Modal({
                           bsModle2="modal"
                           addClassforButton={InfoSty.ivBtn}
                         />
-                      </ul>
+                      </div>
 
                       {inviteList.length > reservePeopleNumValue - 1 ? (
                         <p className={`${InfoSty.verifyHint} restLabel mt-2`}>

@@ -88,10 +88,12 @@ export default function ReseveDetails({ state }) {
       {/* <h1>訂單{rid}</h1> */}
       {reserveDetails ? (
         <div className={`container position-relative ${styles.base}`}>
-          <div className="text-center position-absolute top-50 start-50 translate-middle">
+          <div className="text-center my-2">
             <h2 className={`card-text text-truncate ${styles.restName}`}>
               {reserveDetails.RestName}
             </h2>
+            <p>{reserveDetails.RestPhone}</p>
+            <p>{reserveDetails.RestAdress}</p>
             <div className={`mt-4`}>
               <h3 className={`${styles.label}`}>訂位日期</h3>
               <div className="d-flex justify-content-center">

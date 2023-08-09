@@ -10,6 +10,7 @@ export default function ReserveItem({
   reserveId,
   restId,
   restName,
+  restAddress,
   restImg,
   reserveDate,
   reserveTime,
@@ -18,6 +19,7 @@ export default function ReserveItem({
   modalChange,
 }) {
   const { auth } = useContext(AuthContext)
+  
 
   // 跳轉單一訂單頁
   const router = useRouter()
@@ -84,31 +86,33 @@ export default function ReserveItem({
       const arr = invitesData.filter((v) => {
         return v.reserveId == reserveId
       })
-      // console.log('arr', arr)
       setInvite(arr)
     }
   }, [invitesData])
 
   const [modal, setModal] = useState(false)
   const [reservationId, setReservationId] = useState()
-  const [restaurantId, setResttauranId] = useState()
+  const [restaurantId, setRestaurantId] = useState()
+  const [rAddress, setRAddress] = useState()
   const [rName, setRName] = useState()
   const [rImg, setRImg] = useState()
+
 
   const showModal = () => setModal(true)
 
   // 開啟評論modal
   const modalOpen = () => {
     showModal()
-    setResttauranId(restId)
+    setRestaurantId(restId)
     setReservationId(reserveId)
+    setRAddress(restAddress)
     setRName(restName)
     setRImg(restImg)
   }
 
   //modal值為true，回傳資料到index.js(reserve)
   useEffect(() => {
-    modalChange(modal, reservationId, restaurantId, rName, rImg)
+    modalChange(modal, reservationId, restaurantId, rName, rAddress, rImg)
   }, [modal])
 
   return (

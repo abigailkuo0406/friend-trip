@@ -19,6 +19,9 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
 
+  //拆分時間
+  const timeArr = reserveDetails ? reserveDetails.reserve_time.split(':') : []
+
   //預設訂位時間
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
   const [reserveTimeInputName, setReserveTimeInputName] = useState('')
@@ -115,7 +118,7 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                           addClassforEachLabel={`btn restRadiobtn ${InfoSty.radioItem} restRadioLabel me-3`} // 如果要在個別選項 label 添加 class
                           addClassforInput={`btn-check restRadiobtn-check`} // 如果要在 input 添加 class
                           addClassforDiv={`restLabel`}
-                          checked={reserveDetails.reserve_time}
+                          checked={`${timeArr[0]}:${timeArr[1]}`}
                         />
                       </div>
                       <div className={`${InfoSty.infoBox}`}>
@@ -142,7 +145,7 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                     ''
                   )}
 
-                  <label className="mb-3">與會好友</label>
+                  <label className="restLabel mb-3">與會好友</label>
                   <div className="d-flex align-items-center">
                     {inviteList.length > 0 ? (
                       inviteList.map((v, i) => {
@@ -162,7 +165,7 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                         )
                       })
                     ) : (
-                      <p>本次訂位無邀請好友</p>
+                      <p className="restLabel">本次訂位無邀請好友</p>
                     )}
                     <div>
                       <Button

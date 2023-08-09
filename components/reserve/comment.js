@@ -10,10 +10,10 @@ export default function Comment({
   reservationId,
   restId = 0,
   restName,
+  restAddress,
   restImg,
 }) {
   const { auth } = useContext(AuthContext)
-  // console.log('評論元件的auth', auth)
 
   const [textAreaValue, setTextAreaValue] = useState()
   const [textAreaName, setTextAreaName] = useState()
@@ -42,7 +42,7 @@ export default function Comment({
               <form id="comment" onSubmit={handleSubmit}>
                 <div class="modal-body">
                   <h1 className="text-center">{restName}</h1>
-                  <p className="text-center">訂單編號{reservationId}</p>
+                  {/* <p className="text-center">訂單編號{reservationId}</p> */}
                   <input name="RestID" id="RestID" value={restId} hidden />
                   <input
                     name="member_id"
@@ -50,8 +50,8 @@ export default function Comment({
                     value={auth.member_id}
                     hidden
                   />
-                  <p className="text-center">餐廳地址</p>
-                  <div className="d-flex justify-content-center align-items-center  ">
+                  <p className="text-center">{restAddress}</p>
+                  <div className="d-flex justify-content-center align-items-center py-2">
                     <Image
                       src={`http://localhost:3002/face/${auth.images}`}
                       className={styles.avatar}

@@ -42,15 +42,24 @@ export default function Reserve() {
   const [reservationId, setReservationId] = useState()
   const [restaurantId, setRestaurantId] = useState()
   const [rName, setRName] = useState()
+  const [rAddress, setRAddress] = useState()
   const [rImg, setRImg] = useState()
 
+
   const showModal = (
-    modal, reservationId, restaurantId, rName, rImg
+    modal,
+    reservationId,
+    restaurantId,
+    rName,
+    restaurantAddress,
+    rImg
   ) => {
     setReservationId(reservationId)
     setRestaurantId(restaurantId)
     setRName(rName)
+    setRAddress(restaurantAddress)
     setRImg(rImg)
+
   }
 
   return (
@@ -63,6 +72,7 @@ export default function Reserve() {
                 reserveId={v.reserveId}
                 restId={v.rest_id}
                 restName={v.RestName}
+                restAddress={v.RestAdress}
                 restImg={v.RestImg}
                 reserveDate={v.reserve_date}
                 reserveTime={v.reserve_time}
@@ -81,8 +91,8 @@ export default function Reserve() {
         restId={restaurantId}
         restName={rName}
         restImg={rImg}
+        restAddress={rAddress}
       />
-
 
       {reserve.totalRows > 0 ? (
         <div className="itin-card-pagination">
