@@ -55,8 +55,6 @@ $animationSpeed: 40s;
 		width: calc(180px * 12);/* 設置輪播軌道的寬度 */
 		 &:hover {
             animation-play-state: paused; /* 暫停動畫 */
-            // transform: scale(2); /* 放大照片 */
-        //     // z-index: 1; /* 確保懸停的幻燈片在最上層 */
           }
 	}
 	.slide {

@@ -33,8 +33,7 @@ export default function PublicCard (props) {
   }
   return (
     <>
-
-      <div>
+      <div className="mx-3">
         <div className={`card mb-4  ${styles.card}`} style={{ width: 250 }}>
           {/* 行程封面照 */}
           <Image
@@ -56,18 +55,19 @@ export default function PublicCard (props) {
                 height={35}
                 priority={true} //圖片預先載入
               />
-              <p className={`d-flex align-items-center mx-2 mt-1 ${styles.spnaName}`}>{props.member_name}</p>
+              <p className={`d-flex align-items-center my-auto mx-2  ${styles.spnaName}`}>{props.member_name}</p>
             </div>
-            <h5 className={`card-title text-truncate mx-2 ${styles.cardTitle}`}>{props.name}</h5>
-            <div className="d-flex justify-content-between">
-              <div className="mx-2 mt-2">
-                <p className={`card-text ${styles.cardText}`} >{formattedCreateAt}</p>
+            <h5 className={`card-title text-truncate mx-2 mt-3 ${styles.cardTitle}`}>{props.name}</h5>
+            <div className="d-flex justify-content-between ">
+              <div className="mx-2 mt-4 ">
+                <p className={`card-text mx-1 ${styles.cardText}`} >{formattedCreateAt}</p>
               </div>
               <Link
                 href="/public-itinerary/apply-task"
                 onClick={changeSelectLocalStorage}
+                className={styles.textcolor}
               >
-              <button type="button" className={`btn ${styles.btn}`}>參加</button>
+              <button type="button" className={`btn mt-3 mx-1 ${styles.btn}`}>參加</button>
               </Link>
             </div>
           </div> 

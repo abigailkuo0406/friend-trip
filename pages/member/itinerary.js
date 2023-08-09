@@ -5,9 +5,14 @@ import AdminLayout from '@/components/layout/admin-layout'
 import CustomItineraryIndex from '@/components/custom-itinerary'
 import HistoryCard from '@/components/custom-itinerary/history-card'
 import AuthContext from '@/context/AuthContext'
-import { MdNavigateNext, MdNavigateBefore,MdKeyboardDoubleArrowRight,MdKeyboardDoubleArrowLeft } from 'react-icons/md'
+import {
+  MdNavigateNext,
+  MdNavigateBefore,
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardDoubleArrowLeft,
+} from 'react-icons/md'
 
-export default function ItineraryIndex () {
+export default function ItineraryIndex() {
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
   const router = useRouter()
@@ -24,14 +29,17 @@ export default function ItineraryIndex () {
 
   //讀取資料庫
   useEffect(() => {
-
     const usp = new URLSearchParams(router.query)
     // API串接
-    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}&member_id=${auth.member_id}&filtercondition=${filterCondition}`)
+    fetch(
+      `http://localhost:3002/custom-itinerary?${usp.toString()}&member_id=${
+        auth.member_id
+      }&filtercondition=${filterCondition}`
+    )
       .then((r) => r.json())
       .then((data) => {
         setData(data)
-        console.log('data==>', data)
+        // console.log('data==>', data)
       })
   }, [router.query])
 
@@ -55,9 +63,8 @@ export default function ItineraryIndex () {
     router.push({
       pathname: router.pathname,
       query: { ...router.query, page: 1 }, // 設定 page 為 1
-    });
+    })
   }
-
 
   //不公開行程filter
   const handlePrivateTripsClick = () => {
@@ -65,7 +72,7 @@ export default function ItineraryIndex () {
     router.push({
       pathname: router.pathname,
       query: { ...router.query, page: 1 }, // 設定 page 為 1
-    });
+    })
   }
 
   const handleAllTripsClick = () => {
@@ -73,7 +80,7 @@ export default function ItineraryIndex () {
     router.push({
       pathname: router.pathname,
       query: { ...router.query, page: 1 }, // 設定 page 為 1
-    });
+    })
   }
 
   const handleJoinClick = () => {
@@ -81,10 +88,24 @@ export default function ItineraryIndex () {
     router.push({
       pathname: router.pathname,
       query: { ...router.query, page: 1 }, // 設定 page 為 1
-    });
+    })
   }
-
-
+  // //排序
+  // const handleSortOptionChange = (event) => {
+  //   const usp = new URLSearchParams(router.query)
+  //   const selectedOption = event.target.value
+  //   fetch(
+  //     `http://localhost:3002/custom-itinerary/order-by?${usp.toString()}&sort=${selectedOption}`
+  //   )
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       setData(data)
+  //       console.log('data',data)
+  //     })
+  //     .catch((error) => {
+  //       console.log('獲取數據時出錯:', error)
+  //     })
+  // }
 
   return (
     <>
@@ -120,14 +141,12 @@ export default function ItineraryIndex () {
               <li className="page-item">
                 <Link
                   className="page-link"
-                  href={
-                    '?' +
-                    new URLSearchParams(
-                      'page=1').toString()
-                  }
+                  href={'?' + new URLSearchParams('page=1').toString()}
                   aria-label="Previous"
                 >
-                  <span aria-hidden="true"><MdKeyboardDoubleArrowLeft/></span>
+                  <span aria-hidden="true">
+                    <MdKeyboardDoubleArrowLeft />
+                  </span>
                 </Link>
               </li>
               <li className="page-item">
@@ -143,7 +162,9 @@ export default function ItineraryIndex () {
                   }
                   aria-label="Previous"
                 >
-                  <span aria-hidden="true"><MdNavigateBefore /></span>
+                  <span aria-hidden="true">
+                    <MdNavigateBefore />
+                  </span>
                 </Link>
               </li>
               {/* 顯示頁碼 */}
@@ -184,7 +205,9 @@ export default function ItineraryIndex () {
                   }
                   aria-label="Next"
                 >
-                  <span aria-hidden="true"><MdNavigateNext /></span>
+                  <span aria-hidden="true">
+                    <MdNavigateNext />
+                  </span>
                 </Link>
               </li>
               <li className="page-item">
@@ -196,7 +219,9 @@ export default function ItineraryIndex () {
                   }
                   aria-label="Next"
                 >
-                  <span aria-hidden="true"><MdKeyboardDoubleArrowRight/></span>
+                  <span aria-hidden="true">
+                    <MdKeyboardDoubleArrowRight />
+                  </span>
                 </Link>
               </li>
             </ul>

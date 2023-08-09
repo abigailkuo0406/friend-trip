@@ -70,8 +70,8 @@ export default function HistoryCard(props) {
             href="/custom-itinerary/save-view-task"
             onClick={changeLocalStorage}
           >
-            <div className="card mb-3 rounded-4">
-              <div className="row g-0">
+            <div className="card mb-3 rounded-4 ">
+              <div className="row g-0 d-flex align-items-center">
                 <div className="col-md-4">
                   <Image
                     src={`http://localhost:3002/img/itinerary-photo/${props.coverPhoto}`}
@@ -82,13 +82,13 @@ export default function HistoryCard(props) {
                     priority={true}
                   ></Image>
                 </div>
-                <div className="col-md-8 ">
+                <div className="col-md-8 d-flex justify-content-between">
                   <div className="card-body">
-                    <div className="d-flex justify-content-between  ">
-                      <div className="d-flex ">
+                    <div className="d-flex justify-content-between ">
+                      <div className="d-flex">
                         <h5 className={styles.text}>{props.name}</h5>
-                        <p className={`badge ${styles.public}`}>
-                          {props.public}
+                        <p className={`badge ${props.public=='公開' ? styles.public : styles.private}`}>
+                          {props.public} 
                         </p>
                       </div>
                       <div>

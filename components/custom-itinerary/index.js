@@ -1,8 +1,7 @@
 import styles from './history.module.css'
 import BtnNormal from '../common/button/btn-normal'
 
-export default function History({allClick, publicClick,privateClick,joinCick}) {
-
+export default function History({allClick, publicClick,privateClick,joinCick,handleSortOptionChange}) {
 
   return (
     <>
@@ -43,7 +42,7 @@ export default function History({allClick, publicClick,privateClick,joinCick}) {
               </button>
             </div>
           </div>
-          {/* <div className="input-group mx-2" style={{ width: 280 }}>
+          <div className="input-group mx-2" style={{ width: 280 }}>
             <p
               className={`my-auto me-3 ${styles.sort} `}
               htmlFor="inputGroupSelect01"
@@ -52,12 +51,12 @@ export default function History({allClick, publicClick,privateClick,joinCick}) {
             </p>
             <select
               className={`form-select rounded-4 ${styles.sort}`}
-              id="inputGroupSelect01"
-              defaultValue="1"
+             onChange={handleSortOptionChange}
             >
-              <option value="1">最新日期</option>
+              <option value="newest">最新日期</option>
+              <option value="oldest">最舊日期</option>
             </select>
-          </div> */}
+          </div>
         </div>
       </div>
     </>

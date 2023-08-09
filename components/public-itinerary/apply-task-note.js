@@ -59,7 +59,7 @@ export default function ApplyTaskNote (props) {
       </div>
       <div>
         <p className={styles.spnaName}>*參加日期:</p>
-        <input className={styles.inputJoinDate} type="text" value={formattedCreateAt} aria-label="readonly input example" readonly />
+        <input className={styles.inputJoinDate} type="text" value={formattedCreateAt} aria-label="readOnly input example" readOnly />
       </div>
       <div>
         <p className={styles.spnaName}>最低成團人數：{props.ppl}</p>

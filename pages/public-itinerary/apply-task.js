@@ -19,12 +19,12 @@ export default function ApplyTask () {
   const router = useRouter()
   const [data, setData] = useState([])
   const firstData = data[0] // 取得第一筆資料
-  const itinName = firstData ? firstData.name : '' // 提取行程名稱
+  const itinName = firstData ? firstData.itin_name : '' // 提取行程名稱
   const itinDate = firstData ? firstData.date : ''
   const itinPpl = firstData ? firstData.ppl : ''
   const itinNote = firstData ? firstData.note : ''
   const itinCoverPhoto = firstData ? firstData.coverPhoto : ''
-
+console.log('itinName',itinName)
   const [memberName, setMemberName] = useState('')
   const [memberImg, setMemberImg] = useState('')
   // 增加一個狀態來控制 modal 的顯示
@@ -35,6 +35,7 @@ export default function ApplyTask () {
     const storedData = localStorage.getItem('select_schedule_info')
     const parsedData = JSON.parse(storedData)
     const itinId = parsedData.itin_member
+
     // API串接
     fetch(`http://localhost:3002/save-view?itin_member=${itinId}`)
       .then((r) => r.json())
@@ -76,10 +77,6 @@ export default function ApplyTask () {
             <div className="flex-column mx-3">
               <p className={ `usr_name mt-3 ${styles.spnaName}`}>{memberName}</p>
             </div>
-            {/* <div>
-              <p>*參加日期:</p>
-              <p className="date">{formattedCreateAt}</p>
-            </div> */}
           </div>
         </div>
       </div>
