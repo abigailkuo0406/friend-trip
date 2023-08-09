@@ -173,7 +173,7 @@ export default function Modal({
               <div className="d-flex mx-5 my-3 row">
                 <div className={`col-4 ${InfoSty.leftBox}`}>
                   <div className={`${InfoSty.infoBox}`}>
-                    <h2>{restName}</h2>
+                    <h2 className={`${InfoSty.commentTitle}`}>{restName}</h2>
                     {/* <div>星星</div> */}
                   </div>
                   <div className={`${InfoSty.infoBox}`}>
@@ -342,9 +342,9 @@ export default function Modal({
                 </div>
                 <div className="col-6">
                   <div>
-                    {/* {restId ? <RestPhoto file={restImg} rid={restId} /> : ''} */}
-                    <div>
-                      <h2>最新評論</h2>
+                    {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
+                    <div className={`${InfoSty.commentBox}`}>
+                      <h4 className={`${InfoSty.commentTitle} mb-4`}>最新評論</h4>
                       {cts ?
                         cts.map((v, i) => {
                           return (

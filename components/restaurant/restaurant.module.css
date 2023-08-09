@@ -3,12 +3,14 @@
   height: 200px;
   /* overflow: hidden; */
 }
+
 .img1 {
   width: 100%;
   /* height: auto; */
   object-fit: cover;
   /* border-radius: 15px; */
 }
+
 .imgClass2 {
   width: 1000px;
   /* height: 1000px; */
@@ -19,6 +21,7 @@
   margin: 0;
   padding: 0;
 }
+
 .area {
   margin: 0;
   padding: 6px;
@@ -40,7 +43,8 @@
   height: 100%;
   border-radius: 0px 20px 20px 0px;
 }
-.reserveBtn > span {
+
+.reserveBtn>span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,6 +57,9 @@
   background-color: #fabcbf;
   color: white;
 }
-.reserveBtn:hover > span {
+
+.reserveBtn:hover>span {
   color: white;
 }
+
+

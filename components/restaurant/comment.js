@@ -21,21 +21,41 @@ export default function Comment({
     return (
         <>
 
-            <div class="" >
+            <div>
                 {/* <p>{commentRestName}</p> */}
                 {/* <p>餐廳編號</p> */}
-                <div className='d-flex'>
+                <div className='d-flex align-items-center'>
                     <Image
                         src={`http://localhost:3002/face/${commentMemberImg}`}
                         className={styles.avatar}
                         alt='大頭貼'
-                        width={50}
-                        height={50} />
-                    <h4>{commentMemberName}</h4>
-                    <p>星等{rate}</p>
+                        width={20}
+                        height={20} />
+                    <p className={`restTittle ms-3 ${styles.commentTitle}`}>{commentMemberName}</p>
+                    <div className={`d-flex starBlock justify-content-center`}>
+                        <div class="star-cb-group ms-3">
+                            {Array(5 - rate)
+                                .fill(1)
+                                .map((v, i) => {
+                                    return (
+                                        <label className='restRadioLabel rateStarBlank'>5</label>
+                                    )
+                                })}
+                            {Array(rate)
+                                .fill(1)
+                                .map((v, i) => {
+                                    return (
+                                        <label for="rating-5" className='restRadioLabel rateStarFill'>5</label>
+                                    )
+                                })}
+
+                        </div>
+                    </div>
+                </div>
+                <div className={`${styles.commentText}`}>
+                    <p className={`restTittle`}>{comment}</p>
 
                 </div>
-                <p>{comment}</p>
             </div >
         </>
     )

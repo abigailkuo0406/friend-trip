@@ -18,12 +18,13 @@
   /* align-items: center; */
   border-radius: 50rem;
 }
+
 .radioItem:hover {
   background-color: #d0a5ca;
   color: white;
 }
 
-.radio:checked + .radioItem {
+.radio:checked+.radioItem {
   background-color: black;
   color: white;
 }
@@ -33,8 +34,23 @@
 }
 
 .avatar {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border-radius: 99em;
   box-shadow: 0px 2px 5px -1px #a5a5a5;
+}
+
+.commentText {
+  margin-bottom: 1rem;
+  padding-left: 3rem
+}
+
+.commentTitle {
+  color: #674C87;
+}
+
+.commentBox {
+  width: 100%;
+  height: 300px;
+  overflow:scroll;
 }
