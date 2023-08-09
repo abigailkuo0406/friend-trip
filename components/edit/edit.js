@@ -133,7 +133,7 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
             <h5 className={styles.inputlabel}>會員生日</h5>
             <input
               type="date"
-              className="rounded-3"
+              className="input-text"
               value={aaa.birth ? aaa.birth : memberInfo?.member_birth}
               onChange={(e) => {
                 setAaa({ ...aaa, birth: e.target.value })

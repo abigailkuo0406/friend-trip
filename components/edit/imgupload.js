@@ -34,13 +34,22 @@ function App({ aaa }) {
         className={styles.img}
         alt="face.png"
       />
-      <input
-        type="file"
-        name="preview"
-        onChange={imgUpload}
-        // onChange={handleChange}
-        className={styles.input}
-      />
+      <div className={styles.custom_file_input}>
+        <input
+          type="file"
+          name="preview"
+          onChange={imgUpload}
+          // onChange={handleChange}
+          className={styles.input}
+        />
+        <Image
+          src={'http://localhost:3002/face/face1.png'}
+          width={50}
+          height={50}
+          className={styles.img2}
+          alt="face.png"
+        />
+      </div>
     </div>
   )
 }

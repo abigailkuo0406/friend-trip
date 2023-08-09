@@ -130,7 +130,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
             <h5 className={styles.inputlabel}>會員生日</h5>
             <input
               type="date"
-              className="rounded-3"
+              className="input-text"
               value={aaa.birth}
               onChange={(e) => {
                 setAaa({ ...aaa, birth: e.target.value })
