@@ -26,9 +26,9 @@ export default function Condition() {
       method: 'POST',
       body: JSON.stringify({
         memberID: auth.member_id,
-        gender: gender,
-        age_min: value[0],
-        age_max: value[0],
+        i_gender: gender,
+        i_age_min: value[0],
+        i_age_max: value[1],
       }),
       headers: {
         'Content-Type': 'application/json',
