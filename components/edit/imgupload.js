@@ -43,11 +43,11 @@ function App({ aaa }) {
           className={styles.input}
         />
         <Image
-          src={'http://localhost:3002/face/face1.png'}
-          width={50}
-          height={50}
+          src={'http://localhost:3002/img/upload.png'}
+          width={150}
+          height={125}
           className={styles.img2}
-          alt="face.png"
+          alt="upload.png"
         />
       </div>
     </div>
