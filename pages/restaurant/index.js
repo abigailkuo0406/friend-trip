@@ -5,11 +5,12 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import SelectOption from '@/components/common/input/select-option'
 import Btn from '@/components/common/button/btn-normal'
-import Modal from '@/components/restaurant/restaurant-intro'
+import RestIntro from '@/components/restaurant/restaurant-intro'
 import AuthContext from '@/context/AuthContext'
 import IndexSty from './restaurant.module.css'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 import Swal from 'sweetalert2'
+
 
 // 引入元件
 import RestaurantList from '@/components/restaurant/restaurant-item'
@@ -18,6 +19,11 @@ import { icon } from '@fortawesome/fontawesome-svg-core'
 export default function Rest() {
   const router = useRouter()
   const { auth } = useContext(AuthContext)
+
+  // 設定Modal開關
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const [restaurants, setRestaurants] = useState({
     redirect: '',
@@ -260,17 +266,19 @@ export default function Rest() {
         ) : (
           <p>無符合條件之餐廳</p>
         )}
-        <Modal
-          restId={rid}
-          restName={rName}
-          restAddress={rAddress}
-          restPhone={rPhone}
-          restTime={rTime}
-          restMeal={rMeal}
-          restClass={rClass}
-          restIntro={rIntro}
-          restImg={rImg}
-        />
+
+          <RestIntro
+            restId={rid}
+            restName={rName}
+            restAddress={rAddress}
+            restPhone={rPhone}
+            restTime={rTime}
+            restMeal={rMeal}
+            restClass={rClass}
+            restIntro={rIntro}
+            restImg={rImg}
+          />
+
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation">
             <ul class="pagination">

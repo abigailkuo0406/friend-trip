@@ -1,4 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
+
 import InviteModal from '@/components/invite/invite-modal'
 import Button from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext'
@@ -6,14 +9,13 @@ import NumberInput from '@/components/common/input/input-number'
 import RadioGroupInput from '@/components/common/input/input-radio-group'
 import DateInput from '@/components/common/input/input-date2'
 import RestPhoto from '@/components/restaurant/restaurant-photo'
-import Image from 'next/image'
-import FriendsLtSty from '../invite/friends-list.module.css'
-import InfoSty from '@/components/restaurant/intro.module.css'
-import { useRouter } from 'next/router'
-import { AiOutlinePlusCircle } from 'react-icons/ai'
 import Comment from './comment'
 
-export default function Modal({
+import InfoSty from '@/components/restaurant/intro.module.css'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
+import Swal from 'sweetalert2'
+
+export default function restIntro({
   restId,
   restName,
   restAddress,
@@ -24,10 +26,16 @@ export default function Modal({
   restIntro,
   restImg,
 }) {
+  console.log('重新渲染')
   const router = useRouter()
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
+
+  // 定義Modal開關
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   //預設訂位時間
   const [reserveTimeInputValue, setReserveTimeInputValue] = useState('')
@@ -67,6 +75,28 @@ export default function Modal({
       })
   }, [restId])
 
+  // 監控按鈕關閉modal屬性
+  const [modalClose, setModalClose] = useState('')
+  // console.log('date改變', reserveDateInputVale)
+  // console.log('time改變', reserveTimeInputValue)
+
+  // 驗證訂位日期與時間
+  const [dateVerify, setDateVerify] = useState(true)
+  const [timeVerify, setTimeVerify] = useState(true)
+
+  const verifyHint = () => {
+    reserveDateInputVale == '' && setDateVerify(false)
+    !reserveTimeInputValue && setTimeVerify(false)
+  }
+
+  useEffect(() => {
+    reserveDateInputVale && reserveTimeInputValue && setModalClose('modal')
+    reserveDateInputVale != '' && setDateVerify(true)
+    reserveTimeInputValue && setTimeVerify(true)
+  }, [reserveDateInputVale, reserveTimeInputValue])
+  // console.log('modalClose改變', modalClose)
+
+
   /* 提交訂位表單*/
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -90,14 +120,36 @@ export default function Modal({
         'Content-Type': 'application/json',
       },
     })
+    Swal.fire({
+      width: 400,
+      text: '您已完成訂位！',
+      icon: 'success',
+      iconColor: '#674C87',
+      color: '#674C87',
+      confirmButtonColor: '#674C87',
+      showConfirmButton: true,
+      // timer: 1500,
+    })
     router.push('/member/reserve')
+
   }
+  // const [btnColor, setBtnColor] = useState('btn-dark')
+  // // console.log('btnColor', btnColor)
+
+  // const changeColor = () => {
+  //   if (reserveDateInputVale != '' && reserveTimeInputValue)
+  //     setBtnColor('btn-white')
+  // }
+
+
 
   return (
     <>
       <div
         class="modal fade"
         id="exampleModalToggle"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
         aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel"
         tabindex="-1"
@@ -114,7 +166,26 @@ export default function Modal({
             </div>
             <div className="modal-body container-fluid">
               <div className="d-flex mx-5 my-3 row">
-              {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
+
+                {/* 
+                {btnColor == 'btn-dark' &&
+                  <Button
+                    btnText='深色'
+                    onClick={changeColor}
+                    addClassforButton={btnColor}
+                  />
+                }
+
+                {btnColor == 'btn-white' &&
+                  <Button
+                    btnText='白色'
+                    onClick={changeColor}
+                    addClassforButton={btnColor}
+                  />
+                } */}
+
+
+                {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
                 <div className={`${InfoSty.leftBox}`}>
                   <div className={`${InfoSty.infoBox}`}>
                     <h2 className={`${InfoSty.commentTitle}`}>{restName}</h2>
@@ -147,15 +218,12 @@ export default function Modal({
                           getName={setReserveDateInputName}
                           addClassforLabel={InfoSty.infolabel}
                           addClassforDiv={`restLabel`}
+
                         />
-                        {reserveDateInputVale == '' ? (
-                          <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
-                            {' '}
-                            尚未選擇預定日期
-                          </p>
-                        ) : (
-                          <p hidden>尚未選擇預定日期</p>
-                        )}
+                        {!dateVerify && <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
+                          尚未選擇預定日期
+                        </p>}
+
                       </div>
                       <div className={`${InfoSty.infoBox} mb-4`}>
                         <div className={`d-flex mt-2`}>
@@ -173,15 +241,14 @@ export default function Modal({
                             addClassforEachLabel={`btn restRadiobtn ${InfoSty.radioItem} restRadioLabel me-3`} // 如果要在個別選項 label 添加 class
                             addClassforInput={`btn-check restRadiobtn-check`} // 如果要在 input 添加 class
                             addClassforDiv={`restLabel`}
+
                           />
                         </div>
-                        {!reserveTimeInputValue ? (
+                        {!timeVerify &&
                           <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
                             尚未選擇預定時間
                           </p>
-                        ) : (
-                          <p hidden>尚未選擇預定時間</p>
-                        )}
+                        }
                       </div>
 
                       <div className={`${InfoSty.infoBox}`}>
@@ -254,22 +321,33 @@ export default function Modal({
                         </p>
                       )}
 
-                      <div className="d-flex">
-                        <Button
-                          type="submit"
-                          value="submit"
-                          btnText="確認訂位"
-                          addClassforButton="btn-dark mt-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
-                          disabled={false} // fase：可點，true：不可點
-                          bsModl3={`modal`}
-                        ></Button>
+                      <div id='submitButton' className="d-flex">
+                        {modalClose == '' &&
+                          <Button
+                            btnText="確認訂位"
+                            addClassforButton="btn-dark mt-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                            disabled={false} // fase：可點，true：不可點
+                            bsModl3=''
+                            onClick={verifyHint}
+                          ></Button>
+                        }
+                        {modalClose == 'modal' &&
+                          <Button
+                            type="submit"
+                            value="submit"
+                            btnText="確認訂位"
+                            addClassforButton="btn-dark mt-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                            disabled={false} // fase：可點，true：不可點
+                            bsModl3='modal'
+                          ></Button>
+                        }
+
                       </div>
                     </form>
                   </div>
                 </div>
                 <div className="">
                   <div>
-                    
                     <div className={`${InfoSty.commentBox}`}>
                       <h4 className={`${InfoSty.commentTitle} mb-4`}>
                         最新評論
