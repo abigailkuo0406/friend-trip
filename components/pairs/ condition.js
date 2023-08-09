@@ -4,7 +4,6 @@ import BtnNormal from '@/components/common/button/btn-normal.js'
 import Slider from '@mui/material/Slider'
 import AuthContext from '@/context/AuthContext' // 會員
 import { createTheme } from '@mui/material'
-import { FaArrowLeft } from 'react-icons/fa'
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,13 +19,16 @@ export default function Condition() {
   const [gender, setGender] = useState('')
 
   const { auth, setAuth } = useContext(AuthContext)
-  const select = (e) => {
+  const condition = (e) => {
     e.preventDefault()
     console.log('啟動篩選')
-    fetch(process.env.API_SERVER + '/select', {
+    fetch(process.env.API_SERVER + '/condition', {
       method: 'POST',
       body: JSON.stringify({
         memberID: auth.member_id,
+        gender: gender,
+        age_min: value[0],
+        age_max: value[0],
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -35,7 +37,7 @@ export default function Condition() {
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
-        alert('篩選成功')
+        alert('更改成功')
       })
   }
   useEffect(() => {
@@ -49,8 +51,8 @@ export default function Condition() {
       <div className={styles.container}>
         <div className={styles.main}>
           <div>
-            <button onClick={select}>
-              <FaArrowLeft type="button"></FaArrowLeft>
+            <button className={styles.arrow} onClick={condition}>
+              <i class="fa-solid fa-arrow-left"></i>
             </button>
           </div>
           <div className="mt-3">
