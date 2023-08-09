@@ -54,3 +54,19 @@
   height: 300px;
   overflow:scroll;
 }
+
+.plus {
+  font-size: 1.2rem;
+  color: #674c87;
+}
+.ivBtn{
+  background-color: none;
+  margin: 0;
+  padding: 0;
+  color: #874c6d;
+
+}
+
+.verifyHint{
+  color: #b497d4;
+}

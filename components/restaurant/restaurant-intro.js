@@ -10,7 +10,7 @@ import Image from 'next/image'
 import FriendsLtSty from '../invite/friends-list.module.css'
 import InfoSty from '@/components/restaurant/intro.module.css'
 import { useRouter } from 'next/router'
-import Swal from 'sweetalert2'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 import Comment from './comment'
 
 export default function Modal({
@@ -24,7 +24,6 @@ export default function Modal({
   restIntro,
   restImg,
 }) {
-  // console.log('Modal層', restId)
   const router = useRouter()
 
   //取得登入之會員資料
@@ -53,101 +52,45 @@ export default function Modal({
   // 取得評論資料
   useEffect(() => {
     if (!restId) return
-    fetch("http://localhost:3002/comment", {
-      method: "POST",
+    fetch('http://localhost:3002/comment', {
+      method: 'POST',
       body: JSON.stringify({
-        restId: restId
+        restId: restId,
       }),
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
     })
       .then((c) => c.json())
       .then((ct) => {
-        console.log('fetch進來的comment', ct)
         setComments(ct)
-
       })
-
   }, [restId])
-  console.log('intro裡的comments', cts)
-  useEffect(() => {
-    console.log('useEffect裡的comments', cts)
-
-    cts.map((v, i, arr) => {
-      console.log('v', v)
-      console.log('i', i)
-      console.log('arr', arr)
-
-
-    })
-  }, [cts])
 
   /* 提交訂位表單*/
   const handleSubmit = (event) => {
     event.preventDefault()
+    if (reserveDateInputVale == '' || !reserveTimeInputValue) return
 
-    if (reserveDateInputVale == '') {
-      Swal.fire({
-        width: 400,
-        text: '請選擇訂位日期',
-        icon: 'warning',
-        iconColor: '#FABCBF',
-        color: '#674C87',
-        confirmButtonColor: '#674C87',
-        // showConfirmButton: true,
-        timer: 1500,
-      })
-    } else if (!reserveTimeInputValue) {
-      Swal.fire({
-        width: 400,
-        text: '請選擇訂位時間',
-        icon: 'warning',
-        iconColor: '#FABCBF',
-        color: '#674C87',
-        confirmButtonColor: '#674C87',
-        showConfirmButton: true,
-      })
-    } else if (inviteList.length == 0) {
-      Swal.fire({
-        width: 400,
-        text: '本次訂位是否不邀請好友？',
-        icon: 'warning',
-        iconColor: '#FABCBF',
-        color: '#674C87',
-        confirmButtonColor: '#674C87',
-        showConfirmButton: true,
-      })
-    } else if (inviteList.length > reservePeopleNumValue - 1) {
-      Swal.fire({
-        width: 400,
-        text: '邀請好友超出訂位人數',
-        icon: 'warning',
-        iconColor: '#FABCBF',
-        color: '#674C87',
-        confirmButtonColor: '#674C87',
-        showConfirmButton: true,
-      })
-    } else {
-      const formData = new FormData(document.getElementById('reserve'))
-      fetch('http://localhost:3002/restaurant', {
-        method: 'POST',
-        // body: formData,
-        body: JSON.stringify({
-          member_id: auth.member_id,
-          rest_id: restId,
-          reserve_date: reserveDateInputVale,
-          reserve_time: reserveTimeInputValue,
-          reserve_people: reservePeopleNumValue,
-          state: 1,
-          invites: inviteList,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      router.push('/member/reserve')
-    }
+    const formData = new FormData(document.getElementById('reserve'))
+
+    fetch('http://localhost:3002/restaurant', {
+      method: 'POST',
+      // body: formData,
+      body: JSON.stringify({
+        member_id: auth.member_id,
+        rest_id: restId,
+        reserve_date: reserveDateInputVale,
+        reserve_time: reserveTimeInputValue,
+        reserve_people: reservePeopleNumValue,
+        state: 1,
+        invites: inviteList,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    router.push('/member/reserve')
   }
 
   return (
@@ -197,7 +140,7 @@ export default function Modal({
                       <input name="rest_id" value={restId} hidden />
                       <input name="state" value={parseInt('1')} hidden /> */}
 
-                      <div className={`${InfoSty.infoBox}`}>
+                      <div className={`${InfoSty.infoBox} mb-4`}>
                         <DateInput
                           id="reserveDate"
                           name="reserve_date"
@@ -208,66 +151,40 @@ export default function Modal({
                           addClassforLabel={InfoSty.infolabel}
                           addClassforDiv={`restLabel`}
                         />
+                        {reserveDateInputVale == '' ? (
+                          <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
+                            {' '}
+                            尚未選擇預定日期
+                          </p>
+                        ) : (
+                          <p hidden>尚未選擇預定日期</p>
+                        )}
                       </div>
-                      {/* <label className={InfoSty.infoBox}>訂位時間</label> */}
-                      <div className={`d-flex mt-2`}>
-                        {/* <label
-                          for="TimeId1"
-                          className={` btn ${InfoSty.radioItem} me-3`}
-                        >
-                          <input
-                            type="radio"
-                            id="TimeId1"
+                      <div className={`${InfoSty.infoBox} mb-4`}>
+                        <div className={`d-flex mt-2`}>
+                          <RadioGroupInput
+                            label="訂位時間"
                             name="reserve_time"
-                            value="11:30"
-                            // style={{ display: 'none' }}
+                            // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
+                            idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
+                            valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
+                            labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
+                            getValue={setReserveTimeInputValue}
+                            getName={setReserveTimeInputName}
+                            getLabel={setReserveTimeInputLabel}
+                            addClassforTitleLabel={InfoSty.infolabel} // 如果要在標題 label 添加 class
+                            addClassforEachLabel={`btn restRadiobtn ${InfoSty.radioItem} restRadioLabel me-3`} // 如果要在個別選項 label 添加 class
+                            addClassforInput={`btn-check restRadiobtn-check`} // 如果要在 input 添加 class
+                            addClassforDiv={`restLabel`}
                           />
-                          11:30
-                        </label>
-
-                        <label
-                          for="TimeId2"
-                          className={`btn ${InfoSty.radioItem} me-3`}
-                        >
-                          <input
-                            type="radio"
-                            id="TimeId2"
-                            name="reserve_time"
-                            value="12:30"
-                            style={{ display: 'none' }}
-                          />
-                          12:30
-                        </label>
-
-                        <label
-                          for="TimeId3"
-                          className={`btn ${InfoSty.radioItem} me-3`}
-                        >
-                          <input
-                            type="radio"
-                            id="TimeId3"
-                            name="reserve_time"
-                            value="13:30"
-                            style={{ display: 'none' }}
-                          />
-                          13:30
-                        </label> */}
-
-                        <RadioGroupInput
-                          label="訂位時間"
-                          name="reserve_time"
-                          // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
-                          idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
-                          valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
-                          labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
-                          getValue={setReserveTimeInputValue}
-                          getName={setReserveTimeInputName}
-                          getLabel={setReserveTimeInputLabel}
-                          addClassforTitleLabel={InfoSty.infolabel} // 如果要在標題 label 添加 class
-                          addClassforEachLabel={`btn restRadiobtn ${InfoSty.radioItem} restRadioLabel me-3`} // 如果要在個別選項 label 添加 class
-                          addClassforInput={`btn-check restRadiobtn-check`} // 如果要在 input 添加 class
-                          addClassforDiv={`restLabel`}
-                        />
+                        </div>
+                        {!reserveTimeInputValue ? (
+                          <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
+                            尚未選擇預定時間
+                          </p>
+                        ) : (
+                          <p hidden>尚未選擇預定時間</p>
+                        )}
                       </div>
 
                       <div className={`${InfoSty.infoBox}`}>
@@ -289,7 +206,7 @@ export default function Modal({
                           addClassforDiv={`restLabel`}
                         />
                       </div>
-                      <label>邀請好友</label>
+                      <label className="mt-4">邀請好友</label>
                       <ul
                         id="inviteList"
                         className={`d-flex justify-content-start mt-3 me-2`}
@@ -320,19 +237,30 @@ export default function Modal({
                             </div>
                           )
                         })}
-                      </ul>
-                      <div className="d-flex">
                         <Button
-                          btnText="邀請好友"
+                          btnText={
+                            <AiOutlinePlusCircle className={InfoSty.plus} />
+                          }
                           bsModle1="#exampleModalToggle2"
                           bsModle2="modal"
-                          addClassforButton="btn-light"
+                          addClassforButton={InfoSty.ivBtn}
                         />
+                      </ul>
+
+                      {inviteList.length > reservePeopleNumValue - 1 ? (
+                        <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
+                          邀請好友超出訂位人數
+                        </p>
+                      ) : (
+                        <p hidden></p>
+                      )}
+
+                      <div className="d-flex">
                         <Button
                           type="submit"
                           value="submit"
                           btnText="確認訂位"
-                          addClassforButton="btn-dark ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                          addClassforButton="btn-dark mt-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                           disabled={false} // fase：可點，true：不可點
                           bsModl3={`modal`}
                         ></Button>
@@ -344,8 +272,10 @@ export default function Modal({
                   <div>
                     {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
                     <div className={`${InfoSty.commentBox}`}>
-                      <h4 className={`${InfoSty.commentTitle} mb-4`}>最新評論</h4>
-                      {cts ?
+                      <h4 className={`${InfoSty.commentTitle} mb-4`}>
+                        最新評論
+                      </h4>
+                      {cts.length > 0 ? (
                         cts.map((v, i) => {
                           return (
                             <div key={i}>
@@ -358,16 +288,13 @@ export default function Modal({
                                 comment={v.ComtText}
                                 rate={v.rating}
                               />
-
                             </div>
                           )
                         })
-                        :
+                      ) : (
                         <p>目前尚無餐廳評論資料</p>
-                      }
-
+                      )}
                     </div>
-
                   </div>
                 </div>
               </div>

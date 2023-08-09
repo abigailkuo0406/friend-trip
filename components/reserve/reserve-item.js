@@ -15,7 +15,7 @@ export default function ReserveItem({
   reserveTime,
   reservePeopleNum,
   state,
-  modalChange
+  modalChange,
 }) {
   const { auth } = useContext(AuthContext)
 
@@ -104,13 +104,11 @@ export default function ReserveItem({
     setReservationId(reserveId)
     setRName(restName)
     setRImg(restImg)
-
   }
 
-  //modal值為true，回傳資料到index.js(reserve) 
+  //modal值為true，回傳資料到index.js(reserve)
   useEffect(() => {
     modalChange(modal, reservationId, restaurantId, rName, rImg)
-
   }, [modal])
 
   return (
@@ -134,8 +132,9 @@ export default function ReserveItem({
               <div className={`d-flex align-items-center ${styles.cardHead}`}>
                 <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
                 <p
-                  className={`ms-4 ${state == 0 ? styles.stateCancel : styles.state
-                    }`}
+                  className={`ms-4 ${
+                    state == 0 ? styles.stateCancel : styles.state
+                  }`}
                 >
                   {stateText}
                 </p>
@@ -171,12 +170,16 @@ export default function ReserveItem({
                     invite.map((v, i) => {
                       return (
                         <div key={i} className="me-2">
-                          <Image
-                            src={`http://localhost:3002/face/${v.images}`}
-                            className={` ${FriendSty.avatar}`}
-                            width={50}
-                            height={50}
-                          />
+                          {v.images ? (
+                            <Image
+                              src={`http://localhost:3002/face/${v.images}`}
+                              className={` ${FriendSty.avatar}`}
+                              width={50}
+                              height={50}
+                            />
+                          ) : (
+                            <p>本次訂位無邀請好友</p>
+                          )}
                         </div>
                       )
                     })
@@ -192,9 +195,9 @@ export default function ReserveItem({
                   btnText="撰寫評論"
                   onClick={modalOpen}
                   bsModle1={`#exampleModal`}
-                  bsModle2='modal' />
+                  bsModle2="modal"
+                />
               </div>
-
             </div>
           </div>
         </div>
