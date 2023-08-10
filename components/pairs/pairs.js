@@ -14,7 +14,13 @@ export default function Pairs({
 }) {
   const [page, setPage] = useState(1)
   const page1 = (
-    <PairBtns setPage={setPage} setImgIndex={setImgIndex} imgIndex={imgIndex} />
+    <PairBtns
+      page={page}
+      setPage={setPage}
+      setImgIndex={setImgIndex}
+      imgIndex={imgIndex}
+      randomstate={randomstate}
+    />
   )
   const page2 = (
     <PairBtns2
