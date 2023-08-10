@@ -9,7 +9,6 @@ import AuthContext from '@/context/AuthContext'
 import { useContext } from 'react'
 import Swal from 'sweetalert2'
 
-
 export default function Post({
   post_id,
   avatarOfPostAuthor,
@@ -37,14 +36,14 @@ export default function Post({
         if (r.data.message == 'deleted') {
           // alert('資料成功刪除')
           Swal.fire({
-            width:400,
-            title:'所選貼文已刪除',
-            text:'刪除完成',
-            icon:'sucess',
-            iconColor:'#FABCBF',
-            color:'#674c87',
-            confirmButtonColor:'#674c87',
-            showConfirmButton:true
+            width: 400,
+            title: '所選貼文已刪除',
+            text: '刪除完成',
+            icon: 'sucess',
+            iconColor: '#FABCBF',
+            color: '#674c87',
+            confirmButtonColor: '#674c87',
+            showConfirmButton: true,
           })
         }
       })
@@ -60,25 +59,27 @@ export default function Post({
         post_id={post_id}
         setDeletemodalStatus={setDeletemodalStatus}
       />
-      {/* 👇 要跟組員使用相同的彈跳視窗 */}
-      <div style={{ display: deletemodalStatus }}>
-        <h3>do you wnat to delete this post?</h3>
-        <input
-          type="button"
-          value={'確定刪除'}
+      {/* 👇 確認刪除的彈跳視窗 */}
+      <div style={{ display: deletemodalStatus === 'none' ? 'none' : 'flex' }}>
+        <h3>您確定要刪除這篇貼文嗎?</h3>
+        <button
+          className="btn btn-dark mx-1"
           onClick={() => {
             deletePost()
           }}
-        />
-        <input
-          type="button"
-          value={'取消刪除'}
+        >
+          確定，刪了吧
+        </button>
+        <button
+          className="btn btn-dark mx-1"
           onClick={() => {
             setDeletemodalStatus('none')
           }}
-        />
+        >
+          算了，留著吧
+        </button>
       </div>
-      {/* ☝️ 要跟組員使用相同的彈跳視窗 */}
+      {/* ☝️ 確認刪除的彈跳視窗 */}
       <ImgForThePost imgSrc={imgOfPost} className="my-md-4" />
       <ArticleOfPost content={articleOfPost} className="my-md-4" />
       <ShowComments comments={comments} post_id={post_id} />
