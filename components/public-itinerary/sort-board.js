@@ -14,11 +14,10 @@ export default function SortBoard() {
         </p>
         <select
           className={`form-select rounded-4 ${styles.textcolor}`}
-          id="inputGroupSelect01"
-          defaultValue="1"
+          onChange={handleSortOptionChange}
         >
-          <option value="1">最新日期</option>
-          <option value="2">熱門推薦</option>
+          <option value="newest">最新日期</option>
+          <option value="oldest">熱門推薦</option>
         </select>
       </div>
       </div>

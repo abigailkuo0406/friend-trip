@@ -24,9 +24,9 @@ export default function ApplyTaskNote (props) {
     const itinMember = parsedData.itin_member
     const memberID = auth.member_id
 
-    console.log('itinMember', itinMember)
-    console.log('memberID', memberID)
-    console.log('joinPublicItinerary==>', 'OK')
+    // console.log('itinMember', itinMember)
+    // console.log('memberID', memberID)
+    // console.log('joinPublicItinerary==>', 'OK')
 
     // 景點行程API串接(行程寫進db)
 
@@ -47,7 +47,7 @@ export default function ApplyTaskNote (props) {
 
 
     const noteText = props.note.replace(/\*/g,'\n')
-    console.log('props.note',props.note)
+    // console.log('props.note',props.note)
 
 
   }
@@ -59,7 +59,7 @@ export default function ApplyTaskNote (props) {
       </div>
       <div>
         <p className={styles.spnaName}>*參加日期:</p>
-        <input className={styles.inputJoinDate} type="text" value={formattedCreateAt} aria-label="readonly input example" readonly />
+        <input className={styles.inputJoinDate} type="text" value={formattedCreateAt} aria-label="readOnly input example" readOnly />
       </div>
       <div>
         <p className={styles.spnaName}>最低成團人數：{props.ppl}</p>

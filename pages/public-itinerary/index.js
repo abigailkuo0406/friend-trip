@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import PublicScheduleIndex from '@/components/public-itinerary/public-card'
+import styles from '@/components/public-itinerary/public-init.module.css'
 import SortBoard from '@/components/public-itinerary/sort-board'
 import AdminLayout from '@/components/layout/admin-layout'
 import data from '@/data/custom-itinerary/itinerary.json'
+import AuthContext from '@/context/AuthContext'
+import { MdNavigateNext, MdNavigateBefore,MdKeyboardDoubleArrowRight,MdKeyboardDoubleArrowLeft } from 'react-icons/md'
 // import PageBtn from '@/components/custom-itinerary/page-btn'
 
 export default function PublicSchedule () {
-
+  const { auth } = useContext(AuthContext)
   const router = useRouter()
   const [data, setData] = useState({
     redirect: '',
@@ -23,23 +26,21 @@ export default function PublicSchedule () {
   useEffect(() => {
     const usp = new URLSearchParams(router.query)
     // API串接
-    fetch(`http://localhost:3002/public-itinerary?${usp.toString()}`)
+    fetch(`http://localhost:3002/public-itinerary?${usp.toString()}&member_id=${auth.member_id}`)
       .then((r) => r.json())
       .then((data) => {
         setData(data)
-        console.log('public data',data)
+        // console.log('public data',data)
       })
   }, [router.query])
-
 
 
   return (
     <>
       <div className="d-flex mb-2 ">
-        <h3 className="my-auto mx-auto">公開行程</h3>
+        <h1 className={`mb-3 mx-5 ${styles.spnaName}`}>公開行程</h1>
       </div>
-      {/* <SortBoard /> */}
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap mx-4">
         {data.rows.map((v, i) => {
           return (
             <div key={i}>
@@ -61,9 +62,22 @@ export default function PublicSchedule () {
       </div>
       {/* <PageBtn/> */}
       <div>
-        <div className="itin-card-pagination">
+        <div className="itin-card-pagination mx-5 px-5">
           <nav aria-label="Page navigation">
             <ul className="pagination">
+            <li className="page-item">
+                <Link
+                  className="page-link"
+                  href={
+                    '?' +
+                    new URLSearchParams(
+                      'page=1').toString()
+                  }
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true"><MdKeyboardDoubleArrowLeft/></span>
+                </Link>
+              </li>
               <li className="page-item">
                 <Link
                   className="page-link"
@@ -77,7 +91,7 @@ export default function PublicSchedule () {
                   }
                   aria-label="Previous"
                 >
-                  <span aria-hidden="true">&laquo;</span>
+                  <span aria-hidden="true"><MdNavigateBefore /></span>
                 </Link>
               </li>
               {/* 顯示頁碼 */}
@@ -118,7 +132,19 @@ export default function PublicSchedule () {
                   }
                   aria-label="Next"
                 >
-                  <span aria-hidden="true">&raquo;</span>
+                  <span aria-hidden="true"><MdNavigateNext/></span>
+                </Link>
+              </li>
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  href={
+                    '?' +
+                    new URLSearchParams(`page=${data.totalPages}`).toString()
+                  }
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true"><MdKeyboardDoubleArrowRight/></span>
                 </Link>
               </li>
             </ul>

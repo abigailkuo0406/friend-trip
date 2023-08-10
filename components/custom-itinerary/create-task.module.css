@@ -16,7 +16,7 @@ justify-content: center;
 
 .inputTimeD{
   margin-top: 1.4rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
   margin-left: 1rem;
 }
 .timeLable{
@@ -39,6 +39,36 @@ justify-content: center;
   border-radius: 8px;
 }
 
+.inputTime::-webkit-datetime-edit-fields-wrapper{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-ampm-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-hour-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-millisecond-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-minute-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-hour-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-hour-field:focus{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-millisecond-field:focus{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-minute-field:focus{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-text{
+  color: #674C87;
+}
 
 
 

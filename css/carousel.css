@@ -1,0 +1,81 @@
+@charset "UTF-8";
+.percarousel {
+  height: 10rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1080px);
+  }
+}
+.slider {
+  height: 200px;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 960px;
+}
+.slider::before, .slider::after {
+  content: "";
+  height: 100px;
+  position: absolute;
+  width: 120px;
+  z-index: 2;
+}
+.slider::after {
+  right: 0;
+  top: 0;
+  transform: rotateZ(180deg);
+}
+.slider::before {
+  left: 0;
+  top: 0;
+}
+.slider .slide-track {
+  animation: scroll 40s linear infinite; /* 設置Slider輪播動畫 */
+  display: flex;
+  width: 2160px; /* 設置輪播軌道的寬度 */
+}
+.slider .slide-track:hover {
+  animation-play-state: paused; /* 暫停動畫 */
+}
+.slider .slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+}
+.slider .slide:hover {
+  transform: scale(1.5); /* 放大照片 */
+  z-index: 1; /* 確保懸停的幻燈片在最上層 */
+}
+.slider .slide img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 76px 76px 76px 76px;
+}
+
+.slide-link:hover {
+  color: #674C87;
+}
+
+.carousel-text {
+  color: #674C87;
+}
+
+.slide.flipped {
+  transform: scale(1.5);
+  z-index: 1; /* 确保悬停的幻灯片在最上层 */
+}
+
+.back {
+  color: #674C87;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}/*# sourceMappingURL=carousel.css.map */

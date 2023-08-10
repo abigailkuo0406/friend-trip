@@ -18,11 +18,11 @@
   /* padding: 0.5rem; */
   padding: 1rem;
 }
-.public {
+/* .public {
   background-color: #fabcbf;
   font-size: 0.9rem;
   border-radius: 20px;
-}
+} */
 .pageBtn {
   justify-content: end;
   margin-top: 1.5rem;
@@ -75,9 +75,18 @@
   overflow: hidden;
   line-height: 1.5; 
   max-height: 3em; 
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
-.truncateText {
+/* .truncateText {
   margin: 0; 
+} */
+
+.public{
+  background-color: #fabcbf;
+  font-size: 0.9rem;
+}
+.private{
+  font-size: 0.9rem;
+  background-color: #B497D4; 
 }
