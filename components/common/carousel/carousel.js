@@ -14,7 +14,7 @@ export default function Carousel(props) {
           .then((r) => r.json())
           .then((data) => {
             setData(data)
-            console.log('data==>',data)
+            // console.log('data==>',data)
           })
           //取得itin_id
         },[])
@@ -46,8 +46,8 @@ export default function Carousel(props) {
                   onClick={() => handleClick(index)}
                 >
                   {index === flippedIndex ? (
-                    <div className="back">
-                      <p>{item.name}</p>
+                    <div className="back flipped">
+                      <span>{item.name}</span>
                     </div>
                   ) : (
                     <img

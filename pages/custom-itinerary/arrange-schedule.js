@@ -209,7 +209,7 @@ export default function ArrangeSchedule() {
       itin_order: index,
       itin_id: itinId,
     }))
-    console.log('dataFromLocalStorage123:', JSON.stringify(dataWithOrder))
+    // console.log('dataFromLocalStorage123:', JSON.stringify(dataWithOrder))
 
     // console.log('storedData123',storedData)
     // console.log('parsedData123',parsedData)

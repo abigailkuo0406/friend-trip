@@ -8,7 +8,6 @@ import { BsPcDisplayHorizontal } from 'react-icons/bs'
 import Carousel from '@/components/common/carousel/carousel'
 
 export default function AdminIndex() {
-
   return (
     <>
       <article className="blog-post mb-4">

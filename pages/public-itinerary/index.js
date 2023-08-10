@@ -30,7 +30,7 @@ export default function PublicSchedule () {
       .then((r) => r.json())
       .then((data) => {
         setData(data)
-        console.log('public data',data)
+        // console.log('public data',data)
       })
   }, [router.query])
 

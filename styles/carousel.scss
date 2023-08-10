@@ -1,6 +1,7 @@
 // 設置頁面的背景和排列方式
 .percarousel {
     height: 10rem;
+
   }  
 
 // 定義一個mixin，用於生成白色漸變背景
@@ -28,6 +29,7 @@ $animationSpeed: 40s;
 	overflow: hidden;
 	position: relative;
 	width: 960px;
+	
 
 	&::before,
 	&::after {
@@ -81,4 +83,18 @@ $animationSpeed: 40s;
 }
 .carousel-text{
 	color:#674C87;
+}
+.slide.flipped {
+	transform: scale(1.5);
+	z-index: 1; /* 确保悬停的幻灯片在最上层 */
+  }
+
+.back{
+	// background-color: bisque;
+	color:#674C87;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1.25rem;
+	// height: 100%;
 }

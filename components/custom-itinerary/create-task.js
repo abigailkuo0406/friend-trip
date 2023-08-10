@@ -117,7 +117,7 @@ export default function CreateTask() {
       })
         .then((r) => r.json())
         .then((data) => {
-          console.log(data)
+          // console.log(data)
         })
     }
 

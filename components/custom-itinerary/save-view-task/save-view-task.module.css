@@ -39,7 +39,9 @@
  white-space: pre-line;
 }
 
-
+.coverPhoto {
+  max-width: 100%;
+}
 .ol {
   list-style: none;
   /* padding: 0;
@@ -100,7 +102,7 @@ border-radius: 10px;
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
   .coverPhoto {
-    width: 100%;
+    max-width: 100%;
     height: 45vh;
   }
 }
@@ -108,7 +110,6 @@ border-radius: 10px;
 /* XX-Large devices (larger desktops, 1400px and up) */
 @media (min-width: 1400px) {
   .coverPhoto {
-    width: 100%;
-    /* height: 18rem; */
+    max-width: 100%;
   }
 }

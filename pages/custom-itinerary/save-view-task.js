@@ -51,7 +51,7 @@ export default function SaveViewTask () {
       .then((r) => r.json())
       .then((data) => {
         setData(data)
-        console.log('data', data)
+        // console.log('data', data)
         setMemberName(data[0].member_name)
         setMemberImg(data[0].images)
 

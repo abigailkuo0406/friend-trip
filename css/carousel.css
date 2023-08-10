@@ -65,4 +65,17 @@
 
 .carousel-text {
   color: #674C87;
+}
+
+.slide.flipped {
+  transform: scale(1.5);
+  z-index: 1; /* 确保悬停的幻灯片在最上层 */
+}
+
+.back {
+  color: #674C87;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
 }/*# sourceMappingURL=carousel.css.map */

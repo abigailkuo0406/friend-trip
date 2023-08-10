@@ -53,7 +53,7 @@ export default function ScheduleSide ({
       // timer: 1500,
     })
     onSaveClick()
-    //點選建立後3秒後跳轉
+    // //點選建立後3秒後跳轉
     setTimeout(() => {
       router.push('/custom-itinerary/save-view-task')
     }, 1000)

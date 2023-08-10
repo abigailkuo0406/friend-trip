@@ -11,8 +11,8 @@ export default function CoverPhoto(props) {
       <Image
         src={`http://localhost:3002/img/itinerary-photo/${itinCoverPhoto}`}
         alt={itinCoverPhoto}
-        width={940}
-        height={400}
+        width={500}
+        height={200}
         quality={75} //圖片質量
         style={{ borderRadius: '5px' }}
         priority={true} //圖片預先載入

@@ -42,7 +42,7 @@ export default function History({allClick, publicClick,privateClick,joinCick,han
               </button>
             </div>
           </div>
-          <div className="input-group mx-2" style={{ width: 280 }}>
+          {/* <div className="input-group mx-2" style={{ width: 280 }}>
             <p
               className={`my-auto me-3 ${styles.sort} `}
               htmlFor="inputGroupSelect01"
@@ -56,7 +56,7 @@ export default function History({allClick, publicClick,privateClick,joinCick,han
               <option value="newest">最新日期</option>
               <option value="oldest">最舊日期</option>
             </select>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

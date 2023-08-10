@@ -41,10 +41,10 @@ console.log('itinName',itinName)
       .then((r) => r.json())
       .then((data) => {
         setData(data)
-        console.log('data==>', data[0])
+        // console.log('data==>', data[0])
         setMemberName(data[0].member_name)
         setMemberImg(data[0].images)
-        console.log(memberImg)
+        // console.log(memberImg)
       })
   }, [])
 
