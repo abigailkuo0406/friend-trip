@@ -60,7 +60,7 @@
   --bs-success-bg-subtle: #e5f0fa;
   --bs-info-bg-subtle: #cff4fc;
   --bs-warning-bg-subtle: #fff3cd;
-  --bs-danger-bg-subtle: #ffd9d7;
+  --bs-danger-bg-subtle: rgb(255, 217, 215);
   --bs-light-bg-subtle: #fcfcfd;
   --bs-dark-bg-subtle: #ced4da;
   --bs-primary-border-subtle: #b6dfb3;

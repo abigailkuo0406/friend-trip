@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2023 at 01:45 AM
+-- Generation Time: Aug 11, 2023 at 05:19 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -61,7 +61,10 @@ INSERT INTO `posts` (`post_id`, `member_id`, `content`, `img`, `created_at`) VAL
 (150, 19, '大家好，有人喜歡釣魚嗎？', 'http://localhost:3002/forum_pics/fishing.jpg', '2023-08-10 21:38:13'),
 (154, 4, '台灣東海岸真漂亮', 'http://localhost:3002/forum_pics/taidongByTrain.jpg', '2023-08-10 22:15:11'),
 (155, 4, '我家附近的拿波里現在有優惠', 'http://localhost:3002/forum_pics/napoli-pizza-coupon.jpg', '2023-08-10 22:15:32'),
-(164, 3, '有人喜歡 Shabu-Shabu 嗎？', 'http://localhost:3002/forum_pics/shabu.jpg', '2023-08-10 23:08:11');
+(164, 3, '有人喜歡 Shabu-Shabu 嗎？', 'http://localhost:3002/forum_pics/shabu.jpg', '2023-08-10 23:08:11'),
+(167, 11, '這是我的第一個貼文，有沒有人想去綠島', 'http://localhost:3002/forum_pics/green.jpg', '2023-08-11 01:17:01'),
+(168, 11, 'test', 'http://localhost:3002/forum_pics/japanFood.jpg', '2023-08-11 01:35:42'),
+(174, 18, '大家好，我是品蓁，希望在這裡認識能相處一生的人', 'http://localhost:3002/forum_pics/boyAndGirl.jpg', '2023-08-11 02:19:17');
 
 --
 -- Indexes for dumped tables
@@ -81,7 +84,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
