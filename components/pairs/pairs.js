@@ -49,6 +49,7 @@ export default function Pairs({
                   />
                 </div>
                 <div className={styles.imgContainer}>
+                
                   <Image
                     src={`http://localhost:3002/face/${randomstate[imgIndex].images}`}
                     className={`${styles.img}`}
