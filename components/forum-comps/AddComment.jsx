@@ -9,7 +9,8 @@ function AddComment({ post_id, comments }) {
   const [data, setData] = useState([])
   const msgRef = useRef(null)
   const keyUpHandler = (event) => {
-    if (event.which === 13) setData([...data, event.target.value])
+    if (event.which === 13) handleSendMsg()
+    //setData([...data, event.target.value])
   }
   const handleSendMsg = () => {
     sendMsg(msgRef.current.value)
@@ -25,6 +26,7 @@ function AddComment({ post_id, comments }) {
       })
       .then((d) => {
         console.log(d)
+        msgRef.current.value = ''
         // 👇這個指令是重刷頁面，如果需要重刷頁面號碼才有反應，可以用這個方式
         // window.location.reload()
         // ☝️這個指令是重刷頁面，如果需要重刷頁面號碼才有反應，可以用這個方式
@@ -41,7 +43,7 @@ function AddComment({ post_id, comments }) {
         ref={msgRef}
         onKeyUp={keyUpHandler}
         placeholder="發表意見..."
-        className='input-text input-width-70pa'
+        className="input-text input-width-70pa"
       />
       <button className="btn btn-dark mx-1" onClick={handleSendMsg}>
         發表
