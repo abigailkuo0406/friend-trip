@@ -10,6 +10,7 @@ export default function InputCheckboxGroup({
   checkedValue = [],
   getValue=()=>{},
   getName=()=>{},
+  addClassforDiv = '',
   addClassforTitleLabel = '',
   addClassforEachLabel = '',
   addClassforInput = '',
@@ -39,7 +40,7 @@ export default function InputCheckboxGroup({
   }, [inputValue1])
 
   return (
-    <div className="input-checkbox-section">
+    <div className={`${addClassforDiv} input-checkbox-section`}>
       <label className={`${addClassforTitleLabel} section-label`}>
         {label}
       </label>

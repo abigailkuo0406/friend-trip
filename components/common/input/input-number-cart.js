@@ -17,6 +17,7 @@ export default function InputNumber({
   width,
   addClassforLabel,
   addClassforInput,
+  checkValue=true,
 }) {
   // 預設數字防呆
   if (value > max) {
@@ -75,11 +76,14 @@ export default function InputNumber({
           placeholder={placeholder}
           className={`w-100 input-text input-select input-number ${addClassforInputState} ${
             hideArrows ? 'hide-arrows' : ''
+          } ${
+            checkValue ? '' : 'input-disable'
           }`}
           value={inputValue}
           type="number"
           onBlur={handleBlur}
           onChange={handleChange}
+          disabled={!checkValue}
         ></input>
       </div>
       <div className="input-error">{errorMessage}</div>

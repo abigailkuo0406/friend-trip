@@ -28,6 +28,7 @@
     "moment": "^2.29.4",
     "next": "13.4.2",
     "nodemon": "^2.0.22",
+    "owl.carousel": "^2.3.4",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
     "react-bootstrap": "^2.8.0",

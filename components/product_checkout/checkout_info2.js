@@ -1,5 +1,9 @@
 import React, { useState, useEffect, Fragment } from 'react'
-
+import Image from 'next/image'
+import creditIcon1 from '@/public/yun/credit-card-icon/credit-icon1.png'
+import creditIcon2 from '@/public/yun/credit-card-icon/credit-icon2.png'
+import creditIcon3 from '@/public/yun/credit-card-icon/credit-icon3.png'
+import creditIcon4 from '@/public/yun/credit-card-icon/credit-icon4.png'
 import InputText from '@/components/common/input/input-text'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputNumberMany from '@/components/common/input/input-number-many'
@@ -19,7 +23,7 @@ export default function CheckoutInfo2({
 
 })
 {
-  const [paymentMethod, setPaymentMethod] = useState ('')
+  const [paymentMethod, setPaymentMethod] = useState ('credit')
   const [paymentMethodComponent, setPaymentMethodComponent] = useState('')
   
 
@@ -37,6 +41,12 @@ export default function CheckoutInfo2({
     if(paymentMethod == 'credit'){
       setPaymentMethodComponent(
         <Fragment>
+        <div className='credit-icons'>
+          <Image src={creditIcon1} alt="visa-icon"></Image>
+          <Image src={creditIcon2} alt="mastercard-icon"></Image>
+          <Image src={creditIcon3} alt="jcb-icon"></Image>
+          <Image src={creditIcon4} alt="americanexpress-icon"></Image>
+        </div>
       <InputNumberMany
         id="CardNum"
         label="請輸入信用卡號"
@@ -48,7 +58,7 @@ export default function CheckoutInfo2({
         getName={()=>{}}
         setError={setCreditError}
         setErrorTracker={setCreditErrorTracker}
-        widthDiv="input-width-100pa" // 調整 <div> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+        widthDiv="" // 調整 <div> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
         widthInput="input-width-5rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
         middleText="-"
         addClassforLabel="" // 如果要在 label 添加 class
@@ -112,7 +122,7 @@ export default function CheckoutInfo2({
             btnText="信用卡刷卡"
             // addIMGLeft={<BsArrowLeftShort></BsArrowLeftShort>} // 增加左側圖示 // 使用 react-icon，記得要 import 進入
             // addIMGRight={<BsArrowRightShort></BsArrowRightShort>} // 增加右側圖示 // 使用 react-icon，記得要 import 進入
-            addClassforButton="btn-light" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+            addClassforButton={paymentMethod == 'credit' ? "btn-dark" : "btn-light"} //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
             disabled={false} // fase：可點，true：不可點
             target=""
             onClick={payCredit}
@@ -123,7 +133,7 @@ export default function CheckoutInfo2({
             btnText="LinePay"
             // addIMGLeft={<BsArrowLeftShort></BsArrowLeftShort>} // 增加左側圖示 // 使用 react-icon，記得要 import 進入
             // addIMGRight={<BsArrowRightShort></BsArrowRightShort>} // 增加右側圖示 // 使用 react-icon，記得要 import 進入
-            addClassforButton="btn-light" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+            addClassforButton={paymentMethod == 'line' ? "btn-dark" : "btn-light"} //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
             disabled={false} // fase：可點，true：不可點
             target=""
             onClick={payLinePay}
