@@ -76,6 +76,18 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
       setVerifyEmail(false)
     }
   }
+  const [verifyid, setVerifyId] = useState(true)
+  function validateidnumber(value) {
+    const idPattern = /^[A-Z][12]\d{8}$/
+    // console.log(emailPattern.test(value))
+    if (idPattern.test(value)) {
+      setEmail(value)
+      console.log(id)
+      setVerifyId(true)
+    } else {
+      setVerifyId(false)
+    }
+  }
   return (
     <>
       <div className={styles.main}>
@@ -107,9 +119,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
             </div>
             {/* {verify && <div style={{ color: 'green' }}>請輸入電子信箱</div>} */}
             {!verifyemail && (
-              <div className="align-items-center" style={{ color: 'red' }}>
-                格式錯誤
-              </div>
+              <div style={{ color: 'red' }}>電子信箱格式錯誤</div>
             )}
           </div>
           <div className={styles.inputstyle}>
@@ -161,11 +171,16 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
                 label="身分證字號"
                 name="id_number"
                 value={aaa.id}
-                getValue={(value) => (value != '' ? setId(value) : setId(''))}
+                getValue={(value) =>
+                  value != '' ? validateidnumber(value) : setId('')
+                }
                 getName={() => 'whatever'}
                 width="input-width-100pa"
               ></InputText>
             </div>
+            {!verifyid && (
+              <div style={{ color: 'red' }}>身分證字號格式錯誤</div>
+            )}
           </div>
           <div className={styles.inputstyle}>
             <InputRadioGroup

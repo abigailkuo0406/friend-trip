@@ -1,6 +1,6 @@
 import React from 'react'
 import BtnNormal from '@/components/common/button/btn-normal'
-export default function PairBtns2({ setPage }) {
+export default function PairBtns2({ setPage, setImgIndex, imgIndex }) {
   return (
     <>
       <div className="d-flex justify-content-center gap-5 mt-3">
@@ -11,6 +11,7 @@ export default function PairBtns2({ setPage }) {
           addClassforButton="btn-dark"
           onClick={() => {
             setPage(1)
+            setImgIndex(imgIndex + 1)
           }}
         />
       </div>

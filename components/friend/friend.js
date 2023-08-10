@@ -38,8 +38,8 @@ export default function Friend1({ setPage, memberInfo }) {
               <Image
                 className={styles.img}
                 src={`http://localhost:3002/face/${auth.images}`}
-                width={100}
-                height={100}
+                width={70}
+                height={70}
               />
             </div>
             <div className={styles.labelbar}>

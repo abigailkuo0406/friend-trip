@@ -14,6 +14,7 @@
 .labelbar{
     display: flex;
     font-size: 10px;
+    margin-bottom: 5px;
 }
 /* .p {
     font-size: 10px;
@@ -36,4 +37,5 @@
 }
 .img{
     border-radius: 50%;
+    margin-bottom: 5px;
 }
