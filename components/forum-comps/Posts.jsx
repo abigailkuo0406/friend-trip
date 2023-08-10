@@ -1,6 +1,6 @@
 import Post from './Post'
 
-export default function Posts({ posts, comments }) {
+export default function Posts({ posts, comments, setPosts }) {
   return (
     <div>
       {posts.map(function (post) {
@@ -15,6 +15,7 @@ export default function Posts({ posts, comments }) {
             articleOfPost={post.content}
             comments={comments}
             postMember_id={post.member_id}
+            setPosts={setPosts}
           />
         )
       })}
