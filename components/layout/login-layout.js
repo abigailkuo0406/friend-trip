@@ -2,14 +2,14 @@
 import Navbar from './navbar'
 import Footer from './footer'
 import { AuthContextProvider } from '@/context/AuthContext'
-import { CartContextProvider } from '@/context/CartContext'
+import { SearchContextProvider } from '@/context/SearchContext'
 
 
 export default function LoginLayout({ children }) {
   return (
     <>
       <AuthContextProvider>
-      <CartContextProvider>
+      <SearchContextProvider>
         <div>
           <main className="container">
             <div class="row g-5 main-background d-flex justify-content-center">
@@ -18,7 +18,7 @@ export default function LoginLayout({ children }) {
           </main>
           <Footer />
         </div>
-        </CartContextProvider>
+        </SearchContextProvider>
       </AuthContextProvider>
     </>
   )

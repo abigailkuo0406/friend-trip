@@ -42,9 +42,14 @@ export default function CollectionCartModalAdd({
       </div>
       <div className="modal-body">
         <div className="body-product-img"><Image
-                src={fakeIimg1}
-                className=""
-                alt=""
+                  src={`/yun/product-img/pi-${productID}.png`}
+                  className=""
+                  alt={`${productID}'s product img`}
+                  width={300}
+                  height={300}
+                  onError={(e) => {
+                    e.target.srcset = '/yun/product-img/no-img.png';
+                  }}
               ></Image></div>
         <div className="body-product-info">
           <h6 className="product-info-title">{productName}</h6>

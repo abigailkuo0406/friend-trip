@@ -3,13 +3,13 @@ import Footer from './footer'
 import Sidebar from '@/components/common/sidebar/sidebar'
 import Navbar from '@/components/common/navbar/navbar'
 import { AuthContextProvider } from '@/context/AuthContext'
-import { CartContextProvider } from '@/context/CartContext'
+import { SearchContextProvider } from '@/context/SearchContext'
 
 export default function AdminLayout({ children, page }) {
   return (
     <>
       <AuthContextProvider>
-      <CartContextProvider>
+      <SearchContextProvider>
         <div>
           <Navbar />
           <main className="container">
@@ -22,7 +22,7 @@ export default function AdminLayout({ children, page }) {
           </main>
           <Footer />
         </div>
-        </CartContextProvider>
+        </SearchContextProvider>
       </AuthContextProvider>
     </>
   )

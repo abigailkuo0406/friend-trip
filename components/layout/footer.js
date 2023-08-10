@@ -3,8 +3,8 @@ import React from 'react'
 export default function Footer() {
   return (
     <>
-      <footer className="pt-5 my-5 text-body-secondary border-top">
-        Created by the Bootstrap team &middot; &copy; 2023
+      <footer className="text-body-secondary">
+        <p>Created by iSpan MFEE36 team B, &copy; 2023</p>
       </footer>
     </>
   )

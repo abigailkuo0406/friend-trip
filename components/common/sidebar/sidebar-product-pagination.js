@@ -35,10 +35,7 @@ export default function SidebarProductPagination() {
       })
     setCurrentPage(router.query.page)
     setLastPage(data.totalPages.toString())
-    console.log('xxx', data.totalPages)
     if (router.query.page > data.totalPages) {
-      // alert('?page=' + theLastPage)
-      // router.push('?page=' + theLastPage.toString())
     }
   }, [router.query])
 
@@ -50,11 +47,7 @@ export default function SidebarProductPagination() {
   if (data.page == undefined) {
   } else if (router.query.page < 1) {
     router.push('?page=1')
-  } //else if (router.query.page > lastPage) {
-  //   alert('?page=' + theLastPage)
-  //   // router.push('?page=' + theLastPage.toString())
-  // }
-
+  }
   return (
     <>
       <div className="card card-pagination">
