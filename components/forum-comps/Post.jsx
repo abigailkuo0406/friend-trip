@@ -60,10 +60,6 @@ export default function Post({
         post_id={post_id}
         setDeletemodalStatus={setDeletemodalStatus}
       />
-      <ImgForThePost imgSrc={imgOfPost} className="my-md-4" />
-      <ArticleOfPost content={articleOfPost} className="my-md-4" />
-      <ShowComments comments={comments} post_id={post_id} />
-      {isLoggedIn && <AddComment post_id={post_id} comments={comments} />}
       {/* 👇 要跟組員使用相同的彈跳視窗 */}
       <div style={{ display: deletemodalStatus }}>
         <h3>do you wnat to delete this post?</h3>
@@ -83,6 +79,10 @@ export default function Post({
         />
       </div>
       {/* ☝️ 要跟組員使用相同的彈跳視窗 */}
+      <ImgForThePost imgSrc={imgOfPost} className="my-md-4" />
+      <ArticleOfPost content={articleOfPost} className="my-md-4" />
+      <ShowComments comments={comments} post_id={post_id} />
+      {isLoggedIn && <AddComment post_id={post_id} comments={comments} />}
     </div>
   )
 }
