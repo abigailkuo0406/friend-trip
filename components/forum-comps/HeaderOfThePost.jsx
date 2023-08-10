@@ -39,7 +39,11 @@ function HeaderOfThePost({
           />
           {/* 判斷登入的會員是不是發文者，是的話就顯示垃圾桶符號 */}
           {isLoggedIn == postMember_id ? (
-            <div role="presentation" onClick={deletePost}>
+            <div
+              role="presentation"
+              onClick={deletePost}
+              style={{ cursor: 'pointer' }}
+            >
               🗑️
             </div>
           ) : (
