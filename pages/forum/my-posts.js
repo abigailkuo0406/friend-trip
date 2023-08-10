@@ -29,7 +29,7 @@ export default function ForumHome() {
     <>
       <NavBar />
       <input name="member_id" defaultValue={auth.member_id} hidden />
-      <Posts posts={posts} comments={comments} />
+      <Posts posts={posts} comments={comments} setPosts={setPosts} />
     </>
   )
 }
