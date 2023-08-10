@@ -118,14 +118,14 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
   return (
     <>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModalToggle"
         aria-hidden="true"
         aria-labelledby="exampleModalToggleLabel"
         tabindex="-1"
       >
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
             <div className="container-fluid">
               <div className="d-flex mx-5 my-3 row">
                 <div className={`modal-body col-4`}>

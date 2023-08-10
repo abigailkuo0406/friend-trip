@@ -154,3 +154,7 @@
 .restTittle {
   margin: 0;
 }
+
+.modalClose:focus{
+  box-shadow: none;
+}

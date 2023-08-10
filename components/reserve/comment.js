@@ -30,17 +30,17 @@ export default function Comment({
   return (
     <>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
+        <div className="modal-dialog">
+          <div className="modal-content">
             <div className="container position-relative my-4">
               <form id="comment" onSubmit={handleSubmit}>
-                <div class="modal-body">
+                <div className="modal-body">
                   <h1 className="text-center">{restName}</h1>
                   {/* <p className="text-center">訂單編號{reservationId}</p> */}
                   <input name="RestID" id="RestID" value={restId} hidden />
@@ -63,7 +63,7 @@ export default function Comment({
                   </div>
                   <p className="text-center restLabel mt-4">請給予餐廳評分</p>
                   <div className={`d-flex starBlock justify-content-center`}>
-                    <div class="star-cb-group">
+                    <div className="star-cb-group">
                       <input
                         type="radio"
                         id="rating-5"
@@ -105,12 +105,11 @@ export default function Comment({
                         id="rating-1"
                         name="rating"
                         value="1"
-                        checked
                       />
                       <label for="rating-1" className="restRadioLabel">
                         1
                       </label>
-                      {/* <input type="radio" id="rating-0" name="rating" value="0" class="star-cb-clear" /><label for="rating-0">0</label> */}
+                      {/* <input type="radio" id="rating-0" name="rating" value="0" className="star-cb-clear" /><label for="rating-0">0</label> */}
                     </div>
                   </div>
                   <div className="mt-3">
@@ -127,7 +126,7 @@ export default function Comment({
                     />
                   </div>
                 </div>
-                <div class="modal-footer">
+                <div className="modal-footer">
                   <Btn
                     btnText="取消評論"
                     addClassforButton="btn-light"
@@ -141,8 +140,8 @@ export default function Comment({
                     disabled={false} // fase：可點，true：不可點
                     bsModl3={`modal`}
                   />
-                  {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button> */}
+                  {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Save changes</button> */}
                 </div>
               </form>
             </div>

@@ -153,7 +153,7 @@ export default function restIntro({
   return (
     <>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModalToggle"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
@@ -161,12 +161,12 @@ export default function restIntro({
         aria-labelledby="exampleModalToggleLabel"
         tabindex="-1"
       >
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
+        <div className="modal-dialog modal-dialog-centered modal-lg">
+          <div className="modal-content">
+            <div className="modal-header">
               <button
                 type="button"
-                class="btn-close me-3"
+                className="btn-close me-3 modalClose"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>

@@ -96,8 +96,8 @@ export default function Reserve() {
       {reserve.totalRows > 0 ? (
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item">
+            <ul className="pagination">
+              <li className="page-item">
                 <Link
                   className="page-link"
                   href={'?' + new URLSearchParams('page=1').toString()}
@@ -106,7 +106,7 @@ export default function Reserve() {
                   <span aria-hidden="true">&laquo;</span>
                 </Link>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <Link
                   className="page-link"
                   href={
@@ -148,7 +148,7 @@ export default function Reserve() {
                     </li>
                   )
                 })}
-              <li class="page-item">
+              <li className="page-item">
                 <Link
                   className="page-link"
                   href={
@@ -166,7 +166,7 @@ export default function Reserve() {
                   </span>
                 </Link>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <Link
                   className="page-link"
                   href={

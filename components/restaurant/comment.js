@@ -31,7 +31,7 @@ export default function Comment({
                         height={20} />
                     <p className={`restTittle ms-3 ${styles.commentTitle}`}>{commentMemberName}</p>
                     <div className={`d-flex starBlock justify-content-center`}>
-                        <div class="star-cb-group ms-3">
+                        <div className="star-cb-group ms-3">
                             {Array(5 - rate)
                                 .fill(1)
                                 .map((v, i) => {

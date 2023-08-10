@@ -202,7 +202,7 @@ export default function ReserveItem({
                 </div>
               </div>
 
-              <div class="d-flex mt-3">
+              <div className="d-flex mt-3">
                 {
                   itemState == 0 &&
                   <Button btnText="詳細資訊" onClick={routerChange} addClassforButton={styles.stateCancel} />

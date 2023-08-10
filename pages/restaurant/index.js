@@ -280,8 +280,8 @@ export default function Rest() {
 
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation">
-            <ul class="pagination">
-              <li class={`page-item`}>
+            <ul className="pagination">
+              <li className={`page-item`}>
                 <Link
                   className={`page-link ${IndexSty.restItem}`}
                   href={'?' + new URLSearchParams('page=1').toString()}
@@ -290,7 +290,7 @@ export default function Rest() {
                   <span aria-hidden="true">&laquo;</span>
                 </Link>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <Link
                   className={`page-link ${IndexSty.restItem}`}
                   href={
@@ -333,7 +333,7 @@ export default function Rest() {
                     </li>
                   )
                 })}
-              <li class="page-item">
+              <li className="page-item">
                 <Link
                   className={`page-link ${IndexSty.restItem}`}
                   href={
@@ -351,7 +351,7 @@ export default function Rest() {
                   </span>
                 </Link>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <Link
                   className={`page-link ${IndexSty.restItem}`}
                   href={
