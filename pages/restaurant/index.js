@@ -11,7 +11,12 @@ import Btn from '@/components/common/button/btn-normal'
 import RestIntro from '@/components/restaurant/restaurant-intro'
 
 import IndexSty from './restaurant.module.css'
-import { MdNavigateNext, MdNavigateBefore,MdKeyboardDoubleArrowRight,MdKeyboardDoubleArrowLeft } from 'react-icons/md'
+import {
+  MdNavigateNext,
+  MdNavigateBefore,
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardDoubleArrowLeft,
+} from 'react-icons/md'
 
 import Swal from 'sweetalert2'
 
@@ -59,6 +64,8 @@ export default function Rest() {
       .then((restaurantsData) => {
         setRestaurants(restaurantsData)
       })
+    console.log('usp', usp)
+    console.log('usp toString', usp.toString)
   }, [router.query])
 
   useEffect(() => {
@@ -150,7 +157,7 @@ export default function Rest() {
       inputValueArea != undefined &&
       inputValueMeal != undefined
     ) {
-      router.push(`?city=${inputValueArea}&&meal=${inputValueMeal}`)
+      router.push(`?city=${inputValueArea}&meal=${inputValueMeal}`)
       console.log('ff')
     } else {
       router.push(``)
@@ -191,6 +198,9 @@ export default function Rest() {
     setRIntro(rIntro)
     setRImg(rImg)
   }
+  const query2 = { ...router.query }
+  console.log('query2', query2)
+  console.log('query2City', query2.city)
 
   return (
     <>
@@ -202,7 +212,7 @@ export default function Rest() {
           onSubmit={searchRestaurant}
         >
           <div className={`d-flex align-items-center justify-content-between`}>
-            <div className='me-3'>
+            <div className="me-3">
               <SelectOption
                 id="area"
                 label="地區"
@@ -285,10 +295,17 @@ export default function Rest() {
               <li className={`page-item`}>
                 <Link
                   className={`page-link ${IndexSty.restItem}`}
-                  href={'?' + new URLSearchParams('page=1').toString()}
+                  href={
+                    '?' +
+                    (query2.city ? 'city=' + query2.city + '&' : '') +
+                    (query2.meal ? 'meal=' + query2.meal + '&' : '') +
+                    new URLSearchParams('page=1').toString()
+                  }
                   aria-label="Previous"
                 >
-                  <span aria-hidden="true"><MdKeyboardDoubleArrowLeft /></span>
+                  <span aria-hidden="true">
+                    <MdKeyboardDoubleArrowLeft />
+                  </span>
                 </Link>
               </li>
               <li className="page-item">
@@ -296,6 +313,8 @@ export default function Rest() {
                   className={`page-link ${IndexSty.restItem}`}
                   href={
                     '?' +
+                    (query2.city ? 'city=' + query2.city + '&' : '') +
+                    (query2.meal ? 'meal=' + query2.meal + '&' : '') +
                     new URLSearchParams(
                       parseInt(restaurants.page) > 1
                         ? `page=${parseInt(restaurants.page) - 1}`
@@ -315,6 +334,7 @@ export default function Rest() {
                 .map((v, i) => {
                   const p = restaurants.page - 2 + i
                   const query = { ...router.query }
+                  console.log('query', query)
                   if (p < 1 || p > restaurants.totalPages) return
                   query.page = p
                   return (
@@ -339,10 +359,12 @@ export default function Rest() {
                   className={`page-link ${IndexSty.restItem}`}
                   href={
                     '?' +
+                    (query2.city ? 'city=' + query2.city + '&' : '') +
+                    (query2.meal ? 'meal=' + query2.meal + '&' : '') +
                     new URLSearchParams(
                       parseInt(restaurants.page) < restaurants.totalPages
                         ? `page=${parseInt(restaurants.page) + 1}`
-                        : `page=${restaurants.totalPages}`
+                        : `page=${restaurants.page}`
                     ).toString()
                   }
                   aria-label="Previous"
@@ -357,13 +379,19 @@ export default function Rest() {
                   className={`page-link ${IndexSty.restItem}`}
                   href={
                     '?' +
+                    (query2.city ? 'city=' + query2.city + '&' : '') +
+                    (query2.meal ? 'meal=' + query2.meal + '&' : '') +
                     new URLSearchParams(
-                      `page=${restaurants.totalPages}`
+                      parseInt(restaurants.totalPages) == 0
+                        ? `page=${restaurants.page}`
+                        : `page=${restaurants.totalPages}`
                     ).toString()
                   }
                   aria-label="Next"
                 >
-                  <span aria-hidden="true"><MdKeyboardDoubleArrowRight /></span>
+                  <span aria-hidden="true">
+                    <MdKeyboardDoubleArrowRight />
+                  </span>
                 </Link>
               </li>
             </ul>
