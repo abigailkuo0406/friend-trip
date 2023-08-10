@@ -41,8 +41,11 @@ function AddComment({ post_id, comments }) {
         ref={msgRef}
         onKeyUp={keyUpHandler}
         placeholder="發表意見..."
+        className='input-text input-width-70pa'
       />
-      <button onClick={handleSendMsg}>發表</button>
+      <button className="btn btn-dark mx-1 " onClick={handleSendMsg}>
+        發表
+      </button>
     </div>
   )
 }
