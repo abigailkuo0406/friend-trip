@@ -18,6 +18,7 @@ export default function Post({
   articleOfPost,
   comments,
   postMember_id,
+  setPosts,
 }) {
   const { auth } = useContext(AuthContext)
   // 👇 判斷是否登入，兩個驚歎號作用為強制轉換數字為布林值
@@ -35,6 +36,10 @@ export default function Post({
         console.log(r.data.message)
         if (r.data.message == 'deleted') {
           // alert('資料成功刪除')
+          setPosts((old) => {
+            return old.filter((i) => i.post_id != post_id)
+          })
+
           Swal.fire({
             width: 400,
             title: '所選貼文已刪除',
