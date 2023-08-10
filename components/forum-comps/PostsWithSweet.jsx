@@ -1,12 +1,11 @@
-import Post from './Post'
+import PostWithSweetAlert from './PostWithSweetAlert'
 
-export default function Posts({ posts, comments, setPosts }) {
+export default function PostsWithSweet({ posts, comments }) {
   return (
     <div>
       {posts.map(function (post) {
-        {/* 如果登入者尚未發文過，顯示 “您還沒有發過文，新增文章吧！” */ }
         return (
-          <Post
+          <PostWithSweetAlert
             key={post.post_id}
             post_id={post.post_id}
             avatarOfPostAuthor={post.images}
@@ -16,7 +15,6 @@ export default function Posts({ posts, comments, setPosts }) {
             articleOfPost={post.content}
             comments={comments}
             postMember_id={post.member_id}
-            setPosts={setPosts}
           />
         )
       })}
