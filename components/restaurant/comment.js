@@ -51,10 +51,9 @@ export default function Comment({
                     </div>
                 </div>
                 <div className={`${styles.commentText}`}>
-                    <p className={`restTittle`}>{comment}</p>
-
+                    <p>{comment}</p>
                 </div>
-            </div >
+            </div>
         </>
     )
 }

@@ -11,7 +11,8 @@ import Btn from '@/components/common/button/btn-normal'
 import RestIntro from '@/components/restaurant/restaurant-intro'
 
 import IndexSty from './restaurant.module.css'
-import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
+import { MdNavigateNext, MdNavigateBefore,MdKeyboardDoubleArrowRight,MdKeyboardDoubleArrowLeft } from 'react-icons/md'
+
 import Swal from 'sweetalert2'
 
 export default function Rest() {
@@ -287,7 +288,7 @@ export default function Rest() {
                   href={'?' + new URLSearchParams('page=1').toString()}
                   aria-label="Previous"
                 >
-                  <span aria-hidden="true">&laquo;</span>
+                  <span aria-hidden="true"><MdKeyboardDoubleArrowLeft /></span>
                 </Link>
               </li>
               <li className="page-item">
@@ -362,7 +363,7 @@ export default function Rest() {
                   }
                   aria-label="Next"
                 >
-                  <span aria-hidden="true">&raquo;</span>
+                  <span aria-hidden="true"><MdKeyboardDoubleArrowRight /></span>
                 </Link>
               </li>
             </ul>

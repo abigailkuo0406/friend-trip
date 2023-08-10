@@ -5,6 +5,7 @@ import TextArea from '@/components/common/input/textarea'
 import Btn from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext'
 import styles from '@/components/reserve/reserve.module.css'
+import Swal from 'sweetalert2'
 
 export default function Comment({
   reservationId,
@@ -25,6 +26,16 @@ export default function Comment({
       method: 'POST',
       body: formData,
     })
+    Swal.fire({
+      width: 400,
+      text: '評論已發布',
+      icon: 'success',
+      iconColor: '#FABCBF',
+      color: '#674C87',
+      confirmButtonColor: '#674C87',
+      showConfirmButton: true,
+      // timer: 1500,
+    })
   }
 
   return (
@@ -41,7 +52,9 @@ export default function Comment({
             <div className="container position-relative my-4">
               <form id="comment" onSubmit={handleSubmit}>
                 <div className="modal-body">
-                  <h1 className="text-center">{restName}</h1>
+                  <h1 className={`text-center ${styles.cardHead} mb-2`}>
+                    {restName}
+                  </h1>
                   {/* <p className="text-center">訂單編號{reservationId}</p> */}
                   <input name="RestID" id="RestID" value={restId} hidden />
                   <input
@@ -61,7 +74,11 @@ export default function Comment({
                     />
                     <p className="my-auto mx-3">{auth.member_name}</p>
                   </div>
-                  <p className="text-center restLabel mt-4">請給予餐廳評分</p>
+                  <p
+                    className={`text-center restLabel ${styles.cardHead} mt-4`}
+                  >
+                    請給予餐廳評分
+                  </p>
                   <div className={`d-flex starBlock justify-content-center`}>
                     <div className="star-cb-group">
                       <input
