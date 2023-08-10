@@ -17,18 +17,19 @@
   overflow: hidden;
 }
 
-.carousel{
+.carousel {
   width: 100%;
 }
 
 .cardHead {
   margin: 0;
   padding: 0;
+  color:#674C87 ;
 }
 
 .area {
   margin: 0;
-  padding: 6px;
+  padding: 4px;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 50rem;
@@ -48,7 +49,7 @@
   border-radius: 0px 20px 20px 0px;
 }
 
-.reserveBtn>span {
+.reserveBtn > span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,6 +63,15 @@
   color: white;
 }
 
-.reserveBtn:hover>span {
+.reserveBtn:hover > span {
   color: white;
+}
+
+.cardText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  color: #646464;
 }

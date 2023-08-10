@@ -58,12 +58,12 @@ export default function ListItem({
     return (
         <>
             <div className="card mb-3">
-                <div className="row">
-                    <div className="col-md-3 my-3">
-                        <div className={styles.imgClass}>
+                <div className="d-flex">
+                    <div className="my-3 mx-3">
+                        <div className={`${styles.imgClass}`}>
                             <Image
                                 src={`http://localhost:3002/restImg/${restImg}`}
-                                className={`ms-3 ${styles.img1}`}
+                                className={`${styles.img1}`}
                                 alt={restImg}
                                 width={200}
                                 height={200}
@@ -72,13 +72,15 @@ export default function ListItem({
                         </div>
                     </div>
 
-                    <div className="col-md-7 my-3">
+                    <div className="my-3">
                         <div className="card-body">
                             <div className={` d-flex align-items-center ${styles.cardHead}`}>
                                 <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
                                 <p className={`ms-4 ${styles.area}`}>{restArea}</p>
+                                <p className={`ms-2 ${styles.area}`}>{restMeal}</p>
+
                             </div>
-                            <p className="card-text text-truncate my-4">{restIntro}</p>
+                            <p className={`card-text my-4 ${styles.cardText}`}>{restIntro}</p>
                         </div>
 
                     </div>

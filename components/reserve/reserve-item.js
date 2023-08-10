@@ -127,22 +127,22 @@ export default function ReserveItem({
 
   return (
     <>
-      <div className="card mb-3 radius20px">
-        <div className="row g-0 my-3">
-          <div className="col-md-4 ">
-            <div className={``}>
+      <div className="card mb-3">
+        <div className="d-flex">
+          <div className="my-3 mx-3">
+            <div className={`${styles.imgClass} `}>
               <Image
                 src={`http://localhost:3002/restImg/${restImg}`}
-                className={`rounded ${styles.img1}`}
-                width={200}
-                height={200}
+                className={`${styles.img1}`}
+                width={250}
+                height={250}
                 priority={true}
               />
             </div>
           </div>
 
-          <div className="col-md-8">
-            <div className="card-body ms-3">
+          <div className="my-3 w-100">
+            <div className="card-body">
               <div className={`d-flex align-items-center ${styles.cardHead}`}>
                 <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
                 <p
@@ -153,24 +153,24 @@ export default function ReserveItem({
                 </p>
               </div>
 
-              <div className="d-flex mt-2">
-                <p className={`card-text me-2 ${styles.text}`}>訂位資訊：</p>
-                <p className={`card-text me-2 ${styles.text}`}>
+              <div className="d-flex my-3">
+                <p className={`card-text me-2 ${styles.text} restLabel`}>訂位資訊：</p>
+                <p className={`card-text me-2 ${styles.text} restLabel`}>
                   {dateArr[0]}
                   <span className="ms-1">年</span>
                 </p>
-                <p className={`card-text me-2 ${styles.text}`}>
+                <p className={`card-text me-2 ${styles.text} restLabel`}>
                   {dateArr[1]}
                   <span className="ms-1">月</span>
                 </p>
-                <p className={`card-text me-4 ${styles.text}`}>
+                <p className={`card-text me-4 ${styles.text} restLabel`}>
                   {dateArr[2]}
                   <span className="ms-1">日</span>
                 </p>
-                <p className={`card-text me-4 ${styles.text}`}>
+                <p className={`card-text me-4 ${styles.text} restLabel`}>
                   {timeArr[0]}:{timeArr[1]}
                 </p>
-                <p className={`card-text me-2 ${styles.text}`}>
+                <p className={`card-text me-2 ${styles.text} restLabel`}>
                   {reservePeopleNum}
                   <span className="ms-1">位成人</span>
                 </p>
@@ -191,13 +191,13 @@ export default function ReserveItem({
                               height={50}
                             />
                           ) : (
-                            <p>本次訂位無邀請好友</p>
+                            <p className={`${styles.noInvite}`}>本次訂位無邀請好友</p>
                           )}
                         </div>
                       )
                     })
                   ) : (
-                    <p>本次訂位無邀請好友</p>
+                    <p className={`${styles.noInvite}`}>本次訂位無邀請好友</p>
                   )}
                 </div>
               </div>

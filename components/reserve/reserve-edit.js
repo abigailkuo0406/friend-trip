@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react'
-import Image from 'next/image'
-import Button from '@/components/common/button/btn-normal'
-import FriendSty from '@/components/invite/friends-list.module.css'
-import NumberInput from '@/components/common/input/input-number'
-import RadioGroupInput from '@/components/common/input/input-radio-group'
-import DateInput from '@/components/common/input/input-date2'
-import AuthContext from '@/context/AuthContext'
-import InviteModalEdit from '@/components/invite/invite-modal-edit'
+import { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
+import AuthContext from '@/context/AuthContext'
+
+import Button from '@/components/common/button/btn-normal'
+import RadioGroupInput from '@/components/common/input/input-radio-group'
+import NumberInput from '@/components/common/input/input-number'
+import InviteModalEdit from '@/components/invite/invite-modal-edit'
+import DateInput from '@/components/common/input/input-date2'
+
+import FriendSty from '@/components/invite/friends-list.module.css'
 import styles from '@/pages/member/reserve/rid.module.css'
 import InfoSty from '@/components/restaurant/intro.module.css'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import Swal from 'sweetalert2'
-
 
 export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
   const router = useRouter()
@@ -61,17 +62,25 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
   }
 
   useEffect(() => {
-    reserveDateInputVale && reserveTimeInputValue && inviteList.length <= reservePeopleNumValue - 1 && setModalClose('modal')
+    reserveDateInputVale &&
+      reserveTimeInputValue &&
+      inviteList.length <= reservePeopleNumValue - 1 &&
+      setModalClose('modal')
 
-    reserveDateInputVale && reserveTimeInputValue && inviteList.length > reservePeopleNumValue - 1 && setModalClose('')
+    reserveDateInputVale &&
+      reserveTimeInputValue &&
+      inviteList.length > reservePeopleNumValue - 1 &&
+      setModalClose('')
 
     inviteList.length <= reservePeopleNumValue - 1 && setNumOfPeopleVerify(true)
-
-  }, [reserveDateInputVale, reserveTimeInputValue, reservePeopleNumValue, inviteList.length])
+  }, [
+    reserveDateInputVale,
+    reserveTimeInputValue,
+    reservePeopleNumValue,
+    inviteList.length,
+  ])
 
   console.log('modalClose改變', modalClose)
-
-
 
   // 送出表單
   const handleSubmit = (e) => {
@@ -120,12 +129,12 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
             <div className="container-fluid">
               <div className="d-flex mx-5 my-3 row">
                 <div className={`modal-body col-4`}>
-                  <h2 className={`card-text ${styles.restName}`}>
+                  <h2 className={`card-text ${styles.restName} mb-3`}>
                     {reserveDetails ? reserveDetails.RestName : ''}
                   </h2>
                   {reserveDetails ? (
                     <form id="reserveEdit" onSubmit={handleSubmit}>
-                      <div className={`${InfoSty.infoBox}`}>
+                      <div className={`${InfoSty.infoBox} mb-3`}>
                         <DateInput
                           id="reserveDate"
                           name="reserve_date"
@@ -139,7 +148,7 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                         />
                       </div>
 
-                      <div className={`d-flex`}>
+                      <div className={`d-flex mb-3`}>
                         <RadioGroupInput
                           label="訂位時間"
                           name="reserve_time"
@@ -157,7 +166,7 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                           checked={`${timeArr[0]}:${timeArr[1]}`}
                         />
                       </div>
-                      <div className={`${InfoSty.infoBox}`}>
+                      <div className={`${InfoSty.infoBox} mb-3`}>
                         <NumberInput
                           id="PeopleNum"
                           label="訂位人數"
@@ -181,9 +190,15 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                     ''
                   )}
 
-                  <label className="restLabel mb-3">與會好友</label>
-                  <div className="d-flex align-items-center">
-                    {inviteList.length > 0 ? (
+                  <label className="restLabel">與會好友</label>
+                  {inviteList.length <= 0 && (
+                    <p className={`restLabel ${styles.noInviteEdit}`}>
+                      本次訂位尚無邀請好友
+                    </p>
+                  )}
+
+                  <div className="d-flex align-items-center mt-3">
+                    {inviteList.length > 0 &&
                       inviteList.map((v, i) => {
                         return (
                           <div key={i} className="me-2">
@@ -199,12 +214,7 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                             />
                           </div>
                         )
-                      })
-                    ) : (
-                      <p className="restLabel">本次訂位無邀請好友</p>
-                    )}
-
-
+                      })}
 
                     <div>
                       <Button
@@ -216,13 +226,12 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                         addClassforButton={styles.ivBtn}
                       />
                     </div>
-
                   </div>
-                  {!numOfPeopleVerify &&
+                  {!numOfPeopleVerify && (
                     <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
                       最多可邀請{reservePeopleNumValue - 1}位好友
                     </p>
-                  }
+                  )}
                 </div>
 
                 <div className="d-flex justify-content-center mt-4">
@@ -232,24 +241,24 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                     bsModl3="modal"
                     addClassforButton="btn-dark me-5"
                   />
-                  {modalClose == '' &&
+                  {modalClose == '' && (
                     <Button
                       btnText="修改完成"
                       addClassforButton="btn-dark"
-                      bsModl3=''
+                      bsModl3=""
                       onClick={verifyHint}
                     ></Button>
-                  }
-                  {modalClose == 'modal' &&
+                  )}
+                  {modalClose == 'modal' && (
                     <Button
                       type="submit"
                       value="submit"
                       btnText="修改完成"
                       addClassforButton="btn-dark"
                       onClick={handleSubmit}
-                      bsModl3='modal'
+                      bsModl3="modal"
                     ></Button>
-                  }
+                  )}
                 </div>
               </div>
             </div>

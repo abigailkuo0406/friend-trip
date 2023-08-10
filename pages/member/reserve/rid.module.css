@@ -15,6 +15,8 @@
 
 .label {
   font-size: 16px;
+  color: #525252;
+
 }
 .text {
   font-size: 32px;
@@ -24,10 +26,26 @@
   font-size: 1.2rem;
   color: #674c87;
 }
-.ivBtn{
+.ivBtn {
   background-color: none;
   margin: 0;
   padding: 0;
   color: #874c6d;
+}
+.noInvite {
+  font-size: 18px;
+  color: #d0a5ca;
+  /* font-style: italic; */
+}
 
+.noInviteEdit {
+  font-size: 16px;
+  color: #525252;
+  font-style: italic;
+
+}
+.cancelText {
+  font-size: 24px;
+  color: #525252;
+  font-weight: 700;
 }

@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import AdminLayout from '@/components/layout/admin-layout'
+import Image from 'next/image'
+import AuthContext from '@/context/AuthContext'
+import Link from 'next/link'
+
 import Button from '@/components/common/button/btn-normal'
 import ReserveEdit from '@/components/reserve/reserve-edit'
-import FriendSty from '@/components/invite/friends-list.module.css'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import AuthContext from '@/context/AuthContext'
-import styles from '@/pages/member/reserve/rid.module.css'
-import Link from 'next/link'
-import Swal from 'sweetalert2'
 
+import FriendSty from '@/components/invite/friends-list.module.css'
+import styles from '@/pages/member/reserve/rid.module.css'
+import Swal from 'sweetalert2'
 
 export default function ReseveDetails({ state }) {
   console.log('rid頁重新選染')
@@ -105,11 +106,22 @@ export default function ReseveDetails({ state }) {
       {reserveDetails ? (
         <div className={`container position-relative ${styles.base}`}>
           <div className="text-center my-2">
-            <h2 className={`card-text text-truncate ${styles.restName}`}>
+            {reserveDetails.state == 0 && (
+              <div className="d-flex justify-content-center mb-4">
+                <p className={`${styles.cancelText} restLabel`}>
+                  本次訂位已取消
+                </p>
+                {/* <Link href='/member/reserve'>
+                  <Button btnText="回上一頁"></Button>
+                </Link> */}
+              </div>
+            )}
+
+            <h2 className={`card-text text-truncate ${styles.title}`}>
               {reserveDetails.RestName}
             </h2>
-            <p>{reserveDetails.RestPhone}</p>
-            <p>{reserveDetails.RestAdress}</p>
+            <p className={`restLabel mb-1 ${styles.label}`}>{reserveDetails.RestPhone}</p>
+            <p className={`restLabel ${styles.label}`}>{reserveDetails.RestAdress}</p>
             <div className={`mt-4`}>
               <h3 className={`${styles.label}`}>訂位日期</h3>
               <div className="d-flex justify-content-center">
@@ -143,7 +155,7 @@ export default function ReseveDetails({ state }) {
             </div>
 
             <h3 className={`${styles.label} mb-3`}>邀請好友</h3>
-            <div className="d-flex mb-4 justify-content-center">
+            <div className="d-flex justify-content-center">
               {invite.length > 0 ? (
                 invite.map((v, i) => {
                   return (
@@ -158,11 +170,13 @@ export default function ReseveDetails({ state }) {
                   )
                 })
               ) : (
-                <p>本次訂位無邀請好友</p>
+                <p className={`${styles.noInvite} restLabel`}>
+                  本次訂位無邀請好友
+                </p>
               )}
             </div>
-            {reserveDetails.state == 1 ?
-              <div className="d-flex justify-content-center">
+            {reserveDetails.state == 1 ? (
+              <div className="d-flex justify-content-center mt-4">
                 <Button
                   btnText="修改訂位"
                   // onClick={modalOpen1}
@@ -172,17 +186,9 @@ export default function ReseveDetails({ state }) {
                 />
                 <Button btnText="取消訂位" onClick={cancel} />
               </div>
-              :
-              <div className="d-flex justify-content-center">
-                <p>本次訂位已取消</p>
-                {/* <Link href='/member/reserve'>
-                  <Button btnText="回上一頁"></Button>
-                </Link> */}
-              </div>
-
-
-            }
-
+            ) : (
+              <p hidden></p>
+            )}
           </div>
         </div>
       ) : (

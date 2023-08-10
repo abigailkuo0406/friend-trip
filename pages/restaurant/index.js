@@ -1,29 +1,22 @@
-import React from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
+import AuthContext from '@/context/AuthContext'
+
 import { useEffect, useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+
+import RestaurantList from '@/components/restaurant/restaurant-item'
 import SelectOption from '@/components/common/input/select-option'
 import Btn from '@/components/common/button/btn-normal'
 import RestIntro from '@/components/restaurant/restaurant-intro'
-import AuthContext from '@/context/AuthContext'
+
 import IndexSty from './restaurant.module.css'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 import Swal from 'sweetalert2'
 
-
-// 引入元件
-import RestaurantList from '@/components/restaurant/restaurant-item'
-import { icon } from '@fortawesome/fontawesome-svg-core'
-
 export default function Rest() {
   const router = useRouter()
   const { auth } = useContext(AuthContext)
-
-  // 設定Modal開關
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
 
   const [restaurants, setRestaurants] = useState({
     redirect: '',
@@ -114,7 +107,6 @@ export default function Rest() {
   const [inputNameMeal, setInputNameMeal] = useState('')
 
   // 搜尋功能
-
   const searchRestaurant = (e) => {
     e.preventDefault()
 
@@ -165,6 +157,7 @@ export default function Rest() {
     }
   }
 
+  // 初始化props
   const [rid, setRid] = useState(0)
   const [rName, setRName] = useState()
   const [rAddress, setRAdress] = useState()
@@ -203,39 +196,45 @@ export default function Rest() {
       <div className="container">
         <h1 className={IndexSty.title}>精選餐廳</h1>
 
-        <form className="row d-flex" onSubmit={searchRestaurant}>
-          <div className="col-5 d-flex align-items-center justify-content-between">
-            <SelectOption
-              id="area"
-              label="地區"
-              name="area"
-              // selectedDefault='請選擇地區' //預設選項，可不填，填寫 value
-              valueGroup={areaGroup}
-              optionGroup={areaGroup}
-              getValue={setInputValueArea}
-              getName={setInputNameArea}
-              width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-              addClassforLabel="try1" // 如果要在 label 添加 class
-              addClassforSelect="try2" // 如果要在 Select 添加 class
-              addClassforOption="try3" // 如果要在 Option 添加 class
-            ></SelectOption>
-
-            <SelectOption
-              id="restaurantMeal"
-              label="料理類型"
-              name="restaurantMeal"
-              // selectedDefault="請選擇料理類型" //預設選項，可不填，填寫 value
-              valueGroup={mealGroup}
-              optionGroup={mealGroup}
-              getValue={setInputValueMeal}
-              getName={setInputNameMeal}
-              width="input-width-10rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-              addClassforLabel="try1" // 如果要在 label 添加 class
-              addClassforSelect="try2" // 如果要在 Select 添加 class
-              addClassforOption="try3" // 如果要在 Option 添加 class
-            ></SelectOption>
+        <form
+          className="d-flex justify-content-start"
+          onSubmit={searchRestaurant}
+        >
+          <div className={`d-flex align-items-center justify-content-between`}>
+            <div className='me-3'>
+              <SelectOption
+                id="area"
+                label="地區"
+                name="area"
+                // selectedDefault='請選擇地區' //預設選項，可不填，填寫 value
+                valueGroup={areaGroup}
+                optionGroup={areaGroup}
+                getValue={setInputValueArea}
+                getName={setInputNameArea}
+                width="input-width-10rem restRadioLabel" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+                addClassforLabel="try1" // 如果要在 label 添加 class
+                addClassforSelect="try2" // 如果要在 Select 添加 class
+                addClassforOption="try3" // 如果要在 Option 添加 class
+              ></SelectOption>
+            </div>
+            <div>
+              <SelectOption
+                id="restaurantMeal"
+                label="料理類型"
+                name="restaurantMeal"
+                // selectedDefault="請選擇料理類型" //預設選項，可不填，填寫 value
+                valueGroup={mealGroup}
+                optionGroup={mealGroup}
+                getValue={setInputValueMeal}
+                getName={setInputNameMeal}
+                width="input-width-10rem restRadioLabel" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+                addClassforLabel="try1" // 如果要在 label 添加 class
+                addClassforSelect="try2" // 如果要在 Select 添加 class
+                addClassforOption="try3" // 如果要在 Option 添加 class
+              ></SelectOption>
+            </div>
           </div>
-          <div className="col-7 d-flex align-items-center justify-content-start">
+          <div className="d-flex align-items-center justify-content-start">
             <Btn
               type="submit"
               btnText="搜尋"
@@ -267,17 +266,17 @@ export default function Rest() {
           <p>無符合條件之餐廳</p>
         )}
 
-          <RestIntro
-            restId={rid}
-            restName={rName}
-            restAddress={rAddress}
-            restPhone={rPhone}
-            restTime={rTime}
-            restMeal={rMeal}
-            restClass={rClass}
-            restIntro={rIntro}
-            restImg={rImg}
-          />
+        <RestIntro
+          restId={rid}
+          restName={rName}
+          restAddress={rAddress}
+          restPhone={rPhone}
+          restTime={rTime}
+          restMeal={rMeal}
+          restClass={rClass}
+          restIntro={rIntro}
+          restImg={rImg}
+        />
 
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation">
