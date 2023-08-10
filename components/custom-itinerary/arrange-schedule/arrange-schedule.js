@@ -49,7 +49,7 @@ export default function ScheduleSide ({
       iconColor: '#FABCBF',
       color: '#674C87',
       confirmButtonColor: '#674C87',
-      showConfirmButton: true,
+      showConfirmButton: false,
       // timer: 1500,
     })
     onSaveClick()
