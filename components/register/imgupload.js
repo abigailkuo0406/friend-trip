@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import styles from './imgupload.module.css'
 import Image from 'next/image'
-function App({ aaa }) {
+function App({ resultChange }) {
   const [img, setImg] = useState('')
   const imgUpload = (e) => {
     setImg(URL.createObjectURL(e.target.files[0]))
+
     async function upload(formData) {
       try {
         const response = await fetch(process.env.API_SERVER + '/preview', {
@@ -13,6 +14,7 @@ function App({ aaa }) {
         })
         const result = await response.json()
         console.log('Success:', result)
+        resultChange(result)
       } catch (error) {
         console.error('Error:', error)
       }

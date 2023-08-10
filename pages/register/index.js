@@ -65,7 +65,7 @@ export default function Register() {
         console.log(data)
         alert('註冊成功')
       })
-      .then(() => router.push('/login'))
+    // .then(() => router.push('/login'))
   }
   useEffect(() => {
     console.log(aaa)
