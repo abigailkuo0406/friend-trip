@@ -23,6 +23,7 @@ function ShowInputOnPage({ sendMsg, comments, post_id }) {
   }
   return (
     <>
+      {/* 👇將資料庫 comments 表單顯示與每一個對應的 post */}
       <ul className={styles.listStyle}>
         {comments
           .filter((i) => i.post_id == post_id)
@@ -42,6 +43,7 @@ function ShowInputOnPage({ sendMsg, comments, post_id }) {
             )
           })}
       </ul>
+      {/* ☝️將資料庫 comments 表單顯示與每一個對應的 post */}
       <div className="d-flex">
         {/* 顯示登入者頭圖 */}
         <p>🗣️</p>

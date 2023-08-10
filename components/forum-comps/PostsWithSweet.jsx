@@ -1,11 +1,11 @@
-import Post from './Post'
+import PostWithSweetAlert from './PostWithSweetAlert'
 
-export default function Posts({ posts, comments }) {
+export default function PostsWithSweet({ posts, comments }) {
   return (
     <div>
       {posts.map(function (post) {
         return (
-          <Post
+          <PostWithSweetAlert
             key={post.post_id}
             post_id={post.post_id}
             avatarOfPostAuthor={post.images}

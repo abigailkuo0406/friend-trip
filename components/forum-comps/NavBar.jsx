@@ -14,11 +14,13 @@ export default function NavBar() {
           <h3>所有文章</h3>
         </Link>
       </div>
+      {isLoggedIn && (
       <div>
-        <Link href="/forum/add-new-post" className={styles.navlink}>
+          <Link href="/forum/add-new-post" className={styles.navlink}>
           <h3>新增文章</h3>
-        </Link>
-      </div>
+          </Link>
+        </div>
+      )}
       {isLoggedIn && (
         <div>
           <Link href="/forum/my-posts" className={styles.navlink}>

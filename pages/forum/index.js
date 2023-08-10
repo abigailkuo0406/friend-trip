@@ -1,5 +1,6 @@
 import AdminLayout from '@/components/layout/admin-layout'
 import Posts from '@/components/forum-comps/Posts'
+import PostsWithSweet from '@/components/forum-comps/PostsWithSweet'
 import NavBar from '@/components/forum-comps/NavBar'
 import { useState, useEffect, useContext } from 'react'
 import AuthContext from '@/context/AuthContext'
@@ -21,7 +22,7 @@ export default function ForumHome() {
         setComments(d.comments)
         console.log('eddie', d.rows.file_url)
       })
-  }, [])
+  }, [member_id, posts])
 
   if (!posts) return <p>loading</p>
   return (
