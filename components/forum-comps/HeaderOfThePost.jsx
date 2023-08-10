@@ -12,6 +12,7 @@ function HeaderOfThePost({
 }) {
   const rawDateOfPublishOfPost = dateOfPublishOfPost
   const formattedDate = moment(rawDateOfPublishOfPost).format('YYYY-MM-DD')
+
   function deletePost() {
     console.log('post_id', post_id, 'member_id', isLoggedIn)
     setDeletemodalStatus('block')
