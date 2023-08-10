@@ -14,6 +14,7 @@ export default function InputRadioGroup({
   addClassforTitleLabel,
   addClassforEachLabel,
   addClassforInput,
+  addClassforDiv,
   error = false
 
 }) {
@@ -48,7 +49,7 @@ export default function InputRadioGroup({
 
 
   return (
-    <div className="input-radio-section">
+    <div className={`${addClassforDiv} input-radio-section`}>
       <label className={`${addClassforTitleLabel} section-label`}>
         {label}
       </label>

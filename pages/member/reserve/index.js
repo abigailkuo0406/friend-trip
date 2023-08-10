@@ -4,10 +4,11 @@ import ReserveItem from '@/components/reserve/reserve-item'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import AuthContext from '@/context/AuthContext'
-import Modal from '@/components/reserve/reserve-modal'
+import CommentModal from '@/components/reserve/comment'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 
 export default function Reserve() {
+  console.log('跳轉頁面渲染')
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
 
@@ -38,6 +39,28 @@ export default function Reserve() {
       })
   }, [router.query])
 
+  // 預設要傳入comment的資料
+  const [reservationId, setReservationId] = useState()
+  const [restaurantId, setRestaurantId] = useState()
+  const [rName, setRName] = useState()
+  const [rAddress, setRAddress] = useState()
+  const [rImg, setRImg] = useState()
+
+  const showModal = (
+    modal,
+    reservationId,
+    restaurantId,
+    rName,
+    restaurantAddress,
+    rImg
+  ) => {
+    setReservationId(reservationId)
+    setRestaurantId(restaurantId)
+    setRName(rName)
+    setRAddress(restaurantAddress)
+    setRImg(rImg)
+  }
+
   return (
     <>
       {reserve.totalRows > 0 ? (
@@ -48,22 +71,33 @@ export default function Reserve() {
                 reserveId={v.reserveId}
                 restId={v.rest_id}
                 restName={v.RestName}
+                restAddress={v.RestAdress}
                 restImg={v.RestImg}
                 reserveDate={v.reserve_date}
                 reserveTime={v.reserve_time}
                 reservePeopleNum={v.reserve_people}
+                state={v.state}
+                modalChange={showModal}
               />
             </div>
           )
         })
       ) : (
-        <p>目前尚無訂位</p>
+        <p>目前尚無訂位紀錄</p>
       )}
+      <CommentModal
+        reservationId={reservationId}
+        restId={restaurantId}
+        restName={rName}
+        restImg={rImg}
+        restAddress={rAddress}
+      />
+
       {reserve.totalRows > 0 ? (
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item">
+            <ul className="pagination">
+              <li className="page-item">
                 <Link
                   className="page-link"
                   href={'?' + new URLSearchParams('page=1').toString()}
@@ -72,7 +106,7 @@ export default function Reserve() {
                   <span aria-hidden="true">&laquo;</span>
                 </Link>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <Link
                   className="page-link"
                   href={
@@ -114,7 +148,7 @@ export default function Reserve() {
                     </li>
                   )
                 })}
-              <li class="page-item">
+              <li className="page-item">
                 <Link
                   className="page-link"
                   href={
@@ -132,7 +166,7 @@ export default function Reserve() {
                   </span>
                 </Link>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <Link
                   className="page-link"
                   href={
