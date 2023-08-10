@@ -81,7 +81,7 @@ export default function Post({
             setDeletemodalStatus('none')
           }}
         >
-          算了，留著吧
+          別刪，留著吧
         </button>
       </div>
       {/* ☝️ 確認刪除的彈跳視窗 */}

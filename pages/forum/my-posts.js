@@ -29,6 +29,7 @@ export default function ForumHome() {
     <>
       <NavBar />
       <input name="member_id" defaultValue={auth.member_id} hidden />
+      {/* 如果登入者尚未發文過，顯示 “您還沒有發過文，新增文章吧！” */}
       <Posts posts={posts} comments={comments} setPosts={setPosts} />
     </>
   )

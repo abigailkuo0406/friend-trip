@@ -27,7 +27,7 @@ export default function ForumHome() {
   return (
     <>
       <NavBar />
-      <Posts posts={posts} comments={comments} />
+      <Posts posts={posts} comments={comments} setPosts={setPosts} />
     </>
   )
 }

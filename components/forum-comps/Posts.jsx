@@ -4,6 +4,7 @@ export default function Posts({ posts, comments, setPosts }) {
   return (
     <div>
       {posts.map(function (post) {
+        {/* 如果登入者尚未發文過，顯示 “您還沒有發過文，新增文章吧！” */ }
         return (
           <Post
             key={post.post_id}
