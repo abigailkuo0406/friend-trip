@@ -104,7 +104,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
                 getValue={(value) => {
                   value != '' ? setHeight(parseInt(value)) : setHeight('')
                 }}
-                addClassforInput={height == '' ? styles.error : styles.right}
+                // addClassforInput={height == '' ? styles.error : styles.right}
                 // getName={setHeightName}
                 width="input-width-100pa"
               ></InputText>
@@ -120,7 +120,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
                 getValue={(value) => {
                   value != '' ? setWeight(parseInt(value)) : setWeight('')
                 }}
-                addClassforInput={height == '' ? styles.error : styles.right}
+                // addClassforInput={height == '' ? styles.error : styles.right}
                 width="input-width-100pa"
               ></InputText>
             </div>

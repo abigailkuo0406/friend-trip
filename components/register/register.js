@@ -64,6 +64,18 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
     resultObj ? console.log('11', resultObj.filename) : console.log('22')
     resultObj ? setImages(resultObj.filename) : setImages('')
   }
+  const [verifyemail, setVerifyEmail] = useState(true)
+  function validateemail(value) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    // console.log(emailPattern.test(value))
+    if (emailPattern.test(value)) {
+      setEmail(value)
+      console.log(email)
+      setVerifyEmail(true)
+    } else {
+      setVerifyEmail(false)
+    }
+  }
   return (
     <>
       <div className={styles.main}>
@@ -86,13 +98,19 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
                 id="email"
                 // value=''
                 getValue={(value) => {
-                  value != '' ? setEmail(value) : setEmail('')
+                  value != '' ? validateemail(value) : setEmail('')
                 }}
                 addClassforInput={email == '' ? styles.error : styles.right}
                 getName={() => {}}
                 width="input-width-100pa"
               ></InputText>
             </div>
+            {/* {verify && <div style={{ color: 'green' }}>請輸入電子信箱</div>} */}
+            {!verifyemail && (
+              <div className="align-items-center" style={{ color: 'red' }}>
+                格式錯誤
+              </div>
+            )}
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
