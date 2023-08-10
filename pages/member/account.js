@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
+import { useRouter } from 'next/router'
 import AdminLayout from '@/components/layout/admin-layout'
 import Edit from '@/components/edit/edit'
 import Edit2 from '@/components/edit/edit2'
@@ -32,6 +33,7 @@ export default function EditHome() {
 
   const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
   const [memberInfo, setMemberInfo] = useState()
+  const router = useRouter()
   const edit = (e) => {
     e.preventDefault()
     console.log('5555', aaa)
@@ -67,6 +69,7 @@ export default function EditHome() {
         console.log(data)
         alert('修改成功')
       })
+      .then(() => router.push('/member'))
   }
   const page1 = (
     <Edit
@@ -104,6 +107,7 @@ export default function EditHome() {
         console.log(data)
         console.log('資料抓到', data.all)
         setMemberInfo(data.all[0])
+        setAaa(data.all[0])
       })
   }, [auth])
   useEffect(() => {
@@ -112,17 +116,23 @@ export default function EditHome() {
   return (
     <>
       <form onSubmit={edit}>
-        <div className="d-flex justify-content-center">
-          {page === 1 ? page1 : page2}
-        </div>
+        {memberInfo && memberInfo.email ? (
+          <div className="d-flex justify-content-center">
+            {page === 1 ? page1 : page2}
+          </div>
+        ) : (
+          <div></div>
+        )}
       </form>
-      <BtnNormal
-        type="submit"
-        value="submit"
-        btnText="完成修改"
-        addClassforButton="btn-dark"
-        onClick={edit}
-      />
+      <div className="d-flex justify-content-center mt-5">
+        <BtnNormal
+          type="submit"
+          value="submit"
+          btnText="完成修改"
+          addClassforButton="btn-dark"
+          onClick={edit}
+        />
+      </div>
     </>
   )
 }

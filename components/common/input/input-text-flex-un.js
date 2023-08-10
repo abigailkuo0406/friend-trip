@@ -11,7 +11,7 @@ export default function InputText({
   value,
   getValue = () => {},
   getName = () => {},
-  required = true,
+  required = false,
 }) {
   const [errorMessage, setErrorMessage] = useState('\u00A0') // 錯誤訊息用 // \u00A0 為會佔空間的空白，如果設空字串排版會爛掉
   useEffect(() => {

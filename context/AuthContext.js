@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
-
 // 建立空的 Context 物件 AuthContext 用於共享的函式
 const AuthContext = createContext({})
 export default AuthContext
@@ -16,14 +15,14 @@ export const noLoginState = {
 
 // 定義了函式組件 AuthContextProvider，接收參數 children
 export const AuthContextProvider = function ({ children }) {
-  const router = useRouter()
   const [auth, setAuth] = useState({ ...noLoginState })
+  const router = useRouter()
 
   // 登出的話移除 localhost 的會員資料並放入未登錄的預設進入 useState
   const logout = () => {
     localStorage.removeItem('auth') // 使用於不存在的 key 不會報錯
     setAuth(noLoginState)
-    router.push("../login")
+    router.push('../login')
   }
   useEffect(() => {
     // 一開始渲染時將會員的資料存入 localStorage 裡面

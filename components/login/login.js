@@ -77,10 +77,18 @@ export default function Login() {
                 </div>
               </div>
             </div>
-            <div className={styles.btnbar}>
+            <div className={`${styles.btnbar} d-flex justify-content-center`}>
+              <BtnNormal
+                type="button"
+                btnText="註冊"
+                onClick={() => {
+                  router.push('/register')
+                }}
+                addClassforButton={`${styles.btn} btn-light  me-5`}
+              />
               <BtnNormal
                 type="submit"
-                btnText="註冊/登入"
+                btnText="登入"
                 onClick={() => {
                   console.log(inputValue1, ' \n', inputValue2)
                 }}

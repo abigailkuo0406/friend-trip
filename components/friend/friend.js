@@ -2,12 +2,9 @@ import React, { useEffect, useState, useContext } from 'react'
 import styles from './friend.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext' // 會員 context 取用
-import ImgUpload from '@/components/register/imgupload'
-import FriendList from '@/components/friend/friend-list'
-
-
+import Image from 'next/image'
 export default function Friend1({ setPage, memberInfo }) {
-  // const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
+  const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
   // const [memberInfo, setMemberInfo] = useState()
   // const [memberPassword, setMemberPassword] = useState()
   // useEffect(() => {
@@ -38,7 +35,12 @@ export default function Friend1({ setPage, memberInfo }) {
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">照片</label>
-              <ImgUpload />
+              <Image
+                className={styles.img}
+                src={`http://localhost:3002/face/${auth.images}`}
+                width={70}
+                height={70}
+              />
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="emailadd">電子信箱</label>
@@ -83,16 +85,14 @@ export default function Friend1({ setPage, memberInfo }) {
               />
             </div>
           </div>
-      <FriendList/>
-
-          {/* <div className={styles.friendsheet}>
+          <div className={styles.friendsheet}>
             <div>
               <h2 className={styles.titlename}>好友列表</h2>
             </div>
             <div className={styles.labelbar}>
               <label htmlFor="n">我的好友</label>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </>

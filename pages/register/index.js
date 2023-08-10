@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import LoginLayout from '@/components/layout/login-layout'
 import RegisterLetter1 from '@/components/register/register'
 import RegisterLetter2 from '@/components/register/register2'
@@ -29,6 +30,7 @@ export default function Register() {
   const page1 = <RegisterLetter1 setPage={setPage} setAaa={setAaa} aaa={aaa} />
   const page2 = <RegisterLetter2 setPage={setPage} setAaa={setAaa} aaa={aaa} />
   console.log(page)
+  const router = useRouter()
   const add = (e) => {
     e.preventDefault()
     console.log('5555', aaa)
@@ -63,6 +65,7 @@ export default function Register() {
         console.log(data)
         alert('註冊成功')
       })
+    // .then(() => router.push('/login'))
   }
   useEffect(() => {
     console.log(aaa)

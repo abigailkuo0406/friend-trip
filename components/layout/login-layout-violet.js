@@ -2,13 +2,11 @@
 import Footer from './footer'
 import styles from '@/components/login/login.module.css'
 import { AuthContextProvider } from '@/context/AuthContext'
-import { SearchContextProvider } from '@/context/SearchContext'
 
 export default function LoginLayout({ children }) {
   return (
     <>
       <AuthContextProvider>
-      <SearchContextProvider>
       <div>
         <main className="container">
           <div
@@ -19,7 +17,6 @@ export default function LoginLayout({ children }) {
         </main>
         <Footer />
       </div>
-      </SearchContextProvider>
       </AuthContextProvider>
       </>
   )
