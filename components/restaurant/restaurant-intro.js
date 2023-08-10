@@ -92,18 +92,27 @@ export default function restIntro({
 
   // 監控表單是否可以送出；通過驗證則消除驗證訊息
   useEffect(() => {
-    reserveDateInputVale && reserveTimeInputValue && inviteList.length <= reservePeopleNumValue - 1 && setModalClose('modal')
+    reserveDateInputVale &&
+      reserveTimeInputValue &&
+      inviteList.length <= reservePeopleNumValue - 1 &&
+      setModalClose('modal')
 
-    reserveDateInputVale && reserveTimeInputValue && inviteList.length > reservePeopleNumValue - 1 && setModalClose('')
+    reserveDateInputVale &&
+      reserveTimeInputValue &&
+      inviteList.length > reservePeopleNumValue - 1 &&
+      setModalClose('')
 
     reserveDateInputVale != '' && setDateVerify(true)
     reserveTimeInputValue && setTimeVerify(true)
     inviteList.length <= reservePeopleNumValue - 1 && setNumOfPeopleVerify(true)
-
-  }, [reserveDateInputVale, reserveTimeInputValue, reservePeopleNumValue, inviteList.length])
+  }, [
+    reserveDateInputVale,
+    reserveTimeInputValue,
+    reservePeopleNumValue,
+    inviteList.length,
+  ])
 
   console.log('modalClose改變', modalClose)
-
 
   /* 提交訂位表單*/
   const handleSubmit = (event) => {
@@ -139,17 +148,7 @@ export default function restIntro({
       // timer: 1500,
     })
     router.push('/member/reserve')
-
   }
-  // const [btnColor, setBtnColor] = useState('btn-dark')
-  // // console.log('btnColor', btnColor)
-
-  // const changeColor = () => {
-  //   if (reserveDateInputVale != '' && reserveTimeInputValue)
-  //     setBtnColor('btn-white')
-  // }
-
-
 
   return (
     <>
@@ -174,48 +173,41 @@ export default function restIntro({
             </div>
             <div className="modal-body container-fluid">
               <div className="d-flex mx-5 my-3 row">
-
-                {/* 
-                {btnColor == 'btn-dark' &&
-                  <Button
-                    btnText='深色'
-                    onClick={changeColor}
-                    addClassforButton={btnColor}
-                  />
-                }
-
-                {btnColor == 'btn-white' &&
-                  <Button
-                    btnText='白色'
-                    onClick={changeColor}
-                    addClassforButton={btnColor}
-                  />
-                } */}
-
-
-                {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
-                <div className={`${InfoSty.leftBox}`}>
-                  <div className={`${InfoSty.infoBox}`}>
-                    <h2 className={`${InfoSty.commentTitle}`}>{restName}</h2>
-                    {/* <div>星星</div> */}
+                <div className="mb-4">
+                  {restId ? <RestPhoto file={restImg} rid={restId} /> : ''}
+                </div>
+                <div className={`${InfoSty.leftBox} mb-5`}>
+                  <div className={`mb-4`}>
+                    <div className={`${InfoSty.infoBox}`}>
+                      <h2 className={`${InfoSty.commentTitle}`}>{restName}</h2>
+                      {/* <div>星星</div> */}
+                    </div>
+                    <div className={`${InfoSty.infoBox}`}>
+                      <p className={`${InfoSty.infoBox}`}>{restAddress}</p>
+                      <p>{restPhone}</p>
+                    </div>
+                    <div className={`${InfoSty.infoBox}`}>
+                      <label>營業時間</label>
+                      <p>{restTime}</p>
+                      <label>料理特色</label>
+                      <p>
+                        {restMeal}
+                        {restClass}
+                      </p>
+                      <label>訂位須知</label>
+                      <p>{restIntro}</p>
+                    </div>
                   </div>
-                  <div className={`${InfoSty.infoBox}`}>
-                    <p className={`${InfoSty.infoBox}`}>{restAddress}</p>
-                    <p>{restPhone}</p>
-                  </div>
-                  <div className={`${InfoSty.infoBox}`}>
-                    <label>營業時間</label>
-                    <p>{restTime}</p>
-                    <label>料理特色</label>
-                    <p>
-                      {restMeal}
-                      {restClass}
-                    </p>
-                    <label>訂位須知</label>
-                    <p>{restIntro}</p>
-                  </div>
-                  <div className={`${InfoSty.infoBox}`}>
-                    <form id="reserve" onSubmit={handleSubmit}>
+
+                  <div className={`${InfoSty.infoBox} ${InfoSty.line}`}>
+                    <div className={`${InfoSty.line} ${InfoSty.lineBox}`}>
+                      <h4 className={`py-3 ps-3`}>訂位</h4>
+                    </div>
+                    <form
+                      id="reserve"
+                      onSubmit={handleSubmit}
+                      className="py-3 ms-3"
+                    >
                       <div className={`${InfoSty.infoBox} mb-4`}>
                         <DateInput
                           id="reserveDate"
@@ -226,12 +218,12 @@ export default function restIntro({
                           getName={setReserveDateInputName}
                           addClassforLabel={InfoSty.infolabel}
                           addClassforDiv={`restLabel`}
-
                         />
-                        {!dateVerify && <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
-                          尚未選擇預定日期
-                        </p>}
-
+                        {!dateVerify && (
+                          <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
+                            尚未選擇預定日期
+                          </p>
+                        )}
                       </div>
                       <div className={`${InfoSty.infoBox} mb-4`}>
                         <div className={`d-flex mt-2`}>
@@ -249,14 +241,13 @@ export default function restIntro({
                             addClassforEachLabel={`btn restRadiobtn ${InfoSty.radioItem} restRadioLabel me-3`} // 如果要在個別選項 label 添加 class
                             addClassforInput={`btn-check restRadiobtn-check`} // 如果要在 input 添加 class
                             addClassforDiv={`restLabel`}
-
                           />
                         </div>
-                        {!timeVerify &&
+                        {!timeVerify && (
                           <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
                             尚未選擇預定時間
                           </p>
-                        }
+                        )}
                       </div>
 
                       <div className={`${InfoSty.infoBox}`}>
@@ -279,11 +270,7 @@ export default function restIntro({
                         />
                       </div>
                       <label className="mt-4">邀請好友</label>
-                      {/* {numOfPeopleVerify &&
-                        <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
-                          最多可邀請{reservePeopleNumValue - 1}位好友
-                        </p>
-                      } */}
+
                       <div
                         id="inviteList"
                         className={`d-flex justify-content-start mt-3 me-2`}
@@ -324,63 +311,63 @@ export default function restIntro({
                         />
                       </div>
 
-                      {!numOfPeopleVerify &&
+                      {!numOfPeopleVerify && (
                         <p className={`${InfoSty.verifyHint} restLabel mt-2`}>
-                          最多可邀請{reservePeopleNumValue - 1}位好友
+                          最多可邀請{` ${reservePeopleNumValue - 1} `}位好友
                         </p>
-                      }
+                      )}
 
-                      <div id='submitButton' className="d-flex">
-                        {modalClose == '' &&
+                      <div
+                        id="submitButton"
+                        className="d-flex justify-content-end pe-4"
+                      >
+                        {modalClose == '' && (
                           <Button
                             btnText="確認訂位"
                             addClassforButton="btn-dark mt-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                             disabled={false} // fase：可點，true：不可點
-                            bsModl3=''
+                            bsModl3=""
                             onClick={verifyHint}
                           ></Button>
-                        }
-                        {modalClose == 'modal' &&
+                        )}
+                        {modalClose == 'modal' && (
                           <Button
                             type="submit"
                             value="submit"
                             btnText="確認訂位"
                             addClassforButton="btn-dark mt-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                             disabled={false} // fase：可點，true：不可點
-                            bsModl3='modal'
+                            bsModl3="modal"
                           ></Button>
-                        }
-
+                        )}
                       </div>
                     </form>
                   </div>
                 </div>
-                <div className="">
-                  <div>
-                    <div className={`${InfoSty.commentBox}`}>
-                      <h4 className={`${InfoSty.commentTitle} mb-4`}>
-                        最新評論
-                      </h4>
-                      {cts.length > 0 ? (
-                        cts.map((v, i) => {
-                          return (
-                            <div key={i}>
-                              <Comment
-                                commentMemberId={v.comtMemberId}
-                                commentMemberName={v.member_name}
-                                commentMemberImg={v.images}
-                                commentRestId={v.ComtRestId}
-                                commentRestName={v.RestName}
-                                comment={v.ComtText}
-                                rate={v.rating}
-                              />
-                            </div>
-                          )
-                        })
-                      ) : (
-                        <p>目前尚無餐廳評論資料</p>
-                      )}
-                    </div>
+                <div>
+                  <div className={`${InfoSty.commentLine} pb-1 mb-3`}>
+                    <h3 className={`${InfoSty.commentTitle} ps-1`}>最新評論</h3>
+                  </div>
+                  <div className={`${InfoSty.commentBox}`}>
+                    {cts.length > 0 ? (
+                      cts.map((v, i) => {
+                        return (
+                          <div key={i}>
+                            <Comment
+                              commentMemberId={v.comtMemberId}
+                              commentMemberName={v.member_name}
+                              commentMemberImg={v.images}
+                              commentRestId={v.ComtRestId}
+                              commentRestName={v.RestName}
+                              comment={v.ComtText}
+                              rate={v.rating}
+                            />
+                          </div>
+                        )
+                      })
+                    ) : (
+                      <p>目前尚無餐廳評論資料</p>
+                    )}
                   </div>
                 </div>
               </div>
