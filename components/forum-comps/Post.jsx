@@ -7,6 +7,7 @@ import ShowComments from './ShowComments'
 import AddComment from './AddComment'
 import AuthContext from '@/context/AuthContext'
 import { useContext } from 'react'
+import Swal from 'sweetalert2'
 
 
 export default function Post({
@@ -34,7 +35,17 @@ export default function Post({
         // console.log(r.message)
         console.log(r.data.message)
         if (r.data.message == 'deleted') {
-          alert('資料成功刪除')
+          // alert('資料成功刪除')
+          Swal.fire({
+            width:400,
+            title:'所選貼文已刪除',
+            text:'刪除完成',
+            icon:'sucess',
+            iconColor:'#FABCBF',
+            color:'#674c87',
+            confirmButtonColor:'#674c87',
+            showConfirmButton:true
+          })
         }
       })
   }
