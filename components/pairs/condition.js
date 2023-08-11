@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
+import { useRouter } from 'next/router'
 import styles from './condition.module.css'
 import BtnNormal from '@/components/common/button/btn-normal.js'
 import Slider from '@mui/material/Slider'
@@ -19,6 +20,7 @@ export default function Condition() {
   const [gender, setGender] = useState('')
 
   const { auth, setAuth } = useContext(AuthContext)
+  const router = useRouter()
   const condition = (e) => {
     e.preventDefault()
     console.log('啟動篩選')
@@ -39,6 +41,7 @@ export default function Condition() {
         console.log(data)
         alert('更改成功')
       })
+      .then(() => router.push('/pair'))
   }
   useEffect(() => {
     console.log(gender)

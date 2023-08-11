@@ -1,6 +1,6 @@
 import React from 'react'
 import SlideLayout from '@/components/layout/slide-layout'
-import Condition from '@/components/pairs/ condition'
+import Condition from '@/components/pairs/condition'
 
 export default function ConditionPage() {
   return (
