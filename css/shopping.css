@@ -439,7 +439,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.productPageComment > div:not(:last-child) {
+.productPageComment > div {
   margin-bottom: 2rem;
 }
 .productPageComment .productPageComment-each {
@@ -448,18 +448,23 @@
   padding: 0 1.5rem;
   background-color: var(--assist-white);
   border-radius: 20px;
+  box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.05) 0px 2px 6px 2px;
 }
 .productPageComment .productPageComment-each .comment-member-img {
-  min-width: 6rem;
+  width: 30%;
   display: flex;
   align-items: center;
 }
 .productPageComment .productPageComment-each .comment-member-img img {
   border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
 }
 .productPageComment .productPageComment-each .comment-member-content {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  width: 70%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
 }
 .productPageComment .productPageComment-each .comment-member-content .comment-member-header {
   line-height: 2rem;
@@ -481,9 +486,22 @@
   margin-right: 0.5rem;
 }
 .productPageComment .productPageComment-each .comment-member-content .comment-comment-content {
+  height: 4rem;
+  max-height: 4rem;
   margin-bottom: 0;
+  margin: 0.3rem 0;
   line-height: 2rem;
+  margin: 0.1rem 0 0.7rem 0;
   color: var(--main);
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.productPageComment .productPageComment-each .comment-member-content .comment-comment-time {
+  margin-bottom: 0;
+  color: var(--assist-grey);
+  font-style: italic;
 }
 
 .onePageHeader {
@@ -791,11 +809,13 @@
   width: 50%;
   height: 20rem;
   border-radius: 0 0 0 20px;
+  overflow: hidden;
 }
 .modalCartAdd .modal-body .body-product-img img {
   width: 100%;
   height: 100%;
   border-radius: 0 0 0 20px;
+  object-fit: cover;
 }
 .modalCartAdd .modal-body .body-product-info {
   width: 50%;

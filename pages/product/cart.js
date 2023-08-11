@@ -143,7 +143,7 @@ export default function Cart() {
 
   const letCheck = () => {
 
-    if(cartProduct.length != 0 && Object.values(JSON.parse(localStorage.getItem('CartCheck'))).every(value => value != false)){
+    if(cartProduct.length != 0 && Object.values(JSON.parse(localStorage.getItem('CartCheck'))).some(value => value == true)){
     if(agree[1] == 'AgreePolicy'){
     fetch(`${process.env.API_SERVER}/product/cart/checking`, {
       method: 'POST',

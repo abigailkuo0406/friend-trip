@@ -27,14 +27,26 @@ export default function Navbar() {
     }
   },[router.asPath])
   useEffect(()=>{
-    if(getProductSearch != "" && router.pathname == '/product'){
-    router.push({
+    console.log("abc123")
+    if(getProductSearch != "" && router.pathname == '/product' && router.query.page == undefined){
+      console.log("aaaaaaaaaaaaaaaaaa")
+      router.push({
             query: {
               ...router.query,
               "keyword": `${getProductSearch}`,
             },
           })}
-  },[getProductSearch, getRandom, router.asPath])
+      else if(getProductSearch != "" && router.pathname == '/product' && router.query.page != undefined){
+        console.log("bbbbbbbbbbbbbbbbbbb：",getProductSearch)
+        router.push({
+          query: {
+            "keyword": `${getProductSearch}`,
+            "page" : "1",
+          },
+        })
+      }
+    
+  },[getProductSearch, getRandom, router.pathname])
   return (
     <>
       <header className="position-sticky top-0 p-3">

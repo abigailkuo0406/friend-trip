@@ -366,7 +366,6 @@
   flex-wrap: wrap
   justify-content: space-between
   >div
-    &:not(:last-child)
       margin-bottom: 2rem
   .productPageComment-each
     display: flex
@@ -374,15 +373,20 @@
     padding: 0 1.5rem
     background-color: var(--assist-white)
     border-radius: 20px
+    box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.05) 0px 2px 6px 2px
     .comment-member-img
-      min-width: 6rem
+      width: 30%
       display: flex
       align-items: center
       img
         border-radius: 50%
+        width: 6rem
+        height: 6rem
     .comment-member-content
-      margin-top: 2rem
-      margin-bottom: 2rem
+      width: 70%
+      margin-top: 1rem
+      margin-bottom: 1rem
+      overflow: hidden
       .comment-member-header
         line-height: 2rem
         display: flex
@@ -398,9 +402,21 @@
             &:not(:last-child)
               margin-right: 0.5rem
       .comment-comment-content
+        height: 4rem
+        max-height: 4rem
         margin-bottom: 0
+        margin: 0.3rem 0
         line-height: 2rem
+        margin: 0.1rem 0 0.7rem 0
         color: var(--main)
+        display: -webkit-box
+        overflow: hidden
+        -webkit-box-orient: vertical
+        -webkit-line-clamp: 2
+      .comment-comment-time
+        margin-bottom: 0
+        color: var(--assist-grey)
+        font-style: italic
 
     
 .onePageHeader
@@ -651,10 +667,12 @@
       width: 50%
       height: 20rem
       border-radius: 0 0 0 20px
+      overflow: hidden
       img
         width: 100%
         height: 100%
         border-radius: 0 0 0 20px
+        object-fit: cover
     
     .body-product-info
       width: 50%

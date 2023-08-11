@@ -33,13 +33,14 @@ export default function ModalProductComment({
       icon: 'question',
       iconColor: '#FABCBF',
       color: '#674C87',
-      confirmButtonColor: '#674C87',
+      confirmButtonColor: '#D0A5CA',
+      denyButtonColor:'#674C87',
       showConfirmButton: true,
       showDenyButton: true,
-      confirmButtonText: '提交',
-      denyButtonText: '取消',
+      confirmButtonText: '取消',
+      denyButtonText: '提交',
     }).then((result) => {
-      if (result.isConfirmed) {
+      if (result.isDenied) {
         Swal.fire({
           width: 400,
           html: `<h4>已成功提交</h4>`,
@@ -54,7 +55,7 @@ export default function ModalProductComment({
         setSwalStatus('goComplete')
         setSendComment(comment)
         })
-      } else if (result.isDenied || result.dismiss) {
+      } else if (result.isConfirmed || result.dismiss) {
         setSwalStatus('notYet')
         setSendComment([])
         setHasComment(false)
