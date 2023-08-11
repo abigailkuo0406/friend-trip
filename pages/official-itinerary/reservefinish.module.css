@@ -3,5 +3,28 @@
   margin: 0 auto;
 }
 .word {
+  font-size: 1.5em;
+  font-family: DFKai-sb;
+}
+.word2 {
   line-height: 80px;
+  font-size: 2em;
+  font-family: DFKai-sb;
+}
+.word2 span {
+  font-size: 1em;
+  font-family: DFKai-sb;
+}
+.h10 {
+  font-size: 4em;
+  /* font-weight: bold; */
+  font-family: DFKai-sb;
+}
+.img {
+  margin-bottom: 40px;
+}
+.people {
+  font-size: 2em;
+  color: black;
+  font-family: DFKai-sb;
 }
