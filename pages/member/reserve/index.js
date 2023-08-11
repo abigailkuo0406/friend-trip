@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AdminLayout from '@/components/layout/admin-layout'
 import ReserveItem from '@/components/reserve/reserve-item'
+import Button from '@/components/common/button/btn-normal'
+
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import AuthContext from '@/context/AuthContext'
@@ -61,30 +63,101 @@ export default function Reserve() {
     setRImg(rImg)
   }
 
+  // 訂位狀態篩選器
+  const [reserveList, setReserveList] = useState([])
+  useEffect(() => {
+    setReserveList(reserve.rows)
+  }, [reserve])
+
+  // 所有訂位
+  const allreserve = () => {
+    // setReserveList(reserve.rows)
+    router.push(``)
+
+  }
+
+  // 已取消的訂位
+  const cancaleFiliter = () => {
+    const ArrCancelReserve = reserve.rows.filter((v, i) => {
+      return v.state == 0
+    })
+    // setReserveList(ArrCancelReserve)
+    router.push(`?cancel=${0}`)
+  }
+
+  const theDay = Date.parse(new Date().toDateString())
+
+  // 預定中的訂位
+  const reserveProcessFilter = () => {
+    const ArrNoCancelReserve = reserve.rows.filter((v, i) => {
+      return v.state == 1 && Date.parse(v.reserve_date) >= theDay
+    })
+    // setReserveList(ArrNoCancelReserve)
+    router.push(`?nocancel=${1}`)
+
+  }
+
+  // 已完成的訂位
+  const reserveFinishFilter = () => {
+    const ArrFinishReserve = reserve.rows.filter((v, i) => {
+      return v.state == 1 && Date.parse(v.reserve_date) < theDay
+    })
+    // setReserveList(ArrFinishReserve)
+    router.push(`?nocancel=${1}`)
+
+  }
+  const query2 = { ...router.query }
+
+
   return (
     <>
-      {reserve.totalRows > 0 ? (
-        reserve.rows.map((v, i) => {
-          return (
-            <div key={v.reserve_id}>
-              <ReserveItem
-                reserveId={v.reserveId}
-                restId={v.rest_id}
-                restName={v.RestName}
-                restAddress={v.RestAdress}
-                restImg={v.RestImg}
-                reserveDate={v.reserve_date}
-                reserveTime={v.reserve_time}
-                reservePeopleNum={v.reserve_people}
-                state={v.state}
-                modalChange={showModal}
-              />
-            </div>
-          )
-        })
-      ) : (
+      <div className='d-flex'>
+        <Button
+          btnText='所有訂位'
+          onClick={allreserve}
+
+        />
+        <Button
+          btnText='預定中'
+          onClick={reserveProcessFilter}
+
+        />
+        <Button
+          btnText='已完成'
+          onClick={reserveFinishFilter}
+        />
+        <Button
+          btnText='已取消'
+          onClick={cancaleFiliter}
+
+        />
+
+      </div>
+
+      {reserveList.length > 0 ? reserveList.map((v, i) => {
+        return (
+          <div key={v.reserve_id}>
+            <ReserveItem
+              reserveId={v.reserveId}
+              restId={v.rest_id}
+              restName={v.RestName}
+              restAddress={v.RestAdress}
+              restImg={v.RestImg}
+              reserveDate={v.reserve_date}
+              reserveTime={v.reserve_time}
+              reservePeopleNum={v.reserve_people}
+              state={v.state}
+              modalChange={showModal}
+            />
+          </div>
+        )
+      }) : (
         <p>目前尚無訂位紀錄</p>
       )}
+
+
+
+
       <CommentModal
         reservationId={reservationId}
         restId={restaurantId}
@@ -93,14 +166,17 @@ export default function Reserve() {
         restAddress={rAddress}
       />
 
-      {reserve.totalRows > 0 ? (
+      {reserveList.length > 0 ? (
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation example">
             <ul className="pagination">
               <li className="page-item">
                 <Link
                   className="page-link"
-                  href={'?' + new URLSearchParams('page=1').toString()}
+                  href={'?' +
+                    (query2.cancel ? 'cancel=' + query2.cancel + '&' : '') +
+                    (query2.nocancel ? 'nocancel=' + query2.nocancel + '&' : '') +
+                    new URLSearchParams('page=1').toString()}
                   aria-label="Previous"
                 >
                   <span aria-hidden="true">&laquo;</span>
@@ -111,6 +187,8 @@ export default function Reserve() {
                   className="page-link"
                   href={
                     '?' +
+                    (query2.cancel ? 'cancel=' + query2.cancel + '&' : '') +
+                    (query2.nocancel ? 'nocancel=' + query2.nocancel + '&' : '') +
                     new URLSearchParams(
                       parseInt(reserve.page) > 1
                         ? `page=${parseInt(reserve.page) - 1}`
@@ -153,6 +231,8 @@ export default function Reserve() {
                   className="page-link"
                   href={
                     '?' +
+                    (query2.cancel ? 'cancel=' + query2.cancel + '&' : '') +
+                    (query2.nocancel ? 'nocancel=' + query2.nocancel + '&' : '') +
                     new URLSearchParams(
                       parseInt(reserve.page) < reserve.totalPages
                         ? `page=${parseInt(reserve.page) + 1}`
@@ -171,6 +251,8 @@ export default function Reserve() {
                   className="page-link"
                   href={
                     '?' +
+                    (query2.cancel ? 'cancel=' + query2.cancel + '&' : '') +
+                    (query2.nocancel ? 'nocancel=' + query2.nocancel + '&' : '') +
                     new URLSearchParams(`page=${reserve.totalPages}`).toString()
                   }
                   aria-label="Next"

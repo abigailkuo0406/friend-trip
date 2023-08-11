@@ -23,9 +23,8 @@ export default function ReserveItem({
 
   // 跳轉單一訂單頁
   const router = useRouter()
-  const routerChange = () => {
-    router.push(`/member/reserve/${reserveId}`)
-  }
+  const routerChange = () => router.push(`/member/reserve/${reserveId}`)
+
 
   //拆分日期
   const dateArr = reserveDate.split('-')
@@ -69,7 +68,7 @@ export default function ReserveItem({
       itemState = 2
     }
   }
-  // console.log(restName, stateText)
+
 
   // 定義邀請名單
   const [invitesData, setInvitesData] = useState()
@@ -106,6 +105,7 @@ export default function ReserveItem({
   const [rAddress, setRAddress] = useState()
   const [rName, setRName] = useState()
   const [rImg, setRImg] = useState()
+
 
 
   const showModal = () => setModal(true)
@@ -209,7 +209,7 @@ export default function ReserveItem({
                 }
                 {
                   itemState == 1 &&
-                  <Button btnText="詳細資訊" onClick={routerChange}/>
+                  <Button btnText="詳細資訊" onClick={routerChange} />
 
                 }
                 {
