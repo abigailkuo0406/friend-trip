@@ -1,0 +1,22 @@
+.navlink {
+  color: #674c87;
+  display: flex;
+  padding: 10px 10px 2px 10px ;
+  background-color: none;
+}
+/* .navlink1:hover {
+  border-radius: 20px;
+  background-color: #fff;
+}
+.navlink2:hover {
+  background-color: rgb(238, 234, 234);
+}
+.navlink3:hover {
+  border-radius: 20px;
+  background-color: #fff;
+} */
+
+.navlink:hover {
+  border-radius: 20px;
+  background-color: #fff;
+}

@@ -26,10 +26,16 @@ export default function SelectOption({
     getValue(event.target.value)
     getName(event.target.name)
   }
+  useEffect(() => {
+    getValue(selectedDefault)
+    getName(name)
+    
+  }, [selectedDefault]) 
+  
 
   return (
     <div className="select-section">
-      <label for={id} className={`${addClassforLabel} section-label`}>
+      <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>
       <div className={`${width} custom-select`}>

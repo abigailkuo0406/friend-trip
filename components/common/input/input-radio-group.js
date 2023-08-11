@@ -14,6 +14,9 @@ export default function InputRadioGroup({
   addClassforTitleLabel,
   addClassforEachLabel,
   addClassforInput,
+  addClassforDiv,
+  error = false
+
 }) {
   const [errorMessage, setErrorMessage] = useState('\u00A0') // 錯誤訊息用 // \u00A0 為會佔空間的空白，如果設空字串排版會爛掉
 
@@ -38,8 +41,15 @@ export default function InputRadioGroup({
 
   const [inputValue1, setInputValue1] = useState(checked)
 
+  // useEffect(() => {
+  //   if (checked) {
+  //     setInputValue1(checked)
+  //    }
+  //  },[checked])
+
+
   return (
-    <div class="input-radio-section">
+    <div className={`${addClassforDiv} input-radio-section`}>
       <label className={`${addClassforTitleLabel} section-label`}>
         {label}
       </label>
@@ -63,7 +73,8 @@ export default function InputRadioGroup({
           )
         })}
       </div>
-      <div className="input-error">{errorMessage}</div>
+      {error ? <div className="input-error">{errorMessage}</div> : ''}
+
     </div>
   )
 }

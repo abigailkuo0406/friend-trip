@@ -1,0 +1,39 @@
+.ol{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+.li {
+    counter-increment:step; 
+    &:before{
+        line-height: 24px;
+        text-align: center;
+        color: #fff;
+        background: #fabcbf;;
+        content: counter(step); 
+        display:inline-block;
+        border-radius: 100%;
+        width: 25px;
+        height: 25px;
+    }
+} 
+}
+.viweColor{
+    color:#674c87;
+    margin-left: 1.25rem;
+    &:hover{
+        color: #674c87; 
+    }
+     &:active{
+        color: #674c87;   
+    }
+}
+.riDeleteBinLine{
+    color: #674c87;
+    &:hover{
+        color: #674c87; 
+    }
+    &:active{
+        color: #674c87;   
+    }
+  }
+  

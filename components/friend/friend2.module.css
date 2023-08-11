@@ -1,0 +1,40 @@
+.main{
+    width: 700px;
+    display: flex;
+}
+.profileside{
+    width: 400px;
+}
+.profile {
+    width: 700px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 20px
+}
+.labelbar{
+    display: flex;
+    font-size: 10px;
+}
+/* .p {
+    font-size: 10px;
+} */
+.buttonbar {
+    display: flex;
+    justify-content: flex-end;
+}
+.friendsheet{
+    width: 700px;
+    height: 200px; 
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    border-radius: 15px;
+    padding: 20px;
+}
+.btnsize{
+    font-size: 5px;
+    height: 30px;
+}
+.titlename{
+    color: var(--main-dark);
+    font-weight: bold;
+}

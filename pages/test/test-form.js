@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import TestLayout from '@/components/layout/test-layout'
+import AdminLayout from '@/components/layout/admin-layout'
 import InputText from '@/components/common/input/input-text'
 import InputTextDouble from '@/components/common/input/input-text-double'
 import InputRadioGroup from '@/components/common/input/input-radio-group'
@@ -9,7 +9,7 @@ import InputNumber from '@/components/common/input/input-number'
 import InputNumberMany from '@/components/common/input/input-number-many'
 import InputCheckboxGroup from '@/components/common/input/input-checkbox-group'
 import BtnNormal from '@/components/common/button/btn-normal'
-
+import InputDate from '@/components/common/input/input-date'
 import { BsArrowRightShort, BsArrowLeftShort } from 'react-icons/bs'
 
 export default function AdminIndex() {
@@ -48,6 +48,7 @@ export default function AdminIndex() {
   const [inputName9, setInputName9] = useState('')
   const [inputValue10, setInputValue10] = useState([])
   const [inputName10, setInputName10] = useState('')
+  const [inputValue11,setInputValue11]= useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -81,14 +82,14 @@ export default function AdminIndex() {
     )
     console.log('勾選8：value 為：', inputValue9 + ' ，name 為：', inputName9)
     console.log('勾選9：value 為：', inputValue10 + ' ，name 為：', inputName10)
+    console.log('日期：value為：',inputValue11)
   }
-
   return (
     <>
-      <label for="customRange1" class="form-label">
+      <label htmlFor="customRange1" className="form-label">
         Example range
       </label>
-      <input type="range" class="form-range" id="customRange1"></input>
+      <input type="range" className="form-range" id="customRange1"></input>
       <article className="blog-post">
         <form onSubmit={handleSubmit}>
           <h2 className="display-5 link-body-emphasis mb-1">
@@ -120,13 +121,13 @@ export default function AdminIndex() {
           ></InputTextDouble>
           <InputText
             id="ID3"
-            name="name3"
-            label="問題3"
-            value="" // 預設文字
+            name="nalijljlme3"
+            label="問題3yyyyy"
+            value="hhhh" // 預設文字
             placeholder="測試3"
             width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
             addClassforLabel="classTest1" // 如果要在 label 添加 class
-            addClassforInput="classTest2" // 如果要在 input 添加 class
+            addClassforInput="classTest2 colorred" // 如果要在 input 添加 class
             getValue={setInputValue3} // 獲取填寫的數值
             getName={setInputName3} // 獲取 name
             required={true} // true：必填，false：非必填
@@ -237,14 +238,35 @@ export default function AdminIndex() {
             addClassforEachLabel="classTest2" // 如果要在個別選項 label 添加 class
             addClassforInput="classTest3" // 如果要在 input 添加 class
           ></InputCheckboxGroup>
+          {/* <InputDate
+            id='birthday'
+            name='birthday'
+            label='請選擇生日'
+            width='input-width-10rem'
+            // value={inputValue11}
+            // getvalue={setInputValue11}
+            // getname={setInputName11}
+            addClassforInput="classTest3"
+          ></InputDate> */}
           <BtnNormal
             type="submit"
             value="submit"
             btnText="送出"
-            addIMGLeft // 增加左側圖示 // 使用 react-icon，記得要 import 進入
+            addIMGLeft={<BsArrowLeftShort></BsArrowLeftShort>} // 增加左側圖示 // 使用 react-icon，記得要 import 進入
             addIMGRight={<BsArrowRightShort></BsArrowRightShort>} // 增加右側圖示 // 使用 react-icon，記得要 import 進入
             addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
             disabled={false} // fase：可點，true：不可點
+          ></BtnNormal>
+          <BtnNormal
+            type="button"
+            value="button"
+            btnText="連連看"
+            addIMGLeft={<BsArrowLeftShort></BsArrowLeftShort>} // 增加左側圖示 // 使用 react-icon，記得要 import 進入
+            addIMGRight={<BsArrowRightShort></BsArrowRightShort>} // 增加右側圖示 // 使用 react-icon，記得要 import 進入
+            addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+            disabled={false} // fase：可點，true：不可點
+            href="https://getbootstrap.com/docs/5.2/forms/range/"
+            target=""
           ></BtnNormal>
         </form>
       </article>
@@ -255,5 +277,5 @@ export default function AdminIndex() {
 // 這裡代表要套用AdminLayout，取代原本的DefaultLayout
 // 要寫在元件的函式之外
 AdminIndex.getLayout = function (page) {
-  return <TestLayout>{page}</TestLayout>
+  return <AdminLayout>{page}</AdminLayout>
 }

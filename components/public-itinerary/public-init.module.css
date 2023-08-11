@@ -1,0 +1,86 @@
+.card{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.cardTitle{
+    color: #674c87;
+}
+
+.cardText{
+    color: #717171
+}
+.btn{
+    color:white; 
+    background-color: #674c87;
+}
+
+.btn:hover{
+    color:  white; 
+    background-color:#D0A5CA;
+}
+
+.textcolor{
+    color: #674c87;
+}
+.Input{
+   margin-right: 20px;
+   margin-bottom: 15px;
+}
+.inputJoinDate{
+    width: 100%;
+    color: #674c87;
+    padding: 0.2rem 2.5rem 0.2rem 0.5rem;
+    border: 1.8px solid #D8d8d8;
+    border-radius: 20px ;
+    border: none;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.inputJoinDate:focus-visible{
+    outline: none
+}
+
+.joinBtn{
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    padding-left: 1rem;
+    margin: auto;
+    color:white; 
+    background-color: #674c87;
+    text-align: center; 
+
+}
+
+.ol {
+    list-style: none;
+  }
+  
+
+.li {
+    counter-increment: step;
+      position: relative;
+  }
+  
+  .li:before {
+    line-height: 24px;
+    text-align: center;
+    color: #fff;
+    background: #fabcbf;
+    content: counter(step);
+    display: inline-block;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+  }
+.spnaName{
+    color: #674c87;
+}
+.noteText{
+    white-space: pre-line;
+    color: #717171;
+    margin-left: 0.8rem;
+}

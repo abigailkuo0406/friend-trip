@@ -1,0 +1,115 @@
+.line {
+  border-left: 2px solid #d8d8d8;
+  height: 15%;
+  margin-left: 11px;
+  margin-top: 5px;
+  position: absolute;
+}
+.pageLink {
+  color: #674c87;
+  font-size: 1.2rem;
+}
+.modalLink {
+  color: #674c87;
+  text-decoration: none;
+}
+.modalLink:hover {
+  color: #674c87;
+}
+.modalLink:active,
+.modalLink:focus {
+  color: #674c87 !important;
+}
+
+.modalClose:focus {
+  box-shadow: none;
+}
+.location{
+  color: #674c87;
+  font-size: 1.5rem;
+}
+.iconColor {
+  color: #674c87;
+  font-size: 1.5rem;
+}
+.text {
+  color: #674c87;
+}
+.weekdayText{
+ white-space: pre-line;
+}
+
+.coverPhoto {
+  max-width: 100%;
+}
+.ol {
+  list-style: none;
+  /* padding: 0;
+  margin: 0; */
+}
+
+.li {
+  counter-increment: step;
+    position: relative;
+}
+
+.li:before {
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+  background: #fabcbf;
+  content: counter(step);
+  display: inline-block;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+}
+
+.viewImg {
+border-radius: 10px;
+}
+.calendarClock{
+  margin-left: 2rem;
+  margin-right: 1.5rem;
+  font-size: 1.3rem;
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .coverPhoto {
+    width: 100%;
+    height: 15rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .coverPhoto {
+    width: 100%;
+    /* height: 35vh; */
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .coverPhoto {
+    width: 100%;
+    /* height: 40vh; */
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .coverPhoto {
+    max-width: 100%;
+    height: 45vh;
+  }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+  .coverPhoto {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,22 @@
+.fontStyle1 {
+  color: #674c87;
+  font-weight: bold;
+}
+
+.input[type='file'] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.inputButton {
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  color: #674c87;
+  background-color: #fbdcdd;
+}

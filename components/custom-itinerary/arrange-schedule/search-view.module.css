@@ -1,0 +1,201 @@
+/* .container {
+  display: flex;
+  position: relative;
+} */
+
+.sideBar {
+  background-color: white;
+  box-shadow: 0px 0px 7px #333333;
+  /* z-index: 1; */
+}
+/* .top {
+  background-color: cornsilk;
+  width: 100%;
+  height: 125px;
+}
+.linkIcon {
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px silver solid;
+}
+.initTitle {
+  border-bottom: 1px silver solid;
+} */
+
+/* timeline */
+/* .list {
+  overflow-y: scroll;
+  height: calc(65vh - 200px);
+  background-color: aqua;
+}
+.list::-webkit-scrollbar {
+  width: 15px;
+  background-color: black;
+}
+
+.list::-webkit-scrollbar-track {
+  background-color: darkgray;
+}
+
+.containerRight {
+  background: #eaf6ff;
+}
+.li {
+  padding-bottom: 1.5rem;
+  border-left: 1px solid #abaaed;
+  position: relative;
+  padding-left: 20px;
+  list-style: none;
+}
+.li:before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  background: white;
+  border: 1px solid #4e5ed3;
+  border-radius: 50%;
+  position: absolute;
+  left: -8px;
+  top: 0px;
+}
+
+.time {
+  color: #2a2839;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+.initText {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.timeline {
+  background-color: mistyrose;
+} */
+
+/* SearchView */
+
+.text {
+  color: #674c87;
+  list-style: none;
+}
+.input {
+  color: #674c87;
+  padding: 0.2rem 2.5rem 0.2rem 0.5rem;
+  /* border: 1.8px solid #D8d8d8; */
+  border-radius: 8px;
+  border: 1px solid #674c87;
+}
+.input:focus {
+  border-color:  #674c87;
+  box-shadow: none;
+}
+  /* .input:focus-visible {
+    outline: none;
+  } */
+
+.ulNav {
+  list-style: none;
+  text-align: center;
+}
+.li {
+  display: table-cell;
+  position: relative;
+  padding: 15px 0;
+}
+.searchArrow {
+  color: #674c87;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+}
+.searchArrow:hover {
+  color: #674c87;
+}
+.search {
+  color: #674c87;
+  font-size: 1rem;
+}
+.search::after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #674c87;
+  transition: 0.3s 0s, 0.3s 0s;
+  width: 0;
+}
+.search:hover::after {
+  width: 100%;
+  left: 0;
+}
+.collect {
+  color: #674c87;
+  font-size: 1rem;
+}
+
+/* ScheduleSide */
+.tripList {
+  height: 700px;
+  width: 380px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  overflow: auto
+}
+   /* 更改滾動條的背景顏色和寬度 */
+/* .tripList::-webkit-scrollbar{
+  background-color: #ffffff;
+} */
+/* 更改滾動條滾動軸的顏色和圓角 */
+/* .tripList::-webkit-scrollbar-thumb {
+  background-color:#D0A5CA;
+  border-radius: 5px;
+} */
+
+.line {
+  border-left: 2px solid #d8d8d8;
+  /* margin-left: 1px; */
+  position: absolute;
+}
+
+.link {
+  color: #674c87;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  margin-right: 1.2rem;
+  padding-bottom: 1.5rem;
+}
+.addbtn {
+  color: #b497d4;
+  margin: auto;
+}
+.addbtn:hover {
+  color: #674c87;
+  font-weight: bold;
+}
+.h4 {
+  color: #674c87;
+}
+.time {
+  font-size: 0.8rem;
+  color: #674c87;
+  border-radius: 8px;
+  border: 1px solid #d8d8d8;
+  padding: 0.2rem 0.2rem 0.2rem 0.5rem;
+}
+
+.time::-webkit-datetime-edit-ampm-field {
+  color: #674c87;
+}
+.time::-webkit-datetime-edit-hour-field {
+  color: #674c87;
+}
+.time::-webkit-datetime-edit-minute-field {
+  color: #674c87;
+}
+.time::-webkit-datetime-edit-text {
+  color: #674c87;
+}

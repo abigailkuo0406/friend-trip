@@ -1,0 +1,159 @@
+.formbody {
+  position: relative;
+}
+
+.coverTitle{
+display: flex;
+justify-content: center;
+}
+
+.label {
+  margin-left: 17rem;
+  margin-top: 1rem;
+  padding-bottom: 1.2rem;
+
+}
+
+.inputTimeD{
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
+  margin-left: 1rem;
+}
+.timeLable{
+  margin: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #674C87;
+  width: 10rem;
+  padding: 0rem 0rem 0.2rem 0rem;
+}
+.inputTime{
+  border-radius: 20px;
+  border: none;
+  padding-left: 1rem;
+  width: 10rem;
+  height: fit-content;
+  padding: 0.2rem 2.5rem 0.2rem 0.5rem;
+  border: 1.8px solid #D8d8d8;
+  border-radius: 8px;
+}
+
+.inputTime::-webkit-datetime-edit-fields-wrapper{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-ampm-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-hour-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-millisecond-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-minute-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-hour-field{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-hour-field:focus{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-millisecond-field:focus{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-minute-field:focus{
+  color: #674C87;
+}
+.inputTime::-webkit-datetime-edit-text{
+  color: #674C87;
+}
+
+
+
+.uploader {
+  align-items: center;
+  background-color: #efefef;
+  background-color: rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  display: -webkit-flex;
+  display: flex;
+  height: 260px;
+  -webkit-justify-content: center;
+  justify-content: center;
+  outline: 3px dashed #B497D4;
+  outline-offset: 5px;
+  position: relative;
+  max-width: 400px;
+  width:100%
+}
+
+.uploaderinput {
+  display: none;
+}
+
+.uploaderIcon{
+    color: #674C87;
+    font-size: 5em;
+  
+}
+.uploaderImg{
+max-width:400px;
+ width: 500px;
+ height: 260px;
+}
+.link{
+  color: #674C87;
+  font-size:1.5rem;
+}
+.h3{
+  color: #674C87;
+  margin: auto;
+}
+
+
+/* -------------sm------------- */
+@media (min-width: 576px) { 
+  .label {
+  margin-left: 3rem;
+}
+.link{
+  padding-left: 1rem;
+}
+}
+
+/* --------------md---------------- */
+@media (min-width: 768px) {
+  .label {
+    margin-left: 3rem;
+  }
+  .link{
+    padding-left: 1rem;
+  }
+}
+
+/* --------------lg------------------- */
+@media (min-width: 992px){
+  .label {
+    margin-left: 8.5rem;
+  }
+  .link{
+    padding-left: 1rem;
+  }
+}
+
+/* --------------xl------------------- */
+@media (min-width: 1200px) {
+  .label {
+    margin-left: 12.8rem;
+  }
+}
+
+/* --------------xxl------------------- */
+@media (min-width: 1400px) {  
+  .label {
+  margin-left: 17rem;
+} 
+
+}

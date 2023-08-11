@@ -1,23 +1,29 @@
 // components/layout/admin-layout.js
-import Navbar from './navbar'
 import Footer from './footer'
-import Sidebar from './sidebar'
+import Sidebar from '@/components/common/sidebar/sidebar'
+import Navbar from '@/components/common/navbar/navbar'
+import { AuthContextProvider } from '@/context/AuthContext'
+import { SearchContextProvider } from '@/context/SearchContext'
 
-export default function AdminLayout({ children }) {
+export default function AdminLayout({ children, page }) {
   return (
     <>
-      <div>
-        <Navbar />
-        <main className="container">
-          <div class="row g-5 main-background">
-            <div id="Sidebar" class="col-md-3">
-              <Sidebar />
+      <AuthContextProvider>
+      <SearchContextProvider>
+        <div>
+          <Navbar />
+          <main className="container">
+            <div className="row g-5 main-background">
+              <div id="Sidebar" className="col-md-3">
+                <Sidebar />
+              </div>
+              <div className="col-md-9">{children}</div>
             </div>
-            <div class="col-md-9">{children}</div>
-          </div>
-        </main>
-        <Footer />
-      </div>
+          </main>
+          <Footer />
+        </div>
+        </SearchContextProvider>
+      </AuthContextProvider>
     </>
   )
 }

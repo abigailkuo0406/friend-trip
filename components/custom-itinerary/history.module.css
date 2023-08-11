@@ -1,0 +1,92 @@
+.container {
+  margin: 20px auto;
+  padding: 0;
+}
+
+.text {
+  margin-right: 10px;
+  color: #674c87;
+}
+
+.cardText {
+  color: #717171;
+  margin-top: 50px;
+}
+
+.img {
+  /* border: 5px deeppink solid; */
+  /* padding: 0.5rem; */
+  padding: 1rem;
+}
+/* .public {
+  background-color: #fabcbf;
+  font-size: 0.9rem;
+  border-radius: 20px;
+} */
+.pageBtn {
+  justify-content: end;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+}
+.pageLink {
+  color: #674c87;
+}
+
+.textcolor {
+  color: #674c87;
+  border-radius: 5px;
+  border: 1px solid #674c87;
+}
+
+.textcolor:hover,.textcolor:focus{
+  background-color: #674c87;
+  color: #FFFFFF;
+  border: 1px solid #674c87;
+}
+
+.textcolor:active {
+  color: #FFFFFF !important;
+  background-color: #674c87 !important; /* 新增這一行，設定按鈕被點擊時的背景顏色 */
+  border: 1px solid #674c87;
+}
+
+
+.sort{
+  color: #674c87;
+}
+
+.sort:focus{
+  box-shadow: none;
+  border: 0;
+}
+
+.dropdownDelete {
+  color: #674c87;
+}
+.dropdownDelete:hover,.dropdownDelete:active {
+  /* transparent ->透明色  */
+  background-color: transparent;
+  color: #674c87;
+}
+
+.truncate {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5; 
+  max-height: 3em; 
+  margin-top: 1.25rem;
+}
+
+/* .truncateText {
+  margin: 0; 
+} */
+
+.public{
+  background-color: #fabcbf;
+  font-size: 0.9rem;
+}
+.private{
+  font-size: 0.9rem;
+  background-color: #B497D4; 
+}

@@ -1,0 +1,40 @@
+.ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ol .li {
+  counter-increment: step;
+}
+.ol .li:before {
+  line-height: 24px;
+  text-align: center;
+  color: #fff;
+  background: #fabcbf;
+  content: counter(step);
+  display: inline-block;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+}
+
+.viweColor {
+  color: #674c87;
+  margin-left: 1.25rem;
+}
+.viweColor:hover {
+  color: #674c87;
+}
+.viweColor:active {
+  color: #674c87;
+}
+
+.riDeleteBinLine {
+  color: #674c87;
+}
+.riDeleteBinLine:hover {
+  color: #674c87;
+}
+.riDeleteBinLine:active {
+  color: #674c87;
+}/*# sourceMappingURL=arrange-schedule.module.css.map */

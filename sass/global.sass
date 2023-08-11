@@ -1,0 +1,448 @@
+@import _boostrap
+@import _mixin
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+
+
+/* General Start ====================*/
+
+html
+  margin: 0
+  padding: 0
+  font-size:16px
+
+body
+  background-color: var(--bg-main)
+
+
+:root
+  --main: #D0A5CA
+  --main-dark: #674C87
+  --main-light: #B497D4
+  --bg-main: #FBDCDD
+  --bg-dark: #FABCBF
+  --bg-light: #FCE5E7
+  --assist-grey: #717171
+  --assist-white: #FFFFFF
+  --assist-lightgrey: #D8D8D8
+  --warning: #874c6d
+
+  --bs-border-radius: 20px
+
+h1,h2,h3,h4,h5,h6,p,a,span,ul,div
+  font-family: 'Noto Sans TC','Noto Sans', sans-serif
+h1
+  font-size: 2rem
+h2
+  font-size: 1.75rem
+h3
+  font-size: 1.5rem
+  margin-bottom: 0.5rem
+h4
+  font-size: 1.25rem
+h5
+  font-size: 1.125rem
+h6, label
+  font-size: 1rem
+p,a,span,div,button,li,ol,.dropdown-item,th
+  font-size: 1rem
+a, ul, ol
+  text-decoration: none
+
+// navbar 文字
+.nav-font
+  font-size: 1.25rem
+.nav-link
+  font-size: 1.25rem
+// 輔助小字
+.small-font
+  font-size: 0.75rem
+
+li
+  &::marker
+    content:""
+
+// 按鈕樣式 //.btn-dark 暗底 .btn-light 亮底 .btn-white 白底
+.btn
+  border: none
+  border-radius: 20px
+  padding-right: 0.9rem
+  padding-left: 0.9rem
+  display: flex
+  align-items: center
+  span
+    margin: 0 0.2rem
+  svg
+    margin: 0 0.2rem
+.btn-dark
+  background-color: var(--main-dark)
+  color: var(--assist-white)
+  &:hover
+    background-color: var(--main)
+    color: var(--assist-white)
+.btn-light
+  background-color: var(--main-light)
+  color: var(--assist-white)
+  &:hover
+    background-color: var(--main-dark)
+    color: var(--assist-white)
+  &:visited
+    background-color: var(--main-dark)
+.btn-white
+  background-color: var(--assist-white)
+  color: var(--main-light)
+  &:hover
+    background-color: var(--assist-white)
+    color: var(--main-dark)
+.btn-ban,.btn:disabled
+  background-color: var(--assist-grey)
+  color: var(--assist-white)
+
+// input 寬度樣式 // 可依需求新增但請遵守命名規則要以 input-width 前綴
+.input-width-100pa
+  width: 100%
+.input-width-70pa
+  width: 70%
+.input-width-50pa
+  width: 50%
+.input-width-30pa
+  width: 30%
+.input-width-10rem
+  width: 10rem
+.input-width-8rem
+  width: 8rem
+.input-width-5rem
+  width: 5rem
+.input-width-3rem
+  width: 3rem 
+// input 樣式
+.select-section,.input-text-section, .input-radio-section, .input-checkbox-section
+  margin-top: 1.8rem
+  margin-bottom: 1.8rem
+  .section-label
+    margin-bottom: 0.6rem
+input[type="text"]
+  vertical-align: top
+input[type="radio"]
+  vertical-align: sub
+label
+  display: block
+  font-weight: 500
+  color: var(--main-dark)
+  width: 10rem
+  min-width: 10rem
+  padding: 0rem 0rem 0.2rem 0rem
+.input-text
+  color: var(--main-dark)
+  padding: 0.2rem 2.5rem 0.2rem 0.5rem
+  border: 1.8px solid #D8d8d8
+  border-radius: 8px
+  &::placeholder
+      color: var(--assist-grey)
+  &:focus
+      color: var(--main-dark)
+      box-shadow: none
+  &:focus-visible
+      outline: none
+.form-control
+  border-radius: 20px 0 0 20px
+  border: none
+  padding-left: 1rem
+  z-index: 5
+.input-text-section
+  .input-text
+    height: fit-content
+
+.input-text-double-section
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    .input-text-section
+      width: 50%
+      &:first-child
+        margin-right:3%
+      &:last-child
+        margin-left:3%
+          
+.radio-seciton
+  label
+    padding-left: 0.5rem
+  input, label
+    cursor: pointer
+.area-text
+  color: var(--main-dark)
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem
+  border: 1.8px solid #D8d8d8
+  border-radius: 8px
+  height: 10rem
+  &::placeholder
+      color: var(--assist-grey)
+  &:focus
+      color: var(--main-dark)
+      box-shadow: none
+  &:focus-visible
+      outline: none 
+.custom-select
+  position: relative
+  // width: fit-content // 此 div 與子元素 select 同寬
+  .input-select
+    cursor: pointer
+  &::after
+    font-weight: 700
+    font-family: "Font Awesome 5 Free"
+    content: "\f0d7"
+    font-size: 14px
+    position: absolute
+    top: 1.8px // 1.8px 為 外框寬度
+    right: 1.8px // 1.8px 為 外框寬度
+    display: block
+    background-color: var(--main-dark)
+    height: calc(100% - 3.6px)
+    width: 2rem
+    border-radius: 0 6px 6px 0
+    pointer-events: none
+    color: var(--assist-white)
+    border: none
+    display: flex
+    justify-content: center
+    align-items: center
+  &:hover::after
+    background-color: var(--main)
+.input-error
+  margin-top: 0.5rem
+  font-style: italic
+  color: var(--warning)
+  min-height: 24px
+.input-error-border
+  border-color: var(--warning)
+.input-many
+  display: flex
+  flex-direction: row
+.middleText
+  padding: 0 0.5rem
+  color: var(--main-dark)
+.custom-number
+  position: relative
+  // width: fit-content // 此 div 與子元素 select 同寬
+    
+  &::after
+    font-weight: 700
+    font-family: "Font Awesome 5 Free"
+    content: "\f0d8"
+    font-size: 14px
+    position: absolute
+    top: 1.8px // 1.8px 為 外框寬度
+    right: 1.8px // 1.8px 為 外框寬度
+    display: block
+    background-color: var(--main-dark)
+    height: calc(50% - 1.8px)
+    width: 2rem
+    border-radius: 0 6px 0px 0
+    pointer-events: none
+    color: var(--assist-white)
+    border: none
+    display: flex
+    justify-content: center
+    align-items: center
+    padding-top: 0.2rem
+    box-shadow: 0px 0.1px var(--main)
+  &:hover::after
+    background-color: var(--main)
+    box-shadow: 0px 0.1px var(--assist-white)
+  &::before
+    font-weight: 700
+    font-family: "Font Awesome 5 Free"
+    content: "\f0d7"
+    font-size: 14px
+    position: absolute
+    bottom: 1.8px // 1.8px 為 外框寬度
+    right: 1.8px // 1.8px 為 外框寬度
+    display: block
+    background-color: var(--main-dark)
+    height: calc(50% - 1.8px)
+    width: 2rem
+    border-radius: 0 0px 6px 0
+    pointer-events: none
+    color: var(--assist-white)
+    border: none
+    display: flex
+    justify-content: center
+    align-items: center
+    padding-bottom: 0.2rem
+  &:hover::before
+    background-color: var(--main)
+.input-number
+  padding-right: 0.5rem
+.hide-arrows // 去除 input number 的按鈕
+  -moz-appearance: textfield // Firefox
+  &::-webkit-outer-spin-button
+    -webkit-appearance: none
+    margin: 0
+  &::-webkit-inner-spin-button
+    -webkit-appearance: none
+    margin: 0
+.input-checkbox-section
+  >label
+    display: inline-block
+    width: 10rem
+    min-width: 10rem
+  .input-text
+    width: 1rem
+
+
+  
+
+
+
+
+
+/* General End ====================*/
+
+/* mixin Start ====================*/
+@include radius(20) //.radius20px
+
+/* mixin End ====================*/
+
+/* navbar.js Start ====================*/
+header
+  background-color: var(--main-light)
+  width: 100%
+  z-index: 99
+  .logo
+    width: 200px
+    padding: 5px 0
+    background-color: var(--assist-white)
+    img
+      width: 150px
+      height: auto
+  #Search-Bar
+    button
+      border-radius: 0 20px 20px 0
+      background-color: var(--bg-dark)
+      width: 4rem
+      height: 100%
+      &:hover
+        background-color: var(--main-dark)
+      svg
+        height: 1.4rem
+        width: auto
+        color: var(--assist-white)
+   
+  /* navbar.js End ====================*/
+
+main
+  padding: 6rem 0
+  .main-background
+    background-color: var(--bg-light)
+    border-radius: 20px
+  >.row
+    >div
+      margin: 5rem 0
+
+
+  /* sidebar.js Start ====================*/
+#Sidebar
+  >div
+    border-radius: 0
+    &:first-child
+      border-radius: 20px 20px 0 0
+    &:last-child
+      border-radius: 0 0 20px 20px
+    &:not(:first-child)
+      margin-top: 1.75rem
+  .card
+    background-color: var(--assist-white)
+    border: none
+    .card-body
+      padding: 1rem 1.5rem
+      @media(max-width:1199px)
+        flex-direction: column
+    .card-body.nav-body
+      padding: 1rem 0
+
+  #User-Img
+    width: 40%
+    padding-right: 1rem
+    @media(max-width:1199px)
+      padding-right: 0
+      padding-bottom: 1rem 
+    @media(max-width:991px)
+      width: 60%
+    img
+      width: 100%
+      hieght: auto
+  #User-Info
+    width: 65%
+    @media(max-width:1199px)
+      width: 100%
+    >div
+      width: 100%
+      p
+        margin: 0
+    #User-Name
+      color: var(--main)
+
+    #User-Account
+      color: var(--assist-grey)
+    #User-Status
+      color: var(--main)
+      margin-top: 1rem
+      display: flex
+      @media(max-width:991px)
+        flex-direction: column
+
+      >p
+        display: flex
+        align-items: center
+        margin-right: 0.75rem
+        svg
+          margin-right: 0.2rem
+  nav
+    .nav-link
+      color: var(--main)
+      background-color: var(--assist-white)
+      padding: 0.7rem 1.5rem
+      &:hover
+        background-color: var(--main)
+        color: var(--assist-white)
+    .container-fluid
+      padding: 0
+    .dropdown-toggle
+      &::after
+        vertical-align: 0.155em
+    .dropdown-menu
+      border: none
+      margin: 0
+      padding: 0
+      .dropdown-item
+        color: var(--main)
+        background-color: var(--assist-white)
+        padding: 0.5rem 2.5rem
+        &:hover
+          color: var(--assist-white)
+          background-color: var(--main)
+    #navbarNav
+      width: 100%
+
+
+      /* sidebar.js End ====================*/
+
+footer
+  width: 100%
+  background-color: var(--bg-light)
+  margin-top: 0
+  margin-bottom: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 4rem
+  p
+    margin: 0
+    color: var(--main)
+
+
+
+/* RWD 1200 Start ====================*/
+
+
+  
+/* RWD 1200 End ====================*/

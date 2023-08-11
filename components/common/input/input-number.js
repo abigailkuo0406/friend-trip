@@ -17,6 +17,8 @@ export default function InputNumber({
   width,
   addClassforLabel,
   addClassforInput,
+  addClassforDiv,
+  error = false
 }) {
   // 預設數字防呆
   if (value > max) {
@@ -35,7 +37,7 @@ export default function InputNumber({
 
   const handleChange = (event) => {
     setAddClassforInputState(addClassforInput)
-    setErrorMessage('\u00A0')
+    // setErrorMessage('\u00A0')
     setInputValue(event.target.value)
     getValue(event.target.value)
     getName(event.target.name)
@@ -56,8 +58,10 @@ export default function InputNumber({
   }
 
   return (
-    <div className="select-section">
-      <label className={`${addClassforLabel} section-label`}>{label}</label>
+    <div className={`${addClassforDiv} input-radio-section`}>
+      <label htmlFor={id} className={`${addClassforLabel} section-label`}>
+        {label}
+      </label>
       <div className={`${width} ${hideArrows ? '' : 'custom-number'}`}>
         <input
           id={id}
@@ -66,16 +70,16 @@ export default function InputNumber({
           min={min}
           step={step}
           placeholder={placeholder}
-          className={`w-100 input-text input-select input-number ${addClassforInputState} ${
-            hideArrows ? 'hide-arrows' : ''
-          }`}
+          className={`w-100 input-text input-select input-number ${addClassforInputState} ${hideArrows ? 'hide-arrows' : ''
+            }`}
           value={inputValue}
           type="number"
           onBlur={handleBlur}
           onChange={handleChange}
         ></input>
       </div>
-      <div className="input-error">{errorMessage}</div>
+
+      {error ? <div className="input-error">{errorMessage}</div> : ''}
     </div>
   )
 }

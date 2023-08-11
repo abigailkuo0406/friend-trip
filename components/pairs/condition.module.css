@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+.main {
+    width: 546px;
+    height: 325px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+.btns{
+    display: flex;
+}
+.font{
+    color: var( --main-dark);
+}
+.arrow {
+    color: white;
+    background-color: var( --main-light);
+    border-radius: 10px;
+    border-color: var( --main-light);
+}

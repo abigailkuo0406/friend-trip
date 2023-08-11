@@ -1,0 +1,32 @@
+.itin-card-pagination .pagination {
+  width: 100%;
+  margin: 0;
+  padding-right: 0.8rem;
+  justify-content: flex-end;
+  display: flex;
+  padding-top: 0.34rem;
+}
+.itin-card-pagination .pagination .active > .page-link {
+  background-color: var(--main-dark);
+  color: var(--assist-white);
+}
+.itin-card-pagination .pagination .page-item {
+  height: 1.8rem;
+  width: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.itin-card-pagination .pagination .page-link {
+  color: var(--main);
+  margin: 0;
+  padding: 0.4rem;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  line-height: 100%;
+  border: none;
+}
+.itin-card-pagination .pagination .page-link:focus {
+  box-shadow: none;
+}/*# sourceMappingURL=history.css.map */

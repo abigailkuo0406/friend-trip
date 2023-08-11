@@ -1,0 +1,81 @@
+.main {
+    width: 1300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.breadcontainer {
+    /* border: 1px solid red; */
+    opacity: 0;
+    width: auto;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.breadline {
+    position: absolute;
+    width: 461px;
+    height: 5px;
+    background-color: var(--main-dark);
+    z-index: 0; 
+}
+.bread1 {
+    position: absolute;
+    left: 250px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--main-dark);
+    z-index: 1; 
+}
+.bread2 {
+    position: absolute;
+    right: 250px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--main-light);
+    margin-left: 40px;
+    z-index: 1; 
+}
+.title{
+    color: var(--main-dark);
+    font-weight: bold;
+}
+.cardbody{
+    width: 700px;
+    height: 700xpx;
+    background-color: #fefefe;
+    border-radius: 30px;
+    padding: 10px 10px 10px 30px;
+}
+.inputstyle{
+    width: 500px;
+    height: 70px;
+    /* border: 1px solid rgb(66, 8, 44); */
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+}
+.inputlabel{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--main-dark);
+}
+.inputbar{
+    margin-top: 15px;
+}
+.init{
+    padding: 0px;
+}
+.error{
+    border-color: red;
+}
+.right{
+    border-color: rgb(36, 205, 36);
+}
