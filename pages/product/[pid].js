@@ -16,6 +16,7 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 export default function ProductItem({}) {
   const {auth, setAuth } = useContext(AuthContext)
 
+
   const router = useRouter()
   const [row, setRow] = useState({
     product_id: 0,
@@ -192,6 +193,13 @@ export default function ProductItem({}) {
     }}
   },[favorit,likeClick])
 
+  // 將後端傳來的時間格式轉成台灣的時間格式
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const formattedDate = new Date(dateString).toLocaleString('zh-TW', options);
+    return formattedDate;
+  }
+
   return (
     <>
       <div className="PidPageHeader">
@@ -298,10 +306,14 @@ export default function ProductItem({}) {
                     <div className="productPageComment-each">
                       <div className="comment-member-img">
                         <Image
-                          src={auth.images ? `http://localhost:3002/face/${auth.images}` : persona}
-                          width={60}
-                          height={60}
-                          alt="persona"
+                            src={`/face/${e.images}`}
+                            className="commentImg"
+                            alt={`${e.images}'s persona`}
+                            width={100}
+                            height={100}
+                            onError={(e) => {
+                              e.target.srcset = '/yun/product-img/no-img.png';
+                            }}
                         ></Image>
                       </div>
                       <div className="comment-member-content">
@@ -316,6 +328,7 @@ export default function ProductItem({}) {
                         </div>
                       </div>
                       <p className="comment-comment-content">{e.comment_content}</p>
+                      <p className="comment-comment-time small-font">{formatDate(e.comment_time)}</p>
                       </div>
                       
                       </div>

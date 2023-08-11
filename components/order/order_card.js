@@ -55,15 +55,16 @@ export default function OrderCard({
       icon: 'info',
       iconColor: '#FABCBF',
       color: '#674C87',
-      confirmButtonColor: '#674C87',
+      confirmButtonColor: '#D0A5CA',
+      denyButtonColor:'#674C87',
       showConfirmButton: true,
       showDenyButton: true,
-      confirmButtonText: '已成功收貨',
-      denyButtonText: '還未收到',
+      confirmButtonText: '還未收到',
+      denyButtonText: '已成功收貨',
     }).then((result) => {
-      if (result.isConfirmed) {
+      if (result.isDenied) {
         setSwalStatus('goComplete')
-      } else if (result.isDenied || result.dismiss) {
+      } else if (result.isConfirmed || result.dismiss) {
         setSwalStatus('notYet')
       }
     })
@@ -113,6 +114,15 @@ export default function OrderCard({
     onClick={handleShow}
   ></BtnNormal>
   }
+
+  // 將後端傳來的時間格式轉成台灣的時間格式
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const formattedDate = new Date(dateString).toLocaleString('zh-TW', options);
+    return formattedDate;
+  }
+
+
   useEffect(() => {
   // 訂單詳情展開樣式，避免展開過程中內容的 css 沒帶到透過 BS 方法監聽下拉收合事件
   // addEventListener 為非 React 語法只能用 useState
@@ -131,10 +141,10 @@ export default function OrderCard({
     myCollapsible.addEventListener('shown.bs.collapse', () => {
       setProductDetailComponent(<Fragment>
         <div className="order-info-each">
-          <p>下訂時間：</p><p>{orderDetail.order_time}</p>
+          <p>下訂時間：</p><p>{formatDate(orderDetail.order_time)}</p>
         </div>
         {(orderDetail.order_status === '訂單完成' ? <div className="order-info-each">
-          <p>完成時間：</p><p>{orderDetail.complete_time}</p>
+          <p>完成時間：</p><p>{formatDate(orderDetail.complete_time)}</p>
         </div> :
         "")}
         <div className="order-info-each">

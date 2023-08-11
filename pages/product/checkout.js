@@ -133,11 +133,14 @@ export default function CheckOut() {
           icon: 'success',
           iconColor: '#FABCBF',
           color: '#674C87',
-          confirmButtonColor: '#674C87',
-          showConfirmButton: true,
+          confirmButtonColor: '#D0A5CA',
+          denyButtonColor:'#674C87',
           showDenyButton: true,
-          confirmButtonText: '繼續購物',
+          showConfirmButton: true,
+          
           denyButtonText: '查看訂單',
+          confirmButtonText: '繼續購物',
+          
         }).then((result) => {
           if (result.isConfirmed || result.dismiss) {
             window.location="./"
