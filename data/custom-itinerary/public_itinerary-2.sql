@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost:8889
--- 產生時間： 2023 年 08 月 10 日 15:40
+-- 產生時間： 2023 年 08 月 11 日 09:28
 -- 伺服器版本： 5.7.39
 -- PHP 版本： 7.4.33
 
@@ -40,7 +40,10 @@ CREATE TABLE `public_itinerary` (
 
 INSERT INTO `public_itinerary` (`sid`, `member_id`, `itin_id`, `create_at`) VALUES
 (15, 2, 159, '2023-08-10 14:20:35'),
-(16, 2, 152, '2023-08-10 14:21:12');
+(16, 2, 152, '2023-08-10 14:21:12'),
+(17, 18, 150, '2023-08-10 21:59:46'),
+(18, 11, 152, '2023-08-10 22:37:20'),
+(19, 36, 178, '2023-08-11 09:22:35');
 
 --
 -- 已傾印資料表的索引
@@ -60,7 +63,7 @@ ALTER TABLE `public_itinerary`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `public_itinerary`
 --
 ALTER TABLE `public_itinerary`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

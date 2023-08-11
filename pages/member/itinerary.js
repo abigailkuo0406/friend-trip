@@ -4,6 +4,7 @@ import Link from 'next/link'
 import AdminLayout from '@/components/layout/admin-layout'
 import CustomItineraryIndex from '@/components/custom-itinerary'
 import HistoryCard from '@/components/custom-itinerary/history-card'
+import styles from '@/components/custom-itinerary/history.module.css'
 import AuthContext from '@/context/AuthContext'
 import {
   MdNavigateNext,
@@ -115,26 +116,30 @@ export default function ItineraryIndex() {
         allClick={handleAllTripsClick}
         joinCick={handleJoinClick}
       />
-
-      {data.rows.map((v, i) => {
-        return (
-          <div key={i}>
-            <HistoryCard
-              coverPhoto={v.coverPhoto}
-              name={v.name}
-              public={v.public}
-              description={v.description}
-              date={v.date}
-              itin_id={v.itin_id}
-              member_id={v.itin_member_id}
-              filterCondition={filterCondition}
-              onDelete={() => handleDelete(v.itin_id)}
-              onChange={() => changeLocalStorage(v.itin_id)}
-            />
-          </div>
-        )
-      })}
-      <div>
+      {data.rows.length > 0 ? (
+        data.rows.map((v, i) => {
+          return (
+            <div key={i}>
+              <HistoryCard
+                coverPhoto={v.coverPhoto}
+                name={v.name}
+                public={v.public}
+                description={v.description}
+                date={v.date}
+                itin_id={v.itin_id}
+                member_id={v.itin_member_id}
+                filterCondition={filterCondition}
+                onDelete={() => handleDelete(v.itin_id)}
+                onChange={() => changeLocalStorage(v.itin_id)}
+              />
+            </div>
+          )
+        })
+      ) : (
+        <h6 className={`mx-4 ${styles.sort}`}>查無任何新行程!</h6>
+      )}
+      {data?.rows&&data.rows.length>0&&(
+        <div>
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation">
             <ul className="pagination">
@@ -228,6 +233,8 @@ export default function ItineraryIndex() {
           </nav>
         </div>
       </div>
+      )}
+     
     </>
   )
 }

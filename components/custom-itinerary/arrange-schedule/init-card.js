@@ -6,6 +6,7 @@ import {RiDeleteBinLine } from 'react-icons/ri'
 import Swal from 'sweetalert2'
 
 
+
 export default function InitCard ({ selectedViews, onDeleteViews, photoUrl }) {
 
 
