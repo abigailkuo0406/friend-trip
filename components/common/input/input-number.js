@@ -17,6 +17,7 @@ export default function InputNumber({
   width,
   addClassforLabel,
   addClassforInput,
+  addClassforDiv,
   error = false
 }) {
   // 預設數字防呆
@@ -57,7 +58,7 @@ export default function InputNumber({
   }
 
   return (
-    <div className="select-section">
+    <div className={`${addClassforDiv} input-radio-section`}>
       <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>

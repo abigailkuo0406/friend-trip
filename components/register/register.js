@@ -64,6 +64,30 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
     resultObj ? console.log('11', resultObj.filename) : console.log('22')
     resultObj ? setImages(resultObj.filename) : setImages('')
   }
+  const [verifyemail, setVerifyEmail] = useState(true)
+  function validateemail(value) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    // console.log(emailPattern.test(value))
+    if (emailPattern.test(value)) {
+      setEmail(value)
+      console.log(email)
+      setVerifyEmail(true)
+    } else {
+      setVerifyEmail(false)
+    }
+  }
+  const [verifyid, setVerifyId] = useState(true)
+  function validateidnumber(value) {
+    const idPattern = /^[A-Z][12]\d{8}$/
+    // console.log(emailPattern.test(value))
+    if (idPattern.test(value)) {
+      setEmail(value)
+      console.log(id)
+      setVerifyId(true)
+    } else {
+      setVerifyId(false)
+    }
+  }
   return (
     <>
       <div className={styles.main}>
@@ -86,13 +110,17 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
                 id="email"
                 // value=''
                 getValue={(value) => {
-                  value != '' ? setEmail(value) : setEmail('')
+                  value != '' ? validateemail(value) : setEmail('')
                 }}
                 addClassforInput={email == '' ? styles.error : styles.right}
                 getName={() => {}}
                 width="input-width-100pa"
               ></InputText>
             </div>
+            {/* {verify && <div style={{ color: 'green' }}>請輸入電子信箱</div>} */}
+            {!verifyemail && (
+              <div style={{ color: 'red' }}>電子信箱格式錯誤</div>
+            )}
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
@@ -110,7 +138,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
           </div>
           <div className={styles.inputstyle}>
             <h5 className={styles.inputlabel}>照片</h5>
-            <App test1={resultChange} />
+            <App resultChange={resultChange} />
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
@@ -130,7 +158,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
             <h5 className={styles.inputlabel}>會員生日</h5>
             <input
               type="date"
-              className="rounded-3"
+              className="input-text"
               value={aaa.birth}
               onChange={(e) => {
                 setAaa({ ...aaa, birth: e.target.value })
@@ -143,11 +171,16 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
                 label="身分證字號"
                 name="id_number"
                 value={aaa.id}
-                getValue={(value) => (value != '' ? setId(value) : setId(''))}
+                getValue={(value) =>
+                  value != '' ? validateidnumber(value) : setId('')
+                }
                 getName={() => 'whatever'}
                 width="input-width-100pa"
               ></InputText>
             </div>
+            {!verifyid && (
+              <div style={{ color: 'red' }}>身分證字號格式錯誤</div>
+            )}
           </div>
           <div className={styles.inputstyle}>
             <InputRadioGroup

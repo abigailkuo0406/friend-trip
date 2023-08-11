@@ -1,11 +1,8 @@
 import React, { useState, useEffect,Fragment} from 'react'
-
 import BtnNormal from '@/components/common/button/btn-normal'
 import TableCheckingProduct from '@/components/common/table/table-checking-product'
-
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-
 export default function CheckoutProduct({
     orderID='',
     goCheckOut=()=>{},
@@ -39,7 +36,7 @@ export default function CheckoutProduct({
     let checkoutComponent;
     if (page === '1') {
       checkoutComponent = 
-      <Link href="?page=2">
+      <Link href="?page=2" className="go-payment-btn">
       <BtnNormal
             type="button"
             value="button"
@@ -49,7 +46,7 @@ export default function CheckoutProduct({
         ></BtnNormal>
         </Link>
     } else if (page === '2') {
-        checkoutComponent =<Fragment>
+        checkoutComponent =<div className="checkout-btn" >
         <BtnNormal
               type="button"
               value="button"
@@ -66,7 +63,7 @@ export default function CheckoutProduct({
               disabled={false} // fase：可點，true：不可點
               onClick={goCheckOut}
           ></BtnNormal>
-          </Fragment>
+          </div>
           
     }
   return (
@@ -86,6 +83,7 @@ export default function CheckoutProduct({
           productName={i.product_name}
           productNum={i.product_num}
           productPrice={i.product_price}
+          productID={i.product_id}
         ></TableCheckingProduct>
       </Fragment>
     ))}

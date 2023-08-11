@@ -10,17 +10,24 @@ export default function TableCheckingProduct({
     productName='',
     productNum=0,
     productPrice=0,
+    productID=0,
 }) {
   
 
   return (
     <>
     <tr>
-    <td className="checkingProdutListName"><Image
-            src={fakeIimg1}
-            className=""
-            alt="testIMG"
-          ></Image>
+    <td className="checkingProdutListName">
+    <Image
+                  src={`/yun/product-img/pi-${productID}.png`}
+                  className=""
+                  alt={`${productID}'s product img`}
+                  width={300}
+                  height={300}
+                  onError={(e) => {
+                    e.target.srcset = '/yun/product-img/no-img.png';
+                  }}
+              ></Image>
           <p>{productName}</p></td>
     <td>{productNum}</td>
     <td>NT$ {productPrice*productNum}</td>

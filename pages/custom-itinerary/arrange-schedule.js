@@ -87,36 +87,6 @@ export default function ArrangeSchedule() {
     }
 
     //place details 取得照片
-    // const PlacesService = new google.maps.places.PlacesService(map1)
-
-    // PlacesService.getDetails(
-    //   {
-    //     placeId: selectedView.place_id,
-    //   },
-    //   (place, status) => {
-    //     if (status === google.maps.places.PlacesServiceStatus.OK) {
-    //       // console.log('Object.keys=====>' + Object.keys(place.photos))
-    //       // console.log('obj.key()>>:' + Object.keys(place.photos[0]))
-    //       //取得照片網址=>Object.keys(place.photos[0])
-    //       showPlacePhotos(place)
-    //       // 將景點資訊、照片URL和名稱存入一個物件中
-    //     const viewInfo = {
-    //       ...selectedView,
-    //       photoUrl: photoUrl,
-    //     }
-    //     console.log('viewInfo',viewInfo)
-    //     // 將該物件加入到addInitLocal陣列中
-    //     setAddInitLocal((prevAddInitResults) => [
-    //       ...prevAddInitResults,
-    //       viewInfo,
-    //     ])
-    //     } else {
-    //       console.error('錯誤的狀態')
-    //     }
-    //   }
-    // )
-
-    //place details 取得照片
     const PlacesService = new google.maps.places.PlacesService(map1)
 
     PlacesService.getDetails(
@@ -137,7 +107,6 @@ export default function ArrangeSchedule() {
             ...selectedView,
             photo_url: selectedView.name+'.jpg', // 使用新的變數
           }
-          // console.log('viewInfo', viewInfo)
           //將加入行程的景點存為新的陣列
           // 將 viewInfo 加入到 addInitLocal 陣列中
           setAddInitLocal((prevAddInitResults) => [
@@ -191,19 +160,12 @@ export default function ArrangeSchedule() {
 
     // 將選擇的景點資訊存儲在狀態中
     setSelectedView(selectedView)
-
-    //將加入行程的景點存為新的陣列
-    // setAddInitLocal((prevAddInitResults) => [
-    //   ...prevAddInitResults,
-    //   {...selectedView,
-    //     photoUrl: photoUrl,
-    // }])
   }
 
   // 當 addInitLocal 陣列改變時，將其存儲到 localStorage 中
   useEffect(() => {
     localStorage.setItem('addInitLocal', JSON.stringify(addInitLocal))
-    console.log('addInitLocal======', addInitLocal)
+    // console.log('addInitLocal======', addInitLocal)
   }, [addInitLocal])
 
   //設定要存取到後端的狀態
@@ -247,7 +209,7 @@ export default function ArrangeSchedule() {
       itin_order: index,
       itin_id: itinId,
     }))
-    console.log('dataFromLocalStorage123:', JSON.stringify(dataWithOrder))
+    // console.log('dataFromLocalStorage123:', JSON.stringify(dataWithOrder))
 
     // console.log('storedData123',storedData)
     // console.log('parsedData123',parsedData)
@@ -285,22 +247,22 @@ export default function ArrangeSchedule() {
 
   //路線規劃
   const showRoute = () => {
-    console.log('SHOW ROUTE')
+    // console.log('SHOW ROUTE')
 
     const directionsService = new google.maps.DirectionsService()
     const intial = new google.maps.LatLng(
       addInitLocal[0].lat,
       addInitLocal[0].lng
     )
-    console.log('intial', addInitLocal[0].lat, addInitLocal[0].lng)
+    // console.log('intial', addInitLocal[0].lat, addInitLocal[0].lng)
 
     const waypoints = addInitLocal.slice(1, -1).map((item) => ({
       location: new google.maps.LatLng(item.lat, item.lng),
       stopover: true,
     }))
 
-    console.log(addInitLocal.slice(1, -1))
-    console.log('waypoints', waypoints)
+    // console.log(addInitLocal.slice(1, -1))
+    // console.log('waypoints', waypoints)
     const final = new google.maps.LatLng(
       addInitLocal[addInitLocal.length - 1].lat,
       addInitLocal[addInitLocal.length - 1].lng

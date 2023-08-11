@@ -2,8 +2,11 @@ import Link from 'next/link'
 import { BiSearchAlt, BiMap } from 'react-icons/bi'
 import { FaArrowLeftLong } from 'react-icons/fa6'
 import { IoLocationOutline, IoTimeOutline } from 'react-icons/io5'
-import { BsFillTelephoneFill,BsFillStarFill} from 'react-icons/bs'
+import { BsTelephone,BsFillStarFill} from 'react-icons/bs'
 import styles from './search-view.module.css'
+import {TfiLocationPin} from 'react-icons/tfi'
+
+
 
 
 export default function SearchView({
@@ -11,7 +14,13 @@ export default function SearchView({
   selectedView,
   changeToAddSchedule,
   photoUrl,
-}) { 
+})
+
+{ 
+  // const formattedWeekdayText = selectedView.weekday_text.replace(/,星期/g, '\n星期')
+  // const weekdayText = formattedWeekdayText.replace(/"/g, '\n')
+
+  // console.log('weekdayText',weekdayText)
 
   return (
     <>
@@ -24,13 +33,13 @@ export default function SearchView({
               <ul className={`nav ${styles.ulNav}`}>
                 <li className={`nav-item${styles.li}`}>
                   <button className={`btn ${styles.searchArrow}`} onClick={changeToAddSchedule}>
-                    <FaArrowLeftLong />
+                    <FaArrowLeftLong className='fs-5 mt-1'/>
                   </button>
                 </li>
                 <li className={`nav-item${styles.li}`}>
                   <Link href="#" className={styles.search}>
-                    <BiSearchAlt  />
-                    <p >搜尋</p>
+                    <BiSearchAlt className='fs-5 mt-3'/>
+                    <p>搜尋</p>
                   </Link>
                 </li>
                 {/* <li className="nav-item">
@@ -49,7 +58,6 @@ export default function SearchView({
                     // value={inputValue}
                     onChange={onInputChange}
                   />
-
                   <div>
                     <div>
                       {selectedView && selectedView.name && (
@@ -57,33 +65,38 @@ export default function SearchView({
                           <h5 className="mt-3 pb-2">{selectedView.name}</h5> 
                           <div id="placeDetails"><img src={photoUrl}></img></div>                            
                           <li>
-                          <div className="mt-2 mx-1 pt-2">{selectedView.rating}<BsFillStarFill className="mb-1 mx-2 "/></div>
-                          </li>
-                          <li className="mt-1 ">
-                            <IoLocationOutline className=""/>
-                            {selectedView.formatted_address}
+                          <div className="mt-3 mx-2 pt-2">{selectedView.rating}<BsFillStarFill className="mb-1 mx-3"/></div>
                           </li>
                           <li>
-                            <div>
-                              <IoTimeOutline className="align-self-start " />
+                          <div className='mt-2 d-flex'>
+                            <TfiLocationPin className="mx-1 fs-5"/>
+                            <div className='mx-4'>{selectedView.formatted_address}</div>
+                        
+                            </div>
+                          </li>
+                          <li>
+                            <div className='mt-2'>
+                              <IoTimeOutline className="mx-1 fs-5 align-self-start" />
                               <div className="mx-5">
                                 {selectedView.weekday_text &&
                                   selectedView.weekday_text.map(
                                     (time, index) => {
-                                      return <span key={index}>{time}</span>
+                                      return <span key={index}>{time}<br/></span>
                                     }
                                   )}
                               </div>
                             </div>
                           </li>
-                          <li className="mt-3 ">
-                            <BsFillTelephoneFill className="mx-1" />
-                            {selectedView.phone_number}
+                          <li className="mt-3">
+                          <div className="d-flex">
+                            <BsTelephone className="mx-2 fs-5" />
+                          <div className='mx-2'>{selectedView.phone_number}</div> 
+                          </div>  
                           </li>
-                          <div className="d-flex mx-2 mt-4">
+                          <div className="d-flex mt-4 flex-row-reverse px-3">
                             <button
                               type="button"
-                              className="btn btn-dark mx-4 "
+                              className={`btn btn-dark`}
                               onClick={changeToAddSchedule}
                             >
                               加入行程

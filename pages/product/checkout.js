@@ -11,6 +11,7 @@ import CheckoutInfo1 from '@/components/product_checkout/checkout_info1'
 import CheckoutInfo2 from '@/components/product_checkout/checkout_info2'
 import CheckoutProduct from '@/components/product_checkout/checkout_product'
 import AuthContext from '@/context/AuthContext'
+import Swal from 'sweetalert2'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 
 export default function CheckOut() {
@@ -39,7 +40,7 @@ export default function CheckOut() {
     const [receiverEmailName, setReceiverEmailName] = useState('')
     const [orderNoteValue, setOrderNoteValue] = useState('')
     const [orderNoteName, setOrderNoteName] = useState('')
-    const [paymentMethodValue, setPaymentMethodValue] = useState('')
+    const [paymentMethodValue, setPaymentMethodValue] = useState('信用卡') // 在 checkout_info2.js 設置
     const [creditNumberValue, setCreditNumberValue] = useState('')
     const [creditError, setCreditError] = useState(false)
     const [creditErrorTracker, setCreditErrorTracker] = useState('')
@@ -121,7 +122,31 @@ export default function CheckOut() {
       )
         .then((r) => r.json())
         .then((data) => {
-          setTotal(data.all[0].cart_total)
+          if(data){
+           
+          }
+        })
+        Swal.fire({
+          width: 400,
+          html: `<h4>敬愛的會員${auth.member_id}您好，</h4>
+          <h4>您的訂單編號 "${orderID}" 已經成立</h4>`,
+          icon: 'success',
+          iconColor: '#FABCBF',
+          color: '#674C87',
+          confirmButtonColor: '#D0A5CA',
+          denyButtonColor:'#674C87',
+          showDenyButton: true,
+          showConfirmButton: true,
+          
+          denyButtonText: '查看訂單',
+          confirmButtonText: '繼續購物',
+          
+        }).then((result) => {
+          if (result.isConfirmed || result.dismiss) {
+            window.location="./"
+          } else if (result.isDenied) {
+            window.location="./order"
+          }
         })
     }
     const submitOrder = (e)=>{
@@ -136,21 +161,36 @@ export default function CheckOut() {
         return
       }
     }
-    
+    const goCart = ()=>{
+      // 刪除未成為訂單的暫存產品的訂單ID
+      if(orderID){
+        fetch(`${process.env.API_SERVER}/checkout/deleteTempProduct`, {
+          method: 'POST',
+          body: JSON.stringify({orderID: orderID,}),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+        )
+          .then((r) => r.json())
+          .then((data) => {
+          })
+      }
+      router.push('../product/cart')
+    }
 
   return (
     <>
       <div className="CartPageHeader onePageHeader">
-        <div className="PageBack">
-          <Link replace href="../product">
+        <div className="PageBack" onClick={goCart}>
             <MdKeyboardArrowLeft></MdKeyboardArrowLeft>
-          </Link>
+        
         </div>
         <div className="PageTitle">
           <p>訂購資料</p>
         </div>
       </div>
-      <section className="order_section">
+      <section className="order_section checking_section">
       
         <div className="order_left">
             <form onSubmit={submitOrder}>

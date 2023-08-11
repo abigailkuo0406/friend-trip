@@ -1,13 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import AdminLayout from '@/components/layout/admin-layout'
 import CustomItineraryIndex from '@/components/custom-itinerary'
 import HistoryCard from '@/components/custom-itinerary/history-card'
-// import PageBtn from '@/components/custom-itinerary/page-btn'
+import styles from '@/components/custom-itinerary/history.module.css'
+import AuthContext from '@/context/AuthContext'
+import {
+  MdNavigateNext,
+  MdNavigateBefore,
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardDoubleArrowLeft,
+} from 'react-icons/md'
 
 export default function ItineraryIndex() {
-  const [filteredTripsData, setFilteredTripsData] = useState([])
+  //取得登入之會員資料
+  const { auth } = useContext(AuthContext)
   const router = useRouter()
   const [data, setData] = useState({
     redirect: '',
@@ -18,14 +26,21 @@ export default function ItineraryIndex() {
     rows: [],
   })
 
+  const [filterCondition, setFilterCondition] = useState('') //控制分頁
+
   //讀取資料庫
   useEffect(() => {
     const usp = new URLSearchParams(router.query)
     // API串接
-    fetch(`http://localhost:3002/custom-itinerary?${usp.toString()}`)
+    fetch(
+      `http://localhost:3002/custom-itinerary?${usp.toString()}&member_id=${
+        auth.member_id
+      }&filtercondition=${filterCondition}`
+    )
       .then((r) => r.json())
       .then((data) => {
         setData(data)
+        // console.log('data==>', data)
       })
   }, [router.query])
 
@@ -45,61 +60,100 @@ export default function ItineraryIndex() {
 
   //公開行程filter
   const handlePublicTripsClick = () => {
-    const publicTrips = data.rows.filter((trip) => trip.public === '公開')
-    setFilteredTripsData(publicTrips)
-    setData((prevData)=>({
-      ...prevData,
-      totalRows:publicTrips.length,
-      totalPages:Math.ceil(publicTrips.length/data.perPage),
-      rows: publicTrips,
-    }))
+    setFilterCondition('public')
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: 1 }, // 設定 page 為 1
+    })
   }
-
 
   //不公開行程filter
   const handlePrivateTripsClick = () => {
-    const filterPrivate = data.rows.filter((trip) => trip.public === '不公開')
-    setFilteredTripsData(filterPrivate)
-    setData((prevData)=>({
-      ...prevData,
-      totalRows:filterPrivate.length,
-      totalPages:Math.ceil(filterPrivate.length/prevData.perPage),
-      rows: filterPrivate,
-    }))
+    setFilterCondition('private')
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: 1 }, // 設定 page 為 1
+    })
   }
 
   const handleAllTripsClick = () => {
-    setFilteredTripsData([])
+    setFilterCondition('')
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: 1 }, // 設定 page 為 1
+    })
   }
+
+  const handleJoinClick = () => {
+    setFilterCondition('join')
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, page: 1 }, // 設定 page 為 1
+    })
+  }
+  // //排序
+  // const handleSortOptionChange = (event) => {
+  //   const usp = new URLSearchParams(router.query)
+  //   const selectedOption = event.target.value
+  //   fetch(
+  //     `http://localhost:3002/custom-itinerary/order-by?${usp.toString()}&sort=${selectedOption}`
+  //   )
+  //     .then((r) => r.json())
+  //     .then((data) => {
+  //       setData(data)
+  //       console.log('data',data)
+  //     })
+  //     .catch((error) => {
+  //       console.log('獲取數據時出錯:', error)
+  //     })
+  // }
 
   return (
     <>
-      <CustomItineraryIndex 
-      privateClick={handlePrivateTripsClick}
-      publicClick={handlePublicTripsClick}
-      allClick={handleAllTripsClick}
-       />
-     
-      {data.rows.map((v, i) => {
-        return (
-          <div key={i}>
-            <HistoryCard
-              coverPhoto={v.coverPhoto}
-              name={v.name}
-              public={v.public}
-              description={v.description}
-              date={v.date}
-              itin_id={v.itin_id}
-              onDelete={() => handleDelete(v.itin_id)}
-              onChange={()=>changeLocalStorage(v.itin_id)}
-            />
-          </div>
-        )
-      })}
-      <div>
+      <CustomItineraryIndex
+        privateClick={handlePrivateTripsClick}
+        publicClick={handlePublicTripsClick}
+        allClick={handleAllTripsClick}
+        joinCick={handleJoinClick}
+      />
+      {data.rows.length > 0 ? (
+        data.rows.map((v, i) => {
+          return (
+            <div key={i}>
+              <HistoryCard
+                coverPhoto={v.coverPhoto}
+                name={v.name}
+                public={v.public}
+                description={v.description}
+                date={v.date}
+                itin_id={v.itin_id}
+                member_id={v.itin_member_id}
+                filterCondition={filterCondition}
+                onDelete={() => handleDelete(v.itin_id)}
+                onChange={() => changeLocalStorage(v.itin_id)}
+              />
+            </div>
+          )
+        })
+      ) : (
+        <h6 className={`mx-4 ${styles.sort}`}>查無任何新行程!</h6>
+      )}
+      {data?.rows&&data.rows.length>0&&(
+        <div>
         <div className="itin-card-pagination">
           <nav aria-label="Page navigation">
             <ul className="pagination">
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  href={'?' + new URLSearchParams('page=1').toString()}
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">
+                    <MdKeyboardDoubleArrowLeft />
+                  </span>
+                </Link>
+              </li>
               <li className="page-item">
                 <Link
                   className="page-link"
@@ -113,7 +167,9 @@ export default function ItineraryIndex() {
                   }
                   aria-label="Previous"
                 >
-                  <span aria-hidden="true">&laquo;</span>
+                  <span aria-hidden="true">
+                    <MdNavigateBefore />
+                  </span>
                 </Link>
               </li>
               {/* 顯示頁碼 */}
@@ -154,13 +210,31 @@ export default function ItineraryIndex() {
                   }
                   aria-label="Next"
                 >
-                  <span aria-hidden="true">&raquo;</span>
+                  <span aria-hidden="true">
+                    <MdNavigateNext />
+                  </span>
+                </Link>
+              </li>
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  href={
+                    '?' +
+                    new URLSearchParams(`page=${data.totalPages}`).toString()
+                  }
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">
+                    <MdKeyboardDoubleArrowRight />
+                  </span>
                 </Link>
               </li>
             </ul>
           </nav>
         </div>
       </div>
+      )}
+     
     </>
   )
 }

@@ -15,3 +15,9 @@
 .font{
     color: var( --main-dark);
 }
+.arrow {
+    color: white;
+    background-color: var( --main-light);
+    border-radius: 10px;
+    border-color: var( --main-light);
+}

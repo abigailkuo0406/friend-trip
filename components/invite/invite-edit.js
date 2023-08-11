@@ -10,6 +10,7 @@ export default function InviteEdit({
   iv_member_id,
   defaultBtn,
   onValueChange,
+  friendsBtnTemp,
 }) {
 
   const [inviteFriend, setInviteFriend] = useState('')
@@ -19,11 +20,9 @@ export default function InviteEdit({
   const [inviteBtn, setInviteBtn] = useState(defaultBtn)
 
 
-  // console.log(friendName, defaultBtn, '11', inviteBtn)
 
 
   const handleClick = (e) => {
-    console.log('qq', inviteBtn)
 
     // 如果按鈕是false(+)，重設邀請姓名與照片路徑，把按鈕改成true(移除)
     if (!inviteBtn) {
@@ -46,17 +45,22 @@ export default function InviteEdit({
 
   // 每次按鈕值改變，就送出邀請姓名、照片路徑和按鈕值到父層
   useEffect(() => {
-    onValueChange(inviteImg, inviteBtn, inviteId)
+    onValueChange(inviteFriend, inviteImg, inviteBtn, inviteId)
 
 
-  }, [inviteBtn])
+  }, [inviteBtn, friendsBtnTemp])
 
 
   return (
     <>
       <div className="my-4">
         <div className="d-flex align-items-center ">
-          <Image src={`http://localhost:3002/face/${images}`} className={styles.avatar} width={50} height={50} />
+          <Image
+            src={`http://localhost:3002/face/${images}`}
+            alt={images}
+            className={styles.avatar}
+            width={50}
+            height={50} />
           <p className={`mx-5 ${styles.listText}`}>{friendName}</p>
 
           <Btn

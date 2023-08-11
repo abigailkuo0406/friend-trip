@@ -20,4 +20,20 @@
 .viweColor{
     color:#674c87;
     margin-left: 1.25rem;
+    &:hover{
+        color: #674c87; 
+    }
+     &:active{
+        color: #674c87;   
+    }
 }
+.riDeleteBinLine{
+    color: #674c87;
+    &:hover{
+        color: #674c87; 
+    }
+    &:active{
+        color: #674c87;   
+    }
+  }
+  

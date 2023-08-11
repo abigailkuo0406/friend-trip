@@ -14,6 +14,7 @@ export default ScheduleContext
 // 定義了函式組件 ScheduleContextProvider，接收參數 children
 export const ScheduleContextProvider = ({children})=>{
   const [Itin_id,setItin_id]=useState('')
+  const [itin_name,setItin_name]=useState('')
   // 使用 useEffect 在元件載入時讀取 localStorage 的值
   useEffect(() => {
 
@@ -22,10 +23,10 @@ export const ScheduleContextProvider = ({children})=>{
     if (storedData) {
       const parsedData = JSON.parse(storedData);
       const member_id=parsedData.member_id
-      console.log('storedData:',member_id);
+      // console.log('storedData:',member_id);
       
       const schedule_info = localStorage.getItem('schedule_info');
-      console.log('schedule_info:',schedule_info);
+      // console.log('schedule_info:',schedule_info);
 
       if (! schedule_info) {
         
@@ -35,22 +36,19 @@ export const ScheduleContextProvider = ({children})=>{
         .then((r) => r.json())
         .then((data) => {
           //判斷目前的itin_id位置
-          console.log('initial ==> itin_member:', data[0])
           setItin_id(data[0].itin_id)
-          localStorage.setItem('schedule_info', JSON.stringify({'itin_member':data[0].itin_id,'itin_name':data[0].name}))
-          
-          console.log('<<<<<<     DB最新行程編號為:',data[0].itin_id,'     >>>>>>')
+          setItin_name(data[0].name)
+          localStorage.setItem('schedule_info', JSON.stringify({'itin_member':data[0].itin_id,'itin_name':data[0].name,'itin_member_id':data[0].itin_member_id}))
+                    
         })
         .catch((error) => {
           console.error('資料接收失敗', error)
         });
-        console.log('Itin_idItin_idItin_idItin_id=>',Itin_id)
 
       }else{
         const schedule_info = localStorage.getItem('schedule_info')
         const parsed_schedule_info = JSON.parse(schedule_info);
-        console.log('<<<<<<     有特定行程編號     >>>>>>')
-        console.log('(     localStorage 最新行程編號為:',parsed_schedule_info.itin_member,'     )')
+        setItin_name(parsed_schedule_info.itin_name)
 
       }
       
@@ -60,33 +58,9 @@ export const ScheduleContextProvider = ({children})=>{
     }, []);
 
 
-
-
-   const default_value = {
-    ID: '456',
-  }
-  const [ID, setID] = useState({ ...default_value });
-
-  const change_value = {
-    ID: 'billy',
-  }
-
-
-
-  console.log('after provider ID value =>',ID )
-
-  const handleChangeValue = () => {
-    setID('billy');
-    console.log('handleChangeValue provider ID value =>',ID)
-  };
-
-
-
-
-
   return (
 
-    <ScheduleContext.Provider value={{ID , setID,  handleChangeValue }}>
+    <ScheduleContext.Provider value={{itin_name}}>
     {children}
     </ScheduleContext.Provider>
   )

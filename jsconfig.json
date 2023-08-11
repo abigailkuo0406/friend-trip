@@ -1,9 +1,9 @@
 {
-  "compilerOptions": {
-    "lib": ["es2018", "dom"],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
+    "compilerOptions": {
+      "lib": ["es2018", "dom"],
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./*"]
+      }
     }
   }
-}

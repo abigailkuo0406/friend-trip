@@ -56,7 +56,6 @@ export default function CheckoutInfo1({
     defaultOrderNoteTemp= defaultOrderNote
   } ,[defaultOrderNote])
   useEffect(() => {
-    console.log("帶入預設會員資料")
     let checkoutInfo = JSON.parse(localStorage.getItem("checkoutInfo"))
     if(inputMamberValueCheckBox[0]=='yes'){
       // 如果點選了帶入會員資料
@@ -91,6 +90,7 @@ export default function CheckoutInfo1({
             labelGroup={['請幫我帶入 FriendTrip 會員資料']} // 個別標籤
             getValue={setInputMamberValueCheckBox}
             getName={setInputMamberNameCheckBox}
+            addClassforDiv="member-auto"
             addClassforTitleLabel="" // 如果要在標題 label 添加 class
             addClassforEachLabel="input-member" // 如果要在個別選項 label 添加 class
             addClassforInput="" // 如果要在 input 添加 class

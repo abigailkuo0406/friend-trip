@@ -24,6 +24,7 @@ export default function ProductIndex() {
   const [allCollection, setAllCollection] = useState([]) // 存有所有收藏商品資料
   const [allCollectionID, setAllCollectionID] = useState([]) // 存有所有收藏商品 ID
   const [addProduct, setAddProduct] = useState([])
+  const [favoritChange, setFavoritChange] = useState('')
   useEffect(() => {
     if(auth.member_id != 0){
     localStorage.setItem("collectionID", JSON.stringify([]));
@@ -54,7 +55,6 @@ export default function ProductIndex() {
       )
         .then((r) => r.json())
         .then((data) => {
-          console.log("這個：",data.all.map(item => item.product_id))
           setAllCollectionID(data.all.map(item => item.product_id))
           localStorage.setItem("collectionID", JSON.stringify(data.all.map(item => item.product_id)));
         })
@@ -63,9 +63,9 @@ export default function ProductIndex() {
   }, [auth, addProduct, router])
 
   useEffect(() => {
+    if(router.query.collection == undefined && router.query.buyagain == undefined){
     setKeyword(router.query.keyword || '')
     const usp = new URLSearchParams(router.query)
-
     // API串接
     fetch(`${process.env.API_SERVER}/product?${usp.toString()}`, {
       method: 'GET',
@@ -74,8 +74,37 @@ export default function ProductIndex() {
       .then((data) => {
         setData(data)
       })
-  }, [router.query])
-  console.log('此頁的商品資料', data.rows)
+    } else if(router.query.collection == "true" && router.query.buyagain == undefined){
+      fetch(`${process.env.API_SERVER}/product/findCollection`, {
+        method: 'POST',
+        body: JSON.stringify({memberID: auth.member_id, keyword: router.query.keyword}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      )
+        .then((r) => r.json())
+        .then((data) => {
+          setData(data)
+          console.log("查找收藏商品：",data)
+        })
+    } else if(router.query.buyagain == "true" && router.query.collection == undefined){
+     
+      fetch(`${process.env.API_SERVER}/product/findBuyagain`, {
+        method: 'POST',
+        body: JSON.stringify({memberID: auth.member_id, keyword: router.query.keyword}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      )
+        .then((r) => r.json())
+        .then((data) => {
+          setData(data)
+          console.log("查找收藏商品：",data)
+        })
+    }
+  }, [router.query, favoritChange])
 
   const goCart = () => {
     router.push('./product/cart')
@@ -93,25 +122,27 @@ export default function ProductIndex() {
           <div className="PageCart col-4">
             <div>
             <a href="./product/cart" >
-              <BsCart></BsCart>
+              <BsCart/>
               <span className="cartNumber">{cartNumber}</span>
             </a>
             </div>
           </div>
         </div>
-        <div className="row g-5">
-          {data.rows.map((i) => (
-            <Fragment key={i.product_id}>
+        <div className="product-page-row row g-5">
+          {data.rows.map((element, index) => (
+            <Fragment key={element.product_id}>
               <CardProduct
                 memberID={auth.member_id}
-                productID={i.product_id}
-                allCollectionID={allCollectionID.includes(i.product_id)}
-                productName={i.product_name}
-                productCategory={i.product_category}
-                productBrief={i.product_brief}
-                productPrice={i.product_price}
-                productPost={i.product_post}
+                productID={element.product_id}
+                allCollectionID={allCollectionID.includes(element.product_id)}
+                productName={element.product_name}
+                productCategory={element.product_category}
+                productBrief={element.product_brief}
+                productPrice={element.product_price}
+                productRate={element.product_rate}
+                productPost={element.product_post}
                 setAddProduct={setAddProduct}
+                setFavoritChange={setFavoritChange}
               ></CardProduct>
             </Fragment>
           ))}

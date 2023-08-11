@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './imgupload.module.css'
 import Image from 'next/image'
-function App({ test1 }) {
+function App({ resultChange }) {
   const [img, setImg] = useState('')
-  const [resultState, setResultState] = useState()
-  function handleChange(e) {
-    console.log(e.target.files)
-    console.log(e.target.files[0].name)
-    setImg(URL.createObjectURL(e.target.files[0]))
-  }
   const imgUpload = (e) => {
     setImg(URL.createObjectURL(e.target.files[0]))
+
     async function upload(formData) {
       try {
         const response = await fetch(process.env.API_SERVER + '/preview', {
@@ -18,8 +13,8 @@ function App({ test1 }) {
           body: formData,
         })
         const result = await response.json()
-        setResultState(result)
         console.log('Success:', result)
+        resultChange(result)
       } catch (error) {
         console.error('Error:', error)
       }
@@ -31,9 +26,6 @@ function App({ test1 }) {
     console.log(formData)
     upload(formData)
   }
-  useEffect(() => {
-    test1(resultState)
-  }, [resultState])
 
   return (
     <div className={`d-flex align-items-center ms-5 ${styles.container}`}>
@@ -44,13 +36,22 @@ function App({ test1 }) {
         className={styles.img}
         alt="face.png"
       />
-      <input
-        type="file"
-        name="preview"
-        onChange={imgUpload}
-        // onChange={handleChange}
-        className={styles.input}
-      />
+      <div className={styles.custom_file_input}>
+        <input
+          type="file"
+          name="preview"
+          onChange={imgUpload}
+          // onChange={handleChange}
+          className={styles.input}
+        />
+        <Image
+          src={'http://localhost:3002/img/upload.png'}
+          width={150}
+          height={125}
+          className={styles.img2}
+          alt="upload.png"
+        />
+      </div>
     </div>
   )
 }

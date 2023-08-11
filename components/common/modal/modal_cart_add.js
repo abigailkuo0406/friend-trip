@@ -13,15 +13,15 @@ export default function CartModalAdd({
   <div className="modal-dialog modal-dialog-centered">
     <div className="modal-content modalCartAdd">
       <div className="modal-header">
-        <p lass="modal-title fs-5" id={`${id}Label`}>有<span className="modal-title-point">1</span>樣商品加入您的購物車</p>
+        <p lass="modal-title fs-5" id={`${id}Label`}>有<span className="modal-title-point"> 1 </span>樣商品加入您的購物車</p>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
         <div className="body-product-img"><Image
                 src={fakeIimg1}
                 className=""
-                alt=""
-              ></Image></div>
+                alt="12"
+              ></Image></div> 
         <div className="body-product-info">
           <h6 className="product-info-title">{productName}</h6>
           <h6 className="product-info-price">{`NT$ ${productPrice}`}</h6>

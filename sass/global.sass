@@ -85,12 +85,17 @@ li
   &:hover
     background-color: var(--main-dark)
     color: var(--assist-white)
+  &:visited
+    background-color: var(--main-dark)
 .btn-white
   background-color: var(--assist-white)
   color: var(--main-light)
   &:hover
     background-color: var(--assist-white)
     color: var(--main-dark)
+.btn-ban,.btn:disabled
+  background-color: var(--assist-grey)
+  color: var(--assist-white)
 
 // input 寬度樣式 // 可依需求新增但請遵守命名規則要以 input-width 前綴
 .input-width-100pa
@@ -421,7 +426,18 @@ main
 
       /* sidebar.js End ====================*/
 
-    
+footer
+  width: 100%
+  background-color: var(--bg-light)
+  margin-top: 0
+  margin-bottom: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 4rem
+  p
+    margin: 0
+    color: var(--main)
 
 
 

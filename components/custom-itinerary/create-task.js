@@ -4,7 +4,7 @@ import Link from 'next/link'
 import styles from './create-task.module.css'
 import Image from 'next/image'
 import { FaArrowLeftLong } from 'react-icons/fa6'
-import { TbPhotoPlus } from 'react-icons/tb'
+// import { TbPhotoPlus } from 'react-icons/tb'
 import Swal from 'sweetalert2'
 import InputText from '../common/input/input-text'
 import AreaText from '../common/input/textarea'
@@ -51,13 +51,21 @@ export default function CreateTask() {
   const [error8, setError8] = useState(false)
   const [errorTracker8, setErrorTracker8] = useState('')
 
+  const [inputSubjectError, setInputSubjectError] = useState(false)
+  const [inputSubjectErrorTracker, setInputSubjectErrorTracker] = useState('')
+
   const handleSubmit = (event) => {
     event.preventDefault()
+
+    if (inputSubjectError == '') {
+      setInputSubjectError(true)
+      setInputSubjectErrorTracker('inputSubject')
+      console.log('請填寫行程名稱')
+
+      return
+    }
+
     setSubmitted(true)
-    //新增成功呈現alert
-    // if (handleSubmit) {
-    //   alert('新增成功')
-    // }
     // 更改追蹤是否提交的狀態，用於 <form> 內除錯
     setClickSubmitted(!clickSubmitted) // 可以追蹤點擊提交
     if (error8 == true) {
@@ -66,43 +74,56 @@ export default function CreateTask() {
       moveTo.focus()
       return
     }
-    //點選建立後3秒後跳轉
-    setTimeout(() => {
-      if (handleSubmit) {
-        Swal.fire({
-          width: 400,
-          text: '建立行程成功',
-          icon: 'success',
-          iconColor: '#FABCBF',
-          color: '#674C87',
-          confirmButtonColor: '#674C87',
-          showConfirmButton: false,
-          timer: 1500,
-        })
-      }
+
+    if (handleSubmit) {
+      Swal.fire({
+        width: 400,
+        text: '建立行程成功',
+        icon: 'success',
+        iconColor: '#FABCBF',
+        color: '#674C87',
+        confirmButtonColor: '#674C87',
+        showConfirmButton: true,
+        timer: 1500,
+      })
       router.push('/custom-itinerary/arrange-schedule')
-    }, 2000)
+    }
+    //點選建立後3秒後跳轉
+    // setTimeout(() => {
+    //   if (handleSubmit) {
+    //     Swal.fire({
+    //       width: 400,
+    //       text: '建立行程成功',
+    //       icon: 'success',
+    //       iconColor: '#FABCBF',
+    //       color: '#674C87',
+    //       confirmButtonColor: '#674C87',
+    //       showConfirmButton: true,
+    //       timer: 1000,
+    //     })
+    //   }
+    //   router.push('/custom-itinerary/arrange-schedule')
+    // }, 2000)
 
     const formData = new FormData(document.getElementById('createInit'))
 
     if (formData.get('coverPhoto') != '') {
       const imgData = new FormData() //建立一個新的空的formdata物件
       imgData.set('coverPhoto', formData.get('coverPhoto')) //將選擇的檔案(input)加入到imgData，get(input中設定name)
-      
+
       fetch('http://localhost:3002/try-preview', {
         method: 'POST',
         body: imgData,
       })
         .then((r) => r.json())
         .then((data) => {
-          console.log(data)
+          // console.log(data)
         })
     }
 
-    // console.log('formData::', formData.get('coverPhoto'))
     formData.set('coverPhoto', formData.get('coverPhoto').name)
-    console.log('new coverPhoto.name:', formData.get('coverPhoto'))
-    console.log('formData=>', formData)
+    // console.log('new coverPhoto.name:', formData.get('coverPhoto'))
+    // console.log('formData=>', formData)
 
     // API串接(表單)
     fetch('http://localhost:3002/custom-itinerary', {
@@ -120,25 +141,11 @@ export default function CreateTask() {
     router.push('/ ')
   }
 
-  //   const handleClick=()=>{
-  //     Swal.fire({
-  //       width: 400,
-  //       text: '建立行程成功',
-  //       icon: 'success',
-  //       iconColor:'#FABCBF',
-  //       color: '#674C87',
-  //       confirmButtonColor: '#674C87',
-  //       showConfirmButton: false,
-  //       timer: 1500
-
-  //      } )
-  // }
-
   return (
     <>
-      {/* <button onClick={handleClick}> alart! </button> */}
       <article className="blog-post">
         <form onSubmit={handleSubmit} id="createInit">
+    
           <input name="itin_member_id" defaultValue={auth.member_id} hidden />
           <div className={`${styles.coverTitle}`}>
             <Link className={styles.link} href="/member/itinerary">
@@ -152,28 +159,35 @@ export default function CreateTask() {
               <label className={` ${styles.label}`}>旅程封面圖片</label>
               <ImageItemPpreview name="coverPhoto" />
             </div>
-
-            <div className="container ">
+            <div className="container">
               <InputText
                 id="inputSubject"
                 name="name"
                 label="行程名稱"
-                value="" // 預設文字
                 placeholder="請輸入"
+                value=""
                 width="input-width-100pa"
                 getValue={setinputSubjectValue} // 獲取填寫的數值
                 getName={setInputSubject} // 獲取 name
                 required={true} // true：必填，false：非必填
               ></InputText>
-
-              <InputDate
-                id="inputDate"
-                name="date"
-                label="出發日期"
-                width="input-width-10rem"
-                value={inputDateValue}
-              ></InputDate>
-
+              <div className="d-flex">
+                <InputDate
+                  id="inputDate"
+                  name="date"
+                  label="出發日期"
+                  width="input-width-10rem"
+                  value={inputDateValue}
+                ></InputDate>
+                <div className={styles.inputTimeD}>
+                  <p className={styles.timeLable}>出發時間</p>
+                  <input
+                    type="time"
+                    name="time"
+                    className={`${styles.inputTime} input-text`}
+                  ></input>
+                </div>
+              </div>
               <AreaText
                 id="description"
                 label="說明"

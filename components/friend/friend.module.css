@@ -4,22 +4,21 @@
 }
 .profileside{
     width: 400px;
-    height: 550px;
 }
 .profile {
-    width: 700px;
-    height: 400px; 
+    width: 700px; 
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
-    padding: 10px
+    padding: 20px
 }
 .labelbar{
     display: flex;
     font-size: 10px;
+    margin-bottom: 5px;
 }
-.p {
+/* .p {
     font-size: 10px;
-}
+} */
 .buttonbar {
     display: flex;
     justify-content: flex-end;
@@ -30,9 +29,13 @@
     background-color: rgb(255, 255, 255);
     margin-top: 10px;
     border-radius: 15px;
-    padding: 10px;
+    padding: 20px;
 }
 .titlename{
     color: var(--main-dark);
     font-weight: bold;
+}
+.img{
+    border-radius: 50%;
+    margin-bottom: 5px;
 }
