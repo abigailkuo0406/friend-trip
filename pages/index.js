@@ -1,13 +1,33 @@
 import AdminLayout from '@/components/layout/admin-layout'
 import HomePageStyle from '@/css/homepage.module.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Btn from '@/components/common/button/btn-normal'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { BsPcDisplayHorizontal } from 'react-icons/bs'
 import Carousel from '@/components/common/carousel/carousel'
-
+import AuthContext from '@/context/AuthContext'
+import Swal from 'sweetalert2'
 export default function AdminIndex() {
+  const router = useRouter()
+  const { auth, setAuth } = useContext(AuthContext)
+  console.log(auth.member_id)
+  useEffect(() => {
+    if (auth.member_id == '') {
+      Swal.fire({
+        width: 400,
+        title: '未登入',
+        text: '感謝您的使用祝福您使用愉快',
+        icon: 'error',
+        iconColor: '#FABCBF',
+        color: '#674C87',
+        confirmButtonColor: '#674C87',
+        showConfirmButton: false,
+      })
+      router.push('/login')
+    }
+  }, [auth])
+
   return (
     <>
       <article className="blog-post mb-4">
@@ -28,7 +48,6 @@ export default function AdminIndex() {
           <p className={HomePageStyle.cardText}>建立專屬行程</p>
         </a>
 
-        
         <a
           href="/restaurant"
           className={`${HomePageStyle.cardRestaurant} ${HomePageStyle.cardMain}`}
