@@ -7,36 +7,51 @@ import img1 from '@/public/officialimg/1.jpg'
 export default function reserve() {
   return (
     <div className={styles.body}>
-      <h1>碧湖公園。內湖小白宮｜在水一方的夢幻閱覽室.</h1>
+      <h1 className={styles.h10}>碧湖公園</h1>
       <br />
-      <Image width={800} height={600} src={img1} alt="1" />
+      <Image
+        width={800}
+        height={600}
+        src={img1}
+        alt="1"
+        className={styles.img}
+      />
 
       <p className={styles.word}>
-        隱身在內湖區的碧湖公園
         <br />
-        除了是內湖居民的後花園
+        內湖碧湖公園是位於台灣台北市內湖區的一座公園，
         <br />
-        也是臺北市唯二擁有大湖泊的水景公園
+        這座公園在之前是一處農田的蓄水池，
         <br />
-        旅遊地點: 碧湖公園
+        後來在1987年改建成為公園，
         <br />
+        碧湖公園距離大湖公園只有2公里的距離，
+        <br />
+        本公園依山傍水，有山巒疊翠的環境， 前擁湖水，與公園景色渾然一體，
+        <br />
+        其空間靜態之美往往讓來訪遊客留下深刻的印象。
+        <br />
+        自民國76年闢建以來，陸續完成湖邊東側綠地美化、
+        <br />
+        增建中國式涼亭、九曲橋及環湖步道等設施， 湖岸周遭並植有流蘇、
+        <br />
+        柳樹、落羽松、白千層、阿勃勒、鳳凰木、朱槿、杜鵑、矮仙丹等景觀植物，
+        <br />
+        春夏季彩蝶飛舞，湖光山色美不勝收。
+      </p>
+      <br />
+      <p className={styles.word2}>
         集合地點：台北車站
         <br />
         價格: TWD$42000/2-6 人
         <br />
-        <label htmlfor="start"> 參加日期:</label>
-        <input
-          type="date"
-          id="start"
-          name="trip-start"
-          value="2022-07-22"
-          min="2022-01-01"
-          max="2022-12-31"
-        />
+        <span>時間:2023-06-16 07:00:00</span>
         <br />
       </p>
       <p>
-        <label htmlfor="people">人數:</label>
+        <label htmlfor="people" className={styles.people}>
+          人數:
+        </label>
         <input type="number" placeholder="請輸入人數" width={60} height={30} />
         <br />
       </p>
