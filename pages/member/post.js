@@ -18,12 +18,12 @@ export default function ForumHome() {
     })
       .then((r) => r.json())
       .then((d) => {
-        console.log('111', d.rows)
+        // console.log('111', d.rows)
         setPosts(d.rows)
         setComments(d.comments)
-        console.log('eddie', d.rows.file_url)
+        // console.log('eddie', d.rows.file_url)
       })
-  }, [])
+  }, [member_id, posts])
 
   if (!posts) return <p>loading</p>
   return (
