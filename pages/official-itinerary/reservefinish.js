@@ -50,6 +50,9 @@ function reservefinish() {
         <br />
       </p>
       <p className={styles.people}>人數:6人</p>
+      <button type="button" className={styles.bnt}>
+        <a href="http://localhost:3000/official-itinerary">返回交誼旅遊行程</a>
+      </button>
     </div>
   )
 }

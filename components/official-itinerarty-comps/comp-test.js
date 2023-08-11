@@ -3,6 +3,8 @@ import styles from '@/pages/official-itinerary/style.module.css'
 import Image from 'next/image'
 import img1 from '@/public/officialimg/1.jpg'
 import dayjs from 'dayjs'
+import { useEffect, useState } from 'react'
+
 // import img2 from '@/public/officialimg/2.jpg'
 // import img3 from '@/public/officialimg/3.jpg'
 // import img4 from '@/public/officialimg/4.jpg'
@@ -13,24 +15,55 @@ import dayjs from 'dayjs'
 // import img9 from '@/public/officialimg/9.jpg'
 
 function Comptest({ rows }) {
+  const [sortBy, setSortBy] = useState('date')
+  const [sortedRows, setSortedRows] = useState([])
+
+  useEffect(() => {
+    sortRows(sortBy)
+  }, [sortBy, rows])
+
+  const sortRows = (sortOption) => {
+    let sortedData = [...rows]
+
+    if (sortOption === 'date') {
+      sortedData.sort((a, b) => new Date(b.date) - new Date(a.date))
+    } else if (sortOption === 'rank') {
+      sortedData.sort((a, b) => b['trip evaluation'] - a['trip evaluation'])
+    }
+
+    setSortedRows(sortedData)
+  }
   return (
     <>
       <div className={styles.productlist}>
         <h1 className={styles.title}>交誼旅遊行程</h1>
-        <div className={styles.select}>
+        {/* <div className={styles.select}>
           <label htmlFor="order">排序方式</label>
-          <select name="order" id="order">
-            <option value="">最新日期</option>
-            <option value="">排行榜</option>
+
+          <select
+            name="order"
+            id="order"
+            onChange={(e) => setSortBy(e.target.value)}
+            value={sortBy}
+          >
+            <option value="date">最新日期</option>
+            <option value="rank">排行榜</option>
           </select>
-        </div>
+        </div> */}
         <div className={styles.clearfix}></div>
         <ul>
           {rows.map((v, i) => {
             return (
               <li key={v.id}>
-                {/* <Image width={50} height={130} src={img1} alt="1" /> */}
-                <Image width={50} height={130} src={img1} />
+                <Image
+                  width={50}
+                  height={130}
+                  src={img1}
+                  className={styles.img}
+                />
+                {/* <div>圖:{v.['trip photos']}</div> */}
+                {/* <img id="imageElement" width="50" height="130" />
+                {v.tripphotos} */}
                 {/* <p>{v['trip photos']}</p> */}
                 <h10>{v['itinerary name']}</h10>
 
@@ -38,7 +71,6 @@ function Comptest({ rows }) {
                 <span>TWD {v.price}/2-6人</span>
                 <br />
                 <span>時間:{dayjs(v.date).format('YYYY-MM-DD HH:MM')}</span>
-                {/* <div className={styles.empty_star}>★</div> */}
                 <div>評分:{v['trip evaluation']}分</div>
                 <button type="button" className={styles.bnt}>
                   <a href="http://localhost:3000/official-itinerary/reserve">
