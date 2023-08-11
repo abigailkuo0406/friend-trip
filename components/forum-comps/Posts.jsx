@@ -1,6 +1,7 @@
 import Post from './Post'
 
 export default function Posts({ posts, comments, setPosts }) {
+  // console.log('')
   return (
     <div>
       {posts.map(function (post) {

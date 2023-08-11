@@ -14,7 +14,7 @@ function HeaderOfThePost({
   const formattedDate = moment(rawDateOfPublishOfPost).format('YYYY-MM-DD')
 
   function deletePost() {
-    console.log('post_id', post_id, 'member_id', isLoggedIn)
+    // console.log('post_id', post_id, 'member_id', isLoggedIn)
     setDeletemodalStatus('block')
     // axios
     //   .post('http://localhost:3002/delete-a-post-of-mine/delete-this-post', {
@@ -51,6 +51,7 @@ function HeaderOfThePost({
           )}
         </div>
         <time className="mb-0">發文時間：{formattedDate}</time>
+        {/* <time className="mb-0">發文時間：{rawDateOfPublishOfPost}</time> */}
       </div>
     </div>
   )

@@ -33,7 +33,7 @@ export default function Post({
       })
       .then((r) => {
         // console.log(r.message)
-        console.log(r.data.message)
+        // console.log(r.data.message)
         if (r.data.message == 'deleted') {
           // alert('資料成功刪除')
           setPosts((old) => {

@@ -38,7 +38,7 @@ const AddPost = () => {
       body: forumData,
     })
       .then((r) => r.json())
-      .then((data) => console.log(data))
+      // .then((data) => console.log('addpost data======>', data))
 
     router.push('/forum')
   }

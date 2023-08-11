@@ -5,7 +5,7 @@ import axios from 'axios'
 
 function AddComment({ post_id, comments }) {
   const { auth, setAuth } = useContext(AuthContext)
-  console.log(auth)
+  // console.log(auth)
   const [data, setData] = useState([])
   const msgRef = useRef(null)
   const keyUpHandler = (event) => {
@@ -25,7 +25,7 @@ function AddComment({ post_id, comments }) {
         post_id: post_id,
       })
       .then((d) => {
-        console.log(d)
+        // console.log(d)
         msgRef.current.value = ''
         // 👇這個指令是重刷頁面，如果需要重刷頁面號碼才有反應，可以用這個方式
         // window.location.reload()
