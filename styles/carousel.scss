@@ -28,7 +28,7 @@ $animationSpeed: 40s;
 	margin: auto;
 	overflow: hidden;
 	position: relative;
-	width: 960px;
+	width:100%;
 	
 
 	&::before,
@@ -66,7 +66,6 @@ $animationSpeed: 40s;
 		width: 120px; //照片大小跟位置
 		height:120px;
 		&:hover{
-        //     animation-play-state: paused; /* 暫停動畫 */
             transform: scale(1.5); /* 放大照片 */
             z-index: 1; /* 確保懸停的幻燈片在最上層 */
           }
@@ -90,11 +89,9 @@ $animationSpeed: 40s;
   }
 
 .back{
-	// background-color: bisque;
 	color:#674C87;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 1.25rem;
-	// height: 100%;
 }

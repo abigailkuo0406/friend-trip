@@ -1,10 +1,6 @@
 import AdminLayout from '@/components/layout/admin-layout'
 import HomePageStyle from '@/css/homepage.module.css'
-import { useEffect, useState } from 'react'
 import Btn from '@/components/common/button/btn-normal'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { BsPcDisplayHorizontal } from 'react-icons/bs'
 import Carousel from '@/components/common/carousel/carousel'
 
 export default function AdminIndex() {
@@ -17,7 +13,7 @@ export default function AdminIndex() {
         </div>
       </article>
       {/* 公開行程輪播 */}
-      <h3 className="carousel-text">首選規畫師</h3>
+      <h3 className="carousel-text">首選規劃師</h3>
       <Carousel />
       {/*建立專屬行程、浪漫餐廳首選 */}
       <article className="blog-post d-flex mb-3">
