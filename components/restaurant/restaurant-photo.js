@@ -20,6 +20,7 @@ export default function RestaurantPhoto({ file, rid }) {
         setRestPhotos(restphotos)
       })
   }, [rid])
+  console.log('restPhotos', restPhotos)
 
   return (
     <>
@@ -46,34 +47,28 @@ export default function RestaurantPhoto({ file, rid }) {
               data-bs-slide-to="2"
               aria-label="Slide 3"
             ></button>
-            <button
-              type="button"
-              data-bs-target={`#carouselExampleIndicators${rid}`}
-              data-bs-slide-to="3"
-              aria-label="Slide 4"
-            ></button>
           </div>
 
           <div className="carousel-inner">
             {restPhotos != []
               ? restPhotos.map((v, i) => {
-                  return (
-                    <div
-                      key={i}
-                      className={`carousel-item ${styles.imgClass2} ${
-                        i == 0 ? 'active' : ''
+                console.log('v.RestImg', v.RestImg)
+                return (
+                  <div
+                    key={i}
+                    className={`carousel-item ${styles.imgClass2} ${i == 0 ? 'active' : ''
                       }`}
-                    >
-                      <Image
-                        src={`http://localhost:3002/restImg/${v.RestImg}`}
-                        className={`${styles.img1}`}
-                        alt={v.RestImg}
-                        width={900}
-                        height={400}
-                      />
-                    </div>
-                  )
-                })
+                  >
+                    <Image
+                      src={`http://localhost:3002/restImg/${v.RestImg}`}
+                      className={`${styles.img1}`}
+                      alt={v.RestImg}
+                      width={900}
+                      height={400}
+                    />
+                  </div>
+                )
+              })
               : ''}
           </div>
           <button
@@ -103,7 +98,7 @@ export default function RestaurantPhoto({ file, rid }) {
         </div>
       </div>
 
-     
+
     </>
   )
 }

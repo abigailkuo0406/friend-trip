@@ -29,6 +29,7 @@ export default function ListItem({
     const [rIntro, setRIntro] = useState()
     const [rImg, setRImg] = useState()
 
+    console.log('restMeal', restMeal)
 
 
 
@@ -65,8 +66,8 @@ export default function ListItem({
                                 src={`http://localhost:3002/restImg/${restImg}`}
                                 className={`${styles.img1}`}
                                 alt={restImg}
-                                width={200}
-                                height={200}
+                                width={250}
+                                height={250}
                                 priority={true}
                             />
                         </div>
@@ -77,7 +78,7 @@ export default function ListItem({
                             <div className={` d-flex align-items-center ${styles.cardHead}`}>
                                 <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
                                 <p className={`ms-4 ${styles.area}`}>{restArea}</p>
-                                <p className={`ms-2 ${styles.area}`}>{restMeal}</p>
+                                {restMeal != null && <p className={`ms-2 ${styles.area}`}>{restMeal}</p>}
 
                             </div>
                             <p className={`card-text my-4 ${styles.cardText}`}>{restIntro}</p>

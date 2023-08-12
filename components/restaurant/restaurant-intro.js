@@ -26,8 +26,11 @@ export default function restIntro({
   restIntro,
   restImg,
 }) {
-  console.log('重新渲染')
   const router = useRouter()
+
+
+  const restIntroArr = restIntro && restIntro.split('\n')
+  console.log('restIntroArr', restIntroArr)
 
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
@@ -112,7 +115,6 @@ export default function restIntro({
     inviteList.length,
   ])
 
-  console.log('modalClose改變', modalClose)
 
   /* 提交訂位表單*/
   const handleSubmit = (event) => {
@@ -195,7 +197,10 @@ export default function restIntro({
                         {restClass}
                       </p>
                       <label>訂位須知</label>
-                      <p>{restIntro}</p>
+                      <p>{restIntroArr && restIntroArr[0]}</p>
+                      <p>{restIntroArr && restIntroArr[1]}</p>
+                      <p>{restIntroArr && restIntroArr[2]}</p>
+
                     </div>
                   </div>
 
@@ -231,9 +236,9 @@ export default function restIntro({
                             label="訂位時間"
                             name="reserve_time"
                             // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
-                            idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
-                            valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
-                            labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
+                            idGroup={['TimeID1', 'TimeID2', 'TimeID3', 'TimeID4', 'TimeID5', 'TimeID6']} // 個別 radio 的 ID
+                            valueGroup={['11:30', '12:30', '13:30', '17:30', '18:30', '19:30']} // 個別 radio 的 name
+                            labelGroup={['11:30', '12:30', '13:30', '17:30', '18:30', '19:30']} // 個別標籤
                             getValue={setReserveTimeInputValue}
                             getName={setReserveTimeInputName}
                             getLabel={setReserveTimeInputLabel}
