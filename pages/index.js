@@ -10,10 +10,12 @@ import AuthContext from '@/context/AuthContext'
 import Swal from 'sweetalert2'
 export default function AdminIndex() {
   const router = useRouter()
-  const { auth, setAuth } = useContext(AuthContext)
-  console.log(auth.member_id)
+  // const { auth, setAuth } = useContext(AuthContext)
+
   useEffect(() => {
-    if (auth.member_id == '') {
+    const auth = JSON.parse(localStorage.getItem('auth'))
+    // console.log('auth:', auth.member_id)
+    if (!auth) {
       Swal.fire({
         width: 400,
         title: '未登入',
@@ -24,9 +26,23 @@ export default function AdminIndex() {
         confirmButtonColor: '#674C87',
         showConfirmButton: false,
       })
+      console.log('未登入')
       router.push('/login')
+    } else {
+      Swal.fire({
+        width: 400,
+        title: '登入成功',
+        text: '感謝您的使用祝福您使用愉快',
+        icon: 'success',
+        iconColor: '#FABCBF',
+        color: '#674C87',
+        confirmButtonColor: '#674C87',
+        showConfirmButton: false,
+      })
+      console.log('登入')
+      // router.push('/')
     }
-  }, [auth])
+  }, [])
 
   return (
     <>
