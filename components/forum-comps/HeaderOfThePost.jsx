@@ -14,20 +14,7 @@ function HeaderOfThePost({
   const formattedDate = moment(rawDateOfPublishOfPost).format('YYYY-MM-DD')
 
   function deletePost() {
-    // console.log('post_id', post_id, 'member_id', isLoggedIn)
     setDeletemodalStatus('block')
-    // axios
-    //   .post('http://localhost:3002/delete-a-post-of-mine/delete-this-post', {
-    //     post_id: post_id,
-    //     postMember_id: isLoggedIn,
-    //   })
-    //   .then((r) => {
-    //     // console.log(r.message)
-    //     console.log(r.data.message)
-    //     if(r.data.message == 'deleted'){
-    //       alert('資料成功刪除')
-    //     }
-    //   })
   }
   return (
     <div>
@@ -51,7 +38,6 @@ function HeaderOfThePost({
           )}
         </div>
         <time className="mb-0">發文時間：{formattedDate}</time>
-        {/* <time className="mb-0">發文時間：{rawDateOfPublishOfPost}</time> */}
       </div>
     </div>
   )
