@@ -31,7 +31,7 @@ export default function AdminIndex() {
     } else {
       Swal.fire({
         width: 400,
-        title: '登入成功',
+        title: '已登入',
         text: '感謝您的使用祝福您使用愉快',
         icon: 'success',
         iconColor: '#FABCBF',
@@ -43,13 +43,19 @@ export default function AdminIndex() {
       // router.push('/')
     }
   }, [])
-
+  const pair = () => {
+    router.push('./pair')
+  }
   return (
     <>
       <article className="blog-post mb-4">
         <div className={`${HomePageStyle.cardLong} ${HomePageStyle.cardPair}`}>
           <p className={HomePageStyle.cardTitle}>認識理想中的他與她！</p>
-          <Btn btnText="抽好友這裡去→" addClassforButton="btn-light" />
+          <Btn
+            btnText="抽好友這裡去→"
+            addClassforButton="btn-light"
+            onClick={pair}
+          />
         </div>
       </article>
       {/* 公開行程輪播 */}
