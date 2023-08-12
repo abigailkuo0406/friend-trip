@@ -153,16 +153,16 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                           label="訂位時間"
                           name="reserve_time"
                           // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
-                          idGroup={['TimeID1', 'TimeID2', 'TimeID3']} // 個別 radio 的 ID
-                          valueGroup={['11:30', '12:30', '13:30']} // 個別 radio 的 name
-                          labelGroup={['11:30', '12:30', '13:30']} // 個別標籤
+                          idGroup={['TimeID1', 'TimeID2', 'TimeID3', 'TimeID4', 'TimeID5', 'TimeID6']} // 個別 radio 的 ID
+                          valueGroup={['11:30', '12:30', '13:30', '17:30', '18:30', '19:30']} // 個別 radio 的 name
+                          labelGroup={['11:30', '12:30', '13:30', '17:30', '18:30', '19:30']} // 個別標籤
                           getValue={setReserveTimeInputValue}
                           getName={setReserveTimeInputName}
                           getLabel={setReserveTimeInputLabel}
                           addClassforTitleLabel={InfoSty.infolabel} // 如果要在標題 label 添加 class
-                          addClassforEachLabel={`btn restRadiobtn ${InfoSty.radioItem} restRadioLabel me-3`} // 如果要在個別選項 label 添加 class
+                          addClassforEachLabel={`btn restRadiobtn ${InfoSty.radioItem} restRadioLabel me-3 mt-2`} // 如果要在個別選項 label 添加 class
                           addClassforInput={`btn-check restRadiobtn-check`} // 如果要在 input 添加 class
-                          addClassforDiv={`restLabel`}
+                          addClassforDiv={`restLabel ${InfoSty.radioBox}`}
                           checked={`${timeArr[0]}:${timeArr[1]}`}
                         />
                       </div>

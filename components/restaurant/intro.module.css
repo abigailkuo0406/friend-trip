@@ -29,6 +29,10 @@
   color: white;
 }
 
+.radioBox {
+  flex-wrap: wrap;
+}
+
 .leftBox {
   margin-right: 50px;
 }
@@ -52,15 +56,16 @@
 .commentBox {
   width: 100%;
   height: 250px;
-  overflow:scroll;
-  overflow-x:hidden;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .plus {
   font-size: 1.2rem;
   color: #674c87;
 }
-.ivBtn{
+
+.ivBtn {
   background-color: none;
   margin: 0;
   padding: 0;
@@ -68,22 +73,23 @@
 
 }
 
-.verifyHint{
+.verifyHint {
   color: #874c6d;
   font-style: italic;
 }
 
-.line{
+.line {
   /* border-bottom: 10px solid red ; */
   box-shadow: 0px 2px 5px -1px #a5a5a5;
 
 }
 
-.lineBox{
+.lineBox {
   background-color: #b497d4;
   color: white;
   border-radius: 20xp 20px 20px 20px;
 }
-.commentLine{
-border-bottom: 3px solid #674c87;
+
+.commentLine {
+  border-bottom: 3px solid #674c87;
 }

@@ -53,7 +53,7 @@ export default function InputRadioGroup({
       <label className={`${addClassforTitleLabel} section-label`}>
         {label}
       </label>
-      <div className="d-flex">
+      <div className={`d-flex ${addClassforDiv}`}>
         {idGroup.map((element, index) => {
           return (
             <InputRadio
