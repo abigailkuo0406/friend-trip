@@ -30,7 +30,6 @@ export default function ReserveModal({
         setInviteList(ivList)
 
     }
-    console.log('eee', inviteList)
 
     return (
         <>

@@ -64,8 +64,6 @@ export default function Rest() {
       .then((restaurantsData) => {
         setRestaurants(restaurantsData)
       })
-    console.log('usp', usp)
-    console.log('usp toString', usp.toString)
   }, [router.query])
 
   useEffect(() => {

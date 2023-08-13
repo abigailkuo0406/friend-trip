@@ -1,21 +1,25 @@
-.main{
+.main {
     width: 700px;
     display: flex;
 }
-.profileside{
+
+.profileside {
     width: 400px;
 }
+
 .profile {
-    width: 700px; 
+    width: 700px;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
     padding: 20px
 }
-.labelbar{
+
+.labelbar {
     display: flex;
     font-size: 10px;
     margin-bottom: 5px;
 }
+
 /* .p {
     font-size: 10px;
 } */
@@ -23,19 +27,26 @@
     display: flex;
     justify-content: flex-end;
 }
-.friendsheet{
+
+.friendsheet {
     width: 700px;
     /* height: 200px;  */
     background-color: rgb(255, 255, 255);
+    /* background-color: #874c6d; */
+
     margin-top: 10px;
     border-radius: 15px;
-    /* padding: 20px; */
+    padding: 20px;
+    box-shadow: 0px 4px 8px -1px #a5a5a5;
+
 }
-.titlename{
+
+.titlename {
     color: var(--main-dark);
     font-weight: bold;
 }
-.img{
+
+.img {
     border-radius: 50%;
     margin-bottom: 5px;
 }
@@ -45,4 +56,10 @@
     height: 50px;
     border-radius: 99em;
     box-shadow: 0px 2px 5px -1px #a5a5a5;
-  }
+}
+
+.infoBox {
+    margin: 0;
+    padding: 0;
+    color: #674c87;
+}

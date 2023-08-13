@@ -3,6 +3,7 @@ import persona from '@/public/img/fake-data/fake-persona.png'
 import { BsPeople } from 'react-icons/bs'
 import { BsChatText } from 'react-icons/bs'
 import { BsCalendarCheck } from 'react-icons/bs'
+
 import { useState, useContext } from 'react'
 
 import AuthContext from '@/context/AuthContext'
@@ -46,6 +47,7 @@ export default function SidebarMemberInfo() {
               <p id="User-Friends-Status">
                 <BsPeople />
                 <a>31</a>
+
               </p>
               <p id="User-Message-Status">
                 <BsChatText />

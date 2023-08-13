@@ -160,3 +160,17 @@
   box-shadow: none;
 }
 
+/* navbar 好友通知 */
+.btndefault {
+  border: 0;
+  background-color: #B497D4;
+}
+
+.bell {
+  color: white;
+
+}
+.bellHint{
+  background-color: white;
+  color: #674c87;
+}
