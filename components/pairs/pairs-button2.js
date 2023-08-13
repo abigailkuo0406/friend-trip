@@ -1,6 +1,6 @@
 import React from 'react'
 import BtnNormal from '@/components/common/button/btn-normal'
-export default function PairBtns2({ setPage, setImgIndex, imgIndex }) {
+export default function PairBtns2({ setPage, setImgIndex, imgIndex, page }) {
   return (
     <>
       <div className="d-flex justify-content-center gap-5 mt-3">
