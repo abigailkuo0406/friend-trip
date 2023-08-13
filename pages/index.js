@@ -1,19 +1,21 @@
 import AdminLayout from '@/components/layout/admin-layout'
 import HomePageStyle from '@/css/homepage.module.css'
 import { useEffect, useState } from 'react'
-import Btn from '@/components/common/button/btn-normal'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
+import { Router, useRouter } from 'next/router'
 import { BsPcDisplayHorizontal } from 'react-icons/bs'
 import Carousel from '@/components/common/carousel/carousel'
+import Link from 'next/link'
 
 export default function AdminIndex() {
+
   return (
     <>
       <article className="blog-post mb-4">
         <div className={`${HomePageStyle.cardLong} ${HomePageStyle.cardPair}`}>
           <p className={HomePageStyle.cardTitle}>認識理想中的他與她！</p>
-          <Btn btnText="抽好友這裡去→" addClassforButton="btn-light" />
+          <Link href={`/pair`} className='btn btn-light'>
+            抽好友這裡去→
+          </Link>
         </div>
       </article>
       {/* 公開行程輪播 */}
@@ -28,7 +30,7 @@ export default function AdminIndex() {
           <p className={HomePageStyle.cardText}>建立專屬行程</p>
         </a>
 
-        
+
         <a
           href="/restaurant"
           className={`${HomePageStyle.cardRestaurant} ${HomePageStyle.cardMain}`}
