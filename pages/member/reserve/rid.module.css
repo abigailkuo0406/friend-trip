@@ -49,3 +49,26 @@
   color: #525252;
   font-weight: 700;
 }
+
+/* 分頁樣式 */
+.container {
+  margin: 20px auto;
+  padding: 0;
+}
+.textcolor {
+  color: #674c87;
+  border-radius: 5px;
+  border: 1px solid #674c87;
+}
+
+.textcolor:hover,.textcolor:focus{
+  background-color: #674c87;
+  color: #FFFFFF;
+  border: 1px solid #674c87;
+}
+
+.textcolor:active {
+  color: #FFFFFF !important;
+  background-color: #674c87 !important; /* 新增這一行，設定按鈕被點擊時的背景顏色 */
+  border: 1px solid #674c87;
+}

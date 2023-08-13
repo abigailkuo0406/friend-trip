@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
-import AdminLayout from '@/components/layout/admin-layout'
-import ReserveItem from '@/components/reserve/reserve-item'
-import Button from '@/components/common/button/btn-normal'
-
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import AuthContext from '@/context/AuthContext'
+
+import AdminLayout from '@/components/layout/admin-layout'
+import ReserveItem from '@/components/reserve/reserve-item'
+import Button from '@/components/common/button/btn-normal'
 import CommentModal from '@/components/reserve/comment'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
+
+import styles from '@/pages/member/reserve/rid.module.css'
 
 export default function Reserve() {
   // console.log('跳轉頁面渲染')
@@ -128,24 +130,30 @@ export default function Reserve() {
 
   return (
     <>
-      <div className='d-flex'>
+      <div className={`d-flex ${styles.container}`}>
         <Button
           btnText='所有訂位'
           onClick={allreserve}
+          addClassforButton={`${styles.textcolor} me-3`}
 
         />
         <Button
           btnText='預定中'
           onClick={reserveProcessFilter}
+          addClassforButton={`${styles.textcolor} me-3`}
 
         />
         <Button
           btnText='已完成'
           onClick={reserveFinishFilter}
+          addClassforButton={`${styles.textcolor} me-3`}
+
         />
         <Button
           btnText='已取消'
           onClick={cancaleFiliter}
+          addClassforButton={`${styles.textcolor}`}
+
 
         />
 
