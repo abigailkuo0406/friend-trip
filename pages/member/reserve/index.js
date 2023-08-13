@@ -10,7 +10,7 @@ import CommentModal from '@/components/reserve/comment'
 import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 
 export default function Reserve() {
-  console.log('跳轉頁面渲染')
+  // console.log('跳轉頁面渲染')
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
 
@@ -26,7 +26,12 @@ export default function Reserve() {
   })
 
   useEffect(() => {
+    if (!auth.member_id) return
+    if (!router.query) return
+
+
     const usp = new URLSearchParams(router.query)
+
     //取得訂位資料
     fetch(`http://localhost:3002/reserve?${usp.toString()}`, {
       method: 'POST',
@@ -39,7 +44,9 @@ export default function Reserve() {
       .then((reserveDetails) => {
         setReserve(reserveDetails)
       })
-  }, [router.query])
+    console.log('資料fetch渲染')
+
+  }, [auth, router.query])
 
   // 預設要傳入comment的資料
   const [reservationId, setReservationId] = useState()
@@ -66,7 +73,9 @@ export default function Reserve() {
   // 訂位狀態篩選器
   const [reserveList, setReserveList] = useState([])
   useEffect(() => {
+    if (!reserve) return
     setReserveList(reserve.rows)
+    console.log('渲染again')
   }, [reserve])
 
   // 所有訂位
@@ -78,9 +87,9 @@ export default function Reserve() {
 
   // 已取消的訂位
   const cancaleFiliter = () => {
-    const ArrCancelReserve = reserve.rows.filter((v, i) => {
-      return v.state == 0
-    })
+    // const ArrCancelReserve = reserve.rows.filter((v, i) => {
+    //   return v.state == 0
+    // })
     // setReserveList(ArrCancelReserve)
     router.push(`?cancel=${0}`)
   }
@@ -89,24 +98,32 @@ export default function Reserve() {
 
   // 預定中的訂位
   const reserveProcessFilter = () => {
-    const ArrNoCancelReserve = reserve.rows.filter((v, i) => {
-      return v.state == 1 && Date.parse(v.reserve_date) >= theDay
-    })
-    // setReserveList(ArrNoCancelReserve)
-    router.push(`?nocancel=${1}`)
+    router.push(`?nocancel=${1}&nopass=${0}`)
 
+    // showReserveProcess()
   }
+
+  // const showReserveProcess = () => {
+  //   const ArrProcessReserve = reserve.rows.filter((v, i) => {
+  //     return v.state == 1 && Date.parse(v.reserve_date) >= theDay
+  //   })
+  //   setReserveList(ArrProcessReserve)
+  // }
 
   // 已完成的訂位
   const reserveFinishFilter = () => {
-    const ArrFinishReserve = reserve.rows.filter((v, i) => {
-      return v.state == 1 && Date.parse(v.reserve_date) < theDay
-    })
+    // const ArrFinishReserve = reserve.rows.filter((v, i) => {
+    //   return v.state == 1 && Date.parse(v.reserve_date) < theDay
+    // })
     // setReserveList(ArrFinishReserve)
-    router.push(`?nocancel=${1}`)
+    router.push(`?nocancel=${1}&pass=${1}`)
+
 
   }
   const query2 = { ...router.query }
+  console.log('reserveList', reserveList)
+  console.log('reserve.rows', reserve.rows)
+
 
 
   return (
@@ -147,6 +164,7 @@ export default function Reserve() {
               reserveTime={v.reserve_time}
               reservePeopleNum={v.reserve_people}
               state={v.state}
+              pass={v.pass}
               modalChange={showModal}
             />
           </div>
@@ -176,6 +194,8 @@ export default function Reserve() {
                   href={'?' +
                     (query2.cancel ? 'cancel=' + query2.cancel + '&' : '') +
                     (query2.nocancel ? 'nocancel=' + query2.nocancel + '&' : '') +
+                    (query2.pass ? 'pass=' + query2.pass + '&' : '') +
+                    (query2.nopass ? 'nopass=' + query2.nopass + '&' : '') +
                     new URLSearchParams('page=1').toString()}
                   aria-label="Previous"
                 >
@@ -189,6 +209,8 @@ export default function Reserve() {
                     '?' +
                     (query2.cancel ? 'cancel=' + query2.cancel + '&' : '') +
                     (query2.nocancel ? 'nocancel=' + query2.nocancel + '&' : '') +
+                    (query2.pass ? 'pass=' + query2.pass + '&' : '') +
+                    (query2.nopass ? 'nopass=' + query2.nopass + '&' : '') +
                     new URLSearchParams(
                       parseInt(reserve.page) > 1
                         ? `page=${parseInt(reserve.page) - 1}`
@@ -233,6 +255,8 @@ export default function Reserve() {
                     '?' +
                     (query2.cancel ? 'cancel=' + query2.cancel + '&' : '') +
                     (query2.nocancel ? 'nocancel=' + query2.nocancel + '&' : '') +
+                    (query2.pass ? 'pass=' + query2.pass + '&' : '') +
+                    (query2.nopass ? 'nopass=' + query2.nopass + '&' : '') +
                     new URLSearchParams(
                       parseInt(reserve.page) < reserve.totalPages
                         ? `page=${parseInt(reserve.page) + 1}`
@@ -253,6 +277,8 @@ export default function Reserve() {
                     '?' +
                     (query2.cancel ? 'cancel=' + query2.cancel + '&' : '') +
                     (query2.nocancel ? 'nocancel=' + query2.nocancel + '&' : '') +
+                    (query2.pass ? 'pass=' + query2.pass + '&' : '') +
+                    (query2.nopass ? 'nopass=' + query2.nopass + '&' : '') +
                     new URLSearchParams(`page=${reserve.totalPages}`).toString()
                   }
                   aria-label="Next"

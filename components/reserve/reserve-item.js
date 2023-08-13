@@ -16,6 +16,7 @@ export default function ReserveItem({
   reserveTime,
   reservePeopleNum,
   state,
+  pass,
   modalChange,
 }) {
   const { auth } = useContext(AuthContext)
@@ -31,43 +32,24 @@ export default function ReserveItem({
   //拆分時間
   const timeArr = reserveTime.split(':')
 
-  // 定義當日
-  const today = new Date()
-  const nowYear = today.getFullYear()
-  const nowMonth = today.getMonth() + 1
-  const nowDate = today.getDate()
-
   // 定義狀態
   let stateText = ''
   let itemState = 0
 
-  switch (state) {
-    case 0:
-      stateText = '已取消'
-      break
-    case 1:
+
+  if (state == 0) {
+    stateText = '已取消'
+  } else {
+    if (pass == 0) {
       stateText = '預定中'
       itemState = 1
 
-  }
-  if (state == 1) {
-    if (dateArr[0] == nowYear) {
-      if (dateArr[1] == nowMonth) {
-        if (dateArr[2] < nowDate) {
-          stateText = '訂位完成'
-          itemState = 2
-
-        }
-      } else if (dateArr[1] < nowMonth) {
-        stateText = '訂位完成'
-        itemState = 2
-
-      }
-    } else if (dateArr[0] < nowYear) {
+    } else {
       stateText = '訂位完成'
       itemState = 2
     }
   }
+
 
 
   // 定義邀請名單

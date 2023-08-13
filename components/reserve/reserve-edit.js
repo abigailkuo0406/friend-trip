@@ -80,7 +80,6 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
     inviteList.length,
   ])
 
-  console.log('modalClose改變', modalClose)
 
   // 送出表單
   const handleSubmit = (e) => {
@@ -112,7 +111,8 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
       // timer: 1500,
     })
 
-    router.push(`/member/reserve`)
+    history.back()
+    // router.push(`/member/reserve`)
   }
 
   return (

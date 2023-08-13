@@ -35,7 +35,7 @@ export default function ReseveDetails({ state }) {
         rid ? setReserveDetails(details.row) : 1
       })
   }, [rid])
-  console.log('reserveDetails', reserveDetails)
+  // console.log('reserveDetails', reserveDetails)
 
   //拆分日期
   const dateArr = reserveDetails ? reserveDetails.reserve_date.split('-') : []
@@ -97,7 +97,7 @@ export default function ReseveDetails({ state }) {
       showConfirmButton: true,
       // timer: 1500,
     })
-    router.push('/member/reserve')
+    router.push('/member/reserve?cancel=0')
   }
 
   return (

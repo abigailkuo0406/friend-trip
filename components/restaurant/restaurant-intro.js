@@ -132,7 +132,8 @@ export default function restIntro({
         reserve_date: reserveDateInputVale,
         reserve_time: reserveTimeInputValue,
         reserve_people: reservePeopleNumValue,
-        state: 1,
+        state: 1, //預定中 ==1 (no cancel) ;已取消== 0 (cancel)
+        pass: 0, //預定中 ==0 (no pass) ;已完成 == 1 (pass)
         invites: inviteList,
       }),
       headers: {
