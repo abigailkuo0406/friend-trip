@@ -17,7 +17,7 @@ export default function Invite({
   const [inviteBtn, setInviteBtn] = useState(false)
 
 
-  const handleClick = (e) => {
+  const handleClick = () => {
 
     // 如果按鈕是false(+)，重設邀請姓名與照片路徑，把按鈕改成true(移除)
     if (!inviteBtn) {

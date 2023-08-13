@@ -49,7 +49,6 @@ export default function Reserve() {
   }, [auth, router.query])
 
   // 預設要傳入comment的資料
-  const [reservationId, setReservationId] = useState()
   const [restaurantId, setRestaurantId] = useState()
   const [rName, setRName] = useState()
   const [rAddress, setRAddress] = useState()

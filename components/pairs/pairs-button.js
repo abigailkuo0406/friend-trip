@@ -16,6 +16,7 @@ export default function PairBtns({
       body: JSON.stringify({
         memberId: auth.member_id,
         FriendId: randomstate[imgIndex].select_id,
+        acceptState: 0,
       }),
       headers: {
         'Content-Type': 'application/json',
