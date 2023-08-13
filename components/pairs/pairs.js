@@ -6,7 +6,7 @@ import Logo from '@/public/FriendTrip-Logo.png'
 import PairBtns from '@/components/pairs/pairs-button'
 import PairBtns2 from '@/components/pairs/pairs-button2'
 import AuthContext from '@/context/AuthContext'
-
+import Swal from 'sweetalert2'
 export default function Pairs({
   memberinfo,
   randomstate,
@@ -49,7 +49,16 @@ export default function Pairs({
         .then((r) => r.json())
         .then((data) => {
           console.log(data)
-          alert('加入好友成功')
+          Swal.fire({
+            width: 400,
+            title: '配對成功',
+            text: '感謝您的使用祝福您使用愉快',
+            icon: 'success',
+            iconColor: '#FABCBF',
+            color: '#674C87',
+            confirmButtonColor: '#674C87',
+            showConfirmButton: false,
+          })
           console.log('資料抓到', data.all)
         })
     }

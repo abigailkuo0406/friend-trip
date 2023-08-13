@@ -3,6 +3,7 @@ import AuthContext from '@/context/AuthContext' // 會員
 import AdminLayout from '@/components/layout/admin-layout'
 import Pairs from '@/components/pairs/pairs'
 import _ from 'lodash'
+import Swal from 'sweetalert2'
 export default function PairsIndex() {
   const { auth, setAuth } = useContext(AuthContext)
   const [memberinfo, setMemberInfo] = useState()
@@ -35,7 +36,16 @@ export default function PairsIndex() {
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
-        alert('篩選成功')
+        Swal.fire({
+          width: 400,
+          title: '篩選成功',
+          text: '感謝您的使用祝福您使用愉快',
+          icon: 'success',
+          iconColor: '#FABCBF',
+          color: '#674C87',
+          confirmButtonColor: '#674C87',
+          showConfirmButton: false,
+        })
         console.log('資料抓到', data.all)
         setMemberInfo(data.all)
       })

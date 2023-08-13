@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState, useContext } from 'react'
 import InputText from '@/components/common/input/input-text-flex'
+import InputTextPwd from '@/components/common/input/input-text-flex-pwd'
 import styles from './edit.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
@@ -91,7 +92,7 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
-              <InputText
+              <InputTextPwd
                 label="密碼"
                 value={aaa.password ? aaa.password : memberInfo?.password}
                 name="password"
@@ -100,7 +101,7 @@ export default function Edit1({ setPage, setAaa, aaa, memberInfo }) {
                 }
                 getName={() => 'whatever'}
                 width="input-width-100pa"
-              ></InputText>
+              ></InputTextPwd>
             </div>
           </div>
           <div className={styles.inputstyle}>

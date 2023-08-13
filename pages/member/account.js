@@ -5,7 +5,7 @@ import Edit from '@/components/edit/edit'
 import Edit2 from '@/components/edit/edit2'
 import BtnNormal from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext' // 會員 context 取用
-
+import Swal from 'sweetalert2'
 export default function EditHome() {
   const [aaa, setAaa] = useState({
     email: '',
@@ -67,7 +67,16 @@ export default function EditHome() {
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
-        alert('修改成功')
+        Swal.fire({
+          width: 400,
+          title: '修改成功',
+          text: '感謝您的使用祝福您使用愉快',
+          icon: 'success',
+          iconColor: '#FABCBF',
+          color: '#674C87',
+          confirmButtonColor: '#674C87',
+          showConfirmButton: false,
+        })
       })
       .then(() => router.push('/member'))
   }
