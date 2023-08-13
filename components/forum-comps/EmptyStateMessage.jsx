@@ -1,6 +1,4 @@
 import React from 'react'
-import noPost from '@/public/img/forum-img/noPostAdd.jpg'
-import Image from 'next/image'
 import styles from './emptyMsg.module.css'
 
 function EmptyStateMessage() {
