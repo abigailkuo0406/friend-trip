@@ -12,7 +12,6 @@ import { MdNavigateNext, MdNavigateBefore } from 'react-icons/md'
 import styles from '@/pages/member/reserve/rid.module.css'
 
 export default function Reserve() {
-  // console.log('跳轉頁面渲染')
   //取得登入之會員資料
   const { auth } = useContext(AuthContext)
 
@@ -46,7 +45,6 @@ export default function Reserve() {
       .then((reserveDetails) => {
         setReserve(reserveDetails)
       })
-    console.log('資料fetch渲染')
 
   }, [auth, router.query])
 
@@ -77,7 +75,6 @@ export default function Reserve() {
   useEffect(() => {
     if (!reserve) return
     setReserveList(reserve.rows)
-    console.log('渲染again')
   }, [reserve])
 
   // 所有訂位
@@ -123,8 +120,6 @@ export default function Reserve() {
 
   }
   const query2 = { ...router.query }
-  console.log('reserveList', reserveList)
-  console.log('reserve.rows', reserve.rows)
 
 
 

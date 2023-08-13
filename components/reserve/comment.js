@@ -1,11 +1,16 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Image from 'next/image'
+import AuthContext from '@/context/AuthContext'
+
 
 import TextArea from '@/components/common/input/textarea'
 import Btn from '@/components/common/button/btn-normal'
-import AuthContext from '@/context/AuthContext'
-import styles from '@/components/reserve/reserve.module.css'
 import Swal from 'sweetalert2'
+import Star from '@/components/common/star/star-rate'
+
+import styles from '@/components/reserve/reserve.module.css'
+import InfoSty from '@/components/reserve/reserve.module.css'
+
 
 export default function Comment({
   reservationId,
@@ -16,16 +21,53 @@ export default function Comment({
 }) {
   const { auth } = useContext(AuthContext)
 
-  const [textAreaValue, setTextAreaValue] = useState()
+  const [textAreaValue, setTextAreaValue] = useState('')
   const [textAreaName, setTextAreaName] = useState()
+  const [starValue, setStarValue] = useState('')
+
+  // 取得星等值
+  const handleRadionChange = (e) => {
+    setStarValue(e.target.value)
+  }
+
+  // 監控按鈕關閉modal屬性
+  const [modalClose, setModalClose] = useState('')
+  console.log('modalClose', modalClose, 'aaaa')
+
+  // 初始化textArea、星等驗證訊息
+  const [commentVerify, setCommentsVerify] = useState(false)
+  const [starVerify, setStarVerify] = useState(true)
+
+
+  // 呼叫跳出驗證訊息 
+  const verifyHint = () => {
+    textAreaValue == '' && setCommentsVerify(false)
+    textAreaValue == undefined && setCommentsVerify(false)
+    starValue == '' && setStarVerify(false)
+
+  }
+
+  // 監控表單是否可以送出；通過驗證則消除驗證訊息
+  useEffect(() => {
+    textAreaValue && setModalClose('modal')
+    textAreaValue == '' && setModalClose('')
+    textAreaValue != '' && setCommentsVerify(true)
+    starValue != '' && setStarVerify(true)
+
+
+  }, [
+    textAreaValue, starValue
+  ])
+  console.log('textAreaValue', textAreaValue)
+
+  // 提交表單
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const formData = new FormData(document.getElementById('comment'))
-    fetch('http://localhost:3002/comment/addcomment', {
-      method: 'POST',
-      body: formData,
-    })
+    if (textAreaValue == '' || textAreaValue == undefined) return
+    console.log('送出表單了')
+
+
     Swal.fire({
       width: 400,
       text: '評論已發布',
@@ -36,6 +78,13 @@ export default function Comment({
       showConfirmButton: true,
       // timer: 1500,
     })
+
+    const formData = new FormData(document.getElementById('comment'))
+    fetch('http://localhost:3002/comment/addcomment', {
+      method: 'POST',
+      body: formData,
+    })
+
   }
 
   return (
@@ -49,14 +98,13 @@ export default function Comment({
       >
         <div className="modal-dialog">
           <div className="modal-content">
-            <div className="container position-relative my-4">
+            <div className="container">
               <form id="comment" onSubmit={handleSubmit}>
-                <div className="modal-body">
+                <div className="modal-body my-3">
                   <h1 className={`text-center ${styles.cardHead} mb-2`}>
                     {restName}
                   </h1>
-                  {/* <p className="text-center">訂單編號{reservationId}</p> */}
-                  <input name="RestID" id="RestID" value={restId} hidden />
+                    <input name="RestID" id="RestID" value={restId} hidden />
                   <input
                     name="member_id"
                     id="member_id"
@@ -86,6 +134,8 @@ export default function Comment({
                         id="rating-5"
                         name="rating"
                         value="5"
+                        checked={starValue === "5"}
+                        onChange={handleRadionChange}
                       />
                       <label for="rating-5" className="restRadioLabel">
                         5
@@ -95,6 +145,8 @@ export default function Comment({
                         id="rating-4"
                         name="rating"
                         value="4"
+                        checked={starValue === "4"}
+                        onChange={handleRadionChange}
                       />
                       <label for="rating-4" className="restRadioLabel">
                         4
@@ -104,6 +156,8 @@ export default function Comment({
                         id="rating-3"
                         name="rating"
                         value="3"
+                        checked={starValue === "3"}
+                        onChange={handleRadionChange}
                       />
                       <label for="rating-3" className="restRadioLabel">
                         3
@@ -113,6 +167,8 @@ export default function Comment({
                         id="rating-2"
                         name="rating"
                         value="2"
+                        checked={starValue === "2"}
+                        onChange={handleRadionChange}
                       />
                       <label for="rating-2" className="restRadioLabel">
                         2
@@ -122,13 +178,19 @@ export default function Comment({
                         id="rating-1"
                         name="rating"
                         value="1"
+                        checked={starValue === "1"}
+                        onChange={handleRadionChange}
                       />
                       <label for="rating-1" className="restRadioLabel">
                         1
                       </label>
-                      {/* <input type="radio" id="rating-0" name="rating" value="0" className="star-cb-clear" /><label for="rating-0">0</label> */}
                     </div>
                   </div>
+                  {!starVerify && (
+                    <p className={`${InfoSty.verifyHint} restLabel mt-2 text-center`}>
+                      尚未點選評分
+                    </p>
+                  )}
                   <div className="mt-3">
                     <TextArea
                       id=""
@@ -139,8 +201,13 @@ export default function Comment({
                       width="input-width-70pa"
                       getValue={setTextAreaValue}
                       getName={setTextAreaName}
-                      required="true"
+                      required={false}
                     />
+                    {!commentVerify && (
+                      <p className={`${InfoSty.verifyHint} restLabel mt-2 text-center`}>
+                        請填寫評論內容
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="modal-footer">
@@ -149,16 +216,29 @@ export default function Comment({
                     addClassforButton="btn-light"
                     bsModl3={`modal`}
                   />
-                  <Btn
-                    btnText="發布評論"
-                    type="submit"
-                    value="submit"
-                    addClassforButton="btn-dark ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
-                    disabled={false} // fase：可點，true：不可點
-                    bsModl3={`modal`}
-                  />
-                  {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button> */}
+                  {modalClose == '' && (
+                    <Btn
+                      btnText="發布評論"
+                      type="submit"
+                      value="submit"
+                      addClassforButton="btn-dark ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                      disabled={false} // fase：可點，true：不可點
+                      bsModl3=""
+                      onClick={verifyHint}
+                    />
+                  )}
+
+                  {modalClose == 'modal' && (
+                    <Btn
+                      btnText="發布評論"
+                      type="submit"
+                      value="submit"
+                      addClassforButton="btn-dark ms-3" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+                      disabled={false} // fase：可點，true：不可點
+                      bsModl3={`modal`}
+                    />
+                  )}
+
                 </div>
               </form>
             </div>

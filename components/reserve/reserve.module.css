@@ -51,6 +51,7 @@
   color: #525252;
 
 }
+
 .noInvite {
   font-size: 16px;
   color: #525252;
@@ -66,3 +67,7 @@
   box-shadow: 0px 2px 5px -1px #a5a5a5;
 }
 
+.verifyHint {
+  color: #874c6d;
+  font-style: italic;
+}

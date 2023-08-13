@@ -121,7 +121,7 @@ export default function restIntro({
     event.preventDefault()
     if (reserveDateInputVale == '' || !reserveTimeInputValue) return
 
-    const formData = new FormData(document.getElementById('reserve'))
+    // const formData = new FormData(document.getElementById('reserve'))
 
     fetch('http://localhost:3002/restaurant', {
       method: 'POST',
