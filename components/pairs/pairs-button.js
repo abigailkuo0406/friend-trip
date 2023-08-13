@@ -24,10 +24,10 @@ export default function PairBtns({
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
-        alert('篩選成功')
+        alert('加入好友成功')
         console.log('資料抓到', data.all)
       })
-  }, [page])
+  }, [page == 2])
   return (
     <>
       <div className="d-flex justify-content-center gap-5 mt-3">

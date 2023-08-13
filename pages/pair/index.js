@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import AuthContext from '@/context/AuthContext' // 會員
-import SlideLayout from '@/components/layout/slide-layout'
+import AdminLayout from '@/components/layout/admin-layout'
 import Pairs from '@/components/pairs/pairs'
 import _ from 'lodash'
 export default function PairsIndex() {
@@ -59,5 +59,5 @@ export default function PairsIndex() {
 // 這裡代表要套用AdminLayout，取代原本的DefaultLayout
 // 要寫在元件的函式之外
 PairsIndex.getLayout = function (page) {
-  return <SlideLayout>{page}</SlideLayout>
+  return <AdminLayout>{page}</AdminLayout>
 }
