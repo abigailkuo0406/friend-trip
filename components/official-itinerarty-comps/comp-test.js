@@ -32,7 +32,7 @@ function Comptest({ rows }) {
                 <br />
                 <span>時間:{dayjs(v.date).format('YYYY-MM-DD HH:MM')}</span>
                 {/* <div className={styles.empty_star}>★</div> */}
-                <div>評分:{v['trip evaluation']}分</div>
+                {/* <div>評分:{v['trip evaluation']}分</div> */}
                 <button type="button" className={styles.bnt}>
                   <a href="http://localhost:3000/official-itinerary/reserve">
                     參加
