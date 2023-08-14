@@ -11,6 +11,7 @@ export default function AdminIndex() {
   const router = useRouter()
   // const { auth, setAuth } = useContext(AuthContext)
 
+  
   useEffect(() => {
     const auth = JSON.parse(localStorage.getItem('auth'))
     // console.log('auth:', auth.member_id)
