@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2023 at 04:39 AM
+-- Generation Time: Aug 14, 2023 at 02:14 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -144,7 +144,14 @@ INSERT INTO `comments` (`comment_id`, `member_id`, `post_id`, `content`, `create
 (151, 20, 122, '考慮', '2023-08-13 16:46:20'),
 (152, 20, 122, '我會考慮', '2023-08-13 16:47:11'),
 (153, 20, 117, '真的很好，我也想來一口', '2023-08-13 16:47:36'),
-(154, 2, 219, '老當益壯，爺爺好厲害啊！', '2023-08-14 10:33:43');
+(154, 2, 219, '老當益壯，爺爺好厲害啊！', '2023-08-14 10:33:43'),
+(155, 3, 204, 'beautiful', '2023-08-14 15:52:30'),
+(156, 3, 222, 'very good', '2023-08-14 15:53:28'),
+(157, 3, 223, '希望能碰到金城武！', '2023-08-14 19:47:42'),
+(158, 3, 225, '希望能碰到金城武！', '2023-08-14 19:52:42'),
+(159, 3, 227, '我要去，已經私訊你了', '2023-08-14 20:03:34'),
+(160, 5, 227, '我也去，算我一個', '2023-08-14 20:05:25'),
+(161, 5, 227, '問一下，這是哪裡？', '2023-08-14 20:06:00');
 
 --
 -- Indexes for dumped tables
@@ -164,7 +171,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
