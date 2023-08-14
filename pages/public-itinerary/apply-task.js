@@ -77,7 +77,7 @@ console.log('itinName',itinName)
             <div className="flex-column mx-3">
               <p className={ `usr_name mt-3 ${styles.spnaName}`}>{memberName}</p>
             </div>
-          </div>
+            </div>
         </div>
       </div>
       <div>
@@ -92,7 +92,7 @@ console.log('itinName',itinName)
                       itinOrder={v.itin_order}
                       name={v.name}
                       photo_url={v.photo_url}
-
+                    
                     />
                   </div>
                   {/* SaveViewModal */}

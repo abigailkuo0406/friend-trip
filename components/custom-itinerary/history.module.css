@@ -1,8 +1,3 @@
-.container {
-  margin: 20px auto;
-  padding: 0;
-}
-
 .text {
   margin-right: 10px;
   color: #674c87;
@@ -14,24 +9,15 @@
 }
 
 .img {
-  /* border: 5px deeppink solid; */
-  /* padding: 0.5rem; */
   padding: 1rem;
 }
-/* .public {
-  background-color: #fabcbf;
-  font-size: 0.9rem;
-  border-radius: 20px;
-} */
-.pageBtn {
-  justify-content: end;
-  margin-top: 1.5rem;
-  margin-right: 1rem;
-}
-.pageLink {
-  color: #674c87;
-}
 
+
+/* 分頁樣式 */
+.container {
+  margin: 20px auto;
+  padding: 0;
+}
 .textcolor {
   color: #674c87;
   border-radius: 5px;
@@ -51,15 +37,25 @@
 }
 
 
-.sort{
+
+/* pageBtn */
+.pageBtn {
+  justify-content: end;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
+}
+.pageLink {
   color: #674c87;
 }
 
+
+.sort{
+  color: #674c87;
+}
 .sort:focus{
   box-shadow: none;
   border: 0;
 }
-
 .dropdownDelete {
   color: #674c87;
 }
