@@ -9,7 +9,7 @@ export default function SidebarNavigation() {
               <div className="" id="navbarNav">
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <Link className="nav-link active" aria-current="page" href='/'>
+                    <Link className="nav-link test123321 active" aria-current="page" href='/'>
                       聊天室
                     </Link>
                   </li>
