@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import InputText from '@/components/common/input/input-text-flex'
+import InputTextPwd from '@/components/common/input/input-text-flex-pwd'
 import styles from './register.module.css'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
@@ -64,25 +65,25 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
     resultObj ? console.log('11', resultObj.filename) : console.log('22')
     resultObj ? setImages(resultObj.filename) : setImages('')
   }
-  const [verifyemail, setVerifyEmail] = useState(true)
+  const [verifyEmail, setVerifyEmail] = useState(true)
   function validateemail(value) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     // console.log(emailPattern.test(value))
     if (emailPattern.test(value)) {
       setEmail(value)
-      console.log(email)
+      console.log(value)
       setVerifyEmail(true)
     } else {
       setVerifyEmail(false)
     }
   }
-  const [verifyid, setVerifyId] = useState(true)
+  const [verifyId, setVerifyId] = useState(true)
   function validateidnumber(value) {
     const idPattern = /^[A-Z][12]\d{8}$/
     // console.log(emailPattern.test(value))
     if (idPattern.test(value)) {
-      setEmail(value)
-      console.log(id)
+      setId(value)
+      console.log(value)
       setVerifyId(true)
     } else {
       setVerifyId(false)
@@ -118,13 +119,14 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
               ></InputText>
             </div>
             {/* {verify && <div style={{ color: 'green' }}>請輸入電子信箱</div>} */}
-            {!verifyemail && (
+            {!verifyEmail && (
               <div style={{ color: 'red' }}>電子信箱格式錯誤</div>
             )}
           </div>
           <div className={styles.inputstyle}>
             <div className={styles.inputbar}>
-              <InputText
+              <InputTextPwd
+                type="password"
                 label="密碼"
                 value={aaa.password}
                 name="password"
@@ -133,7 +135,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
                 }
                 getName={() => 'whatever'}
                 width="input-width-100pa"
-              ></InputText>
+              ></InputTextPwd>
             </div>
           </div>
           <div className={styles.inputstyle}>
@@ -178,7 +180,7 @@ export default function RegisterLetter1({ setPage, setAaa, aaa }) {
                 width="input-width-100pa"
               ></InputText>
             </div>
-            {!verifyid && (
+            {!verifyId && (
               <div style={{ color: 'red' }}>身分證字號格式錯誤</div>
             )}
           </div>

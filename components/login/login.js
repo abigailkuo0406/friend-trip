@@ -5,6 +5,7 @@ import styles from './login.module.css'
 import logo from '@/assets/logo/FriendTrip-Logo.png'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputText from '@/components//common/input/input-text'
+import InputTextPwd from '@/components//common/input/input-text-pwd'
 import AuthContext from '@/context/AuthContext'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
@@ -79,11 +80,11 @@ export default function Login() {
               <div className={styles.down}>
                 <h5>密碼</h5>
                 <div className={styles.inputbox}>
-                  <InputText
+                  <InputTextPwd
                     getValue={setinputValue2}
                     getName={setinputName2}
                     width="input-width-100pa"
-                  ></InputText>
+                  ></InputTextPwd>
                 </div>
               </div>
             </div>

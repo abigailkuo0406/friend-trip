@@ -10,25 +10,28 @@ export default function PairBtns({
   page,
 }) {
   const { auth, setAuth } = useContext(AuthContext)
-  useEffect(() => {
-    fetch(process.env.API_SERVER + '/makefriend', {
-      method: 'POST',
-      body: JSON.stringify({
-        memberId: auth.member_id,
-        FriendId: randomstate[imgIndex].select_id,
-        acceptState: 0,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        console.log(data)
-        alert('篩選成功')
-        console.log('資料抓到', data.all)
-      })
-  }, [page])
+  // useEffect(() => {
+  //   console.log('page change', page)
+  //   if (page == 2) {
+  //     console.log('hjhjhjhj')
+  //     fetch(process.env.API_SERVER + '/makefriend', {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         memberId: auth.member_id,
+  //         FriendId: randomstate[imgIndex].select_id,
+  //       }),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     })
+  //       .then((r) => r.json())
+  //       .then((data) => {
+  //         console.log(data)
+  //         alert('加入好友成功')
+  //         console.log('資料抓到', data.all)
+  //       })
+  //   }
+  // }, [page])
   return (
     <>
       <div className="d-flex justify-content-center gap-5 mt-3">
