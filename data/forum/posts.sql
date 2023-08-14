@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2023 at 05:29 AM
+-- Generation Time: Aug 14, 2023 at 04:40 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -57,12 +57,15 @@ INSERT INTO `posts` (`post_id`, `member_id`, `content`, `img`, `created_at`) VAL
 (122, 13, '希望在此找到有緣人', 'http://localhost:3002/forum_pics/youngLover.jpg', '2023-08-09 22:28:02'),
 (188, 8, '嘉明湖位於台東縣海端鄉，是台灣高山湖泊中排名第二，僅次雪山翠池。其湖水顏色深藍如寶石，雖無溪流注入卻終年不枯，有著「天使的眼淚」的美稱。沿途順路造訪向陽、三叉兩座百岳。', 'http://localhost:3002/forum_pics/jiaminhu.webp', '2023-08-11 10:26:05'),
 (189, 8, '我們最後從陽山屋出發準備下山，山屋伯伯熱情款待蒸包子和紅豆湯，大夥飽餐一頓，跟伯伯約好下次來嘉明湖再見，便興高采烈的下山。', 'http://localhost:3002/forum_pics/xianyanshan.webp', '2023-08-11 10:31:03'),
-(191, 8, 'test for delete', 'http://localhost:3002/forum_pics/noPost.jpg', '2023-08-11 10:38:10'),
 (195, 14, '這一條路線很方便的地方就是可以搭捷運、騎Ubike~而且下山就可以直接去逛街了～一整天的行程直接排好。不過只去六巨石市真的蠻短的啦，建議大家可以排個半天，把四獸山走完，或是去九五峰、拇指山、南港山等。', 'http://localhost:3002/forum_pics/jiandaoshi.webp', '2023-08-11 10:48:42'),
 (199, 28, '你們好，我是宗翰，我喜歡夜遊', 'http://localhost:3002/forum_pics/yiejin.webp', '2023-08-11 11:09:58'),
 (200, 28, '這是我前女友', 'http://localhost:3002/forum_pics/qiannvyou.webp', '2023-08-11 11:11:23'),
 (201, 28, '還是我前女友', 'http://localhost:3002/forum_pics/qinnv.webp', '2023-08-11 11:17:28'),
-(203, 35, '這是九份，就團一起去', 'http://localhost:3002/forum_pics/jiufen.webp', '2023-08-11 11:25:23');
+(203, 35, '這是九份，就團一起去', 'http://localhost:3002/forum_pics/jiufen.webp', '2023-08-11 11:25:23'),
+(204, 17, '一般來說前往台東自由行，有分為自駕或搭乘大眾交通工具（如：火車、客運、飛機等）', 'http://localhost:3002/forum_pics/taidonJin.jpg', '2023-08-11 14:03:09'),
+(205, 17, 'Another post', 'http://localhost:3002/forum_pics/jumpRopeMuscleMan.jpg', '2023-08-11 16:57:52'),
+(219, 20, 'My first post', 'http://localhost:3002/forum_pics/awesome.webp', '2023-08-13 13:42:38'),
+(222, 2, '這是我上禮拜爬山拍的，漂亮吧！', 'http://localhost:3002/forum_pics/inTheMiddle.jpg', '2023-08-14 10:34:33');
 
 --
 -- Indexes for dumped tables
@@ -82,7 +85,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=204;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
