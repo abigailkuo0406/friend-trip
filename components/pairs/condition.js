@@ -61,6 +61,42 @@ export default function Condition() {
   const back = () => {
     router.push('/pair')
   }
+  const first = (e) => {
+    e.preventDefault()
+    console.log('啟動篩選')
+    console.log('2222222', auth)
+    fetch(process.env.API_SERVER + '/first', {
+      method: 'POST',
+      body: JSON.stringify({
+        memberID: auth.member_id,
+        i_gender: gender,
+        i_age_min: value[0],
+        i_age_max: value[1],
+        i_height_low: height[0],
+        i_height_high: height[1],
+        i_weight_low: weight[0],
+        i_weight_high: weight[1],
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        console.log(data)
+        Swal.fire({
+          width: 400,
+          title: '設定成功',
+          text: '感謝您的使用祝福您使用愉快',
+          icon: 'success',
+          iconColor: '#FABCBF',
+          color: '#674C87',
+          confirmButtonColor: '#674C87',
+          showConfirmButton: false,
+        })
+      })
+      .then(() => router.push('/pair'))
+  }
   useEffect(() => {
     console.log(gender)
   }, [gender])
@@ -75,6 +111,12 @@ export default function Condition() {
             <button className={`${styles.arrow}`} onClick={condition}>
               <i class="fa-solid fa-arrow-left"></i>
             </button>
+            <BtnNormal
+              onClick={first}
+              className="btn"
+              btnText="初次設定"
+              addClassforButton="btn-light"
+            />
             <button className={styles.arrow} onClick={back}>
               <i class="fa-solid fa-xmark"></i>
             </button>
