@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost:3306
--- 產生時間： 2023-08-14 05:09:38
+-- 產生時間： 2023-08-14 05:22:15
 -- 伺服器版本： 5.7.24
 -- PHP 版本： 8.1.0
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `public_itinerary`
+-- 資料表結構 `official_itinerary`
 --
 
-CREATE TABLE `public_itinerary` (
+CREATE TABLE `official_itinerary` (
   `sid` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   `itin_id` int(11) NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE `public_itinerary` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 傾印資料表的資料 `public_itinerary`
+-- 傾印資料表的資料 `official_itinerary`
 --
 
-INSERT INTO `public_itinerary` (`sid`, `member_id`, `itin_id`, `create_at`, `img`, `content`, `itinerary name`, `price`) VALUES
+INSERT INTO `official_itinerary` (`sid`, `member_id`, `itin_id`, `create_at`, `img`, `content`, `itinerary name`, `price`) VALUES
 (1, 2, 159, '2023-08-10 14:20:35', 'http://localhost:3002/offical_img/1.jpg', '', '碧湖公園', '42000'),
 (2, 2, 152, '2023-08-10 14:21:12', 'http://localhost:3002/offical_img/2.jpg', '', '碧山巖櫻花隧道', '32000'),
 (3, 9, 150, '2023-08-10 15:55:58', 'http://localhost:3002/offical_img/3.jpg', '', '台北賞櫻景點', '22000'),
@@ -69,9 +69,9 @@ INSERT INTO `public_itinerary` (`sid`, `member_id`, `itin_id`, `create_at`, `img
 --
 
 --
--- 資料表索引 `public_itinerary`
+-- 資料表索引 `official_itinerary`
 --
-ALTER TABLE `public_itinerary`
+ALTER TABLE `official_itinerary`
   ADD PRIMARY KEY (`sid`);
 
 --
@@ -79,9 +79,9 @@ ALTER TABLE `public_itinerary`
 --
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `public_itinerary`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `official_itinerary`
 --
-ALTER TABLE `public_itinerary`
+ALTER TABLE `official_itinerary`
   MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
