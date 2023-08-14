@@ -105,7 +105,7 @@ export default function ArrangeSchedule() {
           // 將景點資訊、照片URL和名稱存入一個物件中
           const viewInfo = {
             ...selectedView,
-            photo_url: selectedView.name+'.jpg', // 使用新的變數
+            photo_url: selectedView.name + '.jpg', // 使用新的變數
           }
           //將加入行程的景點存為新的陣列
           // 將 viewInfo 加入到 addInitLocal 陣列中
@@ -139,7 +139,7 @@ export default function ArrangeSchedule() {
         localStorage.removeItem('photoUrl')
       }
     }
-      //將搜尋到照片存入後端
+    //將搜尋到照片存入後端
     function uploadPhotoToServer(photoUrl, photoName) {
       // 使用fetch API將照片發送到後端
       fetch(`http://localhost:3002/upload-viewPhoto`, {
