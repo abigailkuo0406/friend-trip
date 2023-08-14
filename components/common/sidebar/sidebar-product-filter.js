@@ -1,5 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import { useRouter } from 'next/router'
+import { BsBoxArrowUpLeft, BsFileEarmarkCheck } from "react-icons/bs";
+
 export default function SidebarProductFilter() {
   const router = useRouter()
   useEffect(()=>{
@@ -181,7 +183,7 @@ export default function SidebarProductFilter() {
                   <li className="nav-item">
                     <a id="AllProduct" className="nav-link active li-click" aria-current="page" onClick={()=>{
                           localStorage.removeItem("searchProduct");
-                          location.href="/product"
+                          location.href="/product?page=1"
                           localStorage.setItem("inputClear", true);
                         }}>
                       全部商品
@@ -206,6 +208,7 @@ export default function SidebarProductFilter() {
                                 order: router.query.order,
                                 category: 'all',
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
@@ -223,6 +226,7 @@ export default function SidebarProductFilter() {
                                 order: router.query.order,
                                 category: '周邊',
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
@@ -240,6 +244,7 @@ export default function SidebarProductFilter() {
                                 order: router.query.order,
                                 category: '旅行',
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
@@ -257,6 +262,7 @@ export default function SidebarProductFilter() {
                                 order: router.query.order,
                                 category: '票券',
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
@@ -274,6 +280,7 @@ export default function SidebarProductFilter() {
                                 order: router.query.order,
                                 category: '禮品',
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
@@ -304,6 +311,7 @@ export default function SidebarProductFilter() {
                                 order: "AtoZ",
                                 category: router.query.category != undefined ? router.query.category : "all",
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
@@ -321,6 +329,7 @@ export default function SidebarProductFilter() {
                                 order: "ZtoA",
                                 category: router.query.category != undefined ? router.query.category : "all",
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
@@ -338,13 +347,14 @@ export default function SidebarProductFilter() {
                                 order: "rating",
                                 category: router.query.category != undefined ? router.query.category : "all",
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
                             window.location.href = '/product?order=rating&category=all';
                           }
                         }}>
-                          評分最多
+                          評價最高
                         </a>
                       </li>
                     </ul>
@@ -356,6 +366,7 @@ export default function SidebarProductFilter() {
                               query: {
                                 collection: "true",
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
@@ -372,6 +383,7 @@ export default function SidebarProductFilter() {
                               query: {
                                 buyagain: "true",
                                 keyword: router.query.keyword,
+                                page: "1",
                               },
                             });
                           } else {
@@ -379,6 +391,26 @@ export default function SidebarProductFilter() {
                           }
                         }}>
                       再買一次
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a id="BackIndexLi" className="nav-link" onClick={()=>{
+                      router.push({
+                        pathname: '../'
+                      })}}>
+                      返回首頁 <BsBoxArrowUpLeft></BsBoxArrowUpLeft>
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a id="BackIndexLi" className="nav-link" onClick={()=>{
+                      router.push({
+                        pathname: '/product/order',
+                        query: {
+                                status: "all",
+                              },
+
+                      })}}>
+                      歷史訂單 <BsFileEarmarkCheck></BsFileEarmarkCheck>
                     </a>
                   </li>
                 </ul>

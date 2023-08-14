@@ -2,16 +2,19 @@ import React, { useState, useEffect, Fragment, useContext } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import ProductPageLayout from '@/components/layout/product-page-layout'
+import ProductPidPageLayout from '@/components/layout/product-pid-page-layout'
 import InputNumber from '@/components/common/input/input-number'
 import BtnNormal from '@/components/common/button/btn-normal'
 import ModalCartAdd from '@/components/common/modal/modal_cart_add'
 import AuthContext from '@/context/AuthContext'
 import fakeIimg1 from '@/public/img/fake-data/fake-img-1.jpg'
 import Swal from 'sweetalert2'
-import { BsCart, BsCartPlus, BsHeartFill, BsHeart } from 'react-icons/bs'
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { BsCart, BsCartPlus, BsHeartFill, BsHeart, BsChevronLeft } from 'react-icons/bs'
+import { AiFillStar, AiOutlineStar, AiOutlineLeft } from 'react-icons/ai'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
+import { TiArrowLeft } from "react-icons/ti";
+
+
 
 export default function ProductItem({}) {
   const {auth, setAuth } = useContext(AuthContext)
@@ -200,13 +203,16 @@ export default function ProductItem({}) {
     return formattedDate;
   }
 
+  const goBack = ()=>{
+    router.back()
+  }
   return (
     <>
       <div className="PidPageHeader">
-        <div className="PageBack">
-          <Link href="/product">
-            <MdKeyboardArrowLeft></MdKeyboardArrowLeft>
-          </Link>
+        <div className="PageBack" onClick={goBack}>
+          {/* <Link href={`/product${goBackQuery}`}> */}
+            <TiArrowLeft></TiArrowLeft>
+          {/* </Link> */}
         </div>
 
         <div className="PageCart col-4">
@@ -342,5 +348,5 @@ export default function ProductItem({}) {
 }
 
 ProductItem.getLayout = function (page) {
-  return <ProductPageLayout>{page}</ProductPageLayout>
+  return <ProductPidPageLayout>{page}</ProductPidPageLayout>
 }

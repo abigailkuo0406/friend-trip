@@ -22,7 +22,6 @@ export default function CardProduct({
   productPost = '',
   productRate=0,
   setAddProduct={setAddProduct},
-  setFavoritChange=()=>{},
 }) {
   // const defaultFavorit = allCollectionID.includes(productID)
   const [favorit, setFavorit] = useState(false)
@@ -35,7 +34,13 @@ export default function CardProduct({
   const changeFavorit = (e) => {
     setFavorit(!favorit)
     setLikeClick(true)
-    setFavoritChange(Math.random())
+    localStorage.setItem("saveScrollY", JSON.stringify(window.scrollY))
+    router.push({
+      query:{
+        ...router.query,
+        favorit: `${productID}${!favorit}`
+      }
+    })
   }
 
   useEffect(()=>{

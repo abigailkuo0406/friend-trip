@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-import InputText from '@/components/common/input/input-text'
-import InputEmail from '@/components/common/input/input-email'
+import InputTextCheckout from '@/components/product_checkout/input/input-text-checkout'
+import InputTelCheckout from '@/components/product_checkout/input/input-tel-checkout'
+import InputEmailCheckout from '@/components/product_checkout/input/input-email-checkout'
 import SelectOption from '@/components/common/input/select-option'
-import AreaText from '@/components/common/input/textarea-flex'
+import AreaTextFlexCheckout from '@/components/product_checkout/input/textarea-flex-checkout'
 import InputCheckboxGroup from '@/components/common/input/input-checkbox-group'
+import { useRouter } from 'next/router'
 
 
 
@@ -29,8 +31,14 @@ export default function CheckoutInfo1({
   setOrderNoteName=()=>{},
 
   backOneGo=false,
+
+  inputErrorReceiverName='',
+  inputErrorReceiverAddress='',
+  inputErrorReceiverTel='',
+  inputErrorReceiverEmail='',
 })
 {
+  const router = useRouter()
   const [defaultReceiverName, setDefaultReceiverName] = useState('')
   const [defaultReceiverGender, setDefaultReceiverGender] = useState('')
   const [defaultReceiverTel, setDefaultReceiverTel] = useState('')
@@ -40,6 +48,10 @@ export default function CheckoutInfo1({
   let defaultOrderNoteTemp = '123'
   const [inputMamberValueCheckBox, setInputMamberValueCheckBox] = useState('')
   const [inputMamberNameCheckBox, setInputMamberNameCheckBox] = useState('')
+
+  useEffect(()=>{
+    localStorage.setItem("checkoutInfoErrorCheck", JSON.stringify({receiver_name: false, receiver_tel: false, receiver_address:false, receiver_email: false}))
+  },[])
   
   useEffect(() => {
     if(backOneGo==true){
@@ -80,6 +92,8 @@ export default function CheckoutInfo1({
   }, [inputMamberValueCheckBox])
 
 
+
+
   return (
     <>
     <InputCheckboxGroup
@@ -96,7 +110,7 @@ export default function CheckoutInfo1({
             addClassforInput="" // 如果要在 input 添加 class
             errorText=""
           ></InputCheckboxGroup>
-      <InputText
+      <InputTextCheckout
             id="receiver_name"
             name="receiver_name"
             label="收件者姓名"
@@ -106,8 +120,9 @@ export default function CheckoutInfo1({
             addClassforInput="" // 如果要在 input 添加 class
             getValue={setReceiverNameValue} // 獲取填寫的數值
             getName={setReceiverNameName} // 獲取 name
-            required={true} // true：必填，false：非必填
-      ></InputText>
+            required={false} // true：必填，false：非必填
+            inputError={inputErrorReceiverName}
+      ></InputTextCheckout>
       <SelectOption
             id="receiver_gender"
             label="稱謂"
@@ -122,7 +137,7 @@ export default function CheckoutInfo1({
             addClassforSelect="" // 如果要在 Select 添加 class
             addClassforOption="" // 如果要在 Option 添加 class
       ></SelectOption>
-      <InputText
+      <InputTelCheckout
             id="receiver_tel"
             name="receiver_tel"
             label="收件電話"
@@ -132,9 +147,10 @@ export default function CheckoutInfo1({
             addClassforInput="" // 如果要在 input 添加 class
             getValue={setReceiverTelValue} // 獲取填寫的數值
             getName={setReceiverTelName} // 獲取 name
-            required={true} // true：必填，false：非必填
-      ></InputText>
-      <InputText
+            required={false} // true：必填，false：非必填
+            inputError={inputErrorReceiverTel}
+      ></InputTelCheckout>
+      <InputTextCheckout
             id="receiver_address"
             name="receiver_address"
             label="收件地址"
@@ -144,9 +160,10 @@ export default function CheckoutInfo1({
             addClassforInput="" // 如果要在 input 添加 class
             getValue={setReceiverAddressValue} // 獲取填寫的數值
             getName={setReceiverAddressName} // 獲取 name
-            required={true} // true：必填，false：非必填
-      ></InputText>
-      <InputEmail
+            required={false} // true：必填，false：非必填
+            inputError={inputErrorReceiverAddress}
+      ></InputTextCheckout>
+      <InputEmailCheckout
             id="receiver_email"
             name="receiver_email"
             label="電子信箱"
@@ -156,9 +173,10 @@ export default function CheckoutInfo1({
             addClassforInput="" // 如果要在 input 添加 class
             getValue={setReceiverEmailValue} // 獲取填寫的數值
             getName={setReceiverEmailName} // 獲取 name
-            required={true} // true：必填，false：非必填
-      ></InputEmail>
-      <AreaText
+            required={false} // true：必填，false：非必填
+            inputError={inputErrorReceiverEmail}
+      ></InputEmailCheckout>
+      <AreaTextFlexCheckout
             id="order_note"
             label="訂單備註"
             name="order_note"
@@ -169,8 +187,8 @@ export default function CheckoutInfo1({
             addClassforTextarea="" // 如果要在 textarea 添加 class
             getValue={setOrderNoteValue}
             getName={setOrderNoteName}
-            required={true} // true：必填，false：非必填
-          ></AreaText>
+            required={false} // true：必填，false：非必填
+          ></AreaTextFlexCheckout>
     </>
   )
 }

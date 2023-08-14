@@ -331,6 +331,7 @@ header
 
 main
   padding: 6rem 0
+  min-height: calc(100vh - 8rem) // 4rem 是 footer 的高度 4rem 是 navbar 的高度和 padding 大概值
   .main-background
     background-color: var(--bg-light)
     border-radius: 20px
@@ -361,15 +362,18 @@ main
 
   #User-Img
     width: 40%
+    height: 100%
     padding-right: 1rem
+    overflow: hidden
     @media(max-width:1199px)
       padding-right: 0
       padding-bottom: 1rem 
     @media(max-width:991px)
       width: 60%
     img
-      width: 100%
-      hieght: auto
+      object-fit: cover
+      object-position: 50% 50%
+      border-radius: 50%
   #User-Info
     width: 65%
     @media(max-width:1199px)
@@ -401,6 +405,12 @@ main
       color: var(--main)
       background-color: var(--assist-white)
       padding: 0.7rem 1.5rem
+      display: flex
+      align-items: center
+      svg
+        margin: 0 1.5rem
+        height: 1rem
+        width: auto
       &:hover
         background-color: var(--main)
         color: var(--assist-white)

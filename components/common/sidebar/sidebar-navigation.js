@@ -41,17 +41,19 @@ export default function SidebarNavigation() {
                     <ul className="dropdown-menu">
 
                       <li>
-                        <a className="dropdown-item" href='/product/cart'>
+                        <Link className="dropdown-item" href='/product/cart'>
                           購物車
-                        </a>
+                        </Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" href='/product/collection'>
+                        <a className="dropdown-item" onClick={()=>{
+                          location.href = "/product?collection=true&page=1"
+                        }}>
                           我的收藏
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href='/product/order'>
+                        <Link className="dropdown-item" href='/product/order?status=all'>
                           歷史訂單
                         </a>
                       </li>

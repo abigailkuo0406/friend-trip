@@ -28,6 +28,9 @@ export default function Navbar() {
       case "/product":
         setSearchBarComponent(<Fragment><InputSearchBar localstorage="searchProduct" setGetSearch={setGetProductSearch} setGetRandom={setGetRandom} placeholder="搜尋商品"></InputSearchBar></Fragment>)
         break;
+      case "/restaurant":
+        setSearchBarComponent(<Fragment><InputSearchBar localstorage="searchProduct" setGetSearch={setGetProductSearch} setGetRandom={setGetRandom} placeholder="搜尋餐廳"></InputSearchBar></Fragment>)
+        break;
     }
   }, [router.asPath])
   useEffect(() => {

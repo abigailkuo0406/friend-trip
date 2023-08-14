@@ -7,6 +7,7 @@ import NoSidebarLayout from '@/components/layout/nosidebar-layout'
 import TableCart from '@/components/common/table/table-cart'
 import InputCheckboxGroup from '@/components/common/input/input-checkbox-group'
 import BtnNormal from '@/components/common/button/btn-normal'
+import CheckingHeader from '@/components/product_checkout/checking_header'
 import AuthContext from '@/context/AuthContext'
 // import CartContext from '@/context/CartContext'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
@@ -170,25 +171,13 @@ export default function Cart() {
       
   }
 
-  const goBack = ()=>{
-    router.back()
-  }
-
  
   
  
 if(true){
   return (
     <>
-      <div className="CartPageHeader onePageHeader">
-        <div className="PageBack" onClick={goBack}>
-            <MdKeyboardArrowLeft></MdKeyboardArrowLeft>
-   
-        </div>
-        <div className="PageTitle">
-          <p>購物車</p>
-        </div>
-      </div>
+    <CheckingHeader page="cart"></CheckingHeader>
       <section className="order_section">
         <div className="order_left">
           <table className="product_table">

@@ -6,7 +6,8 @@ import BtnNormal from '@/components/common/button/btn-normal'
 import fakeIimg1 from '@/public/img/fake-data/fake-img-1.jpg'
 import Swal from 'sweetalert2'
 import { FaAngleDown } from "react-icons/fa6";
-
+import { IoClipboardOutline, IoCheckmarkSharp, IoChatboxEllipsesOutline } from "react-icons/io5";
+import { BiMessageDetail, BiMessageCheck } from "react-icons/bi";
 import ModalProductComment from '@/components/common/modal/modal_product_comment'
 
 export default function OrderCard({
@@ -98,22 +99,31 @@ export default function OrderCard({
     type="button"
     value="button"
     btnText="已收到商品"
+    addIMGLeft={<IoCheckmarkSharp></IoCheckmarkSharp>}
     addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
     disabled={false} // fase：可點，true：不可點
     onClick={orderComplete}
   ></BtnNormal>
-  } else if (orderDetail.order_status === '訂單完成') {
+  } else if (orderDetail.order_status === '訂單完成' && banCommentID != orderDetail.order_id) {
     btnComponent = <BtnNormal
     type="button"
     value="button"
-    btnText={ banCommentID != orderDetail.order_id ? "評價商品" : "已評價過"}
-    addClassforButton={ banCommentID != orderDetail.order_id ? "btn-dark" : "btn-ban"} //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
-    disabled={ banCommentID != orderDetail.order_id ? false : true} // fase：可點，true：不可點
-    // bsModle1={`#CommentModal${orderDetail.order_id}`}
-    // bsModle2="modal"
+    btnText="評價商品"
+    addIMGLeft={<BiMessageDetail></BiMessageDetail>}
+    addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+    disabled={false} // fase：可點，true：不可點
     onClick={handleShow}
-  ></BtnNormal>
-  }
+  ></BtnNormal> 
+  } else if (orderDetail.order_status === '訂單完成' && banCommentID == orderDetail.order_id) {
+    btnComponent = <BtnNormal
+    type="button"
+    value="button"
+    btnText="已評價過"
+    addIMGLeft={<BiMessageCheck></BiMessageCheck>}
+    addClassforButton="btn-ban" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
+    disabled={true} // fase：可點，true：不可點
+    onClick={handleShow}
+  ></BtnNormal>}
 
   // 將後端傳來的時間格式轉成台灣的時間格式
   function formatDate(dateString) {
@@ -160,7 +170,7 @@ export default function OrderCard({
           <p>電子信箱：</p><p>{orderDetail.receiver_email}</p>
         </div>
         <div className="order-info-each">
-          <p>訂單備註：</p><p>{orderDetail.order_note}</p>
+          <p>訂單備註：</p><p>{orderDetail && orderDetail.order_note && orderDetail.order_note.length > 0 ? orderDetail.order_note : "無備註"}</p>
         </div>
         <div className="order-info-each">
           <p>付款方式：</p><p>{orderDetail.payment_method}</p>
@@ -184,7 +194,7 @@ export default function OrderCard({
         <div className="order-card">
         <div className="order-card-header">
         <div className="order-card-header-id">
-            <h4>訂單編號：</h4><h4>{orderDetail.order_id}</h4>
+            <IoClipboardOutline></IoClipboardOutline><h4>訂單編號：</h4><h4>{orderDetail.order_id}</h4>
         </div>
         <div className="order-card-header-status">
             <h6>{orderDetail.order_status}</h6>
