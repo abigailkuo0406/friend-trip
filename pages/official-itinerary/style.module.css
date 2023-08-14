@@ -11,7 +11,9 @@
 .productlist li {
   float: left;
   width: 268px;
-  border: 1px solid black;
+  border: 1px solid rgb(255, 246, 246);
+  background-color: white;
+
   height: 300px;
   padding-bottom: 10px;
   padding: 10px;
