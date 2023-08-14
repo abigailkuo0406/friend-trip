@@ -55,6 +55,8 @@ export default function ReserveItem({
   // 定義邀請名單
   const [invitesData, setInvitesData] = useState()
   const [invite, setInvite] = useState([])
+  // console.log(restName, 'invite', invite)
+
 
   // 取得訂位邀請資料
   useEffect(() => {
@@ -68,18 +70,22 @@ export default function ReserveItem({
       .then((r) => r.json())
       .then((invites) => {
         setInvitesData(invites.rows)
+        // console.log('fectch進來的訂位邀請初始資料',invites.rows)
       })
   }, [])
 
   // 針對訂單編號串接對應的邀請名單
   useEffect(() => {
+    // if (invite == []) return
     if (invitesData) {
       const arr = invitesData.filter((v) => {
         return v.reserveId == reserveId
       })
       setInvite(arr)
+      // console.log('item邀請好友渲染')
+      // console.log('對應訂單編號arr', arr)
     }
-  }, [invitesData])
+  }, [invitesData, reserveId])
 
   const [modal, setModal] = useState(false)
   const [reservationId, setReservationId] = useState()
@@ -166,12 +172,15 @@ export default function ReserveItem({
                       return (
                         <div key={i} className="me-2">
                           {v.images ? (
-                            <Image
-                              src={`http://localhost:3002/face/${v.images}`}
-                              className={` ${FriendSty.avatar}`}
-                              width={50}
-                              height={50}
-                            />
+                            <div>
+                              <p>{v.iv_member_id}</p>
+                              <Image
+                                src={`http://localhost:3002/face/${v.images}`}
+                                className={` ${FriendSty.avatar}`}
+                                width={50}
+                                height={50}
+                              />
+                            </div>
                           ) : (
                             <p className={`${styles.noInvite}`}>本次訂位無邀請好友</p>
                           )}

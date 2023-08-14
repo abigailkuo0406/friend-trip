@@ -42,13 +42,14 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
   //初始邀請好友名單
   const [inviteList, setInviteList] = useState([])
   console.log('inviteList', inviteList)
-  console.log('xxxxxxxx', inviteList)
   useEffect(() => {
+    // console.log('父層資料近來渲染')
     setInviteList(alreadyInvite)
   }, [alreadyInvite])
 
   // 子層傳上來的好友名單
   const inviteListChange = (ivList) => {
+    // console.log('子層資料近來渲染')
     setInviteList(ivList)
   }
 

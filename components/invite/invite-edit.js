@@ -15,15 +15,15 @@ export default function InviteEdit({
   onValueChange,
   friendsBtnTemp,
 }) {
-  console.log(iv_member_id,iv_member_id2,friendName,defaultBtn)
+  // console.log(iv_member_id, iv_member_id2, friendName, defaultBtn)
   const { auth } = useContext(AuthContext)
 
-  const [inviteFriend, setInviteFriend] = useState('')
-  const [inviteImg, setInviteImg] = useState('')
-  const [inviteId, setInviteId] = useState('')
+  const [inviteFriend, setInviteFriend] = useState()
+  const [inviteImg, setInviteImg] = useState()
+  const [inviteId, setInviteId] = useState()
 
   const [inviteBtn, setInviteBtn] = useState(defaultBtn)
-
+  // console.log('inviteBtn', inviteBtn)
 
 
 
@@ -36,8 +36,8 @@ export default function InviteEdit({
       setInviteImg(images)
       // setInviteId(iv_member_id)
       iv_member_id != auth.member_id
-      ? setInviteId(iv_member_id)
-      : setInviteId(iv_member_id2)
+        ? setInviteId(iv_member_id)
+        : setInviteId(iv_member_id2)
     }
     // 如果按鈕是true(移除)，重設按鈕為false(+)
     else {
@@ -45,8 +45,8 @@ export default function InviteEdit({
       setInviteFriend(friendName)
       setInviteImg(images)
       iv_member_id != auth.member_id
-      ? setInviteId(iv_member_id)
-      : setInviteId(iv_member_id2)
+        ? setInviteId(iv_member_id)
+        : setInviteId(iv_member_id2)
       // setInviteId(iv_member_id)
 
     }
@@ -55,10 +55,10 @@ export default function InviteEdit({
 
   // 每次按鈕值改變，就送出邀請姓名、照片路徑和按鈕值到父層
   useEffect(() => {
-    onValueChange(inviteFriend, inviteImg, inviteBtn, inviteId)
+    inviteId != undefined && onValueChange(inviteFriend, inviteImg, inviteBtn, inviteId)
 
-
-  }, [inviteBtn, friendsBtnTemp])
+    // console.log('子層本身渲染')
+  }, [inviteBtn])
 
 
   return (
