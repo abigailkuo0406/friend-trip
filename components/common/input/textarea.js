@@ -12,6 +12,8 @@ export default function AreaText({
   getValue,
   getName,
   required = false,
+  addClassforDiv,
+  errorBox = false,
 }) {
   const [errorMessage, setErrorMessage] = useState('\u00A0') // 錯誤訊息用 // \u00A0 為會佔空間的空白，如果設空字串排版會爛掉
   const [addClassforInputState, setAddClassforInputState] =
@@ -36,7 +38,7 @@ export default function AreaText({
     getName(event.target.name)
   }
   return (
-    <div className="input-text-section">
+    <div className={`${addClassforDiv} input-radio-section`}>
       <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>
@@ -49,7 +51,7 @@ export default function AreaText({
         onChange={handleChange}
         onBlur={handleBlur}
       ></textarea>
-      <div className="input-error">{errorMessage}</div>
+      {errorBox && <div className="input-error">{errorMessage}</div>}
     </div>
   )
 }

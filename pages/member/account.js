@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react'
+import { useRouter } from 'next/router'
 import AdminLayout from '@/components/layout/admin-layout'
 import Edit from '@/components/edit/edit'
 import Edit2 from '@/components/edit/edit2'
 import BtnNormal from '@/components/common/button/btn-normal'
 import AuthContext from '@/context/AuthContext' // 會員 context 取用
-
+import Swal from 'sweetalert2'
 export default function EditHome() {
   const [aaa, setAaa] = useState({
     email: '',
@@ -32,6 +33,7 @@ export default function EditHome() {
 
   const { auth, setAuth } = useContext(AuthContext) // 透過 auth 抓取登入的會員資料
   const [memberInfo, setMemberInfo] = useState()
+  const router = useRouter()
   const edit = (e) => {
     e.preventDefault()
     console.log('5555', aaa)
@@ -65,8 +67,18 @@ export default function EditHome() {
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
-        alert('修改成功')
+        Swal.fire({
+          width: 400,
+          title: '修改成功',
+          text: '感謝您的使用祝福您使用愉快',
+          icon: 'success',
+          iconColor: '#FABCBF',
+          color: '#674C87',
+          confirmButtonColor: '#674C87',
+          showConfirmButton: false,
+        })
       })
+      .then(() => router.push('/member'))
   }
   const page1 = (
     <Edit
@@ -104,6 +116,7 @@ export default function EditHome() {
         console.log(data)
         console.log('資料抓到', data.all)
         setMemberInfo(data.all[0])
+        setAaa(data.all[0])
       })
   }, [auth])
   useEffect(() => {
@@ -112,17 +125,23 @@ export default function EditHome() {
   return (
     <>
       <form onSubmit={edit}>
-        <div className="d-flex justify-content-center">
-          {page === 1 ? page1 : page2}
-        </div>
+        {memberInfo && memberInfo.email ? (
+          <div className="d-flex justify-content-center">
+            {page === 1 ? page1 : page2}
+          </div>
+        ) : (
+          <div></div>
+        )}
       </form>
-      <BtnNormal
-        type="submit"
-        value="submit"
-        btnText="完成修改"
-        addClassforButton="btn-dark"
-        onClick={edit}
-      />
+      <div className="d-flex justify-content-center mt-5">
+        <BtnNormal
+          type="submit"
+          value="submit"
+          btnText="完成修改"
+          addClassforButton="btn-dark"
+          onClick={edit}
+        />
+      </div>
     </>
   )
 }

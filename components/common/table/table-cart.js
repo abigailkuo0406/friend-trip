@@ -57,7 +57,6 @@ export default function TableCart({
   }, [theSubtotal, []])
   
   const handleDelete = () =>{
-    console.log("oooooo：")
     fetch(`${process.env.API_SERVER}/product/cart/delete`, {
       method: 'POST',
       body: JSON.stringify({member:memberID, product: productID, deleteAll: false}),
@@ -93,17 +92,24 @@ export default function TableCart({
                 getCheck(e.target.checked)
                 getName(productID)
               }}
+              className='new-check'
             >
             </input>
         </td>
         <td className="product_td_img_name">
         <div className="product_td_img">
         <Link href={`./${productPost}`} >
+         
           <Image
-            src={fakeIimg1}
-            className=""
-            alt={productIMG}
-          ></Image>
+                  src={`/yun/product-img/pi-${productID}.png`}
+                  className=""
+                  alt={`${productID}'s product img`}
+                  width={300}
+                  height={300}
+                  onError={(e) => {
+                    e.target.srcset = '/yun/product-img/no-img.png';
+                  }}
+              ></Image>
         </Link>
         </div>
           
@@ -126,6 +132,7 @@ export default function TableCart({
             width="input-width-5rem" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
             addClassforLabel="" // 如果要在 label 添加 class
             addClassforInput="" // 如果要在 input 添加 class
+            checkValue = {checkValue}
           ></InputNumberCart></td>
           <td className="product_td_subtotal">NT$ {theSubtotal}</td>
           <td className="product_td_btn">

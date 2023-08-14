@@ -1,0 +1,73 @@
+.state {
+  margin: 0;
+  padding: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 50rem;
+  background-color: #FABCBF;
+  color: white;
+}
+
+.stateCancel {
+  margin: 0;
+  padding: 6px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 50rem;
+  background-color: #c7c7c7;
+  color: white;
+}
+
+.cardHead {
+  margin: 0;
+  padding: 0;
+  color: #674C87;
+  font-weight: 500;
+}
+
+.imgClass {
+  width: 300px;
+  /* height: 200px; */
+  padding: 5px;
+  /* overflow: hidden; */
+}
+
+.img1 {
+  width: 100%;
+  /* height: auto; */
+  object-fit: cover;
+  /* border-radius: 15px; */
+}
+
+.imgClass2 {
+  width: 1000px;
+  /* height: 1000px; */
+  overflow: hidden;
+}
+
+
+.text {
+  font-size: 18px;
+  color: #525252;
+
+}
+
+.noInvite {
+  font-size: 16px;
+  color: #525252;
+  font-style: italic;
+
+}
+
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 99em;
+  box-shadow: 0px 2px 5px -1px #a5a5a5;
+}
+
+.verifyHint {
+  color: #874c6d;
+  font-style: italic;
+}

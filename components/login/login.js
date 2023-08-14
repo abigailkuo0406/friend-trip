@@ -5,8 +5,10 @@ import styles from './login.module.css'
 import logo from '@/assets/logo/FriendTrip-Logo.png'
 import BtnNormal from '@/components/common/button/btn-normal'
 import InputText from '@/components//common/input/input-text'
+import InputTextPwd from '@/components//common/input/input-text-pwd'
 import AuthContext from '@/context/AuthContext'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 export default function Login() {
   // input-text
   const [inputValue1, setinputValue1] = useState('')
@@ -36,7 +38,16 @@ export default function Login() {
           const obj = { ...data.data }
           localStorage.setItem('auth', JSON.stringify(obj))
           setAuth(obj)
-          // alert('登入成功')
+          Swal.fire({
+            width: 400,
+            title: '登入成功',
+            text: '感謝您的使用祝福您使用愉快',
+            icon: 'success',
+            iconColor: '#FABCBF',
+            color: '#674C87',
+            confirmButtonColor: '#674C87',
+            showConfirmButton: false,
+          })
           router.push('/')
         } else {
           alert(data.error || '帳密錯誤')
@@ -69,18 +80,26 @@ export default function Login() {
               <div className={styles.down}>
                 <h5>密碼</h5>
                 <div className={styles.inputbox}>
-                  <InputText
+                  <InputTextPwd
                     getValue={setinputValue2}
                     getName={setinputName2}
                     width="input-width-100pa"
-                  ></InputText>
+                  ></InputTextPwd>
                 </div>
               </div>
             </div>
-            <div className={styles.btnbar}>
+            <div className={`${styles.btnbar} d-flex justify-content-center`}>
+              <BtnNormal
+                type="button"
+                btnText="註冊"
+                onClick={() => {
+                  router.push('/register')
+                }}
+                addClassforButton={`${styles.btn} btn-light  me-5`}
+              />
               <BtnNormal
                 type="submit"
-                btnText="註冊/登入"
+                btnText="登入"
                 onClick={() => {
                   console.log(inputValue1, ' \n', inputValue2)
                 }}

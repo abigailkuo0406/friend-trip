@@ -2,18 +2,23 @@ import React, { useState, useEffect, Fragment, useContext } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import ProductPageLayout from '@/components/layout/product-page-layout'
+import ProductPidPageLayout from '@/components/layout/product-pid-page-layout'
 import InputNumber from '@/components/common/input/input-number'
 import BtnNormal from '@/components/common/button/btn-normal'
 import ModalCartAdd from '@/components/common/modal/modal_cart_add'
 import AuthContext from '@/context/AuthContext'
 import fakeIimg1 from '@/public/img/fake-data/fake-img-1.jpg'
-import { BsCart, BsCartPlus, BsHeartFill, BsHeart } from 'react-icons/bs'
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import Swal from 'sweetalert2'
+import { BsCart, BsCartPlus, BsHeartFill, BsHeart, BsChevronLeft } from 'react-icons/bs'
+import { AiFillStar, AiOutlineStar, AiOutlineLeft } from 'react-icons/ai'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
+import { TiArrowLeft } from "react-icons/ti";
+
+
 
 export default function ProductItem({}) {
   const {auth, setAuth } = useContext(AuthContext)
+
 
   const router = useRouter()
   const [row, setRow] = useState({
@@ -51,6 +56,7 @@ export default function ProductItem({}) {
   const [BuyName, setBuyName] = useState('')
   const [collectionID, setCollectionID] = useState([]) // 判斷是否有收藏
   const [likeClick, setLikeClick] = useState(false)
+  const [allContent, setAllContent] = useState([])
   const changeFavorit = (event) => {
     setFavorit(!favorit)
     setLikeClick(true)
@@ -89,6 +95,8 @@ export default function ProductItem({}) {
         }
       })
   }, [router.query])
+
+
   useEffect(()=>{
     fetch(`${process.env.API_SERVER}/collection/findCollection`, {
       method: 'POST',
@@ -102,6 +110,20 @@ export default function ProductItem({}) {
       .then((data) => {
         setCollectionID(data.all)
       })
+
+      fetch(`${process.env.API_SERVER}/order/getComment`, {
+        method: 'POST',
+        body: JSON.stringify({productID: row.product_id}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      )
+        .then((r) => r.json())
+        .then((data) => {
+          setAllContent(data.all)
+        })
+
   }, [row])
 
 
@@ -121,6 +143,21 @@ export default function ProductItem({}) {
       .then((data) => {
         setCartNumber(data.all.length)
       })
+    
+        
+          Swal.fire({
+            width: 400,
+            html: `<h4>已將${product_name}</h4><h4>${buyValue}個加入購物車！</h4>`,
+            icon: 'success',
+            iconColor: '#FABCBF',
+            color: '#674C87',
+            confirmButtonColor: '#674C87',
+            showConfirmButton: false,
+            timer: 3000,
+          })
+        
+        // router.push('/custom-itinerary/arrange-schedule')
+     
   }
 
   useEffect(()=>{
@@ -130,7 +167,6 @@ export default function ProductItem({}) {
   },[collectionID])
 
   useEffect(()=>{
-    // console.log("個別情形boolean：",favorit+"我的ID是：",productID)
     if(auth.member_id != 0 && likeClick==true){
       
     if(favorit==true){
@@ -160,13 +196,23 @@ export default function ProductItem({}) {
     }}
   },[favorit,likeClick])
 
+  // 將後端傳來的時間格式轉成台灣的時間格式
+  function formatDate(dateString) {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const formattedDate = new Date(dateString).toLocaleString('zh-TW', options);
+    return formattedDate;
+  }
+
+  const goBack = ()=>{
+    router.back()
+  }
   return (
     <>
       <div className="PidPageHeader">
-        <div className="PageBack">
-          <Link href="/product">
-            <MdKeyboardArrowLeft></MdKeyboardArrowLeft>
-          </Link>
+        <div className="PageBack" onClick={goBack}>
+          {/* <Link href={`/product${goBackQuery}`}> */}
+            <TiArrowLeft></TiArrowLeft>
+          {/* </Link> */}
         </div>
 
         <div className="PageCart col-4">
@@ -182,9 +228,14 @@ export default function ProductItem({}) {
       <section className="productPageMain">
         <div className="productPageMainIMG">
           <Image
-            src={fakeIimg1}
+            src={`/yun/product-img/pi-${product_id}.png`}
             className="card-img-top productCardImg"
-            alt={`'s product img`}
+            alt={`${product_id}'s product img`}
+            width={400}
+            height={400}
+            onError={(e) => {
+              e.target.srcset = '/yun/product-img/no-img.png';
+            }}
           ></Image>
         </div>
         <div className="productPageMainINFO">
@@ -246,19 +297,56 @@ export default function ProductItem({}) {
                 addClassforButton="btn-dark" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
                 disabled={false} // fase：可點，true：不可點
                 target=""
-                bsModle1="#buyModal"
-                bsModle2="modal"
+                // bsModle1="#buyModal"
+                // bsModle2="modal"
                 onClick={handleBuy}
               ></BtnNormal>
             </form>
           </div>
         </div>
       </section>
-      <ModalCartAdd id="buyModal" productName={product_name} productPrice={product_price} productNum={buyValue > 99 ? 99 : buyValue}></ModalCartAdd>
+      <div className="productPageComment">
+                {
+                  allContent.length > 0 ? (allContent.map((e,i)=>(
+                    <Fragment>
+                    <div className="productPageComment-each">
+                      <div className="comment-member-img">
+                        <Image
+                            src={`/face/${e.images}`}
+                            className="commentImg"
+                            alt={`${e.images}'s persona`}
+                            width={100}
+                            height={100}
+                            onError={(e) => {
+                              e.target.srcset = '/yun/product-img/no-img.png';
+                            }}
+                        ></Image>
+                      </div>
+                      <div className="comment-member-content">
+                        <div className="comment-member-header">
+                        <p className="comment-member-name">{e.member_name}</p>
+                        <div  className="comment-comment-rating">{Array.from({ length: e.comment_rating }, (e, i) => (
+                              <AiFillStar key={i} />
+                              ))}
+                              {Array.from({ length: 5-e.comment_rating }, (e, i) => (
+                                <AiOutlineStar key={i} />
+                              ))}
+                        </div>
+                      </div>
+                      <p className="comment-comment-content">{e.comment_content}</p>
+                      <p className="comment-comment-time small-font">{formatDate(e.comment_time)}</p>
+                      </div>
+                      
+                      </div>
+                    </Fragment>
+                  ))):(<p>目前無評論！</p>)
+                }
+
+      </div>
     </>
   )
 }
 
 ProductItem.getLayout = function (page) {
-  return <ProductPageLayout>{page}</ProductPageLayout>
+  return <ProductPidPageLayout>{page}</ProductPidPageLayout>
 }

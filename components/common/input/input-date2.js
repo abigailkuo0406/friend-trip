@@ -13,6 +13,7 @@ export default function InputDate({
   getName,
   addClassforInput = '',
   addClassforLabel = '',
+  addClassforDiv,
 }) {
   // 定義預設日期
   const today = new Date()
@@ -48,7 +49,7 @@ export default function InputDate({
     getName(e.target.name)
   }
   return (
-    <div className={`input-text-section`}>
+    <div className={`${addClassforDiv} input-radio-section`}>
       <label htmlFor={id} className={`${addClassforLabel} section-label`}>
         {label}
       </label>

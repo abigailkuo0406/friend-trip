@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import LoginLayout from '@/components/layout/login-layout'
 import RegisterLetter1 from '@/components/register/register'
 import RegisterLetter2 from '@/components/register/register2'
 import BtnNormal from '@/components/common/button/btn-normal'
+import Swal from 'sweetalert2'
 export default function Register() {
   const [aaa, setAaa] = useState({
     email: '',
@@ -29,6 +31,7 @@ export default function Register() {
   const page1 = <RegisterLetter1 setPage={setPage} setAaa={setAaa} aaa={aaa} />
   const page2 = <RegisterLetter2 setPage={setPage} setAaa={setAaa} aaa={aaa} />
   console.log(page)
+  const router = useRouter()
   const add = (e) => {
     e.preventDefault()
     console.log('5555', aaa)
@@ -61,8 +64,18 @@ export default function Register() {
       .then((r) => r.json())
       .then((data) => {
         console.log(data)
-        alert('註冊成功')
+        Swal.fire({
+          width: 400,
+          title: '註冊成功',
+          text: '感謝您的使用祝福您使用愉快',
+          icon: 'success',
+          iconColor: '#FABCBF',
+          color: '#674C87',
+          confirmButtonColor: '#674C87',
+          showConfirmButton: false,
+        })
       })
+      .then(() => router.push('/login'))
   }
   useEffect(() => {
     console.log(aaa)

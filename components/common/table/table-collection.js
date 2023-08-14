@@ -55,11 +55,16 @@ export default function TableCollection({
         <td className="product_td_img_name">
         <div className="product_td_img">
           <Link href={`./${productPost}`}>
-            <Image
-              src={fakeIimg1}
-              className=""
-              alt={productIMG}
-            ></Image>
+          <Image
+                  src={`/yun/product-img/pi-${productID}.png`}
+                  className=""
+                  alt={`${productID}'s product img`}
+                  width={300}
+                  height={300}
+                  onError={(e) => {
+                    e.target.srcset = '/yun/product-img/no-img.png';
+                  }}
+              ></Image>
           </Link>
           
         </div>

@@ -7,6 +7,7 @@ import NoSidebarLayout from '@/components/layout/nosidebar-layout'
 import TableCart from '@/components/common/table/table-cart'
 import InputCheckboxGroup from '@/components/common/input/input-checkbox-group'
 import BtnNormal from '@/components/common/button/btn-normal'
+import CheckingHeader from '@/components/product_checkout/checking_header'
 import AuthContext from '@/context/AuthContext'
 // import CartContext from '@/context/CartContext'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
@@ -29,6 +30,7 @@ export default function Cart() {
   const[total, setTotal] = useState(0)
   const[errorText, setErrorText] = useState("\u00A0")
   const [cartProduct, setcartProduct]=useState([])
+  const [cartYesCheck, setCartYesCheck]=useState([])
   const [orderID, setOrderID] = useState('')
   useEffect(() => {
     localStorage.setItem("CartMoneyTotal", JSON.stringify({}))
@@ -63,7 +65,6 @@ export default function Cart() {
     )
       .then((r) => r.json())
       .then((data) => {
-        console.log("iiiiiii")
         if(data){
           console.log("生成購物車資料：",data.all)
           console.log(`接收到${auth.member_name}的購物車資料囉，購物車內有幾項：${data.all.length}`)
@@ -142,7 +143,8 @@ export default function Cart() {
   
 
   const letCheck = () => {
-    if(allproduct.length != 0){
+
+    if(cartProduct.length != 0 && Object.values(JSON.parse(localStorage.getItem('CartCheck'))).some(value => value == true)){
     if(agree[1] == 'AgreePolicy'){
     fetch(`${process.env.API_SERVER}/product/cart/checking`, {
       method: 'POST',
@@ -160,14 +162,13 @@ export default function Cart() {
         setOrderID(data.Batch)
         
       })
-    
+      window.location='./checkout?page=1'
         
-      } else{setErrorText("請閱讀並勾選同意本公司相關規定")}}
-      else if(allproduct.length==0){alert("購物車內尚無商品！")}
-  }
-
-  const goBack = ()=>{
-    router.back()
+      } else {setErrorText("請閱讀並勾選同意本公司相關規定")}}
+      else if(cartProduct.length==0){alert("購物車內尚無商品！")}
+      else if (Object.values(JSON.parse(localStorage.getItem('CartCheck'))).every(value => value != true)){
+        setErrorText("請勾選要結帳的商品")}
+      
   }
 
  
@@ -176,15 +177,7 @@ export default function Cart() {
 if(true){
   return (
     <>
-      <div className="CartPageHeader onePageHeader">
-        <div className="PageBack" onClick={goBack}>
-            <MdKeyboardArrowLeft></MdKeyboardArrowLeft>
-   
-        </div>
-        <div className="PageTitle">
-          <p>購物車</p>
-        </div>
-      </div>
+    <CheckingHeader page="cart"></CheckingHeader>
       <section className="order_section">
         <div className="order_left">
           <table className="product_table">
@@ -206,6 +199,7 @@ if(true){
                       }
                       localStorage.setItem("CartCheck", JSON.stringify(temp));
                     }}
+                  className='new-check'
                   >
                   </input>
                 </th>
@@ -281,15 +275,14 @@ if(true){
             <BtnNormal
             type="button"
             value="button"
-            btnText="取消"
+            btnText="返回商品頁"
             addClassforButton="btn-light order-btn" //.btn-dark：深色按鈕 .btn-light：淺色按鈕 .btn-white：白色按鈕
             disabled={false} // fase：可點，true：不可點
-            href="#"
+            href="./"
             target=""
             onClick={()=>{}}
           ></BtnNormal>
           <BtnNormal
-          href="./checkout?page=1"
             type="submit"
             value="submit"
             btnText="結帳"

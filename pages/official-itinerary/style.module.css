@@ -10,9 +10,11 @@
 }
 .productlist li {
   float: left;
-  width: 238px;
-  border: 1px solid black;
-  height: 300px;
+  width: 268px;
+  border: 1px solid rgb(255, 246, 246);
+  background-color: white;
+
+  height: 270px;
   padding-bottom: 10px;
   padding: 10px;
   margin-left: 10px;
@@ -35,4 +37,9 @@
   border-radius: 10px;
   background: #674c87;
   color: white;
+}
+
+.img {
+  max-width: 100%;
+  max-height: 100%;
 }

@@ -29,14 +29,13 @@ export default function ListItem({
     const [rIntro, setRIntro] = useState()
     const [rImg, setRImg] = useState()
 
+    console.log('restMeal', restMeal)
 
 
 
     const showModal = () => setModal(true)
 
     const modalOpen = () => {
-        console.log('第二層:', restRid)
-        console.log('modal開')
         showModal()
         setRid(restRid)
         setRName(restName)
@@ -51,7 +50,6 @@ export default function ListItem({
     }
 
     useEffect(() => {
-        // console.log('傳上去的rid', rid)
         modalChange(modal, rid, rName, rAddress, rPhone, rTime, rMeal, rClass, rIntro, rImg)
 
     }, [modal])
@@ -61,27 +59,29 @@ export default function ListItem({
     return (
         <>
             <div className="card mb-3">
-                <div className="row">
-                    <div className="col-md-3 my-3">
-                        <div className={styles.imgClass}>
+                <div className="d-flex">
+                    <div className="my-3 mx-3">
+                        <div className={`${styles.imgClass}`}>
                             <Image
                                 src={`http://localhost:3002/restImg/${restImg}`}
-                                className={`ms-3 ${styles.img1}`}
+                                className={`${styles.img1}`}
                                 alt={restImg}
-                                width={200}
-                                height={200}
+                                width={250}
+                                height={250}
                                 priority={true}
                             />
                         </div>
                     </div>
 
-                    <div className="col-md-7 my-3">
+                    <div className="my-3">
                         <div className="card-body">
                             <div className={` d-flex align-items-center ${styles.cardHead}`}>
                                 <h2 className={`card-title ${styles.cardHead}`}>{restName}</h2>
                                 <p className={`ms-4 ${styles.area}`}>{restArea}</p>
+                                {restMeal != null && <p className={`ms-2 ${styles.area}`}>{restMeal}</p>}
+
                             </div>
-                            <p className="card-text text-truncate my-4">{restIntro}</p>
+                            <p className={`card-text my-4 ${styles.cardText}`}>{restIntro}</p>
                         </div>
 
                     </div>

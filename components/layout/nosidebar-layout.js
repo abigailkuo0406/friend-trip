@@ -4,7 +4,7 @@ import Sidebar from '@/components/common/sidebar/sidebar'
 import Navbar from '@/components/common/navbar/navbar'
 import { AuthContextProvider } from '@/context/AuthContext'
 import { ScheduleContextProvider } from '@/context/ScheduleContext'
-import { CartContextProvider } from '@/context/CartContext'
+import { SearchContextProvider } from '@/context/SearchContext'
 
 
 export default function NoSidebarLayout({ children, page }) {
@@ -12,7 +12,7 @@ export default function NoSidebarLayout({ children, page }) {
     <>
       <AuthContextProvider>
       <ScheduleContextProvider>
-      <CartContextProvider>
+      <SearchContextProvider>
         <div>
           <Navbar />
           <main className="container">
@@ -22,7 +22,7 @@ export default function NoSidebarLayout({ children, page }) {
           </main>
           <Footer />
         </div>
-        </CartContextProvider>
+        </SearchContextProvider>
 
       </ScheduleContextProvider>
       </AuthContextProvider>

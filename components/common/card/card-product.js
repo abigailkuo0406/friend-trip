@@ -17,9 +17,10 @@ export default function CardProduct({
   productImage = 'https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg',
   productName = '商品名稱',
   productCategory = '',
-  productBrief = '商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述商品簡述',
+  productBrief = '商品簡述',
   productPrice = 0,
   productPost = '',
+  productRate=0,
   setAddProduct={setAddProduct},
 }) {
   // const defaultFavorit = allCollectionID.includes(productID)
@@ -30,22 +31,17 @@ export default function CardProduct({
     },[allCollectionID])
   const [likeClick, setLikeClick] = useState(false)
 
-  if(productID<5){
-    console.log("個別情形",allCollectionID+"我的ID是：",productID)
-  }
-
   const changeFavorit = (e) => {
     setFavorit(!favorit)
     setLikeClick(true)
-  }
-
-  useEffect(()=>{
-    // 登出後清空頁面的愛心
-      if(memberID < 5)
-      {
-        console.log("個別情形bbb：",favorit+" 我的ID是：",productID)
+    localStorage.setItem("saveScrollY", JSON.stringify(window.scrollY))
+    router.push({
+      query:{
+        ...router.query,
+        favorit: `${productID}${!favorit}`
       }
-    },[favorit])
+    })
+  }
 
   useEffect(()=>{
   // 登出後清空頁面的愛心
@@ -57,7 +53,6 @@ export default function CardProduct({
   
 
   useEffect(()=>{
-    // console.log("個別情形boolean：",favorit+"我的ID是：",productID)
     if(memberID != 0 && likeClick==true){
       
     if(favorit==true){
@@ -118,9 +113,14 @@ export default function CardProduct({
               href={pathname + '/' + productPost}
             >
               <Image
-                src={fakeIimg1}
-                className="card-img-top productCardImg"
-                alt={`${productName}'s product img`}
+                  src={`/yun/product-img/pi-${productID}.png`}
+                  className="card-img-top productCardImg"
+                  alt={`${productID}'s product img`}
+                  width={300}
+                  height={300}
+                  onError={(e) => {
+                    e.target.srcset = '/yun/product-img/no-img.png';
+                  }}
               ></Image>
             </Link>
           </div>
@@ -161,7 +161,7 @@ export default function CardProduct({
           </div>
         </div>
       </div>
-      <ModalProductIndexCartAdd id={`buyModal${productID}`} memberID={memberID} productID={productID} productName={productName} productPrice={productPrice} setAddProduct={setAddProduct}></ModalProductIndexCartAdd>
+      <ModalProductIndexCartAdd id={`buyModal${productID}`} memberID={memberID} productID={productID} productName={productName} productPrice={productPrice} productRate={productRate} productPost={productPost} setAddProduct={setAddProduct}></ModalProductIndexCartAdd>
     </>
   )
 }

@@ -3,15 +3,20 @@ import Image from 'next/image'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import Btn from '@/components/common/button/btn-normal'
 import styles from '@/components/invite/friends-list.module.css'
+import AuthContext from '@/context/AuthContext'
+
 
 export default function InviteEdit({
   friendName,
   images,
   iv_member_id,
+  iv_member_id2,
   defaultBtn,
   onValueChange,
   friendsBtnTemp,
 }) {
+  console.log(iv_member_id,iv_member_id2,friendName,defaultBtn)
+  const { auth } = useContext(AuthContext)
 
   const [inviteFriend, setInviteFriend] = useState('')
   const [inviteImg, setInviteImg] = useState('')
@@ -20,26 +25,29 @@ export default function InviteEdit({
   const [inviteBtn, setInviteBtn] = useState(defaultBtn)
 
 
-  // console.log(friendName, defaultBtn, '11', inviteBtn)
 
 
   const handleClick = (e) => {
-    // console.log('qq', inviteBtn)
 
     // 如果按鈕是false(+)，重設邀請姓名與照片路徑，把按鈕改成true(移除)
     if (!inviteBtn) {
       setInviteBtn(true)
       setInviteFriend(friendName)
       setInviteImg(images)
-      setInviteId(iv_member_id)
-
+      // setInviteId(iv_member_id)
+      iv_member_id != auth.member_id
+      ? setInviteId(iv_member_id)
+      : setInviteId(iv_member_id2)
     }
     // 如果按鈕是true(移除)，重設按鈕為false(+)
     else {
       setInviteBtn(false)
       setInviteFriend(friendName)
       setInviteImg(images)
-      setInviteId(iv_member_id)
+      iv_member_id != auth.member_id
+      ? setInviteId(iv_member_id)
+      : setInviteId(iv_member_id2)
+      // setInviteId(iv_member_id)
 
     }
 
@@ -47,7 +55,7 @@ export default function InviteEdit({
 
   // 每次按鈕值改變，就送出邀請姓名、照片路徑和按鈕值到父層
   useEffect(() => {
-    onValueChange(inviteImg, inviteBtn, inviteId)
+    onValueChange(inviteFriend, inviteImg, inviteBtn, inviteId)
 
 
   }, [inviteBtn, friendsBtnTemp])

@@ -5,6 +5,7 @@ import ProductPageLayout from '@/components/layout/product-page-layout'
 import { useRouter } from 'next/router'
 import logo from '@/public/img/logo/FriendTrip-Logo.png'
 import { BsCart } from 'react-icons/bs'
+import { TbAlertCircle } from "react-icons/tb";
 import CardProduct from '@/components/common/card/card-product'
 import AuthContext from '@/context/AuthContext'
 
@@ -24,10 +25,10 @@ export default function ProductIndex() {
   const [allCollection, setAllCollection] = useState([]) // 存有所有收藏商品資料
   const [allCollectionID, setAllCollectionID] = useState([]) // 存有所有收藏商品 ID
   const [addProduct, setAddProduct] = useState([])
+  
   useEffect(() => {
     if(auth.member_id != 0){
     localStorage.setItem("collectionID", JSON.stringify([]));
-    console.log("會員：",auth.member_id)
     if(auth.token){
     fetch(`${process.env.API_SERVER}/product/cart/read`, {
       method: 'POST',
@@ -39,11 +40,8 @@ export default function ProductIndex() {
     )
       .then((r) => r.json())
       .then((data) => {
-
         setCartNumber(data.all.length)
       })
-      
-
       fetch(`${process.env.API_SERVER}/collection/findCollection`, {
         method: 'POST',
         body: JSON.stringify({memberID: auth.member_id}),
@@ -54,7 +52,6 @@ export default function ProductIndex() {
       )
         .then((r) => r.json())
         .then((data) => {
-          console.log("這個：",data.all.map(item => item.product_id))
           setAllCollectionID(data.all.map(item => item.product_id))
           localStorage.setItem("collectionID", JSON.stringify(data.all.map(item => item.product_id)));
         })
@@ -63,23 +60,61 @@ export default function ProductIndex() {
   }, [auth, addProduct, router])
 
   useEffect(() => {
+    if(router.query.collection == undefined && router.query.buyagain == undefined){
     setKeyword(router.query.keyword || '')
     const usp = new URLSearchParams(router.query)
-
     // API串接
     fetch(`${process.env.API_SERVER}/product?${usp.toString()}`, {
       method: 'GET',
     })
       .then((r) => r.json())
       .then((data) => {
+        console.log("查找全部商品：",data)
         setData(data)
       })
-  }, [router.query])
-  console.log('此頁的商品資料', data.rows)
+    } else if(router.query.collection == "true" && router.query.buyagain == undefined){
+      setKeyword(router.query.keyword || '')
+      const usp = new URLSearchParams(router.query)
+      fetch(`${process.env.API_SERVER}/product/findCollection?${usp.toString()}`, {
+        method: 'POST',
+        body: JSON.stringify({memberID: auth.member_id, keyword: router.query.keyword}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      )
+        .then((r) => r.json())
+        .then((data) => {
+          console.log("查找收藏商品：",data)
+          setData(data)
+        })
+    } else if(router.query.buyagain == "true" && router.query.collection == undefined){
+      setKeyword(router.query.keyword || '')
+      const usp = new URLSearchParams(router.query)
+      fetch(`${process.env.API_SERVER}/product/findBuyagain?${usp.toString()}`, {
+        method: 'POST',
+        body: JSON.stringify({memberID: auth.member_id, keyword: router.query.keyword}),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+      )
+        .then((r) => r.json())
+        .then((data) => {
+          console.log("查找再買一次商品：",data)
+          setData(data)
+        })
+    }
+  }, [router])
 
-  const goCart = () => {
-    router.push('./product/cart')
-  }
+  // 當點擊收藏重新渲染時時不會跳到最上面
+  useEffect(()=>{
+    window.scrollTo({
+      top: JSON.parse(localStorage.getItem("saveScrollY")),
+      behavior: "instant"
+  })
+  },[router.query.favorit])
+
   return (
     <>
       <div className="container-fluid overflow-hidden">
@@ -93,28 +128,30 @@ export default function ProductIndex() {
           <div className="PageCart col-4">
             <div>
             <a href="./product/cart" >
-              <BsCart></BsCart>
+              <BsCart/>
               <span className="cartNumber">{cartNumber}</span>
             </a>
             </div>
           </div>
         </div>
-        <div className="row g-5">
-          {data.rows.map((i) => (
-            <Fragment key={i.product_id}>
+        <div className="product-page-row row g-5">
+        {data.totalRows != '0' ?
+          (data.rows.map((element, index) => (
+            <Fragment key={element.product_id}>
               <CardProduct
                 memberID={auth.member_id}
-                productID={i.product_id}
-                allCollectionID={allCollectionID.includes(i.product_id)}
-                productName={i.product_name}
-                productCategory={i.product_category}
-                productBrief={i.product_brief}
-                productPrice={i.product_price}
-                productPost={i.product_post}
+                productID={element.product_id}
+                allCollectionID={allCollectionID.includes(element.product_id)}
+                productName={element.product_name}
+                productCategory={element.product_category}
+                productBrief={element.product_brief}
+                productPrice={element.product_price}
+                productRate={element.product_rate}
+                productPost={element.product_post}
                 setAddProduct={setAddProduct}
               ></CardProduct>
             </Fragment>
-          ))}
+          ))) : (<h3 className="no-collection">ooops...! 目前無收藏商品<TbAlertCircle></TbAlertCircle></h3>)}
         </div>
       </div>
     </>

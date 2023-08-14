@@ -8,12 +8,17 @@ import AuthContext from '@/context/AuthContext'
 export default function FriendList() {
     const { auth, setAuth } = useContext(AuthContext)
 
-    const [friends, setFriends] = useState()
+    const [friends, setFriends] = useState([])
+    console.log('friends', friends)
 
     useEffect(() => {
+        if (!auth) return
         fetch(`http://localhost:3002/friends`, {
             method: 'POST',
-            body: JSON.stringify({ memberID: auth.member_id }),
+            body: JSON.stringify({
+                memberID: auth.member_id,
+                acceptState: 1
+            }),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -21,31 +26,24 @@ export default function FriendList() {
         )
             .then((r) => r.json())
             .then((data) => {
-                setFriends(data.all)
+                setFriends(data.rows)
             })
             .catch((error) => console.error("Error:", error))
 
-        // fetch(`http://localhost:3002/friends`, {
-        //     method: 'GET',
-        // })
-        //     .then((f) => f.json())
-        //     .then((friendsData) => {
-        //         setFriends(friendsData.rows)
-        //     })
     }, [auth])
+
     return (
         <>
-            <div className={styles.friendsheet}>
+            <div className={`${styles.friendsheet} pt-4`}>
                 <div>
-                    <h2 className={styles.titlename}>好友列表</h2>
+                    <h2 className={`${styles.titlename} ms-4 mb-3`}>好友列表</h2>
                 </div>
-                <div className={styles.labelbar}>
-                    <label htmlFor="n">我的好友</label>
-                    <ul id="friendsList" className="list d-flex">
-                        {friends ?
+                <div className=''>
+                    <div className="d-flex flex-wrap ms-4 pb-3">
+                        {friends.length > 0 ?
                             friends.map((v, i) => {
                                 return (
-                                    <div key={i} className='me-2'>
+                                    <div key={i} className='me-3 mb-2'>
                                         <Image
                                             src={`http://localhost:3002/face/${v.images}`}
                                             className={styles.avatar}
@@ -55,8 +53,11 @@ export default function FriendList() {
                                         />
                                     </div>
                                 )
-                            }) : <li hidden></li>}
-                    </ul>
+                            })
+                            :
+                            <p >目前尚無好友</p>}
+                    </div>
+
                 </div>
             </div>
         </>

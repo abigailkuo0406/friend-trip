@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import styles from './register2.module.css'
-import InputText from '@/components/common/input/input-text-flex'
+import InputText from '@/components/common/input/input-text-flex-un'
 import InputTextDouble from '@/components/common/input/input-text-double'
 import SelectOption from '@/components/common/input/select-option-flex'
 import InputRadioGroup from '@/components/common/input/input-radio-group-flex'
@@ -104,7 +104,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
                 getValue={(value) => {
                   value != '' ? setHeight(parseInt(value)) : setHeight('')
                 }}
-                addClassforInput={height == '' ? styles.error : styles.right}
+                // addClassforInput={height == '' ? styles.error : styles.right}
                 // getName={setHeightName}
                 width="input-width-100pa"
               ></InputText>
@@ -120,7 +120,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
                 getValue={(value) => {
                   value != '' ? setWeight(parseInt(value)) : setWeight('')
                 }}
-                addClassforInput={height == '' ? styles.error : styles.right}
+                // addClassforInput={height == '' ? styles.error : styles.right}
                 width="input-width-100pa"
               ></InputText>
             </div>
@@ -271,7 +271,7 @@ export default function RegisterLetter2({ setPage, setForm, setAaa, aaa }) {
               addClassforTextarea="test321" // 如果要在 textarea 添加 class
               getValue={setProfile}
               getName={setProfileName}
-              required={true} // true：必填，false：非必填
+              required={false} // true：必填，false：非必填
             />
           </div>
           <div className={styles.inputstyle}>

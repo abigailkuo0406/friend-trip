@@ -1,0 +1,74 @@
+.base {
+  width: 80%;
+  height: 100%;
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.title {
+  color: #674c87;
+}
+.restName {
+  color: #d0a5ca;
+}
+
+.label {
+  font-size: 16px;
+  color: #525252;
+
+}
+.text {
+  font-size: 32px;
+  color: #d0a5ca;
+}
+.plus {
+  font-size: 1.2rem;
+  color: #674c87;
+}
+.ivBtn {
+  background-color: none;
+  margin: 0;
+  padding: 0;
+  color: #874c6d;
+}
+.noInvite {
+  font-size: 18px;
+  color: #d0a5ca;
+  /* font-style: italic; */
+}
+
+.noInviteEdit {
+  font-size: 16px;
+  color: #525252;
+  font-style: italic;
+
+}
+.cancelText {
+  font-size: 24px;
+  color: #525252;
+  font-weight: 700;
+}
+
+/* 分頁樣式 */
+.container {
+  margin: 20px auto;
+  padding: 0;
+}
+.textcolor {
+  color: #674c87;
+  border-radius: 5px;
+  border: 1px solid #674c87;
+}
+
+.textcolor:hover,.textcolor:focus{
+  background-color: #674c87;
+  color: #FFFFFF;
+  border: 1px solid #674c87;
+}
+
+.textcolor:active {
+  color: #FFFFFF !important;
+  background-color: #674c87 !important; /* 新增這一行，設定按鈕被點擊時的背景顏色 */
+  border: 1px solid #674c87;
+}
