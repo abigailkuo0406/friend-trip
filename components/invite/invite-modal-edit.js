@@ -7,7 +7,7 @@ import AuthContext from '@/context/AuthContext'
 // 引入邀請元件
 import Invite from '@/components/invite/invite-edit'
 
-export default function InviteModalEdit({ onValueChange, alreadyInvite=[] }) {
+export default function InviteModalEdit({ onValueChange, alreadyInvite = [] }) {
   const { auth, setAuth } = useContext(AuthContext)
 
   /*邀請功能*/
@@ -18,7 +18,9 @@ export default function InviteModalEdit({ onValueChange, alreadyInvite=[] }) {
   }, [alreadyInvite])
 
   const alreadyInviteIds = alreadyInvite.map((v) => v.iv_member_id)
-  console.log(alreadyInviteIds)
+  // const alreadyInviteIds2 = alreadyInvite.map((v) => v.iv_member_id)
+
+  console.log('alreadyInviteIds', alreadyInviteIds)
 
   const handleValueChange = (ivName, ivImg, ivBtn, ivId) => {
     if (ivBtn) {
@@ -60,14 +62,17 @@ export default function InviteModalEdit({ onValueChange, alreadyInvite=[] }) {
     // })
     fetch(`http://localhost:3002/friends`, {
       method: 'POST',
-      body: JSON.stringify({ memberID: auth.member_id }),
+      body: JSON.stringify({
+        memberID: auth.member_id,
+        acceptState: 1,
+      }),
       headers: {
         'Content-Type': 'application/json',
       },
     })
       .then((f) => f.json())
       .then((friendsData) => {
-        const friend = friendsData.all.map((f) => {
+        const friend = friendsData.rows.map((f) => {
           let defaultBtn = { defaultBtn: false }
 
           f = { ...f, ...defaultBtn }
@@ -140,8 +145,9 @@ export default function InviteModalEdit({ onValueChange, alreadyInvite=[] }) {
                           friendName={v.member_name}
                           images={v.images}
                           iv_member_id={v.FriendId}
+                          iv_member_id2={v.memberId}
                           //   defaultBtn={v.defaultBtn}
-                          defaultBtn={alreadyInviteIds.includes(v.FriendId)}
+                          defaultBtn={alreadyInviteIds.includes(v.FriendId) || alreadyInviteIds.includes(v.memberId)}
                           onValueChange={handleValueChange}
                           friendsBtnTemp={friendsBtnTemp}
                         />

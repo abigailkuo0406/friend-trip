@@ -53,7 +53,10 @@ export default function ReseveDetails({ state }) {
 
     fetch('http://localhost:3002/reserveinvites', {
       method: 'POST',
-      body: JSON.stringify({ memberID: auth.member_id }),
+      body: JSON.stringify({
+        memberID: auth.member_id,
+        
+      }),
       headers: {
         'Content-Type': 'application/json',
       },

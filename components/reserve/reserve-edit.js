@@ -41,6 +41,8 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
 
   //初始邀請好友名單
   const [inviteList, setInviteList] = useState([])
+  console.log('inviteList', inviteList)
+  console.log('xxxxxxxx', inviteList)
   useEffect(() => {
     setInviteList(alreadyInvite)
   }, [alreadyInvite])
@@ -79,7 +81,6 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
     reservePeopleNumValue,
     inviteList.length,
   ])
-
 
   // 送出表單
   const handleSubmit = (e) => {
@@ -153,9 +154,30 @@ export default function ReserveEdit({ reserveDetails, alreadyInvite }) {
                           label="訂位時間"
                           name="reserve_time"
                           // idGroup、valueGroup、labelGroup 數目要一致，相同 index 互相對應
-                          idGroup={['TimeID1', 'TimeID2', 'TimeID3', 'TimeID4', 'TimeID5', 'TimeID6']} // 個別 radio 的 ID
-                          valueGroup={['11:30', '12:30', '13:30', '17:30', '18:30', '19:30']} // 個別 radio 的 name
-                          labelGroup={['11:30', '12:30', '13:30', '17:30', '18:30', '19:30']} // 個別標籤
+                          idGroup={[
+                            'TimeID1',
+                            'TimeID2',
+                            'TimeID3',
+                            'TimeID4',
+                            'TimeID5',
+                            'TimeID6',
+                          ]} // 個別 radio 的 ID
+                          valueGroup={[
+                            '11:30',
+                            '12:30',
+                            '13:30',
+                            '17:30',
+                            '18:30',
+                            '19:30',
+                          ]} // 個別 radio 的 name
+                          labelGroup={[
+                            '11:30',
+                            '12:30',
+                            '13:30',
+                            '17:30',
+                            '18:30',
+                            '19:30',
+                          ]} // 個別標籤
                           getValue={setReserveTimeInputValue}
                           getName={setReserveTimeInputName}
                           getLabel={setReserveTimeInputLabel}
