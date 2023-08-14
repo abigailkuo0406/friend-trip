@@ -293,17 +293,25 @@
   background-color: var(--assist-white)
   border-radius: 20px
   display: flex
+  flex-direction: row
+  @media(max-width:767px)
+    flex-direction: column
   .productPageMainIMG
     width: 50%
     padding: 0rem 1.5rem
+    margin-bottom: 0
     img
       width: 100%
       height: auto
       border-radius: 20px
       box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px
+    @media(max-width:767px)
+      margin: 0 auto 3rem auto
   .productPageMainINFO
-    width:50%
+    width: 50%
     padding: 0rem 1.5rem
+    @media(max-width:767px)
+      width: 100%
     .productCategory
       display: flex
       width: 100%
@@ -320,6 +328,8 @@
         color: var(--main-dark)
         margin-right: 3rem
         margin-bottom: 0rem
+        @media(max-width:1399px)
+          margin-right: 3rem
       .productFavorit
         cursor: pointer
         display: flex
@@ -328,6 +338,10 @@
         border-radius: 50%
         background-color: var(--bg-main)
         padding: 0.7rem 0.7rem 0.6rem 0.7rem
+        min-height: 40px
+        min-width: 40px
+        max-height: 41px
+        max-width: 41px
         svg
             color: var(--main-dark)
             height: 1.2rem
@@ -356,6 +370,12 @@
     .productBuyForm
       display: flex
       align-items: flex-start
+      flex-direction: row
+      @media(max-width:991px)
+        flex-direction: column
+      @media(max-width:767px)
+        flex-direction: row
+        justify-content: space-between
       .select-section
         margin-top: 0
         margin-bottom: 0
@@ -363,6 +383,12 @@
           margin-right: 3rem
         label
           display: none
+      >a
+        margin: 0
+        @media(max-width:991px)
+          margin-top: 2rem
+        @media(max-width:767px)
+          margin: 0
 .productPageComment
   margin-top: 2rem
   padding: 2rem 0rem
@@ -375,24 +401,38 @@
       margin-bottom: 2rem
   .productPageComment-each
     display: flex
+    flex-direction: row
     width: 48%
     padding: 0 1.5rem
     background-color: var(--assist-white)
     border-radius: 20px
     box-shadow: rgba(60, 64, 67, 0.1) 0px 1px 2px 0px, rgba(60, 64, 67, 0.05) 0px 2px 6px 2px
+    @media(max-width:991px)
+      flex-direction: column
+      padding: 1.5rem
+      width: 48%
+    @media(max-width:767px)
+      width: 100%
     .comment-member-img
       width: 30%
       display: flex
       align-items: center
+      @media(max-width:991px)
+        width: 100%
       img
         border-radius: 50%
         width: 6rem
         height: 6rem
+        @media(max-width:1199px)
+          width: 4rem
+          height: 4rem
     .comment-member-content
       width: 70%
       margin-top: 1rem
       margin-bottom: 1rem
       overflow: hidden
+      @media(max-width:991px)
+        width: 100%
       .comment-member-header
         line-height: 2rem
         display: flex
@@ -553,6 +593,8 @@
       tbody
         td
           padding: 0 1rem
+          &:nth-child(3)
+            padding: 1rem 0 1rem 1rem
       tr
         line-height: 4rem
         color: var(--main)
@@ -715,6 +757,9 @@
   button
     &:first-child
       margin-right:1.5rem
+    a
+      &:first-child
+     
   .order-btn
     padding-right: 2.2rem
     padding-left: 2.2rem
