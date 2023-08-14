@@ -5,6 +5,8 @@ import Btn from '@/components/common/button/btn-normal'
 import Carousel from '@/components/common/carousel/carousel'
 import AuthContext from '@/context/AuthContext'
 import Swal from 'sweetalert2'
+import { useRouter } from 'next/router'
+
 export default function AdminIndex() {
   const router = useRouter()
   // const { auth, setAuth } = useContext(AuthContext)

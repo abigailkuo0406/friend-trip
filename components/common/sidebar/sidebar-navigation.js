@@ -1,3 +1,4 @@
+import Link from 'next/link'
 export default function SidebarNavigation() {
   return (
     <>
@@ -13,18 +14,29 @@ export default function SidebarNavigation() {
                     </a>
                   </li> */}
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href='/member/itinerary'>
+                    <a
+                      className="nav-link active"
+                      aria-current="page"
+                      href="/member/itinerary"
+                    >
                       行程
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href='/member/reserve'>
+                    <a
+                      className="nav-link active"
+                      aria-current="page"
+                      href="/member/reserve"
+                    >
                       訂位
                     </a>
-
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href='/member/post'>
+                    <a
+                      className="nav-link active"
+                      aria-current="page"
+                      href="/member/post"
+                    >
                       文章
                     </a>
                   </li>
@@ -39,32 +51,45 @@ export default function SidebarNavigation() {
                       購物
                     </a>
                     <ul className="dropdown-menu">
-
                       <li>
-                        <Link className="dropdown-item" href='/product/cart'>
+                        <Link className="dropdown-item" href="/product">
+                          友好商城
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="dropdown-item" href="/product/cart">
                           購物車
                         </Link>
                       </li>
                       <li>
-                        <a className="dropdown-item" onClick={()=>{
-                          location.href = "/product?collection=true&page=1"
-                        }}>
+                        <a
+                          className="dropdown-item"
+                          onClick={() => {
+                            location.href = '/product?collection=true&page=1'
+                          }}
+                        >
                           我的收藏
                         </a>
                       </li>
                       <li>
-                        <Link className="dropdown-item" href='/product/order?status=all'>
+                        <Link
+                          className="dropdown-item"
+                          href="/product/order?status=all"
+                        >
                           歷史訂單
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </li>
 
                   <li className="nav-item">
-                    <a className="nav-link active" aria-current="page" href='/member'>
+                    <a
+                      className="nav-link active"
+                      aria-current="page"
+                      href="/member"
+                    >
                       帳戶
                     </a>
-
                   </li>
                 </ul>
               </div>
