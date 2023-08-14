@@ -44,7 +44,7 @@ export default function AdminIndex() {
     }
   }, [])
   const pair = () => {
-    router.push('./pair')
+    router.push('./pair/condition')
   }
   return (
     <>

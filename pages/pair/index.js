@@ -9,23 +9,30 @@ export default function PairsIndex() {
   const [memberinfo, setMemberInfo] = useState()
   const [imgIndex, setImgIndex] = useState(0)
   const [randomstate, setRandomState] = useState([])
+  console.log('進頁面有渲染')
+
+
+
+  // console.log(randomstate)
+  // console.log('rrr', auth.member_id)
+  const [state, setState] = useState(false)
+  console.log('state', state)
+  console.log('memberinfo', memberinfo)
+
 
   useEffect(() => {
-    // const photos = []
-    // for (let i = 0; i < memberinfo?.length; i++) {
-    //   // photos.push(memberinfo[i].images)
-    //   // console.log(memberinfo)
-    //   // console.log(photos)
-    // }
+
     if (!memberinfo) return
-    const photos = memberinfo.sort(() => Math.random() - 0.5)
-    setRandomState(photos)
-    // setRandomState(_.shuffle(photos))
+    if (memberinfo == []) return
+    // memberinfo.length > 0 && setState(false)
+    memberinfo.length <= 0 && setState(true)
+
+
   }, [memberinfo])
-  console.log(randomstate)
-  // console.log('rrr', auth.member_id)
+
   useEffect(() => {
     if (auth.member_id == 0) return
+    console.log('1先抓資料')
     fetch(process.env.API_SERVER + '/select', {
       method: 'POST',
       body: JSON.stringify({
@@ -51,7 +58,18 @@ export default function PairsIndex() {
         console.log('資料抓到', data.all)
         setMemberInfo(data.all)
       })
-  }, [auth])
+  }, [auth,state])
+
+  useEffect(() => {
+
+    if (!memberinfo) return
+    if (memberinfo.length <= 0) return
+
+    console.log('2.作亂數')
+    const photos = memberinfo.sort(() => Math.random() - 0.5)
+    setRandomState(photos)
+
+  }, [state])
 
   // if (!memberinfo) return <p>Loading...</p>
   return (
