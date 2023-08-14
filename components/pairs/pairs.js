@@ -68,28 +68,37 @@ export default function Pairs({
       {randomstate.length !== 0 ? (
         <>
           <div className={styles.main}>
-            <div className={`card ${styles.card}`} style={{ width: '18rem' }}>
+            <div
+              className={`card ${styles.card}`}
+              style={{
+                width: '28rem',
+                // display: 'flex',
+                // justifyContent: 'center',
+              }}
+            >
               <div className={`d-flex justify-content-end ${styles.white}`}>
                 <a className={styles.link} href="./pair/condition">
                   <i className="fa-solid fa-sliders fa-rotate-270"></i>
                 </a>
               </div>
-              <div className={` ${styles.imgborder}`}>
-                <div className={styles.imgabove}>
-                  <Image
-                    src={Logo}
-                    className={`${styles.imglogo}`}
-                    alt="logo.png"
-                  />
-                </div>
-                <div className={styles.imgContainer}>
-                  <Image
-                    src={`http://localhost:3002/face/${randomstate[imgIndex].images}`}
-                    className={`${styles.img}`}
-                    width={100}
-                    height={100}
-                    alt="face1.png"
-                  />
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div className={` ${styles.imgborder}`}>
+                  <div className={styles.imgabove}>
+                    <Image
+                      src={Logo}
+                      className={`${styles.imglogo}`}
+                      alt="logo.png"
+                    />
+                  </div>
+                  <div className={styles.imgContainer}>
+                    <Image
+                      src={`http://localhost:3002/face/${randomstate[imgIndex].images}`}
+                      className={`${styles.img}`}
+                      width={100}
+                      height={100}
+                      alt="face1.png"
+                    />
+                  </div>
                 </div>
               </div>
               <div className={`card-body ${styles.cardprofile}`}>
