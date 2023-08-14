@@ -173,7 +173,6 @@ export default function ReserveItem({
                         <div key={i} className="me-2">
                           {v.images ? (
                             <div>
-                              <p>{v.iv_member_id}</p>
                               <Image
                                 src={`http://localhost:3002/face/${v.images}`}
                                 className={` ${FriendSty.avatar}`}

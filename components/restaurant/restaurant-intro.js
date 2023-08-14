@@ -354,7 +354,7 @@ export default function restIntro({
                   <div className={`${InfoSty.commentLine} pb-1 mb-3`}>
                     <h3 className={`${InfoSty.commentTitle} ps-1`}>最新評論</h3>
                   </div>
-                  <div className={`${InfoSty.commentBox}`}>
+                  <div className={`${InfoSty.commentBox} scrollbar-B`}>
                     {cts.length > 0 ? (
                       cts.map((v, i) => {
                         return (

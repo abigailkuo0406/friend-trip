@@ -174,3 +174,51 @@
   background-color: white;
   color: #674c87;
 }
+
+/* 垂直滾動條 1*/
+.scrollbar-A::-webkit-scrollbar {
+  width: 16px; /* 設定滾動條的寬度 */
+}
+
+/* 滾動條的軌道 */
+.scrollbar-A::-webkit-scrollbar-track {
+  background-color: white; /* 設定滾動條的背景顏色 */
+  border-radius: 0px 20px 20px 0px; 
+  /* box-shadow: -3px 5px 9px -5px #a5a5a5 inset; */
+
+}
+
+/* 滾動條的滑塊 */
+.scrollbar-A::-webkit-scrollbar-thumb {
+  background-color: #FABCBF; /* 設定滾動條的滑塊顏色 */
+  border-radius: 0px 7px 7px 0px; 
+  /* box-shadow: -3px 5px 9px -5px #e8ced0 inset; */
+
+  /* 設定滑塊的圓角 */
+}
+
+/* 滑鼠移到滑塊上的效果 */
+.scrollbar-A::-webkit-scrollbar-thumb:hover {
+  background-color: #FABCBF; /* 設定滑鼠移到滑塊上時的顏色 */
+}
+
+/* 垂直滾動條2*/
+.scrollbar-B::-webkit-scrollbar {
+  width: 16px; /* 設定滾動條的寬度 */
+}
+
+/* 滾動條的軌道 */
+.scrollbar-B::-webkit-scrollbar-track {
+  background-color: white; /* 設定滾動條的背景顏色 */
+}
+
+/* 滾動條的滑塊 */
+.scrollbar-B::-webkit-scrollbar-thumb {
+  background-color: #674C87; /* 設定滾動條的滑塊顏色 */
+  /* border-radius: 5px; 設定滑塊的圓角 */
+}
+
+/* 滑鼠移到滑塊上的效果 */
+.scrollbar-B::-webkit-scrollbar-thumb:hover {
+  background-color: #674C87; /* 設定滑鼠移到滑塊上時的顏色 */
+}
