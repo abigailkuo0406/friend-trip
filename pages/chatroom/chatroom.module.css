@@ -1,5 +1,5 @@
 .dialogue {
-  width: 90%;
+  width: 100%;
   height: 400px;
   background-color: white;
   /* background-image: linear-gradient(to left, #fbdcdd, #fbd4d5, #fbccce, #fbc4c6, #fabcbf);
@@ -22,4 +22,15 @@
 
 .text {
   background-color: #FBDCDD;
+}
+.name{
+  color:#674c87 ;
+}
+
+.date{
+  background-color: #a5a5a5;
+  color: white;
+}
+.time{
+  color:#a5a5a5 ;
 }
