@@ -16,30 +16,29 @@ export default function Navbar() {
   const [getProductSearch, setGetProductSearch] = useState("")
   const [getRandom, setGetRandom] = useState(0)
   useEffect(()=>{
-    console.log("XXX", router.basePath)
-  }, [router])
-  useEffect(()=>{
     setSearchBarComponent(<Fragment></Fragment>)
     switch(router.pathname){
       case "/product":
         setSearchBarComponent(<Fragment><InputSearchBar localstorage="searchProduct" setGetSearch={setGetProductSearch} setGetRandom={setGetRandom} placeholder="搜尋商品"></InputSearchBar></Fragment>)
         break;
+      case "/restaurant":
+        setSearchBarComponent(<Fragment><InputSearchBar localstorage="searchProduct" setGetSearch={setGetProductSearch} setGetRandom={setGetRandom} placeholder="搜尋餐廳"></InputSearchBar></Fragment>)
+        break;
     }
   },[router.asPath])
   useEffect(()=>{
-    console.log("abc123")
     if(getProductSearch != "" && router.pathname == '/product' && router.query.page == undefined){
-      console.log("aaaaaaaaaaaaaaaaaa")
       router.push({
             query: {
               ...router.query,
               "keyword": `${getProductSearch}`,
+              "page" : "1",
             },
           })}
-      else if(getProductSearch != "" && router.pathname == '/product' && router.query.page != undefined){
-        console.log("bbbbbbbbbbbbbbbbbbb：",getProductSearch)
+    else if(getProductSearch != "" && router.pathname == '/product' && router.query.page != undefined){
         router.push({
           query: {
+            ...router.query,
             "keyword": `${getProductSearch}`,
             "page" : "1",
           },

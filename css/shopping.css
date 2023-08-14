@@ -1,3 +1,7 @@
+.no-collection {
+  color: var(--main-dark);
+}
+
 .new-check {
   visibility: hidden;
   position: relative;
@@ -77,6 +81,9 @@
 }
 .card-pagination .card-body .pagination .page-link:focus {
   box-shadow: none;
+}
+.card-pagination .card-body .pagination .pagination-icon:focus {
+  background-color: rgba(255, 255, 255, 0);
 }
 .card-pagination .card-body .pagination-icon {
   padding-top: 0.34rem;
@@ -289,6 +296,7 @@
 .PidPageHeader .PageBack {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .PidPageHeader .PageBack svg {
   width: 2rem;
@@ -507,7 +515,9 @@
 .onePageHeader {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: -5rem;
+  padding: 2rem 0 2rem 0;
 }
 .onePageHeader .PageBack svg {
   color: var(--main-dark);
@@ -515,6 +525,72 @@
   height: 2rem;
 }
 .onePageHeader .PageTitle {
+  color: var(--main-dark);
+}
+
+.CartPageHeader .progress-zone {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.4rem;
+  background: linear-gradient(180deg, rgba(119, 201, 212, 0) 0%, rgba(119, 173, 212, 0) 34.1%, var(--main) 34.2%, var(--main) 35%, var(--main) 35.8%, rgba(100, 180, 173, 0) 35.9%, rgba(87, 188, 144, 0) 100%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 95% 100%;
+}
+.CartPageHeader .progress-zone > div:first-child svg {
+  width: 50%;
+  height: auto;
+  margin-top: -4px;
+}
+.CartPageHeader .progress-zone > div:nth-child(2) svg {
+  width: 35%;
+  height: auto;
+}
+.CartPageHeader .progress-zone > div:nth-child(3) svg {
+  width: 38%;
+  height: auto;
+}
+.CartPageHeader .progress-zone > div:last-child svg {
+  width: 30%;
+  height: auto;
+}
+.CartPageHeader .progress-zone .progress-step {
+  height: 100%;
+  width: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.CartPageHeader .progress-zone .progress-step p {
+  margin-bottom: 0;
+}
+.CartPageHeader .progress-zone .progress-step .progress-ball {
+  color: var(--assist-white);
+  background-color: var(--main);
+  padding: 0.8rem 1.38rem;
+  width: min-content;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.CartPageHeader .progress-zone .progress-step .progress-ball h2 {
+  margin-bottom: 0;
+}
+.CartPageHeader .progress-zone .progress-step .progress-text {
+  color: var(--main);
+  text-align: center;
+}
+.CartPageHeader .progress-zone .progress-step .progress-text p {
+  margin-bottom: 0.4rem;
+}
+.CartPageHeader .progress-zone .progress-step-this .progress-ball {
+  background-color: var(--main-dark);
+}
+.CartPageHeader .progress-zone .progress-step-this .progress-text {
   color: var(--main-dark);
 }
 
@@ -885,8 +961,9 @@
   display: flex;
   flex-wrap: wrap;
 }
-.order_section .order_left form .select-section .input-error {
+.order_section .order_left form .input-error {
   width: 100%;
+  padding-left: 10rem;
 }
 
 .checking_section .member-auto {
@@ -946,12 +1023,19 @@
   color: var(--main-dark);
 }
 .order_card_section .order-card .order-card-header .order-card-header-id {
-  background-color: var(--assist-white);
+  background-color: rgba(255, 255, 255, 0.7);
   display: flex;
-  padding: 0.4rem;
+  align-items: center;
+  padding: 0.5rem;
   border-radius: 5px;
 }
+.order_card_section .order-card .order-card-header .order-card-header-id svg {
+  margin-right: 0.5rem;
+}
 .order_card_section .order-card .order-card-header .order-card-header-id h4 {
+  margin-bottom: 0;
+}
+.order_card_section .order-card .order-card-header .order-card-header-status h6 {
   margin-bottom: 0;
 }
 .order_card_section .order-card .order-card-body {
@@ -986,12 +1070,21 @@
 .order_card_section .order-card .order-card-body .order-each-product .order-product-img img {
   height: 100%;
   width: 100%;
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
-.order_card_section .order-card .order-card-body .order-each-product .order-product-name {
+.order_card_section .order-card .order-card-body .order-each-product .order-product-info .order-product-info-name {
+  display: flex;
+  margin-bottom: 0.2rem;
+}
+.order_card_section .order-card .order-card-body .order-each-product .order-product-info .order-product-info-name .order-product-name {
   margin-right: 1rem;
   color: var(--main-dark);
 }
-.order_card_section .order-card .order-card-body .order-each-product .order-product-num {
+.order_card_section .order-card .order-card-body .order-each-product .order-product-info .order-product-info-name .order-product-num {
+  color: var(--main);
+}
+.order_card_section .order-card .order-card-body .order-each-product .order-product-info .order-product-info-price {
   color: var(--main);
 }
 .order_card_section .order-card .order-detial-toggle {
@@ -1086,6 +1179,10 @@
   color: var(--main-dark);
   width: 30%;
 }
+.product_comment_form .product_comment_each .product-name img {
+  border-radius: 5px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
 .product_comment_form .product_comment_each .product-name h5 {
   margin-bottom: 0;
 }
@@ -1100,4 +1197,35 @@
 }
 .product_comment_form .product_comment_each .product_comment_comment .input-error {
   display: none;
+}
+
+.order-complete-page .order-complete-page-title {
+  width: 100%;
+  color: var(--main-dark);
+  background-color: var(--bg-light);
+  padding: 8px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+.order-complete-page .order-complete-page-title h2 {
+  margin-bottom: 0;
+}
+.order-complete-page .order-complete-page-title svg {
+  margin-right: 1rem;
+}
+.order-complete-page .order-complete-page-body {
+  padding: 1rem 1.2rem;
+}
+.order-complete-page .order-complete-page-body .order-text-section {
+  display: flex;
+  padding: 1rem 0;
+}
+.order-complete-page .order-complete-page-body .order-text-section label {
+  margin-bottom: 0;
+  color: var(--main);
+}
+.order-complete-page .order-complete-page-body .order-text-section p {
+  margin-bottom: 0;
+  color: var(--main-dark);
 }/*# sourceMappingURL=shopping.css.map */

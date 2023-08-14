@@ -12283,6 +12283,7 @@ header #Search-Bar button svg {
 
 main {
   padding: 6rem 0;
+  min-height: calc(100vh - 8rem);
   /* sidebar.js Start ====================*/
 }
 main .main-background {
@@ -12322,7 +12323,9 @@ main > .row > div {
 }
 #Sidebar #User-Img {
   width: 40%;
+  height: 100%;
   padding-right: 1rem;
+  overflow: hidden;
 }
 @media (max-width: 1199px) {
   #Sidebar #User-Img {
@@ -12336,8 +12339,9 @@ main > .row > div {
   }
 }
 #Sidebar #User-Img img {
-  width: 100%;
-  hieght: auto;
+  object-fit: cover;
+  object-position: 50% 50%;
+  border-radius: 50%;
 }
 #Sidebar #User-Info {
   width: 65%;
@@ -12381,6 +12385,13 @@ main > .row > div {
   color: var(--main);
   background-color: var(--assist-white);
   padding: 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+#Sidebar nav .nav-link svg {
+  margin: 0 1.5rem;
+  height: 1rem;
+  width: auto;
 }
 #Sidebar nav .nav-link:hover {
   background-color: var(--main);

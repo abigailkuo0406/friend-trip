@@ -57,16 +57,7 @@ export default function Order() {
 
   return (
     <>
-      <div className="CartPageHeader onePageHeader">
-        <div className="PageBack">
-          <Link replace href="../product">
-            <MdKeyboardArrowLeft></MdKeyboardArrowLeft>
-          </Link>
-        </div>
-        <div className="PageTitle">
-          <p>我的訂單</p>
-        </div>
-      </div>
+      
       <section className="order_section order_card_section">
         <div className="order_left">
         <div className="change_order_type">

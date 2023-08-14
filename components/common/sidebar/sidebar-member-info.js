@@ -3,7 +3,7 @@ import persona from '@/public/img/fake-data/fake-persona.png'
 import { BsPeople } from 'react-icons/bs'
 import { BsChatText } from 'react-icons/bs'
 import { BsCalendarCheck } from 'react-icons/bs'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 
 import AuthContext from '@/context/AuthContext'
 import memberAvatar from '@/components/common/sidebar/sidebar-member.module.css'
@@ -15,7 +15,11 @@ export default function SidebarMemberInfo() {
     var index = auth.email.indexOf('@')
     newid = '@' + auth.email.substring(0, index)
   }
-  console.log(auth)
+  useEffect(()=>{
+    if(auth.member_id != 0){
+      console.log("登入的會員資料為：", auth)
+    }
+  }, [auth])
 
   return (
     <>
@@ -25,8 +29,8 @@ export default function SidebarMemberInfo() {
             <Image
               src={auth.images ? `http://localhost:3002/face/${auth.images}` : persona}
               // src={persona}
-              width={200}
-              height={200}
+              width={80}
+              height={80}
               className={memberAvatar.avatar}
               // style={{
               //   width: `100%`,
