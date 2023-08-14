@@ -17,10 +17,10 @@ const theme = createTheme({
 import { ThemeProvider } from '@mui/material'
 
 export default function Condition() {
-  const [value, setValue] = React.useState([0, 10])
+  const [value, setValue] = React.useState([0, 100])
   const [gender, setGender] = useState('')
-  const [height, setHeight] = React.useState([100, 180])
-  const [weight, setWeight] = React.useState([30, 70])
+  const [height, setHeight] = React.useState([100, 200])
+  const [weight, setWeight] = React.useState([0, 100])
   const { auth, setAuth } = useContext(AuthContext)
   const router = useRouter()
   const condition = (e) => {
@@ -97,7 +97,7 @@ export default function Condition() {
                   setGender('男')
                 }}
               />
-              <BtnNormal btnText="都可以" addClassforButton="btn-light ms-3" />
+              {/* <BtnNormal btnText="都可以" addClassforButton="btn-light ms-3" /> */}
             </div>
           </div>
           <div className="mt-5">
