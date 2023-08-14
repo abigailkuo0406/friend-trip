@@ -33,7 +33,7 @@ export default function Post({
       })
       .then((r) => {
         // console.log(r.message)
-        console.log(r.data.message)
+        // console.log(r.data.message)
         if (r.data.message == 'deleted') {
           // alert('資料成功刪除')
           setPosts((old) => {
@@ -73,7 +73,7 @@ export default function Post({
             deletePost()
           }}
         >
-          確定，刪了吧
+          確定，刪了
         </button>
         <button
           className="btn btn-dark mx-1"
@@ -81,7 +81,7 @@ export default function Post({
             setDeletemodalStatus('none')
           }}
         >
-          別刪，留著吧
+          別刪，留著
         </button>
       </div>
       {/* ☝️ 確認刪除的彈跳視窗 */}

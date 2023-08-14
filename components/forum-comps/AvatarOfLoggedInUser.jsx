@@ -5,7 +5,7 @@ import AuthContext from '@/context/AuthContext'
 function AvatarOfLoggedInUser() {
   const { auth } = useContext(AuthContext)
   const avatarOfLoggedInUser = `http://localhost:3002/face/${auth.images}`
-  console.log('LoggedUser: ', avatarOfLoggedInUser)
+  // console.log('LoggedUser: ', avatarOfLoggedInUser)
   return (
     <div className="d-flex align-items-center">
       <div

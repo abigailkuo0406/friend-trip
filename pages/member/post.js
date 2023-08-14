@@ -18,23 +18,22 @@ export default function ForumHome() {
     })
       .then((r) => r.json())
       .then((d) => {
-        console.log('111', d.rows)
+        // console.log('111', d.rows)
         setPosts(d.rows)
         setComments(d.comments)
-        console.log('eddie', d.rows.file_url)
+        // console.log('eddie', d.rows.file_url)
       })
-  }, [])
+  }, [member_id, posts])
 
   if (!posts) return <p>loading</p>
   return (
     <>
       <NavBar />
       <input name="member_id" defaultValue={auth.member_id} hidden />
-      {/* 如果登入者尚未發文過，顯示 “您還沒有發過文，新增文章吧！” */}
-      {posts.length === 0 ? (
-        <EmptyStateMessage />
-      ) : (
+      {posts.length > 0 ? (
         <Posts posts={posts} comments={comments} setPosts={setPosts} />
+      ) : (
+        <EmptyStateMessage />
       )}
     </>
   )
