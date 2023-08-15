@@ -46,7 +46,6 @@ export default function FriendList() {
                     className="me-3 mb-2"
                     href={`/chatroom/${v.FriendId}`}
                   >
-                    <p>{v.FriendId}</p>
                     <Image
                       src={`http://localhost:3002/face/${v.images}`}
                       className={styles.avatar}
@@ -61,7 +60,6 @@ export default function FriendList() {
                     className="me-3 mb-2"
                     href={`/chatroom/${v.memberId}`}
                   >
-                    <p>{v.memberId}</p>
                     <Image
                       src={`http://localhost:3002/face/${v.images}`}
                       className={styles.avatar}
