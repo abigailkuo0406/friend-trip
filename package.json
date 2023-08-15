@@ -36,8 +36,10 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "react-modal": "^3.16.1",
+    "socket.io-client": "^4.7.2",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.20",
+    "uuid": "^9.0.0",
     "validator": "^13.9.0"
   },
   "devDependencies": {

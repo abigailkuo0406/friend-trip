@@ -4,7 +4,6 @@ import Image from 'rc-image'
 import AuthContext from '@/context/AuthContext'
 
 
-
 export default function FriendList() {
     const { auth, setAuth } = useContext(AuthContext)
 
@@ -43,7 +42,8 @@ export default function FriendList() {
                         {friends.length > 0 ?
                             friends.map((v, i) => {
                                 return (
-                                    <div key={i} className='me-3 mb-2'>
+                                    
+                                    <a key={i} className='me-3 mb-2' href={`/chatroom/${v.FriendId}`}>  
                                         <Image
                                             src={`http://localhost:3002/face/${v.images}`}
                                             className={styles.avatar}
@@ -51,7 +51,7 @@ export default function FriendList() {
                                             width={50}
                                             height={50}
                                         />
-                                    </div>
+                                    </a>
                                 )
                             })
                             :
