@@ -2,17 +2,15 @@
 @import _mixin
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
 
-
 /* General Start ====================*/
 
 html
   margin: 0
   padding: 0
-  font-size:16px
+  font-size: 16px
 
 body
   background-color: var(--bg-main)
-
 
 :root
   --main: #D0A5CA
@@ -59,7 +57,7 @@ a, ul, ol
 
 li
   &::marker
-    content:""
+    content: ""
 
 // 按鈕樣式 //.btn-dark 暗底 .btn-light 亮底 .btn-white 白底
 .btn
@@ -113,7 +111,7 @@ li
 .input-width-5rem
   width: 5rem
 .input-width-3rem
-  width: 3rem 
+  width: 3rem
 // input 樣式
 .select-section,.input-text-section, .input-radio-section, .input-checkbox-section
   margin-top: 1.8rem
@@ -137,12 +135,12 @@ label
   border: 1.8px solid #D8d8d8
   border-radius: 8px
   &::placeholder
-      color: var(--assist-grey)
+    color: var(--assist-grey)
   &:focus
-      color: var(--main-dark)
-      box-shadow: none
+    color: var(--main-dark)
+    box-shadow: none
   &:focus-visible
-      outline: none
+    outline: none
 .form-control
   border-radius: 20px 0 0 20px
   border: none
@@ -153,16 +151,16 @@ label
     height: fit-content
 
 .input-text-double-section
-    display: flex
-    flex-direction: row
-    justify-content: space-between
-    .input-text-section
-      width: 50%
-      &:first-child
-        margin-right:3%
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  .input-text-section
+    width: 50%
+    &:first-child
+      margin-right: 3%
       &:last-child
-        margin-left:3%
-          
+        margin-left: 3%
+
 .radio-seciton
   label
     padding-left: 0.5rem
@@ -175,12 +173,12 @@ label
   border-radius: 8px
   height: 10rem
   &::placeholder
-      color: var(--assist-grey)
+    color: var(--assist-grey)
   &:focus
-      color: var(--main-dark)
-      box-shadow: none
+    color: var(--main-dark)
+    box-shadow: none
   &:focus-visible
-      outline: none 
+    outline: none
 .custom-select
   position: relative
   // width: fit-content // 此 div 與子元素 select 同寬
@@ -223,7 +221,7 @@ label
 .custom-number
   position: relative
   // width: fit-content // 此 div 與子元素 select 同寬
-    
+
   &::after
     font-weight: 700
     font-family: "Font Awesome 5 Free"
@@ -288,13 +286,6 @@ label
   .input-text
     width: 1rem
 
-
-  
-
-
-
-
-
 /* General End ====================*/
 
 /* mixin Start ====================*/
@@ -326,7 +317,7 @@ header
         height: 1.4rem
         width: auto
         color: var(--assist-white)
-   
+
   /* navbar.js End ====================*/
 
 main
@@ -338,7 +329,6 @@ main
   >.row
     >div
       margin: 5rem 0
-
 
   /* sidebar.js Start ====================*/
 #Sidebar
@@ -367,7 +357,7 @@ main
     overflow: hidden
     @media(max-width:1199px)
       padding-right: 0
-      padding-bottom: 1rem 
+      padding-bottom: 1rem
     @media(max-width:991px)
       width: 60%
     img
@@ -433,6 +423,12 @@ main
     #navbarNav
       width: 100%
 
+.bigdaddy
+  >div
+    &:first-child
+      width: 80%
+  .classTest1, .input-error
+    display: none
 
       /* sidebar.js End ====================*/
 
@@ -449,10 +445,6 @@ footer
     margin: 0
     color: var(--main)
 
-
-
 /* RWD 1200 Start ====================*/
 
-
-  
 /* RWD 1200 End ====================*/
