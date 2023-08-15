@@ -9,11 +9,11 @@ export default function PairBtns2({ setPage, setImgIndex, imgIndex, page }) {
   return (
     <>
       <div className="d-flex justify-content-center gap-5 mt-3">
-        <BtnNormal
+        {/* <BtnNormal
           btnText="改變命運"
           addClassforButton="btn-light"
           onClick={change}
-        />
+        /> */}
 
         <BtnNormal
           btnText="尋找下一位"
