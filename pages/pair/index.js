@@ -23,9 +23,7 @@ export default function PairsIndex() {
     // setRandomState(_.shuffle(photos))
   }, [memberinfo])
   console.log(randomstate)
-  // console.log('rrr', auth.member_id)
   useEffect(() => {
-    if (auth.member_id == 0) return
     fetch(process.env.API_SERVER + '/select', {
       method: 'POST',
       body: JSON.stringify({
@@ -37,7 +35,7 @@ export default function PairsIndex() {
     })
       .then((r) => r.json())
       .then((data) => {
-        console.log('1', data)
+        console.log(data)
         Swal.fire({
           width: 400,
           title: '篩選成功',

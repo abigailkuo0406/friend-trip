@@ -9,16 +9,19 @@ import ModalCartAdd from '@/components/common/modal/modal_cart_add'
 import AuthContext from '@/context/AuthContext'
 import fakeIimg1 from '@/public/img/fake-data/fake-img-1.jpg'
 import Swal from 'sweetalert2'
-import { BsCart, BsCartPlus, BsHeartFill, BsHeart, BsChevronLeft } from 'react-icons/bs'
+import {
+  BsCart,
+  BsCartPlus,
+  BsHeartFill,
+  BsHeart,
+  BsChevronLeft,
+} from 'react-icons/bs'
 import { AiFillStar, AiOutlineStar, AiOutlineLeft } from 'react-icons/ai'
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
-import { TiArrowLeft } from "react-icons/ti";
-
-
+import { TiArrowLeft } from 'react-icons/ti'
 
 export default function ProductItem({}) {
-  const {auth, setAuth } = useContext(AuthContext)
-
+  const { auth, setAuth } = useContext(AuthContext)
 
   const router = useRouter()
   const [row, setRow] = useState({
@@ -64,25 +67,21 @@ export default function ProductItem({}) {
   const productBuyFormSubmit = (event) => {
     event.preventDefault()
   }
-  const [cartNumber, setCartNumber]=useState(0)
+  const [cartNumber, setCartNumber] = useState(0)
   useEffect(() => {
     fetch(`${process.env.API_SERVER}/product/cart/read`, {
       method: 'POST',
-      body: JSON.stringify({auth}),
+      body: JSON.stringify({ auth }),
       // auth 為單純的 object 記錄所有會員資料，{auth} 為 key 為 auth 對應值為所有會員資料
       headers: {
         'Content-Type': 'application/json',
       },
-    }
-    )
+    })
       .then((r) => r.json())
       .then((data) => {
         setCartNumber(data.all.length)
-      })    
+      })
   }, [auth])
-  
-
-
 
   useEffect(() => {
     fetch(process.env.API_SERVER + '/product/' + router.query.pid)
@@ -96,114 +95,118 @@ export default function ProductItem({}) {
       })
   }, [router.query])
 
-
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`${process.env.API_SERVER}/collection/findCollection`, {
       method: 'POST',
-      body: JSON.stringify({memberID: auth.member_id, productID: product_id}),
+      body: JSON.stringify({ memberID: auth.member_id, productID: product_id }),
       headers: {
         'Content-Type': 'application/json',
       },
-    }
-    )
+    })
       .then((r) => r.json())
       .then((data) => {
         setCollectionID(data.all)
       })
 
-      fetch(`${process.env.API_SERVER}/order/getComment`, {
-        method: 'POST',
-        body: JSON.stringify({productID: row.product_id}),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-      )
-        .then((r) => r.json())
-        .then((data) => {
-          setAllContent(data.all)
-        })
-
-  }, [row])
-
-
-
-  const cateArray = product_category.split(' ')
-
-  const handleBuy = () =>{
-    fetch(`${process.env.API_SERVER}/product/cart/add`, {
+    fetch(`${process.env.API_SERVER}/order/getComment`, {
       method: 'POST',
-      body: JSON.stringify({member: auth.member_id, productID: product_id, productNum:buyValue}),
+      body: JSON.stringify({ productID: row.product_id }),
       headers: {
         'Content-Type': 'application/json',
       },
-    }
-    )
+    })
+      .then((r) => r.json())
+      .then((data) => {
+        setAllContent(data.all)
+      })
+  }, [row])
+
+  const cateArray = product_category.split(' ')
+
+  const handleBuy = () => {
+    fetch(`${process.env.API_SERVER}/product/cart/add`, {
+      method: 'POST',
+      body: JSON.stringify({
+        member: auth.member_id,
+        productID: product_id,
+        productNum: buyValue,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then((r) => r.json())
       .then((data) => {
         setCartNumber(data.all.length)
       })
-    
-        
-          Swal.fire({
-            width: 400,
-            html: `<h4>已將${product_name}</h4><h4>${buyValue}個加入購物車！</h4>`,
-            icon: 'success',
-            iconColor: '#FABCBF',
-            color: '#674C87',
-            confirmButtonColor: '#674C87',
-            showConfirmButton: false,
-            timer: 3000,
-          })
-        
-        // router.push('/custom-itinerary/arrange-schedule')
-     
+
+    Swal.fire({
+      width: 400,
+      html: `<h4>已將${product_name}</h4><h4>${buyValue}個加入購物車！</h4>`,
+      icon: 'success',
+      iconColor: '#FABCBF',
+      color: '#674C87',
+      confirmButtonColor: '#674C87',
+      showConfirmButton: false,
+      timer: 3000,
+    })
+
+    // router.push('/custom-itinerary/arrange-schedule')
   }
 
-  useEffect(()=>{
-    if(collectionID.length>0){
+  useEffect(() => {
+    if (collectionID.length > 0) {
       setFavorit(true)
     }
-  },[collectionID])
+  }, [collectionID])
 
-  useEffect(()=>{
-    if(auth.member_id != 0 && likeClick==true){
-      
-    if(favorit==true){
-      fetch(`${process.env.API_SERVER}/collection/addCollection`, {
-        method: 'POST',
-        body: JSON.stringify({memberID: auth.member_id, productID: product_id}),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-      )
-        .then((r) => r.json())
-        .then((data) => {
+  useEffect(() => {
+    if (auth.member_id != 0 && likeClick == true) {
+      if (favorit == true) {
+        fetch(`${process.env.API_SERVER}/collection/addCollection`, {
+          method: 'POST',
+          body: JSON.stringify({
+            memberID: auth.member_id,
+            productID: product_id,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         })
-    } else if (favorit==false){
-      fetch(`${process.env.API_SERVER}/collection/deleteCollection`, {
-        method: 'POST',
-        body: JSON.stringify({memberID: auth.member_id, productID: product_id}),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-      )
-        .then((r) => r.json())
-        .then((data) => {
+          .then((r) => r.json())
+          .then((data) => {})
+      } else if (favorit == false) {
+        fetch(`${process.env.API_SERVER}/collection/deleteCollection`, {
+          method: 'POST',
+          body: JSON.stringify({
+            memberID: auth.member_id,
+            productID: product_id,
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
         })
-    }}
-  },[favorit,likeClick])
+          .then((r) => r.json())
+          .then((data) => {})
+      }
+    }
+  }, [favorit, likeClick])
 
   // 將後端傳來的時間格式轉成台灣的時間格式
   function formatDate(dateString) {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-    const formattedDate = new Date(dateString).toLocaleString('zh-TW', options);
-    return formattedDate;
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    }
+    const formattedDate = new Date(dateString).toLocaleString('zh-TW', options)
+    return formattedDate
   }
 
-  const goBack = ()=>{
+  const goBack = () => {
     router.back()
   }
   return (
@@ -211,19 +214,18 @@ export default function ProductItem({}) {
       <div className="PidPageHeader">
         <div className="PageBack" onClick={goBack}>
           {/* <Link href={`/product${goBackQuery}`}> */}
-            <TiArrowLeft></TiArrowLeft>
+          <TiArrowLeft></TiArrowLeft>
           {/* </Link> */}
         </div>
 
         <div className="PageCart col-4">
-            <div>
+          <div>
             <Link href="./cart">
               <BsCart></BsCart>
               <span className="cartNumber">{cartNumber}</span>
             </Link>
-              
-            </div>
           </div>
+        </div>
       </div>
       <section className="productPageMain">
         <div className="productPageMainIMG">
@@ -234,7 +236,7 @@ export default function ProductItem({}) {
             width={400}
             height={400}
             onError={(e) => {
-              e.target.srcset = '/yun/product-img/no-img.png';
+              e.target.srcset = '/yun/product-img/no-img.png'
             }}
           ></Image>
         </div>
@@ -263,10 +265,10 @@ export default function ProductItem({}) {
             <div className="productRateIcon">
               {Array.from({ length: product_rate }, (e, i) => (
                 <AiFillStar key={i} />
-               ))}
-               {Array.from({ length: 5-product_rate }, (e, i) => (
+              ))}
+              {Array.from({ length: 5 - product_rate }, (e, i) => (
                 <AiOutlineStar key={i} />
-               ))}
+              ))}
             </div>
             <a className="productRateNum">{product_rate}</a>
           </div>
@@ -306,12 +308,12 @@ export default function ProductItem({}) {
         </div>
       </section>
       <div className="productPageComment">
-                {
-                  allContent.length > 0 ? (allContent.map((e,i)=>(
-                    <Fragment>
-                    <div className="productPageComment-each">
-                      <div className="comment-member-img">
-                        <Image
+        {allContent.length > 0 ? (
+          allContent.map((e, i) => (
+            <Fragment>
+              <div className="productPageComment-each">
+                <div className="comment-member-img">
+                  {/* <Image
                             src={`/face/${e.images}`}
                             className="commentImg"
                             alt={`${e.images}'s persona`}
@@ -320,28 +322,43 @@ export default function ProductItem({}) {
                             onError={(e) => {
                               e.target.srcset = '/yun/product-img/no-img.png';
                             }}
-                        ></Image>
-                      </div>
-                      <div className="comment-member-content">
-                        <div className="comment-member-header">
-                        <p className="comment-member-name">{e.member_name}</p>
-                        <div  className="comment-comment-rating">{Array.from({ length: e.comment_rating }, (e, i) => (
-                              <AiFillStar key={i} />
-                              ))}
-                              {Array.from({ length: 5-e.comment_rating }, (e, i) => (
-                                <AiOutlineStar key={i} />
-                              ))}
-                        </div>
-                      </div>
-                      <p className="comment-comment-content">{e.comment_content}</p>
-                      <p className="comment-comment-time small-font">{formatDate(e.comment_time)}</p>
-                      </div>
-                      
-                      </div>
-                    </Fragment>
-                  ))):(<p>目前無評論！</p>)
-                }
-
+                        ></Image> */}
+                  <Image
+                    src={
+                      auth.images
+                        ? `http://localhost:3002/face/${e.images}`
+                        : persona
+                    }
+                    // src={persona}
+                    width={80}
+                    height={80}
+                    className="commentImg"
+                    alt={`${e.images}'s persona`}
+                  ></Image>
+                </div>
+                <div className="comment-member-content">
+                  <div className="comment-member-header">
+                    <p className="comment-member-name">{e.member_name}</p>
+                    <div className="comment-comment-rating">
+                      {Array.from({ length: e.comment_rating }, (e, i) => (
+                        <AiFillStar key={i} />
+                      ))}
+                      {Array.from({ length: 5 - e.comment_rating }, (e, i) => (
+                        <AiOutlineStar key={i} />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="comment-comment-content">{e.comment_content}</p>
+                  <p className="comment-comment-time small-font">
+                    {formatDate(e.comment_time)}
+                  </p>
+                </div>
+              </div>
+            </Fragment>
+          ))
+        ) : (
+          <p>目前無評論！</p>
+        )}
       </div>
     </>
   )

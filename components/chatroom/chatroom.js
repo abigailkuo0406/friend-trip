@@ -95,7 +95,7 @@ export default function Chatroom() {
   return (
     <>
       {/* <p>聊天室</p> */}
-      <div className="container">
+      <div className="container d-flex justify-content-center">
         <div className={`p-3 ${styles.dialogue} scrollbar-A`}>
           <div className="d-flex justify-content-center">
             <p className={`restLabel text-center px-4 rounded ${styles.date}`}>
@@ -144,30 +144,32 @@ export default function Chatroom() {
             )
           })}
         </div>
-        <div className={`d-flex align-items-center justify-content-center`}>
-          <div>
-            <InputText
-              id="message"
-              name="message"
-              label=""
-              value={text} // 預設文字
-              placeholder=""
-              width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
-              addClassforLabel="classTest1" // 如果要在 label 添加 class
-              addClassforInput="classTest2 colorred" // 如果要在 input 添加 class
-              getValue={setInputValue3} // 獲取填寫的數值
-              getName={setInputName3} // 獲取 name
-              // required={true}
-              onChange={handleChange}
-            />
-          </div>
-          <div className={`ms-5`}>
-            <BtnNormal
-              btnText="送出"
-              // type=""
-              onClick={send}
-            />
-          </div>
+      </div>
+      <div
+        className={`d-flex align-items-center justify-content-center bigdaddy`}
+      >
+        <div>
+          <InputText
+            id="message"
+            name="message"
+            label=""
+            value={text} // 預設文字
+            placeholder=""
+            width="input-width-100pa" // 調整 <input> 寬度，到 style.sass 挑選適合的 input-width 前綴 class 或自行新增
+            addClassforLabel="classTest1" // 如果要在 label 添加 class
+            addClassforInput="classTest2 colorred" // 如果要在 input 添加 class
+            getValue={setInputValue3} // 獲取填寫的數值
+            getName={setInputName3} // 獲取 name
+            // required={true}
+            onChange={handleChange}
+          />
+        </div>
+        <div className={`ms-5`}>
+          <BtnNormal
+            btnText="送出"
+            // type=""
+            onClick={send}
+          />
         </div>
       </div>
     </>

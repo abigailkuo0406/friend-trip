@@ -29,22 +29,22 @@ export default function AdminIndex() {
       console.log('未登入')
       router.push('/login')
     } else {
-      Swal.fire({
-        width: 400,
-        title: '已登入',
-        text: '感謝您的使用祝福您使用愉快',
-        icon: 'success',
-        iconColor: '#FABCBF',
-        color: '#674C87',
-        confirmButtonColor: '#674C87',
-        showConfirmButton: false,
-      })
+      // Swal.fire({
+      //   width: 400,
+      //   title: '已登入',
+      //   text: '感謝您的使用祝福您使用愉快',
+      //   icon: 'success',
+      //   iconColor: '#FABCBF',
+      //   color: '#674C87',
+      //   confirmButtonColor: '#674C87',
+      //   showConfirmButton: false,
+      // })
       console.log('登入')
       // router.push('/')
     }
   }, [])
   const pair = () => {
-    router.push('./pair')
+    router.push('./pair/condition')
   }
   return (
     <>
