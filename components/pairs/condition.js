@@ -95,7 +95,7 @@ export default function Condition() {
           showConfirmButton: false,
         })
       })
-      .then(() => router.push('/pair'))
+      .then(() => router.push('/pair/condition'))
   }
   useEffect(() => {
     console.log(gender)
