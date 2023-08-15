@@ -8,11 +8,11 @@ export default function SidebarNavigation() {
             <div className="container-fluid">
               <div className="" id="navbarNav">
                 <ul className="navbar-nav">
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <a className="nav-link active" aria-current="page" href='/chatroom'>
                       聊天室
                     </a>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
                     <a
                       className="nav-link active"

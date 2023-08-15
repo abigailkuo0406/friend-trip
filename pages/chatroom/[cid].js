@@ -24,10 +24,10 @@ export default function ChatroomId() {
             })
     }, [cid])
 
-    // console.log('aaa', friendsDetails)
+    console.log('aaa', friendsDetails)
     return (
         <>
-            {friendsDetails &&
+            {friendsDetails && 
                 <div className={`d-flex align-items-center mb-3`}>
                     <Image
                     src={`http://localhost:3002/face/${friendsDetails.images}`}
@@ -37,6 +37,9 @@ export default function ChatroomId() {
                     height={20}
                 />
                     <h3 className={`restLabel ${styles.name}`}>{friendsDetails.member_name}</h3>
+                    {/* {friendsDetails.member_name == auth.member_name && } */}
+                    {/* <h3 className={`restLabel ${styles.name}`}>{friendsDetails.member_name}</h3> */}
+
                 </div>}
 
             <Chatroom
