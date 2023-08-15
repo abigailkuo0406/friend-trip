@@ -452,7 +452,7 @@
 }
 .productPageMain .productPageMainINFO .productBuyForm {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   flex-direction: row;
 }
 @media (max-width: 991px) {
@@ -931,7 +931,7 @@
 .order_rightButton {
   display: flex;
 }
-.order_rightButton button:first-child {
+.order_rightButton a:first-child {
   margin-right: 1.5rem;
 }
 .order_rightButton .order-btn {
@@ -1060,6 +1060,10 @@
 }
 .checking_section .member-auto .radio-seciton {
   line-height: 2.5rem;
+}
+.checking_section input::placeholder, .checking_section textarea::placeholder {
+  color: #b0b0b0;
+  font-style: italic;
 }
 
 .collection_section .order_left {

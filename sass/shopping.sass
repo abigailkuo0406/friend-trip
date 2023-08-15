@@ -369,7 +369,7 @@
         color: var(--main)
     .productBuyForm
       display: flex
-      align-items: flex-start
+      align-items: baseline
       flex-direction: row
       @media(max-width:991px)
         flex-direction: column
@@ -754,11 +754,11 @@
       
 .order_rightButton
   display: flex
-  button
+  a
     &:first-child
       margin-right:1.5rem
-    a
-      &:first-child
+    
+
      
   .order-btn
     padding-right: 2.2rem
@@ -869,6 +869,10 @@
       display: none
     .radio-seciton
       line-height: 2.5rem
+  input, textarea
+    &::placeholder
+      color: #b0b0b0
+      font-style: italic
     
 .collection_section
   .order_left
