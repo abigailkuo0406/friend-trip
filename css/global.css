@@ -12457,6 +12457,7 @@ main > .row > div {
 }
 @media (max-width: 1199px) {
   #Sidebar #User-Img {
+    width: 100%;
     padding-right: 0;
     padding-bottom: 1rem;
   }
@@ -12494,14 +12495,7 @@ main > .row > div {
   color: var(--assist-grey);
 }
 #Sidebar #User-Info #User-Status {
-  color: var(--main);
-  margin-top: 1rem;
-  display: flex;
-}
-@media (max-width: 991px) {
-  #Sidebar #User-Info #User-Status {
-    flex-direction: column;
-  }
+  display: none;
 }
 #Sidebar #User-Info #User-Status > p {
   display: flex;
@@ -12553,6 +12547,13 @@ main > .row > div {
 
 .bigdaddy > div:first-child {
   width: 80%;
+  padding: 0 12px;
+}
+.bigdaddy > div:last-child {
+  width: 18%;
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 12px;
 }
 .bigdaddy .classTest1, .bigdaddy .input-error {
   display: none;

@@ -356,6 +356,7 @@ main
     padding-right: 1rem
     overflow: hidden
     @media(max-width:1199px)
+      width: 100%
       padding-right: 0
       padding-bottom: 1rem
     @media(max-width:991px)
@@ -378,11 +379,7 @@ main
     #User-Account
       color: var(--assist-grey)
     #User-Status
-      color: var(--main)
-      margin-top: 1rem
-      display: flex
-      @media(max-width:991px)
-        flex-direction: column
+      display: none
 
       >p
         display: flex
@@ -427,6 +424,12 @@ main
   >div
     &:first-child
       width: 80%
+      padding: 0 12px
+    &:last-child
+      width: 18%
+      display: flex
+      flex-direction: row-reverse
+      padding-right: 12px
   .classTest1, .input-error
     display: none
 
