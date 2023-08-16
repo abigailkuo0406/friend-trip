@@ -12464,7 +12464,7 @@ main > .row > div {
 }
 @media (max-width: 991px) {
   #Sidebar #User-Img {
-    width: 60%;
+    width: 100%;
   }
 }
 #Sidebar #User-Img img {
