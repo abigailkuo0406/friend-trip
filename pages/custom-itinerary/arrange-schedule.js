@@ -64,7 +64,7 @@ export default function ArrangeSchedule() {
     setSearchLngLat(viewPosition)
     setCenter(viewPosition)
 
-    // console.log('place',place)
+    console.log('place',place)
     //->檢查lat lng有沒有更改
     //景點詳細資料
     const selectedView = {
@@ -77,11 +77,11 @@ export default function ArrangeSchedule() {
         place.formatted_phone_number && place.formatted_phone_number,
       rating: place.rating && place.rating,
       lng: (
-        (place.geometry.viewport.Ga.lo + place.geometry.viewport.Ga.hi) /
+        (place.geometry.viewport.Ja.lo + place.geometry.viewport.Ja.hi) /
         2
       ).toFixed(4),
       lat: (
-        (place.geometry.viewport.Ua.lo + place.geometry.viewport.Ua.hi) /
+        (place.geometry.viewport.Va.lo + place.geometry.viewport.Va.hi) /
         2
       ).toFixed(4),
     }
@@ -293,6 +293,7 @@ export default function ArrangeSchedule() {
       }
     )
   }
+  
 
   return (
     <>

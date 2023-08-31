@@ -3,7 +3,8 @@
     padding: 0;
     margin: 0;
 .li {
-    counter-increment:step; 
+    counter-increment:step;
+    // border: 1px solid darkorange; 
     &:before{
         line-height: 24px;
         text-align: center;
