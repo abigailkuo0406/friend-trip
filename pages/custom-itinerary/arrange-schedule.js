@@ -77,11 +77,11 @@ export default function ArrangeSchedule() {
         place.formatted_phone_number && place.formatted_phone_number,
       rating: place.rating && place.rating,
       lng: (
-        (place.geometry.viewport.Ja.lo + place.geometry.viewport.Ja.hi) /
+        (place.geometry.viewport.Ia.lo + place.geometry.viewport.Ia.hi) /
         2
       ).toFixed(4),
       lat: (
-        (place.geometry.viewport.Va.lo + place.geometry.viewport.Va.hi) /
+        (place.geometry.viewport.Ua.lo + place.geometry.viewport.Ua.hi) /
         2
       ).toFixed(4),
     }
